@@ -1,0 +1,23 @@
+To plot ReacLib rates in gnuplot:
+
+1.  In the directory containing StochasticElements.java, execute
+
+    java ElementMaker | tee temp.txt
+
+2.  In the resulting interface click "Select Isotopes" choose a network setup 
+and corresponding rates.
+
+3.  Click the "Plot Rates" button, which gives a window with a list of 
+reactions.  NOTE:  In the java plotting you can select and deselect reactions 
+and subreactions in this window.  This selection has no effect for the output 
+gnuplot data files. All reactions and no subreactions from the original list
+are output to the gnuplot data files.
+
+4.  Click "Plot" in that window. This invokes
+
+a.  Output through the stream toGnuRates2 in PlotParams.java to the data file 
+output/gnuplotRates2.data of data to make rates plots using gnuplot_rates2.gnu.
+
+b.  Output of the Reaclib parameters P1, P2, P3, P4, P5, P6, P7 for rate 
+calculations to the file output/gnuplotRates.data (nothing presently being done 
+with this file).

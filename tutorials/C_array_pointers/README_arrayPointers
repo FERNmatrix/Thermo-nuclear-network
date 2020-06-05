@@ -1,0 +1,9 @@
+ 
+Tutorial on C arrays and pointers, followed by example of using pointers
+to create arrays of GSL vectors.
+
+Compile with (using gcc on Fedora)
+    gcc arrayPointers.c -o arrayPointers  -lgsl -lgslcblas -lm
+and execute with
+    ./arrayPointers
+Output is to screen.

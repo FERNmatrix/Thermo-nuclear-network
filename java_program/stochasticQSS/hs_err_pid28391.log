@@ -1,0 +1,283 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00002aaaaacc6a4c, pid=28391, tid=1082161488
+#
+# Java VM: IcedTea 64-Bit Server VM (1.7.0-b21 mixed mode linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0x1efa4c]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00002aaafc001000):  JavaThread "CompilerThread0" daemon [_thread_in_native, id=28399, stack(0x0000000040707000,0x0000000040808000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x0000000000000000
+
+Registers:
+RAX=0x00002aaafc109888, RBX=0x00000000006417d0, RCX=0x00002aaafc109d30, RDX=0x0000000000000052
+RSP=0x0000000040803f80, RBP=0x0000000040803ff0, RSI=0x0000000000000054, RDI=0x00002aaafc10d4e0
+R8 =0x0000000000c55470, R9 =0x00002aab00104730, R10=0x0000000000000002, R11=0x00002aaaab08c230
+R12=0x0000000000000000, R13=0x000000000000005d, R14=0x0000000000000055, R15=0x00000000000000ba
+RIP=0x00002aaaaacc6a4c, EFL=0x0000000000010206, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x0000000040803f80)
+0x0000000040803f80:   0000000000c55470 00000000408056e0
+0x0000000040803f90:   0000009440803fc0 00000000009a9468
+0x0000000040803fa0:   00002aaafc109d30 0000000800000040
+0x0000000040803fb0:   00000000009a9468 00002aab0027b2a0
+0x0000000040803fc0:   00002aaafc10d4e0 00000000009a9468
+0x0000000040803fd0:   00002aaafc109d30 0000000000000016
+0x0000000040803fe0:   0000000000000016 0000000000000017
+0x0000000040803ff0:   0000000040804050 00002aaaaacc6fb0
+0x0000000040804000:   0000000000d36c60 000000940087ed40
+0x0000000040804010:   00000000408056e0 fffffffffffffffe
+0x0000000040804020:   00172aaa00000003 0000000000000001
+0x0000000040804030:   0000000000000008 00000000deadbeef
+0x0000000040804040:   00002aab000b4f10 0000000000b85950
+0x0000000040804050:   0000000040804180 00002aaaaacc7bb4
+0x0000000040804060:   0000000000000005 0000000040804140
+0x0000000040804070:   0000000040804148 00002aab0063bf20
+0x0000000040804080:   0000000000000094 0000000040804120
+0x0000000040804090:   0000000040804120 0000000040804120
+0x00000000408040a0:   0000000040804120 0000000040806500
+0x00000000408040b0:   0000009400270000 00002aaafc001340
+0x00000000408040c0:   0000000500270000 0000000000000000
+0x00000000408040d0:   0000000000d36c60 0000000000000000
+0x00000000408040e0:   ffffffff40804100 00002aab0063bf10
+0x00000000408040f0:   00002aab00593e80 00002aab00ab1ae0
+0x0000000040804100:   0000000540804140 0000000040805800
+0x0000000040804110:   00000000408056e0 0000000000000020
+0x0000000040804120:   0000000000000200 000000000091abb0
+0x0000000040804130:   00002aaafc001340 00002aaa00000037
+0x0000000040804140:   0000000000000088 0000000000000000
+0x0000000040804150:   00002aab00ab1ac0 00002aab0000cc20
+0x0000000040804160:   0000000000000007 00002aab005935d8
+0x0000000040804170:   0000000000000724 0000000040806500 
+
+Instructions: (pc=0x00002aaaaacc6a4c)
+0x00002aaaaacc6a3c:   4e 8b 34 ba 48 8b 4d b0 48 8b 41 08 4e 8b 24 b8
+0x00002aaaaacc6a4c:   49 8b 04 24 4c 89 e7 ff 50 28 48 89 c7 48 89 c3 
+
+Stack: [0x0000000040707000,0x0000000040808000],  sp=0x0000000040803f80,  free space=1011k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x1efa4c]
+V  [libjvm.so+0x1effb0]
+V  [libjvm.so+0x1f0bb4]
+V  [libjvm.so+0x4d70a2]
+V  [libjvm.so+0x257dee]
+V  [libjvm.so+0x2592a8]
+V  [libjvm.so+0x1f5318]
+V  [libjvm.so+0x25d0bd]
+V  [libjvm.so+0x25ddfb]
+V  [libjvm.so+0x5ad0dd]
+V  [libjvm.so+0x4cc934]
+
+
+Current CompileTask:
+C2: 32      com.sun.tools.javac.parser.Parser.term3()Lcom/sun/tools/javac/tree/JCTree$JCExpression; (2741 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00002aaafc005c00 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=28401, stack(0x0000000040909000,0x0000000040a0a000)]
+  0x00002aaafc002c00 JavaThread "CompilerThread1" daemon [_thread_blocked, id=28400, stack(0x0000000040808000,0x0000000040909000)]
+=>0x00002aaafc001000 JavaThread "CompilerThread0" daemon [_thread_in_native, id=28399, stack(0x0000000040707000,0x0000000040808000)]
+  0x00000000006a3800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=28398, stack(0x0000000040606000,0x0000000040707000)]
+  0x0000000000682400 JavaThread "Finalizer" daemon [_thread_blocked, id=28397, stack(0x0000000040505000,0x0000000040606000)]
+  0x000000000067b000 JavaThread "Reference Handler" daemon [_thread_blocked, id=28396, stack(0x0000000040404000,0x0000000040505000)]
+  0x000000000060a400 JavaThread "main" [_thread_in_vm, id=28392, stack(0x0000000040000000,0x0000000040101000)]
+
+Other Threads:
+  0x0000000000675800 VMThread [stack: 0x0000000040303000,0x0000000040404000] [id=28395]
+  0x00002aaafc008400 WatcherThread [stack: 0x0000000040a0a000,0x0000000040b0b000] [id=28402]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 6656K, used 2468K [0x00002aaae17f0000, 0x00002aaae24f0000, 0x00002aaaf57f0000)
+  eden space 6144K, 40% used [0x00002aaae17f0000,0x00002aaae1a59038,0x00002aaae1df0000)
+  from space 512K, 0% used [0x00002aaae1df0000,0x00002aaae1df0000,0x00002aaae1e70000)
+  to   space 512K, 0% used [0x00002aaae2470000,0x00002aaae2470000,0x00002aaae24f0000)
+ PSOldGen        total 14272K, used 5203K [0x00002aaab97f0000, 0x00002aaaba5e0000, 0x00002aaae17f0000)
+  object space 14272K, 36% used [0x00002aaab97f0000,0x00002aaab9d04c00,0x00002aaaba5e0000)
+ PSPermGen       total 21248K, used 7171K [0x00002aaaaeff0000, 0x00002aaab04b0000, 0x00002aaab97f0000)
+  object space 21248K, 33% used [0x00002aaaaeff0000,0x00002aaaaf6f0e88,0x00002aaab04b0000)
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 787162                             /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/bin/javac
+00600000-00601000 rw-p 00000000 08:01 787162                             /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/bin/javac
+00601000-00dd3000 rw-p 00601000 00:00 0                                  [heap]
+40000000-40003000 ---p 40000000 00:00 0 
+40003000-40101000 rwxp 40003000 00:00 0 
+40101000-40102000 ---p 40101000 00:00 0 
+40102000-40202000 rwxp 40102000 00:00 0 
+40202000-40203000 ---p 40202000 00:00 0 
+40203000-40303000 rwxp 40203000 00:00 0 
+40303000-40304000 ---p 40303000 00:00 0 
+40304000-40404000 rwxp 40304000 00:00 0 
+40404000-40407000 ---p 40404000 00:00 0 
+40407000-40505000 rwxp 40407000 00:00 0 
+40505000-40508000 ---p 40505000 00:00 0 
+40508000-40606000 rwxp 40508000 00:00 0 
+40606000-40609000 ---p 40606000 00:00 0 
+40609000-40707000 rwxp 40609000 00:00 0 
+40707000-4070a000 ---p 40707000 00:00 0 
+4070a000-40808000 rwxp 4070a000 00:00 0 
+40808000-4080b000 ---p 40808000 00:00 0 
+4080b000-40909000 rwxp 4080b000 00:00 0 
+40909000-4090c000 ---p 40909000 00:00 0 
+4090c000-40a0a000 rwxp 4090c000 00:00 0 
+40a0a000-40a0b000 ---p 40a0a000 00:00 0 
+40a0b000-40b0b000 rwxp 40a0b000 00:00 0 
+3547c00000-3547c1b000 r-xp 00000000 08:01 1949818                        /lib64/ld-2.7.so
+3547e1a000-3547e1b000 r--p 0001a000 08:01 1949818                        /lib64/ld-2.7.so
+3547e1b000-3547e1c000 rw-p 0001b000 08:01 1949818                        /lib64/ld-2.7.so
+3548e00000-3548f4d000 r-xp 00000000 08:01 1949819                        /lib64/libc-2.7.so
+3548f4d000-354914d000 ---p 0014d000 08:01 1949819                        /lib64/libc-2.7.so
+354914d000-3549151000 r--p 0014d000 08:01 1949819                        /lib64/libc-2.7.so
+3549151000-3549152000 rw-p 00151000 08:01 1949819                        /lib64/libc-2.7.so
+3549152000-3549157000 rw-p 3549152000 00:00 0 
+3549200000-3549282000 r-xp 00000000 08:01 1949821                        /lib64/libm-2.7.so
+3549282000-3549481000 ---p 00082000 08:01 1949821                        /lib64/libm-2.7.so
+3549481000-3549482000 r--p 00081000 08:01 1949821                        /lib64/libm-2.7.so
+3549482000-3549483000 rw-p 00082000 08:01 1949821                        /lib64/libm-2.7.so
+3549600000-3549602000 r-xp 00000000 08:01 1949822                        /lib64/libdl-2.7.so
+3549602000-3549802000 ---p 00002000 08:01 1949822                        /lib64/libdl-2.7.so
+3549802000-3549803000 r--p 00002000 08:01 1949822                        /lib64/libdl-2.7.so
+3549803000-3549804000 rw-p 00003000 08:01 1949822                        /lib64/libdl-2.7.so
+3549a00000-3549a16000 r-xp 00000000 08:01 1949824                        /lib64/libpthread-2.7.so
+3549a16000-3549c15000 ---p 00016000 08:01 1949824                        /lib64/libpthread-2.7.so
+3549c15000-3549c16000 r--p 00015000 08:01 1949824                        /lib64/libpthread-2.7.so
+3549c16000-3549c17000 rw-p 00016000 08:01 1949824                        /lib64/libpthread-2.7.so
+3549c17000-3549c1b000 rw-p 3549c17000 00:00 0 
+3555000000-3555008000 r-xp 00000000 08:01 1949832                        /lib64/librt-2.7.so
+3555008000-3555207000 ---p 00008000 08:01 1949832                        /lib64/librt-2.7.so
+3555207000-3555208000 r--p 00007000 08:01 1949832                        /lib64/librt-2.7.so
+3555208000-3555209000 rw-p 00008000 08:01 1949832                        /lib64/librt-2.7.so
+3555800000-3555815000 r-xp 00000000 08:01 1949836                        /lib64/libnsl-2.7.so
+3555815000-3555a14000 ---p 00015000 08:01 1949836                        /lib64/libnsl-2.7.so
+3555a14000-3555a15000 r--p 00014000 08:01 1949836                        /lib64/libnsl-2.7.so
+3555a15000-3555a16000 rw-p 00015000 08:01 1949836                        /lib64/libnsl-2.7.so
+3555a16000-3555a18000 rw-p 3555a16000 00:00 0 
+3d9f800000-3d9f810000 r-xp 00000000 08:01 773827                         /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+3d9f810000-3d9fa0f000 ---p 00010000 08:01 773827                         /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+3d9fa0f000-3d9fa11000 rw-p 0000f000 08:01 773827                         /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+2aaaaaaab000-2aaaaaaad000 rw-p 2aaaaaaab000 00:00 0 
+2aaaaaaad000-2aaaaaaae000 r--p 2aaaaaaad000 00:00 0 
+2aaaaaaae000-2aaaaaaaf000 rwxp 2aaaaaaae000 00:00 0 
+2aaaaaaaf000-2aaaaaabb000 r--s 002c7000 08:01 773843                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/ext/j3dcore.jar
+2aaaaaabb000-2aaaaaac9000 r--s 00192000 08:01 773844                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/ext/j3dutils.jar
+2aaaaaac9000-2aaaaaad2000 r--s 00065000 08:01 774648                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/ext/gnome-java-bridge.jar
+2aaaaaad2000-2aaaaaad4000 r--s 0004e000 08:01 773845                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/ext/vecmath.jar
+2aaaaaad4000-2aaaaaad7000 rw-p 2aaaaaad4000 00:00 0 
+2aaaaaad7000-2aaaab1eb000 r-xp 00000000 08:01 774631                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+2aaaab1eb000-2aaaab3ea000 ---p 00714000 08:01 774631                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+2aaaab3ea000-2aaaab465000 rw-p 00713000 08:01 774631                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+2aaaab465000-2aaaab49e000 rw-p 2aaaab465000 00:00 0 
+2aaaab49e000-2aaaab4a6000 r-xp 00000000 08:01 774627                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+2aaaab4a6000-2aaaab6a5000 ---p 00008000 08:01 774627                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+2aaaab6a5000-2aaaab6a6000 rw-p 00007000 08:01 774627                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+2aaaab6a6000-2aaaab6a7000 rw-p 2aaaab6a6000 00:00 0 
+2aaaab6a7000-2aaaab6af000 rw-s 00000000 08:01 1082371                    /tmp/hsperfdata_guidry/28391
+2aaaab6ce000-2aaaab6d8000 r-xp 00000000 08:01 14837                      /lib64/libnss_files-2.7.so
+2aaaab6d8000-2aaaab8d7000 ---p 0000a000 08:01 14837                      /lib64/libnss_files-2.7.so
+2aaaab8d7000-2aaaab8d8000 r--p 00009000 08:01 14837                      /lib64/libnss_files-2.7.so
+2aaaab8d8000-2aaaab8d9000 rw-p 0000a000 08:01 14837                      /lib64/libnss_files-2.7.so
+2aaaab8d9000-2aaaab8e7000 r-xp 00000000 08:01 774624                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libverify.so
+2aaaab8e7000-2aaaabae6000 ---p 0000e000 08:01 774624                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libverify.so
+2aaaabae6000-2aaaabae8000 rw-p 0000d000 08:01 774624                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libverify.so
+2aaaabae8000-2aaaabb13000 r-xp 00000000 08:01 774605                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libjava.so
+2aaaabb13000-2aaaabd13000 ---p 0002b000 08:01 774605                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libjava.so
+2aaaabd13000-2aaaabd17000 rw-p 0002b000 08:01 774605                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libjava.so
+2aaaabd17000-2aaaabd26000 r-xp 00000000 08:01 774625                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libzip.so
+2aaaabd26000-2aaaabf26000 ---p 0000f000 08:01 774625                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libzip.so
+2aaaabf26000-2aaaabf28000 rw-p 0000f000 08:01 774625                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/libzip.so
+2aaaabf28000-2aaaac198000 rwxp 2aaaabf28000 00:00 0 
+2aaaac198000-2aaaaef28000 rwxp 2aaaac198000 00:00 0 
+2aaaaef28000-2aaaaef32000 rwxp 2aaaaef28000 00:00 0 
+2aaaaef32000-2aaaaefe8000 rwxp 2aaaaef32000 00:00 0 
+2aaaaeff0000-2aaab04b0000 rwxp 2aaaaeff0000 00:00 0 
+2aaab04b0000-2aaab97f0000 rwxp 2aaab04b0000 00:00 0 
+2aaab97f0000-2aaaba5e0000 rwxp 2aaab97f0000 00:00 0 
+2aaaba5e0000-2aaae17f0000 rwxp 2aaaba5e0000 00:00 0 
+2aaae17f0000-2aaae24f0000 rwxp 2aaae17f0000 00:00 0 
+2aaae24f0000-2aaaf57f0000 rwxp 2aaae24f0000 00:00 0 
+2aaaf57f0000-2aaaf57fb000 rwxp 2aaaf57f0000 00:00 0 
+2aaaf57fb000-2aaaf5844000 rwxp 2aaaf57fb000 00:00 0 
+2aaaf5844000-2aaaf584b000 rwxp 2aaaf5844000 00:00 0 
+2aaaf584b000-2aaaf5984000 rwxp 2aaaf584b000 00:00 0 
+2aaaf5984000-2aaaf598b000 rwxp 2aaaf5984000 00:00 0 
+2aaaf598b000-2aaaf5a24000 rwxp 2aaaf598b000 00:00 0 
+2aaaf5a24000-2aaaf5a2c000 rwxp 2aaaf5a24000 00:00 0 
+2aaaf5a2c000-2aaaf5b65000 rwxp 2aaaf5a2c000 00:00 0 
+2aaaf5b65000-2aaaf5b70000 rwxp 2aaaf5b65000 00:00 0 
+2aaaf5b70000-2aaaf5bb9000 rwxp 2aaaf5b70000 00:00 0 
+2aaaf5bb9000-2aaaf5be1000 rw-p 2aaaf5bb9000 00:00 0 
+2aaaf5be1000-2aaaf5d5b000 r--s 035c6000 08:01 774691                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/rt.jar
+2aaaf5d5b000-2aaaf5dee000 rw-p 2aaaf5d5b000 00:00 0 
+2aaaf5dee000-2aaafa848000 r--p 00000000 08:01 1789                       /usr/lib/locale/locale-archive
+2aaafa848000-2aaafa8a3000 r--s 00cdc000 08:01 803585                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/lib/tools.jar
+2aaafa8a3000-2aaafa8a7000 r--s 00079000 08:01 774677                     /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/jsse.jar
+2aaafc000000-2aaafc130000 rw-p 2aaafc000000 00:00 0 
+2aaafc130000-2aab00000000 ---p 2aaafc130000 00:00 0 
+2aab00000000-2aab00d2e000 rw-p 2aab00000000 00:00 0 
+2aab00d2e000-2aab04000000 ---p 2aab00d2e000 00:00 0 
+7fff6f6d6000-7fff6f6eb000 rwxp 7ffffffe9000 00:00 0                      [stack]
+7fff6f6eb000-7fff6f6ec000 rw-p 7fffffffe000 00:00 0 
+7fff6f7fd000-7fff6f7ff000 r-xp 7fff6f7fd000 00:00 0                      [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Dapplication.home=/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64 -Xms8m 
+java_command: com.sun.tools.javac.Main AbPlotFrame.java AbundanceData.java ChooseActiveIsotopes.java ChooseActiveRates.java ChooseIsotopes.java ContourDisplay.java ContourFileDialogueFlux.java ContourFileDialogue.java ContourFrameFlux.java ContourFrame.java ContourPadFlux.java ContourPad.java ContourPlotter.java Cvert.java DataHolder.java DeserializeReaclib.java ElementMaker.java elementProto.java FriedelParser.java FriedelRead2.java GenericHelpFrame.java GetVersionSVN.java GraphicsGoodies2.java GraphicsPad.java HorString.java HostCommands.java InterpolateColorTable.java IsoData.java IsotopePad.java IsoVector.java LegendPadFlux.java LegendPad.java LegendTester.java ListSystemProperties.java LoadR1.java MakeMyDialog.java MatrixAlg.java MyColors.java MyFileDialogue.java MyHelpFrame.java MyWarning.java NewtonRaphson.java NZBoxes.java OldFileDialogue.java ParamSetup.java PlotFileDialogue.java PlotParams.java PlotReactionList.java ProgressMeter.java RatePlotFileDialogue.java RatePlotFrame.java ReactionClass1.java ReactionList.java ReadAFile.java SegreFrame.java SerializeExample.java ShowAbundances.java ShowIsotopeFlux.java ShowIsotopes.java ShowIsotopeValue.java SolarAbundances.java SplineInterpolator.java StochasticElements.java testJAMA.java VertString.java
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/openmpi/1.3/intel/bin:/usr/kerberos/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/bin:/usr/games:/home/guidry/bin:/home/guidry/maple12/bin:/opt/intel/Compiler/11.0/074/bin/intel64:/usr/local/visit/bin/
+LD_LIBRARY_PATH=/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64/server:/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/lib/amd64:/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0.x86_64/jre/../lib/amd64
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x5ed9c0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x5ed9c0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x4c8680], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x4c8680], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x4c8680], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x4c8680], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x4cbb30], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x4c9920], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x4c9920], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x4c9920], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x4c9920], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Fedora release 8 (Werewolf)
+
+uname:Linux 2.6.24.4-64.fc8 #1 SMP Sat Mar 29 09:15:49 EDT 2008 x86_64
+libc:glibc 2.7 NPTL 2.7 
+rlimit: STACK 10240k, CORE 0k, NPROC 39936, NOFILE 1024, AS infinity
+load average:0.01 0.07 0.17
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 7 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 3931764k(450552k free), swap 3911816k(3502332k free)
+
+vm_info: IcedTea 64-Bit Server VM (1.7.0-b21) for linux-amd64 JRE (1.7.0-b21), built on Oct 15 2007 15:51:20 by "kojibuilder" with gcc 4.1.2 20070925 (Red Hat 4.1.2-31)
+
+time: Mon Sep 28 20:38:52 2009
+elapsed time: 0 seconds
+

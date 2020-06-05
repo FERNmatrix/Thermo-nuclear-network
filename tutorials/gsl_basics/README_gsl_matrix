@@ -1,0 +1,25 @@
+For Linux Fedora:
+
+Documentation for GSL matrix operations in
+
+https://www.gnu.org/software/gsl/doc/html/vectors.html
+
+1.  Need to install as superuser (assuming Fedora linux)
+
+gsl libraries:
+
+> dnf install gsl-2.4-8.fc30.x86_64
+
+headers and stuff:
+
+> dnf install gsl-devel
+
+2.  Requires several linking library flags in gcc command.  For example,
+
+gcc matrixGSL.c -o matrixGSL  -lgsl -lgslcblas -lm
+
+which executes with
+
+./matrixGSL
+
+

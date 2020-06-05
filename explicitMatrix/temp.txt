@@ -1,0 +1,934 @@
+
+
+--- Read in network and partition function ---
+
+1H 1 1 0 0.750000 7.289000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+2H 2 1 1 0.000000 13.136000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+3He 3 2 1 0.000000 14.931000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+4He 4 2 2 0.062500 2.425000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+7Li 7 3 4 0.000000 14.908000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+7Be 7 4 3 0.000000 15.770000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+8B 8 5 3 0.000000 22.921000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+
+7 ISOTOPES IN NETWORK:
+
+Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)
+    0       1H   1   1   0  7.50000e-01    0.750000      7.28900
+    1       2H   2   1   1  0.00000e+00    0.000000     13.13600
+    2      3He   3   2   1  0.00000e+00    0.000000     14.93100
+    3      4He   4   2   2  6.25000e-02    0.250000      2.42500
+    4      7Li   7   3   4  0.00000e+00    0.000000     14.90800
+    5      7Be   7   4   3  0.00000e+00    0.000000     15.77000
+    6       8B   8   5   3  0.00000e+00    0.000000     22.92100
+
+PARTITION FUNCTION TABLE:
+
+ T9 = 0.10 0.15 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00 1.50 2.00 2.50 3.00 3.50 4.00 4.50 5.00 6.00 7.00 8.00 9.00 10.00
+1H    1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+2H    1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+3He   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+4He   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+7Li   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+7Be   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+8B    1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+
+--- READ IN REACTIONS DATA---
+
+Reaction Index = 0
+isReverseR = 0 reaclibIndex = 4
+p+p+e-->d+nu 2 0 4 2 1 1 0 0.500000 1.442060
+-43.649899 -0.002461 -2.750700 -0.424877 0.015987 -0.000691 -0.207625
+  Reactant[0]: Z=1
+  Reactant[1]: Z=1
+  Reactant[0]: N=0
+  Reactant[1]: N=0
+  Product[0]: Z=1
+  Product[0]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ProductIndex[0]: N=1
+
+Reaction Index = 1
+isReverseR = 0 reaclibIndex = 4
+p+p-->d+e++nu 2 1 4 2 1 0 0 0.500000 1.442060
+-34.786301 0.000141 -3.511930 3.100860 -0.198314 0.012625 -1.025170
+  Reactant[0]: Z=1
+  Reactant[1]: Z=1
+  Reactant[0]: N=0
+  Reactant[1]: N=0
+  Product[0]: Z=1
+  Product[0]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ProductIndex[0]: N=1
+
+Reaction Index = 2
+isReverseR = 0 reaclibIndex = 4
+p+d-->he3 2 0 4 2 1 0 0 1.000000 5.494000
+7.893310 -0.002955 -3.235270 1.420880 -0.126344 0.009748 -0.178045
+  Reactant[0]: Z=1
+  Reactant[1]: Z=1
+  Reactant[0]: N=0
+  Reactant[1]: N=1
+  Product[0]: Z=2
+  Product[0]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=2
+
+Reaction Index = 3
+isReverseR = 1 reaclibIndex = 2
+he3-->p+d 2 1 2 1 2 0 1 1.000000 -5.494000
+31.407700 -63.752998 -3.235270 1.420880 -0.126344 0.009748 1.321960
+  Reactant[0]: Z=2
+  Reactant[0]: N=1
+  Product[0]: Z=1
+  Product[1]: Z=1
+  Product[0]: N=0
+  Product[1]: N=1
+  ReactantIndex[0]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=1
+
+Reaction Index = 4
+isReverseR = 0 reaclibIndex = 4
+d+d-->he4 2 0 4 2 1 0 0 0.500000 23.847000
+7.536970 -0.003478 -3.493150 -5.511840 1.257050 -0.114991 0.565466
+  Reactant[0]: Z=1
+  Reactant[1]: Z=1
+  Reactant[0]: N=1
+  Reactant[1]: N=1
+  Product[0]: Z=2
+  Product[0]: N=2
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=3
+
+Reaction Index = 5
+isReverseR = 1 reaclibIndex = 2
+he4-->d+d 2 1 2 1 2 0 1 1.000000 -23.847000
+32.073502 -276.731995 -3.493150 -5.511840 1.257050 -0.114991 2.065470
+  Reactant[0]: Z=2
+  Reactant[0]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=1
+  Product[0]: N=1
+  Product[1]: N=1
+  ReactantIndex[0]: N=3
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=1
+
+Reaction Index = 6
+isReverseR = 0 reaclibIndex = 4
+p+he3-->he4+e++nu 2 0 4 2 1 0 0 1.000000 19.796000
+-27.761101 -0.000000 -6.141000 -0.000000 0.000000 -0.000000 -0.666667
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[0]: N=0
+  Reactant[1]: N=1
+  Product[0]: Z=2
+  Product[0]: N=2
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=3
+
+Reaction Index = 7
+isReverseR = 0 reaclibIndex = 5
+d+he3-->p+he4 4 0 5 2 2 0 0 1.000000 18.353001
+157.011993 -0.154287 23.478201 -202.610992 60.915699 -29.335800 46.244202
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[0]: N=1
+  Reactant[1]: N=1
+  Product[0]: Z=1
+  Product[1]: Z=2
+  Product[0]: N=0
+  Product[1]: N=2
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+
+Reaction Index = 8
+isReverseR = 0 reaclibIndex = 5
+d+he3-->p+he4 4 1 5 2 2 0 0 1.000000 18.353001
+19.893200 -1.720000 -0.000000 0.000000 -0.000000 0.000000 -0.500000
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[0]: N=1
+  Reactant[1]: N=1
+  Product[0]: Z=1
+  Product[1]: Z=2
+  Product[0]: N=0
+  Product[1]: N=2
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+
+Reaction Index = 9
+isReverseR = 0 reaclibIndex = 5
+p+he4-->d+he3 4 2 5 2 2 0 0 1.000000 -18.353001
+158.725006 -213.134003 23.478201 -202.610992 60.915699 -29.335800 46.244202
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[0]: N=0
+  Reactant[1]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=2
+  Product[0]: N=1
+  Product[1]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=2
+
+Reaction Index = 10
+isReverseR = 0 reaclibIndex = 5
+p+he4-->d+he3 4 3 5 2 2 0 0 1.000000 -18.353001
+21.607000 -214.699997 -0.000000 0.000000 -0.000000 0.000000 -0.500000
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[0]: N=0
+  Reactant[1]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=2
+  Product[0]: N=1
+  Product[1]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=2
+
+Reaction Index = 11
+isReverseR = 0 reaclibIndex = 6
+he3+he3-->p+p+he4 5 0 6 2 3 0 0 0.500000 12.860000
+25.445999 0.006857 -13.005600 -0.985324 1.196910 -0.139031 -1.158650
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[0]: N=1
+  Reactant[1]: N=1
+  Product[0]: Z=1
+  Product[1]: Z=1
+  Product[2]: Z=2
+  Product[0]: N=0
+  Product[1]: N=0
+  Product[2]: N=2
+  ReactantIndex[0]: N=2
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=3
+
+Reaction Index = 12
+isReverseR = 0 reaclibIndex = 8
+p+p+he4-->he3+he3 5 1 8 3 2 0 0 1.000000 -12.860000
+3.640990 -149.223007 -13.005600 -0.985324 1.196910 -0.139031 -2.658650
+  Reactant[0]: Z=1
+  Reactant[1]: Z=1
+  Reactant[2]: Z=2
+  Reactant[0]: N=0
+  Reactant[1]: N=0
+  Reactant[2]: N=2
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[0]: N=1
+  Product[1]: N=1
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ReactantIndex[2]: N=3
+  ProductIndex[0]: N=2
+  ProductIndex[1]: N=2
+
+Reaction Index = 13
+isReverseR = 0 reaclibIndex = 4
+he3+he4-->be7 2 0 4 2 1 0 0 1.000000 1.588000
+15.813500 -0.000246 -12.775800 -0.489479 -0.088109 0.005573 -0.582926
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[0]: N=1
+  Reactant[1]: N=2
+  Product[0]: Z=4
+  Product[0]: N=3
+  ReactantIndex[0]: N=2
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=5
+
+Reaction Index = 14
+isReverseR = 1 reaclibIndex = 2
+be7-->he3+he4 2 1 2 1 2 0 1 1.000000 -1.588000
+38.943802 -18.423201 -12.775800 -0.489479 -0.088109 0.005573 0.917074
+  Reactant[0]: Z=4
+  Reactant[0]: N=3
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[0]: N=1
+  Product[1]: N=2
+  ReactantIndex[0]: N=5
+  ProductIndex[0]: N=2
+  ProductIndex[1]: N=3
+
+Reaction Index = 15
+isReverseR = 0 reaclibIndex = 5
+he4+he4-->p+li7 4 0 5 2 2 0 0 0.500000 -17.346001
+23.709999 -201.294006 -7.839230 -2.153100 0.133483 -0.007324 0.201780
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=3
+  Product[0]: N=0
+  Product[1]: N=4
+  ReactantIndex[0]: N=3
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=4
+
+Reaction Index = 16
+isReverseR = 0 reaclibIndex = 5
+he4+he4-->p+li7 4 1 5 2 2 0 0 0.500000 -17.346001
+210.957993 -208.341003 173.981995 -398.988007 35.036400 -2.667600 155.921005
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=3
+  Product[0]: N=0
+  Product[1]: N=4
+  ReactantIndex[0]: N=3
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=4
+
+Reaction Index = 17
+isReverseR = 0 reaclibIndex = 5
+p+li7-->he4+he4 4 2 5 2 2 0 0 1.000000 17.346001
+22.164600 -0.003300 -7.839230 -2.153100 0.133483 -0.007324 0.201780
+  Reactant[0]: Z=1
+  Reactant[1]: Z=3
+  Reactant[0]: N=0
+  Reactant[1]: N=4
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=4
+  ProductIndex[0]: N=3
+  ProductIndex[1]: N=3
+
+Reaction Index = 18
+isReverseR = 0 reaclibIndex = 5
+p+li7-->he4+he4 4 3 5 2 2 0 0 1.000000 17.346001
+209.412003 -7.050430 173.981995 -398.988007 35.036400 -2.667600 155.921005
+  Reactant[0]: Z=1
+  Reactant[1]: Z=3
+  Reactant[0]: N=0
+  Reactant[1]: N=4
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=4
+  ProductIndex[0]: N=3
+  ProductIndex[1]: N=3
+
+Reaction Index = 19
+isReverseR = 0 reaclibIndex = 8
+p+he4+he4-->d+be7 5 0 8 3 2 0 0 1.000000 -16.766001
+6.972410 -194.557007 -12.428000 -0.000000 0.000000 -0.000000 -2.166670
+  Reactant[0]: Z=1
+  Reactant[1]: Z=2
+  Reactant[2]: Z=2
+  Reactant[0]: N=0
+  Reactant[1]: N=2
+  Reactant[2]: N=2
+  Product[0]: Z=1
+  Product[1]: Z=4
+  Product[0]: N=1
+  Product[1]: N=3
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ReactantIndex[2]: N=3
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=5
+
+Reaction Index = 20
+isReverseR = 0 reaclibIndex = 6
+d+be7-->p+he4+he4 5 1 6 2 3 0 0 1.000000 16.766001
+27.698700 -0.000000 -12.428000 -0.000000 0.000000 -0.000000 -0.666667
+  Reactant[0]: Z=1
+  Reactant[1]: Z=4
+  Reactant[0]: N=1
+  Reactant[1]: N=3
+  Product[0]: Z=1
+  Product[1]: Z=2
+  Product[2]: Z=2
+  Product[0]: N=0
+  Product[1]: N=2
+  Product[2]: N=2
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+  ProductIndex[2]: N=3
+
+Reaction Index = 21
+isReverseR = 0 reaclibIndex = 1
+be7+e-->li7+nu 1 0 1 1 1 1 0 1.000000 0.862000
+-22.718300 0.001075 0.388608 1.166990 -0.117125 0.009263 -0.102017
+  Reactant[0]: Z=4
+  Reactant[0]: N=3
+  Product[0]: Z=3
+  Product[0]: N=4
+  ReactantIndex[0]: N=5
+  ProductIndex[0]: N=4
+
+Reaction Index = 22
+isReverseR = 0 reaclibIndex = 4
+p+be7-->b8 2 0 4 2 1 0 0 1.000000 0.137000
+12.647500 -0.000000 -10.262000 -0.000000 0.000000 -0.000000 -0.666667
+  Reactant[0]: Z=1
+  Reactant[1]: Z=4
+  Reactant[0]: N=0
+  Reactant[1]: N=3
+  Product[0]: Z=5
+  Product[0]: N=3
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=6
+
+Reaction Index = 23
+isReverseR = 0 reaclibIndex = 4
+p+be7-->b8 2 1 4 2 1 0 0 1.000000 0.137000
+7.835970 -7.306000 -0.000000 0.000000 -0.000000 0.000000 -1.500000
+  Reactant[0]: Z=1
+  Reactant[1]: Z=4
+  Reactant[0]: N=0
+  Reactant[1]: N=3
+  Product[0]: Z=5
+  Product[0]: N=3
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=6
+
+Reaction Index = 24
+isReverseR = 1 reaclibIndex = 2
+b8-->p+be7 2 2 2 1 2 0 1 1.000000 -0.137000
+35.935799 -1.595000 -10.262000 -0.000000 0.000000 -0.000000 0.833333
+  Reactant[0]: Z=5
+  Reactant[0]: N=3
+  Product[0]: Z=1
+  Product[1]: Z=4
+  Product[0]: N=0
+  Product[1]: N=3
+  ReactantIndex[0]: N=6
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=5
+
+Reaction Index = 25
+isReverseR = 1 reaclibIndex = 2
+b8-->p+be7 2 3 2 1 2 0 1 1.000000 -0.137000
+31.124201 -8.901000 -0.000000 0.000000 -0.000000 0.000000 -0.000000
+  Reactant[0]: Z=5
+  Reactant[0]: N=3
+  Product[0]: Z=1
+  Product[1]: Z=4
+  Product[0]: N=0
+  Product[1]: N=3
+  ReactantIndex[0]: N=6
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=5
+
+Reaction Index = 26
+isReverseR = 0 reaclibIndex = 7
+he3+be7-->p+p+he4+he4 -1 0 7 2 4 0 0 1.000000 11.272100
+31.743500 -0.000000 -21.792999 -0.000000 0.000000 -0.000000 -0.666667
+  Reactant[0]: Z=2
+  Reactant[1]: Z=4
+  Reactant[0]: N=1
+  Reactant[1]: N=3
+  Product[0]: Z=1
+  Product[1]: Z=1
+  Product[2]: Z=2
+  Product[3]: Z=2
+  Product[0]: N=0
+  Product[1]: N=0
+  Product[2]: N=2
+  Product[3]: N=2
+  ReactantIndex[0]: N=2
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=3
+  ProductIndex[3]: N=3
+
+Reaction Index = 27
+isReverseR = 0 reaclibIndex = 2
+b8-->he4+he4+e++nu 2 0 2 1 2 0 0 1.000000 18.070200
+-0.105148 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+  Reactant[0]: Z=5
+  Reactant[0]: N=3
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  ReactantIndex[0]: N=6
+  ProductIndex[0]: N=3
+  ProductIndex[1]: N=3
+
+numberReactions=28
+
+COMPUTED RATES (on CPU):
+
+0 p+p+e-->d+nu Rate=4.201e-13 Y1=7.500e-01 Y2=7.500e-01 Y3=7.500e-01 Q=1.442 Prefac=5.000e+07 Reactants=2
+1 p+p-->d+e++nu Rate=9.848e-08 Y1=7.500e-01 Y2=7.500e-01 Y3=7.500e-01 Q=1.442 Prefac=5.000e+07 Reactants=2
+2 p+d-->he3 Rate=2.466e+11 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=5.494 Prefac=1.000e+08 Reactants=2
+3 he3-->p+d Rate=1.436e+10 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=-5.494 Prefac=1.000e+00 Reactants=1
+4 d+d-->he4 Rate=3.263e+08 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=23.847 Prefac=5.000e+07 Reactants=2
+5 he4-->d+d Rate=4.052e-08 Y1=6.250e-02 Y2=7.500e-01 Y3=7.500e-01 Q=-23.847 Prefac=1.000e+00 Reactants=1
+6 p+he3-->he4+e++nu Rate=9.058e-07 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=19.796 Prefac=1.000e+08 Reactants=2
+7 d+he3-->p+he4 Rate=0.000e+00 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=18.353 Prefac=1.000e+08 Reactants=2
+8 d+he3-->p+he4 Rate=1.336e+16 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=18.353 Prefac=1.000e+08 Reactants=2
+9 p+he4-->d+he3 Rate=0.000e+00 Y1=7.500e-01 Y2=6.250e-02 Y3=7.500e-01 Q=-18.353 Prefac=1.000e+08 Reactants=2
+10 p+he4-->d+he3 Rate=2.846e+01 Y1=7.500e-01 Y2=6.250e-02 Y3=7.500e-01 Q=-18.353 Prefac=1.000e+08 Reactants=2
+11 he3+he3-->p+p+he4 Rate=7.685e+15 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=12.860 Prefac=5.000e+07 Reactants=2
+12 p+p+he4-->he3+he3 Rate=5.598e+02 Y1=7.500e-01 Y2=7.500e-01 Y3=6.250e-02 Q=-12.860 Prefac=1.000e+16 Reactants=3
+13 he3+he4-->be7 Rate=6.205e+10 Y1=0.000e+00 Y2=6.250e-02 Y3=7.500e-01 Q=1.588 Prefac=1.000e+08 Reactants=2
+14 be7-->he3+he4 Rate=4.697e+12 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=-1.588 Prefac=1.000e+00 Reactants=1
+15 he4+he4-->p+li7 Rate=1.973e+00 Y1=6.250e-02 Y2=6.250e-02 Y3=7.500e-01 Q=-17.346 Prefac=5.000e+07 Reactants=2
+16 he4+he4-->p+li7 Rate=4.224e+00 Y1=6.250e-02 Y2=6.250e-02 Y3=7.500e-01 Q=-17.346 Prefac=5.000e+07 Reactants=2
+17 p+li7-->he4+he4 Rate=3.125e+14 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=17.346 Prefac=1.000e+08 Reactants=2
+18 p+li7-->he4+he4 Rate=6.686e+14 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=17.346 Prefac=1.000e+08 Reactants=2
+19 p+he4+he4-->d+be7 Rate=1.947e+00 Y1=7.500e-01 Y2=6.250e-02 Y3=6.250e-02 Q=-16.766 Prefac=1.000e+16 Reactants=3
+20 d+be7-->p+he4+he4 Rate=3.470e+16 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=16.766 Prefac=1.000e+08 Reactants=2
+21 be7+e-->li7+nu Rate=6.960e-10 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=0.862 Prefac=1.000e+00 Reactants=1
+22 p+be7-->b8 Rate=3.322e+10 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=0.137 Prefac=1.000e+08 Reactants=2
+23 p+be7-->b8 Rate=5.094e+09 Y1=7.500e-01 Y2=0.000e+00 Y3=7.500e-01 Q=0.137 Prefac=1.000e+08 Reactants=2
+24 b8-->p+be7 Rate=4.865e+13 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=-0.137 Prefac=1.000e+00 Reactants=1
+25 b8-->p+be7 Rate=7.461e+12 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=-0.137 Prefac=1.000e+00 Reactants=1
+26 he3+be7-->p+p+he4+he4 Rate=1.145e+16 Y1=0.000e+00 Y2=0.000e+00 Y3=7.500e-01 Q=11.272 Prefac=1.000e+08 Reactants=2
+27 b8-->he4+he4+e++nu Rate=9.002e-01 Y1=0.000e+00 Y2=7.500e-01 Y3=7.500e-01 Q=18.070 Prefac=1.000e+00 Reactants=1
+
+Timer: 0.032000 ms used by CPU
+
+--- TOTAL FLUXES (T9=6.00, rho=1.000e+08) ---
+
+j=0 p+p+e-->d+nu Rate=4.201e-13 Y1=7.500e-01 Y2=7.500e-01 Flux=2.363e-13
+j=1 p+p-->d+e++nu Rate=9.848e-08 Y1=7.500e-01 Y2=7.500e-01 Flux=5.539e-08
+j=2 p+d-->he3 Rate=2.466e+11 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=3 he3-->p+d Rate=1.436e+10 Y1=0.000e+00 Flux=0.000e+00
+j=4 d+d-->he4 Rate=3.263e+08 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=5 he4-->d+d Rate=4.052e-08 Y1=6.250e-02 Flux=2.532e-09
+j=6 p+he3-->he4+e++nu Rate=9.058e-07 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=7 d+he3-->p+he4 Rate=0.000e+00 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=8 d+he3-->p+he4 Rate=1.336e+16 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=9 p+he4-->d+he3 Rate=0.000e+00 Y1=7.500e-01 Y2=6.250e-02 Flux=0.000e+00
+j=10 p+he4-->d+he3 Rate=2.846e+01 Y1=7.500e-01 Y2=6.250e-02 Flux=1.334e+00
+j=11 he3+he3-->p+p+he4 Rate=7.685e+15 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=12 p+p+he4-->he3+he3 Rate=5.598e+02 Y1=7.500e-01 Y2=7.500e-01 Y3=6.250e-02 Flux=1.968e+01
+j=13 he3+he4-->be7 Rate=6.205e+10 Y1=0.000e+00 Y2=6.250e-02 Flux=0.000e+00
+j=14 be7-->he3+he4 Rate=4.697e+12 Y1=0.000e+00 Flux=0.000e+00
+j=15 he4+he4-->p+li7 Rate=1.973e+00 Y1=6.250e-02 Y2=6.250e-02 Flux=7.705e-03
+j=16 he4+he4-->p+li7 Rate=4.224e+00 Y1=6.250e-02 Y2=6.250e-02 Flux=1.650e-02
+j=17 p+li7-->he4+he4 Rate=3.125e+14 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=18 p+li7-->he4+he4 Rate=6.686e+14 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=19 p+he4+he4-->d+be7 Rate=1.947e+00 Y1=7.500e-01 Y2=6.250e-02 Y3=6.250e-02 Flux=5.703e-03
+j=20 d+be7-->p+he4+he4 Rate=3.470e+16 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=21 be7+e-->li7+nu Rate=6.960e-10 Y1=0.000e+00 Flux=0.000e+00
+j=22 p+be7-->b8 Rate=3.322e+10 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=23 p+be7-->b8 Rate=5.094e+09 Y1=7.500e-01 Y2=0.000e+00 Flux=0.000e+00
+j=24 b8-->p+be7 Rate=4.865e+13 Y1=0.000e+00 Flux=0.000e+00
+j=25 b8-->p+be7 Rate=7.461e+12 Y1=0.000e+00 Flux=0.000e+00
+j=26 he3+be7-->p+p+he4+he4 Rate=1.145e+16 Y1=0.000e+00 Y2=0.000e+00 Flux=0.000e+00
+j=27 b8-->he4+he4+e++nu Rate=9.002e-01 Y1=0.000e+00 Flux=0.000e+00
+
+--- Use parseF() to find F+ and F- flux components for each species ---
+
+1H reacIndex=0 p+p+e-->d+nu nReac=2 nProd=1 totL=2 totR=0 tot=2 F-
+1H reacIndex=1 p+p-->d+e++nu nReac=2 nProd=1 totL=2 totR=0 tot=2 F-
+1H reacIndex=2 p+d-->he3 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+1H reacIndex=3 he3-->p+d nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=6 p+he3-->he4+e++nu nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+1H reacIndex=7 d+he3-->p+he4 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=8 d+he3-->p+he4 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=9 p+he4-->d+he3 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+1H reacIndex=10 p+he4-->d+he3 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+1H reacIndex=11 he3+he3-->p+p+he4 nReac=2 nProd=3 totL=0 totR=2 tot=-2 F+
+1H reacIndex=12 p+p+he4-->he3+he3 nReac=3 nProd=2 totL=2 totR=0 tot=2 F-
+1H reacIndex=15 he4+he4-->p+li7 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=16 he4+he4-->p+li7 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=17 p+li7-->he4+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+1H reacIndex=18 p+li7-->he4+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+1H reacIndex=19 p+he4+he4-->d+be7 nReac=3 nProd=2 totL=1 totR=0 tot=1 F-
+1H reacIndex=20 d+be7-->p+he4+he4 nReac=2 nProd=3 totL=0 totR=1 tot=-1 F+
+1H reacIndex=22 p+be7-->b8 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+1H reacIndex=23 p+be7-->b8 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+1H reacIndex=24 b8-->p+be7 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=25 b8-->p+be7 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+1H reacIndex=26 he3+be7-->p+p+he4+he4 nReac=2 nProd=4 totL=0 totR=2 tot=-2 F+
+0 1H numF+ = 10 numF- = 12
+
+2H reacIndex=0 p+p+e-->d+nu nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+2H reacIndex=1 p+p-->d+e++nu nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+2H reacIndex=2 p+d-->he3 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+2H reacIndex=3 he3-->p+d nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+2H reacIndex=4 d+d-->he4 nReac=2 nProd=1 totL=2 totR=0 tot=2 F-
+2H reacIndex=5 he4-->d+d nReac=1 nProd=2 totL=0 totR=2 tot=-2 F+
+2H reacIndex=7 d+he3-->p+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+2H reacIndex=8 d+he3-->p+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+2H reacIndex=9 p+he4-->d+he3 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+2H reacIndex=10 p+he4-->d+he3 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+2H reacIndex=19 p+he4+he4-->d+be7 nReac=3 nProd=2 totL=0 totR=1 tot=-1 F+
+2H reacIndex=20 d+be7-->p+he4+he4 nReac=2 nProd=3 totL=1 totR=0 tot=1 F-
+1 2H numF+ = 7 numF- = 5
+
+3He reacIndex=2 p+d-->he3 nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+3He reacIndex=3 he3-->p+d nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+3He reacIndex=6 p+he3-->he4+e++nu nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+3He reacIndex=7 d+he3-->p+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+3He reacIndex=8 d+he3-->p+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+3He reacIndex=9 p+he4-->d+he3 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+3He reacIndex=10 p+he4-->d+he3 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+3He reacIndex=11 he3+he3-->p+p+he4 nReac=2 nProd=3 totL=2 totR=0 tot=2 F-
+3He reacIndex=12 p+p+he4-->he3+he3 nReac=3 nProd=2 totL=0 totR=2 tot=-2 F+
+3He reacIndex=13 he3+he4-->be7 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+3He reacIndex=14 be7-->he3+he4 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+3He reacIndex=26 he3+be7-->p+p+he4+he4 nReac=2 nProd=4 totL=1 totR=0 tot=1 F-
+2 3He numF+ = 5 numF- = 7
+
+4He reacIndex=4 d+d-->he4 nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+4He reacIndex=5 he4-->d+d nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+4He reacIndex=6 p+he3-->he4+e++nu nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+4He reacIndex=7 d+he3-->p+he4 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+4He reacIndex=8 d+he3-->p+he4 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+4He reacIndex=9 p+he4-->d+he3 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+4He reacIndex=10 p+he4-->d+he3 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+4He reacIndex=11 he3+he3-->p+p+he4 nReac=2 nProd=3 totL=0 totR=1 tot=-1 F+
+4He reacIndex=12 p+p+he4-->he3+he3 nReac=3 nProd=2 totL=1 totR=0 tot=1 F-
+4He reacIndex=13 he3+he4-->be7 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+4He reacIndex=14 be7-->he3+he4 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+4He reacIndex=15 he4+he4-->p+li7 nReac=2 nProd=2 totL=2 totR=0 tot=2 F-
+4He reacIndex=16 he4+he4-->p+li7 nReac=2 nProd=2 totL=2 totR=0 tot=2 F-
+4He reacIndex=17 p+li7-->he4+he4 nReac=2 nProd=2 totL=0 totR=2 tot=-2 F+
+4He reacIndex=18 p+li7-->he4+he4 nReac=2 nProd=2 totL=0 totR=2 tot=-2 F+
+4He reacIndex=19 p+he4+he4-->d+be7 nReac=3 nProd=2 totL=2 totR=0 tot=2 F-
+4He reacIndex=20 d+be7-->p+he4+he4 nReac=2 nProd=3 totL=0 totR=2 tot=-2 F+
+4He reacIndex=26 he3+be7-->p+p+he4+he4 nReac=2 nProd=4 totL=0 totR=2 tot=-2 F+
+4He reacIndex=27 b8-->he4+he4+e++nu nReac=1 nProd=2 totL=0 totR=2 tot=-2 F+
+3 4He numF+ = 11 numF- = 8
+
+7Li reacIndex=15 he4+he4-->p+li7 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+7Li reacIndex=16 he4+he4-->p+li7 nReac=2 nProd=2 totL=0 totR=1 tot=-1 F+
+7Li reacIndex=17 p+li7-->he4+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+7Li reacIndex=18 p+li7-->he4+he4 nReac=2 nProd=2 totL=1 totR=0 tot=1 F-
+7Li reacIndex=21 be7+e-->li7+nu nReac=1 nProd=1 totL=0 totR=1 tot=-1 F+
+4 7Li numF+ = 3 numF- = 2
+
+7Be reacIndex=13 he3+he4-->be7 nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+7Be reacIndex=14 be7-->he3+he4 nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+7Be reacIndex=19 p+he4+he4-->d+be7 nReac=3 nProd=2 totL=0 totR=1 tot=-1 F+
+7Be reacIndex=20 d+be7-->p+he4+he4 nReac=2 nProd=3 totL=1 totR=0 tot=1 F-
+7Be reacIndex=21 be7+e-->li7+nu nReac=1 nProd=1 totL=1 totR=0 tot=1 F-
+7Be reacIndex=22 p+be7-->b8 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+7Be reacIndex=23 p+be7-->b8 nReac=2 nProd=1 totL=1 totR=0 tot=1 F-
+7Be reacIndex=24 b8-->p+be7 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+7Be reacIndex=25 b8-->p+be7 nReac=1 nProd=2 totL=0 totR=1 tot=-1 F+
+7Be reacIndex=26 he3+be7-->p+p+he4+he4 nReac=2 nProd=4 totL=1 totR=0 tot=1 F-
+5 7Be numF+ = 4 numF- = 6
+
+8B reacIndex=22 p+be7-->b8 nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+8B reacIndex=23 p+be7-->b8 nReac=2 nProd=1 totL=0 totR=1 tot=-1 F+
+8B reacIndex=24 b8-->p+be7 nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+8B reacIndex=25 b8-->p+be7 nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+8B reacIndex=27 b8-->he4+he4+e++nu nReac=1 nProd=2 totL=1 totR=0 tot=1 F-
+6 8B numF+ = 2 numF- = 3
+
+FLUX-ISOTOPE COMPONENT ARRAY (-n --> F-; +n --> F+ for given isotope):
+
+numberSpecies=7 numberReactions=28
+
+Index               Reaction   1H   2H  3He  4He  7Li  7Be   8B
+    0           p+p+e-->d+nu   -2    1    0    0    0    0    0
+    1          p+p-->d+e++nu   -2    1    0    0    0    0    0
+    2              p+d-->he3   -1   -1    1    0    0    0    0
+    3              he3-->p+d    1    1   -1    0    0    0    0
+    4              d+d-->he4    0   -2    0    1    0    0    0
+    5              he4-->d+d    0    2    0   -1    0    0    0
+    6      p+he3-->he4+e++nu   -1    0   -1    1    0    0    0
+    7          d+he3-->p+he4    1   -1   -1    1    0    0    0
+    8          d+he3-->p+he4    1   -1   -1    1    0    0    0
+    9          p+he4-->d+he3   -1    1    1   -1    0    0    0
+   10          p+he4-->d+he3   -1    1    1   -1    0    0    0
+   11      he3+he3-->p+p+he4    2    0   -2    1    0    0    0
+   12      p+p+he4-->he3+he3   -2    0    2   -1    0    0    0
+   13          he3+he4-->be7    0    0   -1   -1    0    1    0
+   14          be7-->he3+he4    0    0    1    1    0   -1    0
+   15        he4+he4-->p+li7    1    0    0   -2    1    0    0
+   16        he4+he4-->p+li7    1    0    0   -2    1    0    0
+   17        p+li7-->he4+he4   -1    0    0    2   -1    0    0
+   18        p+li7-->he4+he4   -1    0    0    2   -1    0    0
+   19      p+he4+he4-->d+be7   -1    1    0   -2    0    1    0
+   20      d+be7-->p+he4+he4    1   -1    0    2    0   -1    0
+   21         be7+e-->li7+nu    0    0    0    0    1   -1    0
+   22             p+be7-->b8   -1    0    0    0    0   -1    1
+   23             p+be7-->b8   -1    0    0    0    0   -1    1
+   24             b8-->p+be7    1    0    0    0    0    1   -1
+   25             b8-->p+be7    1    0    0    0    0    1   -1
+   26  he3+be7-->p+p+he4+he4    2    0   -1    2    0   -1    0
+   27     b8-->he4+he4+e++nu    0    0    0    2    0    0   -1
+
+FLUX SPARSENESS: Non-zero F+ = 42; Non-zero F- = 43, out of 28 x 7 = 196 possibilities.
+
+
+--- MAX F+ and F- INDEX FOR EACH ISOTOPE ---
+
+Isotope index = 0  1H  Max index F+ = 9  Max index F- = 11
+Isotope index = 1  2H  Max index F+ = 16  Max index F- = 16
+Isotope index = 2  3He  Max index F+ = 21  Max index F- = 23
+Isotope index = 3  4He  Max index F+ = 32  Max index F- = 31
+Isotope index = 4  7Li  Max index F+ = 35  Max index F- = 33
+Isotope index = 5  7Be  Max index F+ = 39  Max index F- = 39
+Isotope index = 6  8B  Max index F+ = 41  Max index F- = 42
+
+
+--- 42 NON-VANISHING F+ SOURCE TERMS ---
+
+dY[1H]/dt = dY[0]/dt F+ source terms (10):
+   Isotope index = 0 F+ index = 0 Reac index = 3  he3-->p+d
+   Isotope index = 0 F+ index = 1 Reac index = 7  d+he3-->p+he4
+   Isotope index = 0 F+ index = 2 Reac index = 8  d+he3-->p+he4
+   Isotope index = 0 F+ index = 3 Reac index = 11  he3+he3-->p+p+he4
+   Isotope index = 0 F+ index = 4 Reac index = 15  he4+he4-->p+li7
+   Isotope index = 0 F+ index = 5 Reac index = 16  he4+he4-->p+li7
+   Isotope index = 0 F+ index = 6 Reac index = 20  d+be7-->p+he4+he4
+   Isotope index = 0 F+ index = 7 Reac index = 24  b8-->p+be7
+   Isotope index = 0 F+ index = 8 Reac index = 25  b8-->p+be7
+   Isotope index = 0 F+ index = 9 Reac index = 26  he3+be7-->p+p+he4+he4
+
+dY[2H]/dt = dY[1]/dt F+ source terms (7):
+   Isotope index = 1 F+ index = 10 Reac index = 0  p+p+e-->d+nu
+   Isotope index = 1 F+ index = 11 Reac index = 1  p+p-->d+e++nu
+   Isotope index = 1 F+ index = 12 Reac index = 3  he3-->p+d
+   Isotope index = 1 F+ index = 13 Reac index = 5  he4-->d+d
+   Isotope index = 1 F+ index = 14 Reac index = 9  p+he4-->d+he3
+   Isotope index = 1 F+ index = 15 Reac index = 10  p+he4-->d+he3
+   Isotope index = 1 F+ index = 16 Reac index = 19  p+he4+he4-->d+be7
+
+dY[3He]/dt = dY[2]/dt F+ source terms (5):
+   Isotope index = 2 F+ index = 17 Reac index = 2  p+d-->he3
+   Isotope index = 2 F+ index = 18 Reac index = 9  p+he4-->d+he3
+   Isotope index = 2 F+ index = 19 Reac index = 10  p+he4-->d+he3
+   Isotope index = 2 F+ index = 20 Reac index = 12  p+p+he4-->he3+he3
+   Isotope index = 2 F+ index = 21 Reac index = 14  be7-->he3+he4
+
+dY[4He]/dt = dY[3]/dt F+ source terms (11):
+   Isotope index = 3 F+ index = 22 Reac index = 4  d+d-->he4
+   Isotope index = 3 F+ index = 23 Reac index = 6  p+he3-->he4+e++nu
+   Isotope index = 3 F+ index = 24 Reac index = 7  d+he3-->p+he4
+   Isotope index = 3 F+ index = 25 Reac index = 8  d+he3-->p+he4
+   Isotope index = 3 F+ index = 26 Reac index = 11  he3+he3-->p+p+he4
+   Isotope index = 3 F+ index = 27 Reac index = 14  be7-->he3+he4
+   Isotope index = 3 F+ index = 28 Reac index = 17  p+li7-->he4+he4
+   Isotope index = 3 F+ index = 29 Reac index = 18  p+li7-->he4+he4
+   Isotope index = 3 F+ index = 30 Reac index = 20  d+be7-->p+he4+he4
+   Isotope index = 3 F+ index = 31 Reac index = 26  he3+be7-->p+p+he4+he4
+   Isotope index = 3 F+ index = 32 Reac index = 27  b8-->he4+he4+e++nu
+
+dY[7Li]/dt = dY[4]/dt F+ source terms (3):
+   Isotope index = 4 F+ index = 33 Reac index = 15  he4+he4-->p+li7
+   Isotope index = 4 F+ index = 34 Reac index = 16  he4+he4-->p+li7
+   Isotope index = 4 F+ index = 35 Reac index = 21  be7+e-->li7+nu
+
+dY[7Be]/dt = dY[5]/dt F+ source terms (4):
+   Isotope index = 5 F+ index = 36 Reac index = 13  he3+he4-->be7
+   Isotope index = 5 F+ index = 37 Reac index = 19  p+he4+he4-->d+be7
+   Isotope index = 5 F+ index = 38 Reac index = 24  b8-->p+be7
+   Isotope index = 5 F+ index = 39 Reac index = 25  b8-->p+be7
+
+dY[8B]/dt = dY[6]/dt F+ source terms (2):
+   Isotope index = 6 F+ index = 40 Reac index = 22  p+be7-->b8
+   Isotope index = 6 F+ index = 41 Reac index = 23  p+be7-->b8
+
+
+--- 43 NON-VANISHING F- SOURCE TERMS ---
+
+dY[1H]/dt = dY[0]/dt F- source terms (12):
+   Isotope index = 0 F- index = 0 Reac index=0  p+p+e-->d+nu
+   Isotope index = 0 F- index = 1 Reac index=1  p+p-->d+e++nu
+   Isotope index = 0 F- index = 2 Reac index=2  p+d-->he3
+   Isotope index = 0 F- index = 3 Reac index=6  p+he3-->he4+e++nu
+   Isotope index = 0 F- index = 4 Reac index=9  p+he4-->d+he3
+   Isotope index = 0 F- index = 5 Reac index=10  p+he4-->d+he3
+   Isotope index = 0 F- index = 6 Reac index=12  p+p+he4-->he3+he3
+   Isotope index = 0 F- index = 7 Reac index=17  p+li7-->he4+he4
+   Isotope index = 0 F- index = 8 Reac index=18  p+li7-->he4+he4
+   Isotope index = 0 F- index = 9 Reac index=19  p+he4+he4-->d+be7
+   Isotope index = 0 F- index = 10 Reac index=22  p+be7-->b8
+   Isotope index = 0 F- index = 11 Reac index=23  p+be7-->b8
+
+dY[2H]/dt = dY[1]/dt F- source terms (5):
+   Isotope index = 1 F- index = 12 Reac index=2  p+d-->he3
+   Isotope index = 1 F- index = 13 Reac index=4  d+d-->he4
+   Isotope index = 1 F- index = 14 Reac index=7  d+he3-->p+he4
+   Isotope index = 1 F- index = 15 Reac index=8  d+he3-->p+he4
+   Isotope index = 1 F- index = 16 Reac index=20  d+be7-->p+he4+he4
+
+dY[3He]/dt = dY[2]/dt F- source terms (7):
+   Isotope index = 2 F- index = 17 Reac index=3  he3-->p+d
+   Isotope index = 2 F- index = 18 Reac index=6  p+he3-->he4+e++nu
+   Isotope index = 2 F- index = 19 Reac index=7  d+he3-->p+he4
+   Isotope index = 2 F- index = 20 Reac index=8  d+he3-->p+he4
+   Isotope index = 2 F- index = 21 Reac index=11  he3+he3-->p+p+he4
+   Isotope index = 2 F- index = 22 Reac index=13  he3+he4-->be7
+   Isotope index = 2 F- index = 23 Reac index=26  he3+be7-->p+p+he4+he4
+
+dY[4He]/dt = dY[3]/dt F- source terms (8):
+   Isotope index = 3 F- index = 24 Reac index=5  he4-->d+d
+   Isotope index = 3 F- index = 25 Reac index=9  p+he4-->d+he3
+   Isotope index = 3 F- index = 26 Reac index=10  p+he4-->d+he3
+   Isotope index = 3 F- index = 27 Reac index=12  p+p+he4-->he3+he3
+   Isotope index = 3 F- index = 28 Reac index=13  he3+he4-->be7
+   Isotope index = 3 F- index = 29 Reac index=15  he4+he4-->p+li7
+   Isotope index = 3 F- index = 30 Reac index=16  he4+he4-->p+li7
+   Isotope index = 3 F- index = 31 Reac index=19  p+he4+he4-->d+be7
+
+dY[7Li]/dt = dY[4]/dt F- source terms (2):
+   Isotope index = 4 F- index = 32 Reac index=17  p+li7-->he4+he4
+   Isotope index = 4 F- index = 33 Reac index=18  p+li7-->he4+he4
+
+dY[7Be]/dt = dY[5]/dt F- source terms (6):
+   Isotope index = 5 F- index = 34 Reac index=14  be7-->he3+he4
+   Isotope index = 5 F- index = 35 Reac index=20  d+be7-->p+he4+he4
+   Isotope index = 5 F- index = 36 Reac index=21  be7+e-->li7+nu
+   Isotope index = 5 F- index = 37 Reac index=22  p+be7-->b8
+   Isotope index = 5 F- index = 38 Reac index=23  p+be7-->b8
+   Isotope index = 5 F- index = 39 Reac index=26  he3+be7-->p+p+he4+he4
+
+dY[8B]/dt = dY[6]/dt F- source terms (3):
+   Isotope index = 6 F- index = 40 Reac index=24  b8-->p+be7
+   Isotope index = 6 F- index = 41 Reac index=25  b8-->p+be7
+   Isotope index = 6 F- index = 42 Reac index=27  b8-->he4+he4+e++nu
+
+
+--- Values of F+ ---
+
+i=0 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=1 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=2 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=3 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=4 FplusFac=1.0 Flux=7.705e-03 Fplus=7.705e-03
+i=5 FplusFac=1.0 Flux=1.650e-02 Fplus=1.650e-02
+i=6 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=7 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=8 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=9 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=10 FplusFac=1.0 Flux=2.363e-13 Fplus=2.363e-13
+i=11 FplusFac=1.0 Flux=5.539e-08 Fplus=5.539e-08
+i=12 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=13 FplusFac=2.0 Flux=2.532e-09 Fplus=5.065e-09
+i=14 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=15 FplusFac=1.0 Flux=1.334e+00 Fplus=1.334e+00
+i=16 FplusFac=1.0 Flux=5.703e-03 Fplus=5.703e-03
+i=17 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=18 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=19 FplusFac=1.0 Flux=1.334e+00 Fplus=1.334e+00
+i=20 FplusFac=2.0 Flux=1.968e+01 Fplus=3.936e+01
+i=21 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=22 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=23 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=24 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=25 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=26 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=27 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=28 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=29 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=30 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=31 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=32 FplusFac=2.0 Flux=0.000e+00 Fplus=0.000e+00
+i=33 FplusFac=1.0 Flux=7.705e-03 Fplus=7.705e-03
+i=34 FplusFac=1.0 Flux=1.650e-02 Fplus=1.650e-02
+i=35 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=36 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=37 FplusFac=1.0 Flux=5.703e-03 Fplus=5.703e-03
+i=38 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=39 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=40 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+i=41 FplusFac=1.0 Flux=0.000e+00 Fplus=0.000e+00
+
+--- Values of F- ---
+
+i=0 FminusFac=2.0 Flux=2.363e-13 Fminus=4.726e-13
+i=1 FminusFac=2.0 Flux=5.539e-08 Fminus=1.108e-07
+i=2 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=3 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=4 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=5 FminusFac=1.0 Flux=1.334e+00 Fminus=1.334e+00
+i=6 FminusFac=2.0 Flux=1.968e+01 Fminus=3.936e+01
+i=7 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=8 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=9 FminusFac=1.0 Flux=5.703e-03 Fminus=5.703e-03
+i=10 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=11 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=12 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=13 FminusFac=2.0 Flux=0.000e+00 Fminus=0.000e+00
+i=14 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=15 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=16 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=17 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=18 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=19 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=20 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=21 FminusFac=2.0 Flux=0.000e+00 Fminus=0.000e+00
+i=22 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=23 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=24 FminusFac=1.0 Flux=2.532e-09 Fminus=2.532e-09
+i=25 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=26 FminusFac=1.0 Flux=1.334e+00 Fminus=1.334e+00
+i=27 FminusFac=1.0 Flux=1.968e+01 Fminus=1.968e+01
+i=28 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=29 FminusFac=2.0 Flux=7.705e-03 Fminus=1.541e-02
+i=30 FminusFac=2.0 Flux=1.650e-02 Fminus=3.300e-02
+i=31 FminusFac=2.0 Flux=5.703e-03 Fminus=1.141e-02
+i=32 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=33 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=34 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=35 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=36 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=37 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=38 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=39 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=40 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=41 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
+i=42 FminusFac=1.0 Flux=0.000e+00 Fminus=0.000e+00
