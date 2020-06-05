@@ -33,9 +33,38 @@ This will download the whole repo to your local system. To check your status in 
 git status
 ```
 
-This is a helpful command to see what your current status is with branches, files, changes, etc. Remember it and run it often. Because you just clones the repo, you should be on the master branch. Remember, we don't want to commit directly to the master branch, so we want to checkout a new branch for ourself. Do this by running 
+This is a helpful command to see what your current status is with branches, files, changes, etc. Remember it and run it often. 
+
+## Working with branches and committing
+
+Because you just clones the repo, you should be on the master branch. Remember, we don't want to commit directly to the master branch, so we want to checkout a new branch for ourself. Do this by running 
 ```
 git checkout -b <your branch name>
 ```
 
-Replace the <your branch name> with whatever you want to call your branch. From here, you can begin making changes to code as needed.
+Replace the <your branch name> with whatever you want to call your branch. From here, you can begin making changes to code as needed. The beauty of branching and hosting on Github is that you can commit your work and push it to be stored on Github remotely as a backup without yet altering the master branch. When you are done working for the time being and want to "save" your work with Git, you need to make sure the file is being tracked by Git. If the file has already existed on the repo, you shouldn't need to worry about this. However if you have created or added any new files (including moving old files into a new directory), you will need to make sure they are being tracked. Again, run the <b>git status</b> command to see if your files are being tracked. If they aren't, the following command will add them: 
+  
+ ```
+ git add <file>...
+ ```
+ 
+ Now that all files are being tracked, you are ready to commit your changes. Do so with the following command:
+  
+  ```
+  git commit -m "Your commit message goes here"
+  ```
+  
+Your changes are now committed, however they have not been pushed "upstream" to the remote Github repository. This is important to do because it backs up your files remotely. If you are working on a branch that you have been using, it should already exist on the remote Github repo. If it does not, you can "push" your changes "upstream" while creating your branch by running the following command:
+```
+git push --set-upstream origin <your branch name"
+```
+
+If your branch already exists upstream, simply running 
+```
+git push
+```
+will push your changes to the remote repo. It may prompt you for your Github username and password. Your username should be your email address associated with your Github account.
+
+
+Another important note is to always make sure you are up to date with the master branch. While you are working on your branch 
+
