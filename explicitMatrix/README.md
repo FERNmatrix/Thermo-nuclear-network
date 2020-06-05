@@ -1,6 +1,9 @@
 Attached is a new version explicitMatrix.cpp, to which I have begun to add GSL, GSL_BLAS, and  C++ features, so it needs to be compiled as C++ with appropriate flags to link to GSL and BLAS libraries.  On my Fedora linux system using the gcc compiler this requires the library linking flags 
 
+```
 gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+```
+
 where
 
 -lgsl links GSL libraries
