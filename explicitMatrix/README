@@ -1,0 +1,14 @@
+1. Note that in Linux may need to add -lm compile flag to get the math.h header to work
+for defining powf, expf, logf, ...  For example,
+    
+    gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+
+See https://www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx
+
+2.  Code compiled above can then be executed with Linux with
+
+./explicitMatrix  | tee temp.txt
+
+where | tee temp.txt allows output to screen and also piped to a file temp.txt.
+
+Execution for Mac or PC will depend on the C compiler installed on your machine.
