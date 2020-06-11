@@ -4,8 +4,10 @@ This repo will serve as the centralized version control for developments in our 
 the organization of the repo as self-explanatory as possible but for the sake of completeness, I will outline it here.
 
 #### explicitMatrix
-The explicitMatrix/ directory is the main directory where active development of the explicit matrix computation algorithm occurs. It
-includes older C versions, the current C++ version, as well as other data files.
+The explicitMatrix/ directory is the main directory where active development of the explicit matrix computation algorithm occurs. 
+
+#### old_explicitMatrix
+This directory includes older C and C++ versions of explicitMatrix as well as other data files.
 
 #### matlab
 The matlab/ directory is the location of all previous Matlab based development files, primarily written by Nick Brey.

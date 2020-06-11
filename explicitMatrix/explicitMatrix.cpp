@@ -1,7 +1,8 @@
 /*
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux: Compile with
- *     gcc explicitMatrix.c -o explicitMatrix -lgsl -lgslcblas -lm -lgslcblas -lm -lstdc++
+ *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lgslcblas -lm -lstdc++
+ * 
  * Resulting compiled code can be executed with
  *     ./explicitMatrix  | tee temp.txt
  * where | tee temp.txt is unix shell script outputting to screen and also piped to a file temp.txt. 
