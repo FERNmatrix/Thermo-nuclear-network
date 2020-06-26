@@ -1438,28 +1438,33 @@ public:
 };    // end class ReactionVector
 
 
-class NetworkMultiply: public Utilities {
+class MatrixUtils: public Utilities {
 
     private:
 
-        int mFluxRows;
-        int mFluxCols;
+        int fluxRows;
+        int fluxCols;
 
-        gsl_matrix *flux;
-        gsl_vector *isoAbundance;
+        gsl_matrix *fluxes;
+        gsl_vector *abundances;
 
     public:
 
-        gsl_vector multiply(){
-            flux = gsl_matrix_alloc(mFluxRows, mFluxCols);
-            isoAbundance = gsl_vector_alloc(mFluxCols);
+        gsl_vector multiply(gsl_vector a, gsl_matrix f){
+            
+            fluxes = gsl_matrix_alloc(fluxRows, fluxCols);
+            abundances = gsl_vector_alloc(fluxCols);
 
-            gsl_blas_dgemv(CblasNoTrans, 1, flux, isoAbundance, 0, isoAbundance);
+            fluxes = f;
+            abundances = a;
 
+            gsl_blas_dgemv(CblasNoTrans, 1, fluxes, abundances, 0, abundances);
+
+            return *abundances;
         }
 
 
-};  // end of class NetworkMultiply
+};  // end of class MatrixUtils
 
 // Declare pointer used to access the fields and functions of class Species
 Species *SpeciesPtr;
