@@ -212,6 +212,8 @@ int* MapFminus;   // Index mapper for Fminus (Dim totalFminus)
 int* tempInt1;
 int* tempInt2;
 
+gsl_matrix *fluxes;
+gsl_vector *abundances;
 
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
@@ -1437,32 +1439,55 @@ public:
     
 };    // end class ReactionVector
 
+/*
+*   class MatrixUtils inheirits from Utilities. Methods to create GSL matrices and vectors
+*   given standard C++ arrays and to compute M*v using BLAS.
+*/
+
 
 class MatrixUtils: public Utilities {
 
     private:
 
-        int fluxRows;
-        int fluxCols;
-
-        gsl_matrix *fluxes;
-        gsl_vector *abundances;
+        // Rows and columns in flux matrix
+        // Number of columns in flux matrix is always to rows in abundance vector
+        const static int FLUXROWS = 300;
+        const static int FLUXCOLS = 100;
 
     public:
 
+        // Allocate and populate GSL abundance vector
+        void buildGSLVector(double a[]){
+            abundances = gsl_vector_alloc(FLUXCOLS);
+
+            for (int i = 0; i < FLUXCOLS; i++){
+                gsl_vector_set(abundances, i, a[i]);
+            }
+        }
+
+        // Allocate and populate GSL flux matrix
+        void buildGSLMatrix(double f [][FLUXCOLS]){
+            fluxes = gsl_matrix_alloc(FLUXROWS, FLUXCOLS);
+
+            for (int i = 0; i < FLUXCOLS; i++){
+                for (int j = 0; j < FLUXROWS; j++){
+                    gsl_matrix_set(fluxes, i, j, f[i][j]);
+                }
+            }
+        }
+
+        // Matrix vector multiply fluxes * abundances and store back into abundances
         gsl_vector multiply(gsl_vector a, gsl_matrix f){
-            
-            fluxes = gsl_matrix_alloc(fluxRows, fluxCols);
-            abundances = gsl_vector_alloc(fluxCols);
-
-            fluxes = f;
-            abundances = a;
-
-            gsl_blas_dgemv(CblasNoTrans, 1, fluxes, abundances, 0, abundances);
+            gsl_blas_dgemv(CblasNoTrans, 1.0, fluxes, abundances, 0.0, abundances);
 
             return *abundances;
         }
 
+        // Free allocated matrix and vector
+        void freeGSL(){
+            gsl_vector_free(abundances);
+            gsl_matrix_free(fluxes);
+        }
 
 };  // end of class MatrixUtils
 
@@ -1924,6 +1949,8 @@ int main() {
     free(tempInt2);
     free(FplusIsotopeIndex);
     free(FminusIsotopeIndex);
+    gsl_vector_free(abundances);
+    gsl_matrix_free(fluxes);
     
 }  // End of main routine
 
