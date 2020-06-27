@@ -314,139 +314,139 @@ gsl_vector *abundances;
 
 class Utilities{
     
-private:
+    private:
     
-public:
+    public:
     
-    // -------------------------------------------------------------------------
-    // Static function Utilities::returnNetIndexZN(Z,N) to return the network 
-    // vector index given Z and N for the isotope.  Returns -1 if no match.
-    // -------------------------------------------------------------------------
-    
-    static int returnNetIndexZN(int z, int n) {
-        for (int i = 0; i < numberSpecies; i++) {
-            if (Z[i] == z && N[i] == n)
-                return i;
+        // -------------------------------------------------------------------------
+        // Static function Utilities::returnNetIndexZN(Z,N) to return the network 
+        // vector index given Z and N for the isotope.  Returns -1 if no match.
+        // -------------------------------------------------------------------------
+        
+        static int returnNetIndexZN(int z, int n) {
+            for (int i = 0; i < numberSpecies; i++) {
+                if (Z[i] == z && N[i] == n)
+                    return i;
+            }
+            return -1;
         }
-        return -1;
-    }
-    
-    
-    // -----------------------------------------------------------------------
-    // Static function Utilities::returnNetIndexSymbol(char* symbol) to 
-    // return the network vector index given the symbol for the isotope.
-    // -----------------------------------------------------------------------
-    
-    static int returnNetIndexSymbol(char* symbol) {
-        int result;
-        for (int i = 0; i < numberSpecies; i++) {
-            result = strcmp(isoLabel[i], symbol);
-            if (result == 0){
-                return i;
+        
+        
+        // -----------------------------------------------------------------------
+        // Static function Utilities::returnNetIndexSymbol(char* symbol) to 
+        // return the network vector index given the symbol for the isotope.
+        // -----------------------------------------------------------------------
+        
+        static int returnNetIndexSymbol(char* symbol) {
+            int result;
+            for (int i = 0; i < numberSpecies; i++) {
+                result = strcmp(isoLabel[i], symbol);
+                if (result == 0){
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::isInNet(Z,N) to return true if given (Z,N) 
+        // in the network, false otherwise.
+        // ----------------------------------------------------------------------
+        
+        static bool isInNet(int Z, int N) {
+            if (returnNetIndexZN(Z, N) < 0) {
+                return false;
+            } else {
+                return true;
             }
         }
-        return -1;
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::isInNet(Z,N) to return true if given (Z,N) 
-    // in the network, false otherwise.
-    // ----------------------------------------------------------------------
-    
-    static bool isInNet(int Z, int N) {
-        if (returnNetIndexZN(Z, N) < 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::minimumOf(x,y) to return minimum of two 
-    // numbers.  Overloaded to accept either integer or double arguments.
-    // ----------------------------------------------------------------------
-    
-    static int minimumOf(int x, int y) {            // integers
-        return (x < y) ? x : y;
-    }
-    
-    static double minimumOf(double x, double y) {   // doubles
-        return (x < y) ? x : y;
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::maximumOf(x,y) to return maximum of two 
-    // numbers.  Overloaded to accept either integer or double arguments.
-    // ----------------------------------------------------------------------
-    
-    static int maximumOf(int x, int y) {            // integers
-        return (x > y) ? x : y; 
-    }
-    
-    static double maximumOf(double x, double y){    // doubles
-        return (x > y) ? x : y; 
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::stringToChar(s) to convert string to char 
-    // so that it will print in printf. Assumes max of 50 characters.  
-    // Typically a string type can be printed with cout but a string given 
-    // to printf typically displays garbage because of type issues in the 
-    // C function printf. This function converts a string to a corresponding 
-    // character array, which either printf or cout can print.
-    // ----------------------------------------------------------------------
-    
-    static char* stringToChar(string s){
-        static char cs[50];
-        strcpy(cs, &s[0]);   // alternatively strcpy(cs, s.c_str());
-        return cs;
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::startTimer() to start a timer.  Stop timer
-    // and display elapsed time with Utilities::stopTimer().
-    // ----------------------------------------------------------------------
-    
-    static void startTimer(){
-        START_CPU     // Start a timer for rate calculation
-    }
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::stopTimer() to stop timer started with 
-    // Utilities::startTimer() and display results.
-    // ----------------------------------------------------------------------
-    
-    static void stopTimer(){
-        STOP_CPU;     // Stop the timer
-        printf("\n");
-        PRINT_CPU;    // Print timing information for rate calculation
-        printf("\n");
-    }
-    
-    
-    // ----------------------------------------------------------------------
-    // Static function Utilities::testTimerCPU() to test CPU timer by 
-    // executing long, pointless loop.
-    // ----------------------------------------------------------------------
-    
-    static void testTimerCPU(){
-        double a, b;
         
-        START_CPU;
-        for (long count = 1l; count < 500000l; count++) {
-            a = sqrt(count);
-            b = 1.0/logf(a);
-            a = logf(b)/sqrt(a);
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::minimumOf(x,y) to return minimum of two 
+        // numbers.  Overloaded to accept either integer or double arguments.
+        // ----------------------------------------------------------------------
+        
+        static int minimumOf(int x, int y) {            // integers
+            return (x < y) ? x : y;
         }
-        STOP_CPU;
-        PRINT_CPU_TEST;
-        printf("\n");
-    }
+        
+        static double minimumOf(double x, double y) {   // doubles
+            return (x < y) ? x : y;
+        }
+        
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::maximumOf(x,y) to return maximum of two 
+        // numbers.  Overloaded to accept either integer or double arguments.
+        // ----------------------------------------------------------------------
+        
+        static int maximumOf(int x, int y) {            // integers
+            return (x > y) ? x : y; 
+        }
+        
+        static double maximumOf(double x, double y){    // doubles
+            return (x > y) ? x : y; 
+        }
+        
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::stringToChar(s) to convert string to char 
+        // so that it will print in printf. Assumes max of 50 characters.  
+        // Typically a string type can be printed with cout but a string given 
+        // to printf typically displays garbage because of type issues in the 
+        // C function printf. This function converts a string to a corresponding 
+        // character array, which either printf or cout can print.
+        // ----------------------------------------------------------------------
+        
+        static char* stringToChar(string s){
+            static char cs[50];
+            strcpy(cs, &s[0]);   // alternatively strcpy(cs, s.c_str());
+            return cs;
+        }
+        
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::startTimer() to start a timer.  Stop timer
+        // and display elapsed time with Utilities::stopTimer().
+        // ----------------------------------------------------------------------
+        
+        static void startTimer(){
+            START_CPU     // Start a timer for rate calculation
+        }
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::stopTimer() to stop timer started with 
+        // Utilities::startTimer() and display results.
+        // ----------------------------------------------------------------------
+        
+        static void stopTimer(){
+            STOP_CPU;     // Stop the timer
+            printf("\n");
+            PRINT_CPU;    // Print timing information for rate calculation
+            printf("\n");
+        }
+        
+        
+        // ----------------------------------------------------------------------
+        // Static function Utilities::testTimerCPU() to test CPU timer by 
+        // executing long, pointless loop.
+        // ----------------------------------------------------------------------
+        
+        static void testTimerCPU(){
+            double a, b;
+            
+            START_CPU;
+            for (long count = 1l; count < 500000l; count++) {
+                a = sqrt(count);
+                b = 1.0/logf(a);
+                a = logf(b)/sqrt(a);
+            }
+            STOP_CPU;
+            PRINT_CPU_TEST;
+            printf("\n");
+        }
     
 };    // End class Utilities
 
@@ -1331,324 +1331,325 @@ class ReactionVector:  public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-private:
-    
-public:
-    
-    /* Use the information constructed in parseF (in particular reacMask[j][k]) to create the 
-     reaction vectors for the network using the static function 
-     ReactionVector::makeReactionVectors(). */
-    
-    static void makeReactionVectors(){
+    private:
         
-        // Write out the array containing components of the reaction vectors
+    public:
         
-        int uppity = minimumOf(25, numberSpecies);  // limit printout width to 25 species
-        printf("\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
-               numberReactions, ISOTOPES);
-        printf("\nReaction \\ Species           ");
-        for(int k=0; k<uppity; k++){
-            printf("%4s  ",isoLabel[k]);
-        }
-        printf("\n");
-        for(int j=0; j<numberReactions; j++){
-            printf("%4d %22s [ ",j,reacLabel[j]);
-            for(int k=0; k<uppity-1; k++){
-                printf("%2d    ", reacMask[k][j]);
-            }
-            printf("%2d ]\n", reacMask[uppity-1][j]);
-        }
+        /* Use the information constructed in parseF (in particular reacMask[j][k]) to create the 
+        reaction vectors for the network using the static function 
+        ReactionVector::makeReactionVectors(). */
         
-        // -----------------------------------------------------------------------
-        // Now implement reaction vectors as GSL vectors so that we can use the
-        // GSL and GSL_BLAS API to manipulate them.  The prototypes for doing this
-        // may be found in the example code arrayPointers.c and matrixGSL.c
-        // -----------------------------------------------------------------------
-        
-        rvPt = rv;       // Set pointer to beginning address of array rv
-        
-        // Allocate an array populated with GSL vectors
-        
-        if(showRVdetails == 1) printf("\nAllocating an array rv[] of GSL vectors\n");
-        
-        for(int i=0; i<SIZE; i++){
+        static void makeReactionVectors(){
             
-            //Prototype GSL reaction vector
-            gsl_vector * v1 = gsl_vector_alloc (ISOTOPES); 
+            // Write out the array containing components of the reaction vectors
             
-            // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
-            *(rvPt+i) = *v1;   
-        }
-        
-        // Fill vector component entries created above with data contained in  
-        // reacMask[j][i] (notice reversed indices)
-        
-        if(showRVdetails == 1){
-            printf("\nPopulate vector components of array rv[i]_j with reacMask[j][i]:");
-        }
-        
-        for (int i = 0; i < SIZE; i++) {
-            if(showRVdetails == 1) printf("\n\nrv[%d]",i);
-            for(int j=0; j<ISOTOPES; j++){
-                gsl_vector_set (rvPt+i, j, reacMask[j][i]);
-                // Retrieve the vector component just stored and print it
-                int temp = gsl_vector_get(rvPt+i, j);
-                if(showRVdetails == 1){
-                    printf("\ni=%d j=%d  reacMask[%d][%d] =%3d  rv[%d]_%d =%3d", 
-                        i, j, i, j, reacMask[j][i], i, j, temp);
-                }
+            int uppity = minimumOf(25, numberSpecies);  // limit printout width to 25 species
+            printf("\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
+                numberReactions, ISOTOPES);
+            printf("\nReaction \\ Species           ");
+            for(int k=0; k<uppity; k++){
+                printf("%4s  ",isoLabel[k]);
             }
-        }
-       
-        
-        // Display reaction vectors as component list
-        
-        printf("\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
-               SIZE, ISOTOPES);
-        
-        for (int i = 0; i < SIZE; i++) {
-            printf("\nrv[%d]: [",i);
-            for(int j=0; j<ISOTOPES; j++){
-                
-                // Define a pointer that will point to the GSL vector in array entry rv[i].
-                gsl_vector *vector = rvPt+i;
-                
-                // Assign the jth component of the vector in rv[i] to a variable
-                int component = gsl_vector_get (vector, j);
-                printf ("%3d", component);
-            }
-            printf(" ]");
-        }
-        
-    }  // End function makeReactionVectors()
-   
-   
-    
-    // ------------------------------------------------------------------------
-    // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
-    // of same length.  Returns 0 if they are not equivalent, 1 if they are 
-    // the same, 2 if one vector is the negative of the other. The arguments 
-    // are pointers to the two GSL vectors.
-    // ------------------------------------------------------------------------
-    
-    int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
-        
-        int k, kk;
-        
-        // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
-        // if vectors are equal and 0 if they are not.
-        
-        k = gsl_vector_equal(rv1, rv2);
-        
-        if (k==1) return k;  // rv1 = rv2, so return with 1
-        
-        // Since rv1 and rv2 are not equal, compare rv1  and -rv2
-        
-        gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
-        gsl_vector_memcpy(rv2minus, rv2);
-        gsl_vector_scale(rv2minus, -1);
-        kk = gsl_vector_equal(rv1, rv2minus);
-        
-        if(kk==0){
-            return 0;  // rv1 not equal to rv2 and not equal to -rv2
-        } else {
-            return 2;  // rv1 equal to -rv2
-        }
-    }    // End function compareGSLvectors
- 
- 
-    
-    // ------------------------------------------------------------------------
-    // ReactionVector::sortReactionGroups() uses compareGSLvectors to sort all 
-    // reactions in the network into reaction groups labeled by a series of 
-    // integers 0, 1, ...  All reactions in a reaction group have the same 
-    // reaction vector up to a sign. The array RGindex[] of dimension SIZE 
-    // holds the integer labeling reaction group (0, 1, ... #RG) for each 
-    // reaction after this function is executed. 
-    // ------------------------------------------------------------------------
-    
-    static void sortReactionGroups(void){
-        
-        // Cycle over all reaction vectors and compare them pairwise to 
-        // assign to reaction groups. The pointer rvPt points to the array
-        // rv[] of GSL reaction vectors.
-        
-        // The integer rindex labels the reaction group
-        int rindex = -1;
-        int ck = -1;
-        
-        // Initialize
-        for(int i=0; i<SIZE; i++){
-            RGindex[i] = -1;
-        }
-        
-        if(showRGsorting == 1) printf("\n\n\n--- SORTING REACTION GROUPS ---");
-        
-        int scorekeeper = 0;
-        for (int i=0; i<SIZE; i++){
-            scorekeeper = 0;
-            if(i==0) rindex ++;
-            if(showRGsorting == 1) printf("\n\nRG=%d", rindex);
-            for(int j=0; j<SIZE; j++){
-                
-                if(RGindex[i] < 0) RGindex[i] = rindex;
-                ck = compareGSLvectors(rvPt+i, rvPt+j);
-                
-                if(ck > 0 && RGindex[j]< 0) {
-                    RGindex[j] = rindex;
-                    scorekeeper ++;
+            printf("\n");
+            for(int j=0; j<numberReactions; j++){
+                printf("%4d %22s [ ",j,reacLabel[j]);
+                for(int k=0; k<uppity-1; k++){
+                    printf("%2d    ", reacMask[k][j]);
                 }
-                if(showRGsorting==1){
-                    printf("\ni=%d j=%d RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
-                        i, j, j, RGindex[j], ck, rindex, scorekeeper);
-                }
+                printf("%2d ]\n", reacMask[uppity-1][j]);
             }
             
-            if(scorekeeper > 0) rindex++;
-        }
-        
-        numberRG = rindex;   // Store total number of reaction groups
-        
-        // Diagnostic showing reaction group associated with each reaction
-        
-        if(showRGsorting == 1){
-            printf("\n\n-- SUMMARY OF REACTION GROUPS:\n");
+            // -----------------------------------------------------------------------
+            // Now implement reaction vectors as GSL vectors so that we can use the
+            // GSL and GSL_BLAS API to manipulate them.  The prototypes for doing this
+            // may be found in the example code arrayPointers.c and matrixGSL.c
+            // -----------------------------------------------------------------------
+            
+            rvPt = rv;       // Set pointer to beginning address of array rv
+            
+            // Allocate an array populated with GSL vectors
+            
+            if(showRVdetails == 1) printf("\nAllocating an array rv[] of GSL vectors\n");
+            
             for(int i=0; i<SIZE; i++){
-                printf("\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
-                       i, reacLabel[i], RGindex[i], RGMemberIndex[i]);
+                
+                //Prototype GSL reaction vector
+                gsl_vector * v1 = gsl_vector_alloc (ISOTOPES); 
+                
+                // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
+                *(rvPt+i) = *v1;   
             }
-        }
-        
-        // Write out the components of the reaction groups
-        
-        printf("\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
-        for(int i=0; i<numberRG; i++){
-            printf("\n\nReaction Group %d:", i);
-            int rgindex = -1;
-            for(int j=0; j<SIZE; j++){
-                if(RGindex[j] == i){
-                    rgindex ++; 
-                    setRG(j, RGclass[j], RGindex[j]);
-                    printf("\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
-                           reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
-                           isPEforward[j],
-                           stringToChar(RGstring[j]));
+            
+            // Fill vector component entries created above with data contained in  
+            // reacMask[j][i] (notice reversed indices)
+            
+            if(showRVdetails == 1){
+                printf("\nPopulate vector components of array rv[i]_j with reacMask[j][i]:");
+            }
+            
+            for (int i = 0; i < SIZE; i++) {
+                if(showRVdetails == 1) printf("\n\nrv[%d]",i);
+                for(int j=0; j<ISOTOPES; j++){
+                    gsl_vector_set (rvPt+i, j, reacMask[j][i]);
+                    // Retrieve the vector component just stored and print it
+                    int temp = gsl_vector_get(rvPt+i, j);
+                    if(showRVdetails == 1){
+                        printf("\ni=%d j=%d  reacMask[%d][%d] =%3d  rv[%d]_%d =%3d", 
+                            i, j, i, j, reacMask[j][i], i, j, temp);
+                    }
                 }
             }
-        }
-        printf("\n");
         
-    }      // End function sortReactionGroups()
+            
+            // Display reaction vectors as component list
+            
+            printf("\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
+                SIZE, ISOTOPES);
+            
+            for (int i = 0; i < SIZE; i++) {
+                printf("\nrv[%d]: [",i);
+                for(int j=0; j<ISOTOPES; j++){
+                    
+                    // Define a pointer that will point to the GSL vector in array entry rv[i].
+                    gsl_vector *vector = rvPt+i;
+                    
+                    // Assign the jth component of the vector in rv[i] to a variable
+                    int component = gsl_vector_get (vector, j);
+                    printf ("%3d", component);
+                }
+                printf(" ]");
+            }
+            
+        }  // End function makeReactionVectors()
     
-  
-  
-    /*
-     * ReactionVector::parseF() to find contributions to F+ and F- of each reaction for each 
-     * isotope. This is executed only once at the beginning of the entire calculation to determine 
-     * the structure of the network. Since executed only once, make it static so it can
-     * be called directly from the class using ReactionVector::parseF(), without having
-     * to instantiate.
-     */
     
-    static void parseF(){
         
-        if(showParsing == 1)
-            printf("\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
+        // ------------------------------------------------------------------------
+        // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
+        // of same length.  Returns 0 if they are not equivalent, 1 if they are 
+        // the same, 2 if one vector is the negative of the other. The arguments 
+        // are pointers to the two GSL vectors.
+        // ------------------------------------------------------------------------
         
-        int incrementPlus = 0;
-        int incrementMinus = 0;
-        
-        // Loop over all isotopes in the network		
-        for(int i=0; i<numberSpecies; i++)
-        {
-            int total = 0;
-            int numFplus = 0;
-            int numFminus = 0;
-            if(showParsing == 1) printf("\n");
+        int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
             
-            // Loop over all possible reactions for this isotope, finding those that
-            // change its population up (contributing to F+) or down (contributing to F-).
+            int k, kk;
             
-            for(int j=0; j<numberReactions; j++) {
-                int totalL = 0;
-                int totalR = 0;
-                
-                // Loop over reactants for this reaction
-                for(int k=0; k<NumReactingSpecies[j]; k++) {
-                    if(Z[i] == reacZ[j][k] && N[i] == reacN[j][k]) totalL ++;
+            // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
+            // if vectors are equal and 0 if they are not.
+            
+            k = gsl_vector_equal(rv1, rv2);
+            
+            if (k==1) return k;  // rv1 = rv2, so return with 1
+            
+            // Since rv1 and rv2 are not equal, compare rv1  and -rv2
+            
+            gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+            gsl_vector_memcpy(rv2minus, rv2);
+            gsl_vector_scale(rv2minus, -1);
+            kk = gsl_vector_equal(rv1, rv2minus);
+            
+            if(kk==0){
+                return 0;  // rv1 not equal to rv2 and not equal to -rv2
+            } else {
+                return 2;  // rv1 equal to -rv2
+            }
+        }    // End function compareGSLvectors
+    
+    
+        
+        // ------------------------------------------------------------------------
+        // ReactionVector::sortReactionGroups() uses compareGSLvectors to sort all 
+        // reactions in the network into reaction groups labeled by a series of 
+        // integers 0, 1, ...  All reactions in a reaction group have the same 
+        // reaction vector up to a sign. The array RGindex[] of dimension SIZE 
+        // holds the integer labeling reaction group (0, 1, ... #RG) for each 
+        // reaction after this function is executed. 
+        // ------------------------------------------------------------------------
+        
+        static void sortReactionGroups(void){
+            
+            // Cycle over all reaction vectors and compare them pairwise to 
+            // assign to reaction groups. The pointer rvPt points to the array
+            // rv[] of GSL reaction vectors.
+            
+            // The integer rindex labels the reaction group
+            int rindex = -1;
+            int ck = -1;
+            
+            // Initialize
+            for(int i=0; i<SIZE; i++){
+                RGindex[i] = -1;
+            }
+            
+            if(showRGsorting == 1) printf("\n\n\n--- SORTING REACTION GROUPS ---");
+            
+            int scorekeeper = 0;
+            for (int i=0; i<SIZE; i++){
+                scorekeeper = 0;
+                if(i==0) rindex ++;
+                if(showRGsorting == 1) printf("\n\nRG=%d", rindex);
+                for(int j=0; j<SIZE; j++){
+                    
+                    if(RGindex[i] < 0) RGindex[i] = rindex;
+                    ck = compareGSLvectors(rvPt+i, rvPt+j);
+                    
+                    if(ck > 0 && RGindex[j]< 0) {
+                        RGindex[j] = rindex;
+                        scorekeeper ++;
+                    }
+                    if(showRGsorting==1){
+                        printf("\ni=%d j=%d RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
+                            i, j, j, RGindex[j], ck, rindex, scorekeeper);
+                    }
                 }
                 
-                // Loop over products for this reaction
-                for(int k=0; k<NumProducts[j]; k++) {
-                    if(Z[i] == prodZ[j][k] && N[i] == prodN[j][k]) totalR ++;
-                }
-                
-                total = totalL - totalR;
-                
-                if(total > 0){       // Contributes to F- for this isotope
-                    numFminus ++;
-                    reacMask[i][j] = -total;
-                    tempInt2[incrementMinus + numFminus-1] = j;
-                    if(showParsing == 1)
-                        printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
-                               isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
-                               totalR, total);
-                } 
-                else if(total < 0){          // Contributes to F+ for this isotope
-                    numFplus ++;
-                    reacMask[i][j] = -total;
-                    tempInt1[incrementPlus + numFplus-1] = j;
-                    if(showParsing == 1)
-                        printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
-                               isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
-                               totalR, total);
-                } else {           // Does not contribute to flux for this isotope
-                    reacMask[i][j] = 0;
+                if(scorekeeper > 0) rindex++;
+            }
+            
+            numberRG = rindex;   // Store total number of reaction groups
+            
+            // Diagnostic showing reaction group associated with each reaction
+            
+            if(showRGsorting == 1){
+                printf("\n\n-- SUMMARY OF REACTION GROUPS:\n");
+                for(int i=0; i<SIZE; i++){
+                    printf("\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
+                        i, reacLabel[i], RGindex[i], RGMemberIndex[i]);
                 }
             }
             
-            // Keep track of the total number of F+ and F- terms in the network for all isotopes
-            totalFplus += numFplus;
-            totalFminus += numFminus;
+            // Write out the components of the reaction groups
             
-            numFluxPlus[i] = numFplus;
-            numFluxMinus[i] = numFminus;
+            printf("\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
+            for(int i=0; i<numberRG; i++){
+                printf("\n\nReaction Group %d:", i);
+                int rgindex = -1;
+                for(int j=0; j<SIZE; j++){
+                    if(RGindex[j] == i){
+                        rgindex ++; 
+                        setRG(j, RGclass[j], RGindex[j]);
+                        printf("\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
+                            reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
+                            isPEforward[j],
+                            stringToChar(RGstring[j]));
+                    }
+                }
+            }
+            printf("\n");
             
-            incrementPlus += numFplus;
-            incrementMinus += numFminus;
+        }      // End function sortReactionGroups()
+        
+    
+    
+        /*
+        * ReactionVector::parseF() to find contributions to F+ and F- of each reaction for each 
+        * isotope. This is executed only once at the beginning of the entire calculation to determine 
+        * the structure of the network. Since executed only once, make it static so it can
+        * be called directly from the class using ReactionVector::parseF(), without having
+        * to instantiate.
+        */
+        
+        static void parseF(){
             
             if(showParsing == 1)
-                printf("\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
-        }
-        
-        // Display isotope component array
-        
-        printf("\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
-        printf("\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
-        
-        int uppity = minimumOf(30, numberSpecies);  // limit printout width to 30 species
-        printf("\n\nIndex             Reaction");
-        for(int k=0; k<uppity; k++){
-            printf("%5s", isoLabel[k]);
-        }
-        for(int j=0; j<numberReactions; j++){
-            printf("\n%3d %22s",j,reacLabel[j]);
-            for(int k=0; k<uppity; k++){
-                printf(" %4d",reacMask[k][j]);
+                printf("\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
+            
+            int incrementPlus = 0;
+            int incrementMinus = 0;
+            
+            // Loop over all isotopes in the network		
+            for(int i=0; i<numberSpecies; i++)
+            {
+                int total = 0;
+                int numFplus = 0;
+                int numFminus = 0;
+                if(showParsing == 1) printf("\n");
+                
+                // Loop over all possible reactions for this isotope, finding those that
+                // change its population up (contributing to F+) or down (contributing to F-).
+                
+                for(int j=0; j<numberReactions; j++) {
+                    int totalL = 0;
+                    int totalR = 0;
+                    
+                    // Loop over reactants for this reaction
+                    for(int k=0; k<NumReactingSpecies[j]; k++) {
+                        if(Z[i] == reacZ[j][k] && N[i] == reacN[j][k]) totalL ++;
+                    }
+                    
+                    // Loop over products for this reaction
+                    for(int k=0; k<NumProducts[j]; k++) {
+                        if(Z[i] == prodZ[j][k] && N[i] == prodN[j][k]) totalR ++;
+                    }
+                    
+                    total = totalL - totalR;
+                    
+                    if(total > 0){       // Contributes to F- for this isotope
+                        numFminus ++;
+                        reacMask[i][j] = -total;
+                        tempInt2[incrementMinus + numFminus-1] = j;
+                        if(showParsing == 1)
+                            printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
+                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
+                                totalR, total);
+                    } 
+                    else if(total < 0){          // Contributes to F+ for this isotope
+                        numFplus ++;
+                        reacMask[i][j] = -total;
+                        tempInt1[incrementPlus + numFplus-1] = j;
+                        if(showParsing == 1)
+                            printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
+                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
+                                totalR, total);
+                    } else {           // Does not contribute to flux for this isotope
+                        reacMask[i][j] = 0;
+                    }
+                }
+                
+                // Keep track of the total number of F+ and F- terms in the network for all isotopes
+                totalFplus += numFplus;
+                totalFminus += numFminus;
+                
+                numFluxPlus[i] = numFplus;
+                numFluxMinus[i] = numFminus;
+                
+                incrementPlus += numFplus;
+                incrementMinus += numFminus;
+                
+                if(showParsing == 1)
+                    printf("\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
             }
-        }
-        
-        printf("\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
-               totalFplus, totalFminus, SIZE, ISOTOPES, SIZE*ISOTOPES);
-        
-    }   // End of function parseF()
+            
+            // Display isotope component array
+            
+            printf("\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
+            printf("\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
+            
+            int uppity = minimumOf(30, numberSpecies);  // limit printout width to 30 species
+            printf("\n\nIndex             Reaction");
+            for(int k=0; k<uppity; k++){
+                printf("%5s", isoLabel[k]);
+            }
+            for(int j=0; j<numberReactions; j++){
+                printf("\n%3d %22s",j,reacLabel[j]);
+                for(int k=0; k<uppity; k++){
+                    printf(" %4d",reacMask[k][j]);
+                }
+            }
+            
+            printf("\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
+                totalFplus, totalFminus, SIZE, ISOTOPES, SIZE*ISOTOPES);
+            
+        }   // End of function parseF()
     
     
 };    // end class ReactionVector
 
+
 /*
-*   class MatrixUtils inheirits from Utilities. Methods to create GSL matrices and vectors
-*   given standard C++ arrays and to compute M*v using BLAS.
+*   class MatrixUtils inherits from Utilities. Methods to create GSL matrices and vectors
+*   given standard C++ arrays and to compute matrix-vector multiply M*v using BLAS.
 */
 
 
@@ -2369,6 +2370,7 @@ public:
         }
         
         return false;
+        
     }       // End function speciesIsInRG(int)
     
     
