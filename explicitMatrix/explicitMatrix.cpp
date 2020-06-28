@@ -257,7 +257,6 @@ int* MapFminus;   // Index mapper for Fminus (Dim totalFminus)
 int* tempInt1;
 int* tempInt2;
 
-//<<<<<<< HEAD
 string tempest;   // Utility string to hold temporary quantities
 
 
@@ -312,11 +311,8 @@ int totalEquilRG;           // Total equilibrated reaction groups
 
 double Ythresh = 0.0;       
 
-
-//=======
 gsl_matrix *fluxes;
 gsl_vector *abundances;
-//>>>>>>> 0ab08ca806f301e5e60146db25243cee85d754f4
 
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
@@ -3104,12 +3100,9 @@ int main() {
     free(tempInt2);
     free(FplusIsotopeIndex);
     free(FminusIsotopeIndex);
-//<<<<<<< HEAD
     free(RG);
-//=======
     gsl_vector_free(abundances);
     gsl_matrix_free(fluxes);
-//>>>>>>> 0ab08ca806f301e5e60146db25243cee85d754f4
     
 }  // End of main routine
 
