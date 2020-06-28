@@ -97,6 +97,7 @@ static const int showFparsing = 0;
 static const int showFluxCalc = 1;
 static const int showRVdetails = 0;
 static const int showRGsorting = 0;
+static const int showAsyTest = 1;
 static const int showFunctionTests = 0;
 // Whether to write message when RG added/removed from equil
 bool showAddRemove = true; 
@@ -313,6 +314,8 @@ double Ythresh = 0.0;
 
 gsl_matrix *fluxes;
 gsl_vector *abundances;
+
+
 
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
@@ -2401,14 +2404,56 @@ class Integrate {
         
     public:
         
-        // Function to execute a single integration step
+        // Function to execute a single integration step.  Assumes that all fluxes have
+        // already been calculated.
         
         static void doIntegrationStep(){
+            
+            // Determine trial timestep
             
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
                 dt = getTimestep();    // Adaptime timestep
+            }
+            
+            // If using asymptotic approximation, determine which species satisfy the
+            // asymptotic condition.
+            
+            if(doASY){
+        
+                printf("\nCheck asymptotic condition (t=%7.4e, dt=%7.4e)\n",
+                    t, dt
+                );
+                for(int i=0; i<ISOTOPES; i++){
+                    isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
+//                     if(showAsyTest){
+//                         printf("\n*** i=%d  FminusSum[%d]=%7.4e  Y[%d]=%7.4e dt=%7.4e check=%7.4e isAsy=%d\n",
+//                                i,  FminusSum[i], i,  Y[i], i, dt, FminusSum[i]*dt/Y[i], isAsy[i]
+//                         );
+//                     }
+                }
+                
+                // Summarize results
+                if(showAsyTest){
+                    printf("\nindex   iso   FminusSum           Y       check    Asy");
+                    string asyck;
+                    for(int i=0; i<ISOTOPES; i++){
+                        asyck = "false";
+                        if(isAsy[i]) asyck="true";
+                        double ck;
+                        if(Y[i] > zerod){
+                            ck = FminusSum[i]*dt/Y[i];
+                        } else {
+                            ck = zerod;
+                        }
+                        printf("\n    %d %5s  %7.4e  %7.4e  %7.4e  %5s",
+                            i, (isoLabel[i]), FminusSum[i], 
+                               Y[i], ck, Utilities::stringToChar(asyck)
+                        );
+                    }
+                    printf("\n");
+                }
             }
             
         }
@@ -2452,12 +2497,12 @@ class Integrate {
     }
     
     // Function to determine whether an isotope satisfies the
-    // asymptotic condition. Returns true if it does and false if not.
+    // asymptotic condition. Returns true (1) if it does and false (0) if not.
     
     static bool checkAsy(double Fminus, double Y, double dt){
         
-        printf("Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e", 
-            Fminus, Y, dt, Fminus*dt/Y);
+//         printf("Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e", 
+//             Fminus, Y, dt, Fminus*dt/Y);
         
         if(Y > zerod && Fminus*dt/Y > unitd){
             return true;
@@ -2533,6 +2578,7 @@ Reaction reaction [SIZE];
 // given by numberRG (which is computed in the class ReactionVector)
 
 ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
+
 
 
 
