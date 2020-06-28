@@ -1,13 +1,18 @@
 /*
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux: Compile with
+ * 
  *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+ * 
  * Resulting compiled code can be executed with
+ * 
  *     ./explicitMatrix  | tee temp.txt
+ * 
  * where | tee temp.txt is unix shell script outputting to screen and also piped to a file temp.txt. 
  * Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
  * your machine but should be similar.  
  *
+ * 
  * AUTHORS:
  * ---------------
  * Nick Brey
@@ -117,6 +122,11 @@ void assignRG(void);
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Whether to implement partial equilibium
+
+// Array to hold whether given species satisfies asymptotic condition
+// True (1) if asyptotic; else false (0).
+
+bool isAsy[ISOTOPES];
 
 // Force a constant timestep constant_dt for testing purposes by
 // setting constantTimestep=true.  Normally constantTimestep=false
@@ -275,12 +285,17 @@ bool equilibrate = true;
 bool imposeEquil = true;  
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
-// this should be determined by the program.
+// this should be determined by the program.  In the Java version this was sometimes
+// needed because starting PE test too early could lead to bad results.  This is 
+// probably a coding error in the Java version, since if operating properly nothing should
+// be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
+// this in a final version for stability, but it might still be useful since early in
+// a calculation typically nothing satisfies PE, so checking for it is a waste of time.
+// However, check should not be costly.
 
 double equilibrateTime = 1.0e-9; 
 
-// Tolerance for checking whether Ys in RG in equil
-double equiTol = 0.01; 
+double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
 double Yminner;             // Current minimum Y in reaction group
 double mineqcheck;          // Current minimum value of eqcheck in reaction group
@@ -2462,7 +2477,10 @@ class Integrate {
     
     static void QSSupdate(double Fplus, double Fminus, double Y, double dt){
         
+        // *************************
         // QSS algorithm goes here.
+        // *************************
+        
     }
     
     
@@ -2528,7 +2546,8 @@ int main() {
     
     // Set labels and check consistency of choice for explicit algebraic methods set.
     // Generally we use either asymptotic (Asy) or quasi-steady-state (QSS) algorithms.
-    // In either case we may choose to add the partial equilibrium (PE) algorithm.
+    // In either case we may choose to add the partial equilibrium (PE) algorithm. So
+    // valid options are Asy, QSS, Asy+PE, and QSS+PE.
     
     string methstring="\nUsing ";
     if(doASY){
