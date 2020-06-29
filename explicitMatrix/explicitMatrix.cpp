@@ -2844,10 +2844,13 @@ int main() {
         for(int i=0; i<numberRG; i++){
             printf("\nRG=%d", i);
             RG[i].setRGfluxes();
-            RG[i].sumRGfluxes();
-            RG[i].showRGfluxes();
-            RG[i].computeEquilibrium();
+            if(doPE){
+                RG[i].sumRGfluxes();
+                RG[i].showRGfluxes();
+                RG[i].computeEquilibrium();
+            }
         }
+        
         
         // Call the static function Reaction::populateFplusFminus() to populate F+ and F-
         // for each isotope set up in setupFplusFminus() from master flux array computed
