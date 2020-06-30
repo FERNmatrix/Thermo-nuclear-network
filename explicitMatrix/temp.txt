@@ -202,9 +202,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -214,6 +214,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -221,9 +222,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -232,6 +233,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -350,9 +352,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -362,6 +364,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -369,9 +372,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -380,6 +383,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -498,9 +502,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -510,6 +514,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -517,9 +522,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -528,6 +533,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -646,9 +652,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -658,6 +664,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -665,9 +672,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -676,6 +683,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -794,9 +802,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -806,6 +814,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -813,9 +822,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -824,6 +833,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -942,9 +952,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -954,6 +964,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -961,9 +972,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -972,6 +983,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1090,9 +1102,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1102,6 +1114,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1109,9 +1122,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1120,6 +1133,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1238,9 +1252,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1250,6 +1264,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1257,9 +1272,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1268,6 +1283,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1386,9 +1402,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1398,6 +1414,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1405,9 +1422,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1416,6 +1433,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1534,9 +1552,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1546,6 +1564,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1553,9 +1572,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1564,6 +1583,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1682,9 +1702,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1694,6 +1714,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1701,9 +1722,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1712,6 +1733,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1830,9 +1852,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1842,6 +1864,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1849,9 +1872,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1860,6 +1883,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -1978,9 +2002,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -1990,6 +2014,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -1997,9 +2022,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2008,6 +2033,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2126,9 +2152,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2138,6 +2164,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2145,9 +2172,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2156,6 +2183,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2274,9 +2302,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2286,6 +2314,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2293,9 +2322,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2304,6 +2333,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2422,9 +2452,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2434,6 +2464,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2441,9 +2472,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2452,6 +2483,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2570,9 +2602,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2582,6 +2614,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2589,9 +2622,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2600,6 +2633,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2718,9 +2752,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2730,6 +2764,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2737,9 +2772,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2748,6 +2783,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -2866,9 +2902,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2878,6 +2914,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -2885,9 +2922,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -2896,6 +2933,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3014,9 +3052,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3026,6 +3064,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3033,9 +3072,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3044,6 +3083,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3162,9 +3202,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3174,6 +3214,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3181,9 +3222,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3192,6 +3233,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3310,9 +3352,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3322,6 +3364,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3329,9 +3372,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3340,6 +3383,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3458,9 +3502,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3470,6 +3514,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3477,9 +3522,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3488,6 +3533,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3606,9 +3652,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3618,6 +3664,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3625,9 +3672,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3636,6 +3683,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3754,9 +3802,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3766,6 +3814,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3773,9 +3822,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3784,6 +3833,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -3902,9 +3952,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3914,6 +3964,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -3921,9 +3972,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -3932,6 +3983,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4050,9 +4102,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4062,6 +4114,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4069,9 +4122,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4080,6 +4133,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4198,9 +4252,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4210,6 +4264,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4217,9 +4272,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4228,6 +4283,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4346,9 +4402,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4358,6 +4414,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4365,9 +4422,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4376,6 +4433,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4494,9 +4552,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4506,6 +4564,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4513,9 +4572,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4524,6 +4583,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4642,9 +4702,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4654,6 +4714,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4661,9 +4722,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4672,6 +4733,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4790,9 +4852,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4802,6 +4864,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4809,9 +4872,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4820,6 +4883,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -4938,9 +5002,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4950,6 +5014,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -4957,9 +5022,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -4968,6 +5033,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5086,9 +5152,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5098,6 +5164,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5105,9 +5172,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5116,6 +5183,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5234,9 +5302,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5246,6 +5314,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5253,9 +5322,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5264,6 +5333,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5382,9 +5452,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5394,6 +5464,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5401,9 +5472,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5412,6 +5483,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5530,9 +5602,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5542,6 +5614,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5549,9 +5622,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5560,6 +5633,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5678,9 +5752,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5690,6 +5764,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5697,9 +5772,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5708,6 +5783,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5826,9 +5902,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5838,6 +5914,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5845,9 +5922,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5856,6 +5933,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -5974,9 +6052,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -5986,6 +6064,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -5993,9 +6072,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6004,6 +6083,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6122,9 +6202,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6134,6 +6214,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6141,9 +6222,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6152,6 +6233,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6270,9 +6352,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6282,6 +6364,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6289,9 +6372,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6300,6 +6383,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6418,9 +6502,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6430,6 +6514,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6437,9 +6522,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6448,6 +6533,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6566,9 +6652,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6578,6 +6664,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6585,9 +6672,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6596,6 +6683,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6714,9 +6802,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6726,6 +6814,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6733,9 +6822,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6744,6 +6833,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -6862,9 +6952,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6874,6 +6964,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -6881,9 +6972,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -6892,6 +6983,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7010,9 +7102,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7022,6 +7114,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7029,9 +7122,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7040,6 +7133,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7158,9 +7252,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7170,6 +7264,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7177,9 +7272,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7188,6 +7283,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7306,9 +7402,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7318,6 +7414,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7325,9 +7422,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7336,6 +7433,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7454,9 +7552,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7466,6 +7564,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7473,9 +7572,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7484,6 +7583,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7602,9 +7702,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7614,6 +7714,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7621,9 +7722,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7632,6 +7733,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7750,9 +7852,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7762,6 +7864,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7769,9 +7872,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7780,6 +7883,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -7898,9 +8002,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7910,6 +8014,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -7917,9 +8022,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -7928,6 +8033,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8046,9 +8152,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8058,6 +8164,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8065,9 +8172,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8076,6 +8183,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8194,9 +8302,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8206,6 +8314,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8213,9 +8322,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8224,6 +8333,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8342,9 +8452,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8354,6 +8464,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8361,9 +8472,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8372,6 +8483,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8490,9 +8602,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8502,6 +8614,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8509,9 +8622,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8520,6 +8633,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8638,9 +8752,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8650,6 +8764,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8657,9 +8772,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8668,6 +8783,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8786,9 +8902,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8798,6 +8914,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8805,9 +8922,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8816,6 +8933,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -8934,9 +9052,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8946,6 +9064,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -8953,9 +9072,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -8964,6 +9083,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9082,9 +9202,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9094,6 +9214,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9101,9 +9222,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9112,6 +9233,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9230,9 +9352,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9242,6 +9364,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9249,9 +9372,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9260,6 +9383,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9378,9 +9502,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9390,6 +9514,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9397,9 +9522,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9408,6 +9533,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9526,9 +9652,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9538,6 +9664,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9545,9 +9672,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9556,6 +9683,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9674,9 +9802,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9686,6 +9814,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9693,9 +9822,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9704,6 +9833,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9822,9 +9952,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9834,6 +9964,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9841,9 +9972,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9852,6 +9983,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -9970,9 +10102,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -9982,6 +10114,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -9989,9 +10122,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10000,6 +10133,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10118,9 +10252,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10130,6 +10264,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -10137,9 +10272,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10148,6 +10283,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10266,9 +10402,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10278,6 +10414,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -10285,9 +10422,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10296,6 +10433,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10414,9 +10552,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10426,6 +10564,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -10433,9 +10572,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10444,6 +10583,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10562,9 +10702,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10574,6 +10714,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -10581,9 +10722,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10592,6 +10733,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10710,9 +10852,9 @@ memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10722,6 +10864,7 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 RG=1
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
@@ -10729,9 +10872,9 @@ memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
+ *** Compute Equilibrium
+ *** computeEquilibriumRates()
 
- *** Compute Equilbrium
- *** computeEquilbriumRates()
 Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
@@ -10740,6 +10883,7 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
  *** computeC()
  *** computeQuad()
  *** computeEqRatios()
+
 
 VALUES F+
 
@@ -10827,7 +10971,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 
 End of integration
-Timer: 9.639 ms used
+Timer: 9.869 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X

@@ -718,6 +718,8 @@ class Reaction: public Utilities {
         double flux;                 // Current flux of reaction
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
+        
+        string ss;                   // Utility string
   
   
     public:
@@ -982,7 +984,9 @@ class Reaction: public Utilities {
         
         int getreactantIndex(int k){
             if(k > numberReactants-1){
-                printf("\n\nERROR Reaction::getreactantIndex(k): k-1 = %d larger than # reactants %d", 
+                ss = "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d ";
+                ss += "larger than # reactants %d";
+                printf(stringToChar(ss), 
                     k, numberReactants);
                 return -1;
             } else {
@@ -1169,7 +1173,7 @@ class Reaction: public Utilities {
         // in each zone.
         
         void computeConstantFacs(double T9, double rho){
-            
+
             // Temperature factors in ReacLib rate formula.
             T93 = powf(T9, THIRD); 
             t1 = 1/T9;
@@ -1249,6 +1253,8 @@ class Reaction: public Utilities {
         
         void computeFlux(){
             
+            string s;
+            
             switch(numberReactants){
                 
                 case 1:    // 1-body reactions
@@ -1267,9 +1273,11 @@ class Reaction: public Utilities {
                     flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ]; 	
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
                     if(showFluxCalc == 1){
-                        printf("\n%d %18s reactants=%d iso0=%d iso1=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Flux=%7.3e",
-                            reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], Rrate,
-                            Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], flux);
+                        s = "\n%d %18s reactants=%d iso0=%d iso1=%d Rrate=%7.3e ";
+                        s += "Y1=%7.3e Y2=%7.3e Flux=%7.3e";
+                        printf(Utilities::stringToChar(s),
+                            reacIndex, getreacChar(), numberReactants, reactantIndex[0], 
+                            reactantIndex[1], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], flux);
                     }
                     break;
                     
@@ -1278,9 +1286,11 @@ class Reaction: public Utilities {
                     flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ] * Y[ reactantIndex[2] ];
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
                     if(showFluxCalc == 1){
-                        printf("\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
-                            reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], reactantIndex[2], 
-                            Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
+                        s = "\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e ";
+                        s += "Y2=%7.3e Y3=%7.3e Flux=%7.3e";
+                        printf(Utilities::stringToChar(s),
+                            reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
+                            reactantIndex[2], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
                             Y[ reactantIndex[2] ], flux);
                     }
                     break;
@@ -1762,7 +1772,7 @@ private:
     double eqcheck[5];             // Population ratio to check equilibrium
 
     double lambda;                 // Progress variable for reaction pair
-    double lambdaEq;               // Equilbrium value of progress variable
+    double lambdaEq;               // Equilibrium value of progress variable
     
     int reactantIsoIndex[3];       // Species index of reactants
     int productIsoIndex[4];        // Species index of products
@@ -1945,7 +1955,7 @@ public:
     
     void computeEquilibrium() {
         
-        printf("\n\n *** Compute Equilbrium");
+        printf("\n *** Compute Equilibrium");
         
         computeEquilibriumRates();
         putY0();
@@ -1966,7 +1976,7 @@ public:
     
     void computeEquilibriumRates() {
         
-        printf("\n *** computeEquilbriumRates()");
+        printf("\n *** computeEquilibriumRates()\n");
         
         double kf = 0;
         double kr = 0;
@@ -2208,7 +2218,7 @@ public:
     
     void computeEqRatios() {
         
-        printf("\n *** computeEqRatios()");
+        printf("\n *** computeEqRatios()\n");
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
