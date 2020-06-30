@@ -2211,6 +2211,7 @@ public:
         printf("\n *** computeEqRatios()");
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
+        
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
             mostDeviousIndex = RGarrayIndex;
@@ -2218,7 +2219,7 @@ public:
         
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. If the 
-        // maxDevious > tolerance check is implemented it can  cause a
+        // maxDevious > tolerance check is implemented it can cause a
         // reaction group to drop out of equilibrium.
         
         if (isEquil && thisDevious < maxDevious) {
