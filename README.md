@@ -24,7 +24,7 @@ neutrino transport problem.
 
 #### tutorials
 The tutorials/ directory stores multiple simple tutorials which Dr. Guidry has created for student use to explain gnuplot, the GSL library,
-and a refresher on C arrays and pointers. 
+and a refresher on C arrays and pointers. Also a directory of pdf files giving a simple tutorial on basics of git/github.
 
 
 For issues and/or questions related to this repository, you can contact me at aderous1@vols.utk.edu. 
