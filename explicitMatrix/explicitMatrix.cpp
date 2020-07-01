@@ -116,13 +116,14 @@ void setSpeciesdYdt(int, double);
 void assignRG(void);
 
 // Control which explicit algebraic approximations are used. Eventually
-// this should be set from a data file. To use asymptotic set doASY true.
-// To use quasi-steady-state, set doASY false. doPE can be true or false 
+// this should be set from a data file. To use asymptotic set doASY true
+// (which toggles doQSS to false). To use quasi-steady-state (QSS), set 
+// doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Whether to implement partial equilibium
+bool doPE = true;             // Implement partial equilibium also
 
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
@@ -2415,16 +2416,31 @@ class Integrate {
     public:
         
         // Function to execute a single integration step.  Assumes that all fluxes have
-        // already been calculated.
+        // already been calculated and relevant fluxes set to zero if PE approximation
+        // and the reaction group has been judged to be in equilibrium.
         
         static void doIntegrationStep(){
             
-            // Determine trial timestep
+            // Determine trial timestep.  This timestep will be updated in the various 
+            // integration methods to a final timestep using getTimestep(). 
             
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
-                dt = getTimestep();    // Adaptime timestep
+                dt = getTrialTimestep();    // Trial adaptive timestep
+                //dt = getTimestep();    // Adaptive timestep
+            }
+            
+            // If using the QSS approximation, apply QSS approximation to all isotopes
+            
+            if(doQSS){
+                printf("\nQSS approximation (t=%7.4e, dt=%7.4e)\n", t, dt);
+                for (int i=0; i<ISOTOPES; i++){
+                    QSSupdate(Fplus[i], Fminus[i], Y[i], dt);
+                    printf("\n-------Doing QSS update for %s  Y=%7.4e", isoLabel[i], Y[i]);
+                }
+                printf("\n");
+                
             }
             
             // If using asymptotic approximation, determine which species satisfy the
@@ -2437,14 +2453,10 @@ class Integrate {
                 );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
-//                     if(showAsyTest){
-//                         printf("\n*** i=%d  FminusSum[%d]=%7.4e  Y[%d]=%7.4e dt=%7.4e check=%7.4e isAsy=%d\n",
-//                                i,  FminusSum[i], i,  Y[i], i, dt, FminusSum[i]*dt/Y[i], isAsy[i]
-//                         );
-//                     }
                 }
                 
                 // Summarize results
+                
                 if(showAsyTest){
                     printf("\nindex   iso   FminusSum           Y       check    Asy");
                     string asyck;
@@ -2457,6 +2469,7 @@ class Integrate {
                         } else {
                             ck = zerod;
                         }
+                        
                         printf("\n    %d %5s  %7.4e  %7.4e  %7.4e  %5s",
                             i, (isoLabel[i]), FminusSum[i], 
                                Y[i], ck, Utilities::stringToChar(asyck)
@@ -2466,8 +2479,31 @@ class Integrate {
                 }
             }
             
-        }
+            // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
+            // by PE approximation (individual fluxes in RG that are in equilibrium) and 
+            // asymptotic approximation (rows and columns of matrix)
+            
+            if{!doQSS}{
+                // Call matrix multiply with elements of matrix having been removed by
+                // PE and Asy approximations.
+            }
+            
+        }    // end of doIntegrate(I)
         
+        
+
+        
+        // Function to set the trial integration timestep
+        
+        static double getTrialTimestep(){
+            
+            // Placeholder. This will supply the initial trial timestep,
+            // which is required to initiate the iteration to the final 
+            // timestep for this time interval.
+            
+            double timestep = constant_dt;
+            return timestep;
+        }
         
         
     // Function to set the current integration timestep
@@ -2860,11 +2896,11 @@ int main() {
         
         // If partial equilibrium approximation (doPE = true), set fluxes identically to
         // zero for all reactions in reaction groups that are judged to be in equilibrium
-        // (isEquil = true).
+        // (RG[i].isEquil = true).
         
         if(doPE){
             
-            printf("\n\n++++ Imposing Equilibrium on Fluxes");
+            printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
             
             // Loop over reaction groups
             for(int i=0; i<numberRG; i++){
@@ -2873,21 +2909,22 @@ int main() {
                 // each reaction flux to zero.
                 
                 bool ckequil = RG[i].getisEquil();
-                
-                if(true){ckequil = true;}  // For temporary testing purposes
-                
-                printf("\n++++ RG=%d ckequil=%d", i, ckequil);
+                printf("\n\nRG=%d isEquil=%d", i, ckequil);
                 
                 if(ckequil){
-                    
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
                         Flux[RG[i].getmemberReactions(j)] = zerod;  // Set identically zero
-                        printf("\n   ++++ %d reaction=%d %s flux=%7.4e",
-                               j, RG[i].getmemberReactions(j), 
-                               RG[i].getreacString(j),
-                               Flux[RG[i].getmemberReactions(j)]
-                        );
                     } 
+                }
+                
+                // Print results 
+                
+                for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+                    printf("\n   %d reaction=%d %s flux=%7.4e",
+                        j, RG[i].getmemberReactions(j), 
+                        RG[i].getreacString(j),
+                        Flux[RG[i].getmemberReactions(j)]
+                    );
                 }
             }
         }
