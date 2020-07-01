@@ -2261,6 +2261,7 @@ public:
                     isEquilMaybe = false;
                     break;
                 }
+                
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
                 if (eqcheck[i] < mineqcheck)
@@ -2859,6 +2860,42 @@ int main() {
                 RG[i].sumRGfluxes();
                 RG[i].showRGfluxes();
                 RG[i].computeEquilibrium();
+            }
+        }
+        
+        // If partial equilibrium approximation (doPE = true), set fluxes identically to
+        // zero for all reactions in reaction groups that are judged to be in equilibrium
+        // (isEquil = true).
+        
+        if(doPE){
+            
+            printf("\n\n++++ Imposing Equilibrium on Fluxes");
+            
+            // Loop over reaction groups
+            for(int i=0; i<numberRG; i++){
+                
+                // If RG equilibrated, loop over members of reaction group and set
+                // each reaction flux to zero.
+                
+                bool ckequil = RG[i].getisEquil();
+                
+                if(true){ckequil = true;}  // For testing purposes
+                
+                printf("\n++++ RG=%d ckequil=%d", i, ckequil);
+                
+                if(ckequil){
+                    
+                    for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+                        Flux[RG[i].getmemberReactions(j)] = zerod;  // Set identically zero
+                        printf("\n   ++++ %d reaction=%d %s flux=%7.4e",
+                               j, RG[i].getmemberReactions(j), 
+                               RG[i].getreacString(j),
+                               Flux[RG[i].getmemberReactions(j)]
+                        );
+                    } 
+                    
+                }
+                
             }
         }
         
