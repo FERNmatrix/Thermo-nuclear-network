@@ -1730,62 +1730,62 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Its static functions can be called directly from the class
     // without having to instantiate.
     
-private:
-    
-    static const int maxreac = 10;         // Max possible reactions in this RG instance
-    int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
-    int niso;                              // Number of isotopic species in RG class, this object
-    int RGn;                               // Index of reaction group in RG array (0, 1, ... #RG)
-    int numberMemberReactions;             // Number of reactions in this RG instance
-    int memberReactions[maxreac];          // reacIndex of reactions in reaction group
-    int numberReactants[maxreac];          // Number of reactants for each reaction in RG
-    int numberProducts[maxreac];           // Number of products for each reaction in RG
+    private:
+        
+        static const int maxreac = 10;         // Max possible reactions in this RG instance
+        int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
+        int niso;                              // Number of isotopic species in RG class, this object
+        int RGn;                               // Index of reaction group in RG array (0, 1, ... #RG)
+        int numberMemberReactions;             // Number of reactions in this RG instance
+        int memberReactions[maxreac];          // reacIndex of reactions in reaction group
+        int numberReactants[maxreac];          // Number of reactants for each reaction in RG
+        int numberProducts[maxreac];           // Number of products for each reaction in RG
 
-    int rgclass;                           // Reaction group class (0-5)
-    bool isEquil;                          // True if RG in equilibrium; false otherwise
-    bool isEquilMaybe;                     // Whether would be in equil if no threshhold condition
-    bool isForward[maxreac];               // Whether reaction in RG labeled forward
-    double flux[maxreac];                  // Current flux for each reaction in RG
-    double netflux;                        // Net flux for the entire reaction group
-    char reaclabel[maxreac][LABELSIZE];    // Member reaction label
-    int RGarrayIndex;                      // Index of ReactionGroup RG[] array
-    
-    // Partial equilibrium quantities
-    
-    double Yzero[ISOTOPES];        // Hold Y for this species at beginning of timestep
-    
-    double crg[4];                 // Constants c1, c2, ... (1-4 entries; could allocate dynamically)
-    int numberC;                   // Number of constants crg[] for this rg class (1-4 entries)
-    double rgkf;                   // Forward rate parameter for partial equilibrium
-    double rgkr;                   // Reverse rate parameter for partial equilibrium
-    
-    double aa, bb, cc;             // Quadratic coefficients a, b, c
-    double alpha, beta, gamma;     // Helper coefficients for cubic ~ quadratic approximation
-    double qq;                     // q = 4ac-b^2
-    double rootq;                  // Math.sqrt(-q)
-    double tau;                    // Timescale for equilibrium
+        int rgclass;                           // Reaction group class (0-5)
+        bool isEquil;                          // True if RG in equilibrium; false otherwise
+        bool isEquilMaybe;                     // Whether would be in equil if no threshhold condition
+        bool isForward[maxreac];               // Whether reaction in RG labeled forward
+        double flux[maxreac];                  // Current flux for each reaction in RG
+        double netflux;                        // Net flux for the entire reaction group
+        char reaclabel[maxreac][LABELSIZE];    // Member reaction label
+        int RGarrayIndex;                      // Index of ReactionGroup RG[] array
+        
+        // Partial equilibrium quantities
+        
+        double Yzero[ISOTOPES];        // Hold Y for this species at beginning of timestep
+        
+        double crg[4];                 // Constants c1, c2, ... (1-4 entries; could allocate dynamically)
+        int numberC;                   // Number of constants crg[] for this rg class (1-4 entries)
+        double rgkf;                   // Forward rate parameter for partial equilibrium
+        double rgkr;                   // Reverse rate parameter for partial equilibrium
+        
+        double aa, bb, cc;             // Quadratic coefficients a, b, c
+        double alpha, beta, gamma;     // Helper coefficients for cubic ~ quadratic approximation
+        double qq;                     // q = 4ac-b^2
+        double rootq;                  // Math.sqrt(-q)
+        double tau;                    // Timescale for equilibrium
 
-    double equilRatio;             // Equilibrium ratio of abundances
-    double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
-    double eqcheck[5];             // Population ratio to check equilibrium
+        double equilRatio;             // Equilibrium ratio of abundances
+        double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
+        double eqcheck[5];             // Population ratio to check equilibrium
 
-    double lambda;                 // Progress variable for reaction pair
-    double lambdaEq;               // Equilibrium value of progress variable
-    
-    int reactantIsoIndex[3];       // Species index of reactants
-    int productIsoIndex[4];        // Species index of products
-    
-    int isoindex[5];               // Species index for participants in reaction   
-    char isolabel[5][5];           // Isotopic label of species in RG reactions
-    int isoZ[5];                   // Z for the niso isotopes in the reactions of the group
-    int isoN[5];                   // N for the niso isotopes in the reactions of the group
-    double isoA[5];                // A for the niso isotopes in the reactions of the group
-    double isoYeq[5];              // Y_eq for the niso isotopes in the reactions of the group
-    double isoY[5];                // Current Y for the niso isotopes in the reactions of the group
-    double isoY0[5];               // Current Y for isotopes in the reactions of the group
+        double lambda;                 // Progress variable for reaction pair
+        double lambdaEq;               // Equilibrium value of progress variable
+        
+        int reactantIsoIndex[3];       // Species index of reactants
+        int productIsoIndex[4];        // Species index of products
+        
+        int isoindex[5];               // Species index for participants in reaction   
+        char isolabel[5][5];           // Isotopic label of species in RG reactions
+        int isoZ[5];                   // Z for the niso isotopes in the reactions of the group
+        int isoN[5];                   // N for the niso isotopes in the reactions of the group
+        double isoA[5];                // A for the niso isotopes in the reactions of the group
+        double isoYeq[5];              // Y_eq for the niso isotopes in the reactions of the group
+        double isoY[5];                // Current Y for the niso isotopes in the reactions of the group
+        double isoY0[5];               // Current Y for isotopes in the reactions of the group
 
-  
-public:
+    
+    public:
     
     // Constructor
     
@@ -2874,7 +2874,7 @@ int main() {
                 
                 bool ckequil = RG[i].getisEquil();
                 
-                if(true){ckequil = true;}  // For testing purposes
+                if(true){ckequil = true;}  // For temporary testing purposes
                 
                 printf("\n++++ RG=%d ckequil=%d", i, ckequil);
                 
@@ -2888,9 +2888,7 @@ int main() {
                                Flux[RG[i].getmemberReactions(j)]
                         );
                     } 
-                    
                 }
-                
             }
         }
         
