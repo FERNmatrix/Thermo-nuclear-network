@@ -51,7 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100           // Number of plot output steps
+#define plotSteps 5           // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -142,7 +142,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 // here but in applications they would be variables supplied by
 // calling programs.
 
-double start_time = 2.22018e-8;      // Start time for integration
+double start_time = 1.0e-8; //2.22018e-8;      // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double stop_time = 1.0e-7;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
@@ -361,7 +361,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         // Static function Utilities::log10Spacing() to find num equal log10 
         // spacings between two numbers start and stop. The equally log-spaced
-        // numbers are placed in the array v.
+        // numbers are placed in the array v passed with the pointer *v.
         // -------------------------------------------------------------------------
         
         static void log10Spacing(double start, double stop, int num, double *v){
@@ -2820,6 +2820,18 @@ int main() {
         }
     }
     
+    // Find the time intervals for plot output during the integration. After this
+    // function is executed the plotSteps target time intervals for output will
+    // be in the array plotTimeTargets[]. In the integration the ith output step will 
+    // be triggered as soon as the time t is >= plottimeTargets[i].  The actual time of the output
+    // (which will usually be slightly larger than plottimeTargets[i]) will be stored in tplot[i].
+    
+    Utilities::log10Spacing(start_time, stop_time, plotSteps, plotTimeTargets);
+    
+    for(int i=0; i <plotSteps; i++){
+        printf("\n+++ i=%d tplot=%7.4e", i, plotTimeTargets[i]);
+    }
+    
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
     // that the network species and reactions remain the same for the entire calculation).
@@ -2911,13 +2923,6 @@ int main() {
     
     
     
-    Utilities::log10Spacing(start_time, stop_time, plotSteps, tplot);
-    
-    for(int i=0; i <plotSteps; i++){
-        printf("\n+++ i=%d tplot=%7.4e", i, tplot[i]);
-    }
-    
-    
     // -----------------------------------------------
     // *** Begin main time integration while-loop ***
     // -----------------------------------------------
@@ -2930,7 +2935,8 @@ int main() {
     totalTimeSteps = 0;
     totalEquilRG = 0;
     totalEquilReactions = 0;
-    int stepCounter = 0;
+    int stepCounter = 0;        // Integration step counter
+    int plotCounter = 1;        // Plot output counter
     
     Utilities::startTimer();    // Start a timer for integration
     
@@ -2938,7 +2944,7 @@ int main() {
         
         t += dt;
         totalTimeSteps ++;
-        stepCounter ++;
+        stepCounter ++;             
     
         // Use methods of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
@@ -3029,12 +3035,19 @@ int main() {
         // For example, if outputInterval=5, screen and file output will be generated
         // only every 5 integration steps.
         
-        if(stepCounter >= outputInterval){
-            stepCounter = 0;
+        printf("\n     +++++ steps=%d plotsteps=%d t=%7.4e target=%7.4e dt=%7.4e",
+               totalTimeSteps, plotCounter, t, plotTimeTargets[plotCounter-1],
+               dt
+        );
+        
+        if(t >= plotTimeTargets[plotCounter-1]){
+            
+        //if(stepCounter >= outputInterval){
+            //stepCounter = 0;
             
             printf("\n-----------------------------------------------------------------");
-            printf("\nTimestep=%d T9=%5.3f, rho=%7.3e t=%9.5e dt=%9.5e", 
-                   totalTimeSteps, T9, rho, t, dt);
+            printf("\nPlotstep=%d T9=%5.3f, rho=%7.3e t=%9.5e dt=%9.5e target=%7.4e", 
+                   plotCounter, T9, rho, t, dt, plotTimeTargets[plotCounter-1]);
             printf("\n-----------------------------------------------------------------\n");
             tempest = "\n\nIndex   Iso           Y           X        dY/dt";
             tempest += "        dX/dt           dY           dX\n";
@@ -3049,6 +3062,7 @@ int main() {
             
             // Output of data to plot files will go here
             
+            plotCounter ++;
         }
     
     }   // End time integration while-loop
