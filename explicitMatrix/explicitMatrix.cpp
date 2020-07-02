@@ -150,6 +150,9 @@ int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // Change in time for current integration step
 int outputInterval = 1;              // Number integration steps between data/print output
 
+double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
+double diffX;                        // sumX - 1.0
+
 double Rate[SIZE];       // Computed rate for each reaction from Reactions::computeRate()
 double Flux[SIZE];       // Computed flux for each reaction from Reactions::computeFlux()
 
@@ -330,6 +333,21 @@ class Utilities{
     private:
     
     public:
+        
+        // -------------------------------------------------------------------------
+        // Static function Utilities::returnSumX() to return the current sum of the
+        // mass fractions X(i) in the network. If the network conserves particle
+        // number this sum should be equal to 1.0.
+        // -------------------------------------------------------------------------
+        
+        static double returnSumX(void) {
+            double sum = zerod;
+            for(int i=0; i<ISOTOPES; i++){
+                sum += X[i];
+            }
+            return sum; 
+        }
+        
     
         // -------------------------------------------------------------------------
         // Static function Utilities::returnNetIndexZN(Z,N) to return the network 
@@ -410,7 +428,9 @@ class Utilities{
         // Typically a string type can be printed with cout but a string given 
         // to printf typically displays garbage because of type issues in the 
         // C function printf. This function converts a string to a corresponding 
-        // character array, which either printf or cout can print.
+        // character array, which either printf or cout can print. Presently
+        // assumes the string has no more than 50 characters.  Change the
+        // dimension of cs[] to increase that.
         // ----------------------------------------------------------------------
         
         static char* stringToChar(string s){
@@ -435,9 +455,9 @@ class Utilities{
         // ----------------------------------------------------------------------
         
         static void stopTimer(){
-            STOP_CPU;     // Stop the timer
+            STOP_CPU;        // Stop the timer
             printf("\n");
-            PRINT_CPU;    // Print timing information for rate calculation
+            PRINT_CPU;       // Print timing information for rate calculation
             printf("\n");
         }
         
@@ -2403,9 +2423,10 @@ class ReactionGroup:  public Utilities {
 
 
 
-// Class Integrate with methods to integrate the reaction network
+// Class Integrate with methods to integrate the reaction network.  Inherits from
+// class Utilities.
 
-class Integrate {
+class Integrate: public Utilities {
     
     // Make data fields private, with external access to them through public setter 
     // and getter functions.  Its static functions can be called directly from the class
@@ -2483,10 +2504,16 @@ class Integrate {
             // by PE approximation (individual fluxes in RG that are in equilibrium) and 
             // asymptotic approximation (rows and columns of matrix)
             
-            if{!doQSS}{
+            if(!doQSS){
                 // Call matrix multiply with elements of matrix having been removed by
                 // PE and Asy approximations.
             }
+            
+            // Check the sum of the mass fractions. Should be 1.0 if particle number is
+            // being conserved
+            
+            sumX = Utilities::returnSumX();
+            diffX = sumX - unitd;
             
         }    // end of doIntegrate(I)
         

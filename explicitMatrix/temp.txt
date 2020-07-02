@@ -137,16 +137,16 @@ rv[7]: [  1  1 -1 ]
 PARTIAL EQUILIBRIUM REACTION GROUPS
 
 Reaction Group 0:
-he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=6546025 RG: a+b+c<->d
-he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=6546025 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=6546025 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=6546025 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=37773929 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=37773929 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=37773929 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=37773929 RG: a+b+c<->d
 
 Reaction Group 1:
-he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=6546025 RG: a+b<->c
-he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=6546025 RG: a+b<->c
-o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=6546025 RG: a+b<->c
-o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=6546025 RG: a+b<->c
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=37773929 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=37773929 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=37773929 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=37773929 RG: a+b<->c
 
 
 
@@ -11979,7 +11979,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 
 End of integration
-Timer: 8.461 ms used
+Timer: 10.127 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
