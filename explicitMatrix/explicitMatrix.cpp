@@ -51,6 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
+#define plotSteps 100           // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -141,13 +142,15 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 // here but in applications they would be variables supplied by
 // calling programs.
 
-double start_time = 2.22018e-8;      // Starting time for integration
-double stop_time = 1.0e-7;           // Ending time for integration
-double dt_start = 1.1e-9;            // Initial value of dt
+double start_time = 2.22018e-8;      // Start time for integration
+double logStart = log10(start_time); // Base 10 log start time
+double stop_time = 1.0e-7;           // Stop time for integration
+double logStop = log10(stop_time);   // Base-10 log stop time
+double dt_start = 1.1e-9;            // Initial value of integration dt
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
-double deltaTime;                    // Change in time for current integration step
+double deltaTime;                    // dt for current integration step
 int outputInterval = 1;              // Number integration steps between data/print output
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
@@ -319,6 +322,27 @@ double Ythresh = 0.0;
 gsl_matrix *fluxes;
 gsl_vector *abundances;
 
+
+// -------------------------------------------------------------------------
+// Arrays to hold output quantities at plot timesteps. The variable
+// plotSteps is hardwired above, but eventually should be input
+// at time of execution.
+// -------------------------------------------------------------------------
+
+double plotTimeTargets[plotSteps];     // Target plot times for plot step
+
+double tplot[plotSteps];               // Actual time for plot step
+double dtplot[plotSteps];              // dt for plot step
+double Xplot[ISOTOPES][plotSteps];     // Mass fractions X
+double sumXplot[plotSteps];            // Sum of mass fractions
+double numAsyplot[plotSteps];          // Number asymptotic species
+double numRG_PEplot[plotSteps];        // Number RG in PE
+
+
+
+//----------------CLASS DEFINITIONS ----------------
+
+
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
  * objects of type Utilities.  For example, Utilities::returnNetIndexZN (Z, N).
@@ -333,6 +357,26 @@ class Utilities{
     private:
     
     public:
+        
+        // -------------------------------------------------------------------------
+        // Static function Utilities::log10Spacing() to find num equal log10 
+        // spacings between two numbers start and stop. The equally log-spaced
+        // numbers are placed in the array v.
+        // -------------------------------------------------------------------------
+        
+        static void log10Spacing(double start, double stop, int num, double *v){
+            
+            double logtmin = log10(start);
+            double logtmax = log10(stop);
+            double tempsum = logtmin;
+            double expofac = (logtmax - logtmin) / (double) num;
+            v[0] = pow(10, logtmin);
+            for(int i=0; i<num; i++){
+                tempsum += expofac;
+                v[i] = pow(10, tempsum);
+            }
+        }
+        
         
         // -------------------------------------------------------------------------
         // Static function Utilities::returnSumX() to return the current sum of the
@@ -2616,8 +2660,10 @@ class Integrate: public Utilities {
     
 };    // End class integrate
 
+//----------------END CLASS DEFINITIONS ----------------
 
-// --------------- End of class definitions ----------------
+
+
 
 // Declare pointer used to access the fields and functions of class Species
 
@@ -2862,6 +2908,14 @@ int main() {
     // without having to instantiate.
     
     Reaction::setupFplusFminus();
+    
+    
+    
+    Utilities::log10Spacing(start_time, stop_time, plotSteps, tplot);
+    
+    for(int i=0; i <plotSteps; i++){
+        printf("\n+++ i=%d tplot=%7.4e", i, tplot[i]);
+    }
     
     
     // -----------------------------------------------

@@ -137,16 +137,16 @@ rv[7]: [  1  1 -1 ]
 PARTIAL EQUILIBRIUM REACTION GROUPS
 
 Reaction Group 0:
-he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=37773929 RG: a+b+c<->d
-he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=37773929 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=37773929 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=37773929 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=25498217 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=25498217 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=25498217 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=25498217 RG: a+b+c<->d
 
 Reaction Group 1:
-he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=37773929 RG: a+b<->c
-he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=37773929 RG: a+b<->c
-o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=37773929 RG: a+b<->c
-o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=37773929 RG: a+b<->c
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=25498217 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=25498217 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=25498217 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=25498217 RG: a+b<->c
 
 
 
@@ -166,6 +166,106 @@ reacIndex=6 niso=3 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1
 reacIndex=7 niso=3 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1
 Member reactions = 4
 
++++ i=0 tplot=2.2538e-08
++++ i=1 tplot=2.2880e-08
++++ i=2 tplot=2.3227e-08
++++ i=3 tplot=2.3579e-08
++++ i=4 tplot=2.3937e-08
++++ i=5 tplot=2.4300e-08
++++ i=6 tplot=2.4668e-08
++++ i=7 tplot=2.5042e-08
++++ i=8 tplot=2.5422e-08
++++ i=9 tplot=2.5808e-08
++++ i=10 tplot=2.6199e-08
++++ i=11 tplot=2.6596e-08
++++ i=12 tplot=2.7000e-08
++++ i=13 tplot=2.7409e-08
++++ i=14 tplot=2.7825e-08
++++ i=15 tplot=2.8247e-08
++++ i=16 tplot=2.8675e-08
++++ i=17 tplot=2.9110e-08
++++ i=18 tplot=2.9551e-08
++++ i=19 tplot=2.9999e-08
++++ i=20 tplot=3.0454e-08
++++ i=21 tplot=3.0916e-08
++++ i=22 tplot=3.1385e-08
++++ i=23 tplot=3.1861e-08
++++ i=24 tplot=3.2344e-08
++++ i=25 tplot=3.2834e-08
++++ i=26 tplot=3.3332e-08
++++ i=27 tplot=3.3838e-08
++++ i=28 tplot=3.4351e-08
++++ i=29 tplot=3.4872e-08
++++ i=30 tplot=3.5400e-08
++++ i=31 tplot=3.5937e-08
++++ i=32 tplot=3.6482e-08
++++ i=33 tplot=3.7035e-08
++++ i=34 tplot=3.7597e-08
++++ i=35 tplot=3.8167e-08
++++ i=36 tplot=3.8746e-08
++++ i=37 tplot=3.9333e-08
++++ i=38 tplot=3.9930e-08
++++ i=39 tplot=4.0535e-08
++++ i=40 tplot=4.1150e-08
++++ i=41 tplot=4.1774e-08
++++ i=42 tplot=4.2407e-08
++++ i=43 tplot=4.3050e-08
++++ i=44 tplot=4.3703e-08
++++ i=45 tplot=4.4366e-08
++++ i=46 tplot=4.5039e-08
++++ i=47 tplot=4.5722e-08
++++ i=48 tplot=4.6415e-08
++++ i=49 tplot=4.7119e-08
++++ i=50 tplot=4.7833e-08
++++ i=51 tplot=4.8559e-08
++++ i=52 tplot=4.9295e-08
++++ i=53 tplot=5.0042e-08
++++ i=54 tplot=5.0801e-08
++++ i=55 tplot=5.1572e-08
++++ i=56 tplot=5.2354e-08
++++ i=57 tplot=5.3148e-08
++++ i=58 tplot=5.3953e-08
++++ i=59 tplot=5.4772e-08
++++ i=60 tplot=5.5602e-08
++++ i=61 tplot=5.6445e-08
++++ i=62 tplot=5.7301e-08
++++ i=63 tplot=5.8170e-08
++++ i=64 tplot=5.9052e-08
++++ i=65 tplot=5.9948e-08
++++ i=66 tplot=6.0857e-08
++++ i=67 tplot=6.1779e-08
++++ i=68 tplot=6.2716e-08
++++ i=69 tplot=6.3667e-08
++++ i=70 tplot=6.4633e-08
++++ i=71 tplot=6.5613e-08
++++ i=72 tplot=6.6608e-08
++++ i=73 tplot=6.7618e-08
++++ i=74 tplot=6.8643e-08
++++ i=75 tplot=6.9684e-08
++++ i=76 tplot=7.0741e-08
++++ i=77 tplot=7.1813e-08
++++ i=78 tplot=7.2902e-08
++++ i=79 tplot=7.4008e-08
++++ i=80 tplot=7.5130e-08
++++ i=81 tplot=7.6269e-08
++++ i=82 tplot=7.7426e-08
++++ i=83 tplot=7.8600e-08
++++ i=84 tplot=7.9792e-08
++++ i=85 tplot=8.1002e-08
++++ i=86 tplot=8.2230e-08
++++ i=87 tplot=8.3477e-08
++++ i=88 tplot=8.4743e-08
++++ i=89 tplot=8.6028e-08
++++ i=90 tplot=8.7332e-08
++++ i=91 tplot=8.8657e-08
++++ i=92 tplot=9.0001e-08
++++ i=93 tplot=9.1366e-08
++++ i=94 tplot=9.2751e-08
++++ i=95 tplot=9.4158e-08
++++ i=96 tplot=9.5585e-08
++++ i=97 tplot=9.7035e-08
++++ i=98 tplot=9.8506e-08
++++ i=99 tplot=1.0000e-07
 
 
                  --- BEGIN TIME INTEGRATION ---
@@ -11979,7 +12079,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 
 End of integration
-Timer: 10.127 ms used
+Timer: 8.154 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
