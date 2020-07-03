@@ -150,16 +150,16 @@ rv[7]: [  1  1 -1 ]
 PARTIAL EQUILIBRIUM REACTION GROUPS
 
 Reaction Group 0:
-he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=28439209 RG: a+b+c<->d
-he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=28439209 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=28439209 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=28439209 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=35685033 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=35685033 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=35685033 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=35685033 RG: a+b+c<->d
 
 Reaction Group 1:
-he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=28439209 RG: a+b<->c
-he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=28439209 RG: a+b<->c
-o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=28439209 RG: a+b<->c
-o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=28439209 RG: a+b<->c
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=35685033 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=35685033 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=35685033 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=35685033 RG: a+b<->c
 
 
 
@@ -809,6 +809,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
++++++ plotSteps=10 logt= 0.000
+
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -1280,6 +1282,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -1907,6 +1911,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
++++++ plotSteps=10 logt= 0.000
+
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -2532,6 +2538,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -3466,6 +3474,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -4708,6 +4718,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -6104,6 +6116,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -7962,6 +7976,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -10282,6 +10298,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     1   12C  4.1667e-02  5.0000e-01  -2.1496e+03  -2.5795e+04  -2.3646e-06  -2.8375e-05
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
+
++++++ plotSteps=10 logt= 0.000
 
 COMPUTED RATES
 
@@ -13065,8 +13083,10 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
++++++ plotSteps=10 logt= 0.000
+
 End of integration
-Timer: 11.245 ms used
+Timer: 9.548 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
@@ -13075,3 +13095,13 @@ FINAL ABUNDANCES Y AND MASS FRACTIONS X
 1 12C Y=4.167e-02 X=5.000e-01 F+Sum=2.754e+03 F-Sum=4.904e+03 dY/dt=-2.150e+03 dX/dt=-2.580e+04
 2 16O Y=3.125e-02 X=5.000e-01 F+Sum=0.000e+00 F-Sum=2.754e+03 dY/dt=-2.754e+03 dX/dt=-4.407e+04
 
++++++  0  -7.8761  -8.9586
++++++  1  -7.7799  -8.9586
++++++  2  -7.6778  -8.9586
++++++  3  -7.5952  -8.9586
++++++  4  -7.4949  -8.9586
++++++  5  -7.3893  -8.9586
++++++  6  -7.2950  -8.9586
++++++  7  -7.1945  -8.9586
++++++  8  -7.0947  -8.9586
++++++  9  -6.9991  -8.9586

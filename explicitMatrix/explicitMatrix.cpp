@@ -115,6 +115,7 @@ void setSpeciesfplus(int, double);
 void setSpeciesfminus(int, double);
 void setSpeciesdYdt(int, double);
 void assignRG(void);
+void plotOutput(void);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -394,10 +395,12 @@ class Utilities{
             FILE * pFile;
             pFile = fopen ("gnu_out/gnufile.data","w");
             
-            fprintf(pFile, "#Step  Time\n");
+            fprintf(pFile, "# All quantities are base-10 log");
+            fprintf(pFile, "# log t\n");
             
             for (int i=0; i<plotSteps; i++){
-                fprintf(pFile, "%3d\n", i);
+                printf("+++++%3d %8.4f %8.4f\n", i, tplot[i], dtplot[i]);
+                fprintf(pFile, "%6.4f %6.4f\n", tplot[i], dtplot[i]);
             }
             
             fclose (pFile);
@@ -3068,7 +3071,7 @@ int main() {
         
         if(t >= plotTimeTargets[plotCounter-1]){
             
-            string dasher2 = dasher + dasher;
+            string dasher2 = dasher + dasher;   // Dashed-line separator
             
             // Output to screen
             
@@ -3088,12 +3091,14 @@ int main() {
             }
             printf("%s\n", Utilities::stringToChar(dasher2));
             
-            // Output of data to plot files will go here
+            // Output to plot arrays
             
-            Utilities::plotOutput();
+            tplot[plotCounter-1] = log10(t);
+            dtplot[plotCounter-1] = log10(dt);
+            
+            printf("\n+++++ plotSteps=%d logt=%6.3f\n", plotSteps, tplot[plotCounter]);
             
             // Increment the plot counter for next output
-            
             plotCounter ++;
         }
     
@@ -3130,7 +3135,11 @@ int main() {
 
     printf("\n\n");
     
+    // Output of data to plot files after integration
     
+    Utilities::plotOutput();
+    
+    //plotOutput();
     
     // ------------------------------------------------------------
     // --- Perform some optional tests of various functions ---
@@ -3360,6 +3369,31 @@ int main() {
     
 }  // End of main routine
 
+
+// -------------------------------------------------------------------------
+// Static function Utilities::plotOutput() to output data at regular 
+// intervals of the integration to a file suitable for plotting. Assumes
+// the existence of a subdirectory gnu_out. Will crash if this directory
+// does not exist. Assuming gnuplot for plotting, but the output file
+// is whitespace-delimited ascii, so any plotting program could be used
+// to read it.
+// -------------------------------------------------------------------------
+
+void plotOutput(){
+    
+    // Open a file for output
+    FILE * pFile;
+    pFile = fopen ("gnu_out/gnufile.data","w");
+    
+    fprintf(pFile, "#main Step  Time\n");
+    
+    for (int i=0; i<plotSteps; i++){
+        printf("+++++ main %3d %8.4e Z=%d\n", i, tplot[i], Z[1]);
+        fprintf(pFile, "%3d %8.4e\n", i, tplot[i]);
+    }
+    
+    fclose (pFile);
+}
 
 
 /* Function readNetwork to read the network data file line by line, with the filename as argument.
