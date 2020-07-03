@@ -152,7 +152,7 @@ double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
-//int outputInterval = 1;              // Number integration steps between data/print output
+int totalAsy;                        // Total number of asymptotic isotopes
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double diffX;                        // sumX - 1.0
@@ -340,7 +340,8 @@ double sumXplot[plotSteps];            // Sum of mass fractions
 double numAsyplot[plotSteps];          // Number asymptotic species
 double numRG_PEplot[plotSteps];        // Number RG in PE
 
-
+int plotXlist[] = {1, 2, 3};           // Species index for X to be plotted 
+int plotXlistL;                        // Length of plotXlist array
 
 //----------------CLASS DEFINITIONS ----------------
 
@@ -395,12 +396,33 @@ class Utilities{
             FILE * pFile;
             pFile = fopen ("gnu_out/gnufile.data","w");
             
-            fprintf(pFile, "# All quantities are base-10 log");
-            fprintf(pFile, "# log t\n");
+            // Get length of array plotXlist holding the species indices for isotopes
+            // that we will plot mass fraction X for.
             
+            plotXlistL = sizeof(plotXlist)/sizeof(plotXlist[0]);
+            
+            string app = "   ";
+            string Xstring = "X(";
+            
+            for(int i=0; i<plotXlistL; i++){
+                app.append(Xstring);
+                app.append(to_string (i));
+                app.append(")    ");
+                printf("\n$$$%s", stringToChar(app));
+            }
+            printf("\n   $$$%s", stringToChar(app));
+            
+            //fprintf(pFile, "# All quantities are base-10 log\n");
+            fprintf(pFile, "#log_t log_dt  sumX   Asy  Equil    X(0)     X(1)     X(2)\n");
+            
+            printf("\n");
             for (int i=0; i<plotSteps; i++){
                 printf("+++++%3d %8.4f %8.4f\n", i, tplot[i], dtplot[i]);
-                fprintf(pFile, "%6.4f %6.4f\n", tplot[i], dtplot[i]);
+                fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f %5.3e %5.3e %5.3e\n", 
+                    tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
+                    (double)numRG_PEplot[i]/(double)numberRG,
+                    Xplot[0][i], Xplot[1][i], Xplot[2][i]
+                );
             }
             
             fclose (pFile);
@@ -2396,7 +2418,7 @@ class ReactionGroup:  public Utilities {
             
             if (!imposeEquil && isEquil)
                 totalEquilReactions += numberMemberReactions;
-                totalEquilRG += 1;
+                totalEquilRG ++;
             
             // Set isEquil field of network species vectors to true if isotope
             // participating in equilibrium
@@ -2547,6 +2569,7 @@ class Integrate: public Utilities {
                 );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
+                    if(isAsy[i]) totalAsy++;
                 }
                 
                 // Summarize results
@@ -2966,7 +2989,7 @@ int main() {
     totalTimeSteps = 0;         // Integration step counter
     totalEquilRG = 0;           // Number quilibrated reaction groups
     totalEquilReactions = 0;    // Number equilibrated reactions
-    //int stepCounter = 0;        // Integration step counter
+    totalAsy = 0;               // Number asymptotic species
     int plotCounter = 1;        // Plot output counter
     
     Utilities::startTimer();    // Start a timer for integration
@@ -3095,8 +3118,20 @@ int main() {
             
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
+            sumXplot[plotCounter-1] = sumX;
+            numAsyplot[plotCounter-1] = totalAsy;
+            totalEquilRG = 0;
+            for(int i=0; i<numberRG;i++){
+                if(RG[i].getisEquil()) totalEquilRG ++;
+            }
+            numRG_PEplot[plotCounter-1] = totalEquilRG;
             
-            printf("\n+++++ plotSteps=%d logt=%6.3f\n", plotSteps, tplot[plotCounter]);
+            for(int i=0; i<ISOTOPES; i++){
+                Xplot[i][plotCounter-1] = X[i];
+            }
+            
+            
+            printf("\n+++++ plotSteps=%d logt=%6.3f\n", plotCounter, tplot[plotCounter]);
             
             // Increment the plot counter for next output
             plotCounter ++;
@@ -3139,7 +3174,6 @@ int main() {
     
     Utilities::plotOutput();
     
-    //plotOutput();
     
     // ------------------------------------------------------------
     // --- Perform some optional tests of various functions ---
@@ -3369,31 +3403,6 @@ int main() {
     
 }  // End of main routine
 
-
-// -------------------------------------------------------------------------
-// Static function Utilities::plotOutput() to output data at regular 
-// intervals of the integration to a file suitable for plotting. Assumes
-// the existence of a subdirectory gnu_out. Will crash if this directory
-// does not exist. Assuming gnuplot for plotting, but the output file
-// is whitespace-delimited ascii, so any plotting program could be used
-// to read it.
-// -------------------------------------------------------------------------
-
-void plotOutput(){
-    
-    // Open a file for output
-    FILE * pFile;
-    pFile = fopen ("gnu_out/gnufile.data","w");
-    
-    fprintf(pFile, "#main Step  Time\n");
-    
-    for (int i=0; i<plotSteps; i++){
-        printf("+++++ main %3d %8.4e Z=%d\n", i, tplot[i], Z[1]);
-        fprintf(pFile, "%3d %8.4e\n", i, tplot[i]);
-    }
-    
-    fclose (pFile);
-}
 
 
 /* Function readNetwork to read the network data file line by line, with the filename as argument.
