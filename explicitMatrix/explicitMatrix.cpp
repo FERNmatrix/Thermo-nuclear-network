@@ -399,23 +399,45 @@ class Utilities{
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
+            string str1 = "#log_t log_dt  sumX  Asy  Equil";
+            
             plotXlistL = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string app = "   ";
+            string app = "  ";
             string Xstring = "X(";
             
             for(int i=0; i<plotXlistL; i++){
+                string iso = isoLabel[i];
                 app.append(Xstring);
-                app.append(to_string (i));
+                app.append(iso);
+                //app.append(to_string (i));
                 app.append(")    ");
-                printf("\n$$$%s", stringToChar(app));
+               //printf("\n$$$%s", stringToChar(app));
             }
-            printf("\n   $$$%s", stringToChar(app));
+            //printf("\n   $$$%s", stringToChar(app));
             
-            //fprintf(pFile, "# All quantities are base-10 log\n");
-            fprintf(pFile, "#log_t log_dt  sumX   Asy  Equil    X(0)     X(1)     X(2)\n");
+            str1.append(app);
+            str1.append("\n");
+            
+            fprintf(pFile, stringToChar(str1));
+
+            //fprintf(pFile, "#log_t log_dt  sumX   Asy  Equil    X(0)     X(1)     X(2)\n");
             
             printf("\n");
+            
+            //str1 = "";
+            //str1 = printf("\n @@@%d", plotSteps);
+            for (int i=0; i<plotSteps; i++){
+                str1 = printf("%+6.3f %+6.3f %5.3f %5.3f %5.3f %5.3e %5.3e %5.3e\n", 
+                        tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
+                        (double)numRG_PEplot[i]/(double)numberRG,
+                        Xplot[0][i], Xplot[1][i], Xplot[2][i]
+                );
+                printf(stringToChar(str1));
+            }
+            
+            printf(stringToChar(str1));
+            
             for (int i=0; i<plotSteps; i++){
                 printf("+++++%3d %8.4f %8.4f\n", i, tplot[i], dtplot[i]);
                 fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f %5.3e %5.3e %5.3e\n", 
