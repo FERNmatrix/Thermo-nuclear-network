@@ -127,10 +127,20 @@ bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibium also
 
-string methstring;            // String holding method in use
+// String holding integration method in use.  Possibilities are
+// ASY, QSS, ASY+PE, QSS+PE
 
-double T9;                    // Temperature in units of 10^9 K
-double rho;                   // Density in units of g/cm^3
+string methstring; 
+
+// Temperature and density variables. Temperature and density can be
+// either constant, or read from a hydro profile as a function of time.
+
+double T9_start;              // Start temperature in units of 10^9 K
+double rho_start;             // Start density in units of g/cm^3
+double T9;                    // Current temperature in units of 10^9 K
+double rho;                   // Current density in units of g/cm^3
+bool constant_T9 = true;      // Whether temperature constant in integration
+bool constant_rho = true;     // Whether density constant in integration
 
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
@@ -352,6 +362,9 @@ double numRG_PEplot[plotSteps];        // Number RG in PE
 int plotXlist[] = {1, 2, 3};           // Species index for X to be plotted 
 int LX;                                // Length of plotXlist array
 
+
+
+
 //----------------CLASS DEFINITIONS ----------------
 
 
@@ -369,6 +382,48 @@ class Utilities{
     private:
     
     public:
+        
+        // -------------------------------------------------------------------------
+        // Static function Utilities::interpolate_T(t) to find an interpolated T9
+        // as a function of time if constant_T9 = false.
+        // -------------------------------------------------------------------------
+        
+        static double interpolate_T(double t){
+            
+            // Will call spline interpolator in hydro profile table to return 
+            // T9 at this value of time t.  For now, we just return T9_start.
+            
+            double temp;            // Interpolated temperature
+            temp = T9_start;        // Temporary for testing
+            
+            printf("\n **** Temperature interpolation T9(%7.4e) = %6.4f ****",
+                t, temp
+            );
+            
+            return temp;
+        }
+        
+        
+        // -------------------------------------------------------------------------
+        // Static function Utilities::interpolate_rho(t) to find an interpolated 
+        // density rho as a function of time if constant_rho = false.
+        // -------------------------------------------------------------------------
+        
+        static double interpolate_rho(double t){
+            
+            // Will call spline interpolator in hydro profile table to return 
+            // rho at this value of time t.  For now, we just return rho_start.
+            
+            double rhonow;             // Interpolated density
+            rhonow = rho_start;        // Temporary for testing
+            
+            printf("\n **** Density interpolation rho(%7.4e) = %7.4e ****\n",
+                   t, rhonow
+            );
+            
+            return rhonow;
+        }
+        
         
         // -------------------------------------------------------------------------
         // Static function Utilities::log10Spacing() to find num equal log10 
@@ -487,8 +542,7 @@ class Utilities{
         
         static int returnNetIndexZN(int z, int n) {
             for (int i = 0; i < numberSpecies; i++) {
-                if (Z[i] == z && N[i] == n)
-                    return i;
+                if (Z[i] == z && N[i] == n) return i;
             }
             return -1;
         }
@@ -2811,11 +2865,16 @@ int main() {
     // realistic calculation the temperature and density will be passed from the hydro 
     // code in an operator-split coupling of this network to hydro. Here we hardwire
     // them for testing purposes.  These will be used to calculate the reaction
-    // rates in the network. Since we are assuming operator splitting, the temperature 
-    // and density are assumed constant for each network integration.
+    // rates in the network. If we assume operator splitting, the temperature 
+    // and density are assumed constant for each network integration. But we allow
+    // the possibility below to interpolate the temperature and density from a
+    // hydrodynamical profile as a function of time.
     
-    T9 = 5.0f;
-    rho = 1.0e8;
+    T9_start = 5.0f;
+    T9 = T9_start;
+    
+    rho_start = 1.0e8;
+    rho = rho_start;
     
     // Set the range of time integration and the initial timestep (units of seconds).  
     // In an operator-split coupling tmax will come from the hydro and dt_init will 
@@ -2969,7 +3028,7 @@ int main() {
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup)*numberRG);
     
-    // Assign fields for the ReactionGroup objects RG[]
+    // Assign values of fields for the ReactionGroup objects RG[]
     
     assignRG();
     
@@ -3032,9 +3091,21 @@ int main() {
     
     while(t < stop_time){
         
-        t += dt;
-        totalTimeSteps ++;
-        //stepCounter ++;             
+        t += dt;                
+        totalTimeSteps ++;  
+        
+        // Specify temperature T9 and density rho. If constant_T9 = true, a constant
+        // temperature is assumed for the entire network calculation, set by T9_start
+        // above.  Otherwise (constant_T9 = false) we here interpolate the temperature
+        // from a hydrodynamical profile for each timestep.  Likewise for the density.
+        
+        if(!constant_T9){
+            T9 = Utilities::interpolate_T(t);
+        }
+        
+        if(!constant_rho){
+            rho = Utilities::interpolate_rho(t);
+        }
     
         // Use methods of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
@@ -3150,7 +3221,7 @@ int main() {
             }
             printf("%s\n", Utilities::stringToChar(dasher2));
             
-            // Output to plot arrays
+            // Output to plot arrays for this timestep
             
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
@@ -3166,8 +3237,7 @@ int main() {
                 Xplot[i][plotCounter-1] = X[i];
             }
             
-            
-            printf("\n+++++ plotSteps=%d logt=%6.3f\n", plotCounter, tplot[plotCounter]);
+            //printf("\nplotSteps=%d logt=%6.3f\n", plotCounter, tplot[plotCounter]);
             
             // Increment the plot counter for next output
             plotCounter ++;

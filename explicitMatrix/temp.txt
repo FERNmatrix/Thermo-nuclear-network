@@ -149,33 +149,33 @@ rv[7]: [  1  1 -1 ]
 PARTIAL EQUILIBRIUM REACTION GROUPS
 
 Reaction Group 0:
-he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=23073449 RG: a+b+c<->d
-he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=23073449 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=23073449 RG: a+b+c<->d
-c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=23073449 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=0 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=0 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=0 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=0 RG: a+b+c<->d
 
 Reaction Group 1:
-he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=23073449 RG: a+b<->c
-he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=23073449 RG: a+b<->c
-o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=23073449 RG: a+b<->c
-o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=23073449 RG: a+b<->c
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=0 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
 
 
 
 POPULATING RG[] OBJECT FIELDS
 
 RG = 0
-reacIndex=0 niso=4 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1
-reacIndex=1 niso=4 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1
-reacIndex=2 niso=4 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1
-reacIndex=3 niso=4 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1
+reacIndex=0 niso=4 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0
+reacIndex=1 niso=4 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0
+reacIndex=2 niso=4 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0
+reacIndex=3 niso=4 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0
 Member reactions = 4
 
 RG = 1
-reacIndex=4 niso=3 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1
-reacIndex=5 niso=3 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1
-reacIndex=6 niso=3 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1
-reacIndex=7 niso=3 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1
+reacIndex=4 niso=3 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0
+reacIndex=5 niso=3 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0
+reacIndex=6 niso=3 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0
+reacIndex=7 niso=3 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0
 Member reactions = 4
 
 
@@ -208,11 +208,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -228,11 +228,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -362,11 +362,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -382,11 +382,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -516,11 +516,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -536,11 +536,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -670,11 +670,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -690,11 +690,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -808,8 +808,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=1 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -836,11 +834,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -856,11 +854,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -990,11 +988,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1010,11 +1008,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1144,11 +1142,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1164,11 +1162,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1282,8 +1280,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=2 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -1310,11 +1306,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1330,11 +1326,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1464,11 +1460,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1484,11 +1480,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1618,11 +1614,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1638,11 +1634,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1772,11 +1768,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1792,11 +1788,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1910,8 +1906,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=3 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -1938,11 +1932,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -1958,11 +1952,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2092,11 +2086,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2112,11 +2106,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2246,11 +2240,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2266,11 +2260,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2400,11 +2394,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2420,11 +2414,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2538,8 +2532,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=4 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -2566,11 +2558,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2586,11 +2578,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2720,11 +2712,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2740,11 +2732,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2874,11 +2866,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -2894,11 +2886,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3028,11 +3020,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3048,11 +3040,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3182,11 +3174,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3202,11 +3194,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3336,11 +3328,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3356,11 +3348,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3474,8 +3466,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=5 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -3502,11 +3492,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3522,11 +3512,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3656,11 +3646,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3676,11 +3666,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3810,11 +3800,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3830,11 +3820,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3964,11 +3954,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -3984,11 +3974,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4118,11 +4108,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4138,11 +4128,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4272,11 +4262,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4292,11 +4282,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4426,11 +4416,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4446,11 +4436,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4580,11 +4570,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4600,11 +4590,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4718,8 +4708,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=6 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -4746,11 +4734,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4766,11 +4754,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4900,11 +4888,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -4920,11 +4908,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5054,11 +5042,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5074,11 +5062,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5208,11 +5196,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5228,11 +5216,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5362,11 +5350,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5382,11 +5370,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5516,11 +5504,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5536,11 +5524,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5670,11 +5658,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5690,11 +5678,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5824,11 +5812,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5844,11 +5832,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5978,11 +5966,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -5998,11 +5986,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6116,8 +6104,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=7 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -6144,11 +6130,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6164,11 +6150,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6298,11 +6284,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6318,11 +6304,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6452,11 +6438,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6472,11 +6458,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6606,11 +6592,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6626,11 +6612,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6760,11 +6746,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6780,11 +6766,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6914,11 +6900,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -6934,11 +6920,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7068,11 +7054,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7088,11 +7074,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7222,11 +7208,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7242,11 +7228,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7376,11 +7362,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7396,11 +7382,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7530,11 +7516,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7550,11 +7536,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7684,11 +7670,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7704,11 +7690,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7838,11 +7824,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7858,11 +7844,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -7976,8 +7962,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=8 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -8004,11 +7988,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8024,11 +8008,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8158,11 +8142,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8178,11 +8162,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8312,11 +8296,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8332,11 +8316,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8466,11 +8450,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8486,11 +8470,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8620,11 +8604,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8640,11 +8624,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8774,11 +8758,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8794,11 +8778,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8928,11 +8912,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -8948,11 +8932,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9082,11 +9066,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9102,11 +9086,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9236,11 +9220,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9256,11 +9240,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9390,11 +9374,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9410,11 +9394,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9544,11 +9528,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9564,11 +9548,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9698,11 +9682,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9718,11 +9702,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9852,11 +9836,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -9872,11 +9856,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10006,11 +9990,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10026,11 +10010,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10160,11 +10144,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10180,11 +10164,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10298,8 +10282,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=9 logt= 0.000
-
 COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
@@ -10326,11 +10308,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10346,11 +10328,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10480,11 +10462,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10500,11 +10482,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10634,11 +10616,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10654,11 +10636,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10788,11 +10770,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10808,11 +10790,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10942,11 +10924,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -10962,11 +10944,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11096,11 +11078,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11116,11 +11098,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11250,11 +11232,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11270,11 +11252,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11404,11 +11386,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11424,11 +11406,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11558,11 +11540,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11578,11 +11560,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11712,11 +11694,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11732,11 +11714,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11866,11 +11848,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -11886,11 +11868,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12020,11 +12002,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12040,11 +12022,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12174,11 +12156,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12194,11 +12176,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12328,11 +12310,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12348,11 +12330,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12482,11 +12464,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12502,11 +12484,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12636,11 +12618,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12656,11 +12638,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12790,11 +12772,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12810,11 +12792,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12944,11 +12926,11 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=1 flux=4.9037e+03
-RG=0 NetRGflux=4.9037e+03 (Not Equilibrated)
+memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -12964,11 +12946,11 @@ RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
  *** computeEqRatios()
 
 RG=1
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=1 flux=1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=1 flux=2.6252e+03
-RG=1 NetRGflux=2.7541e+03 (Not Equilibrated)
+memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
+memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
  *** Compute Equilibrium
  *** computeEquilibriumRates()
@@ -13082,10 +13064,8 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-+++++ plotSteps=10 logt= 0.000
-
 End of integration
-Timer: 9.845 ms used
+Timer: 9.232 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
