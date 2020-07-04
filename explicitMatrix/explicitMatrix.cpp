@@ -396,7 +396,7 @@ class Utilities{
             double temp;            // Interpolated temperature
             temp = T9_start;        // Temporary for testing
             
-            printf("\n **** Temperature interpolation T9(%7.4e) = %6.4f ****",
+            printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
                 t, temp
             );
             
@@ -417,7 +417,7 @@ class Utilities{
             double rhonow;             // Interpolated density
             rhonow = rho_start;        // Temporary for testing
             
-            printf("\n **** Density interpolation rho(%7.4e) = %7.4e ****\n",
+            printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
                    t, rhonow
             );
             
@@ -2872,7 +2872,6 @@ int main() {
     
     T9_start = 5.0f;
     T9 = T9_start;
-    
     rho_start = 1.0e8;
     rho = rho_start;
     
@@ -2900,6 +2899,7 @@ int main() {
 //     // Print out some quantitites from the Reaction object reaction[].  
     
     for(int i=0; i<SIZE; i++){
+        
         printf("\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
             reaction[i].getreacIndex(), 
             Utilities::stringToChar(reaction[i].getreacString()),  
@@ -3089,6 +3089,26 @@ int main() {
     
     Utilities::startTimer();    // Start a timer for integration
     
+    // Compute initial rates. If constant_T9 and constant_rho are true, rates won't
+    // change in the integration and don't need to be conputed again.  If either
+    // T9 or rho change, the rates will be recomputed at each integration step.
+    
+    printf("\n\nINITIAL COMPUTED RATES\n");
+    
+    for(int i=0; i<SIZE; i++){
+        reaction[i].computeConstantFacs(T9, rho);
+        reaction[i].computeRate(T9, rho);
+    }
+    
+    if(constant_T9 && constant_rho){
+        printf("\n\n**** Rates won't be computed again since T and rho won't change in integration ****\n");
+    } else {
+        printf("\n\n**** Rates will be recomputed at each timestep since T and rho may change ****\n");
+    }
+    
+    
+    
+    
     while(t < stop_time){
         
         t += dt;                
@@ -3099,30 +3119,39 @@ int main() {
         // above.  Otherwise (constant_T9 = false) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
-        if(!constant_T9){
+        if(!constant_T9 && totalTimeSteps > 1){
             T9 = Utilities::interpolate_T(t);
         }
         
-        if(!constant_rho){
+        if(!constant_rho && totalTimeSteps > 1){
             rho = Utilities::interpolate_rho(t);
         }
     
         // Use methods of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
-        // method of Reaction on each object.
+        // method of Reaction on each object. If constant_T9 and constant_rho are true, 
+        // the rates only need be computed once as they won't change. Otherwise they are
+        // recomputed for each integration step.
         
-        printf("\nCOMPUTED RATES\n");
-        
-        for(int i=0; i<SIZE; i++){
-            reaction[i].computeConstantFacs(T9, rho);
-            reaction[i].computeRate(T9, rho);
+        if( (!constant_T9 || !constant_rho) && totalTimeSteps > 1){
+            
+            printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
+            
+            for(int i=0; i<SIZE; i++){
+                reaction[i].computeConstantFacs(T9, rho);
+                reaction[i].computeRate(T9, rho);
+            }
         }
+        
         
         // Use methods of the Reaction class to compute fluxes.  We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeFlux()
-        // method of Reaction on each object.
+        // method of Reaction on each object. Fluxes must be recomputed at each timestep
+        // since they depend on the rates and the abundances. If temperature and density
+        // are constant the rates won't change, but the fluxes will generally since
+        // the abundances change even if the rates are constant.
         
         printf("\n\nTOTAL FLUXES\n");
         

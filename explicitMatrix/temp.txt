@@ -182,7 +182,8 @@ Member reactions = 4
 
                  --- BEGIN TIME INTEGRATION ---
 
-COMPUTED RATES
+
+INITIAL COMPUTED RATES
 
 0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
 1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
@@ -192,6 +193,9 @@ COMPUTED RATES
 5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
 6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
 7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
+
+**** Rates won't be computed again since T and rho won't change in integration ****
+
 
 TOTAL FLUXES
 
@@ -336,16 +340,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -490,16 +484,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -644,16 +628,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -808,16 +782,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -962,16 +926,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1116,16 +1070,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1280,16 +1224,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1434,16 +1368,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1588,16 +1512,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1742,16 +1656,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -1906,16 +1810,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2060,16 +1954,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2214,16 +2098,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2368,16 +2242,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2532,16 +2396,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2686,16 +2540,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2840,16 +2684,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -2994,16 +2828,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3148,16 +2972,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3302,16 +3116,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3466,16 +3270,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3620,16 +3414,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3774,16 +3558,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -3928,16 +3702,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4082,16 +3846,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4236,16 +3990,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4390,16 +4134,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4544,16 +4278,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4708,16 +4432,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -4862,16 +4576,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5016,16 +4720,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5170,16 +4864,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5324,16 +5008,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5478,16 +5152,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5632,16 +5296,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5786,16 +5440,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -5940,16 +5584,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6104,16 +5738,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6258,16 +5882,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6412,16 +6026,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6566,16 +6170,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6720,16 +6314,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -6874,16 +6458,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7028,16 +6602,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7182,16 +6746,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7336,16 +6890,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7490,16 +7034,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7644,16 +7178,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7798,16 +7322,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -7962,16 +7476,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8116,16 +7620,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8270,16 +7764,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8424,16 +7908,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8578,16 +8052,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8732,16 +8196,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -8886,16 +8340,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9040,16 +8484,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9194,16 +8628,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9348,16 +8772,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9502,16 +8916,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9656,16 +9060,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9810,16 +9204,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -9964,16 +9348,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10118,16 +9492,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10282,16 +9646,6 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
     2   16O  3.1250e-02  5.0000e-01  -2.7541e+03  -4.4065e+04  -3.0295e-06  -4.8472e-05
 ------------------------------------------------------------------------------------------
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10436,16 +9790,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10590,16 +9934,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10744,16 +10078,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -10898,16 +10222,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11052,16 +10366,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11206,16 +10510,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11360,16 +10654,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11514,16 +10798,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11668,16 +10942,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11822,16 +11086,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -11976,16 +11230,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12130,16 +11374,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12284,16 +11518,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12438,16 +11662,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12592,16 +11806,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12746,16 +11950,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -12900,16 +12094,6 @@ index   iso   FminusSum           Y       check    Asy
     1   12C  4.9037e+03  4.1667e-02  1.2946e-04  false
     2   16O  2.7541e+03  3.1250e-02  9.6943e-05  false
 
-COMPUTED RATES
-
-0   he4+he4+he4-->c12 densfac=1.667e+15 rate= 1.013e-10 Rrate=1.688e+05
-1   he4+he4+he4-->c12 densfac=1.667e+15 rate= 0.000e+00 Rrate=0.000e+00
-2   c12-->he4+he4+he4 densfac=1.000e+00 rate= 0.000e+00 Rrate=0.000e+00
-3   c12-->he4+he4+he4 densfac=1.000e+00 rate= 1.177e+05 Rrate=1.177e+05
-4       he4+c12-->o16 densfac=1.000e+08 rate= 1.191e-01 Rrate=1.191e+07
-5       he4+c12-->o16 densfac=1.000e+08 rate= 2.425e+00 Rrate=2.425e+08
-6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
-7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
 TOTAL FLUXES
 
@@ -13065,7 +12249,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
 ------------------------------------------------------------------------------------------
 
 End of integration
-Timer: 9.232 ms used
+Timer: 9.002 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
