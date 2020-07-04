@@ -127,6 +127,11 @@ bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibium also
 
+string methstring;            // String holding method in use
+
+double T9;                    // Temperature in units of 10^9 K
+double rho;                   // Density in units of g/cm^3
+
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
 
@@ -340,8 +345,12 @@ double sumXplot[plotSteps];            // Sum of mass fractions
 double numAsyplot[plotSteps];          // Number asymptotic species
 double numRG_PEplot[plotSteps];        // Number RG in PE
 
+// Following control which mass fractions are exported to the plotting
+// file.  The entries in plotXlist[] are the species indices for the
+// isotopes in the network to be plotted.
+
 int plotXlist[] = {1, 2, 3};           // Species index for X to be plotted 
-int plotXlistL;                        // Length of plotXlist array
+int LX;                                // Length of plotXlist array
 
 //----------------CLASS DEFINITIONS ----------------
 
@@ -387,21 +396,22 @@ class Utilities{
         // the existence of a subdirectory gnu_out. Will crash if this directory
         // does not exist. Assuming gnuplot for plotting, but the output file
         // is whitespace-delimited ascii, so any plotting program could be used
-        // to read it.
+        // to read it. Lines beginning with # are comments in gnuplot.
         // -------------------------------------------------------------------------
         
         static void plotOutput(){
             
             // Open a file for output. Assumes that the subdirectory
-            // gnu_out already exists.
+            // gnu_out already exists. If it doesn't, will compile but
+            // crash when executed.
             
             FILE * pFile;
-            pFile = fopen ("gnu_out/gnufile.data","w");
+            pFile = fopen("gnu_out/gnufile.data","w");
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
-            plotXlistL = sizeof(plotXlist)/sizeof(plotXlist[0]);
+            LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
             string str1 = "#log_t log_dt  sumX   Asy Equil";
             string app = "  ";
@@ -409,9 +419,13 @@ class Utilities{
             string Xstring = "X(";
             string iso;
             
+            fprintf(pFile, "# T9=%5.3f rho=%6.3e g/cm^3, %s\n",
+                T9, rho, stringToChar(methstring)
+            );
+            
             // Write header for gnuplot file
             
-            for(int i=0; i<plotXlistL; i++){
+            for(int i=0; i<LX; i++){
                 iso = isoLabel[i];
                 app.append(Xstring);
                 app.append(iso);
@@ -422,52 +436,29 @@ class Utilities{
             fprintf(pFile, stringToChar(str1));
             printf("\n");
             
-            // Following commented-out doesn't work.  Writes resulting string correctly
-            // with printf but not with fprintf.  Not obvious why
-            
-//             // Write the data to the file line by line by concatenating a string
-//             // corresponding to the numbers.
-//             
-//             for (int i=0; i<plotSteps; i++){
-//                 
-//                 str1 = printf("%+6.3f %+6.3f %5.3f %5.3f %5.3f", 
-//                         tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
-//                         (double)numRG_PEplot[i]/(double)numberRG
-//                 );
-// 
-//                 for(int j=0; j<plotXlistL; j++){
-//                     app1 = " ";
-//                     float fss = Xplot[j][i];
-//                     app1.append(to_string(fss));
-//                     str1.append(app1);
-//                 }
-//                 
-//                 str1.append("\n");
-//                 printf(stringToChar(str1));
-//                 fprintf(pFile, stringToChar(str1));
-//             }
+            // Write the data to the file line by line using concatenated fprintf
+            // statements.
 
+            // Loop over timesteps for plot output
+            
             for(int i=0; i<plotSteps; i++){
+                
+                // Initial data fields for t, dt, sumX, fraction of asymptotic
+                // isotopes, and fraction of reaction groups in equilibrium.
+                
                 fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f",
-                        tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
-                        (double)numRG_PEplot[i]/(double)numberRG
+                    tplot[i], dtplot[i], sumXplot[i], 
+                    (double)numAsyplot[i]/(double)ISOTOPES,
+                    (double)numRG_PEplot[i]/(double)numberRG
                 );
                 
-                for(int j=0; j<plotXlistL; j++){
+                // Now add one data field for each X(i) in plotXlist[].
+                
+                for(int j=0; j<LX; j++){
                     fprintf(pFile, " %5.3e", Xplot[j][i]);
                 }
+                
                 fprintf(pFile, "\n");
-            }
-            
-            fprintf(pFile, "\n");
-            
-            for (int i=0; i<plotSteps; i++){
-                printf("+++++%3d %8.4f %8.4f\n", i, tplot[i], dtplot[i]);
-                fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f %5.3e %5.3e %5.3e\n", 
-                    tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
-                    (double)numRG_PEplot[i]/(double)numberRG,
-                    Xplot[0][i], Xplot[1][i], Xplot[2][i]
-                );
             }
             
             fclose (pFile);
@@ -2804,7 +2795,7 @@ int main() {
     // In either case we may choose to add the partial equilibrium (PE) algorithm. So
     // valid options are Asy, QSS, Asy+PE, and QSS+PE.
     
-    string methstring="\nUsing ";
+    methstring="Using ";
     if(doASY){
        methstring += "ASY";
        doQSS = false;
@@ -2823,8 +2814,8 @@ int main() {
     // rates in the network. Since we are assuming operator splitting, the temperature 
     // and density are assumed constant for each network integration.
     
-    double T9 = 5.0f;
-    double rho = 1.0e8;
+    T9 = 5.0f;
+    rho = 1.0e8;
     
     // Set the range of time integration and the initial timestep (units of seconds).  
     // In an operator-split coupling tmax will come from the hydro and dt_init will 
