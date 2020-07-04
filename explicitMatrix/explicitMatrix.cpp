@@ -392,51 +392,74 @@ class Utilities{
         
         static void plotOutput(){
             
-            // Open a file for output
+            // Open a file for output. Assumes that the subdirectory
+            // gnu_out already exists.
+            
             FILE * pFile;
             pFile = fopen ("gnu_out/gnufile.data","w");
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
-            string str1 = "#log_t log_dt  sumX  Asy  Equil";
-            
             plotXlistL = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
+            string str1 = "#log_t log_dt  sumX   Asy Equil";
             string app = "  ";
+            string app1;
             string Xstring = "X(";
+            string iso;
+            
+            // Write header for gnuplot file
             
             for(int i=0; i<plotXlistL; i++){
-                string iso = isoLabel[i];
+                iso = isoLabel[i];
                 app.append(Xstring);
                 app.append(iso);
-                //app.append(to_string (i));
                 app.append(")    ");
-               //printf("\n$$$%s", stringToChar(app));
             }
-            //printf("\n   $$$%s", stringToChar(app));
-            
             str1.append(app);
             str1.append("\n");
-            
             fprintf(pFile, stringToChar(str1));
-
-            //fprintf(pFile, "#log_t log_dt  sumX   Asy  Equil    X(0)     X(1)     X(2)\n");
-            
             printf("\n");
             
-            //str1 = "";
-            //str1 = printf("\n @@@%d", plotSteps);
-            for (int i=0; i<plotSteps; i++){
-                str1 = printf("%+6.3f %+6.3f %5.3f %5.3f %5.3f %5.3e %5.3e %5.3e\n", 
+            // Following commented-out doesn't work.  Writes resulting string correctly
+            // with printf but not with fprintf.  Not obvious why
+            
+//             // Write the data to the file line by line by concatenating a string
+//             // corresponding to the numbers.
+//             
+//             for (int i=0; i<plotSteps; i++){
+//                 
+//                 str1 = printf("%+6.3f %+6.3f %5.3f %5.3f %5.3f", 
+//                         tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
+//                         (double)numRG_PEplot[i]/(double)numberRG
+//                 );
+// 
+//                 for(int j=0; j<plotXlistL; j++){
+//                     app1 = " ";
+//                     float fss = Xplot[j][i];
+//                     app1.append(to_string(fss));
+//                     str1.append(app1);
+//                 }
+//                 
+//                 str1.append("\n");
+//                 printf(stringToChar(str1));
+//                 fprintf(pFile, stringToChar(str1));
+//             }
+
+            for(int i=0; i<plotSteps; i++){
+                fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f",
                         tplot[i], dtplot[i], sumXplot[i], numAsyplot[i],
-                        (double)numRG_PEplot[i]/(double)numberRG,
-                        Xplot[0][i], Xplot[1][i], Xplot[2][i]
+                        (double)numRG_PEplot[i]/(double)numberRG
                 );
-                printf(stringToChar(str1));
+                
+                for(int j=0; j<plotXlistL; j++){
+                    fprintf(pFile, " %5.3e", Xplot[j][i]);
+                }
+                fprintf(pFile, "\n");
             }
             
-            printf(stringToChar(str1));
+            fprintf(pFile, "\n");
             
             for (int i=0; i<plotSteps; i++){
                 printf("+++++%3d %8.4f %8.4f\n", i, tplot[i], dtplot[i]);
