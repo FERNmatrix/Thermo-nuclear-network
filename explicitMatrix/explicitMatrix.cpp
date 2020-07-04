@@ -2033,6 +2033,7 @@ class ReactionGroup:  public Utilities {
     // Method to set all fluxes in RG
     
     void setRGfluxes(){
+        printf("\n\n**** setRGFluxes() t = %7.4e", t);
         for(int i=0; i<numberMemberReactions; i++){
             setflux(i, Flux[ memberReactions[i] ]);
         }
@@ -2113,6 +2114,9 @@ class ReactionGroup:  public Utilities {
     // Method to show all current fluxes in reaction groups
     
     void showRGfluxes(){
+        
+        printf("\n**** showRGFluxes() t = %7.4e\n", t);
+        
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
             if(getisForward(i)){
@@ -2121,11 +2125,11 @@ class ReactionGroup:  public Utilities {
                 fac = -1.0;
             }
             printf("memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
-                   i, 
-                   reacLabel[memberReactions[i]],
-                   getrgclass(),
-                   getisForward(i),   // prints 1 if true; 0 if false
-                   fac*getflux(i));
+                i, 
+                reacLabel[memberReactions[i]],
+                getrgclass(),
+                getisForward(i),   // prints 1 if true; 0 if false
+                fac*getflux(i));
         }
         if(isEquil){
             printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
@@ -2137,6 +2141,8 @@ class ReactionGroup:  public Utilities {
     // Method to sum net flux for this reaction group
     
     double sumRGfluxes(){
+        
+        printf("\n**** sumRGFluxes() t = %7.4e\n", t);
         
         double sumf = zerod;
         double fac;
@@ -2159,7 +2165,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEquilibrium() {
         
-        printf("\n *** Compute Equilibrium");
+        printf("\n****Compute Equilibrium");
         
         computeEquilibriumRates();
         putY0();
@@ -2180,7 +2186,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEquilibriumRates() {
         
-        printf("\n *** computeEquilibriumRates()\n");
+        printf("\n****computeEquilibriumRates()");
         
         double kf = 0;
         double kr = 0;
@@ -2215,7 +2221,7 @@ class ReactionGroup:  public Utilities {
     
     void putY0() {
         
-        printf("\nPut Y0 niso=%d RGarrayindex=%d", niso, RGarrayIndex);
+        printf("\n**** Put Y0 niso=%d RGarrayindex=%d\n", niso, RGarrayIndex);
         
         int ii;
         
@@ -2235,7 +2241,7 @@ class ReactionGroup:  public Utilities {
     
     void computeC() {
         
-        printf("\n *** computeC()");
+        printf("\n****computeC()");
         
         switch (rgclass) {
             
@@ -2282,7 +2288,7 @@ class ReactionGroup:  public Utilities {
     
     void computeQuad() {
         
-        printf("\n *** computeQuad()");
+        printf("\n****computeQuad()");
         
         switch (rgclass) {
             
@@ -2422,7 +2428,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEqRatios() {
         
-        printf("\n *** computeEqRatios()\n");
+        printf("\n****computeEqRatios()\n");
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
@@ -2542,7 +2548,7 @@ class ReactionGroup:  public Utilities {
     
     void removeFromEquilibrium() {
         
-        printf("\n ***** removeFromEquilibrium()");
+        printf("\n ****removeFromEquilibrium()");
         
         isEquil = false;
         double thisDevious = abs((equilRatio - kratio) / kratio);
@@ -3090,8 +3096,12 @@ int main() {
     Utilities::startTimer();    // Start a timer for integration
     
     // Compute initial rates. If constant_T9 and constant_rho are true, rates won't
-    // change in the integration and don't need to be conputed again.  If either
+    // change in the integration and don't need to be computed again.  If either
     // T9 or rho change, the rates will be recomputed at each integration step.
+    // Use methods of Reaction class to compute reaction rates. We have instantiated
+    // a set of Reaction objects in the array reaction[i], one entry for each
+    // reaction in the network. Loop over this array and call the computeRate()
+    // method of Reaction on each object. 
     
     printf("\n\nINITIAL COMPUTED RATES\n");
     
@@ -3101,11 +3111,10 @@ int main() {
     }
     
     if(constant_T9 && constant_rho){
-        printf("\n\n**** Rates won't be computed again since T and rho won't change in integration ****\n");
+        printf("\n\n**** Rates not computed again since T and rho won't change in integration ****\n");
     } else {
         printf("\n\n**** Rates will be recomputed at each timestep since T and rho may change ****\n");
     }
-    
     
     
     
@@ -3150,7 +3159,7 @@ int main() {
         // reaction in the network. Loop over this array and call the computeFlux()
         // method of Reaction on each object. Fluxes must be recomputed at each timestep
         // since they depend on the rates and the abundances. If temperature and density
-        // are constant the rates won't change, but the fluxes will generally since
+        // are constant the rates won't change, but the fluxes generally will since
         // the abundances change even if the rates are constant.
         
         printf("\n\nTOTAL FLUXES\n");

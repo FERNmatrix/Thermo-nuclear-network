@@ -194,7 +194,7 @@ INITIAL COMPUTED RATES
 6       o16-->he4+c12 densfac=1.000e+00 rate= 4.125e+03 Rrate=4.125e+03
 7       o16-->he4+c12 densfac=1.000e+00 rate= 8.401e+04 Rrate=8.401e+04
 
-**** Rates won't be computed again since T and rho won't change in integration ****
+**** Rates not computed again since T and rho won't change in integration ****
 
 
 TOTAL FLUXES
@@ -212,43 +212,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.0000e-08
+**** sumRGFluxes() t = 1.0000e-08
+
+
+**** showRGFluxes() t = 1.0000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.0000e-08
+**** sumRGFluxes() t = 1.0000e-08
+
+
+**** showRGFluxes() t = 1.0000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -356,43 +368,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.1100e-08
+**** sumRGFluxes() t = 1.1100e-08
+
+
+**** showRGFluxes() t = 1.1100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.1100e-08
+**** sumRGFluxes() t = 1.1100e-08
+
+
+**** showRGFluxes() t = 1.1100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -500,43 +524,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.2200e-08
+**** sumRGFluxes() t = 1.2200e-08
+
+
+**** showRGFluxes() t = 1.2200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.2200e-08
+**** sumRGFluxes() t = 1.2200e-08
+
+
+**** showRGFluxes() t = 1.2200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -644,43 +680,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.3300e-08
+**** sumRGFluxes() t = 1.3300e-08
+
+
+**** showRGFluxes() t = 1.3300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.3300e-08
+**** sumRGFluxes() t = 1.3300e-08
+
+
+**** showRGFluxes() t = 1.3300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -798,43 +846,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.4400e-08
+**** sumRGFluxes() t = 1.4400e-08
+
+
+**** showRGFluxes() t = 1.4400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.4400e-08
+**** sumRGFluxes() t = 1.4400e-08
+
+
+**** showRGFluxes() t = 1.4400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -942,43 +1002,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.5500e-08
+**** sumRGFluxes() t = 1.5500e-08
+
+
+**** showRGFluxes() t = 1.5500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.5500e-08
+**** sumRGFluxes() t = 1.5500e-08
+
+
+**** showRGFluxes() t = 1.5500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1086,43 +1158,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.6600e-08
+**** sumRGFluxes() t = 1.6600e-08
+
+
+**** showRGFluxes() t = 1.6600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.6600e-08
+**** sumRGFluxes() t = 1.6600e-08
+
+
+**** showRGFluxes() t = 1.6600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1240,43 +1324,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.7700e-08
+**** sumRGFluxes() t = 1.7700e-08
+
+
+**** showRGFluxes() t = 1.7700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.7700e-08
+**** sumRGFluxes() t = 1.7700e-08
+
+
+**** showRGFluxes() t = 1.7700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1384,43 +1480,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.8800e-08
+**** sumRGFluxes() t = 1.8800e-08
+
+
+**** showRGFluxes() t = 1.8800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.8800e-08
+**** sumRGFluxes() t = 1.8800e-08
+
+
+**** showRGFluxes() t = 1.8800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1528,43 +1636,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.9900e-08
+**** sumRGFluxes() t = 1.9900e-08
+
+
+**** showRGFluxes() t = 1.9900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.9900e-08
+**** sumRGFluxes() t = 1.9900e-08
+
+
+**** showRGFluxes() t = 1.9900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1672,43 +1792,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.1000e-08
+**** sumRGFluxes() t = 2.1000e-08
+
+
+**** showRGFluxes() t = 2.1000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.1000e-08
+**** sumRGFluxes() t = 2.1000e-08
+
+
+**** showRGFluxes() t = 2.1000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1826,43 +1958,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.2100e-08
+**** sumRGFluxes() t = 2.2100e-08
+
+
+**** showRGFluxes() t = 2.2100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.2100e-08
+**** sumRGFluxes() t = 2.2100e-08
+
+
+**** showRGFluxes() t = 2.2100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -1970,43 +2114,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.3200e-08
+**** sumRGFluxes() t = 2.3200e-08
+
+
+**** showRGFluxes() t = 2.3200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.3200e-08
+**** sumRGFluxes() t = 2.3200e-08
+
+
+**** showRGFluxes() t = 2.3200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2114,43 +2270,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.4300e-08
+**** sumRGFluxes() t = 2.4300e-08
+
+
+**** showRGFluxes() t = 2.4300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.4300e-08
+**** sumRGFluxes() t = 2.4300e-08
+
+
+**** showRGFluxes() t = 2.4300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2258,43 +2426,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.5400e-08
+**** sumRGFluxes() t = 2.5400e-08
+
+
+**** showRGFluxes() t = 2.5400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.5400e-08
+**** sumRGFluxes() t = 2.5400e-08
+
+
+**** showRGFluxes() t = 2.5400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2412,43 +2592,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.6500e-08
+**** sumRGFluxes() t = 2.6500e-08
+
+
+**** showRGFluxes() t = 2.6500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.6500e-08
+**** sumRGFluxes() t = 2.6500e-08
+
+
+**** showRGFluxes() t = 2.6500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2556,43 +2748,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.7600e-08
+**** sumRGFluxes() t = 2.7600e-08
+
+
+**** showRGFluxes() t = 2.7600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.7600e-08
+**** sumRGFluxes() t = 2.7600e-08
+
+
+**** showRGFluxes() t = 2.7600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2700,43 +2904,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.8700e-08
+**** sumRGFluxes() t = 2.8700e-08
+
+
+**** showRGFluxes() t = 2.8700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.8700e-08
+**** sumRGFluxes() t = 2.8700e-08
+
+
+**** showRGFluxes() t = 2.8700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2844,43 +3060,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 2.9800e-08
+**** sumRGFluxes() t = 2.9800e-08
+
+
+**** showRGFluxes() t = 2.9800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 2.9800e-08
+**** sumRGFluxes() t = 2.9800e-08
+
+
+**** showRGFluxes() t = 2.9800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -2988,43 +3216,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.0900e-08
+**** sumRGFluxes() t = 3.0900e-08
+
+
+**** showRGFluxes() t = 3.0900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.0900e-08
+**** sumRGFluxes() t = 3.0900e-08
+
+
+**** showRGFluxes() t = 3.0900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3132,43 +3372,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.2000e-08
+**** sumRGFluxes() t = 3.2000e-08
+
+
+**** showRGFluxes() t = 3.2000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.2000e-08
+**** sumRGFluxes() t = 3.2000e-08
+
+
+**** showRGFluxes() t = 3.2000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3286,43 +3538,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.3100e-08
+**** sumRGFluxes() t = 3.3100e-08
+
+
+**** showRGFluxes() t = 3.3100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.3100e-08
+**** sumRGFluxes() t = 3.3100e-08
+
+
+**** showRGFluxes() t = 3.3100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3430,43 +3694,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.4200e-08
+**** sumRGFluxes() t = 3.4200e-08
+
+
+**** showRGFluxes() t = 3.4200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.4200e-08
+**** sumRGFluxes() t = 3.4200e-08
+
+
+**** showRGFluxes() t = 3.4200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3574,43 +3850,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.5300e-08
+**** sumRGFluxes() t = 3.5300e-08
+
+
+**** showRGFluxes() t = 3.5300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.5300e-08
+**** sumRGFluxes() t = 3.5300e-08
+
+
+**** showRGFluxes() t = 3.5300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3718,43 +4006,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.6400e-08
+**** sumRGFluxes() t = 3.6400e-08
+
+
+**** showRGFluxes() t = 3.6400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.6400e-08
+**** sumRGFluxes() t = 3.6400e-08
+
+
+**** showRGFluxes() t = 3.6400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -3862,43 +4162,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.7500e-08
+**** sumRGFluxes() t = 3.7500e-08
+
+
+**** showRGFluxes() t = 3.7500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.7500e-08
+**** sumRGFluxes() t = 3.7500e-08
+
+
+**** showRGFluxes() t = 3.7500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4006,43 +4318,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.8600e-08
+**** sumRGFluxes() t = 3.8600e-08
+
+
+**** showRGFluxes() t = 3.8600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.8600e-08
+**** sumRGFluxes() t = 3.8600e-08
+
+
+**** showRGFluxes() t = 3.8600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4150,43 +4474,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 3.9700e-08
+**** sumRGFluxes() t = 3.9700e-08
+
+
+**** showRGFluxes() t = 3.9700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 3.9700e-08
+**** sumRGFluxes() t = 3.9700e-08
+
+
+**** showRGFluxes() t = 3.9700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4294,43 +4630,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.0800e-08
+**** sumRGFluxes() t = 4.0800e-08
+
+
+**** showRGFluxes() t = 4.0800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.0800e-08
+**** sumRGFluxes() t = 4.0800e-08
+
+
+**** showRGFluxes() t = 4.0800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4448,43 +4796,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.1900e-08
+**** sumRGFluxes() t = 4.1900e-08
+
+
+**** showRGFluxes() t = 4.1900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.1900e-08
+**** sumRGFluxes() t = 4.1900e-08
+
+
+**** showRGFluxes() t = 4.1900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4592,43 +4952,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.3000e-08
+**** sumRGFluxes() t = 4.3000e-08
+
+
+**** showRGFluxes() t = 4.3000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.3000e-08
+**** sumRGFluxes() t = 4.3000e-08
+
+
+**** showRGFluxes() t = 4.3000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4736,43 +5108,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.4100e-08
+**** sumRGFluxes() t = 4.4100e-08
+
+
+**** showRGFluxes() t = 4.4100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.4100e-08
+**** sumRGFluxes() t = 4.4100e-08
+
+
+**** showRGFluxes() t = 4.4100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -4880,43 +5264,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.5200e-08
+**** sumRGFluxes() t = 4.5200e-08
+
+
+**** showRGFluxes() t = 4.5200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.5200e-08
+**** sumRGFluxes() t = 4.5200e-08
+
+
+**** showRGFluxes() t = 4.5200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5024,43 +5420,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.6300e-08
+**** sumRGFluxes() t = 4.6300e-08
+
+
+**** showRGFluxes() t = 4.6300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.6300e-08
+**** sumRGFluxes() t = 4.6300e-08
+
+
+**** showRGFluxes() t = 4.6300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5168,43 +5576,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.7400e-08
+**** sumRGFluxes() t = 4.7400e-08
+
+
+**** showRGFluxes() t = 4.7400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.7400e-08
+**** sumRGFluxes() t = 4.7400e-08
+
+
+**** showRGFluxes() t = 4.7400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5312,43 +5732,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.8500e-08
+**** sumRGFluxes() t = 4.8500e-08
+
+
+**** showRGFluxes() t = 4.8500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.8500e-08
+**** sumRGFluxes() t = 4.8500e-08
+
+
+**** showRGFluxes() t = 4.8500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5456,43 +5888,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 4.9600e-08
+**** sumRGFluxes() t = 4.9600e-08
+
+
+**** showRGFluxes() t = 4.9600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 4.9600e-08
+**** sumRGFluxes() t = 4.9600e-08
+
+
+**** showRGFluxes() t = 4.9600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5600,43 +6044,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.0700e-08
+**** sumRGFluxes() t = 5.0700e-08
+
+
+**** showRGFluxes() t = 5.0700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.0700e-08
+**** sumRGFluxes() t = 5.0700e-08
+
+
+**** showRGFluxes() t = 5.0700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5754,43 +6210,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.1800e-08
+**** sumRGFluxes() t = 5.1800e-08
+
+
+**** showRGFluxes() t = 5.1800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.1800e-08
+**** sumRGFluxes() t = 5.1800e-08
+
+
+**** showRGFluxes() t = 5.1800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -5898,43 +6366,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.2900e-08
+**** sumRGFluxes() t = 5.2900e-08
+
+
+**** showRGFluxes() t = 5.2900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.2900e-08
+**** sumRGFluxes() t = 5.2900e-08
+
+
+**** showRGFluxes() t = 5.2900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6042,43 +6522,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.4000e-08
+**** sumRGFluxes() t = 5.4000e-08
+
+
+**** showRGFluxes() t = 5.4000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.4000e-08
+**** sumRGFluxes() t = 5.4000e-08
+
+
+**** showRGFluxes() t = 5.4000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6186,43 +6678,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.5100e-08
+**** sumRGFluxes() t = 5.5100e-08
+
+
+**** showRGFluxes() t = 5.5100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.5100e-08
+**** sumRGFluxes() t = 5.5100e-08
+
+
+**** showRGFluxes() t = 5.5100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6330,43 +6834,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.6200e-08
+**** sumRGFluxes() t = 5.6200e-08
+
+
+**** showRGFluxes() t = 5.6200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.6200e-08
+**** sumRGFluxes() t = 5.6200e-08
+
+
+**** showRGFluxes() t = 5.6200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6474,43 +6990,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.7300e-08
+**** sumRGFluxes() t = 5.7300e-08
+
+
+**** showRGFluxes() t = 5.7300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.7300e-08
+**** sumRGFluxes() t = 5.7300e-08
+
+
+**** showRGFluxes() t = 5.7300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6618,43 +7146,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.8400e-08
+**** sumRGFluxes() t = 5.8400e-08
+
+
+**** showRGFluxes() t = 5.8400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.8400e-08
+**** sumRGFluxes() t = 5.8400e-08
+
+
+**** showRGFluxes() t = 5.8400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6762,43 +7302,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 5.9500e-08
+**** sumRGFluxes() t = 5.9500e-08
+
+
+**** showRGFluxes() t = 5.9500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 5.9500e-08
+**** sumRGFluxes() t = 5.9500e-08
+
+
+**** showRGFluxes() t = 5.9500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -6906,43 +7458,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.0600e-08
+**** sumRGFluxes() t = 6.0600e-08
+
+
+**** showRGFluxes() t = 6.0600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.0600e-08
+**** sumRGFluxes() t = 6.0600e-08
+
+
+**** showRGFluxes() t = 6.0600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7050,43 +7614,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.1700e-08
+**** sumRGFluxes() t = 6.1700e-08
+
+
+**** showRGFluxes() t = 6.1700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.1700e-08
+**** sumRGFluxes() t = 6.1700e-08
+
+
+**** showRGFluxes() t = 6.1700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7194,43 +7770,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.2800e-08
+**** sumRGFluxes() t = 6.2800e-08
+
+
+**** showRGFluxes() t = 6.2800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.2800e-08
+**** sumRGFluxes() t = 6.2800e-08
+
+
+**** showRGFluxes() t = 6.2800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7338,43 +7926,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.3900e-08
+**** sumRGFluxes() t = 6.3900e-08
+
+
+**** showRGFluxes() t = 6.3900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.3900e-08
+**** sumRGFluxes() t = 6.3900e-08
+
+
+**** showRGFluxes() t = 6.3900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7492,43 +8092,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.5000e-08
+**** sumRGFluxes() t = 6.5000e-08
+
+
+**** showRGFluxes() t = 6.5000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.5000e-08
+**** sumRGFluxes() t = 6.5000e-08
+
+
+**** showRGFluxes() t = 6.5000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7636,43 +8248,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.6100e-08
+**** sumRGFluxes() t = 6.6100e-08
+
+
+**** showRGFluxes() t = 6.6100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.6100e-08
+**** sumRGFluxes() t = 6.6100e-08
+
+
+**** showRGFluxes() t = 6.6100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7780,43 +8404,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.7200e-08
+**** sumRGFluxes() t = 6.7200e-08
+
+
+**** showRGFluxes() t = 6.7200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.7200e-08
+**** sumRGFluxes() t = 6.7200e-08
+
+
+**** showRGFluxes() t = 6.7200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -7924,43 +8560,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.8300e-08
+**** sumRGFluxes() t = 6.8300e-08
+
+
+**** showRGFluxes() t = 6.8300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.8300e-08
+**** sumRGFluxes() t = 6.8300e-08
+
+
+**** showRGFluxes() t = 6.8300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8068,43 +8716,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 6.9400e-08
+**** sumRGFluxes() t = 6.9400e-08
+
+
+**** showRGFluxes() t = 6.9400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 6.9400e-08
+**** sumRGFluxes() t = 6.9400e-08
+
+
+**** showRGFluxes() t = 6.9400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8212,43 +8872,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.0500e-08
+**** sumRGFluxes() t = 7.0500e-08
+
+
+**** showRGFluxes() t = 7.0500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.0500e-08
+**** sumRGFluxes() t = 7.0500e-08
+
+
+**** showRGFluxes() t = 7.0500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8356,43 +9028,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.1600e-08
+**** sumRGFluxes() t = 7.1600e-08
+
+
+**** showRGFluxes() t = 7.1600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.1600e-08
+**** sumRGFluxes() t = 7.1600e-08
+
+
+**** showRGFluxes() t = 7.1600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8500,43 +9184,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.2700e-08
+**** sumRGFluxes() t = 7.2700e-08
+
+
+**** showRGFluxes() t = 7.2700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.2700e-08
+**** sumRGFluxes() t = 7.2700e-08
+
+
+**** showRGFluxes() t = 7.2700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8644,43 +9340,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.3800e-08
+**** sumRGFluxes() t = 7.3800e-08
+
+
+**** showRGFluxes() t = 7.3800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.3800e-08
+**** sumRGFluxes() t = 7.3800e-08
+
+
+**** showRGFluxes() t = 7.3800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8788,43 +9496,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.4900e-08
+**** sumRGFluxes() t = 7.4900e-08
+
+
+**** showRGFluxes() t = 7.4900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.4900e-08
+**** sumRGFluxes() t = 7.4900e-08
+
+
+**** showRGFluxes() t = 7.4900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -8932,43 +9652,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.6000e-08
+**** sumRGFluxes() t = 7.6000e-08
+
+
+**** showRGFluxes() t = 7.6000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.6000e-08
+**** sumRGFluxes() t = 7.6000e-08
+
+
+**** showRGFluxes() t = 7.6000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9076,43 +9808,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.7100e-08
+**** sumRGFluxes() t = 7.7100e-08
+
+
+**** showRGFluxes() t = 7.7100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.7100e-08
+**** sumRGFluxes() t = 7.7100e-08
+
+
+**** showRGFluxes() t = 7.7100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9220,43 +9964,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.8200e-08
+**** sumRGFluxes() t = 7.8200e-08
+
+
+**** showRGFluxes() t = 7.8200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.8200e-08
+**** sumRGFluxes() t = 7.8200e-08
+
+
+**** showRGFluxes() t = 7.8200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9364,43 +10120,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 7.9300e-08
+**** sumRGFluxes() t = 7.9300e-08
+
+
+**** showRGFluxes() t = 7.9300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 7.9300e-08
+**** sumRGFluxes() t = 7.9300e-08
+
+
+**** showRGFluxes() t = 7.9300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9508,43 +10276,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.0400e-08
+**** sumRGFluxes() t = 8.0400e-08
+
+
+**** showRGFluxes() t = 8.0400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.0400e-08
+**** sumRGFluxes() t = 8.0400e-08
+
+
+**** showRGFluxes() t = 8.0400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9662,43 +10442,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.1500e-08
+**** sumRGFluxes() t = 8.1500e-08
+
+
+**** showRGFluxes() t = 8.1500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.1500e-08
+**** sumRGFluxes() t = 8.1500e-08
+
+
+**** showRGFluxes() t = 8.1500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9806,43 +10598,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.2600e-08
+**** sumRGFluxes() t = 8.2600e-08
+
+
+**** showRGFluxes() t = 8.2600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.2600e-08
+**** sumRGFluxes() t = 8.2600e-08
+
+
+**** showRGFluxes() t = 8.2600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -9950,43 +10754,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.3700e-08
+**** sumRGFluxes() t = 8.3700e-08
+
+
+**** showRGFluxes() t = 8.3700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.3700e-08
+**** sumRGFluxes() t = 8.3700e-08
+
+
+**** showRGFluxes() t = 8.3700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10094,43 +10910,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.4800e-08
+**** sumRGFluxes() t = 8.4800e-08
+
+
+**** showRGFluxes() t = 8.4800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.4800e-08
+**** sumRGFluxes() t = 8.4800e-08
+
+
+**** showRGFluxes() t = 8.4800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10238,43 +11066,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.5900e-08
+**** sumRGFluxes() t = 8.5900e-08
+
+
+**** showRGFluxes() t = 8.5900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.5900e-08
+**** sumRGFluxes() t = 8.5900e-08
+
+
+**** showRGFluxes() t = 8.5900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10382,43 +11222,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.7000e-08
+**** sumRGFluxes() t = 8.7000e-08
+
+
+**** showRGFluxes() t = 8.7000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.7000e-08
+**** sumRGFluxes() t = 8.7000e-08
+
+
+**** showRGFluxes() t = 8.7000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10526,43 +11378,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.8100e-08
+**** sumRGFluxes() t = 8.8100e-08
+
+
+**** showRGFluxes() t = 8.8100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.8100e-08
+**** sumRGFluxes() t = 8.8100e-08
+
+
+**** showRGFluxes() t = 8.8100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10670,43 +11534,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 8.9200e-08
+**** sumRGFluxes() t = 8.9200e-08
+
+
+**** showRGFluxes() t = 8.9200e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 8.9200e-08
+**** sumRGFluxes() t = 8.9200e-08
+
+
+**** showRGFluxes() t = 8.9200e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10814,43 +11690,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.0300e-08
+**** sumRGFluxes() t = 9.0300e-08
+
+
+**** showRGFluxes() t = 9.0300e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.0300e-08
+**** sumRGFluxes() t = 9.0300e-08
+
+
+**** showRGFluxes() t = 9.0300e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -10958,43 +11846,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.1400e-08
+**** sumRGFluxes() t = 9.1400e-08
+
+
+**** showRGFluxes() t = 9.1400e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.1400e-08
+**** sumRGFluxes() t = 9.1400e-08
+
+
+**** showRGFluxes() t = 9.1400e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11102,43 +12002,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.2500e-08
+**** sumRGFluxes() t = 9.2500e-08
+
+
+**** showRGFluxes() t = 9.2500e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.2500e-08
+**** sumRGFluxes() t = 9.2500e-08
+
+
+**** showRGFluxes() t = 9.2500e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11246,43 +12158,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.3600e-08
+**** sumRGFluxes() t = 9.3600e-08
+
+
+**** showRGFluxes() t = 9.3600e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.3600e-08
+**** sumRGFluxes() t = 9.3600e-08
+
+
+**** showRGFluxes() t = 9.3600e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11390,43 +12314,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.4700e-08
+**** sumRGFluxes() t = 9.4700e-08
+
+
+**** showRGFluxes() t = 9.4700e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.4700e-08
+**** sumRGFluxes() t = 9.4700e-08
+
+
+**** showRGFluxes() t = 9.4700e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11534,43 +12470,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.5800e-08
+**** sumRGFluxes() t = 9.5800e-08
+
+
+**** showRGFluxes() t = 9.5800e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.5800e-08
+**** sumRGFluxes() t = 9.5800e-08
+
+
+**** showRGFluxes() t = 9.5800e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11678,43 +12626,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.6900e-08
+**** sumRGFluxes() t = 9.6900e-08
+
+
+**** showRGFluxes() t = 9.6900e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.6900e-08
+**** sumRGFluxes() t = 9.6900e-08
+
+
+**** showRGFluxes() t = 9.6900e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11822,43 +12782,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.8000e-08
+**** sumRGFluxes() t = 9.8000e-08
+
+
+**** showRGFluxes() t = 9.8000e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.8000e-08
+**** sumRGFluxes() t = 9.8000e-08
+
+
+**** showRGFluxes() t = 9.8000e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -11966,43 +12938,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 9.9100e-08
+**** sumRGFluxes() t = 9.9100e-08
+
+
+**** showRGFluxes() t = 9.9100e-08
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 9.9100e-08
+**** sumRGFluxes() t = 9.9100e-08
+
+
+**** showRGFluxes() t = 9.9100e-08
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -12110,43 +13094,55 @@ TOTAL FLUXES
 POPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES
 
 RG=0
+
+**** setRGFluxes() t = 1.0020e-07
+**** sumRGFluxes() t = 1.0020e-07
+
+
+**** showRGFluxes() t = 1.0020e-07
 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=4 RGarrayindex=0
 
-Put Y0 niso=4 RGarrayindex=0
 RG=0 k=0 isoindex=1 isoY0[12C]=4.167e-02
 RG=0 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=2 isoindex=0 isoY0[4He]=0.000e+00
 RG=0 k=3 isoindex=0 isoY0[4He]=0.000e+00
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 RG=1
+
+**** setRGFluxes() t = 1.0020e-07
+**** sumRGFluxes() t = 1.0020e-07
+
+
+**** showRGFluxes() t = 1.0020e-07
 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
- *** Compute Equilibrium
- *** computeEquilibriumRates()
+****Compute Equilibrium
+****computeEquilibriumRates()
+**** Put Y0 niso=3 RGarrayindex=1
 
-Put Y0 niso=3 RGarrayindex=1
 RG=1 k=0 isoindex=2 isoY0[16O]=3.125e-02
 RG=1 k=1 isoindex=0 isoY0[4He]=0.000e+00
 RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 
- *** computeC()
- *** computeQuad()
- *** computeEqRatios()
+****computeC()
+****computeQuad()
+****computeEqRatios()
 
 
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
@@ -12249,7 +13245,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
 ------------------------------------------------------------------------------------------
 
 End of integration
-Timer: 9.002 ms used
+Timer: 8.289 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
