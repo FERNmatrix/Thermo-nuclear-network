@@ -13245,7 +13245,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
 ------------------------------------------------------------------------------------------
 
 End of integration
-Timer: 9.937 ms used
+Timer: 9.327 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X

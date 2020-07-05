@@ -475,18 +475,19 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt   |E|  |dE/dt| sumX  Asy  Equil";
+            string str1 = "#    t     dt   |E|  |dE/dt| Asy  Equil  sumX";
             string app = "  ";
             string app1;
             string Xstring = "X(";
             string iso;
             
-            fprintf(pFile, "# %s  %d integration steps\n",
+            fprintf(pFile, "# %s:  %d integration steps\n",
                 stringToChar(methstring), totalTimeSteps
             );
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
-            fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s \n");
+            fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
+            fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
             
             // Write header for gnuplot file
@@ -514,15 +515,17 @@ class Utilities{
                 
                 fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
-                    sumXplot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
-                    (double)numRG_PEplot[i]/(double)numberRG
+                    (double)numRG_PEplot[i]/(double)numberRG,
+                    sumXplot[i]
                 );
                 
-                // Now add one data field for each X(i) in plotXlist[].
+                // Now add one data field for each X(i) in plotXlist[]. Add
+                // 1e-24 to X in case it is identically zero since we are
+                // taking the log.
                 
                 for(int j=0; j<LX; j++){
-                    fprintf(pFile, " %5.3e", Xplot[j][i]);
+                    fprintf(pFile, " %5.3e", log(Xplot[j][i]+1e-24));
                 }
                 
                 fprintf(pFile, "\n");
@@ -3282,8 +3285,8 @@ int main() {
             dtplot[plotCounter-1] = log10(dt);
             
             // Following 2 temporary placeholders until energy calculations inserted
-            EReleasePlot[plotCounter-1] = 0.0; //log10(abs(ERelease));
-            dEReleasePlot[plotCounter-1] = 0.0; //log10(abs(dERelease));
+            EReleasePlot[plotCounter-1] = 20.0; //log10(abs(ERelease));
+            dEReleasePlot[plotCounter-1] = 20.0; //log10(abs(dERelease));
             
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
