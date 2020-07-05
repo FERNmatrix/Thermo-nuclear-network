@@ -2143,7 +2143,7 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
+            printf("*****memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
                 i, 
                 reacLabel[memberReactions[i]],
                 getrgclass(),

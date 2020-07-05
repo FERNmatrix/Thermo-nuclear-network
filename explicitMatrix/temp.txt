@@ -149,14 +149,14 @@ rv[7]: [  1  1 -1 ]
 PARTIAL EQUILIBRIUM REACTION GROUPS
 
 Reaction Group 0:
-he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=0 RG: a+b+c<->d
-he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=0 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=1 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=1 RG: a+b+c<->d
 c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=0 RG: a+b+c<->d
 c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=0 RG: a+b+c<->d
 
 Reaction Group 1:
-he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=0 RG: a+b<->c
-he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
 o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
 o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
 
@@ -165,15 +165,15 @@ o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
 POPULATING RG[] OBJECT FIELDS
 
 RG = 0
-reacIndex=0 niso=4 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0
-reacIndex=1 niso=4 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0
+reacIndex=0 niso=4 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1
+reacIndex=1 niso=4 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1
 reacIndex=2 niso=4 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0
 reacIndex=3 niso=4 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0
 Member reactions = 4
 
 RG = 1
-reacIndex=4 niso=3 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0
-reacIndex=5 niso=3 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0
+reacIndex=4 niso=3 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1
+reacIndex=5 niso=3 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1
 reacIndex=6 niso=3 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0
 reacIndex=7 niso=3 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0
 Member reactions = 4
@@ -218,10 +218,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.0000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -244,10 +244,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.0000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -266,13 +266,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -374,10 +374,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.1100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -400,10 +400,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.1100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -422,13 +422,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -530,10 +530,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.2200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -556,10 +556,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.2200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -578,13 +578,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -686,10 +686,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.3300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -712,10 +712,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.3300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -734,13 +734,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -852,10 +852,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.4400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -878,10 +878,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.4400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -900,13 +900,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1008,10 +1008,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.5500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1034,10 +1034,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.5500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1056,13 +1056,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1164,10 +1164,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.6600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1190,10 +1190,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.6600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1212,13 +1212,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1330,10 +1330,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.7700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1356,10 +1356,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.7700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1378,13 +1378,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1486,10 +1486,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.8800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1512,10 +1512,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.8800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1534,13 +1534,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1642,10 +1642,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.9900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1668,10 +1668,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.9900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1690,13 +1690,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1798,10 +1798,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.1000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1824,10 +1824,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.1000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1846,13 +1846,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -1964,10 +1964,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.2100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -1990,10 +1990,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.2100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2012,13 +2012,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2120,10 +2120,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.3200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2146,10 +2146,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.3200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2168,13 +2168,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2276,10 +2276,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.4300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2302,10 +2302,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.4300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2324,13 +2324,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2432,10 +2432,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.5400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2458,10 +2458,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.5400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2480,13 +2480,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2598,10 +2598,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.6500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2624,10 +2624,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.6500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2646,13 +2646,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2754,10 +2754,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.7600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2780,10 +2780,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.7600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2802,13 +2802,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -2910,10 +2910,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.8700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2936,10 +2936,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.8700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -2958,13 +2958,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3066,10 +3066,10 @@ RG=0
 
 
 **** showRGFluxes() t = 2.9800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3092,10 +3092,10 @@ RG=1
 
 
 **** showRGFluxes() t = 2.9800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3114,13 +3114,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3222,10 +3222,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.0900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3248,10 +3248,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.0900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3270,13 +3270,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3378,10 +3378,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.2000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3404,10 +3404,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.2000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3426,13 +3426,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3544,10 +3544,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.3100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3570,10 +3570,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.3100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3592,13 +3592,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3700,10 +3700,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.4200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3726,10 +3726,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.4200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3748,13 +3748,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -3856,10 +3856,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.5300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3882,10 +3882,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.5300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -3904,13 +3904,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4012,10 +4012,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.6400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4038,10 +4038,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.6400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4060,13 +4060,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4168,10 +4168,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.7500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4194,10 +4194,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.7500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4216,13 +4216,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4324,10 +4324,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.8600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4350,10 +4350,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.8600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4372,13 +4372,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4480,10 +4480,10 @@ RG=0
 
 
 **** showRGFluxes() t = 3.9700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4506,10 +4506,10 @@ RG=1
 
 
 **** showRGFluxes() t = 3.9700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4528,13 +4528,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4636,10 +4636,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.0800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4662,10 +4662,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.0800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4684,13 +4684,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4802,10 +4802,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.1900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4828,10 +4828,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.1900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4850,13 +4850,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -4958,10 +4958,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.3000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -4984,10 +4984,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.3000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5006,13 +5006,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5114,10 +5114,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.4100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5140,10 +5140,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.4100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5162,13 +5162,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5270,10 +5270,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.5200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5296,10 +5296,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.5200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5318,13 +5318,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5426,10 +5426,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.6300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5452,10 +5452,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.6300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5474,13 +5474,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5582,10 +5582,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.7400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5608,10 +5608,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.7400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5630,13 +5630,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5738,10 +5738,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.8500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5764,10 +5764,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.8500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5786,13 +5786,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -5894,10 +5894,10 @@ RG=0
 
 
 **** showRGFluxes() t = 4.9600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5920,10 +5920,10 @@ RG=1
 
 
 **** showRGFluxes() t = 4.9600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -5942,13 +5942,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6050,10 +6050,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.0700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6076,10 +6076,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.0700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6098,13 +6098,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6216,10 +6216,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.1800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6242,10 +6242,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.1800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6264,13 +6264,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6372,10 +6372,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.2900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6398,10 +6398,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.2900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6420,13 +6420,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6528,10 +6528,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.4000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6554,10 +6554,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.4000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6576,13 +6576,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6684,10 +6684,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.5100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6710,10 +6710,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.5100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6732,13 +6732,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6840,10 +6840,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.6200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6866,10 +6866,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.6200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -6888,13 +6888,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -6996,10 +6996,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.7300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7022,10 +7022,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.7300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7044,13 +7044,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7152,10 +7152,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.8400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7178,10 +7178,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.8400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7200,13 +7200,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7308,10 +7308,10 @@ RG=0
 
 
 **** showRGFluxes() t = 5.9500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7334,10 +7334,10 @@ RG=1
 
 
 **** showRGFluxes() t = 5.9500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7356,13 +7356,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7464,10 +7464,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.0600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7490,10 +7490,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.0600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7512,13 +7512,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7620,10 +7620,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.1700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7646,10 +7646,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.1700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7668,13 +7668,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7776,10 +7776,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.2800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7802,10 +7802,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.2800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7824,13 +7824,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -7932,10 +7932,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.3900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7958,10 +7958,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.3900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -7980,13 +7980,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8098,10 +8098,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.5000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8124,10 +8124,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.5000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8146,13 +8146,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8254,10 +8254,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.6100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8280,10 +8280,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.6100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8302,13 +8302,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8410,10 +8410,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.7200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8436,10 +8436,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.7200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8458,13 +8458,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8566,10 +8566,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.8300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8592,10 +8592,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.8300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8614,13 +8614,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8722,10 +8722,10 @@ RG=0
 
 
 **** showRGFluxes() t = 6.9400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8748,10 +8748,10 @@ RG=1
 
 
 **** showRGFluxes() t = 6.9400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8770,13 +8770,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -8878,10 +8878,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.0500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8904,10 +8904,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.0500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -8926,13 +8926,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9034,10 +9034,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.1600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9060,10 +9060,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.1600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9082,13 +9082,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9190,10 +9190,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.2700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9216,10 +9216,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.2700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9238,13 +9238,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9346,10 +9346,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.3800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9372,10 +9372,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.3800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9394,13 +9394,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9502,10 +9502,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.4900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9528,10 +9528,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.4900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9550,13 +9550,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9658,10 +9658,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.6000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9684,10 +9684,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.6000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9706,13 +9706,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9814,10 +9814,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.7100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9840,10 +9840,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.7100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9862,13 +9862,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -9970,10 +9970,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.8200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -9996,10 +9996,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.8200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10018,13 +10018,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10126,10 +10126,10 @@ RG=0
 
 
 **** showRGFluxes() t = 7.9300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10152,10 +10152,10 @@ RG=1
 
 
 **** showRGFluxes() t = 7.9300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10174,13 +10174,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10282,10 +10282,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.0400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10308,10 +10308,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.0400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10330,13 +10330,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10448,10 +10448,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.1500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10474,10 +10474,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.1500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10496,13 +10496,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10604,10 +10604,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.2600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10630,10 +10630,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.2600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10652,13 +10652,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10760,10 +10760,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.3700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10786,10 +10786,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.3700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10808,13 +10808,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -10916,10 +10916,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.4800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10942,10 +10942,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.4800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -10964,13 +10964,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11072,10 +11072,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.5900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11098,10 +11098,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.5900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11120,13 +11120,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11228,10 +11228,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.7000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11254,10 +11254,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.7000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11276,13 +11276,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11384,10 +11384,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.8100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11410,10 +11410,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.8100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11432,13 +11432,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11540,10 +11540,10 @@ RG=0
 
 
 **** showRGFluxes() t = 8.9200e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11566,10 +11566,10 @@ RG=1
 
 
 **** showRGFluxes() t = 8.9200e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11588,13 +11588,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11696,10 +11696,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.0300e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11722,10 +11722,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.0300e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11744,13 +11744,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -11852,10 +11852,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.1400e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11878,10 +11878,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.1400e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -11900,13 +11900,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12008,10 +12008,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.2500e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12034,10 +12034,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.2500e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12056,13 +12056,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12164,10 +12164,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.3600e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12190,10 +12190,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.3600e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12212,13 +12212,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12320,10 +12320,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.4700e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12346,10 +12346,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.4700e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12368,13 +12368,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12476,10 +12476,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.5800e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12502,10 +12502,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.5800e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12524,13 +12524,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12632,10 +12632,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.6900e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12658,10 +12658,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.6900e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12680,13 +12680,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12788,10 +12788,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.8000e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12814,10 +12814,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.8000e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12836,13 +12836,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -12944,10 +12944,10 @@ RG=0
 
 
 **** showRGFluxes() t = 9.9100e-08
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12970,10 +12970,10 @@ RG=1
 
 
 **** showRGFluxes() t = 9.9100e-08
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -12992,13 +12992,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -13100,10 +13100,10 @@ RG=0
 
 
 **** showRGFluxes() t = 1.0020e-07
-memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
-memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
+*****memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1 flux=0.0000e+00
+*****memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-0.0000e+00
+*****memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0 flux=-4.9037e+03
 RG=0 NetRGflux=-4.9037e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -13126,10 +13126,10 @@ RG=1
 
 
 **** showRGFluxes() t = 1.0020e-07
-memberIndex=0 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=1 he4+c12-->o16 RGclass=2 isForward=0 flux=-0.0000e+00
-memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
-memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
+*****memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1 flux=0.0000e+00
+*****memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0 flux=-1.2891e+02
+*****memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0 flux=-2.6252e+03
 RG=1 NetRGflux=-2.7541e+03 (Not Equilibrated)
 
 ****Compute Equilibrium
@@ -13148,13 +13148,13 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=2.6645e-15
    1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
    3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=1.4210e-02
    1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
    2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
    3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
@@ -13245,7 +13245,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
 ------------------------------------------------------------------------------------------
 
 End of integration
-Timer: 9.611 ms used
+Timer: 10.206 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
