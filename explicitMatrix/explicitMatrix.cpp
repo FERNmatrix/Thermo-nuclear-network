@@ -475,7 +475,7 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt   |E|  |dE/dt| Asy  Equil  sumX";
+            string str1 = "#    t     dt   |E| |dE/dt|  Asy  Equil  sumX";
             string app = "  ";
             string app1;
             string Xstring = "X(";
@@ -496,7 +496,7 @@ class Utilities{
                 iso = isoLabel[i];
                 app.append(Xstring);
                 app.append(iso);
-                app.append(")    ");
+                app.append(")     ");
             }
             str1.append(app);
             str1.append("\n");
