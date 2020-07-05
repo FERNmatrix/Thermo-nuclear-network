@@ -266,16 +266,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -422,16 +422,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -578,16 +578,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -734,16 +734,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -900,16 +900,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1056,16 +1056,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1212,16 +1212,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1378,16 +1378,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1534,16 +1534,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1690,16 +1690,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -1846,16 +1846,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2012,16 +2012,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2168,16 +2168,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2324,16 +2324,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2480,16 +2480,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2646,16 +2646,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2802,16 +2802,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -2958,16 +2958,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3114,16 +3114,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3270,16 +3270,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3426,16 +3426,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3592,16 +3592,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3748,16 +3748,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -3904,16 +3904,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4060,16 +4060,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4216,16 +4216,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4372,16 +4372,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4528,16 +4528,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4684,16 +4684,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -4850,16 +4850,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5006,16 +5006,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5162,16 +5162,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5318,16 +5318,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5474,16 +5474,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5630,16 +5630,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5786,16 +5786,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -5942,16 +5942,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6098,16 +6098,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6264,16 +6264,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6420,16 +6420,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6576,16 +6576,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6732,16 +6732,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -6888,16 +6888,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7044,16 +7044,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7200,16 +7200,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7356,16 +7356,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7512,16 +7512,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7668,16 +7668,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7824,16 +7824,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -7980,16 +7980,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8146,16 +8146,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8302,16 +8302,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8458,16 +8458,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8614,16 +8614,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8770,16 +8770,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -8926,16 +8926,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9082,16 +9082,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9238,16 +9238,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9394,16 +9394,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9550,16 +9550,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9706,16 +9706,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -9862,16 +9862,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10018,16 +10018,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10174,16 +10174,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10330,16 +10330,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10496,16 +10496,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10652,16 +10652,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10808,16 +10808,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -10964,16 +10964,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11120,16 +11120,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11276,16 +11276,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11432,16 +11432,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11588,16 +11588,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11744,16 +11744,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -11900,16 +11900,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12056,16 +12056,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12212,16 +12212,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12368,16 +12368,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12524,16 +12524,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12680,16 +12680,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12836,16 +12836,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -12992,16 +12992,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -13148,16 +13148,16 @@ RG=1 k=2 isoindex=1 isoY0[12C]=4.167e-02
 IMPOSE EQUILIBRIUM CONDITION ON FLUXES
 
 RG=0 isEquil=0
-   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00
-   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00
-   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00
-   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03
+   0 reaction=0 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=1 he4+he4+he4-->c12 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=2 c12-->he4+he4+he4 flux=0.0000e+00 eqcheck=3.4585e-323
+   3 reaction=3 c12-->he4+he4+he4 flux=4.9037e+03 eqcheck=0.0000e+00
 
 RG=1 isEquil=0
-   0 reaction=4 he4+c12-->o16 flux=0.0000e+00
-   1 reaction=5 he4+c12-->o16 flux=0.0000e+00
-   2 reaction=6 o16-->he4+c12 flux=1.2891e+02
-   3 reaction=7 o16-->he4+c12 flux=2.6252e+03
+   0 reaction=4 he4+c12-->o16 flux=0.0000e+00 eqcheck=    nan
+   1 reaction=5 he4+c12-->o16 flux=0.0000e+00 eqcheck=0.0000e+00
+   2 reaction=6 o16-->he4+c12 flux=1.2891e+02 eqcheck=3.4585e-323
+   3 reaction=7 o16-->he4+c12 flux=2.6252e+03 eqcheck=0.0000e+00
 
 VALUES F+
 
@@ -13245,7 +13245,7 @@ Index   Iso           Y           X        dY/dt        dX/dt           dY      
 ------------------------------------------------------------------------------------------
 
 End of integration
-Timer: 8.289 ms used
+Timer: 9.937 ms used
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X

@@ -142,6 +142,11 @@ double rho;                   // Current density in units of g/cm^3
 bool constant_T9 = true;      // Whether temperature constant in integration
 bool constant_rho = true;     // Whether density constant in integration
 
+// Energy variables (from Q values)
+
+double ERelease;              // Total energy released
+double dERelease;             // Energy released per unit time
+
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
 
@@ -354,6 +359,8 @@ double Xplot[ISOTOPES][plotSteps];     // Mass fractions X
 double sumXplot[plotSteps];            // Sum of mass fractions
 double numAsyplot[plotSteps];          // Number asymptotic species
 double numRG_PEplot[plotSteps];        // Number RG in PE
+double EReleasePlot[plotSteps];        // Integrated energy release
+double dEReleasePlot[plotSteps];       // Differential energy release
 
 // Following control which mass fractions are exported to the plotting
 // file.  The entries in plotXlist[] are the species indices for the
@@ -468,15 +475,19 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#log_t log_dt  sumX   Asy Equil";
+            string str1 = "#    t     dt   |E|  |dE/dt| sumX  Asy  Equil";
             string app = "  ";
             string app1;
             string Xstring = "X(";
             string iso;
             
-            fprintf(pFile, "# T9=%5.3f rho=%6.3e g/cm^3, %s\n",
-                T9, rho, stringToChar(methstring)
+            fprintf(pFile, "# %s  %d integration steps\n",
+                stringToChar(methstring), totalTimeSteps
             );
+            
+            fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
+            fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s \n");
+            fprintf(pFile, "#\n");
             
             // Write header for gnuplot file
             
@@ -501,8 +512,9 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %5.3f %5.3f %5.3f",
-                    tplot[i], dtplot[i], sumXplot[i], 
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                    tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
+                    sumXplot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG
                 );
@@ -2067,6 +2079,8 @@ class ReactionGroup:  public Utilities {
         productIsoIndex[i] = j;
     }
     
+    void seteqcheck(int k, double eq){eqcheck[k] = eq;}
+    
     
     // Public ReactionGroup getter functions to retrieve values of private class fields
     
@@ -2109,6 +2123,8 @@ class ReactionGroup:  public Utilities {
     int getreactantIsoIndex(int i){return reactantIsoIndex[i];}
     
     int getproductIsoIndex(int i){return productIsoIndex[i];}
+    
+    double geteqcheck(int k){return eqcheck[k];}
     
     
     // Method to show all current fluxes in reaction groups
@@ -3206,10 +3222,11 @@ int main() {
                 // Print results 
                 
                 for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                    printf("\n   %d reaction=%d %s flux=%7.4e",
+                    printf("\n   %d reaction=%d %s flux=%7.4e eqcheck=%7.4e",
                         j, RG[i].getmemberReactions(j), 
                         RG[i].getreacString(j),
-                        Flux[RG[i].getmemberReactions(j)]
+                        Flux[RG[i].getmemberReactions(j)],
+                        RG[i].geteqcheck(j)
                     );
                 }
             }
@@ -3263,6 +3280,11 @@ int main() {
             
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
+            
+            // Following 2 temporary placeholders until energy calculations inserted
+            EReleasePlot[plotCounter-1] = 0.0; //log10(abs(ERelease));
+            dEReleasePlot[plotCounter-1] = 0.0; //log10(abs(dERelease));
+            
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
