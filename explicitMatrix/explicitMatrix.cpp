@@ -51,7 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 10                  // Number of plot output steps
+#define plotSteps 50                  // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -125,7 +125,7 @@ void plotOutput(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = false;             // Implement partial equilibium also
 
 // String holding integration method in use.  Possibilities are
 // ASY, QSS, ASY+PE, QSS+PE
@@ -156,16 +156,16 @@ bool isAsy[ISOTOPES];
 // setting constantTimestep=true.  Normally constantTimestep=false
 // for adaptive timestepping.
 
-bool constantTimestep = false;   // Adaptible timestep if false
+bool constantTimestep = false;    // Adaptible timestep if false
 double constant_dt = 1.1e-9;     // Value of constant timestep
 
 // Integration time data.  Start and stop times hardwired for testing
 // here but in applications they would be variables supplied by
 // calling programs.
 
-double start_time = 1.0e-8; //2.22018e-8;      // Start time for integration
+double start_time = 1.0e-11; //2.22018e-8;      // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-7;           // Stop time for integration
+double stop_time = 1.0e-4; //1.0e-7;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 1.1e-9;            // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -2658,7 +2658,8 @@ class Integrate: public Utilities {
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
-                dt = getTrialTimestep();    // Trial adaptive timestep
+                dt = 0.001 * t;     // Temporary for testing
+                //dt = getTrialTimestep();    // Trial adaptive timestep
                 //dt = getTimestep();    // Adaptive timestep
             }
             
@@ -2684,7 +2685,7 @@ class Integrate: public Utilities {
                 );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
-                    if(isAsy[i]) totalAsy++;
+                    if(isAsy[i]){ totalAsy++; } 
                 }
                 
                 // Summarize results
@@ -2709,11 +2710,16 @@ class Integrate: public Utilities {
                     }
                     printf("\n");
                 }
+                
+                // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
+                // by PE approximation (individual fluxes in RG that are in equilibrium) and 
+                // asymptotic approximation (rows and columns of matrix)
+                
+                updateAsyEuler();
             }
             
-            // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
-            // by PE approximation (individual fluxes in RG that are in equilibrium) and 
-            // asymptotic approximation (rows and columns of matrix)
+            
+            
             
             if(!doQSS){
                 // Call matrix multiply with elements of matrix having been removed by
@@ -2762,9 +2768,10 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
         
-        printf("Forward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e", 
+        printf("Forward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
                FplusSum, FminusSum, Y, dt);
         return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
+        
     }
     
     // Function to update by the asymptotic method
@@ -2815,12 +2822,14 @@ class Integrate: public Utilities {
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
+        //printf("\n\n$$$$$ Updating asy-euler\n");
         for(int i=0; i<numberSpecies; i++){		
             if(checkAsy(Fminus[i], Y[i], dt) == 1){
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
-            }		
+            }
+            X[i] = Y[i] * (double) AA[i];
         }
     }    // End function updateAsyEuler()
     
@@ -3229,7 +3238,7 @@ int main() {
                         j, RG[i].getmemberReactions(j), 
                         RG[i].getreacString(j),
                         Flux[RG[i].getmemberReactions(j)],
-                        RG[i].geteqcheck(j)
+                         RG[i].geteqcheck(j)
                     );
                 }
             }
