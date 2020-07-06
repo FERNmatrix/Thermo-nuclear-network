@@ -125,7 +125,7 @@ void plotOutput(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibium also
+bool doPE = true;             // Implement partial equilibium also
 
 // String holding integration method in use.  Possibilities are
 // ASY, QSS, ASY+PE, QSS+PE
@@ -163,11 +163,11 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 // here but in applications they would be variables supplied by
 // calling programs.
 
-double start_time = 1.0e-11; //2.22018e-8;      // Start time for integration
+double start_time = 1.0e-12; //2.22018e-8;      // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-4; //1.0e-7;           // Stop time for integration
+double stop_time = 1.0e-2; //1.0e-7;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 1.1e-9;            // Initial value of integration dt
+double dt_start = 1.0e-13;            // Initial value of integration dt
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -463,7 +463,7 @@ class Utilities{
         
         static void plotOutput(){
             
-            // Open a file for output. Assumes that the subdirectory
+            // Open a file for ascii output. Assumes that the subdirectory
             // gnu_out already exists. If it doesn't, will compile but
             // crash when executed.
             
@@ -525,7 +525,7 @@ class Utilities{
                 // taking the log.
                 
                 for(int j=0; j<LX; j++){
-                    fprintf(pFile, " %5.3e", log(Xplot[j][i]+1e-24));
+                    fprintf(pFile, " %5.3e", log10(Xplot[j][i]+1e-24));
                 }
                 
                 fprintf(pFile, "\n");
@@ -2658,7 +2658,7 @@ class Integrate: public Utilities {
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
-                dt = 0.001 * t;     // Temporary for testing
+                dt = 0.0001 * t;     // Temporary for testing
                 //dt = getTrialTimestep();    // Trial adaptive timestep
                 //dt = getTimestep();    // Adaptive timestep
             }
