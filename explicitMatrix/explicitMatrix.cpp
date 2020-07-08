@@ -51,7 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 50                  // Number of plot output steps
+#define plotSteps 100                  // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -95,13 +95,15 @@ char networkFile[] = "data/CUDAnet_3alpha.inp";
 static const int displayInput = 0;
 static const int showParsing = 0;
 static const int showFparsing = 0;
-static const int showFluxCalc = 1;
+static const int showFluxCalc = 0; //1;
 static const int showRVdetails = 0;
 static const int showRGsorting = 0;
-static const int showAsyTest = 1;
+static const int showAsyTest = 0; //1;
 static const int showFunctionTests = 0;
+static const int showPlotSteps = 1;
 // Whether to write message when RG added/removed from equil
-bool showAddRemove = true; 
+static const bool showAddRemove = true; 
+
 
 // Function Signatures:
 void devcheck(int);
@@ -125,7 +127,7 @@ void plotOutput(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = false;             // Implement partial equilibium also
 
 // String holding integration method in use.  Possibilities are
 // ASY, QSS, ASY+PE, QSS+PE
@@ -161,18 +163,22 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 // Integration time data.  Start and stop times hardwired for testing
 // here but in applications they would be variables supplied by
-// calling programs.
+// calling programs. Likewise for dt_start.
 
-double start_time = 1.0e-12; //2.22018e-8;      // Start time for integration
+double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-2; //1.0e-7;           // Stop time for integration
+double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 1.0e-13;            // Initial value of integration dt
+double dt_start = 1.0e-13;           // Initial value of integration dt
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
+
+double stepfactor = 1.003;            // Timestepping factor
+double dtLast;                       // Last timestep
+bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double diffX;                        // sumX - 1.0
@@ -475,7 +481,7 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt   |E| |dE/dt|  Asy  Equil  sumX";
+            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
             string app = "  ";
             string app1;
             string Xstring = "X(";
@@ -1363,24 +1369,24 @@ class Reaction: public Utilities {
             
             // Populate the F+ and F- arrays from the master Flux array
             
-            printf("\n\nVALUES F+\n\n");
+            //printf("\n\nVALUES F+\n\n");
 
             for(int i=0; i<totalFplus; i++){
                 int indy = MapFplus[i];
                 Fplus[i] = FplusFac[i]*Flux[indy];
-                printf("i=%d FplusFac=%3.1f Flux=%7.3e Fplus=%7.3e\n", 
-                    i, FplusFac[i], Flux[indy], Fplus[i]);
+//                 printf("i=%d FplusFac=%3.1f Flux=%7.3e Fplus=%7.3e\n", 
+//                     i, FplusFac[i], Flux[indy], Fplus[i]);
             }
             
-            printf("\nVALUES F-\n\n");
+            //printf("\nVALUES F-\n\n");
             
             for(int i=0; i<totalFminus; i++){
                 int indy = MapFminus[i];
                 Fminus[i] = FminusFac[i]*Flux[indy];
-                printf("i=%d FminusFac=%3.1f Flux=%7.3e Fminus=%7.3e\n", 
-                       i, FminusFac[i], Flux[indy], Fminus[i]);
+//                 printf("i=%d FminusFac=%3.1f Flux=%7.3e Fminus=%7.3e\n", 
+//                        i, FminusFac[i], Flux[indy], Fminus[i]);
             }
-            printf("\n");
+            //printf("\n");
         }
         
         
@@ -1522,7 +1528,7 @@ class Reaction: public Utilities {
         
         static void sumFplusFminus(){
             
-            printf("\nCOMPUTING SUM F+ AND SUM F-\n");
+            //printf("\nCOMPUTING SUM F+ AND SUM F-\n");
             int minny = 0;
             double accum;
             double dydt;
@@ -1539,7 +1545,7 @@ class Reaction: public Utilities {
                         i, j, Fplus[j], accum);
                 }
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
-                printf("\nFplusSum[%d]=%8.4e", i, FplusSum[i]);
+                //printf("\nFplusSum[%d]=%8.4e", i, FplusSum[i]);
                 
                 // Sum F- for each isotope
                 minny = 0;
@@ -1553,11 +1559,11 @@ class Reaction: public Utilities {
                 }
                 setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum;
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
-                printf("\nFminusSum[%d]=%8.4e", i, FminusSum[i]);
+                //printf("\nFminusSum[%d]=%8.4e", i, FminusSum[i]);
                 
             }
             
-            printf("\n");
+            //printf("\n");
         }
         
         
@@ -2048,7 +2054,7 @@ class ReactionGroup:  public Utilities {
     // Method to set all fluxes in RG
     
     void setRGfluxes(){
-        printf("\n\n**** setRGFluxes() t = %7.4e", t);
+        //printf("\n\n**** setRGFluxes() t = %7.4e", t);
         for(int i=0; i<numberMemberReactions; i++){
             setflux(i, Flux[ memberReactions[i] ]);
         }
@@ -2134,7 +2140,7 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        printf("\n**** showRGFluxes() t = %7.4e\n", t);
+        //printf("\n**** showRGFluxes() t = %7.4e\n", t);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2143,25 +2149,26 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("*****memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
-                i, 
-                reacLabel[memberReactions[i]],
-                getrgclass(),
-                getisForward(i),   // prints 1 if true; 0 if false
-                fac*getflux(i));
+//             printf("*****memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
+//                 i, 
+//                 reacLabel[memberReactions[i]],
+//                 getrgclass(),
+//                 getisForward(i),   // prints 1 if true; 0 if false
+//                 fac*getflux(i)
+//             );
         }
-        if(isEquil){
-            printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
-        } else {
-            printf("RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", RGn, netflux); 
-        }
+//         if(isEquil){
+//             printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
+//         } else {
+//             printf("RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", RGn, netflux); 
+//         }
     }
     
     // Method to sum net flux for this reaction group
     
     double sumRGfluxes(){
         
-        printf("\n**** sumRGFluxes() t = %7.4e\n", t);
+        //printf("\n**** sumRGFluxes() t = %7.4e\n", t);
         
         double sumf = zerod;
         double fac;
@@ -2171,7 +2178,7 @@ class ReactionGroup:  public Utilities {
             if(isForward[i]) fac = 1.0;
             sumf += fac*flux[i];
         }
-        printf("\n");
+        //printf("\n");
         netflux = sumf;
         return sumf;
         
@@ -2184,7 +2191,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEquilibrium() {
         
-        printf("\n****Compute Equilibrium");
+        //printf("\n****Compute Equilibrium");
         
         computeEquilibriumRates();
         putY0();
@@ -2205,7 +2212,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEquilibriumRates() {
         
-        printf("\n****computeEquilibriumRates()");
+        //printf("\n****computeEquilibriumRates()");
         
         double kf = 0;
         double kr = 0;
@@ -2240,7 +2247,7 @@ class ReactionGroup:  public Utilities {
     
     void putY0() {
         
-        printf("\n**** Put Y0 niso=%d RGarrayindex=%d\n", niso, RGarrayIndex);
+        //printf("\n**** Put Y0 niso=%d RGarrayindex=%d\n", niso, RGarrayIndex);
         
         int ii;
         
@@ -2248,10 +2255,10 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\nRG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                   RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
+//             printf("\nRG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+//                    RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
         }
-        printf("\n");
+       // printf("\n");
     }
     
    
@@ -2260,7 +2267,7 @@ class ReactionGroup:  public Utilities {
     
     void computeC() {
         
-        printf("\n****computeC()");
+        //printf("\n****computeC()");
         
         switch (rgclass) {
             
@@ -2307,7 +2314,7 @@ class ReactionGroup:  public Utilities {
     
     void computeQuad() {
         
-        printf("\n****computeQuad()");
+        //printf("\n****computeQuad()");
         
         switch (rgclass) {
             
@@ -2447,7 +2454,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEqRatios() {
         
-        printf("\n****computeEqRatios()\n");
+        //printf("\n****computeEqRatios()\n");
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
@@ -2540,9 +2547,22 @@ class ReactionGroup:  public Utilities {
             
             if (isEquil) {
                 if (showAddRemove) {
-                    printf("\n*** totalTimeSteps=%d Adding RG %d to equilibrium\n",
-                        totalTimeSteps, RGarrayIndex);
+                    printf("\n\nADD RG %d TO EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
+                           RGarrayIndex, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
+//                     printf("\nEQUILIBRATION: Steps=%d t=%7.4e RG %d equilibrated",
+//                         totalTimeSteps, t, RGarrayIndex);
                 }
+                
+                for (int i = 0; i < niso; i++) {
+                    //isEquil = false;
+                    if (showAddRemove) {
+                        printf("\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.4e Rnow=%8.5e",
+                                isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
+                                abs(isoY[i] - isoYeq[i]) / isoYeq[i]
+                        );
+                    }
+                }
+                
                 for (int i = 0; i < niso; i++) {
                     //netVector[this.abundVecIndex[i]].isEquil = true;
                 }
@@ -2567,19 +2587,21 @@ class ReactionGroup:  public Utilities {
     
     void removeFromEquilibrium() {
         
-        printf("\n ****removeFromEquilibrium()");
+        //printf("\n ****removeFromEquilibrium()");
         
         isEquil = false;
         double thisDevious = abs((equilRatio - kratio) / kratio);
+        
         if (showAddRemove) {
-            printf("\n*** %d Remove RG %d devious=%d Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e\n", 
-                RGarrayIndex, thisDevious, mineqcheck, maxeqcheck, Yminner);
+            printf("\n\nREMOVE RG %d FROM EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
+                   RGarrayIndex, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
         }
+        
         for (int i = 0; i < niso; i++) {
             isEquil = false;
             if (showAddRemove) {
-                printf("\nZ=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.4e Rnow=%8.5e",
-                    isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
+                printf("\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.4e Rnow=%8.5e",
+                    isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
                     abs(isoY[i] - isoYeq[i]) / isoYeq[i]
                 );
             }
@@ -2589,7 +2611,7 @@ class ReactionGroup:  public Utilities {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
             if (showAddRemove) {
-                printf("\n *** Remove %s", reacLabel[i]);
+                printf("\n ***Remove RG=%d %s", RGarrayIndex, reacLabel[i]);
             }
         }
     }
@@ -2655,13 +2677,36 @@ class Integrate: public Utilities {
             // Determine trial timestep.  This timestep will be updated in the various 
             // integration methods to a final timestep using getTimestep(). 
             
+            dtLast = dt;
+            
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
-                dt = 0.0001 * t;     // Temporary for testing
-                //dt = getTrialTimestep();    // Trial adaptive timestep
+                dt = getTrialTimestep();    // Trial adaptive timestep
                 //dt = getTimestep();    // Adaptive timestep
             }
+            
+            isValidUpdate = false;
+            int dtcounter = 0;
+            
+            // Update population with iterated timestep until tolerance satisfied
+            
+            while(!isValidUpdate && dtcounter < 5){
+                dtcounter ++;
+                isValidUpdate = updatePopulations();
+                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e", 
+                    totalTimeSteps, dtcounter, t, dt, diffX);
+            }
+            
+            
+            
+        }    // end of doIntegrate(I)
+        
+        
+        
+        // Function to do population update with current dt
+        
+        static bool updatePopulations(){
             
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
@@ -2669,7 +2714,7 @@ class Integrate: public Utilities {
                 printf("\nQSS approximation (t=%7.4e, dt=%7.4e)\n", t, dt);
                 for (int i=0; i<ISOTOPES; i++){
                     QSSupdate(Fplus[i], Fminus[i], Y[i], dt);
-                    printf("\n-------Doing QSS update for %s  Y=%7.4e", isoLabel[i], Y[i]);
+                    //printf("\n-------Doing QSS update for %s  Y=%7.4e", isoLabel[i], Y[i]);
                 }
                 printf("\n");
                 
@@ -2679,10 +2724,10 @@ class Integrate: public Utilities {
             // asymptotic condition.
             
             if(doASY){
-        
-                printf("\nCheck asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-                    t, dt
-                );
+                
+                //                 printf("\nCheck asymptotic condition (t=%7.4e, dt=%7.4e)\n",
+                //                     t, dt
+                //                 );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
                     if(isAsy[i]){ totalAsy++; } 
@@ -2691,7 +2736,7 @@ class Integrate: public Utilities {
                 // Summarize results
                 
                 if(showAsyTest){
-                    printf("\nindex   iso   FminusSum           Y       check    Asy");
+                    //printf("\nindex   iso   FminusSum           Y       check    Asy");
                     string asyck;
                     for(int i=0; i<ISOTOPES; i++){
                         asyck = "false";
@@ -2703,12 +2748,12 @@ class Integrate: public Utilities {
                             ck = zerod;
                         }
                         
-                        printf("\n    %d %5s  %7.4e  %7.4e  %7.4e  %5s",
-                            i, (isoLabel[i]), FminusSum[i], 
-                               Y[i], ck, Utilities::stringToChar(asyck)
-                        );
+                        //                         printf("\n    %d %5s  %7.4e  %7.4e  %7.4e  %5s",
+                        //                             i, (isoLabel[i]), FminusSum[i], 
+                        //                                Y[i], ck, Utilities::stringToChar(asyck)
+                        //                         );
                     }
-                    printf("\n");
+                    //printf("\n");
                 }
                 
                 // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
@@ -2718,35 +2763,43 @@ class Integrate: public Utilities {
                 updateAsyEuler();
             }
             
-            
-            
-            
-            if(!doQSS){
-                // Call matrix multiply with elements of matrix having been removed by
-                // PE and Asy approximations.
-            }
+//             if(!doQSS){
+//                 // Call matrix multiply with elements of matrix having been removed by
+//                 // PE and Asy approximations.
+//             }
             
             // Check the sum of the mass fractions. Should be 1.0 if particle number is
             // being conserved
             
             sumX = Utilities::returnSumX();
-            diffX = sumX - unitd;
+            diffX = abs(sumX - unitd);
             
-        }    // end of doIntegrate(I)
-        
-        
+            if(diffX > 1e-7){
+                printf("\n****** dt = %9.5e", dt);
+                dt = 0.50*dt;
+                printf("\n****** dt = %9.5e", dt);
+                return false;
+            } else if(diffX < 1.0e-8){
+                dt *= 1.001;
+                return true;
+            } else {
+                return true;
+            }
+            
+            //printf("\n++++++sumX=%6.3f diffX =%9.5f");
+            
+            return true;
+        }
 
         
         // Function to set the trial integration timestep
         
         static double getTrialTimestep(){
             
-            // Placeholder. This will supply the initial trial timestep,
-            // which is required to initiate the iteration to the final 
+            // Trial timestep, which is required to initiate the iteration to the final 
             // timestep for this time interval.
             
-            double timestep = constant_dt;
-            return timestep;
+            return dtLast*stepfactor;
         }
         
         
@@ -2768,8 +2821,8 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
         
-        printf("Forward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
-               FplusSum, FminusSum, Y, dt);
+//         printf("Forward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
+//                FplusSum, FminusSum, Y, dt);
         return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
         
     }
@@ -2780,7 +2833,7 @@ class Integrate: public Utilities {
         
         // Update Y by asymptotic approximation (Sophia He formula)
         
-        printf("Asymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e", 
+        printf("Asymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
             Fplus, Fminus, Y, dt);
         
         return (Y + Fplus*dt)/(unitd + Fminus*dt/Y);  // New Y for asymptotic method
@@ -3190,16 +3243,16 @@ int main() {
         // are constant the rates won't change, but the fluxes generally will since
         // the abundances change even if the rates are constant.
         
-        printf("\n\nTOTAL FLUXES\n");
+        //printf("\n\nTOTAL FLUXES\n");
         
         for(int i=0; i<SIZE; i++){
             reaction[i].computeFlux();
         }
         
-        printf("\n\n\nPOPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES\n");
+        //printf("\n\n\nPOPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES\n");
         
         for(int i=0; i<numberRG; i++){
-            printf("\nRG=%d", i);
+            //printf("\nRG=%d", i);
             RG[i].setRGfluxes();
             if(doPE){
                 RG[i].sumRGfluxes();
@@ -3214,7 +3267,7 @@ int main() {
         
         if(doPE){
             
-            printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
+            //printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
             
             // Loop over reaction groups
             for(int i=0; i<numberRG; i++){
@@ -3223,7 +3276,7 @@ int main() {
                 // each reaction flux to zero.
                 
                 bool ckequil = RG[i].getisEquil();
-                printf("\n\nRG=%d isEquil=%d", i, ckequil);
+                //printf("\n\nRG=%d isEquil=%d", i, ckequil);
                 
                 if(ckequil){
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
@@ -3234,12 +3287,12 @@ int main() {
                 // Print results 
                 
                 for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                    printf("\n   %d reaction=%d %s flux=%7.4e eqcheck=%7.4e",
-                        j, RG[i].getmemberReactions(j), 
-                        RG[i].getreacString(j),
-                        Flux[RG[i].getmemberReactions(j)],
-                         RG[i].geteqcheck(j)
-                    );
+//                     printf("\n   %d reaction=%d %s flux=%7.4e eqcheck=%7.4e",
+//                         j, RG[i].getmemberReactions(j), 
+//                         RG[i].getreacString(j),
+//                         Flux[RG[i].getmemberReactions(j)],
+//                          RG[i].geteqcheck(j)
+//                     );
                 }
             }
         }
@@ -3272,21 +3325,23 @@ int main() {
             
             // Output to screen
             
-            printf("\n\n%s", Utilities::stringToChar(dasher2));
-            printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e log_t=%6.4f dt=%8.4e sumX=%6.4f", 
-                plotCounter, plotSteps, totalTimeSteps, T9, rho, t, log10(t), dt, sumX);
-            printf("\n%s", Utilities::stringToChar(dasher2));
-            tempest = "\nIndex   Iso           Y           X        dY/dt";
-            tempest += "        dX/dt           dY           dX\n";
-            printf(Utilities::stringToChar(tempest));
-            
-            for(int i=0; i<ISOTOPES; i++){
-                printf("%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
-                    i, isoLabel[i], Y[i], X[i], isotope[i].getdYdt(), isotope[i].getdXdt(),
-                       isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
-                );
+            if(showPlotSteps){
+                printf("\n%s", Utilities::stringToChar(dasher2));
+                printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e log_t=%6.4f dt=%8.4e sumX=%6.4f", 
+                    plotCounter, plotSteps, totalTimeSteps, T9, rho, t, log10(t), dt, sumX);
+                printf("\n%s", Utilities::stringToChar(dasher2));
+                tempest = "\nIndex   Iso           Y           X        dY/dt";
+                tempest += "        dX/dt           dY           dX\n";
+                printf(Utilities::stringToChar(tempest));
+                
+                for(int i=0; i<ISOTOPES; i++){
+                    printf("%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
+                        i, isoLabel[i], Y[i], X[i], isotope[i].getdYdt(), isotope[i].getdXdt(),
+                        isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
+                    );
+                }
+                printf("%s\n", Utilities::stringToChar(dasher2));
             }
-            printf("%s\n", Utilities::stringToChar(dasher2));
             
             // Output to plot arrays for this timestep
             
