@@ -167,9 +167,9 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 1.0e-10;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 1.0e-13;           // Initial value of integration dt
+double dt_start = 0.1*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -198,6 +198,7 @@ double Y[ISOTOPES];              // Array holding abundances Y for isotopes
 double X[ISOTOPES];              // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
 char isoLabel[ISOTOPES][5];      // Isotope labels (max length 5 characters; e.g. 238pu)
+double dYDt[ISOTOPES];
 
 // -----------
 
@@ -792,6 +793,7 @@ class Species: public Utilities {
         void setdYdt(double d){
             dYdt = d; 
             dXdt = d*(double)A;
+            dYDt[isoindex] = d;
         }
         
         void setdXdt(double d){
@@ -2682,6 +2684,11 @@ class Integrate: public Utilities {
             dtLast = dt;
             sumX = sumXlast;
             
+            // Find the isotope with the max change in population.
+            // Returns index of isotope with most rapidly changing population.
+            
+            int maxFluxIndex = findMaxFlux();
+            
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
             } else {
@@ -2697,20 +2704,28 @@ class Integrate: public Utilities {
             
             while(!isValidUpdate && dtcounter < dtcounterMax){
                 dtcounter ++;
-                isValidUpdate = updatePopulations();
-                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e", 
-                    totalTimeSteps, dtcounter, t, dt, diffX, Fminus[2], Y[2]);
+                updatePopulations();
+                isValidUpdate = checkTimestepTolerance();
+                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
+                       totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
             
             
-        }    // end of doIntegrate(I)
+        }    // End of doIntegrationStep
+        
+        
+        // Function to find index of isotope with fasting changing population
+        
+        static int findMaxFlux(){
+            return 1;
+        }
         
         
         
         // Function to do population update with current dt
         
-        static bool updatePopulations(){
+        static void updatePopulations(){
             
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
@@ -2772,6 +2787,29 @@ class Integrate: public Utilities {
 //                 // PE and Asy approximations.
 //             }
             
+            
+//             if(diffX > 1e-7){
+//                 printf("\n****** dt = %9.5e", dt);
+//                 dt = 0.50*dt;
+//                 printf("\n****** dt = %9.5e", dt);
+//                 return false;
+//             } else if(diffX < 1.0e-8){
+//                 dt *= 1.001;
+//                 return true;
+//             } else {
+//                 return true;
+//             }
+            
+            //printf("\n++++++sumX=%6.3f diffX =%9.5f");
+            
+            //return true;
+        }
+        
+        
+        // Function to check whether timestep meets tolerance requirements
+        
+        static bool checkTimestepTolerance(){
+            
             // Check the sum of the mass fractions. Should be 1.0 if particle number is
             // being conserved
             
@@ -2789,42 +2827,18 @@ class Integrate: public Utilities {
             if (t < equilibrateTime || !imposeEquil) {
                 if (abs(test2) > abs(test1) && massChecker > massTol) {
                     dt *= max(massTol / massChecker, downbumper);
-//                     if (checkPC)
-//                         System.out.println("t=" + deci(5, time) + " dt="
-//                         + deci(4, dt) + " Pop update after downbump:");
+                    //                     if (checkPC)
+                    //                         System.out.println("t=" + deci(5, time) + " dt="
+                    //                         + deci(4, dt) + " Pop update after downbump:");
                     updatePopulations();
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-//                     if (checkPC)
-//                         System.out.println("t=" + deci(5, time) + " dt="
-//                         + deci(4, dt) + " Pop update after upbump:");
+                    //                     if (checkPC)
+                    //                         System.out.println("t=" + deci(5, time) + " dt="
+                    //                         + deci(4, dt) + " Pop update after upbump:");
                     updatePopulations;
                 }
             }
-            
-            
-            
-//             if(diffX > 1e-7){
-//                 printf("\n****** dt = %9.5e", dt);
-//                 dt = 0.50*dt;
-//                 printf("\n****** dt = %9.5e", dt);
-//                 return false;
-//             } else if(diffX < 1.0e-8){
-//                 dt *= 1.001;
-//                 return true;
-//             } else {
-//                 return true;
-//             }
-            
-            //printf("\n++++++sumX=%6.3f diffX =%9.5f");
-            
-            return true;
-        }
-        
-        
-        // Function to check whether timestep meets tolerance requirements
-        
-        static bool checkTimestepTolerance(){
             
             return true;
         }
@@ -2837,7 +2851,7 @@ class Integrate: public Utilities {
             // Trial timestep, which is required to initiate the iteration to the final 
             // timestep for this time interval.
             
-            return dtLast*stepfactor;
+            return dt_start; //dtLast*stepfactor;
         }
         
         
@@ -2928,6 +2942,7 @@ class Integrate: public Utilities {
     
     
 };    // End class integrate
+
 
 //----------------END CLASS DEFINITIONS ----------------
 
