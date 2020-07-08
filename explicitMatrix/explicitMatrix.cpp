@@ -175,12 +175,14 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
+double massTol;                      // Timestep tolerance parameter
 
-double stepfactor = 1.003;            // Timestepping factor
+double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
 bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
+double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - 1.0
 
 double Rate[SIZE];       // Computed rate for each reaction from Reactions::computeRate()
@@ -328,7 +330,7 @@ bool imposeEquil = true;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // However, check should not be costly.
 
-double equilibrateTime = 1.0e-9; 
+double equilibrateTime = 1.0e-8; 
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -2678,6 +2680,7 @@ class Integrate: public Utilities {
             // integration methods to a final timestep using getTimestep(). 
             
             dtLast = dt;
+            sumX = sumXlast;
             
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
@@ -2688,14 +2691,15 @@ class Integrate: public Utilities {
             
             isValidUpdate = false;
             int dtcounter = 0;
+            int dtcounterMax = 5;
             
             // Update population with iterated timestep until tolerance satisfied
             
-            while(!isValidUpdate && dtcounter < 5){
+            while(!isValidUpdate && dtcounter < dtcounterMax){
                 dtcounter ++;
                 isValidUpdate = updatePopulations();
-                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e", 
-                    totalTimeSteps, dtcounter, t, dt, diffX);
+                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e", 
+                    totalTimeSteps, dtcounter, t, dt, diffX, Fminus[2], Y[2]);
             }
             
             
@@ -2774,19 +2778,53 @@ class Integrate: public Utilities {
             sumX = Utilities::returnSumX();
             diffX = abs(sumX - unitd);
             
-            if(diffX > 1e-7){
-                printf("\n****** dt = %9.5e", dt);
-                dt = 0.50*dt;
-                printf("\n****** dt = %9.5e", dt);
-                return false;
-            } else if(diffX < 1.0e-8){
-                dt *= 1.001;
-                return true;
-            } else {
-                return true;
+            // Parameters for old timestepper
+            double massChecker = abs(sumXlast - sumX);
+            double test1 = sumXlast - 1.0;
+            double test2 = sumX - 1.0;
+            double upbumper = 0.9 * massTol;
+            double downbumper = 0.1;
+            double massTolUp = 0.25 * massTol;
+            
+            if (t < equilibrateTime || !imposeEquil) {
+                if (abs(test2) > abs(test1) && massChecker > massTol) {
+                    dt *= max(massTol / massChecker, downbumper);
+//                     if (checkPC)
+//                         System.out.println("t=" + deci(5, time) + " dt="
+//                         + deci(4, dt) + " Pop update after downbump:");
+                    updatePopulations();
+                } else if (massChecker < massTolUp) {
+                    dt *= (massTol / (max(massChecker, upbumper)));
+//                     if (checkPC)
+//                         System.out.println("t=" + deci(5, time) + " dt="
+//                         + deci(4, dt) + " Pop update after upbump:");
+                    updatePopulations;
+                }
             }
             
+            
+            
+//             if(diffX > 1e-7){
+//                 printf("\n****** dt = %9.5e", dt);
+//                 dt = 0.50*dt;
+//                 printf("\n****** dt = %9.5e", dt);
+//                 return false;
+//             } else if(diffX < 1.0e-8){
+//                 dt *= 1.001;
+//                 return true;
+//             } else {
+//                 return true;
+//             }
+            
             //printf("\n++++++sumX=%6.3f diffX =%9.5f");
+            
+            return true;
+        }
+        
+        
+        // Function to check whether timestep meets tolerance requirements
+        
+        static bool checkTimestepTolerance(){
             
             return true;
         }
@@ -2829,14 +2867,14 @@ class Integrate: public Utilities {
     
     // Function to update by the asymptotic method
     
-    static double asymptoticUpdate(double Fplus, double Fminus, double Y, double dt){
+    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
         
         // Update Y by asymptotic approximation (Sophia He formula)
         
-        printf("Asymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
-            Fplus, Fminus, Y, dt);
+        printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
+            fplus, fminus, y, dtt);
         
-        return (Y + Fplus*dt)/(unitd + Fminus*dt/Y);  // New Y for asymptotic method
+        return (y + fplus*dtt)/(unitd + fminus*dtt/y);  // New Y for asymptotic method
         
     }
     
@@ -2878,6 +2916,8 @@ class Integrate: public Utilities {
         //printf("\n\n$$$$$ Updating asy-euler\n");
         for(int i=0; i<numberSpecies; i++){		
             if(checkAsy(Fminus[i], Y[i], dt) == 1){
+                printf("\n%d %s F-=%8.4e Y=%8.4e dt=%8.4e", 
+                    i, isoLabel[i], Fminus[i], Y[i], dt);
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
