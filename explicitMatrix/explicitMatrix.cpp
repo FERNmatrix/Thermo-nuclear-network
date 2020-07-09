@@ -51,7 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100                  // Number of plot output steps
+#define plotSteps 25                  // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-10;           // Stop time for integration
+double stop_time = 1.0e-8;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -2687,12 +2687,13 @@ class Integrate: public Utilities {
             // integration methods to a final timestep using getTimestep(). 
             
             dtLast = dt;
+            printf("\n******t=%7.4e dtLast=%7.4e", t, dtLast);
             sumX = sumXlast;
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
             
-            int maxFluxIndex = findMaxFlux();
+            //int maxFluxIndex = findMaxFlux();
             
             if(constantTimestep){
                 dt = constant_dt;      // Constant timestep
@@ -2715,16 +2716,8 @@ class Integrate: public Utilities {
                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
-            
-            
         }    // End of doIntegrationStep
         
-        
-        // Function to find index of isotope with fasting changing population
-        
-        static int findMaxFlux(){
-            return 1;
-        }
         
         
         
@@ -2853,10 +2846,19 @@ class Integrate: public Utilities {
         
         static double getTrialTimestep(){
             
+            double dtFlux;
+            double dtt;
+            
             // Trial timestep, which is required to initiate the iteration to the final 
             // timestep for this time interval.
             
-            return dt_start; //dtLast*stepfactor;
+            // Adapted from Java code, lines 6302 ff
+            
+            dtFlux = min(0.1*t, SF/maxdYdt);
+            dtt = dtFlux; //dtt = min(dtFlux, dtLast);
+            printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
+            return dtt;
+            //return dt_start; //dtLast*stepfactor;
         }
         
         
