@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-8;           // Stop time for integration
+double stop_time = 1.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -2687,7 +2687,7 @@ class Integrate: public Utilities {
             // integration methods to a final timestep using getTimestep(). 
             
             dtLast = dt;
-            printf("\n******t=%7.4e dtLast=%7.4e", t, dtLast);
+            //printf("\n******t=%7.4e dtLast=%7.4e", t, dtLast);
             sumX = sumXlast;
             
             // Find the isotope with the max change in population.
@@ -2856,7 +2856,7 @@ class Integrate: public Utilities {
             
             dtFlux = min(0.1*t, SF/maxdYdt);
             dtt = dtFlux; //dtt = min(dtFlux, dtLast);
-            printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
+            //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
             return dtt;
             //return dt_start; //dtLast*stepfactor;
         }
@@ -3716,10 +3716,10 @@ void getmaxdYdt(){
         ck = isotope[i].getdYdt();
         if( abs(ck) > abs(maxdYdt) ){
             maxdYdtIndex = i;
-            maxdYdt = ck;
+            maxdYdt = abs(ck);
         }
     }
-    printf("\n\n****** maxdY/dt=%-7.4e for %s", maxdYdt, isoLabel[maxdYdtIndex]);
+    //printf("\n\n****** maxdY/dt=%-7.4e for %s", maxdYdt, isoLabel[maxdYdtIndex]);
 }
 
 
