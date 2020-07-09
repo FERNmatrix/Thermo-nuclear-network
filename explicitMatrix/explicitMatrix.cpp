@@ -118,6 +118,7 @@ void setSpeciesfminus(int, double);
 void setSpeciesdYdt(int, double);
 void assignRG(void);
 void plotOutput(void);
+void getmaxdYdt(void);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -175,7 +176,8 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol;                      // Timestep tolerance parameter
+double massTol = 1e-7;               // Timestep tolerance parameter
+double SF = 0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
@@ -184,6 +186,9 @@ bool isValidUpdate;                  // Whether timestep accepted
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - 1.0
+
+double maxdYdt;                      // Maximum current dY/dt in network
+int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
 
 double Rate[SIZE];       // Computed rate for each reaction from Reactions::computeRate()
 double Flux[SIZE];       // Computed flux for each reaction from Reactions::computeFlux()
@@ -3363,6 +3368,10 @@ int main() {
         
         Reaction::sumFplusFminus();
         
+        // Find max dY/dt and corresponding isotope
+        
+        getmaxdYdt();
+        
         // Perform an integration step
         
         Integrate::doIntegrationStep();
@@ -3690,6 +3699,26 @@ int main() {
     gsl_matrix_free(fluxes);
     
 }  // End of main routine
+
+
+
+// Find the maximum dY/dt for an isotope in the network
+
+void getmaxdYdt(){
+    
+    double ck;
+    maxdYdt = 0.0;
+    maxdYdtIndex = -1;
+    
+    for(int i=0; i<ISOTOPES; i++){
+        ck = isotope[i].getdYdt();
+        if( abs(ck) > abs(maxdYdt) ){
+            maxdYdtIndex = i;
+            maxdYdt = ck;
+        }
+    }
+    printf("\n\n****** maxdY/dt=%-7.4e for %s", maxdYdt, isoLabel[maxdYdtIndex]);
+}
 
 
 
