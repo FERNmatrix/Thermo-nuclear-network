@@ -51,7 +51,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 25                  // Number of plot output steps
+#define plotSteps 100                  // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
@@ -176,8 +176,8 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol = 1e-7;               // Timestep tolerance parameter
-double SF = 1.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
+double massTol = 1.0e-7;               // Timestep tolerance parameter
+double SF = 1.5e-5;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep

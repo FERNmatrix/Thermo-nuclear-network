@@ -72,7 +72,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy+PE T9=5 rho=1e8"
+ds="Asy C++ T9=5 rho=1e8"
 ds = ds.": mass fraction"
 set title ds textcolor rgb title_color
 
