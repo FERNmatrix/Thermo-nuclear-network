@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 1.0e-4;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -527,7 +527,7 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                printf("\n++++++i=%d numAsyplot=%d", i, numAsyplot[i]);
+                //printf("\n++++++plotstep=%d numAsyplot=%d", i, numAsyplot[i]);
                 
                 fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
@@ -2714,8 +2714,8 @@ class Integrate: public Utilities {
                 dtcounter ++;
                 updatePopulations();
                 isValidUpdate = checkTimestepTolerance();
-                printf("\nSteps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
-                       totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
+//                 printf("\nSteps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
+//                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
         }    // End of doIntegrationStep
@@ -2748,7 +2748,7 @@ class Integrate: public Utilities {
                 //                     t, dt
                 //                 );
                 for(int i=0; i<ISOTOPES; i++){
-                    isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
+                    isAsy[i] = checkAsy(FminusSum[i], Y[i]);
 //                     if(isAsy[i]){ 
 //                         totalAsy ++; 
 //                         printf("\n++++++%s totalAsy=%d", isoLabel[i], totalAsy);
@@ -2766,6 +2766,7 @@ class Integrate: public Utilities {
                         asyck = "false";
                         if(isAsy[i]) asyck="true";
                         double ck;
+                        //printf("\n$$$$$$Asytest dt=", dt);
                         if(Y[i] > zerod){
                             ck = FminusSum[i]*dt/Y[i];
                         } else {
@@ -2887,8 +2888,8 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
         
-//         printf("Forward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
-//                FplusSum, FminusSum, Y, dt);
+        printf("\nForward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
+               FplusSum, FminusSum, Y, dt);
         return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
         
     }
@@ -2909,12 +2910,14 @@ class Integrate: public Utilities {
     // Function to determine whether an isotope satisfies the
     // asymptotic condition. Returns true (1) if it does and false (0) if not.
     
-    static bool checkAsy(double Fminus, double Y, double dt){
+    static bool checkAsy(double Fminus, double YY){
         
-//         printf("Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e", 
-//             Fminus, Y, dt, Fminus*dt/Y);
-        
-        if(Y > zerod && Fminus*dt/Y > unitd){
+        printf("\n$$$$$$ checkAsy: Fminus=%7.4e YY=%7.4e dt=%7.4f, Fminus*dtt/YY=%7.4f",
+            Fminus, YY, dt, Fminus*dt/YY
+        );
+        if(YY > zerod && Fminus*dt/YY > unitd){
+            printf("\nAsymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
+                Fminus, YY, dt, Fminus*dt/YY);
             return true;
         } else {
             return false;
@@ -2941,11 +2944,12 @@ class Integrate: public Utilities {
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
-        //printf("\n\n$$$$$ Updating asy-euler\n");
-        for(int i=0; i<numberSpecies; i++){		
-            if(checkAsy(Fminus[i], Y[i], dt) == 1){
-                printf("\n%d %s F-=%8.4e Y=%8.4e dt=%8.4e", 
-                    i, isoLabel[i], Fminus[i], Y[i], dt);
+        printf("\n\n$$$$$ Updating asy-euler\n");
+        for(int i=0; i<numberSpecies; i++){	
+            printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
+                   i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
+            
+            if( checkAsy(Fminus[i], Y[i]) ){
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
@@ -3408,8 +3412,9 @@ int main() {
             
             if(showPlotSteps){
                 printf("\n%s", Utilities::stringToChar(dasher2));
-                printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e log_t=%6.4f dt=%8.4e sumX=%6.4f", 
-                    plotCounter, plotSteps, totalTimeSteps, T9, rho, t, log10(t), dt, sumX);
+                printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
+                    plotCounter, plotSteps, totalTimeSteps, T9, rho, t, log10(t), dt, 
+                    totalAsy, ISOTOPES, sumX);
                 printf("\n%s", Utilities::stringToChar(dasher2));
                 tempest = "\nIndex   Iso           Y           X        dY/dt";
                 tempest += "        dX/dt           dY           dX\n";
@@ -3676,7 +3681,7 @@ int main() {
         fminus = 2.01e6;
         yy = 0.20;
         dtt = 1.0e-7;
-        bool btest = Integrate::checkAsy(fminus, yy, dtt);
+        bool btest = Integrate::checkAsy(fminus, yy);
         if(btest){
             printf("\nIsotope is asymptotic since ck>1\n");
         } else {
