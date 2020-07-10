@@ -177,7 +177,7 @@ int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
 double massTol = 1.0e-7;               // Timestep tolerance parameter
-double SF = 1.5e-5;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
+double SF = 7.3e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
@@ -371,8 +371,8 @@ double tplot[plotSteps];               // Actual time for plot step
 double dtplot[plotSteps];              // dt for plot step
 double Xplot[ISOTOPES][plotSteps];     // Mass fractions X
 double sumXplot[plotSteps];            // Sum of mass fractions
-double numAsyplot[plotSteps];          // Number asymptotic species
-double numRG_PEplot[plotSteps];        // Number RG in PE
+int numAsyplot[plotSteps];          // Number asymptotic species
+int numRG_PEplot[plotSteps];        // Number RG in PE
 double EReleasePlot[plotSteps];        // Integrated energy release
 double dEReleasePlot[plotSteps];       // Differential energy release
 
@@ -526,6 +526,8 @@ class Utilities{
                 
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
+                
+                printf("\n++++++i=%d numAsyplot=%d", i, numAsyplot[i]);
                 
                 fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
@@ -2712,7 +2714,7 @@ class Integrate: public Utilities {
                 dtcounter ++;
                 updatePopulations();
                 isValidUpdate = checkTimestepTolerance();
-                printf("\n++++++Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
+                printf("\nSteps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
@@ -2747,8 +2749,13 @@ class Integrate: public Utilities {
                 //                 );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i], dt);
-                    if(isAsy[i]){ totalAsy++; } 
+//                     if(isAsy[i]){ 
+//                         totalAsy ++; 
+//                         printf("\n++++++%s totalAsy=%d", isoLabel[i], totalAsy);
+//                     } 
                 }
+                
+                
                 
                 // Summarize results
                 
@@ -3124,11 +3131,11 @@ int main() {
     
     Utilities::log10Spacing(start_time, stop_time, plotSteps, plotTimeTargets);
     
-    printf("\n\nPlot Intervals:\n");
-    for(int i=0; i <plotSteps; i++){
-        printf("\ni=%d tplot=%7.4e log(tplot)=%7.4e", 
-               i, plotTimeTargets[i], log10(plotTimeTargets[i]));
-    }
+//     printf("\n\nPlot Intervals:\n");
+//     for(int i=0; i <plotSteps; i++){
+//         printf("\ni=%d tplot=%7.4e log(tplot)=%7.4e", 
+//                i, plotTimeTargets[i], log10(plotTimeTargets[i]));
+//     }
     
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
@@ -3377,6 +3384,14 @@ int main() {
         // Perform an integration step
         
         Integrate::doIntegrationStep();
+        
+        totalAsy = 0;
+        
+        for(int i=0; i<ISOTOPES; i++){
+            if (isAsy[i]){
+                totalAsy ++;
+            }
+        }
         
         // Display and output to files updated quantities at plotSteps times corresponding
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
