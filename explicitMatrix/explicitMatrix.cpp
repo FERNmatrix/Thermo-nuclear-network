@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-4;           // Stop time for integration
+double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -176,8 +176,8 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol = 1.0e-7;               // Timestep tolerance parameter
-double SF = 7.3e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
+double massTol = 1.0e-8;               // Timestep tolerance parameter
+double SF = 1.0e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
@@ -2894,16 +2894,24 @@ class Integrate: public Utilities {
         
     }
     
+//     static double aUpdate(double FplusSum, double FminusSum, double Y, double dt){
+//         
+//         printf("\n+++ASY input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
+//                FplusSum, FminusSum, Y, dt);
+//         //return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
+//         return Y;
+//     }
+    
     // Function to update by the asymptotic method
     
-    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
+    static double asymptoticUpdate(double fplus, double fminus, double y, double dt){
         
         // Update Y by asymptotic approximation (Sophia He formula)
         
         printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
-            fplus, fminus, y, dtt);
+            fplus, fminus, y, dt);
         
-        return (y + fplus*dtt)/(unitd + fminus*dtt/y);  // New Y for asymptotic method
+        return (y + fplus*dt)/(unitd + fminus*dt/y);  // New Y for asymptotic method
         
     }
     
@@ -2916,7 +2924,7 @@ class Integrate: public Utilities {
             Fminus, YY, dt, Fminus*dt/YY
         );
         if(YY > zerod && Fminus*dt/YY > unitd){
-            printf("\nAsymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
+            printf("\n+++Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
                 Fminus, YY, dt, Fminus*dt/YY);
             return true;
         } else {
@@ -2949,8 +2957,11 @@ class Integrate: public Utilities {
             printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
                    i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
             
-            if( checkAsy(Fminus[i], Y[i]) ){
+            if(isAsy[i]){
+            //if( checkAsy(Fminus[i], Y[i]) ){
+                printf("\n   $$$$$$ dt=%7.4e", dt);
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
+                //Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             }
