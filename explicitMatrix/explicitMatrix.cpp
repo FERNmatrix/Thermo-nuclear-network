@@ -128,7 +128,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // String holding integration method in use.  Possibilities are
 // ASY, QSS, ASY+PE, QSS+PE
@@ -170,7 +170,7 @@ double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 0.1*start_time;           // Initial value of integration dt
+double dt_start = 0.01*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -2888,8 +2888,8 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
         
-        printf("\nForward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
-               FplusSum, FminusSum, Y, dt);
+//         printf("\nForward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
+//                FplusSum, FminusSum, Y, dt);
         return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
         
     }
@@ -2908,8 +2908,8 @@ class Integrate: public Utilities {
         
         // Update Y by asymptotic approximation (Sophia He formula)
         
-        printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
-            fplus, fminus, y, dt);
+//         printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
+//             fplus, fminus, y, dt);
         
         return (y + fplus*dt)/(unitd + fminus*dt/y);  // New Y for asymptotic method
         
@@ -2920,12 +2920,12 @@ class Integrate: public Utilities {
     
     static bool checkAsy(double Fminus, double YY){
         
-        printf("\n$$$$$$ checkAsy: Fminus=%7.4e YY=%7.4e dt=%7.4f, Fminus*dtt/YY=%7.4f",
-            Fminus, YY, dt, Fminus*dt/YY
-        );
+//         printf("\n$$$$$$ checkAsy: Fminus=%7.4e YY=%7.4e dt=%7.4f, Fminus*dtt/YY=%7.4f",
+//             Fminus, YY, dt, Fminus*dt/YY
+//         );
         if(YY > zerod && Fminus*dt/YY > unitd){
-            printf("\n+++Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
-                Fminus, YY, dt, Fminus*dt/YY);
+//             printf("\n+++Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
+//                 Fminus, YY, dt, Fminus*dt/YY);
             return true;
         } else {
             return false;
@@ -2952,14 +2952,14 @@ class Integrate: public Utilities {
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
-        printf("\n\n$$$$$ Updating asy-euler\n");
+        //printf("\n\n$$$$$ Updating asy-euler\n");
         for(int i=0; i<numberSpecies; i++){	
-            printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
-                   i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
+//             printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
+//                    i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
             
             if(isAsy[i]){
             //if( checkAsy(Fminus[i], Y[i]) ){
-                printf("\n   $$$$$$ dt=%7.4e", dt);
+                //printf("\n   $$$$$$ dt=%7.4e", dt);
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
                 //Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
@@ -3424,7 +3424,7 @@ int main() {
             if(showPlotSteps){
                 printf("\n%s", Utilities::stringToChar(dasher2));
                 printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
-                    plotCounter, plotSteps, totalTimeSteps, T9, rho, t, log10(t), dt, 
+                    plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
                     totalAsy, ISOTOPES, sumX);
                 printf("\n%s", Utilities::stringToChar(dasher2));
                 tempest = "\nIndex   Iso           Y           X        dY/dt";
