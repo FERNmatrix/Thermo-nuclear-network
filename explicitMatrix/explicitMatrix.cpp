@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-4;           // Stop time for integration
+double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -176,8 +176,8 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol = 1.0e-8;               // Timestep tolerance parameter
-double SF = 1.0e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
+double massTol = 1.0e-7;               // Timestep tolerance parameter
+double SF = 7.0e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
@@ -2690,7 +2690,7 @@ class Integrate: public Utilities {
             
             dtLast = dt;
             //printf("\n******t=%7.4e dtLast=%7.4e", t, dtLast);
-            sumX = sumXlast;
+            sumXlast = sumX;
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
@@ -2834,7 +2834,7 @@ class Integrate: public Utilities {
                 sumX, diffX, test1, test2, massChecker);
             
             if (t < equilibrateTime || !imposeEquil) {
-                if (abs(test2) > abs(test1) && massChecker > massTol) {
+                if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     printf("\n****downbumper dt=%8.5e", dt);
                     dt *= max(massTol / massChecker, downbumper);
                     //                     if (checkPC)
@@ -2867,7 +2867,8 @@ class Integrate: public Utilities {
             // Adapted from Java code, lines 6302 ff
             
             dtFlux = min(0.1*t, SF/maxdYdt);
-            dtt = dtFlux; //dtt = min(dtFlux, dtLast);
+            dtt = min(dtFlux, dtLast);
+            //dtt = dtFlux; //dtt = min(dtFlux, dtLast);
             //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
             return dtt;
             //return dt_start; //dtLast*stepfactor;
