@@ -168,7 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 1.0e-4;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;           // Initial value of integration dt
 double dt;                           // Current integration timestep
@@ -325,7 +325,7 @@ double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in 
 bool equilibrate = true;
 
 // Whether actually to impose partial equilibrium
-bool imposeEquil = true;  
+bool imposeEquil = false;  
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -2830,8 +2830,12 @@ class Integrate: public Utilities {
             double downbumper = 0.1;
             double massTolUp = 0.25 * massTol;
             
+            printf("\n**** tolerance sumX=%6.4f diffX=%6.4f test1=%9.6e test2=%9.6e massChecker=%9.6e", 
+                sumX, diffX, test1, test2, massChecker);
+            
             if (t < equilibrateTime || !imposeEquil) {
                 if (abs(test2) > abs(test1) && massChecker > massTol) {
+                    printf("\n****downbumper dt=%8.5e", dt);
                     dt *= max(massTol / massChecker, downbumper);
                     //                     if (checkPC)
                     //                         System.out.println("t=" + deci(5, time) + " dt="
