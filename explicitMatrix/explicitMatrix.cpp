@@ -168,6 +168,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
+double startplot_time = 1.0e-11;     // Start time for plot output
 double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
@@ -3149,7 +3150,7 @@ int main() {
     // be triggered as soon as the time t is >= plottimeTargets[i].  The actual time of the output
     // (which will usually be slightly larger than plottimeTargets[i]) will be stored in tplot[i].
     
-    Utilities::log10Spacing(start_time, stop_time, plotSteps, plotTimeTargets);
+    Utilities::log10Spacing(startplot_time, stop_time, plotSteps, plotTimeTargets);
     
 //     printf("\n\nPlot Intervals:\n");
 //     for(int i=0; i <plotSteps; i++){
