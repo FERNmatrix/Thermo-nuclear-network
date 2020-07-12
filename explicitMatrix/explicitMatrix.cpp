@@ -2226,8 +2226,8 @@ class ReactionGroup:  public Utilities {
         
         //printf("\n****computeEquilibriumRates()");
         
-        double kf = 0;
-        double kr = 0;
+        double kf = 0.0;
+        double kr = 0.0;
         
         // Sum all contributions from members of reaction group
         
@@ -2330,37 +2330,37 @@ class ReactionGroup:  public Utilities {
         
         switch (rgclass) {
             
-            // Reaclib class 7, which can't equilibrate
+            // Reaclib class 7, which can't equilibrate in ReacLib because no inverse
             case -1: 
                 
                 break;
                 
-            case 1:
+            case 1:  // a <-> b
                 aa = 0;
                 bb = -rgkf;
                 cc = rgkr;
                 break;
                 
-            case 2:
+            case 2:  // a+b <-> c
                 aa = -rgkf;
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
                 break;
                 
-            case 3:
+            case 3:  // a+b+c <-> d
                 aa = -rgkf * isoY0[0] + rgkf * (crg[0] + crg[1]);
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
                 break;
                 
-            case 4:
+            case 4:  // a+b <-> c+d
                 aa = rgkr - rgkf;
                 bb = -rgkr * (crg[1] + crg[2]) + rgkf * crg[0];
                 cc = rgkr * crg[1] * crg[2];
                 
                 break;
                 
-            case 5:
+            case 5:  //  a+b <-> c+d+e
                 alpha = crg[0] + THIRD * (crg[2] + crg[3]);
                 beta = crg[0] - TWOTHIRD * crg[2] + THIRD * crg[3];
                 gamma = crg[0] + THIRD * crg[2] - TWOTHIRD * crg[3];
@@ -2383,8 +2383,8 @@ class ReactionGroup:  public Utilities {
             }
             isoYeq[0] = computeYeq(aa, bb, rootq);
         } else {
-            qq = -1;
-            tau = 1 / rgkf;
+            qq = -1.0;
+            tau = 1.0 / rgkf;
             isoYeq[0] = rgkr / rgkf;
         }
         
@@ -2460,8 +2460,8 @@ class ReactionGroup:  public Utilities {
     
     
     // ---------------------------------------------------------------------
-    // Method to compute array of population ratios used to check
-    // equilibration
+    // Method ReactionGroup::computeEqRatios to compute array of population 
+    // ratios used to check equilibration
     // ---------------------------------------------------------------------
     
     void computeEqRatios() {
@@ -2511,6 +2511,11 @@ class ReactionGroup:  public Utilities {
                 }
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
+                
+                if(t > equilibrateTime) printf("\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s",
+                        t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i]);
+                
+                // Store some min and max values
                 
                 if (eqcheck[i] < mineqcheck)
                     mineqcheck = eqcheck[i];
@@ -2817,6 +2822,20 @@ class Integrate: public Utilities {
         
         static bool checkTimestepTolerance(){
             
+            // Alter timestepping for PE according to magnitude of mostDevious from last timestep
+            if (imposeEquil && t > equilibrateTime) {
+                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e imposeEquil=%d mostdevious=%9.6e", 
+                    t, equilibrateTime, imposeEquil, mostDevious);
+                double deviousMax = 0.5;
+                double deviousMin = 0.1;
+                if (mostDevious > deviousMax) {
+                    dt *= 0.93;
+                } else if (mostDevious < deviousMin) {
+                    dt *= 1.03;
+                }
+                updatePopulations();
+            }
+            
             // Check the sum of the mass fractions. Should be 1.0 if particle number is
             // being conserved
             
@@ -2843,11 +2862,15 @@ class Integrate: public Utilities {
                     //                         + deci(4, dt) + " Pop update after downbump:");
                     updatePopulations();
                 } else if (massChecker < massTolUp) {
+                    printf("\n****upbumper dt=%8.5e", dt);
                     dt *= (massTol / (max(massChecker, upbumper)));
                     //                     if (checkPC)
                     //                         System.out.println("t=" + deci(5, time) + " dt="
                     //                         + deci(4, dt) + " Pop update after upbump:");
-                    updatePopulations;
+                    
+                    // This update populations causes error
+                    
+                    //updatePopulations();
                 }
             }
             
