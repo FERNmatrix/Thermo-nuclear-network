@@ -177,7 +177,7 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol = 1.0e-6;               // Timestep tolerance parameter
+double massTol = 1.0e-7;               // Timestep tolerance parameter
 double SF = 7.0e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
 double stepfactor = 1.003;           // Timestepping factor
@@ -2855,22 +2855,23 @@ class Integrate: public Utilities {
             
             if (t < equilibrateTime || !imposeEquil) {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
-                    printf("\n****downbumper dt=%8.5e", dt);
                     dt *= max(massTol / massChecker, downbumper);
+                    printf("\n****downbumperafter dt=%8.5e", dt);
                     //                     if (checkPC)
                     //                         System.out.println("t=" + deci(5, time) + " dt="
                     //                         + deci(4, dt) + " Pop update after downbump:");
                     updatePopulations();
                 } else if (massChecker < massTolUp) {
-                    printf("\n****upbumper dt=%8.5e", dt);
                     dt *= (massTol / (max(massChecker, upbumper)));
+                    printf("\n****upbumperafter dt=%8.5e", dt);
                     //                     if (checkPC)
                     //                         System.out.println("t=" + deci(5, time) + " dt="
                     //                         + deci(4, dt) + " Pop update after upbump:");
                     
-                    // This update populations causes error
+                    // This update populations causes error if included.  Not sure why
+                    // Agrees almost exactly with Java Asy is omitted (but Java includes it).
                     
-                    //updatePopulations();
+                    // updatePopulations();
                 }
             }
             
@@ -2916,20 +2917,10 @@ class Integrate: public Utilities {
     // Function to update by the forward Euler method
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
-        
-//         printf("\nForward Euler input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
-//                FplusSum, FminusSum, Y, dt);
+
         return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
         
     }
-    
-//     static double aUpdate(double FplusSum, double FminusSum, double Y, double dt){
-//         
-//         printf("\n+++ASY input: FplusSum = %9.5e FminusSum = %9.5e Y = %9.5e dt = %9.5e\n", 
-//                FplusSum, FminusSum, Y, dt);
-//         //return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
-//         return Y;
-//     }
     
     // Function to update by the asymptotic method
     
@@ -2940,7 +2931,7 @@ class Integrate: public Utilities {
 //         printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
 //             fplus, fminus, y, dt);
         
-        return (y + fplus*dt)/(unitd + fminus*dt/y);  // New Y for asymptotic method
+        return (y + fplus*dt)/(1.0 + fminus*dt/y);  // New Y for asymptotic method
         
     }
     
