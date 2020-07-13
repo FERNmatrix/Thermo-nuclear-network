@@ -166,12 +166,19 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 // here but in applications they would be variables supplied by
 // calling programs. Likewise for dt_start.
 
+// The variables start_time and stop_time define the range of integration.  
+// The variable startplot_time allows the plotting interval output
+// in gnu_out/gnufile.data to be a subset of the full integration interval. 
+// Generally, startplot_time >= start_time.
+
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
 double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
+//double stopplot_time = 1.0e-4;     // Stop time for plot output
 double dt_start = 0.1*start_time;    // Initial value of integration dt
+
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -2840,7 +2847,7 @@ class Integrate: public Utilities {
             // being conserved
             
             sumX = Utilities::returnSumX();
-            diffX = abs(sumX - unitd);
+            diffX = abs(sumX - 1.0);
             
             // Parameters for old timestepper
             double massChecker = abs(sumXlast - sumX);
@@ -3163,8 +3170,12 @@ int main() {
     // be in the array plotTimeTargets[]. In the integration the ith output step will 
     // be triggered as soon as the time t is >= plottimeTargets[i].  The actual time of the output
     // (which will usually be slightly larger than plottimeTargets[i]) will be stored in tplot[i].
+    // The variables start_time and stop_time define the range of integration.  The variable
+    // startplot_time allows the plotting interval output in to be a subset of
+    // the full integration interval.
     
-    Utilities::log10Spacing(startplot_time, stop_time, plotSteps, plotTimeTargets);
+    Utilities::log10Spacing(max(start_time, startplot_time), stop_time,
+        plotSteps, plotTimeTargets);
     
 //     printf("\n\nPlot Intervals:\n");
 //     for(int i=0; i <plotSteps; i++){
