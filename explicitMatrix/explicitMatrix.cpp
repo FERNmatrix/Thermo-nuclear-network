@@ -128,7 +128,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // String holding integration method in use.  Possibilities are
 // ASY, QSS, ASY+PE, QSS+PE
@@ -174,7 +174,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 1.0e-4;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 //double stopplot_time = 1.0e-4;     // Stop time for plot output
 double dt_start = 0.1*start_time;    // Initial value of integration dt
@@ -333,7 +333,7 @@ double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in 
 bool equilibrate = true;
 
 // Whether actually to impose partial equilibrium
-bool imposeEquil = false;  
+bool imposeEquil = true;  
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -344,7 +344,7 @@ bool imposeEquil = false;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // However, check should not be costly.
 
-double equilibrateTime = 1.0e-8; 
+double equilibrateTime = 1.0e-6; 
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -2274,8 +2274,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-//             printf("\nRG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-//                    RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
+            printf("\n****RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+                   RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
         }
        // printf("\n");
     }
@@ -2519,8 +2519,8 @@ class ReactionGroup:  public Utilities {
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
-                if(t > equilibrateTime) printf("\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s",
-                        t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i]);
+                if(t > equilibrateTime) printf("\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s Y4=%8.5e Y12=%8.5e Y16=%8.5e",
+                        t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
                 
                 // Store some min and max values
                 
@@ -4287,9 +4287,9 @@ void assignRG(){
                     RG[i].setisoN(k, N[indy]);
                     RG[i].setisoA(k, AA[indy]);
                     RG[i].setisolabel(k, isoLabel[RG[i].getisoindex(k)]);
-//                     printf("\n@@@ Reactants: k=%d isoindex=%d %s",
-//                            k, RG[i].getisoindex(k), RG[i].getisolabel(k)
-//                     );
+                    printf("\n@@@ Reactants: k=%d isoindex=%d %s",
+                           k, RG[i].getisoindex(k), RG[i].getisolabel(k)
+                    );
                     
                     //printf("\n\n@@@ k=%d %s", k, RG[i].getisolabel(k));
                     
@@ -4315,9 +4315,9 @@ void assignRG(){
                     RG[i].setisoA(k+upper1, AA[indy]);
                     
                     RG[i].setisolabel(k+upper1, isoLabel[RG[i].getisoindex(k+upper1)]);
-//                     printf("\n@@@ Products: k=%d isoindex=%d %s",
-//                            k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
-//                     );
+                    printf("\n@@@ Products: k=%d isoindex=%d %s",
+                           k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
+                    );
                     
 //                     printf("\n@@@ Product k=%d indy=%d Z=%d N=%d A=%d isoindex=%d\n", 
 //                            k+RG[i].getnumberReactants(rgindex), indy, 
