@@ -1778,8 +1778,12 @@ class ReactionVector:  public Utilities {
                 
                 if(scorekeeper > 0){
                     
-                    RGnumberMembers[rindex] = scorekeeper+1;
+                    // Increment the RG number
                     rindex++;
+                    
+                    // Store the number of reactions in this reaction group for later use
+                    RGnumberMembers[rindex] = scorekeeper+1;
+                    
                     
                     if(showRGsorting==1) printf("\nFound RG=%d RGnumberMembers=%d", 
                         rindex-1, RGnumberMembers[rindex-1]);
@@ -2152,6 +2156,8 @@ class ReactionGroup:  public Utilities {
     // Public ReactionGroup getter functions to retrieve values of private class fields
     
     int getnumberMemberReactions(){return numberMemberReactions;}
+    
+    //int getnumberMemberReactions(int k){return numberMemberReactions;}
     
     int getmemberReactions (int i) {return memberReactions[i];}
     
@@ -3268,6 +3274,10 @@ int main() {
     
     assignRG();
     
+    for (int i=0; i<SIZE; i++){
+        printf("\n~~~ RG=%d #members=%d", i, RG[i].getnumberMemberReactions());
+    }
+    
     // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
     // their sums for each isotope. ReactionVector::parseF() must be run first because it determines 
@@ -4288,7 +4298,7 @@ void assignRG(){
     for(int i=0; i<numberRG; i++){   // Loop over RGs
         RG[i] = ReactionGroup(i);
         printf("\nRG = %d", RG[i].getRGn());
-        
+        RG[i].setnumberMemberReactions(RGnumberMembers[i]);
         int rgindex = -1;
         for(int j=0; j<SIZE; j++){   // Loop over members of each RG
             if(RGindex[j] == i){
@@ -4355,8 +4365,9 @@ void assignRG(){
             
         }
         
-        RG[i].setnumberMemberReactions(rgindex+1);
-        printf("\nMember reactions = %d\n", RG[i].getnumberMemberReactions());
+        
+        //RG[i].setnumberMemberReactions(rgindex+1);
+        printf("\n&&& Member reactions = %d\n", RG[i].getnumberMemberReactions());
         
         RG[i].setrefreac();
     }
