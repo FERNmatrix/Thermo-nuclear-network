@@ -97,10 +97,10 @@ static const int showParsing = 0;
 static const int showFparsing = 0;
 static const int showFluxCalc = 0; //1;
 static const int showRVdetails = 0;
-static const int showRGsorting = 0;
+static const int showRGsorting = 1;
 static const int showAsyTest = 0; //1;
 static const int showFunctionTests = 0;
-static const int showPlotSteps = 1;
+static const int showPlotSteps = 0;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
 
@@ -316,7 +316,8 @@ string dasher = "---------------------------------------------";
 // Partial equilibrium quantities
 // ---------------------------------
 
-int numberRG;          // Number of partial equilibrium reaction groups
+int numberRG;                 // Number of partial equilibrium reaction groups
+int RGnumberMembers[SIZE];    // # members each reaction group
 
 // Define array to hold the reaction group index for each reaction. There are n reaction
 // groups in the network and each reaction belongs to one reaction group.  RGindex[m] is
@@ -1752,7 +1753,7 @@ class ReactionVector:  public Utilities {
             
             if(showRGsorting == 1) printf("\n\n\n--- SORTING REACTION GROUPS ---");
             
-            int scorekeeper = 0;
+            int scorekeeper;
             for (int i=0; i<SIZE; i++){
                 scorekeeper = 0;
                 if(i==0) rindex ++;
@@ -1767,12 +1768,23 @@ class ReactionVector:  public Utilities {
                         scorekeeper ++;
                     }
                     if(showRGsorting==1){
-                        printf("\ni=%d j=%d RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
-                            i, j, j, RGindex[j], ck, rindex, scorekeeper);
+                        printf("\ni=%d %s j=%d %s RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
+                            i, reacLabel[i], j, reacLabel[j], j, RGindex[j], ck, rindex, scorekeeper);
                     }
                 }
                 
-                if(scorekeeper > 0) rindex++;
+                // If scorekeeper > 0, this is a reaction group with scorekeeper+1 members having
+                // the same reaction vector, up to a sign.
+                
+                if(scorekeeper > 0){
+                    
+                    RGnumberMembers[rindex] = scorekeeper+1;
+                    rindex++;
+                    
+                    if(showRGsorting==1) printf("\nFound RG=%d RGnumberMembers=%d", 
+                        rindex-1, RGnumberMembers[rindex-1]);
+                }
+
             }
             
             numberRG = rindex;   // Store total number of reaction groups
@@ -1980,16 +1992,17 @@ class ReactionGroup:  public Utilities {
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
-        int niso;                              // Number of isotopic species in RG class, this object
-        int RGn;                               // Index of reaction group in RG array (0, 1, ... #RG)
+        int niso;                              // Number isotopic species in RG class, this object
+        int RGn;                               // Index reaction group in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
         int memberReactions[maxreac];          // reacIndex of reactions in reaction group
         int numberReactants[maxreac];          // Number of reactants for each reaction in RG
         int numberProducts[maxreac];           // Number of products for each reaction in RG
+        int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
         int rgclass;                           // Reaction group class (0-5)
         bool isEquil;                          // True if RG in equilibrium; false otherwise
-        bool isEquilMaybe;                     // Whether would be in equil if no threshhold condition
+        bool isEquilMaybe;                     // Whether in equil if no threshhold condition
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
         double flux[maxreac];                  // Current flux for each reaction in RG
         double netflux;                        // Net flux for the entire reaction group
@@ -2000,8 +2013,8 @@ class ReactionGroup:  public Utilities {
         
         double Yzero[ISOTOPES];        // Hold Y for this species at beginning of timestep
         
-        double crg[4];                 // Constants c1, c2, ... (1-4 entries; could allocate dynamically)
-        int numberC;                   // Number of constants crg[] for this rg class (1-4 entries)
+        double crg[4];                 // Constants c1,c2, ... (1-4 entries; allocate dynamically?)
+        int numberC;                   // Number constants crg[] for this rg class (1-4 entries)
         double rgkf;                   // Forward rate parameter for partial equilibrium
         double rgkr;                   // Reverse rate parameter for partial equilibrium
         
@@ -2054,6 +2067,32 @@ class ReactionGroup:  public Utilities {
     void setisEquil(bool b) {isEquil = b;}
     
     void setisForward(int i, bool b){isForward[i] = b;}
+    
+    void setrefreac(){
+        
+        // Set the reference reaction for the reaction group by looping
+        // through and choosing the first reaction that has .forward = true.
+        printf("\n\n$$$$ setrefreac numberMemberReactions=%d", numberMemberReactions);
+        for (int i = 0; i < numberMemberReactions; i++) {
+            printf("\n   ### RG=%d refreac=%d forward=%d\n", RGn, refreac, isForward[i]);
+            if (isForward[i]) {
+                refreac = i;
+                break;
+            }
+        }
+        
+        printf("\n### RG=%d refreac=%d\n", RGn, refreac);
+        
+        // Take care of anomalous case where there are no forward reactions with 
+        // a given reaction vector (which could be generated by suppressing
+        // all the forward reactions in a reaction group, for example).
+        
+        if (refreac == -1) {
+            refreac = 0;
+            printf("\n*** Reaction group %d has no forward reactions ***", 
+                RGarrayIndex);
+        }
+    }
     
     void setflux(int i, double f){flux[i] = f;}
     
@@ -2642,10 +2681,11 @@ class ReactionGroup:  public Utilities {
     
     
     // ----------------------------------------------------------------
-    // Method to determine if given species with index speciesIndex is 
-    // in any of the reactions of a reaction group, where speciesIndex
-    // is the array index i for isotope quantitites like Z[i]. Returns 
-    // true (1) if it is and false (0) if not.
+    // Method ReactionGroup::speciesIsInRG() to determine if given 
+    // species with index speciesIndex is in any of the reactions of a 
+    // reaction group, where speciesIndex is the array index i for 
+    // isotope quantitites like Z[i] or Y[i]. Returns true (1) if it
+    // is and false (0) if not.
     // ----------------------------------------------------------------
     
     
@@ -3176,12 +3216,6 @@ int main() {
     
     Utilities::log10Spacing(max(start_time, startplot_time), stop_time,
         plotSteps, plotTimeTargets);
-    
-//     printf("\n\nPlot Intervals:\n");
-//     for(int i=0; i <plotSteps; i++){
-//         printf("\ni=%d tplot=%7.4e log(tplot)=%7.4e", 
-//                i, plotTimeTargets[i], log10(plotTimeTargets[i]));
-//     }
     
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
@@ -4254,6 +4288,7 @@ void assignRG(){
     for(int i=0; i<numberRG; i++){   // Loop over RGs
         RG[i] = ReactionGroup(i);
         printf("\nRG = %d", RG[i].getRGn());
+        
         int rgindex = -1;
         for(int j=0; j<SIZE; j++){   // Loop over members of each RG
             if(RGindex[j] == i){
@@ -4267,12 +4302,6 @@ void assignRG(){
                 int ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
-                
-//                 printf("\n\n +++rgindex=%d numberReactants=%d numberProducts=%d\n", 
-//                     rgindex, 
-//                     RG[i].getnumberReactants(rgindex),
-//                     RG[i].getnumberProducts(rgindex)
-//                 );
                 
                 int upper1 = reaction[ck1].getnumberReactants();
                 int indy;
@@ -4290,16 +4319,7 @@ void assignRG(){
                     printf("\n@@@ Reactants: k=%d isoindex=%d %s",
                            k, RG[i].getisoindex(k), RG[i].getisolabel(k)
                     );
-                    
-                    //printf("\n\n@@@ k=%d %s", k, RG[i].getisolabel(k));
-                    
-//                    printf("\n@@@ Reactant k=%d indy=%d Z=%d N=%d A=%d isoindex=%d\n", 
-//                           k, indy, 
-//                           RG[i].getisoZ(k), 
-//                           RG[i].getisoN(k),
-//                           RG[i].getisoA(k),
-//                           RG[i].getisoindex(k)
-//                    );
+
                 }
                 
                 // Loop over product isotopes
@@ -4319,13 +4339,6 @@ void assignRG(){
                            k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
                     );
                     
-//                     printf("\n@@@ Product k=%d indy=%d Z=%d N=%d A=%d isoindex=%d\n", 
-//                            k+RG[i].getnumberReactants(rgindex), indy, 
-//                            RG[i].getisoZ(k+upper1), 
-//                            RG[i].getisoN(k+upper1),
-//                            RG[i].getisoA(k+upper1),
-//                            RG[i].getisoindex(k+upper1)
-//                     );
                 }
                 
                 RG[i].setreacString(rgindex, reaction[ck1].getreacString());
@@ -4344,6 +4357,8 @@ void assignRG(){
         
         RG[i].setnumberMemberReactions(rgindex+1);
         printf("\nMember reactions = %d\n", RG[i].getnumberMemberReactions());
+        
+        RG[i].setrefreac();
     }
 }       // End function assignRG()
 
