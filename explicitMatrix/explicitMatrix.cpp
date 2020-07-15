@@ -317,7 +317,7 @@ string dasher = "---------------------------------------------";
 // ---------------------------------
 
 int numberRG;                 // Number of partial equilibrium reaction groups
-int RGnumberMembers[SIZE];    // # members each reaction group
+int RGnumberMembers[SIZE];    // # members each RG; set in class ReactionVectors
 
 // Define array to hold the reaction group index for each reaction. There are n reaction
 // groups in the network and each reaction belongs to one reaction group.  RGindex[m] is
@@ -1044,6 +1044,7 @@ class Reaction: public Utilities {
             
             // Set field of this class
             reacString = s; 
+            
             // Set corresponding character array reacLabel in main
             char p[s.length()];  
             for (int i = 0; i < sizeof(p); i++) { 
@@ -1778,12 +1779,11 @@ class ReactionVector:  public Utilities {
                 
                 if(scorekeeper > 0){
                     
-                    // Increment the RG number
-                    rindex++;
-                    
                     // Store the number of reactions in this reaction group for later use
                     RGnumberMembers[rindex] = scorekeeper+1;
                     
+                    // Increment the RG number
+                    rindex++;
                     
                     if(showRGsorting==1) printf("\nFound RG=%d RGnumberMembers=%d", 
                         rindex-1, RGnumberMembers[rindex-1]);
@@ -2051,7 +2051,6 @@ class ReactionGroup:  public Utilities {
     public:
     
     // Constructor
-    
     ReactionGroup(int rgn){
         RGn = rgn;
         isEquil = false;
@@ -2076,9 +2075,10 @@ class ReactionGroup:  public Utilities {
         
         // Set the reference reaction for the reaction group by looping
         // through and choosing the first reaction that has .forward = true.
-        printf("\n\n$$$$ setrefreac numberMemberReactions=%d", numberMemberReactions);
+        
+        //printf("\n\n$$$$ setrefreac numberMemberReactions=%d", numberMemberReactions);
         for (int i = 0; i < numberMemberReactions; i++) {
-            printf("\n   ### RG=%d refreac=%d forward=%d\n", RGn, refreac, isForward[i]);
+            //printf("\n   ### RG=%d refreac=%d forward=%d\n", RGn, refreac, isForward[i]);
             if (isForward[i]) {
                 refreac = i;
                 break;
@@ -2200,7 +2200,8 @@ class ReactionGroup:  public Utilities {
     double geteqcheck(int k){return eqcheck[k];}
     
     
-    // Method to show all current fluxes in reaction groups
+    // Method ReactionGroup::showRGfluxes to show all current fluxes in 
+    // reaction groups
     
     void showRGfluxes(){
         
@@ -2228,7 +2229,7 @@ class ReactionGroup:  public Utilities {
 //         }
     }
     
-    // Method to sum net flux for this reaction group
+    // Method ReactionGroup::sumRGfluxes to sum net flux for this reaction group
     
     double sumRGfluxes(){
         
@@ -2250,12 +2251,11 @@ class ReactionGroup:  public Utilities {
     
     
     // ---------------------------------------------------------
-    // Method to compute all partial equilibrium quantities
+    // Method ReactionGroup::computeEquilibrium() to compute
+    // all partial equilibrium quantities
     //----------------------------------------------------------
     
     void computeEquilibrium() {
-        
-        //printf("\n****Compute Equilibrium");
         
         computeEquilibriumRates();
         putY0();
@@ -2269,14 +2269,14 @@ class ReactionGroup:  public Utilities {
         }
     }
     
+    
     // -----------------------------------------------------------------
-    // Method to compute the net forward and reverse rates k_f and k_r
-    // required in partial equilibrium approximation.
+    // Method ReactionGroup::computeEquilibriumRates() to compute the 
+    // net forward and reverse rates k_f and k_r required in partial 
+    // equilibrium approximation.
     // -----------------------------------------------------------------
     
     void computeEquilibriumRates() {
-        
-        //printf("\n****computeEquilibriumRates()");
         
         double kf = 0.0;
         double kr = 0.0;
@@ -2305,33 +2305,29 @@ class ReactionGroup:  public Utilities {
     
     
     // -----------------------------------------------------------------------
-    // Method to put the values of Y0 at beginning of timestep into the Y0[]
-    // array for this object
+    // Method ReactionGroup::putY0() to put the values of Y0 at beginning of 
+    // timestep into the Y0[] array for this object
     // -----------------------------------------------------------------------
     
     void putY0() {
         
-        //printf("\n**** Put Y0 niso=%d RGarrayindex=%d\n", niso, RGarrayIndex);
-        
         int ii;
-        
         for (int k = 0; k < niso; k++) {    // loop over the niso isotopes in RG
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
             printf("\n****RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                   RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
+                RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
         }
-       // printf("\n");
+        printf("\n");
     }
     
    
+   // -----------------------------------------------------------------------
+   // Method ReactionGroup::computeC() to compute values of constants crg[]
+   // -----------------------------------------------------------------------
    
-    // Method to compute the values of the constants crg[]
-    
     void computeC() {
-        
-        //printf("\n****computeC()");
         
         switch (rgclass) {
             
@@ -2372,13 +2368,11 @@ class ReactionGroup:  public Utilities {
     
     // --------------------------------------------------------------
     // Method ReactionGroup::computeQuad() to compute the quadratic 
-    // coefficients needed for the equilibrium solution and to compute 
-    // the equilibrium solution
+    // coefficients needed for the equilibrium solution and to 
+    // compute the equilibrium solution
     // --------------------------------------------------------------
     
     void computeQuad() {
-        
-        //printf("\n****computeQuad()");
         
         switch (rgclass) {
             
@@ -2388,6 +2382,7 @@ class ReactionGroup:  public Utilities {
                 break;
                 
             case 1:  // a <-> b
+                
                 aa = 0;
                 bb = -rgkf;
                 cc = rgkr;
@@ -2497,14 +2492,17 @@ class ReactionGroup:  public Utilities {
     
     
     // ---------------------------------------------------------------------
-    // Method to compute q = 4ac-b^2 for quadratic solution
+    // Method ReactionGroup::computeq to compute q = 4ac-b^2 for quadratic 
+    // solution
     // ---------------------------------------------------------------------
     
     double computeq(double a, double b, double c) {
         return 4 * a * c - b * b;
     }
     
-    // Method to compute Yeq[0]
+    // ---------------------------------------------------------------------
+    //  Method ReactionGroup::computeYeq to compute Yeq[0]
+    // ---------------------------------------------------------------------
     
     double computeYeq(double a, double b, double rootq) {
         return -0.5 * (b + rootq) / a;
@@ -2517,8 +2515,6 @@ class ReactionGroup:  public Utilities {
     // ---------------------------------------------------------------------
     
     void computeEqRatios() {
-        
-        //printf("\n****computeEqRatios()\n");
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
@@ -2651,7 +2647,8 @@ class ReactionGroup:  public Utilities {
     
     
     // -----------------------------------------------------------
-    // Method to remove reaction group from equilibrium
+    // Method ReactionGroup::removeFromEquilibrium() to remove 
+    // reaction group from equilibrium
     // -----------------------------------------------------------
     
     void removeFromEquilibrium() {
@@ -2720,13 +2717,15 @@ class ReactionGroup:  public Utilities {
         
     }       // End function speciesIsInRG(int)
     
-    
 };          // End class ReactionGroup
 
 
 
-// Class Integrate with methods to integrate the reaction network.  Inherits from
-// class Utilities.
+// ----------------------------------------------------------------
+// Class Integrate with methods to integrate the reaction network.  
+// Inherits from class Utilities.
+// ----------------------------------------------------------------
+
 
 class Integrate: public Utilities {
     
@@ -4299,9 +4298,15 @@ void assignRG(){
         RG[i] = ReactionGroup(i);
         printf("\nRG = %d", RG[i].getRGn());
         RG[i].setnumberMemberReactions(RGnumberMembers[i]);
+        RG[i].setrefreac();
+        
+        printf("\n~~~ assignRG i=%d numbermembers=%d", i, RG[i].getnumberMemberReactions());
         int rgindex = -1;
+        
         for(int j=0; j<SIZE; j++){   // Loop over members of each RG
+            
             if(RGindex[j] == i){
+                
                 rgindex ++;          // Index for member reactions in RG
                 RG[i].setmemberReactions(rgindex, j);
                 RG[i].setrgclass(RGclass[j]);
@@ -4319,6 +4324,7 @@ void assignRG(){
                 // Loop over reactant isotopes
                 
                 for(int k=0; k<upper1; k++){
+                    
                     indy = reaction[ck1].getreactantIndex(k);
                     RG[i].setreactantIsoIndex(k, indy);
                     RG[i].setisoindex(k, indy);
@@ -4327,7 +4333,7 @@ void assignRG(){
                     RG[i].setisoA(k, AA[indy]);
                     RG[i].setisolabel(k, isoLabel[RG[i].getisoindex(k)]);
                     printf("\n@@@ Reactants: k=%d isoindex=%d %s",
-                           k, RG[i].getisoindex(k), RG[i].getisolabel(k)
+                        k, RG[i].getisoindex(k), RG[i].getisolabel(k)
                     );
 
                 }
@@ -4336,6 +4342,7 @@ void assignRG(){
 
                 int upper2 = reaction[ck1].getnumberProducts();
                 for(int k=0; k<upper2; k++){
+                    
                     indy = reaction[ck1].getproductIndex(k);
                     RG[i].setproductIsoIndex(k, indy);
                     RG[i].setisoindex(k+upper1, indy);
@@ -4362,14 +4369,12 @@ void assignRG(){
                     RG[i].getisForward(rgindex)
                 );
             }
-            
         }
         
         
         //RG[i].setnumberMemberReactions(rgindex+1);
         printf("\n&&& Member reactions = %d\n", RG[i].getnumberMemberReactions());
         
-        RG[i].setrefreac();
     }
 }       // End function assignRG()
 
