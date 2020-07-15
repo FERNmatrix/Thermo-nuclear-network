@@ -3156,6 +3156,7 @@ int main() {
             reaction[i].getQ(),
             reaction[i].getprefac()
         );
+
     }
     
     printf("\n\n\nREACLIB PARAMETERS FOR %d REACTIONS\n", SIZE);
@@ -3349,6 +3350,7 @@ int main() {
     for(int i=0; i<SIZE; i++){
         reaction[i].computeConstantFacs(T9, rho);
         reaction[i].computeRate(T9, rho);
+
     }
     
     if(constant_T9 && constant_rho){
@@ -4312,6 +4314,11 @@ void assignRG(){
         int ck1;
         int reffer = RG[i].getrefreac();
         //printf("\n^^^ reffer=%d", reffer);
+        
+        
+        for(int m=0; m<2; m++){
+            printf("\n *m=%d", m);
+        }
         
         // Set the isoindex for species in RG using the reference reaction for the RG
         // identified by reaction index refreac
