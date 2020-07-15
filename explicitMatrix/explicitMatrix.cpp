@@ -2169,6 +2169,8 @@ class ReactionGroup:  public Utilities {
     
     bool getisForward(int i){return isForward[i];}
     
+    int getrefreac(){return refreac;}
+    
     double getflux(int i){return flux[i];}
     
     int getRGn(){return RGn;}
@@ -4301,9 +4303,31 @@ void assignRG(){
         RG[i].setrefreac();
         
         printf("\n~~~ assignRG i=%d numbermembers=%d", i, RG[i].getnumberMemberReactions());
-        int rgindex = -1;
         
-        for(int j=0; j<SIZE; j++){   // Loop over members of each RG
+        int rgindex = -1;
+        int counter = -1;
+        int upper1;
+        int upper2;
+        int indy;
+        int ck1;
+        int reffer = RG[i].getrefreac();
+        //printf("\n^^^ reffer=%d", reffer);
+        
+        // Set the isoindex for species in RG using the reference reaction for the RG
+        // identified by reaction index refreac
+        
+//         for(int j=0; j<SIZE; j++){ 
+//             if(RGindex[j] == i){
+//                 counter ++;
+//                 
+//                 //RG[i].setisoindex();
+//             }
+//         }
+        
+        
+        // Loop over member reactions for this RG
+        
+        for(int j=0; j<SIZE; j++){   
             
             if(RGindex[j] == i){
                 
@@ -4314,46 +4338,49 @@ void assignRG(){
                 RG[i].setRGarrayIndex(i);
                 RG[i].setniso(RGclass[j]);
                 
-                int ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
+                ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
                 
-                int upper1 = reaction[ck1].getnumberReactants();
-                int indy;
+                upper1 = reaction[ck1].getnumberReactants();
+                //int indy;
                 
-                // Loop over reactant isotopes
+                
+                
+                // Loop over reactant isotopes within this reaction
                 
                 for(int k=0; k<upper1; k++){
                     
                     indy = reaction[ck1].getreactantIndex(k);
                     RG[i].setreactantIsoIndex(k, indy);
-                    RG[i].setisoindex(k, indy);
+                    if(indy == reffer) RG[i].setisoindex(k, indy);
                     RG[i].setisoZ(k, Z[indy]);
                     RG[i].setisoN(k, N[indy]);
                     RG[i].setisoA(k, AA[indy]);
                     RG[i].setisolabel(k, isoLabel[RG[i].getisoindex(k)]);
-                    printf("\n@@@ Reactants: k=%d isoindex=%d %s",
-                        k, RG[i].getisoindex(k), RG[i].getisolabel(k)
+                    printf("\n@@@ Reactants: k=%d isoindex=%d %s indy=%d reffer=%d",
+                        k, RG[i].getisoindex(k), RG[i].getisolabel(k), indy, reffer
                     );
 
                 }
                 
                 // Loop over product isotopes
 
-                int upper2 = reaction[ck1].getnumberProducts();
+                upper2 = reaction[ck1].getnumberProducts();
                 for(int k=0; k<upper2; k++){
                     
                     indy = reaction[ck1].getproductIndex(k);
                     RG[i].setproductIsoIndex(k, indy);
-                    RG[i].setisoindex(k+upper1, indy);
+                    if(indy == reffer) RG[i].setisoindex(k+upper1, indy);
                     
                     RG[i].setisoZ(k+upper1, Z[indy]);
                     RG[i].setisoN(k+upper1, N[indy]);
                     RG[i].setisoA(k+upper1, AA[indy]);
                     
                     RG[i].setisolabel(k+upper1, isoLabel[RG[i].getisoindex(k+upper1)]);
-                    printf("\n@@@ Products: k=%d isoindex=%d %s",
-                           k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
+                    printf("\n@@@ Products: k=%d isoindex=%d %s indy=%d reffer=%d",
+                           k+upper1, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1),
+                           indy, reffer
                     );
                     
                 }
