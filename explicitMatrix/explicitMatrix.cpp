@@ -1190,8 +1190,8 @@ class Reaction: public Utilities {
         
         int getreactantZ(int k){
             if(k > numberReactants-1){
-//                 printf("\n\nERROR: k-1=%d larger than number reactants %d", 
-//                     k, numberReactants);
+                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+                    k, numberReactants);
                 return -1;
             } else {
                 return reactantZ[k];
@@ -1200,8 +1200,8 @@ class Reaction: public Utilities {
         
         int getreactantN(int k){
             if(k > numberReactants-1){
-//                 printf("\n\nERROR: k-1=%d larger than number reactants %d", 
-//                     k, numberReactants);
+                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+                    k, numberReactants);
                 return -1;
             } else {
                 return reactantN[k];
@@ -1210,8 +1210,8 @@ class Reaction: public Utilities {
         
         int getproductZ(int k){
             if(k > numberProducts-1){
-//                 printf("\n\nERROR: k-1=%d larger than number products %d", 
-//                     k, numberProducts);
+                printf("\n\nERROR: k-1=%d larger than number products %d", 
+                    k, numberProducts);
                 return -1;
             } else {
                 return productZ[k];
@@ -1220,8 +1220,8 @@ class Reaction: public Utilities {
         
         int getproductN(int k){
             if(k > numberProducts-1){
-//                 printf("\n\nERROR: k-1=%d larger than number products %d", 
-//                     k, numberProducts);
+                printf("\n\nERROR: k-1=%d larger than number products %d", 
+                    k, numberProducts);
                 return -1;
             } else {
                 return productN[k];
@@ -4302,23 +4302,41 @@ void assignRG(){
     
     
     // Test fields of reaction[]
+    
     printf("\nreaction[] fields:");
     
     for(int i=0; i<SIZE; i++){
         
-        printf("\n==== [%d] %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d", 
-            i, Utilities::stringToChar(reaction[i].getreacString()),
-            reaction[i].getreacGroupClass(),
-            reaction[i].getnumberReactants(),
-            reaction[i].getnumberProducts(),
-            reaction[i].getRGmemberIndex()
-        );
+//         printf("\n==== [%d] %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d", 
+//             i, Utilities::stringToChar(reaction[i].getreacString()),
+//             reaction[i].getreacGroupClass(),
+//             reaction[i].getnumberReactants(),
+//             reaction[i].getnumberProducts(),
+//             reaction[i].getRGmemberIndex()
+//         );
+        
+        cout << "\n==== [" << i 
+             << "] " << reaction[i].getreacString() 
+             << " RGclass=" << reaction[i].getreacGroupClass() 
+             << " #reac=" << reaction[i].getnumberReactants() 
+             << " #prod=" << reaction[i].getnumberProducts() 
+             << " RGmemberIndex=" << reaction[i].getRGmemberIndex() 
+             << " RG=" << reaction[i].getrgindex();
         
         int nummreac = reaction[i].getnumberReactants();
+        int nummprod = reaction[i].getnumberProducts();
+        
+//         cout << "\n     Reactants:"; 
+//         
+//         for(int m=0; m<nummreac; m++){
+//             cout << " Z[" << m << "]=" << reaction[i].getreactantZ(m);
+//         }
+//         for(int m=0; m<nummreac; m++){
+//             cout << " N[" << m << "]=" << reaction[i].getreactantZ(m);
+//         }
 //         string tss = "\nrgindexZ[0]=%d";
 //         printf(Utilities::stringToChar(tss), reaction[i].getreactantZ(0));
-        printf("\n     RG=%d\n     Reactants: Z[0]=%d Z[1]=%d Z[2]=%d", 
-            reaction[i].getrgindex(),
+        printf("\n     Reactants: Z[0]=%d Z[1]=%d Z[2]=%d", 
             reaction[i].getreactantZ(0),
             reaction[i].getreactantZ(1),
             reaction[i].getreactantZ(2)
