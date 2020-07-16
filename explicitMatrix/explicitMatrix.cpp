@@ -4299,7 +4299,15 @@ void assignRG(){
         RG[i].setrefreac();
         
         printf("\n~~~ assignRG i=%d numbermembers=%d", i, RG[i].getnumberMemberReactions());
+
         int rgindex = -1;
+        int counter = -1;
+        int upper1;
+        int upper2;
+        int indy;
+        int ck1;
+        int reffer = RG[i].getrefreac();
+        //printf("\n^^^ reffer=%d", reffer);
         
         for(int j=0; j<SIZE; j++){   // Loop over members of each RG
             
@@ -4312,20 +4320,21 @@ void assignRG(){
                 RG[i].setRGarrayIndex(i);
                 RG[i].setniso(RGclass[j]);
                 
-                int ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
+                ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
                 
-                int upper1 = reaction[ck1].getnumberReactants();
+                upper1 = reaction[ck1].getnumberReactants();
                 int indy;
                 
-                // Loop over reactant isotopes
+                // Loop over reactant isotopes within this reaction
                 
                 for(int k=0; k<upper1; k++){
                     
                     indy = reaction[ck1].getreactantIndex(k);
                     RG[i].setreactantIsoIndex(k, indy);
                     RG[i].setisoindex(k, indy);
+                    // if (indy == reffer) RG[i].setisoindex(k, indy); // Dumps core.  Why??
                     RG[i].setisoZ(k, Z[indy]);
                     RG[i].setisoN(k, N[indy]);
                     RG[i].setisoA(k, AA[indy]);
@@ -4338,13 +4347,14 @@ void assignRG(){
                 
                 // Loop over product isotopes
 
-                int upper2 = reaction[ck1].getnumberProducts();
+                upper2 = reaction[ck1].getnumberProducts();
                 for(int k=0; k<upper2; k++){
                     
                     indy = reaction[ck1].getproductIndex(k);
                     RG[i].setproductIsoIndex(k, indy);
+                    //printf("\n&&&& indy=%d reffer=%d");
                     RG[i].setisoindex(k+upper1, indy);
-                    
+                    //if(indy == reffer) RG[i].setisoindex(k+upper1, indy); // Dumps core.  Why??
                     RG[i].setisoZ(k+upper1, Z[indy]);
                     RG[i].setisoN(k+upper1, N[indy]);
                     RG[i].setisoA(k+upper1, AA[indy]);
@@ -4387,6 +4397,13 @@ void assignRG(){
                 );
             }
         }
+        
+//         // test
+//         for(int i=0; i<3; i++){
+//             for(int j=0; j<4; j++){
+//                 printf("\n$#+");
+//             }
+//         }
         
     }
 }       // End function assignRG()
