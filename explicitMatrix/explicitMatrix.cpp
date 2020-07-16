@@ -1190,8 +1190,8 @@ class Reaction: public Utilities {
         
         int getreactantZ(int k){
             if(k > numberReactants-1){
-                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
-                    k, numberReactants);
+//                 printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+//                     k, numberReactants);
                 return -1;
             } else {
                 return reactantZ[k];
@@ -1200,8 +1200,8 @@ class Reaction: public Utilities {
         
         int getreactantN(int k){
             if(k > numberReactants-1){
-                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
-                    k, numberReactants);
+//                 printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+//                     k, numberReactants);
                 return -1;
             } else {
                 return reactantN[k];
@@ -1210,8 +1210,8 @@ class Reaction: public Utilities {
         
         int getproductZ(int k){
             if(k > numberProducts-1){
-                printf("\n\nERROR: k-1=%d larger than number products %d", 
-                    k, numberProducts);
+//                 printf("\n\nERROR: k-1=%d larger than number products %d", 
+//                     k, numberProducts);
                 return -1;
             } else {
                 return productZ[k];
@@ -1220,8 +1220,8 @@ class Reaction: public Utilities {
         
         int getproductN(int k){
             if(k > numberProducts-1){
-                printf("\n\nERROR: k-1=%d larger than number products %d", 
-                    k, numberProducts);
+//                 printf("\n\nERROR: k-1=%d larger than number products %d", 
+//                     k, numberProducts);
                 return -1;
             } else {
                 return productN[k];
@@ -1996,7 +1996,7 @@ class ReactionGroup:  public Utilities {
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
-        int niso;                              // Number isotopic species in RG class, this object
+        int niso;                              // Number isotopic species in this RG object
         int RGn;                               // Index reaction group in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
         int memberReactions[maxreac];          // reacIndex of reactions in reaction group
@@ -2044,7 +2044,7 @@ class ReactionGroup:  public Utilities {
         int isoN[5];                   // N for the niso isotopes in the reactions of the group
         double isoA[5];                // A for the niso isotopes in the reactions of the group
         double isoYeq[5];              // Y_eq for the niso isotopes in the reactions of the group
-        double isoY[5];                // Current Y for the niso isotopes in the reactions of the group
+        double isoY[5];                // Current Y for niso isotopes in reactions of the group
         double isoY0[5];               // Current Y for isotopes in the reactions of the group
 
     
@@ -4290,7 +4290,68 @@ void setRG(int index, int RGclass, int RGindex){
 
 void assignRG(){
     
+    
+    printf("\n\nRGclass[]");
+    for(int m=0; m<SIZE; m++){
+        printf("\n ++++++ %s RGclass[%d] = %d", reacLabel[m], m, RGclass[m]);
+    }
+    printf("\n");
+    
     printf("\n\n\nPOPULATING RG[] OBJECT FIELDS\n");
+   
+    
+    
+    // Test fields of reaction[]
+    printf("\nreaction[] fields:");
+    
+    for(int i=0; i<SIZE; i++){
+        
+        printf("\n==== [%d] %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d", 
+            i, Utilities::stringToChar(reaction[i].getreacString()),
+            reaction[i].getreacGroupClass(),
+            reaction[i].getnumberReactants(),
+            reaction[i].getnumberProducts(),
+            reaction[i].getRGmemberIndex()
+        );
+        
+        int nummreac = reaction[i].getnumberReactants();
+//         string tss = "\nrgindexZ[0]=%d";
+//         printf(Utilities::stringToChar(tss), reaction[i].getreactantZ(0));
+        printf("\n     RG=%d\n     Reactants: Z[0]=%d Z[1]=%d Z[2]=%d", 
+            reaction[i].getrgindex(),
+            reaction[i].getreactantZ(0),
+            reaction[i].getreactantZ(1),
+            reaction[i].getreactantZ(2)
+        );
+        
+        printf(" N[0]=%d N[1]=%d N[2]=%d", 
+               reaction[i].getreactantN(0),
+               reaction[i].getreactantN(1),
+               reaction[i].getreactantN(2)
+        );
+        
+        printf("\n     Products: Z[0]=%d Z[1]=%d Z[2]=%d", 
+               reaction[i].getproductZ(0),
+               reaction[i].getproductZ(1),
+               reaction[i].getproductZ(2)
+        );
+        
+        printf(" N[0]=%d N[1]=%d N[2]=%d", 
+               reaction[i].getproductN(0),
+               reaction[i].getproductN(1),
+               reaction[i].getproductN(2)
+        );
+        
+//         printf("\n     rgindex=%d Reactants: %s %s %s", 
+//                reaction[i].getrgindex(),
+//                reaction[i].getreactantZ(0),
+//                reaction[i].getreactantZ(1),
+//                reaction[i].getreactantZ(2)
+//         );
+    }
+    printf("\n");
+    
+    
     
     for(int i=0; i<numberRG; i++){   // Loop over RGs
         RG[i] = ReactionGroup(i);
@@ -4308,6 +4369,15 @@ void assignRG(){
         int ck1;
         int reffer = RG[i].getrefreac();
         //printf("\n^^^ reffer=%d", reffer);
+
+        
+        // Populate the species index array for this RG using reference reaction reffer
+        
+        int RGclassRef = RGclass[reffer];
+        RG[i].setniso(RGclassRef);
+        printf("\n++++++ RG=%d refreac=%d RGclassRef=%d niso=%d\n", 
+            i, RG[i].getrefreac(), RGclassRef, RG[i].getniso());
+        
         
         for(int j=0; j<SIZE; j++){   // Loop over members of each RG
             
@@ -4318,7 +4388,7 @@ void assignRG(){
                 RG[i].setrgclass(RGclass[j]);
                 RG[i].setisForward(rgindex, isPEforward[j] );
                 RG[i].setRGarrayIndex(i);
-                RG[i].setniso(RGclass[j]);
+                //RG[i].setniso(RGclass[j]);
                 
                 ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
@@ -4360,9 +4430,9 @@ void assignRG(){
                     RG[i].setisoA(k+upper1, AA[indy]);
                     
                     RG[i].setisolabel(k+upper1, isoLabel[RG[i].getisoindex(k+upper1)]);
-                    printf("\n@@@ Products: k=%d isoindex=%d %s",
-                           k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
-                    );
+//                     printf("\n@@@ Products: k=%d isoindex=%d %s",
+//                            k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
+//                     );
                     
                 }
                 
