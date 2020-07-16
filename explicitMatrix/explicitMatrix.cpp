@@ -2169,6 +2169,8 @@ class ReactionGroup:  public Utilities {
     
     bool getisForward(int i){return isForward[i];}
     
+    int getrefreac(){return refreac;}
+    
     double getflux(int i){return flux[i];}
     
     int getRGn(){return RGn;}
@@ -3273,10 +3275,6 @@ int main() {
     
     assignRG();
     
-    for (int i=0; i<SIZE; i++){
-        printf("\n~~~ RG=%d #members=%d", i, RG[i].getnumberMemberReactions());
-    }
-    
     // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
     // their sums for each isotope. ReactionVector::parseF() must be run first because it determines 
@@ -4375,10 +4373,18 @@ void assignRG(){
         //RG[i].setnumberMemberReactions(rgindex+1);
         printf("\n&&& Member reactions = %d\n", RG[i].getnumberMemberReactions());
         
-        // Test nested
-        for(int i=0; i<2; i++){
-            for(int j=0; j<3; j++){
-                printf("\n>j=%d", j);
+        // Summary
+        
+        for(int i=0; i<numberRG; i++){
+            printf("\n\nSummary: RG=%d", RG[i].getRGn());
+            int numr = RG[i].getnumberMemberReactions();
+            for(int j=0; j<numr; j++){
+                int reacID = RG[i].getmemberReactions(j);
+                printf("\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
+                    j, reacLabel[reacID], RG[i].getisolabel(0),
+                    RG[i].getisolabel(1), RG[i].getisolabel(2),
+                    RG[i].getisolabel(3)
+                );
             }
         }
         
