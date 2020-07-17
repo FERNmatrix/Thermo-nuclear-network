@@ -4317,43 +4317,7 @@ void assignRG(){
         int nummreac = reaction[i].getnumberReactants();
         int nummprod = reaction[i].getnumberProducts();
         
-//         cout << "\n     Reactants:"; 
-//         
-//         for(int m=0; m<nummreac; m++){
-//             cout << " Z[" << m << "]=" << reaction[i].getreactantZ(m);
-//         }
-//         for(int m=0; m<nummreac; m++){
-//             cout << " N[" << m << "]=" << reaction[i].getreactantZ(m);
-//         }
-//         string tss = "\nrgindexZ[0]=%d";
-//         printf(Utilities::stringToChar(tss), reaction[i].getreactantZ(0));
-        
-//         printf("\n     Reactants: Z[0]=%d Z[1]=%d Z[2]=%d", 
-//             reaction[i].getreactantZ(0),
-//             reaction[i].getreactantZ(1),
-//             reaction[i].getreactantZ(2)
-//         );
-//         
-//         printf(" N[0]=%d N[1]=%d N[2]=%d", 
-//                reaction[i].getreactantN(0),
-//                reaction[i].getreactantN(1),
-//                reaction[i].getreactantN(2)
-//         );
-//         
-//         printf("\n     Products: Z[0]=%d Z[1]=%d Z[2]=%d", 
-//                reaction[i].getproductZ(0),
-//                reaction[i].getproductZ(1),
-//                reaction[i].getproductZ(2)
-//         );
-//         
-//         printf(" N[0]=%d N[1]=%d N[2]=%d", 
-//                reaction[i].getproductN(0),
-//                reaction[i].getproductN(1),
-//                reaction[i].getproductN(2)
-//         );
-        
-        
-//         // Reactant Z and N
+//         // Write reactant Z and N
 //         printf("\n     Reactants: Z[0]=%d", reaction[i].getreactantZ(0));
 //         if(nummreac > 1) printf(" Z[1]=%d", reaction[i].getreactantZ(1));
 //         if(nummreac > 2) printf(" Z[2]=%d", reaction[i].getreactantZ(2));
@@ -4361,12 +4325,12 @@ void assignRG(){
 //         if(nummreac > 1) printf(" N[1]=%d", reaction[i].getreactantN(1));
 //         if(nummreac > 2) printf(" N[2]=%d", reaction[i].getreactantN(2));
         
-        // Reactant symbols
+        // Write reactant symbols
         printf("\n    Reactants: iso[0]=%s", isoLabel[reaction[i].getreactantIndex(0)]);
         if(nummreac > 1) printf(" iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
         if(nummreac > 2) printf(" iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
         
-//         // Product Z and N
+//         // Write product Z and N
 //         printf("\n     Products: Z[%d]=%d", nummreac, reaction[i].getproductZ(0));
 //         if(nummprod > 1) printf(" Z[%d]=%d", nummreac+1, reaction[i].getproductZ(1));
 //         if(nummprod > 2) printf(" Z[%d]=%d", nummreac+2, reaction[i].getproductZ(2));
@@ -4374,7 +4338,7 @@ void assignRG(){
 //         if(nummprod > 1) printf(" N[%d]=%d", nummreac+1, reaction[i].getproductN(1));
 //         if(nummprod > 2) printf(" N[%d]=%d", nummreac+2, reaction[i].getproductN(2));
         
-        // Product Symbols
+        // Write product Symbols
         printf("\n    Products: iso[%d]=%s", nummreac, isoLabel[reaction[i].getproductIndex(0)]);
         if(nummprod > 1) printf(" iso[%d]=%s", nummreac+1, isoLabel[reaction[i].getproductIndex(1)]);
         if(nummprod > 2) printf(" iso[%d]=%s", nummreac+2, isoLabel[reaction[i].getproductIndex(2)]);
