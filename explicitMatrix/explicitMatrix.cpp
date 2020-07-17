@@ -2079,7 +2079,7 @@ class ReactionGroup:  public Utilities {
         //printf("\n\n$$$$ setrefreac numberMemberReactions=%d", numberMemberReactions);
         for (int i = 0; i < numberMemberReactions; i++) {
             //printf("\n   ### RG=%d refreac=%d forward=%d\n", RGn, refreac, isForward[i]);
-            if (isForward[i]) {
+            if (isPEforward[i]) {
                 refreac = i;
                 break;
             }
@@ -2562,8 +2562,15 @@ class ReactionGroup:  public Utilities {
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
-                if(t > equilibrateTime) printf("\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s Y4=%8.5e Y12=%8.5e Y16=%8.5e",
-                        t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
+                if(t > equilibrateTime) {
+//                     printf(
+//                         "\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s Y4=%8.5e Y12=%8.5e Y16=%8.5e",
+//                         t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
+                    printf("\n+++computeEqRatios t=%7.4e RG=%d i=%d niso=%d eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e ",
+                           t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
+                    );
+                    printf("%s Y4=%7.4e Y12=%7.4e Y16=%7.4e", isolabel[i], Y[0], Y[1], Y[2]);
+                }
                 
                 // Store some min and max values
                 
@@ -4297,14 +4304,6 @@ void assignRG(){
     printf("\n\nSOME FIELDS FOR THE %d Reaction OBJECTS reaction[]:\n", SIZE);
     
     for(int i=0; i<SIZE; i++){
-        
-//         printf("\n==== [%d] %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d", 
-//             i, Utilities::stringToChar(reaction[i].getreacString()),
-//             reaction[i].getreacGroupClass(),
-//             reaction[i].getnumberReactants(),
-//             reaction[i].getnumberProducts(),
-//             reaction[i].getRGmemberIndex()
-//         );
         
         cout << "\n[" << i 
              << "] " << reaction[i].getreacString() 
