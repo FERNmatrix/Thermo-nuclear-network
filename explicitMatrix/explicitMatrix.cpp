@@ -3244,6 +3244,15 @@ int main() {
         }
     }
     
+/*    
+    for(int p=0; p<SIZE; p++){
+        printf("\n\nReaction = %d", p);
+        for(int k=0; k<2; k++){
+            printf("\n  iso[%d]= ", RG[p].getisoindex(k));
+        } 
+    }*/
+    
+    
     // Find the time intervals for plot output during the integration. After this
     // function is executed the plotSteps target time intervals for output will
     // be in the array plotTimeTargets[]. In the integration the ith output step will 
