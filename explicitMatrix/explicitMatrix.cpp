@@ -95,12 +95,12 @@ char networkFile[] = "data/CUDAnet_3alpha.inp";
 static const int displayInput = 0;
 static const int showParsing = 0;
 static const int showFparsing = 0;
-static const int showFluxCalc = 0; //1;
+static const int showFluxCalc = 0;
 static const int showRVdetails = 0;
-static const int showRGsorting = 1;
-static const int showAsyTest = 0; //1;
+static const int showRGsorting = 0;
+static const int showAsyTest = 0;
 static const int showFunctionTests = 0;
-static const int showPlotSteps = 0;
+static const int showPlotSteps = 1;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
 
@@ -130,10 +130,15 @@ bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibium also
 
-// String holding integration method in use.  Possibilities are
-// ASY, QSS, ASY+PE, QSS+PE
-
-string methstring; 
+// char asyString[] = "ASY";
+// char qssString[] = "QSS";
+// char asyPEstring[] = "ASY+QSS";
+// char qssPEstring[] = "QSS+QSS";
+// 
+// // String holding integration method in use.  Possibilities are
+// // ASY, QSS, ASY+PE, QSS+PE
+// 
+// char methstring[15]; 
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -308,8 +313,9 @@ int* MapFminus;   // Index mapper for Fminus (Dim totalFminus)
 int* tempInt1;
 int* tempInt2;
 
-string tempest;   // Utility string to hold temporary quantities
-string dasher = "---------------------------------------------";
+//string tempest;   // Utility string to hold temporary quantities
+
+char dasher[] = "---------------------------------------------";
 
 
 // ---------------------------------
@@ -504,9 +510,7 @@ class Utilities{
             string Xstring = "X(";
             string iso;
             
-            fprintf(pFile, "# %s:  %d integration steps\n",
-                stringToChar(methstring), totalTimeSteps
-            );
+            fprintf(pFile, "# %d integration steps\n", totalTimeSteps);
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
@@ -1488,7 +1492,7 @@ class Reaction: public Utilities {
             // Write to rate array in main
             Rate[getreacIndex()] = Rrate;
             
-            printf("\n%d %19s densfac=%6.3e rate= %6.3e Rrate=%6.3e", 
+            printf("\n1-body %d %19s densfac=%6.3e rate= %6.3e Rrate=%6.3e", 
                    getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
             
         }
@@ -1519,9 +1523,7 @@ class Reaction: public Utilities {
                     flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ]; 	
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
                     if(showFluxCalc == 1){
-                        s = "\n%d %18s reactants=%d iso0=%d iso1=%d Rrate=%7.3e ";
-                        s += "Y1=%7.3e Y2=%7.3e Flux=%7.3e";
-                        printf(Utilities::stringToChar(s),
+                        printf("\n%d %18s reactants=%d iso0=%d iso1=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0], 
                             reactantIndex[1], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], flux);
                     }
@@ -1532,9 +1534,7 @@ class Reaction: public Utilities {
                     flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ] * Y[ reactantIndex[2] ];
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
                     if(showFluxCalc == 1){
-                        s = "\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e ";
-                        s += "Y2=%7.3e Y3=%7.3e Flux=%7.3e";
-                        printf(Utilities::stringToChar(s),
+                        printf("\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
                             reactantIndex[2], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
                             Y[ reactantIndex[2] ], flux);
@@ -3094,17 +3094,17 @@ int main() {
     // In either case we may choose to add the partial equilibrium (PE) algorithm. So
     // valid options are Asy, QSS, Asy+PE, and QSS+PE.
     
-    methstring="Using ";
-    if(doASY){
-       methstring += "ASY";
+    if(doASY && !doPE){
+       cout << "Using ASY method";
        doQSS = false;
-    } else {
-        methstring += "QSS";
+    } else if (doQSS && !doPE) {
+        cout << "Using QSS method";
         doASY = false;
+    } else if (doASY && doPE){
+        cout << "Using ASY+PE method";
+    } else if (doQSS && doPE){
+        cout << "Using QSS+PE method";
     }
-    if(doPE){methstring += "+PE";}
-    methstring += " method";
-    printf("%s\n", Utilities::stringToChar(methstring));
     
     // Set the temperature in units of 10^9 K and density in units of g/cm^3. In a
     // realistic calculation the temperature and density will be passed from the hydro 
@@ -3141,13 +3141,12 @@ int main() {
     char *rateLibraryFilePtr = rateLibraryFile;
     readLibraryParams(rateLibraryFilePtr);
     
-//     // Print out some quantitites from the Reaction object reaction[].  
+    // Print out some quantitites from the Reaction object reaction[].  
     
     for(int i=0; i<SIZE; i++){
-        
         printf("\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
             reaction[i].getreacIndex(), 
-            Utilities::stringToChar(reaction[i].getreacString()),  
+            reaction[i].getreacChar(),  
             reaction[i].getreacClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
@@ -3489,19 +3488,17 @@ int main() {
         
         if(t >= plotTimeTargets[plotCounter-1]){
             
-            string dasher2 = dasher + dasher;   // Dashed-line separator
-            
             // Output to screen
             
             if(showPlotSteps){
-                printf("\n%s", Utilities::stringToChar(dasher2));
+                printf("\n%s%s", dasher, dasher);
                 printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
                     totalAsy, ISOTOPES, sumX);
-                printf("\n%s", Utilities::stringToChar(dasher2));
-                tempest = "\nIndex   Iso           Y           X        dY/dt";
-                tempest += "        dX/dt           dY           dX\n";
-                printf(Utilities::stringToChar(tempest));
+                printf("\n%s%s", dasher, dasher);
+                char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
+                char tempest2[] = "        dX/dt           dY           dX\n";
+                printf("%s%s", tempest1, tempest2);
                 
                 for(int i=0; i<ISOTOPES; i++){
                     printf("%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
@@ -3509,7 +3506,7 @@ int main() {
                         isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
                     );
                 }
-                printf("%s\n", Utilities::stringToChar(dasher2));
+                printf("%s%s\n", dasher, dasher);
             }
             
             // Output to plot arrays for this timestep
@@ -3556,9 +3553,7 @@ int main() {
     printf("\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
     for(int i=0; i<ISOTOPES; i++){
-        tempest = "\n%d %s Y=%7.3e X=%7.3e F+Sum=%7.3e ";
-        tempest += "F-Sum=%7.3e dY/dt=%+7.3e dX/dt=%+7.3e";
-        printf(Utilities::stringToChar(tempest), 
+        printf("\n%d %s Y=%7.3e X=%7.3e F+Sum=%7.3e F-Sum=%7.3e dY/dt=%+7.3e dX/dt=%+7.3e", 
                i, 
                isotope[i].getLabel(), 
                isotope[i].getY(), 
@@ -3713,10 +3708,10 @@ int main() {
         printf("\n%g is the maximum of %g and %g\n\n", 
             Utilities::maximumOf(tii, tjj), tii, tjj);
         
-        // Test of Utilities::stringToChar(string)
-        printf("TEST Utilities::stringToChar(string) to convert string to Char array:\n");
-        string ss = "Now is the time";
-        printf("Char array = %s\n\n", Utilities::stringToChar(ss));
+//         // Test of Utilities::stringToChar(string)
+//         printf("TEST Utilities::stringToChar(string) to convert string to Char array:\n");
+//         string ss = "Now is the time";
+//         printf("Char array = %s\n\n", Utilities::stringToChar(ss));
         
         // Test of static method ReactionVector::compareGSLvectors to 
         // compare two GSL vectors. Returns 0 if not equal, 1 if equal, and
