@@ -2318,8 +2318,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\n****RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
+            printf("\n**** putY0: t=%8.4e RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+                t, RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
         }
         printf("\n");
     }
@@ -2334,31 +2334,36 @@ class ReactionGroup:  public Utilities {
         switch (rgclass) {
             
             // Reaclib class 7, which can't equilibrate
-            case -1: 
+            case -1:   
                 break;
                 
-            case 1:
+            case 1:    // a <-> b
+                
                 crg[0] = isoY0[0] + isoY0[1];
                 break;
                 
-            case 2:
+            case 2:    // a+b <-> c
+                
                 crg[0] = isoY0[1] - isoY0[0];
                 crg[1] = isoY0[1] + isoY0[2];
                 break;
                 
-            case 3:
+            case 3:    // a+b+c <-> d
+                
                 crg[0] = isoY0[0] - isoY0[1];
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
                 break;
                 
-            case 4:
+            case 4:    // a+b <-> c+d
+                
                 crg[0] = isoY0[0] - isoY0[1];
                 crg[1] = isoY0[0] + isoY0[2];
                 crg[2] = isoY0[0] + isoY0[3];
                 break;
                 
-            case 5:
+            case 5:    //  a+b <-> c+d+e
+                
                 crg[0] = isoY0[0] + THIRD * (isoY0[2] + isoY0[3] + isoY0[4]);
                 crg[1] = isoY0[0] - isoY0[1];
                 crg[2] = isoY0[2] - isoY0[3];
@@ -2391,18 +2396,21 @@ class ReactionGroup:  public Utilities {
                 break;
                 
             case 2:  // a+b <-> c
+                
                 aa = -rgkf;
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
                 break;
                 
             case 3:  // a+b+c <-> d
+                
                 aa = -rgkf * isoY0[0] + rgkf * (crg[0] + crg[1]);
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
                 break;
                 
             case 4:  // a+b <-> c+d
+                
                 aa = rgkr - rgkf;
                 bb = -rgkr * (crg[1] + crg[2]) + rgkf * crg[0];
                 cc = rgkr * crg[1] * crg[2];
@@ -2410,6 +2418,7 @@ class ReactionGroup:  public Utilities {
                 break;
                 
             case 5:  //  a+b <-> c+d+e
+                
                 alpha = crg[0] + THIRD * (crg[2] + crg[3]);
                 beta = crg[0] - TWOTHIRD * crg[2] + THIRD * crg[3];
                 gamma = crg[0] + THIRD * crg[2] - TWOTHIRD * crg[3];
@@ -2447,32 +2456,37 @@ class ReactionGroup:  public Utilities {
                 
                 break;
                 
-            case 1:
+            case 1:    // a <-> b
+                
                 isoYeq[1] = crg[0] - isoYeq[0];
                 equilRatio = isoY[0] / isoY[1];
                 break;
                 
-            case 2:
+            case 2:    // a+b <-> c
+                
                 isoYeq[1] = crg[0] + isoYeq[0];
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
                 break;
                 
-            case 3:
+            case 3:    // a+b+c <-> d
+                
                 isoYeq[1] = isoYeq[0] - crg[0];
                 isoYeq[2] = isoYeq[0] - crg[1];
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
                 break;
                 
-            case 4:
+            case 4:    // a+b <-> c+d
+                
                 isoYeq[1] = isoYeq[0] - crg[0];
                 isoYeq[2] = crg[1] - isoYeq[0];
                 isoYeq[3] = crg[2] - isoYeq[0];
                 equilRatio = isoY[0] * isoY[1] / (isoY[2] * isoY[3]);
                 break;
                 
-            case 5:
+            case 5:    //  a+b <-> c+d+e
+                
                 isoYeq[1] = isoYeq[0] - crg[1];
                 isoYeq[2] = alpha - isoYeq[0];
                 isoYeq[3] = beta - isoYeq[0];
@@ -3162,6 +3176,18 @@ int main() {
             reaction[i].getQ(),
             reaction[i].getprefac()
         );
+    }
+    
+    printf("\n\nReactantIndex[][] and ProductIndex[][]:\n\n");
+    for(int i=0; i<SIZE; i++){
+        printf("%17s: ", reacLabel[i]);
+        for(int j=0; j<reaction[i].getnumberReactants(); j++){
+            printf("ReactantIndex[%d][%d]=%d ", i, j, ReactantIndex[i][j]);
+        }
+        for(int j=0; j<reaction[i].getnumberProducts(); j++){
+            printf(" ProductIndex[%d][%d]=%d", i, j, ProductIndex[i][j]);
+        }
+        printf("\n");
     }
     
     printf("\n\n\nREACLIB PARAMETERS FOR %d REACTIONS\n", SIZE);
