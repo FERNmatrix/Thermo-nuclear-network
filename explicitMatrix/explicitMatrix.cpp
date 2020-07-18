@@ -943,8 +943,10 @@ class Reaction: public Utilities {
         double p[7];                 // ReacLib parameters
         int reactantZ[3];            // Array holding Z of reactants
         int reactantN[3];            // Array holding N of reactants
+        int reactantA[3];            // A = Z+N
         int productZ[4];             // Array holding Z of products
         int productN[4];             // Array holding N of products
+        int productA[4];             // A = Z+N
         int reactantIndex[3];        // Index of species isotope vector for each reactant isotope
         int productIndex[4];         // Index of species isotope vector for each product isotope
         
@@ -1099,6 +1101,12 @@ class Reaction: public Utilities {
             }
         }
         
+        void setreactantA(void){
+            for (int i=0; i<numberReactants; i++){
+                reactantA[i] = reactantZ[i] + reactantN[i];
+            }
+        }
+        
         void setproductZ(int z[]){
             for (int i=0; i<numberProducts; i++){
                 
@@ -1118,6 +1126,12 @@ class Reaction: public Utilities {
                 
                 // Change array in main
                 prodN[getreacIndex()][i] = n[i];
+            }
+        }
+        
+        void setproductA(void){
+            for (int i=0; i<numberProducts; i++){
+                productA[i] = productZ[i] + productN[i];
             }
         }
         
@@ -1212,6 +1226,10 @@ class Reaction: public Utilities {
             }
         }
         
+        int getreactantA(int i){
+           return (reactantZ[i] + reactantN[i]);
+        }
+        
         int getproductZ(int k){
             if(k > numberProducts-1){
                 printf("\n\nERROR: k-1=%d larger than number products %d", 
@@ -1230,6 +1248,10 @@ class Reaction: public Utilities {
             } else {
                 return productN[k];
             }
+        }
+        
+        int getproductA(int i){
+            return (productZ[i] + productN[i]);
         }
         
         int getreactantIndex(int k){
@@ -3335,6 +3357,10 @@ int main() {
         for(int jj=0; jj<nrn; jj++){
             int qqq = reaction[ppp].getreactantIndex(jj);
             RG[ii].setisoindex(jj, qqq);
+            RG[ii].setisoZ(jj, reaction[ppp].getreactantZ(jj));
+            RG[ii].setisoN(jj, reaction[ppp].getreactantN(jj));
+            RG[ii].setisoA(jj, reaction[ppp].getreactantA(jj));
+            
             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
                 ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj));
         }
@@ -3342,6 +3368,10 @@ int main() {
         for(int jj=0; jj<nrn2; jj++){
             int qqq = reaction[ppp].getproductIndex(jj);
             RG[ii].setisoindex(jj+nrn, qqq);
+            RG[ii].setisoZ(jj+nrn, reaction[ppp].getproductZ(jj));
+            RG[ii].setisoN(jj+nrn, reaction[ppp].getproductN(jj));
+            RG[ii].setisoA(jj+nrn, reaction[ppp].getproductA(jj));
+            
             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
                    ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj+nrn));
         }
@@ -3364,6 +3394,16 @@ int main() {
         printf("\n      Z[0]=%d", RG[ii].getisoZ(0));
         for(int jj=1; jj<upjj; jj++){
             printf(" Z[%d]=%d", jj, RG[ii].getisoZ(jj));
+        }
+        
+        printf("\n      N[0]=%d", RG[ii].getisoN(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" N[%d]=%d", jj, RG[ii].getisoN(jj));
+        }
+        
+        printf("\n      A[0]=%d", RG[ii].getisoA(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" A[%d]=%d", jj, RG[ii].getisoA(jj));
         }
     }
     
@@ -4393,7 +4433,7 @@ void assignRG(){
     for(int i=0; i<SIZE; i++){
         
         cout << "\n[" << i 
-             << "] " << reaction[i].getreacString() 
+             << "] " << reaction[i].getreacChar() 
              << " RGclass=" << reaction[i].getreacGroupClass() 
              << " #reac=" << reaction[i].getnumberReactants() 
              << " #prod=" << reaction[i].getnumberProducts() 
@@ -4425,7 +4465,7 @@ void assignRG(){
 //         if(nummprod > 2) printf(" N[%d]=%d", nummreac+2, reaction[i].getproductN(2));
         
         // Write product Symbols
-        printf("\n    Products: iso[%d]=%s", nummreac, isoLabel[reaction[i].getproductIndex(0)]);
+        printf("\n        Products: iso[%d]=%s", nummreac, isoLabel[reaction[i].getproductIndex(0)]);
         if(nummprod > 1) printf(" iso[%d]=%s", nummreac+1, isoLabel[reaction[i].getproductIndex(1)]);
         if(nummprod > 2) printf(" iso[%d]=%s", nummreac+2, isoLabel[reaction[i].getproductIndex(2)]);
         
