@@ -3312,9 +3312,60 @@ int main() {
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup)*numberRG);
     
+ //   for(int i=0; i<numberRG; i++){   // Loop over RGs
+ //        RG[i] = ReactionGroup(i);
+        //printf("\nRG = %d", RG[i].getRGn());
+//         RG[i].setnumberMemberReactions(RGnumberMembers[i]);
+//         RG[i].setrefreac();
+ //   }
+    
     // Assign values of fields for the ReactionGroup objects RG[]
     
     assignRG();
+    
+    // Assign correct order of isoindex[] in RG using reference reaction.
+    
+    for(int ii=0; ii<numberRG; ii++){
+        
+        int rn = RG[ii].getrefreac();
+        int nrn = RG[ii].getnumberReactants(rn);
+        int ppp = RG[ii].getmemberReactions(rn);
+        //printf("\n\n??? RG=%d rn=%d nrn=%d ppp=%d\n", ii, rn, nrn, ppp);
+        printf("\n");
+        for(int jj=0; jj<nrn; jj++){
+            int qqq = reaction[ppp].getreactantIndex(jj);
+            RG[ii].setisoindex(jj, qqq);
+            printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
+                ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj));
+        }
+        int nrn2 = RG[ii].getnumberProducts(rn);
+        for(int jj=0; jj<nrn2; jj++){
+            int qqq = reaction[ppp].getproductIndex(jj);
+            RG[ii].setisoindex(jj+nrn, qqq);
+            printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
+                   ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj+nrn));
+        }
+    }
+    
+    // Check isoindex[] assignments
+    
+    printf("\n\n???? Summary isoindex[]:");
+    
+    for(int ii=0; ii<numberRG; ii++){
+        int rn = RG[ii].getrefreac();
+        int upjj = RG[ii].getnumberReactants(rn) + RG[ii].getnumberProducts(rn);
+        
+        printf("\nRG=%d ", ii);
+        
+        for(int jj=0; jj<upjj; jj++){
+            printf(" iso[%d]=%d", jj, RG[ii].getisoindex(jj));
+        }
+        
+        printf("\n      Z[0]=%d", RG[ii].getisoZ(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" Z[%d]=%d", jj, RG[ii].getisoZ(jj));
+        }
+    }
     
     // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
@@ -4385,6 +4436,7 @@ void assignRG(){
     printf("\n\nPOPULATING RG[] OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){   // Loop over RGs
+        
         RG[i] = ReactionGroup(i);
         printf("\nRG = %d", RG[i].getRGn());
         RG[i].setnumberMemberReactions(RGnumberMembers[i]);
