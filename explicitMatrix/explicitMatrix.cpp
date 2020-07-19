@@ -2033,7 +2033,7 @@ class ReactionGroup:  public Utilities {
         double flux[maxreac];                  // Current flux for each reaction in RG
         double netflux;                        // Net flux for the entire reaction group
         char reaclabel[maxreac][LABELSIZE];    // Member reaction label
-        int RGarrayIndex;                      // Index of ReactionGroup RG[] array
+        //int RGarrayIndex;                      // Index of ReactionGroup RG[] array
         
         // Partial equilibrium quantities
         
@@ -2116,7 +2116,7 @@ class ReactionGroup:  public Utilities {
         if (refreac == -1) {
             refreac = 0;
             printf("\n*** Reaction group %d has no forward reactions ***", 
-                RGarrayIndex);
+                RGn);
         }
     }
     
@@ -2146,7 +2146,7 @@ class ReactionGroup:  public Utilities {
     
     void setnetflux(double f){netflux = f;}
     
-    void setRGarrayIndex(int i){RGarrayIndex = i;}
+    //void setRGarrayIndex(int i){RGarrayIndex = i;}
     
     void setniso(int rgclass){niso = nspecies[rgclass-1];}
     
@@ -2207,7 +2207,7 @@ class ReactionGroup:  public Utilities {
     
     double getnetflux(){return netflux;}
     
-    int getRGarrayIndex(){return RGarrayIndex;}
+    //int getRGarrayIndex(){return RGarrayIndex;}
     
     int getniso(){return niso;};
     
@@ -2349,7 +2349,7 @@ class ReactionGroup:  public Utilities {
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
             printf("\n**** putY0: t=%8.4e RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                t, RGarrayIndex, k, ii, isoLabel[ii],  isoY[k]);
+                t, RGn, k, ii, isoLabel[ii],  isoY[k]);
         }
         printf("\n");
     }
@@ -2566,7 +2566,7 @@ class ReactionGroup:  public Utilities {
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
-            mostDeviousIndex = RGarrayIndex;
+            mostDeviousIndex = RGn;
         }
         
         // The return statements in the following if-clauses cause reaction
@@ -2609,9 +2609,9 @@ class ReactionGroup:  public Utilities {
                 if(t > equilibrateTime) {
 //                     printf(
 //                         "\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s Y4=%8.5e Y12=%8.5e Y16=%8.5e",
-//                         t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
+//                         t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
                     printf("\n+++computeEqRatios t=%7.4e RG=%d i=%d niso=%d eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e ",
-                           t, RGarrayIndex, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
+                           t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
                     );
                     printf("%s Y4=%7.4e Y12=%7.4e Y16=%7.4e", isolabel[i], Y[0], Y[1], Y[2]);
                 }
@@ -2666,9 +2666,9 @@ class ReactionGroup:  public Utilities {
             if (isEquil) {
                 if (showAddRemove) {
                     printf("\n\nADD RG %d TO EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
-                           RGarrayIndex, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
+                           RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
 //                     printf("\nEQUILIBRATION: Steps=%d t=%7.4e RG %d equilibrated",
-//                         totalTimeSteps, t, RGarrayIndex);
+//                         totalTimeSteps, t, RGn);
                 }
                 
                 for (int i = 0; i < niso; i++) {
@@ -2713,7 +2713,7 @@ class ReactionGroup:  public Utilities {
         
         if (showAddRemove) {
             printf("\n\nREMOVE RG %d FROM EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
-                   RGarrayIndex, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
+                   RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
         }
         
         for (int i = 0; i < niso; i++) {
@@ -2730,7 +2730,7 @@ class ReactionGroup:  public Utilities {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
             if (showAddRemove) {
-                printf("\n ***Remove RG=%d %s", RGarrayIndex, reacLabel[i]);
+                printf("\n ***Remove RG=%d %s", RGn, reacLabel[i]);
             }
         }
     }
@@ -4565,7 +4565,7 @@ void assignRG(){
                 RG[i].setmemberReactions(rgindex, j);
                 RG[i].setrgclass(RGclass[j]);
                 RG[i].setisForward(rgindex, isPEforward[j] );
-                RG[i].setRGarrayIndex(i);
+                RG[i].setRGn(i);
                 //RG[i].setniso(RGclass[j]);
                 
                 ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[]
