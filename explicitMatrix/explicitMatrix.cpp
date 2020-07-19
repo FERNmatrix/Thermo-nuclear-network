@@ -4577,7 +4577,7 @@ void assignRG(){
                     indy = reaction[ck1].getreactantIndex(k);
                     RG[i].setreactantIsoIndex(k, indy);
                     RG[i].setisoindex(k, indy);
-                    // if (indy == reffer) RG[i].setisoindex(k, indy); // Dumps core.  Why??
+                    if (indy == reffer) RG[i].setisoindex(k, indy); // Dumps core.  Why??
                     RG[i].setisoZ(k, Z[indy]);
                     RG[i].setisoN(k, N[indy]);
                     RG[i].setisoA(k, AA[indy]);
@@ -4597,7 +4597,7 @@ void assignRG(){
                     RG[i].setproductIsoIndex(k, indy);
                     //printf("\n&&&& indy=%d reffer=%d");
                     RG[i].setisoindex(k+upper1, indy);
-                    //if(indy == reffer) RG[i].setisoindex(k+upper1, indy); // Dumps core.  Why??
+                    if(indy == reffer) RG[i].setisoindex(k+upper1, indy); // Dumps core.  Why??
                     RG[i].setisoZ(k+upper1, Z[indy]);
                     RG[i].setisoN(k+upper1, N[indy]);
                     RG[i].setisoA(k+upper1, AA[indy]);
