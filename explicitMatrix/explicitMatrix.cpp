@@ -932,6 +932,7 @@ class Reaction: public Utilities {
         string reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
+        int numberIsotopes;          // numberReactants + numberProducts in reaction
         string reacString;           // String describing reaction
         string resonanceType;        // Whether resonant (r) or non-resonant (nr)
         int isEC;                    // Whether electron capture reaction (1) or not (0)
@@ -949,6 +950,7 @@ class Reaction: public Utilities {
         int productA[4];             // A = Z+N
         int reactantIndex[3];        // Index of species isotope vector for each reactant isotope
         int productIndex[4];         // Index of species isotope vector for each product isotope
+        int isoIndex[7];             // Index of species isotope vector for all isotopes in reaction
         
         // Precomputed temperature factors for ReacLib rates.  Computed in computeTfacs(T9), where
         // T9 is the temperature in units of 10^9 K.
@@ -1149,6 +1151,24 @@ class Reaction: public Utilities {
             }
         }
         
+        // Overloaded versions of setisoIndex.  This version takes no arguments
+        // and constructs isoIndex[] as the concatenation of reactantIndex[]
+        // and productIndex[], assuming that those fields have been populated.
+        
+        void setisoIndex(void){
+            for(int i=0; i<numberReactants; i++){
+                isoIndex[i] = reactantIndex[i];
+            }
+            for(int i=0; i<numberProducts; i++){
+                isoIndex[i+numberReactants] = productIndex[i];
+            }
+        }
+        
+        // Overloaded versions of setisoIndex.  This version takes two arguments
+        // sets a value of a particular isoIndex[].
+        
+        void setisoIndex(int i, int j){isoIndex[i] =  j;}
+        
         void setdensfac(double d){ densfac = d;}
         
         void setrate(double r){ rate = r; }
@@ -1277,6 +1297,8 @@ class Reaction: public Utilities {
         }
         
         double getdensfac(){ return densfac; }
+        
+        int getisoIndex(int i){return isoIndex[i];}
         
         double getrate(){ return rate; }
         
@@ -3373,8 +3395,8 @@ int main() {
             RG[ii].setisoN(jj, reaction[ppp].getreactantN(jj));
             RG[ii].setisoA(jj, reaction[ppp].getreactantA(jj));
             RG[ii].setisolabel(jj, isoLabel[qqq]);
-            printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-                ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj));
+//             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
+//                 ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj));
         }
         int nrn2 = RG[ii].getnumberProducts(rn);
         for(int jj=0; jj<nrn2; jj++){
@@ -3384,8 +3406,8 @@ int main() {
             RG[ii].setisoN(jj+nrn, reaction[ppp].getproductN(jj));
             RG[ii].setisoA(jj+nrn, reaction[ppp].getproductA(jj));
             RG[ii].setisolabel(jj+nrn, isoLabel[qqq]);
-            printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-                   ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj+nrn));
+//             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
+//                    ii, rn, nrn, ppp, jj, RG[ii].getisoindex(jj+nrn));
         }
         
         // Set the Ys in the RG
