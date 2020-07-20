@@ -3372,121 +3372,6 @@ int main() {
     assignRG();
     
     
-    // Check that the function assignRG() has assigned isotope indices in each
-    // reaction group consistent with the order used for partial equilibrium
-    // in the original Java code.
-    
-//    for(int i=0; i<numberRG; i++){
-        
-//         int rn = RG[i].getrefreac();
-//         int nrn = RG[i].getnumberReactants(rn);
-//         int ppp = RG[i].getmemberReactions(rn);
-//         //printf("\n\n??? RG=%d rn=%d nrn=%d ppp=%d\n", i, rn, nrn, ppp);
-//         printf("\n");
-        
-//         // Loop over reactants
-//         
-//         for(int k=0; k<nrn; k++){
-//             int qqq = reaction[ppp].getreactantIndex(k);
-//             RG[i].setisoindex(k, qqq);
-//             RG[i].setreactantIsoIndex(k, qqq);
-//             RG[i].setisoZ(k, reaction[ppp].getreactantZ(k));
-//             RG[i].setisoN(k, reaction[ppp].getreactantN(k));
-//             RG[i].setisoA(k, reaction[ppp].getreactantA(k));
-//             RG[i].setisolabel(k, isoLabel[qqq]);
-// //             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-// //                 i, rn, nrn, ppp, k, RG[i].getisoindex(k));
-//         }
-//         
-//         // Loop over reactants
-//         
-//         int nrn2 = RG[i].getnumberProducts(rn);
-//         for(int k=0; k<nrn2; k++){
-//             int qqq = reaction[ppp].getproductIndex(k);
-//             RG[i].setisoindex(k+nrn, qqq);
-//             RG[i].setproductIsoIndex(k, qqq);
-//             RG[i].setisoZ(k+nrn, reaction[ppp].getproductZ(k));
-//             RG[i].setisoN(k+nrn, reaction[ppp].getproductN(k));
-//             RG[i].setisoA(k+nrn, reaction[ppp].getproductA(k));
-//             RG[i].setisolabel(k+nrn, isoLabel[qqq]);
-// //             printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-// //                    i, rn, nrn, ppp, k, RG[i].getisoindex(k+nrn));
-//         }
-        
-//         // Set the Ys in the RG
-//         
-//         int upk = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
-//         for(int k=0; k<upk; k++){
-//             int yindex = RG[i].getisoindex(k);
-//             RG[i].setisoY(k, Y[yindex]);
-//         }
-//    }
-    
-    // Check these assignments
-    
-    printf("\nSUMMARY isoindex[]:");
-    
-    for(int i=0; i<numberRG; i++){
-        
-        int rn = RG[i].getrefreac();
-        int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
-        
-        
-        printf("\n\nRG=%d  RGclass=%d %s Species Index:", 
-            i, RG[i].getrgclass(),
-            Utilities::stringToChar( 
-                reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
-            )
-        );
-        
-        for(int jj=0; jj<upjj; jj++){
-            printf(" iso[%d]=%d", jj, RG[i].getisoindex(jj));
-        }
-        
-        printf("\n     ");
-        for(int jj=0; jj<upjj; jj++){
-            printf(" isolabel[%d]=%s", jj, RG[i].getisolabel(jj));
-        }
-        
-        printf("\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
-        for(int jj=1; jj<RG[i].getnumberReactants(rn); jj++){
-            printf(" reactantIndex[%d]=%d", jj, RG[i].getreactantIsoIndex(jj));
-        }
-        
-        printf("\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
-        for(int jj=1; jj<RG[i].getnumberProducts(rn); jj++){
-            printf(" productIndex[%d]=%d", jj, RG[i].getproductIsoIndex(jj));
-        }
-        
-        printf("\n      Z[0]=%d", RG[i].getisoZ(0));
-        for(int jj=1; jj<upjj; jj++){
-            printf(" Z[%d]=%d", jj, RG[i].getisoZ(jj));
-        }
-        
-        printf("\n      N[0]=%d", RG[i].getisoN(0));
-        for(int jj=1; jj<upjj; jj++){
-            printf(" N[%d]=%d", jj, RG[i].getisoN(jj));
-        }
-        
-        printf("\n      A[0]=%d", RG[i].getisoA(0));
-        for(int jj=1; jj<upjj; jj++){
-            printf(" A[%d]=%d", jj, RG[i].getisoA(jj));
-        }
-        
-        printf("\n      isoY[0]=%8.5e", RG[i].getisoY(0));
-        for(int jj=1; jj<upjj; jj++){
-            printf(" isoY[%d]=%8.5e", jj, RG[i].getisoY(jj));
-        }
-        
-        printf("\n      isoYeq[0]=%8.5e", RG[i].getisoYeq(0));
-        for(int jj=1; jj<upjj; jj++){
-            printf(" isoYeq[%d]=%8.5e", jj, RG[i].getisoYeq(jj));
-        }
-        
-    }
-    
-    
-    
     
     // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
@@ -3533,7 +3418,7 @@ int main() {
     // -----------------------------------------------
     
     
-    printf("\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
+    printf("\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
     dt = dt_start;              // Integration start time
     t = start_time - dt;        // Current integration time
@@ -4541,7 +4426,7 @@ void assignRG(){
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    printf("\n\nPOPULATING RG[] OBJECT FIELDS\n");
+    printf("\n\nPOPULATING RG[] OBJECT FIELDS");
     
     for(int i=0; i<numberRG; i++){
         
@@ -4558,18 +4443,15 @@ void assignRG(){
         int reffer = RG[i].setrefreac();
 
         int rgindex = -1;
-        int counter = -1;
         int upper1;
         int upper2;
-        int indy;
         int ck1;
-        //int reffer = RG[i].getrefreac();
 
         // Populate the species index array for this RG using reference reaction reffer
         
         int RGclassRef = RGclass[reffer];
         RG[i].setniso(RGclassRef);
-        printf("\nRG=%d refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
+        printf("\n\nRG=%d refreac=%d RGclassRef=%d niso=%d Reactions=%d", 
             RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
             RG[i].getniso(), RG[i].getnumberMemberReactions()
         );
@@ -4591,15 +4473,13 @@ void assignRG(){
                 RG[i].setmemberReactions(rgindex, j);
                 RG[i].setrgclass(RGclass[j]);
                 RG[i].setisForward(rgindex, isPEforward[j] );
-                //RG[i].setRGn(i);
                 
                 ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[i]
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
+                RG[i].setreaclabel(rgindex, reaction[ck1].getreacString());
                 
                 upper1 = reaction[ck1].getnumberReactants();
-                int indy;
-                
                 int rn = RG[i].getrefreac();
                 int nrn = RG[i].getnumberReactants(rn);
                 int ppp = RG[i].getmemberReactions(rn);
@@ -4614,36 +4494,8 @@ void assignRG(){
                     RG[i].setisoN(k, reaction[ppp].getreactantN(k));
                     RG[i].setisoA(k, reaction[ppp].getreactantA(k));
                     RG[i].setisolabel(k, isoLabel[qqq]);
-//                                 printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-//                                     i, rn, nrn, ppp, k, RG[i].getisoindex(k));
                 }
                 
-                
-//                 for(int k=0; k<nrn; k++){
-//                     
-//                     int qqq = reaction[ppp].getreactantIndex(k);
-//                     RG[i].setisoindex(k, qqq);
-//                     RG[i].setreactantIsoIndex(k, qqq);
-//                     RG[i].setisoZ(k, reaction[ppp].getreactantZ(k));
-//                     RG[i].setisoN(k, reaction[ppp].getreactantN(k));
-//                     RG[i].setisoA(k, reaction[ppp].getreactantA(k));
-//                     RG[i].setisolabel(k, isoLabel[qqq]);
-//                     
-//                     
-//                     //indy = reaction[ck1].getreactantIndex(k);
-//                     //RG[i].setreactantIsoIndex(k, indy);
-//                     
-//                     //RG[i].setisoindex(k, indy);
-//                     //if (indy == reffer) RG[i].setisoindex(k, indy); // Dumps core.  Why??
-//                     //RG[i].setisoZ(k, Z[indy]);
-//                     //RG[i].setisoN(k, N[indy]);
-//                     //RG[i].setisoA(k, AA[indy]);
-//                     //RG[i].setisolabel(k, isoLabel[RG[i].getisoindex(k)]);
-//                     printf("\n  *REACTANTS: k=%d isoindex=%d %s",
-//                         k, RG[i].getreactantIsoIndex(k), RG[i].getisolabel(k)
-//                     );
-// 
-//                 }
                 
                 // Loop over product isotopes
 
@@ -4658,38 +4510,7 @@ void assignRG(){
                     RG[i].setisoN(k+nrn, reaction[ppp].getproductN(k));
                     RG[i].setisoA(k+nrn, reaction[ppp].getproductA(k));
                     RG[i].setisolabel(k+nrn, isoLabel[qqq]);
-//                                 printf("\n???? RG=%d rn=%d nrn=%d ppp=%d iso[%d]=%d", 
-//                                        i, rn, nrn, ppp, k, RG[i].getisoindex(k+nrn));
                 }
-                
-                
-/*                
-                for(int k=0; k<nrn2; k++){
-                    
-                    int qqq = reaction[ppp].getproductIndex(k);
-                    RG[i].setisoindex(k+nrn, qqq);
-                    RG[i].setproductIsoIndex(k, qqq);
-                    RG[i].setisoZ(k+nrn, reaction[ppp].getproductZ(k));
-                    RG[i].setisoN(k+nrn, reaction[ppp].getproductN(k));
-                    RG[i].setisoA(k+nrn, reaction[ppp].getproductA(k));
-                    RG[i].setisolabel(k+nrn, isoLabel[qqq]);
-                    
-                    indy = reaction[ck1].getproductIndex(k);
-                    //RG[i].setproductIsoIndex(k, indy);
-                    //printf("\n&&&& indy=%d reffer=%d");
-                    //RG[i].setisoindex(k+upper1, indy);
-                    //if(indy == reffer) RG[i].setisoindex(k+upper1, indy); // Dumps core.  Why??
-                    //RG[i].setisoZ(k+upper1, Z[indy]);
-                    ///RG[i].setisoN(k+upper1, N[indy]);
-                    //RG[i].setisoA(k+upper1, AA[indy]);
-                    
-                    //RG[i].setisolabel(k+upper1, isoLabel[RG[i].getisoindex(k+upper1)]);
-                    printf("\n  *PRODUCTS: k=%d isoindex=%d %s",
-                        k, RG[i].getisoindex(k+upper1), RG[i].getisolabel(k+upper1)
-                    );
-                    
-                }*/
-
 
                 // Set the Ys in the RG
 
@@ -4700,8 +4521,6 @@ void assignRG(){
                 }
                 
                 
-                RG[i].setreaclabel(rgindex, reaction[ck1].getreacString());
-                
                 printf("\n  reacIndex=%d niso=%d memberIndex=%d %s RGclass=%d isForward=%d", 
                     RG[i].getmemberReactions(rgindex),
                     RG[i].getniso(), rgindex,
@@ -4710,26 +4529,11 @@ void assignRG(){
                     RG[i].getisForward(rgindex)
                 );
                 
-                // Diagnostic for isoindex[] 
-                printf("\n  Z[0]=%d Z[1]=%d Z[2]=%d Z[3]=%d", 
-                       i, RG[i].getisoZ(0), RG[i].getisoZ(1),
-                       RG[i].getisoZ(2), RG[i].getisoZ(3)
-                );
-                
-                printf(" isoindex[0]=%d isoindex[1]=%d isoindex[2]=%d isoindex[3]=%d\n", 
-                       RG[i].getisoindex(0), RG[i].getisoindex(1),
-                       RG[i].getisoindex(2), RG[i].getisoindex(3)
-                );
             }
         }
-        
-        
-        //RG[i].setnumberMemberReactions(rgindex+1);
-        //printf("\n&&& Member reactions = %d\n", RG[i].getnumberMemberReactions());
-        
     }
     
-    // Summary
+    // Summary of reaction groups
     
     for(int i=0; i<numberRG; i++){
         printf("\n\nSummary: RG=%d", RG[i].getRGn());
@@ -4743,7 +4547,73 @@ void assignRG(){
             );
         }
     }
+    
+    // Check that this function has assigned isotope indices in each
+    // reaction group consistent with the order used for partial equilibrium
+    // in the original Java code.
+    
+    printf("\n\n\nSUMMARY of order for isotopes for PE in ReactionGroup objects:");
+    
+    for(int i=0; i<numberRG; i++){
+        
+        int rn = RG[i].getrefreac();
+        int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
+        
+        
+        printf("\n\nRG=%d  RGclass=%d %s Species Index:", 
+               i, RG[i].getrgclass(),
+               Utilities::stringToChar( 
+               reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
+               )
+        );
+        
+        for(int jj=0; jj<upjj; jj++){
+            printf(" iso[%d]=%d", jj, RG[i].getisoindex(jj));
+        }
+        
+        printf("\n     ");
+        for(int jj=0; jj<upjj; jj++){
+            printf(" isolabel[%d]=%s", jj, RG[i].getisolabel(jj));
+        }
+        
+        printf("\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
+        for(int jj=1; jj<RG[i].getnumberReactants(rn); jj++){
+            printf(" reactantIndex[%d]=%d", jj, RG[i].getreactantIsoIndex(jj));
+        }
+        
+        printf("\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
+        for(int jj=1; jj<RG[i].getnumberProducts(rn); jj++){
+            printf(" productIndex[%d]=%d", jj, RG[i].getproductIsoIndex(jj));
+        }
+        
+        printf("\n      Z[0]=%d", RG[i].getisoZ(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" Z[%d]=%d", jj, RG[i].getisoZ(jj));
+        }
+        
+        printf("\n      N[0]=%d", RG[i].getisoN(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" N[%d]=%d", jj, RG[i].getisoN(jj));
+        }
+        
+        printf("\n      A[0]=%d", RG[i].getisoA(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" A[%d]=%d", jj, RG[i].getisoA(jj));
+        }
+        
+        printf("\n      isoY[0]=%8.5e", RG[i].getisoY(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" isoY[%d]=%8.5e", jj, RG[i].getisoY(jj));
+        }
+        
+        printf("\n      isoYeq[0]=%8.5e", RG[i].getisoYeq(0));
+        for(int jj=1; jj<upjj; jj++){
+            printf(" isoYeq[%d]=%8.5e", jj, RG[i].getisoYeq(jj));
+        }
+    }
+    
 }       // End function assignRG()
+
 
 
 // Helper function that can be called from another class to set field
