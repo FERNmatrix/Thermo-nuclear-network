@@ -2373,8 +2373,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\n**** putY0: t=%8.4e RG=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                t, RGn, k, ii, isoLabel[ii],  isoY[k]);
+            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+                   t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
         }
         printf("\n");
     }
