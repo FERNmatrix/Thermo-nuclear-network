@@ -179,7 +179,7 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-4;           // Stop time for integration
+double stop_time = 1.0e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 //double stopplot_time = 1.0e-4;     // Stop time for plot output
 double dt_start = 0.1*start_time;    // Initial value of integration dt
@@ -1859,8 +1859,7 @@ class ReactionVector:  public Utilities {
                         setRG(j, RGclass[j], RGindex[j]);
                         printf("\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
-                            isPEforward[j],
-                            stringToChar(RGstring[j]));
+                            isPEforward[j], stringToChar(RGstring[j]));
                     }
                 }
             }
@@ -4376,8 +4375,10 @@ void  writeRates(char *label)
 // in the Reaction objects reaction[].
 
 void setRG(int index, int RGclass, int RGindex){
-    reaction[index].setreacGroupClass(RGclass);
+    //reaction[index].setreacGroupClass(RGclass);
     reaction[index].setrgindex(RGindex);
+    printf("\n****** setRG: index=%d RGclass=%d RGindex=%d", 
+        index, reaction[index].getreacGroupClass(), reaction[index].getrgindex());
 }
 
 
@@ -4426,7 +4427,7 @@ void assignRG(){
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    printf("\n\nPOPULATING RG[] OBJECT FIELDS");
+    printf("\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){
         
@@ -4447,14 +4448,14 @@ void assignRG(){
         int upper2;
         int ck1;
 
-        // Populate the species index array for this RG using reference reaction reffer
-        
-        int RGclassRef = RGclass[reffer];
-        RG[i].setniso(RGclassRef);
-        printf("\n\nRG=%d refreac=%d RGclassRef=%d niso=%d Reactions=%d", 
-            RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
-            RG[i].getniso(), RG[i].getnumberMemberReactions()
-        );
+//         // Populate the species index array for this RG using reference reaction reffer
+//         
+//         int RGclassRef = RGclass[reffer];
+//         RG[i].setniso(RGclassRef);
+//         printf("\n\n******* RG=%d reffer=%d refreac=%d RGclassRef=%d niso=%d Reactions=%d", 
+//             RG[i].getRGn(), reffer, RG[i].getrefreac(), RGclassRef, 
+//             RG[i].getniso(), RG[i].getnumberMemberReactions()
+//         );
         
         
         // Loop over reactions of the network, picking out the members of RG[i] by the
@@ -4521,9 +4522,9 @@ void assignRG(){
                 }
                 
                 
-                printf("\n  reacIndex=%d niso=%d memberIndex=%d %s RGclass=%d isForward=%d", 
+                printf("\nreacIndex=%d memberIndex=%d %s RGclass=%d isForward=%d", 
                     RG[i].getmemberReactions(rgindex),
-                    RG[i].getniso(), rgindex,
+                    rgindex,
                     RG[i].getreacString(rgindex),  
                     RG[i].getrgclass(),
                     RG[i].getisForward(rgindex)
@@ -4531,6 +4532,19 @@ void assignRG(){
                 
             }
         }
+        
+        //int checkRG = RG[i].getmemberReactions(reffer);
+        //int checkRG2 = RGclass[checkRG];
+        //printf("\n******** RG[%d] checkRG=%d checkRG2=%d", i, checkRG, checkRG2);
+        
+        // Populate the species index array for this RG using reference reaction reffer
+        
+        int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
+        RG[i].setniso(RGclassRef);
+        printf("\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
+               RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
+               RG[i].getniso(), RG[i].getnumberMemberReactions()
+        );
     }
     
     // Summary of reaction groups
