@@ -129,16 +129,6 @@ bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = false;            // Implement partial equilibium also
 
-// char asyString[] = "ASY";
-// char qssString[] = "QSS";
-// char asyPEstring[] = "ASY+QSS";
-// char qssPEstring[] = "QSS+QSS";
-// 
-// // String holding integration method in use.  Possibilities are
-// // ASY, QSS, ASY+PE, QSS+PE
-// 
-// char methstring[15]; 
-
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
 
@@ -338,10 +328,7 @@ double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in 
 // Whether to compute and display partial equilibrium quantities. This is diagnostic.
 // Partial equilibrium is actually imposed only if doPE = true.
 
-bool equilibrate = true;
-
-// Whether actually to impose partial equilibrium
-//bool imposeEquil = false;  
+bool equilibrate = true; 
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -387,8 +374,8 @@ double tplot[plotSteps];               // Actual time for plot step
 double dtplot[plotSteps];              // dt for plot step
 double Xplot[ISOTOPES][plotSteps];     // Mass fractions X
 double sumXplot[plotSteps];            // Sum of mass fractions
-int numAsyplot[plotSteps];          // Number asymptotic species
-int numRG_PEplot[plotSteps];        // Number RG in PE
+int numAsyplot[plotSteps];             // Number asymptotic species
+int numRG_PEplot[plotSteps];           // Number RG in PE
 double EReleasePlot[plotSteps];        // Integrated energy release
 double dEReleasePlot[plotSteps];       // Differential energy release
 
