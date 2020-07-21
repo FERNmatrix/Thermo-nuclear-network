@@ -18,7 +18,6 @@
  * Nick Brey
  * Ashton DeRousse
  * Adam Cole
- * Amelia Konomos
  * Mike Guidry
  * ----------------
  */
@@ -102,7 +101,7 @@ static const int showAsyTest = 0;
 static const int showFunctionTests = 0;
 static const int showPlotSteps = 1;
 // Whether to write message when RG added/removed from equil
-static const bool showAddRemove = true; 
+static const bool showAddRemove = false; 
 
 
 // Function Signatures:
@@ -128,7 +127,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // char asyString[] = "ASY";
 // char qssString[] = "QSS";
@@ -165,7 +164,7 @@ bool isAsy[ISOTOPES];
 // for adaptive timestepping.
 
 bool constantTimestep = false;    // Adaptible timestep if false
-double constant_dt = 1.1e-9;     // Value of constant timestep
+double constant_dt = 1.1e-9;      // Value of constant timestep
 
 // Integration time data.  Start and stop times hardwired for testing
 // here but in applications they would be variables supplied by
@@ -174,25 +173,25 @@ double constant_dt = 1.1e-9;     // Value of constant timestep
 // The variables start_time and stop_time define the range of integration.  
 // The variable startplot_time allows the plotting interval output
 // in gnu_out/gnufile.data to be a subset of the full integration interval. 
-// Generally, startplot_time >= start_time.
+// Generally, startplot_time >= start_time.  By default the stop time for
+// plotting is the same as the stop time for integration, stop_time.
 
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-5;           // Stop time for integration
+double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-//double stopplot_time = 1.0e-4;     // Stop time for plot output
 double dt_start = 0.1*start_time;    // Initial value of integration dt
+
+double massTol = 1.0e-7;             // Timestep tolerance parameter
+double SF = 7.3e-4;                  // Timestep agressiveness factor
 
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-double massTol = 1.0e-7;               // Timestep tolerance parameter
-double SF = 7.0e-4; //1.5e-3;//8.0e-5; //7.3e-4; //0.001;                   // Timestep agressiveness factor
 
-double stepfactor = 1.003;           // Timestepping factor
 double dtLast;                       // Last timestep
 bool isValidUpdate;                  // Whether timestep accepted
 
@@ -336,11 +335,13 @@ double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from e
 int mostDeviousIndex;         // Index of RG with mostDevious
 double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in timestep
 
-// Whether to compute and display partial equilibrium quantities
+// Whether to compute and display partial equilibrium quantities. This is diagnostic.
+// Partial equilibrium is actually imposed only if doPE = true.
+
 bool equilibrate = true;
 
 // Whether actually to impose partial equilibrium
-bool imposeEquil = true;  
+//bool imposeEquil = false;  
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -510,7 +511,13 @@ class Utilities{
             string Xstring = "X(";
             string iso;
             
-            fprintf(pFile, "# %d integration steps\n", totalTimeSteps);
+            if(doASY){
+                fprintf(pFile, "# ASY");
+            } else {
+                fprintf(pFile, "# QSS");
+            }
+            if(doPE) fprintf(pFile, "+PE");
+            fprintf(pFile, " method with %d integration steps\n", totalTimeSteps);
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
@@ -2372,10 +2379,10 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                   t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
+//             printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+//                    t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
         }
-        printf("\n");
+        //printf("\n");
     }
     
    
@@ -2600,7 +2607,7 @@ class ReactionGroup:  public Utilities {
         
         if (isEquil && thisDevious < maxDevious) {
             return;
-        } else if (isEquil && thisDevious > maxDevious && imposeEquil
+        } else if (isEquil && thisDevious > maxDevious && doPE
             && t > equilibrateTime) {
             removeFromEquilibrium();
             return;
@@ -2631,13 +2638,10 @@ class ReactionGroup:  public Utilities {
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
                 if(t > equilibrateTime) {
-//                     printf(
-//                         "\n+++computeEqRatios t=%8.5e RG=%d i=%d niso=%d eqcheck=%8.5e isoYeq=%8.5e isoY=%8.5e %s Y4=%8.5e Y12=%8.5e Y16=%8.5e",
-//                         t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i], isolabel[i], Y[0], Y[1], Y[2]);
-                    printf("\n+++computeEqRatios t=%7.4e RG=%d i=%d niso=%d eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e ",
-                           t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
-                    );
-                    printf("%s Y4=%7.4e Y12=%7.4e Y16=%7.4e", isolabel[i], Y[0], Y[1], Y[2]);
+//                     printf("\n+++computeEqRatios t=%7.4e RG=%d i=%d niso=%d eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e ",
+//                            t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
+//                     );
+//                     printf("%s Y4=%7.4e Y12=%7.4e Y16=%7.4e", isolabel[i], Y[0], Y[1], Y[2]);
                 }
                 
                 // Store some min and max values
@@ -2676,11 +2680,11 @@ class ReactionGroup:  public Utilities {
             }
             
             /* Keep track of number of reaction in partial equilibrium.  totalEquilReactions
-             *  is only updated here if imposeEquil is false. If imposeEquil is true,
+             *  is only updated here if doPE is false. If doPE is true,
              *  totalEquilReaction is updated when the flux is suppressed for equilibrium 
              *  pairs. */
             
-            if (!imposeEquil && isEquil)
+            if (!doPE && isEquil)
                 totalEquilReactions += numberMemberReactions;
                 totalEquilRG ++;
             
@@ -2713,7 +2717,7 @@ class ReactionGroup:  public Utilities {
             // Set the activity array for each reaction in reaction group to true if not in 
             // equil and false if it is, if we are imposing equilibrium.
             
-            if (imposeEquil && t > equilibrateTime) {
+            if (doPE && t > equilibrateTime) {
                 for (int i = 0; i < numberMemberReactions; i++) {
                     int ck = memberReactions[i];
                     reacIsActive[ck] = !isEquil;
@@ -2952,9 +2956,9 @@ class Integrate: public Utilities {
         static bool checkTimestepTolerance(){
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
-            if (imposeEquil && t > equilibrateTime) {
-                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e imposeEquil=%d mostdevious=%9.6e", 
-                    t, equilibrateTime, imposeEquil, mostDevious);
+            if (doPE && t > equilibrateTime) {
+                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e doPE=%d mostdevious=%9.6e", 
+                    t, equilibrateTime, doPE, mostDevious);
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
                 if (mostDevious > deviousMax) {
@@ -2979,26 +2983,20 @@ class Integrate: public Utilities {
             double downbumper = 0.1;
             double massTolUp = 0.25 * massTol;
             
-            printf("\n**** tolerance sumX=%6.4f diffX=%6.4f test1=%9.6e test2=%9.6e massChecker=%9.6e", 
-                sumX, diffX, test1, test2, massChecker);
+//             printf("\n**** tolerance sumX=%6.4f diffX=%6.4f test1=%9.6e test2=%9.6e massChecker=%9.6e", 
+//                 sumX, diffX, test1, test2, massChecker);
             
-            if (t < equilibrateTime || !imposeEquil) {
+            if (t < equilibrateTime || !doPE) {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-                    printf("\n****downbumperafter dt=%8.5e", dt);
-                    //                     if (checkPC)
-                    //                         System.out.println("t=" + deci(5, time) + " dt="
-                    //                         + deci(4, dt) + " Pop update after downbump:");
+                    //printf("\n****downbumperafter dt=%8.5e", dt);
                     updatePopulations();
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-                    printf("\n****upbumperafter dt=%8.5e", dt);
-                    //                     if (checkPC)
-                    //                         System.out.println("t=" + deci(5, time) + " dt="
-                    //                         + deci(4, dt) + " Pop update after upbump:");
+                    //printf("\n****upbumperafter dt=%8.5e", dt);
                     
                     // This update populations causes error if included.  Not sure why
-                    // Agrees almost exactly with Java Asy is omitted (but Java includes it).
+                    // Agrees almost exactly with Java Asy if omitted (but Java includes it).
                     
                     // updatePopulations();
                 }
@@ -3025,7 +3023,6 @@ class Integrate: public Utilities {
             //dtt = dtFlux; //dtt = min(dtFlux, dtLast);
             //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
             return dtt;
-            //return dt_start; //dtLast*stepfactor;
         }
         
         
