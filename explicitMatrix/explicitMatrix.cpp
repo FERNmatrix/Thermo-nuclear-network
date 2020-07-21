@@ -127,7 +127,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -169,7 +169,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -2264,19 +2264,19 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-//             printf("*****memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
-//                 i, 
-//                 reacLabel[memberReactions[i]],
-//                 getrgclass(),
-//                 getisForward(i),   // prints 1 if true; 0 if false
-//                 fac*getflux(i)
-//             );
+            printf("*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
+                t, dt, i, 
+                reacLabel[memberReactions[i]],
+                getrgclass(),
+                getisForward(i),   // prints 1 if true; 0 if false
+                fac*getflux(i)
+            );
         }
-//         if(isEquil){
-//             printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
-//         } else {
-//             printf("RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", RGn, netflux); 
-//         }
+        if(isEquil){
+            printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
+        } else {
+            printf("RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", RGn, netflux); 
+        }
     }
     
     // Method ReactionGroup::sumRGfluxes to sum net flux for this reaction group
@@ -2944,7 +2944,7 @@ class Integrate: public Utilities {
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
             if (doPE && t > equilibrateTime) {
-                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e doPE=%d mostdevious=%9.6e", 
+                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e doPE=%d mostdevious=%9.6e\n", 
                     t, equilibrateTime, doPE, mostDevious);
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
@@ -4361,7 +4361,7 @@ void  writeRates(char *label)
 void setRG(int index, int RGclass, int RGindex){
     //reaction[index].setreacGroupClass(RGclass);
     reaction[index].setrgindex(RGindex);
-    printf("\n****** setRG: index=%d RGclass=%d RGindex=%d", 
+    printf("\nsetRG: index=%d RGclass=%d RGindex=%d", 
         index, reaction[index].getreacGroupClass(), reaction[index].getrgindex());
 }
 
