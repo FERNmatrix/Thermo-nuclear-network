@@ -169,7 +169,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 5.0e-6;           // Stop time for integration
+double stop_time = 1.0e-4; //5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -341,7 +341,7 @@ bool equilibrate = true;
 
 double equilibrateTime = 1.0e-6; 
 
-double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
+double equiTol = 0.001;      // Tolerance for checking whether Ys in RG in equil 
 
 double Yminner;             // Current minimum Y in reaction group
 double mineqcheck;          // Current minimum value of eqcheck in reaction group
@@ -3459,7 +3459,7 @@ int main() {
     
     
     
-    while(t < stop_time){
+    while(t < stop_time && totalTimeSteps < 10000){
         
         t += dt;                
         totalTimeSteps ++;  
