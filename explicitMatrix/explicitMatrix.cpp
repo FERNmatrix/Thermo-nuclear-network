@@ -2478,7 +2478,8 @@ class ReactionGroup:  public Utilities {
                 break;
         }
         
-        printf("\n&&& t=%7.4e RG=%d PARAMETERS: a=%7.4e b= %7.4e c=%7.4e", t, RGn, aa, bb, cc);
+        printf("\n&&& t=%7.4e RG=%d PARAMETERS: a=%7.4e b=%7.4e c=%7.4e", 
+            t, RGn, aa, bb, cc);
         
         // Compute the q = 4ac - b^2 parameter, equil timescale tau, and
         // isoYeq[0] (which is then be used to compute the other isoYeq[].
@@ -2496,12 +2497,18 @@ class ReactionGroup:  public Utilities {
             isoYeq[0] = rgkr / rgkf;
         }
         
+        printf("\n&&& t=%7.4e RG=%d PARAMETERS: q=%7.4e tau=%7.4e Y0eq=%7.4e Y0=%7.4e",
+            t, RGn, qq, tau, isoYeq[0], isoY[0]
+        );
+        
         // Compute the other equilibrium populations in the reaction pair
         // and abundance ratios
         
         switch (rgclass) {
             
-            // Reaclib class 7, which can't equilibrate
+            // Reaclib class 7, which can't equilibrate because no inverse in 
+            // standard Reaclib library.
+            
             case -1: 
                 
                 break;
@@ -2544,6 +2551,12 @@ class ReactionGroup:  public Utilities {
                 equilRatio = isoY[0] * isoY[1] / (isoY[2] * isoY[3] * isoY[4]);
                 break;
         }
+        
+        printf("\n&&& t=%7.4e RG=%d PARAMETERS: Y1eq=%7.4e Y2eq=%7.4e Y3eq=%7.4e",
+              t, RGn, isoYeq[1], isoYeq[2], isoYeq[3]
+        );
+        
+        
         
         // Compute the equilibrium value of the progress variable
         
@@ -2627,11 +2640,14 @@ class ReactionGroup:  public Utilities {
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
                 if(t > equilibrateTime) {
-//                     printf("\n+++computeEqRatios t=%7.4e RG=%d i=%d niso=%d eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e ",
-//                            t, RGn, i, getniso(), eqcheck[i], isoYeq[i], isoY[i]
-//                     );
-//                     printf("%s Y4=%7.4e Y12=%7.4e Y16=%7.4e", isolabel[i], Y[0], Y[1], Y[2]);
+                    printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e",
+                        t, RGn, i, isolabel[i], eqcheck[i], isoYeq[i], isoY[i]
+                    );
+                    printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
+                           t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
+                    );
                 }
+                
                 
                 // Store some min and max values
                 
@@ -2657,6 +2673,11 @@ class ReactionGroup:  public Utilities {
                 
                 }
             }
+            printf("\n&&& computeEqRatios t=%7.4e RG=%d Rmax/equiTol=%7.4e", 
+                t, RGn, maxeqcheck/equiTol);
+            printf("\n&&& computeEqRatios t=%7.4e RG=%d Yratio=%7.4e kratio=%7.4e fracDiff=%7.4e dt/tau=%7.4e isEquil=%d",
+                t, RGn, equilRatio, kratio, abs((kratio-equilRatio)/kratio), dt/tau, isEquil);
+            
             
             // Check whether would be in equil without time or threshhold condition
             
