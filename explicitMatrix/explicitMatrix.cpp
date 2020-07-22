@@ -337,7 +337,7 @@ bool equilibrate = true;
 // be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
 // this in a final version for stability, but it might still be useful since early in
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
-// However, check should not be costly.
+// On the other hand, check should not be costly.
 
 double equilibrateTime = 1.0e-6; 
 
@@ -2082,7 +2082,7 @@ class ReactionGroup:  public Utilities {
         double isoA[5];                // A for the niso isotopes in the reactions of the group
         double isoYeq[5];              // Y_eq for the niso isotopes in the reactions of the group
         double isoY[5];                // Current Y for niso isotopes in reactions of the group
-        double isoY0[5];               // Current Y for isotopes in the reactions of the group
+        double isoY0[5];               // Y0 for niso isotopes in the reactions of the group
 
     
     public:
@@ -2366,8 +2366,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-//             printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-//                    t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
+            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
+                   t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
         }
         //printf("\n");
     }
