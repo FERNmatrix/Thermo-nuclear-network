@@ -2255,7 +2255,7 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        //printf("\n**** showRGFluxes() t = %7.4e\n", t);
+        printf("\n**** showRGFluxes() t = %7.4e\n", t);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2362,12 +2362,12 @@ class ReactionGroup:  public Utilities {
     void putY0() {
         
         int ii;
-        for (int k = 0; k < niso; k++) {    // loop over the niso isotopes in RG
+        for (int k = 0; k < niso; k++) {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e", 
-                   t, RGn, niso, k, ii, isoLabel[ii],  isoY[k]);
+            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e isoY0=%7.4e", 
+                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k]);
         }
         //printf("\n");
     }
@@ -2477,6 +2477,8 @@ class ReactionGroup:  public Utilities {
                 
                 break;
         }
+        
+        printf("\n&&& t=%7.4e RG=%d PARAMETERS: a=%7.4e b= %7.4e c=%7.4e", t, RGn, aa, bb, cc);
         
         // Compute the q = 4ac - b^2 parameter, equil timescale tau, and
         // isoYeq[0] (which is then be used to compute the other isoYeq[].
