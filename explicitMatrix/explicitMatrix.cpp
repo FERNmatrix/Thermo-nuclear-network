@@ -101,7 +101,7 @@ static const int showAsyTest = 0;
 static const int showFunctionTests = 0;
 static const int showPlotSteps = 1;
 // Whether to write message when RG added/removed from equil
-static const bool showAddRemove = false; 
+static const bool showAddRemove = true; 
 
 
 // Function Signatures:
@@ -127,7 +127,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -169,7 +169,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-4; //5.0e-6;           // Stop time for integration
+double stop_time = 1.0e-3; //1.2e-5; //5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -341,7 +341,7 @@ bool equilibrate = true;
 
 double equilibrateTime = 1.0e-6; 
 
-double equiTol = 0.001;      // Tolerance for checking whether Ys in RG in equil 
+double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
 double Yminner;             // Current minimum Y in reaction group
 double mineqcheck;          // Current minimum value of eqcheck in reaction group
@@ -2255,7 +2255,7 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        printf("\n**** showRGFluxes() t = %7.4e\n", t);
+        //printf("\n**** showRGFluxes() t = %7.4e\n", t);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2264,13 +2264,13 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
-                t, dt, i, 
-                reacLabel[memberReactions[i]],
-                getrgclass(),
-                getisForward(i),   // prints 1 if true; 0 if false
-                fac*getflux(i)
-            );
+//             printf("*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
+//                 t, dt, i, 
+//                 reacLabel[memberReactions[i]],
+//                 getrgclass(),
+//                 getisForward(i),   // prints 1 if true; 0 if false
+//                 fac*getflux(i)
+//             );
         }
         if(isEquil){
             printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
@@ -2366,8 +2366,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-            printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e isoY0=%7.4e", 
-                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k]);
+//             printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e isoY0=%7.4e", 
+//                 t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k]);
         }
         //printf("\n");
     }
@@ -2478,8 +2478,8 @@ class ReactionGroup:  public Utilities {
                 break;
         }
         
-        printf("\n&&& t=%7.4e RG=%d PARAMETERS: a=%7.4e b=%7.4e c=%7.4e", 
-            t, RGn, aa, bb, cc);
+//         printf("\n&&& t=%7.4e RG=%d PARAMETERS: a=%7.4e b=%7.4e c=%7.4e", 
+//             t, RGn, aa, bb, cc);
         
         // Compute the q = 4ac - b^2 parameter, equil timescale tau, and
         // isoYeq[0] (which is then be used to compute the other isoYeq[].
@@ -2497,9 +2497,9 @@ class ReactionGroup:  public Utilities {
             isoYeq[0] = rgkr / rgkf;
         }
         
-        printf("\n&&& t=%7.4e RG=%d PARAMETERS: q=%7.4e tau=%7.4e Y0eq=%7.4e Y0=%7.4e",
-            t, RGn, qq, tau, isoYeq[0], isoY[0]
-        );
+//         printf("\n&&& t=%7.4e RG=%d PARAMETERS: q=%7.4e tau=%7.4e Y0eq=%7.4e Y0=%7.4e",
+//             t, RGn, qq, tau, isoYeq[0], isoY[0]
+//         );
         
         // Compute the other equilibrium populations in the reaction pair
         // and abundance ratios
@@ -2552,9 +2552,9 @@ class ReactionGroup:  public Utilities {
                 break;
         }
         
-        printf("\n&&& t=%7.4e RG=%d PARAMETERS: Y1eq=%7.4e Y2eq=%7.4e Y3eq=%7.4e",
-              t, RGn, isoYeq[1], isoYeq[2], isoYeq[3]
-        );
+//         printf("\n&&& t=%7.4e RG=%d PARAMETERS: Y1eq=%7.4e Y2eq=%7.4e Y3eq=%7.4e",
+//               t, RGn, isoYeq[1], isoYeq[2], isoYeq[3]
+//         );
         
         
         
@@ -2597,9 +2597,15 @@ class ReactionGroup:  public Utilities {
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
+        
+        
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
             mostDeviousIndex = RGn;
+            
+            printf("\n&&& t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e",
+                   t, RGn, isEquil, thisDevious, mostDevious
+            );
         }
         
         // The return statements in the following if-clauses cause reaction
@@ -2639,14 +2645,14 @@ class ReactionGroup:  public Utilities {
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
-                if(t > equilibrateTime) {
-                    printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e",
-                        t, RGn, i, isolabel[i], eqcheck[i], isoYeq[i], isoY[i]
-                    );
-                    printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
-                           t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
-                    );
-                }
+//                 if(t > equilibrateTime) {
+//                     printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e",
+//                         t, RGn, i, isolabel[i], eqcheck[i], isoYeq[i], isoY[i]
+//                     );
+//                     printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
+//                            t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
+//                     );
+//                 }
                 
                 
                 // Store some min and max values
@@ -2673,10 +2679,10 @@ class ReactionGroup:  public Utilities {
                 
                 }
             }
-            printf("\n&&& computeEqRatios t=%7.4e RG=%d Rmax/equiTol=%7.4e", 
-                t, RGn, maxeqcheck/equiTol);
-            printf("\n&&& computeEqRatios t=%7.4e RG=%d Yratio=%7.4e kratio=%7.4e fracDiff=%7.4e dt/tau=%7.4e isEquil=%d",
-                t, RGn, equilRatio, kratio, abs((kratio-equilRatio)/kratio), dt/tau, isEquil);
+//             printf("\n&&& computeEqRatios t=%7.4e RG=%d Rmax/equiTol=%7.4e", 
+//                 t, RGn, maxeqcheck/equiTol);
+//             printf("\n&&& computeEqRatios t=%7.4e RG=%d Yratio=%7.4e kratio=%7.4e fracDiff=%7.4e dt/tau=%7.4e isEquil=%d",
+//                 t, RGn, equilRatio, kratio, abs((kratio-equilRatio)/kratio), dt/tau, isEquil);
             
             
             // Check whether would be in equil without time or threshhold condition
@@ -2703,10 +2709,9 @@ class ReactionGroup:  public Utilities {
             
             if (isEquil) {
                 if (showAddRemove) {
-                    printf("\n\nADD RG %d TO EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
+                    printf("\n************************************************");
+                    printf("\nADD RG %d TO EQUIL: Steps=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
                            RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
-//                     printf("\nEQUILIBRATION: Steps=%d t=%7.4e RG %d equilibrated",
-//                         totalTimeSteps, t, RGn);
                 }
                 
                 for (int i = 0; i < niso; i++) {
@@ -2718,6 +2723,10 @@ class ReactionGroup:  public Utilities {
                         );
                     }
                 }
+                if (showAddRemove) 
+                    printf("\n************************************************\n");
+                
+                // Is equivalent of following necessary?
                 
                 for (int i = 0; i < niso; i++) {
                     //netVector[this.abundVecIndex[i]].isEquil = true;
@@ -2750,7 +2759,8 @@ class ReactionGroup:  public Utilities {
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
         if (showAddRemove) {
-            printf("\n\nREMOVE RG %d FROM EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
+            printf("\n\n************************************************");
+            printf("\nREMOVE RG %d FROM EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
                    RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
         }
         
@@ -2768,9 +2778,11 @@ class ReactionGroup:  public Utilities {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
             if (showAddRemove) {
-                printf("\n ***Remove RG=%d %s", RGn, reacLabel[i]);
+                printf("\n Remove RG=%d %s", RGn, reacLabel[i]);
             }
         }
+        if(showAddRemove) 
+            printf("\n************************************************\n");
     }
     
     
@@ -2781,7 +2793,6 @@ class ReactionGroup:  public Utilities {
     // isotope quantitites like Z[i] or Y[i]. Returns true (1) if it
     // is and false (0) if not.
     // ----------------------------------------------------------------
-    
     
     bool speciesIsInRG(int speciesIndex) { 
         
@@ -2967,10 +2978,13 @@ class Integrate: public Utilities {
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
             if (doPE && t > equilibrateTime) {
-                printf("\n$$$$$$ t=%8.5e equiltime=%8.5e doPE=%d mostdevious=%9.6e\n", 
-                    t, equilibrateTime, doPE, mostDevious);
+                
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
+                
+                printf("\n$$$$$$ t=%7.4e dt=%7.4e mostdevious=%7.4e\n", 
+                    t, dt, mostDevious);
+                
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
                 } else if (mostDevious < deviousMin) {
@@ -3028,7 +3042,8 @@ class Integrate: public Utilities {
             
             // Adapted from Java code, lines 6302 ff
             
-            dtFlux = min(0.1*t, SF/maxdYdt);
+            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give save initial timestep
+            //dtFlux = min(0.1*t, SF/maxdYdt);    // Original Java
             dtt = min(dtFlux, dtLast);
             //dtt = dtFlux; //dtt = min(dtFlux, dtLast);
             //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
@@ -3459,7 +3474,7 @@ int main() {
     
     
     
-    while(t < stop_time && totalTimeSteps < 10000){
+    while(t < stop_time && totalTimeSteps < 15000){
         
         t += dt;                
         totalTimeSteps ++;  
