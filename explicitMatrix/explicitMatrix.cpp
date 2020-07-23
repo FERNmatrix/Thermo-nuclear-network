@@ -99,7 +99,7 @@ static const int showRVdetails = 0;
 static const int showRGsorting = 0;
 static const int showAsyTest = 0;
 static const int showFunctionTests = 0;
-static const int showPlotSteps = 1;
+static const int showPlotSteps = 0;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
 
@@ -127,7 +127,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -169,7 +169,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3; //1.2e-5; //5.0e-6;           // Stop time for integration
+double stop_time = 1.0e-5; //5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -339,7 +339,7 @@ bool equilibrate = true;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6; 
+double equilibrateTime = 1.0e-8; 
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -2264,18 +2264,21 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-//             printf("*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e\n", 
-//                 t, dt, i, 
-//                 reacLabel[memberReactions[i]],
-//                 getrgclass(),
-//                 getisForward(i),   // prints 1 if true; 0 if false
-//                 fac*getflux(i)
-//             );
+            printf("\n*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e eqcheck=%7.4e", 
+                t, dt, i, 
+                reacLabel[memberReactions[i]],
+                getrgclass(),
+                getisForward(i),   // prints 1 if true; 0 if false
+                fac*getflux(i),
+                   eqcheck[i]
+            );
         }
+        
+        printf("\n");
         if(isEquil){
-            printf("RG=%d NetRGflux=%7.4e (Equilibrated)\n", RGn, netflux); 
+            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)", t, RGn, netflux); 
         } else {
-            printf("RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", RGn, netflux); 
+            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)", t, RGn, netflux); 
         }
     }
     
@@ -2603,9 +2606,9 @@ class ReactionGroup:  public Utilities {
             mostDevious = thisDevious;
             mostDeviousIndex = RGn;
             
-            printf("\n&&& t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e",
-                   t, RGn, isEquil, thisDevious, mostDevious
-            );
+//             printf("\n&&& t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e",
+//                    t, RGn, isEquil, thisDevious, mostDevious
+//             );
         }
         
         // The return statements in the following if-clauses cause reaction
