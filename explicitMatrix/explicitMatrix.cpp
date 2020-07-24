@@ -169,7 +169,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-5; //5.0e-6;           // Stop time for integration
+double stop_time = 1.0e-3; //5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -339,7 +339,7 @@ bool equilibrate = true;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-8; 
+double equilibrateTime = 1.0e-6; 
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -1530,8 +1530,8 @@ class Reaction: public Utilities {
             // Write to rate array in main
             Rate[getreacIndex()] = Rrate;
             
-            printf("\n1-body %d %19s densfac=%6.3e rate= %6.3e Rrate=%6.3e", 
-                   getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
+            printf("\n%d %19s densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
+                getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
             
         }
         
@@ -2157,8 +2157,16 @@ class ReactionGroup:  public Utilities {
     
     void setRGfluxes(){
         //printf("\n\n**** setRGFluxes() t = %7.4e", t);
+        printf("\n");
         for(int i=0; i<numberMemberReactions; i++){
             setflux(i, Flux[ memberReactions[i] ]);
+            printf("\n******* setRGfluxes t=%7.4e dt=%7.4e memberIndex=%d RG=%d %s flux=%8.5e eqcheck=%8.5e",
+                t, dt, i, 
+                RGn,
+                reacLabel[i],
+                getflux(i),
+                eqcheck[i]
+            );
         }
     }
     
@@ -2270,7 +2278,7 @@ class ReactionGroup:  public Utilities {
                 getrgclass(),
                 getisForward(i),   // prints 1 if true; 0 if false
                 fac*getflux(i),
-                   eqcheck[i]
+                eqcheck[i]
             );
         }
         
@@ -2979,8 +2987,11 @@ class Integrate: public Utilities {
         
         static bool checkTimestepTolerance(){
             
+            // See Java lines 6329 ff
+            
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
-            if (doPE && t > equilibrateTime) {
+            //if (doPE && t > equilibrateTime) {
+            if (doPE && t > equilibrateTime && totalEquilReactions>0) {
                 
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
@@ -2990,8 +3001,12 @@ class Integrate: public Utilities {
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
+                    printf("\n?????? downdevious t=%7.4e totalEquilReactions=%d",
+                        t, totalEquilReactions);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
+                    printf("\n?????? updevious t=%7.4e totalEquilRG=%d",
+                        t, totalEquilReactions);
                 }
                 updatePopulations();
             }
@@ -3013,7 +3028,10 @@ class Integrate: public Utilities {
 //             printf("\n**** tolerance sumX=%6.4f diffX=%6.4f test1=%9.6e test2=%9.6e massChecker=%9.6e", 
 //                 sumX, diffX, test1, test2, massChecker);
             
-            if (t < equilibrateTime || !doPE) {
+            // See Java lines 6357 ff
+            
+            //if (t < equilibrateTime || !doPE) {
+            if (t < equilibrateTime || !doPE || totalEquilReactions==0) {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
                     //printf("\n****downbumperafter dt=%8.5e", dt);
@@ -3544,6 +3562,7 @@ int main() {
         // (RG[i].isEquil = true).
         
         if(doPE){
+        //if(doPE && t > equilibrateTime){
             
             //printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
             
