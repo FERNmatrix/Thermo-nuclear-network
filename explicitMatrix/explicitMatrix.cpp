@@ -2157,16 +2157,16 @@ class ReactionGroup:  public Utilities {
     
     void setRGfluxes(){
         //printf("\n\n**** setRGFluxes() t = %7.4e", t);
-        printf("\n");
+//    printf("\n");
         for(int i=0; i<numberMemberReactions; i++){
             setflux(i, Flux[ memberReactions[i] ]);
-            printf("\n******* setRGfluxes t=%7.4e dt=%7.4e memberIndex=%d RG=%d %s flux=%8.5e eqcheck=%8.5e",
-                t, dt, i, 
-                RGn,
-                reacLabel[i],
-                getflux(i),
-                eqcheck[i]
-            );
+//             printf("\n******* setRGfluxes t=%7.4e dt=%7.4e memberIndex=%d RG=%d %s flux=%8.5e eqcheck=%8.5e",
+//                 t, dt, i, 
+//                 RGn,
+//                 reacLabel[i],
+//                 getflux(i),
+//                 eqcheck[i]
+//             );
         }
     }
     
@@ -2296,7 +2296,7 @@ class ReactionGroup:  public Utilities {
         
         //printf("\n**** sumRGFluxes() t = %7.4e\n", t);
         
-        double sumf = zerod;
+        double sumf = 0.0;
         double fac;
 
         for (int i=0; i<numberMemberReactions; i++){
@@ -3550,7 +3550,7 @@ int main() {
         for(int i=0; i<numberRG; i++){
             //printf("\nRG=%d", i);
             RG[i].setRGfluxes();
-            if(doPE){
+            if(doPE && t > equilibrateTime){
                 RG[i].sumRGfluxes();
                 RG[i].showRGfluxes();
                 RG[i].computeEquilibrium();
