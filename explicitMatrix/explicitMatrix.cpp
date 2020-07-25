@@ -2284,9 +2284,9 @@ class ReactionGroup:  public Utilities {
         
         printf("\n");
         if(isEquil){
-            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)", t, RGn, netflux); 
+            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)\n", t, RGn, netflux); 
         } else {
-            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)", t, RGn, netflux); 
+            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", t, RGn, netflux); 
         }
     }
     
@@ -3577,7 +3577,7 @@ int main() {
                 
                 if(ckequil){
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        Flux[RG[i].getmemberReactions(j)] = zerod;  // Set identically zero
+                        Flux[RG[i].getmemberReactions(j)] = 0.0;  // Set identically zero
                     } 
                 }
                 
