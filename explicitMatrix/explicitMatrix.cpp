@@ -173,8 +173,8 @@ double stop_time = 1.0e-3; //5.0e-6;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
-double massTol = 1.0e-7;             // Timestep tolerance parameter
-double SF = 7.3e-4;                  // Timestep agressiveness factor
+double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
+double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
@@ -2041,7 +2041,7 @@ class ReactionGroup:  public Utilities {
         int numberProducts[maxreac];           // Number of products for each reaction in RG
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
-        int rgclass;                           // Reaction group class (0-5)
+        int rgclass;                           // Reaction group class (1-5)
         bool isEquil;                          // True if RG in equilibrium; false otherwise
         bool isEquilMaybe;                     // Whether in equil if no threshhold condition
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
@@ -2272,7 +2272,7 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("\n*****t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e eqcheck=%7.4e", 
+            printf("\n$$$$$ t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e eqcheck=%7.4e", 
                 t, dt, i, 
                 reacLabel[memberReactions[i]],
                 getrgclass(),
@@ -2535,6 +2535,13 @@ class ReactionGroup:  public Utilities {
                 isoYeq[1] = crg[0] + isoYeq[0];
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
+                
+                printf("\n???+ t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
+                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio
+                );
+                printf("\n???+ t=%7.4e RG=%d isoY[0]=%7.4e isoY[1]=%7.4e isoY[2]=%7.4e",
+                       t, RGn, isoY[0], isoY[1], isoY[2]
+                );
                 break;
                 
             case 3:    // a+b+c <-> d
@@ -2608,16 +2615,22 @@ class ReactionGroup:  public Utilities {
         
         double thisDevious = abs((equilRatio - kratio) / kratio);
         
-        
+//         printf("\n???+ t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
+//             t, RGn, equilRatio, kratio, thisDevious
+//         );
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
             mostDeviousIndex = RGn;
-            
-//             printf("\n&&& t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e",
-//                    t, RGn, isEquil, thisDevious, mostDevious
-//             );
         }
+        
+//         printf("\n???+ t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e\n",
+//                t, RGn, isEquil, thisDevious, mostDevious
+//         );
+        
+        printf("\n???+ t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
+               t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
+        );
         
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. If the 
@@ -2763,7 +2776,7 @@ class ReactionGroup:  public Utilities {
     // -----------------------------------------------------------
     
     void removeFromEquilibrium() {
-        
+
         //printf("\n ****removeFromEquilibrium()");
         
         isEquil = false;
@@ -2771,8 +2784,8 @@ class ReactionGroup:  public Utilities {
         
         if (showAddRemove) {
             printf("\n\n************************************************");
-            printf("\nREMOVE RG %d FROM EQUILIBRIUM: Steps=%d t=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e Ymin=%8.4e", 
-                   RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
+            printf("\nREMOVE RG %d FROM EQUIL: Steps=%d t=%7.3e dt=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e", 
+                   RGn, totalTimeSteps, t, dt, thisDevious, mineqcheck, maxeqcheck);
         }
         
         for (int i = 0; i < niso; i++) {
@@ -2789,7 +2802,8 @@ class ReactionGroup:  public Utilities {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
             if (showAddRemove) {
-                printf("\n Remove RG=%d %s", RGn, reacLabel[i]);
+                printf("\n Remove RG=%d %s RGflux=%7.4e flux[%d]=%7.4e", 
+                    RGn, reacLabel[i], i, netflux, flux[i]);
             }
         }
         if(showAddRemove) 
@@ -2996,16 +3010,16 @@ class Integrate: public Utilities {
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
                 
-                printf("\n$$$$$$ t=%7.4e dt=%7.4e mostdevious=%7.4e\n", 
+                printf("\n???+ t=%7.4e dt=%7.4e mostdevious=%7.4e\n", 
                     t, dt, mostDevious);
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    printf("\n?????? downdevious t=%7.4e totalEquilReactions=%d",
+                    printf("\n???+ downdevious t=%7.4e totalEquilReactions=%d",
                         t, totalEquilReactions);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
-                    printf("\n?????? updevious t=%7.4e totalEquilRG=%d",
+                    printf("\n???+ updevious t=%7.4e totalEquilRG=%d",
                         t, totalEquilReactions);
                 }
                 updatePopulations();
