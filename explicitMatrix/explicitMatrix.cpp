@@ -2263,7 +2263,8 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        //printf("\n**** showRGFluxes() t = %7.4e\n", t);
+        if(RGn==0) printf("\n\n\n--------- t=%7.4e ---------", t );
+        printf("\n\nRG=%d", RGn);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2284,9 +2285,9 @@ class ReactionGroup:  public Utilities {
         
         printf("\n");
         if(isEquil){
-            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)\n", t, RGn, netflux); 
+            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)\n", t, RGn, netflux); 
         } else {
-            printf("t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", t, RGn, netflux); 
+            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", t, RGn, netflux); 
         }
     }
     
@@ -2405,6 +2406,14 @@ class ReactionGroup:  public Utilities {
                 
                 crg[0] = isoY0[1] - isoY0[0];
                 crg[1] = isoY0[1] + isoY0[2];
+                
+                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
+                    t, RGn, isoY0[0], isoY0[1], isoY0[2]
+                );
+                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
+                       t, RGn, crg[0], crg[1]
+                );
+                
                 break;
                 
             case 3:    // a+b+c <-> d
@@ -2412,6 +2421,14 @@ class ReactionGroup:  public Utilities {
                 crg[0] = isoY0[0] - isoY0[1];
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
+                
+                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e isoY0[3]=%7.4e",
+                       t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
+                );
+                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e crg[2]=%7.4e",
+                       t, RGn, crg[0], crg[1], crg[2]
+                );
+                
                 break;
                 
             case 4:    // a+b <-> c+d
@@ -2536,12 +2553,10 @@ class ReactionGroup:  public Utilities {
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
                 
-                printf("\n???+ t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
+                printf("\n???+ computeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
                     t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio
                 );
-                printf("\n???+ t=%7.4e RG=%d isoY[0]=%7.4e isoY[1]=%7.4e isoY[2]=%7.4e",
-                       t, RGn, isoY[0], isoY[1], isoY[2]
-                );
+
                 break;
                 
             case 3:    // a+b+c <-> d
@@ -2550,6 +2565,11 @@ class ReactionGroup:  public Utilities {
                 isoYeq[2] = isoYeq[0] - crg[1];
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
+                
+                printf("\n???+ computeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e isoYeq[3]=%7.4e equilRatio=%7.4e",
+                       t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio
+                );
+                
                 break;
                 
             case 4:    // a+b <-> c+d
@@ -2628,7 +2648,7 @@ class ReactionGroup:  public Utilities {
 //                t, RGn, isEquil, thisDevious, mostDevious
 //         );
         
-        printf("\n???+ t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
+        printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
                t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
         );
         
@@ -2733,7 +2753,7 @@ class ReactionGroup:  public Utilities {
             
             if (isEquil) {
                 if (showAddRemove) {
-                    printf("\n************************************************");
+                    printf("\n\n************************************************");
                     printf("\nADD RG %d TO EQUIL: Steps=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
                            RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
                 }
