@@ -2273,13 +2273,12 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("\n$$$$$ t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e eqcheck=%7.4e", 
+            printf("\n$$$$$ t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e", 
                 t, dt, i, 
                 reacLabel[memberReactions[i]],
                 getrgclass(),
                 getisForward(i),   // prints 1 if true; 0 if false
-                fac*getflux(i),
-                eqcheck[i]
+                fac*getflux(i)
             );
         }
         
@@ -2476,6 +2475,11 @@ class ReactionGroup:  public Utilities {
                 aa = -rgkf;
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
+                
+                printf("\n???+ computeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                       t, RGn, aa, bb, cc
+                );
+                       
                 break;
                 
             case 3:  // a+b+c <-> d
@@ -2483,6 +2487,11 @@ class ReactionGroup:  public Utilities {
                 aa = -rgkf * isoY0[0] + rgkf * (crg[0] + crg[1]);
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
+                
+                printf("\n???+ computeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                       t, RGn, aa, bb, cc
+                );
+                
                 break;
                 
             case 4:  // a+b <-> c+d
@@ -2519,6 +2528,10 @@ class ReactionGroup:  public Utilities {
                 tau = 1 / rootq;
             }
             isoYeq[0] = computeYeq(aa, bb, rootq);
+            
+            printf("\n???+ computeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
+                   t, RGn, qq, tau, isoYeq[0]
+            );
         } else {
             qq = -1.0;
             tau = 1.0 / rgkf;
@@ -2689,14 +2702,14 @@ class ReactionGroup:  public Utilities {
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
-//                 if(t > equilibrateTime) {
-//                     printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s eqcheck=%7.4e isoYeq=%7.4e isoY=%7.4e",
-//                         t, RGn, i, isolabel[i], eqcheck[i], isoYeq[i], isoY[i]
-//                     );
-//                     printf("\n&&& computeEqRatios t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
+                if(t > equilibrateTime) {
+                    printf("\n???+ computeEqRatios: t=%7.4e RG=%d iso=%d %s isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
+                           t, RGn, i, isolabel[i], isoYeq[i], isoY[i], eqcheck[i] 
+                    );
+//                     printf("\n??? computeEqRatios: t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
 //                            t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
 //                     );
-//                 }
+                }
                 
                 
                 // Store some min and max values
