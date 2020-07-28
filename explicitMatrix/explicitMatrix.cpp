@@ -2328,6 +2328,7 @@ class ReactionGroup:  public Utilities {
             netflux = sumRGfluxes();
             lambda = netflux * deltaTime;
         }
+        
     }
     
     
@@ -2421,10 +2422,10 @@ class ReactionGroup:  public Utilities {
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
                 
-                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e isoY0[3]=%7.4e",
+                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
                        t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
                 );
-                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e crg[2]=%7.4e",
+                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                        t, RGn, crg[0], crg[1], crg[2]
                 );
                 
@@ -2646,11 +2647,13 @@ class ReactionGroup:  public Utilities {
     
     void computeEqRatios() {
         
-        double thisDevious = abs((equilRatio - kratio) / kratio);
+        // Add 1e-20 to denominator to prevent possible divide by zero
         
-//         printf("\n???+ t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
-//             t, RGn, equilRatio, kratio, thisDevious
-//         );
+        double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-20));
+        
+        printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
+            t, RGn, equilRatio, kratio, thisDevious
+        );
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
@@ -3037,23 +3040,28 @@ class Integrate: public Utilities {
             // See Java lines 6329 ff
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
-            //if (doPE && t > equilibrateTime) {
-            if (doPE && t > equilibrateTime && totalEquilReactions>0) {
+            
+            if (doPE && t > equilibrateTime) {
+            //if (doPE && t > equilibrateTime && totalEquilReactions>0) {
                 
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
                 
-                printf("\n???+ t=%7.4e dt=%7.4e mostdevious=%7.4e\n", 
-                    t, dt, mostDevious);
+                printf("\n\n???+ checkTimestepTolerance: t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
+                    t, dt, mostDevious, totalEquilReactions);
+                
+                double dtprev = dt;
                 
                 if (mostDevious > deviousMax) {
+                    //dt = 0.93*dtprev;
                     dt *= 0.93;
-                    printf("\n???+ downdevious t=%7.4e totalEquilReactions=%d",
-                        t, totalEquilReactions);
+                    printf("\n???+ checkTimestepTolerance: downdevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e",
+                        t, dtprev, dt);
                 } else if (mostDevious < deviousMin) {
+                    //dt = 1.03*dtprev;
                     dt *= 1.03;
-                    printf("\n???+ updevious t=%7.4e totalEquilRG=%d",
-                        t, totalEquilReactions);
+                    printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e",
+                           t, dtprev, dt);
                 }
                 updatePopulations();
             }
@@ -3081,11 +3089,11 @@ class Integrate: public Utilities {
             if (t < equilibrateTime || !doPE || totalEquilReactions==0) {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-                    //printf("\n****downbumperafter dt=%8.5e", dt);
+                    printf("\n\n****downbumper t=%8.5e dt=%8.5e totalEquilReactions= %d", t, dt,totalEquilReactions);
                     updatePopulations();
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-                    //printf("\n****upbumperafter dt=%8.5e", dt);
+                    printf("\n\n****upbumper t=%8.5e dt=%8.5e totalEquilReactions= %d", t, dt, totalEquilReactions);
                     
                     // This update populations causes error if included.  Not sure why
                     // Agrees almost exactly with Java Asy if omitted (but Java includes it).
@@ -3629,14 +3637,16 @@ int main() {
                 }
                 
                 // Print results 
-                
-                for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-//                     printf("\n   %d reaction=%d %s flux=%7.4e eqcheck=%7.4e",
-//                         j, RG[i].getmemberReactions(j), 
-//                         RG[i].getreacString(j),
-//                         Flux[RG[i].getmemberReactions(j)],
-//                          RG[i].geteqcheck(j)
-//                     );
+                if(doPE && t>1e-6){
+                    printf("\n");
+                    for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+                        printf("\n++++++ %d RG=%d reacIndex=%d %s flux=%7.4e eqcheck=%7.4e",
+                            j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
+                            RG[i].getreacString(j),
+                            Flux[RG[i].getmemberReactions(j)],
+                            RG[i].geteqcheck(j)
+                        );
+                    }
                 }
             }
         }
