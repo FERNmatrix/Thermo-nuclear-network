@@ -2655,14 +2655,15 @@ class ReactionGroup:  public Utilities {
             t, RGn, equilRatio, kratio, thisDevious
         );
         
+        printf("\n???*** computeEqRatios: t=%7.4e RG=%d thisDevious=%8.5e mostDevious=%8.5e isEquil=%d", 
+               t, RGn, thisDevious, mostDevious, isEquil
+        );
+        
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
             mostDeviousIndex = RGn;
+            
         }
-        
-//         printf("\n???+ t=%7.4e RG=%d isEquil=%d thisDevious=%7.4e mostDevious=%7.4e\n",
-//                t, RGn, isEquil, thisDevious, mostDevious
-//         );
         
         printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
                t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
@@ -3041,8 +3042,8 @@ class Integrate: public Utilities {
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
             
-            if (doPE && t > equilibrateTime) {
-            //if (doPE && t > equilibrateTime && totalEquilReactions>0) {
+            //if (doPE && t > equilibrateTime) {
+            if (doPE && t > equilibrateTime && totalEquilReactions>0) {
                 
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
@@ -3053,15 +3054,13 @@ class Integrate: public Utilities {
                 double dtprev = dt;
                 
                 if (mostDevious > deviousMax) {
-                    //dt = 0.93*dtprev;
                     dt *= 0.93;
-                    printf("\n???+ checkTimestepTolerance: downdevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e",
-                        t, dtprev, dt);
+                    printf("\n???+ checkTimestepTolerance: downdevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                        t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
-                    //dt = 1.03*dtprev;
                     dt *= 1.03;
-                    printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e",
-                           t, dtprev, dt);
+                    printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                           t, dtprev, dt, mostDevious);
                 }
                 updatePopulations();
             }
@@ -3085,8 +3084,9 @@ class Integrate: public Utilities {
             
             // See Java lines 6357 ff
             
-            //if (t < equilibrateTime || !doPE) {
+            
             if (t < equilibrateTime || !doPE || totalEquilReactions==0) {
+            //if (t < equilibrateTime || !doPE) {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
                     printf("\n\n****downbumper t=%8.5e dt=%8.5e totalEquilReactions= %d", t, dt,totalEquilReactions);
