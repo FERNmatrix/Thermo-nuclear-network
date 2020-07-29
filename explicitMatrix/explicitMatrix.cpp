@@ -169,12 +169,12 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3; //5.0e-6;           // Stop time for integration
+double stop_time = 1.0e-3;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
 double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
+double SF = 3.0e-5;                  // Timestep agressiveness factor (7.3e-4)
 
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
@@ -192,11 +192,11 @@ double diffX;                        // sumX - 1.0
 double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
 
-double Rate[SIZE];       // Computed rate for each reaction from Reactions::computeRate()
-double Flux[SIZE];       // Computed flux for each reaction from Reactions::computeFlux()
+double Rate[SIZE];                   // Reaction rate from Reactions::computeRate()
+double Flux[SIZE];                   // Flux from Reactions::computeFlux()
 
 
-// --- Species data in the following arrays also contained in fields of class Species
+// --- Species data in following arrays also contained in fields of class Species
 
 int Z[ISOTOPES];                 // Array holding Z values for isotopes
 int N[ISOTOPES];                 // Array holding N values for isotopes
@@ -204,15 +204,15 @@ int AA[ISOTOPES];                // Array holding A values for isotopes
 double Y[ISOTOPES];              // Array holding abundances Y for isotopes
 double X[ISOTOPES];              // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
-char isoLabel[ISOTOPES][5];      // Isotope labels (max length 5 characters; e.g. 238pu)
-double dYDt[ISOTOPES];
+char isoLabel[ISOTOPES][5];      // Isotope labels (max 5 characters; e.g. 238pu)
+double dYDt[ISOTOPES];           // Rate of change for Y
 
 // -----------
 
 
-// --- Reaction data in the following arrays also contained in fields of class Reaction
+// --- Reaction data in following arrays also contained in fields of class Reaction
 
-char reacLabel[SIZE][LABELSIZE]; // Char array of reaction labels (e.g. he4+c12-->o16) 
+char reacLabel[SIZE][LABELSIZE]; // Reaction labels (e.g. he4+c12-->o16) 
 int RGclass[SIZE];               // Reaction Group class (PE) for reaction (1-5)
 int RGMemberIndex[SIZE];         // Member index within its reaction group
 string RGstring[SIZE];           // Schematic RG; e.g. a <->b+c
@@ -222,27 +222,27 @@ int reacZ[SIZE][4];              // Holds Z for each reactant isotope
 int reacN[SIZE][4];              // Holds N for each reactant isotope
 int prodZ[SIZE][4];              // Holds Z for each product isotope
 int prodN[SIZE][4];              // Holds N for each product isotope
-int ReactantIndex[SIZE][4];      // Index of isotope vector for each reactant isotope
-int ProductIndex[SIZE][4];       // Index of isotope vector for each product isotope
+int ReactantIndex[SIZE][4];      // Index of isotope vector for reactant isotope
+int ProductIndex[SIZE][4];       // Index of isotope vector for product isotope
 int isPEforward[SIZE];           // Whether labeled "forward" reaction in PE scheme
 
 // -----------
 
 
-int numberSpecies;                // Actual # species in network (generally = ISOTOPES)
-int numberReactions;              // Actual # reactions in network (generally = SIZE)
+int numberSpecies;                // Actual # species in network (usually = ISOTOPES)
+int numberReactions;              // Actual # reactions in network (usually = SIZE)
 
-// Array with entries +1 if a reaction increases the population of the isotope (contributes to 
-// F+), -1 if it decreases it (contributes to F-) and 0 if the reaction does not change the population
-// of the isotope. This array is populated in the function ReactionVector::parseF().  It is 
-// characteristic of the structure of the network and thus has to be calculated only once for a 
-// given network.
+// Array with entries +1 if a reaction increases the population of the isotope 
+// (contributes to F+), -1 if it decreases it (contributes to F-) and 0 if the 
+// reaction does not change the population of the isotope. This array is populated 
+// in the function ReactionVector::parseF().  It is characteristic of the structure 
+// of the network and thus has to be calculated only once for a given network.
 
 int reacMask[ISOTOPES][SIZE]; 
 
-// Define an array rv[] and corresponding pointers that will hold GSL vectors corresponding
-// to the reaction vectors for the system.  This will be implemented in the function
-// makeReactionVectors() of the class ReactionVector.
+// Define an array rv[] and corresponding pointers that will hold GSL vectors 
+// corresponding to the reaction vectors for the system.  This will be implemented 
+// in the function makeReactionVectors() of the class ReactionVector.
 
 gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
