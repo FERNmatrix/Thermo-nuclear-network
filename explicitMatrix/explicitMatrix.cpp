@@ -172,7 +172,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-12;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3;           // Stop time for integration
+double stop_time = 1.0e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -2946,8 +2946,8 @@ class Integrate: public Utilities {
                 dtcounter ++;
                 updatePopulations();
                 isValidUpdate = checkTimestepTolerance();
-//                 printf("\nSteps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
-//                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
+                printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
+                       totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
         }    // End of doIntegrationStep
@@ -2976,9 +2976,9 @@ class Integrate: public Utilities {
             
             if(doASY){
                 
-                //                 printf("\nCheck asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-                //                     t, dt
-                //                 );
+                                printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
+                                    t, dt
+                                );
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i]);
 //                     if(isAsy[i]){ 
@@ -3053,7 +3053,7 @@ class Integrate: public Utilities {
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
             
             //if (doPE && t > equilibrateTime) {
-            if (doPE && t > equilibrateTime && totalEquilReactions>0) {
+            if (doPE && t > equilibrateTime) {
                 
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
@@ -3095,7 +3095,7 @@ class Integrate: public Utilities {
             // See Java lines 6357 ff
             
             
-            if (t < equilibrateTime || !doPE || totalEquilReactions==0) {
+            if (t < equilibrateTime || !doPE) {
             //if (t < equilibrateTime || !doPE) {
                 
                 double dtprior = dt;
@@ -3114,7 +3114,7 @@ class Integrate: public Utilities {
                     // This update populations causes error if included.  Not sure why
                     // Agrees almost exactly with Java Asy if omitted (but Java includes it).
                     
-                    // updatePopulations();
+                    updatePopulations();
                 }
             }
             
@@ -3609,7 +3609,7 @@ int main() {
         // method of Reaction on each object. Fluxes must be recomputed at each timestep
         // since they depend on the rates and the abundances. If temperature and density
         // are constant the rates won't change, but the fluxes generally will since
-        // the abundances change even if the rates are constant.
+        // the abundances change even if the rates are constant as the network evolves.
         
         //printf("\n\nTOTAL FLUXES\n");
         
@@ -3656,7 +3656,7 @@ int main() {
                     totalEquilRG ++;
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
                         Flux[RG[i].getmemberReactions(j)] = 0.0; 
-                        //totalEquilReactions ++;
+                        totalEquilReactions ++;
                     } 
                 }
                 
