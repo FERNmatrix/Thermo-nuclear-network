@@ -3702,7 +3702,7 @@ int main() {
             }
         }
         
-        // Update the energy release
+        // Update the energy release based on Q values for reactions and fluxes
         
         double netdERelease = 0.0;
         
