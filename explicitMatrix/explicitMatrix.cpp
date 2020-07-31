@@ -53,10 +53,12 @@ using std::string;
 #define plotSteps 200                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
-#define PF 24                         // Number entries in partition function table for each isotope
+#define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
 #define TWOTHIRD 0.66666666666667
 #define ECON 9.5768e17                // Convert MeV/nucleon/s to erg/g/s
+#define LOG10 0.434294481903251       // Conversion natural log to log10
+#define MEV 931.494                   // Conversion of amu to MeV
 
 #define unitd static_cast<double>(1.0)  // Constant double equal to 1
 #define zerod static_cast<double>(0.0)  // Constant double equal to 0
@@ -128,7 +130,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
