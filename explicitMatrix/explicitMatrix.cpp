@@ -50,12 +50,13 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100                  // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries in partition function table for each isotope
 #define THIRD 0.333333333333333
 #define TWOTHIRD 0.66666666666667
+#define ECON 9.5768e17                // Convert MeV/nucleon/s to erg/g/s
 
 #define unitd static_cast<double>(1.0)  // Constant double equal to 1
 #define zerod static_cast<double>(0.0)  // Constant double equal to 0
@@ -127,7 +128,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -174,7 +175,7 @@ double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
 double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
-double SF = 3.0e-5;                  // Timestep agressiveness factor (7.3e-4)
+double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
@@ -339,7 +340,7 @@ bool equilibrate = true;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6; 
+double equilibrateTime =  1.0e-6; //2.0e-5;
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -963,6 +964,7 @@ class Reaction: public Utilities {
         double rate;                 // Current T-dependent part of rate for reaction
         double Rrate;                // Current full rate (s^-1) for reaction
         double flux;                 // Current flux of reaction
+        double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
         
@@ -1171,6 +1173,10 @@ class Reaction: public Utilities {
         
         void setflux(double f){ flux = f; }
         
+        // Overloaded dErate setter
+        void setdErate(double r){ dErate = r; }
+        void setdErate(void){ dErate = flux*Q; }
+        
         
         // Public Reaction getter methods to get values in private fields
         
@@ -1299,6 +1305,8 @@ class Reaction: public Utilities {
         double getRrate(){ return Rrate; }
         
         double getflux(){ return flux; }
+        
+        double getdErate(){ return dErate; }
         
         
         // Function Reaction::setupFplusFminus() to set up F+ and F- index for each
@@ -2156,17 +2164,11 @@ class ReactionGroup:  public Utilities {
     // Method to set all fluxes in RG
     
     void setRGfluxes(){
-        //printf("\n\n**** setRGFluxes() t = %7.4e", t);
-//    printf("\n");
+
         for(int i=0; i<numberMemberReactions; i++){
             setflux(i, Flux[ memberReactions[i] ]);
 //             printf("\n******* setRGfluxes t=%7.4e dt=%7.4e memberIndex=%d RG=%d %s flux=%8.5e eqcheck=%8.5e",
-//                 t, dt, i, 
-//                 RGn,
-//                 reacLabel[i],
-//                 getflux(i),
-//                 eqcheck[i]
-//             );
+//                 t, dt, i, RGn, reacLabel[i], getflux(i), eqcheck[i]);
         }
     }
     
@@ -2263,7 +2265,8 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        if(RGn==0) printf("\n\n\n--------- t=%7.4e ---------", t );
+        if(RGn==0) printf("\n\n\n--------- t=%7.4e equilReaction=%d equilRG=%d ---------", 
+            t, totalEquilReactions, totalEquilRG );
         printf("\n\nRG=%d", RGn);
         
         double fac;
@@ -2378,10 +2381,10 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y[ii];
             isoY[k] = isoY0[k];
-//             printf("\n**** putY0: t=%8.4e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%7.3e isoY0=%7.4e", 
-//                 t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k]);
+            printf("\n??? putY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
+                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
         }
-        //printf("\n");
+        printf("\n");
     }
     
    
@@ -2666,7 +2669,7 @@ class ReactionGroup:  public Utilities {
         }
         
         printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
-               t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
+            t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
         );
         
         // The return statements in the following if-clauses cause reaction
@@ -2761,9 +2764,10 @@ class ReactionGroup:  public Utilities {
              *  totalEquilReaction is updated when the flux is suppressed for equilibrium 
              *  pairs. */
             
-            if (!doPE && isEquil)
+            if (!doPE && isEquil){
                 totalEquilReactions += numberMemberReactions;
                 totalEquilRG ++;
+            }
             
             // Set isEquil field of network species vectors to true if isotope
             // participating in equilibrium
@@ -2825,6 +2829,8 @@ class ReactionGroup:  public Utilities {
                    RGn, totalTimeSteps, t, dt, thisDevious, mineqcheck, maxeqcheck);
         }
         
+        totalEquilRG --;
+        
         for (int i = 0; i < niso; i++) {
             isEquil = false;
             if (showAddRemove) {
@@ -2836,11 +2842,13 @@ class ReactionGroup:  public Utilities {
         }
         
         for (int i = 0; i < numberMemberReactions; i++) {
+            
+            // totalEquilReactions --;
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
             if (showAddRemove) {
                 printf("\n Remove RG=%d %s RGflux=%7.4e flux[%d]=%7.4e", 
-                    RGn, reacLabel[i], i, netflux, flux[i]);
+                    RGn, reaclabel[i], i, netflux, flux[i]);
             }
         }
         if(showAddRemove) 
@@ -3060,7 +3068,7 @@ class Integrate: public Utilities {
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
                     printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
-                           t, dtprev, dt, mostDevious);
+                        t, dtprev, dt, mostDevious);
                 }
                 updatePopulations();
             }
@@ -3087,13 +3095,19 @@ class Integrate: public Utilities {
             
             if (t < equilibrateTime || !doPE || totalEquilReactions==0) {
             //if (t < equilibrateTime || !doPE) {
+                
+                double dtprior = dt;
+                
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-                    printf("\n\n****downbumper t=%8.5e dt=%8.5e totalEquilReactions= %d", t, dt,totalEquilReactions);
+                    printf("\n\n****downbumper t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
+                        t, dtprior, dt, test1, test2, massChecker, sumX);
                     updatePopulations();
+                    
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-                    printf("\n\n****upbumper t=%8.5e dt=%8.5e totalEquilReactions= %d", t, dt, totalEquilReactions);
+                    printf("\n\n****upbumper t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
+                        t, dtprior, dt, test1, test2, massChecker, sumX);
                     
                     // This update populations causes error if included.  Not sure why
                     // Agrees almost exactly with Java Asy if omitted (but Java includes it).
@@ -3118,10 +3132,10 @@ class Integrate: public Utilities {
             
             // Adapted from Java code, lines 6302 ff
             
-            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give save initial timestep
+            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             //dtFlux = min(0.1*t, SF/maxdYdt);    // Original Java
             dtt = min(dtFlux, dtLast);
-            //dtt = dtFlux; //dtt = min(dtFlux, dtLast);
+            //dtt = dtFlux;
             //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
             return dtt;
         }
@@ -3523,6 +3537,7 @@ int main() {
     totalEquilRG = 0;           // Number quilibrated reaction groups
     totalEquilReactions = 0;    // Number equilibrated reactions
     totalAsy = 0;               // Number asymptotic species
+    ERelease = 0.0;             // Total E released from Q values
     int plotCounter = 1;        // Plot output counter
     
     Utilities::startTimer();    // Start a timer for integration
@@ -3548,7 +3563,7 @@ int main() {
         printf("\n\n**** Rates will be recomputed at each timestep since T and rho may change ****\n");
     }
     
-    
+
     
     while(t < stop_time && totalTimeSteps < 15000){
         
@@ -3616,8 +3631,10 @@ int main() {
         // zero for all reactions in reaction groups that are judged to be in equilibrium
         // (RG[i].isEquil = true).
         
-        if(doPE){
-        //if(doPE && t > equilibrateTime){
+        totalEquilRG = 0;
+        totalEquilReactions=0;
+        
+        if(doPE && t > equilibrateTime){
             
             //printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
             
@@ -3630,14 +3647,19 @@ int main() {
                 bool ckequil = RG[i].getisEquil();
                 //printf("\n\nRG=%d isEquil=%d", i, ckequil);
                 
+                // Add RG to equilibrium by setting the member fluxes of the RG
+                // identically equal to zero.
+                
                 if(ckequil){
+                    totalEquilRG ++;
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        Flux[RG[i].getmemberReactions(j)] = 0.0;  // Set identically zero
+                        Flux[RG[i].getmemberReactions(j)] = 0.0; 
+                        //totalEquilReactions ++;
                     } 
                 }
                 
                 // Print results 
-                if(doPE && t>1e-6){
+                if(doPE && t>equilibrateTime){
                     printf("\n");
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
                         printf("\n++++++ %d RG=%d reacIndex=%d %s flux=%7.4e eqcheck=%7.4e",
@@ -3678,6 +3700,17 @@ int main() {
             }
         }
         
+        // Update the energy release
+        
+        double netdERelease = 0.0;
+        
+        for(int i=0; i<SIZE; i++){
+            dERelease = reaction[i].getQ() * reaction[i].getflux();
+            reaction[i].setdErate(dERelease);
+            ERelease += (dERelease * dt);
+            netdERelease += dERelease;
+        }
+        
         // Display and output to files updated quantities at plotSteps times corresponding
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
         // times are generated by Utilities::log10Spacing() and stored in the array
@@ -3713,9 +3746,8 @@ int main() {
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
             
-            // Following 2 temporary placeholders until energy calculations inserted
-            EReleasePlot[plotCounter-1] = 20.0; //log10(abs(ERelease));
-            dEReleasePlot[plotCounter-1] = 20.0; //log10(abs(dERelease));
+            EReleasePlot[plotCounter-1] = log10( abs(ECON*ERelease) );     // log10(abs(ERelease));
+            dEReleasePlot[plotCounter-1] = log10( abs(ECON*netdERelease) );   // log10(abs(dERelease));
             
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
