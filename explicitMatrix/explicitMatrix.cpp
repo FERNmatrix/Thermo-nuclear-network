@@ -130,7 +130,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -172,9 +172,9 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-16;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3; //2.0e-5;           // Stop time for integration
+double stop_time = 1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 0.1*start_time;    // Initial value of integration dt
+double dt_start = 0.01*start_time;    // Initial value of integration dt
 
 double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
@@ -2959,7 +2959,7 @@ class Integrate: public Utilities {
         
         static void updatePopulations(double dtt){
    
-printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dtt);
+            //printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dtt);
 
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
@@ -2978,7 +2978,7 @@ printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dtt);
             
             if(doASY){
  
-printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
+                //printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
 
                 printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
                     t, dtt);
@@ -3117,11 +3117,11 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
                     // This update populations causes error if included.  Not sure why
                     // Agrees almost exactly with Java Asy if omitted (but Java includes it).
                     
-printf("\n++++++ CALL UPDATE 3120:: t=%8.5e dt_prior=%8,5e dt=%8.5e", t, dtprior, dt);
+                    //printf("\n++++++ CALL UPDATE 3120:: t=%8.5e dt_prior=%8.5e dt=%8.5e", t, dtprior, dt);
 
                     updatePopulations(dt);
                     
-printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
+                    //printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
                 }
             }
             
@@ -3170,24 +3170,23 @@ printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
         
         double newY = Y + (FplusSum-FminusSum)*dt;
         
-printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e", t, dt);
+        //printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e", t, dt);
 
         return newY;     // New Y for forward Euler method
         
     }
     
-    // Function to update by the asymptotic method
+    // Function to update Y by the asymptotic method using Sophia He formula
     
-    static double asymptoticUpdate(double fplus, double fminus, double y, double dt){
+    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
         
-        // Update Y by asymptotic approximation (Sophia He formula)
+        // Compute new Y for asymptotic method
         
-//         printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
-//             fplus, fminus, y, dt);
+        double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dt);
+        //printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dtt);
         
-        return (y + fplus*dt)/(1.0 + fminus*dt/y);  // New Y for asymptotic method
+        return newY;  
         
     }
     
@@ -3195,13 +3194,8 @@ printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dt);
     // asymptotic condition. Returns true (1) if it does and false (0) if not.
     
     static bool checkAsy(double Fminus, double YY){
-        
-//         printf("\n$$$$$$ checkAsy: Fminus=%7.4e YY=%7.4e dt=%7.4f, Fminus*dtt/YY=%7.4f",
-//             Fminus, YY, dt, Fminus*dt/YY
-//         );
-        if(YY > zerod && Fminus*dt/YY > unitd){
-//             printf("\n+++Asymptotic check input: Fminus = %9.5e Y = %9.5e dt = %9.5e ck=%9.5e Asy=true\n", 
-//                 Fminus, YY, dt, Fminus*dt/YY);
+
+        if(YY > 0.0 && Fminus*dt/YY > 1.0){
             return true;
         } else {
             return false;
@@ -3229,23 +3223,20 @@ printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dt);
     
     static void updateAsyEuler(){
 
-printf("\n++++++ updateAsyEuler 3223: t=%8.5e dt=%8.5e", t, dt);
+        //printf("\n++++++ updateAsyEuler 3223: t=%8.5e dt=%8.5e", t, dt);
 
         for(int i=0; i<numberSpecies; i++){	
 //             printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
 //                    i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
             
             if(isAsy[i]){
-            //if( checkAsy(Fminus[i], Y[i]) ){
-                //printf("\n   $$$$$$ dt=%7.4e", dt);
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
-                //Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             } else {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             }
             X[i] = Y[i] * (double) AA[i];
             
-printf("\n++++++ updateAsyEuler 3239: t=%8.5e dt=%8.5e", t, dt);
+            //printf("\n++++++ updateAsyEuler 3239: t=%8.5e dt=%8.5e", t, dt);
         }
     }    // End function updateAsyEuler()
     
@@ -3321,7 +3312,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 5.0f;
+    T9_start = 5.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
@@ -3331,8 +3322,8 @@ int main() {
     // likely be the last timestep of the previous network integration (for the preceding 
     // hydro timestep). Here we hardwire them for testing purposes.
     
-    double tmax = 1e-11;
-    double dt_init = 1e-17; 
+    //double tmax = 1e-11;
+    //double dt_init = 1e-17; 
     
     // Read in network file and associated partition functions.  This is required only
     // once at the beginning of the entire calculation.  
@@ -3681,11 +3672,10 @@ int main() {
                 if(doPE && t>equilibrateTime){
                     printf("\n");
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        printf("\n++++ %d RG=%d reacIndex=%d %s flux=%7.4e eqcheck=%7.4e",
+                        printf("\n++++ %d RG=%d reacIndex=%d %s flux=%7.4e",
                             j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
                             RG[i].getreacString(j),
-                            Flux[RG[i].getmemberReactions(j)],
-                            RG[i].geteqcheck(j)
+                            Flux[RG[i].getmemberReactions(j)]
                         );
                     }
                 }
