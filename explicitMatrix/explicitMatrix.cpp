@@ -130,7 +130,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -172,7 +172,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-16;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 2.0e-5;           // Stop time for integration
+double stop_time = 1.0e-3; //2.0e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -3584,7 +3584,7 @@ int main() {
     
 
     
-    while(t < stop_time && totalTimeSteps < 10000){
+    while(t < stop_time && totalTimeSteps < 12000){
         
         t += dt;                
         totalTimeSteps ++;  
