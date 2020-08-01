@@ -169,10 +169,10 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 // Generally, startplot_time >= start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1.0e-12;         // Start time for integration
+double start_time = 1.0e-16;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-5;           // Stop time for integration
+double stop_time = 2.0e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.1*start_time;    // Initial value of integration dt
 
@@ -2944,7 +2944,7 @@ class Integrate: public Utilities {
             
             while(!isValidUpdate && dtcounter < dtcounterMax){
                 dtcounter ++;
-                updatePopulations();
+                //updatePopulations();
                 isValidUpdate = checkTimestepTolerance();
                 printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
@@ -2958,7 +2958,9 @@ class Integrate: public Utilities {
         // Function to do population update with current dt
         
         static void updatePopulations(){
-            
+   
+printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dt);
+
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
             if(doQSS){
@@ -2975,10 +2977,11 @@ class Integrate: public Utilities {
             // asymptotic condition.
             
             if(doASY){
-                
-                                printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-                                    t, dt
-                                );
+ 
+printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
+
+                printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
+                    t, dt);
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i]);
 //                     if(isAsy[i]){ 
@@ -3114,7 +3117,11 @@ class Integrate: public Utilities {
                     // This update populations causes error if included.  Not sure why
                     // Agrees almost exactly with Java Asy if omitted (but Java includes it).
                     
+printf("\n++++++ CALL UPDATE 3120:: t=%8.5e dt_prior=%8,5e dt=%8.5e", t, dtprior, dt);
+
                     updatePopulations();
+                    
+printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
                 }
             }
             
@@ -3160,8 +3167,12 @@ class Integrate: public Utilities {
     // Function to update by the forward Euler method
         
     static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
+        
+        double newY = Y + (FplusSum-FminusSum)*dt;
+        
+printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e", t, dt);
 
-        return Y + (FplusSum-FminusSum)*dt;   // New Y for forward Euler method
+        return newY;     // New Y for forward Euler method
         
     }
     
@@ -3173,6 +3184,8 @@ class Integrate: public Utilities {
         
 //         printf("\n\nAsymptotic input: Fplus = %9.5e Fminus = %9.5e Y = %9.5e dt = %9.5e\n", 
 //             fplus, fminus, y, dt);
+        
+printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dt);
         
         return (y + fplus*dt)/(1.0 + fminus*dt/y);  // New Y for asymptotic method
         
@@ -3215,7 +3228,9 @@ class Integrate: public Utilities {
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
-        //printf("\n\n$$$$$ Updating asy-euler\n");
+
+printf("\n++++++ updateAsyEuler 3223: t=%8.5e dt=%8.5e", t, dt);
+
         for(int i=0; i<numberSpecies; i++){	
 //             printf("\n$$$$$ %d %s F-=%8.4e Y=%8.4e dt=%8.4e isAsy=%d", 
 //                    i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
@@ -3229,6 +3244,8 @@ class Integrate: public Utilities {
                 Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
             }
             X[i] = Y[i] * (double) AA[i];
+            
+printf("\n++++++ updateAsyEuler 3239: t=%8.5e dt=%8.5e", t, dt);
         }
     }    // End function updateAsyEuler()
     
@@ -3567,7 +3584,7 @@ int main() {
     
 
     
-    while(t < stop_time && totalTimeSteps < 15000){
+    while(t < stop_time && totalTimeSteps < 10000){
         
         t += dt;                
         totalTimeSteps ++;  
@@ -3664,7 +3681,7 @@ int main() {
                 if(doPE && t>equilibrateTime){
                     printf("\n");
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        printf("\n++++++ %d RG=%d reacIndex=%d %s flux=%7.4e eqcheck=%7.4e",
+                        printf("\n++++ %d RG=%d reacIndex=%d %s flux=%7.4e eqcheck=%7.4e",
                             j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
                             RG[i].getreacString(j),
                             Flux[RG[i].getmemberReactions(j)],
