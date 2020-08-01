@@ -107,7 +107,7 @@ static const int showPlotSteps = 0;
 static const bool showAddRemove = true; 
 
 
-// Function Signatures:
+// Function signatures:
 void devcheck(int);
 void readLibraryParams(char *);
 void readNetwork(char *);
@@ -2944,7 +2944,7 @@ class Integrate: public Utilities {
             
             while(!isValidUpdate && dtcounter < dtcounterMax){
                 dtcounter ++;
-                //updatePopulations();
+                //updatePopulations(dt);
                 isValidUpdate = checkTimestepTolerance();
                 printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
@@ -2957,16 +2957,16 @@ class Integrate: public Utilities {
         
         // Function to do population update with current dt
         
-        static void updatePopulations(){
+        static void updatePopulations(double dtt){
    
-printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dt);
+printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dtt);
 
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
             if(doQSS){
-                printf("\nQSS approximation (t=%7.4e, dt=%7.4e)\n", t, dt);
+                printf("\nQSS approximation (t=%7.4e, dt=%7.4e)\n", t, dtt);
                 for (int i=0; i<ISOTOPES; i++){
-                    QSSupdate(Fplus[i], Fminus[i], Y[i], dt);
+                    QSSupdate(Fplus[i], Fminus[i], Y[i], dtt);
                     //printf("\n-------Doing QSS update for %s  Y=%7.4e", isoLabel[i], Y[i]);
                 }
                 printf("\n");
@@ -2978,10 +2978,10 @@ printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dt);
             
             if(doASY){
  
-printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
+printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
 
                 printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-                    t, dt);
+                    t, dtt);
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i]);
 //                     if(isAsy[i]){ 
@@ -2996,14 +2996,14 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
                 
                 if(showAsyTest){
                     //printf("\nindex   iso   FminusSum           Y       check    Asy");
-                    string asyck;
+                    bool asyck;
                     for(int i=0; i<ISOTOPES; i++){
-                        asyck = "false";
-                        if(isAsy[i]) asyck="true";
+                        asyck = false;
+                        if(isAsy[i]) asyck=true;
                         double ck;
-                        //printf("\n$$$$$$Asytest dt=", dt);
+                        //printf("\n$$$$$$Asytest dt=", dtt);
                         if(Y[i] > zerod){
-                            ck = FminusSum[i]*dt/Y[i];
+                            ck = FminusSum[i]*dtt/Y[i];
                         } else {
                             ck = zerod;
                         }
@@ -3030,12 +3030,12 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
             
             
 //             if(diffX > 1e-7){
-//                 printf("\n****** dt = %9.5e", dt);
-//                 dt = 0.50*dt;
-//                 printf("\n****** dt = %9.5e", dt);
+//                 printf("\n****** dt = %9.5e", dtt);
+//                 dtt = 0.50*dtt;
+//                 printf("\n****** dt = %9.5e", dtt);
 //                 return false;
 //             } else if(diffX < 1.0e-8){
-//                 dt *= 1.001;
+//                 dtt *= 1.001;
 //                 return true;
 //             } else {
 //                 return true;
@@ -3075,7 +3075,7 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
                     printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 }
-                updatePopulations();
+                updatePopulations(dt);
             }
             
             // Check the sum of the mass fractions. Should be 1.0 if particle number is
@@ -3107,7 +3107,7 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
                     dt *= max(massTol / massChecker, downbumper);
                     printf("\n\n****downbumper t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
                         t, dtprior, dt, test1, test2, massChecker, sumX);
-                    updatePopulations();
+                    updatePopulations(dt);
                     
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
@@ -3119,7 +3119,7 @@ printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dt);
                     
 printf("\n++++++ CALL UPDATE 3120:: t=%8.5e dt_prior=%8,5e dt=%8.5e", t, dtprior, dt);
 
-                    updatePopulations();
+                    updatePopulations(dt);
                     
 printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
                 }
