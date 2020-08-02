@@ -130,7 +130,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibium also
+bool doPE = false;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -172,7 +172,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-16;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.86e-5;           // Stop time for integration
+double stop_time = 1.0e-3; //1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;    // Initial value of integration dt
 
@@ -204,7 +204,8 @@ double Flux[SIZE];                   // Flux from Reactions::computeFlux()
 int Z[ISOTOPES];                 // Array holding Z values for isotopes
 int N[ISOTOPES];                 // Array holding N values for isotopes
 int AA[ISOTOPES];                // Array holding A values for isotopes
-double Y[ISOTOPES];              // Array holding abundances Y for isotopes
+double Y[ISOTOPES];              // Array holding current abundances Y for isotopes
+double Y0[ISOTOPES];             // Array holding abundances at beginning of timestep
 double X[ISOTOPES];              // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
 char isoLabel[ISOTOPES][5];      // Isotope labels (max 5 characters; e.g. 238pu)
@@ -2381,7 +2382,7 @@ class ReactionGroup:  public Utilities {
         int ii;
         for (int k = 0; k < niso; k++) {
             ii = isoindex[k];
-            isoY0[k] = Y[ii];
+            isoY0[k] = Y0[ii];
             isoY[k] = isoY0[k];
             printf("\n??? putY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
                 t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
@@ -2936,6 +2937,8 @@ class Integrate: public Utilities {
                 //dt = getTimestep();    // Adaptive timestep
             }
             
+            //updatePopulations(dt);
+            
             isValidUpdate = false;
             int dtcounter = 0;
             int dtcounterMax = 5;
@@ -2944,7 +2947,7 @@ class Integrate: public Utilities {
             
             while(!isValidUpdate && dtcounter < dtcounterMax){
                 dtcounter ++;
-                //updatePopulations(dt);
+                updatePopulations(dt);
                 isValidUpdate = checkTimestepTolerance();
                 printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
                        totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
@@ -2958,15 +2961,13 @@ class Integrate: public Utilities {
         // Function to do population update with current dt
         
         static void updatePopulations(double dtt){
-   
-            //printf("\n++++++ updatePopulations: t=%8.5e dt=%8.5e", t, dtt);
 
             // If using the QSS approximation, apply QSS approximation to all isotopes
             
             if(doQSS){
                 printf("\nQSS approximation (t=%7.4e, dt=%7.4e)\n", t, dtt);
                 for (int i=0; i<ISOTOPES; i++){
-                    QSSupdate(Fplus[i], Fminus[i], Y[i], dtt);
+                    QSSupdate(Fplus[i], Fminus[i], Y0[i], dt);
                     //printf("\n-------Doing QSS update for %s  Y=%7.4e", isoLabel[i], Y[i]);
                 }
                 printf("\n");
@@ -2995,25 +2996,19 @@ class Integrate: public Utilities {
                 // Summarize results
                 
                 if(showAsyTest){
-                    //printf("\nindex   iso   FminusSum           Y       check    Asy");
+                    
                     bool asyck;
                     for(int i=0; i<ISOTOPES; i++){
                         asyck = false;
                         if(isAsy[i]) asyck=true;
                         double ck;
-                        //printf("\n$$$$$$Asytest dt=", dtt);
                         if(Y[i] > zerod){
                             ck = FminusSum[i]*dtt/Y[i];
                         } else {
                             ck = zerod;
                         }
-                        
-                        //                         printf("\n    %d %5s  %7.4e  %7.4e  %7.4e  %5s",
-                        //                             i, (isoLabel[i]), FminusSum[i], 
-                        //                                Y[i], ck, Utilities::stringToChar(asyck)
-                        //                         );
                     }
-                    //printf("\n");
+                    
                 }
                 
                 // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
@@ -3166,11 +3161,12 @@ class Integrate: public Utilities {
      
     // Function to update by the forward Euler method
         
-    static double eulerUpdate(double FplusSum, double FminusSum, double Y, double dt){
+    static double eulerUpdate(double fplusSum, double fminusSum, double y0, double dtt){
         
-        double newY = Y + (FplusSum-FminusSum)*dt;
+        double newY = y0 + (fplusSum-fminusSum)*dtt;
         
-        //printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e", t, dt);
+        printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e F+sum=%8.5e F-sum=%8.5e Y0=%8.5e newY=%8.5e", 
+               t, dtt, fplusSum, fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3184,7 +3180,8 @@ class Integrate: public Utilities {
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-        //printf("\n++++++ asymptoticUpdate 3185: t=%8.5e dt=%8.5e", t, dtt);
+        printf("\n++++++ asyUpdate 3185: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
+            t, dtt, fminus, fplus);
         
         return newY;  
         
@@ -3207,7 +3204,7 @@ class Integrate: public Utilities {
     // Function to update by the Quasi-Steady-State (QSS) approximation.  Placeholder
     // for now.  Should be able to adapt Adam's neutrino QSS algorithm.
     
-    static void QSSupdate(double Fplus, double Fminus, double Y, double dt){
+    static void QSSupdate(double fplus, double fminus, double y0, double dtt){
         
         // *************************
         // QSS algorithm goes here.
@@ -3230,9 +3227,9 @@ class Integrate: public Utilities {
 //                    i, isoLabel[i], Fminus[i], Y[i], dt, checkAsy(Fminus[i], Y[i]));
             
             if(isAsy[i]){
-                Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
+                Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
             } else {
-                Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y[i], dt);
+                Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
             }
             X[i] = Y[i] * (double) AA[i];
             
@@ -3575,10 +3572,16 @@ int main() {
     
 
     
-    while(t < stop_time && totalTimeSteps < 12000){
+    while(t < stop_time && totalTimeSteps < 13000){
         
         t += dt;                
         totalTimeSteps ++;  
+        
+        // Update Y0[] array with current Y[] values
+        
+        for(int i=0; i<ISOTOPES; i++){
+            Y0[i] = Y[i];
+        }
         
         // Specify temperature T9 and density rho. If constant_T9 = true, a constant
         // temperature is assumed for the entire network calculation, set by T9_start
