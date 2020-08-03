@@ -130,7 +130,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -172,7 +172,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-16;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-3; //1.86e-5;           // Stop time for integration
+double stop_time = 1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;    // Initial value of integration dt
 
@@ -2297,20 +2297,22 @@ class ReactionGroup:  public Utilities {
     }
     
     // Method ReactionGroup::sumRGfluxes to sum net flux for this reaction group
+    // This corresponds to sumFluxes in Java program.
     
     double sumRGfluxes(){
         
-        //printf("\n**** sumRGFluxes() t = %7.4e\n", t);
-        
         double sumf = 0.0;
         double fac;
-
+printf("\n");
         for (int i=0; i<numberMemberReactions; i++){
             fac = -1.0;
             if(isForward[i]) fac = 1.0;
             sumf += fac*flux[i];
+printf("\n++++++ sumRGfluxes: t=%8.5e dt=%8.5e RG=%d memberIndex=%d flux=%8.5e",
+    t, dt, RGn, i, flux[i]
+);
         }
-        //printf("\n");
+printf("\n++++++ sumRGfluxes: netFluxRG=%8.5e", sumf);
         netflux = sumf;
         return sumf;
         
@@ -3628,10 +3630,7 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        //printf("\n\n\nPOPULATE REACTION GROUPS WITH FLUXES AND ABUNDANCES\n");
-        
         for(int i=0; i<numberRG; i++){
-            //printf("\nRG=%d", i);
             RG[i].setRGfluxes();
             if(doPE && t > equilibrateTime){
                 RG[i].sumRGfluxes();
@@ -3658,7 +3657,6 @@ int main() {
                 // each reaction flux to zero.
                 
                 bool ckequil = RG[i].getisEquil();
-                //printf("\n\nRG=%d isEquil=%d", i, ckequil);
                 
                 // Add RG to equilibrium by setting the member fluxes of the RG
                 // identically equal to zero.
