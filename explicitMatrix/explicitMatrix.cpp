@@ -2268,8 +2268,6 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        if(RGn==0) printf("\n\n\n--------- t=%7.4e equilReaction=%d equilRG=%d ---------", 
-            t, totalEquilReactions, totalEquilRG );
         printf("\n\nRG=%d", RGn);
         
         double fac;
@@ -2303,16 +2301,16 @@ class ReactionGroup:  public Utilities {
         
         double sumf = 0.0;
         double fac;
-printf("\n");
+//printf("\n");
         for (int i=0; i<numberMemberReactions; i++){
             fac = -1.0;
             if(isForward[i]) fac = 1.0;
             sumf += fac*flux[i];
-printf("\n++++++ sumRGfluxes: t=%8.5e dt=%8.5e RG=%d memberIndex=%d flux=%8.5e",
-    t, dt, RGn, i, flux[i]
-);
+// printf("\n++++++ sumRGfluxes: t=%8.5e dt=%8.5e RG=%d memberIndex=%d flux=%8.5e",
+//     t, dt, RGn, i, flux[i]
+// );
         }
-printf("\n++++++ sumRGfluxes: netFluxRG=%8.5e", sumf);
+//printf("\n++++++ sumRGfluxes: netFluxRG=%8.5e", sumf);
         netflux = sumf;
         return sumf;
         
@@ -2951,8 +2949,8 @@ class Integrate: public Utilities {
                 dtcounter ++;
                 updatePopulations(dt);
                 isValidUpdate = checkTimestepTolerance();
-                printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
-                       totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
+// printf("\n?????? Steps=%d dtcounter=%d t=%8.4e dt=%8.4e diffx=%8.4e F-=%8.4e Y[2]=%8.4e dYdt[2]=%8.4e", 
+//         totalTimeSteps, dtcounter, t, dt, diffX, Fminus[0], Y[0], dYDt[0]);
             }
             
         }    // End of doIntegrationStep
@@ -2983,8 +2981,8 @@ class Integrate: public Utilities {
  
                 //printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
 
-                printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-                    t, dtt);
+//                 printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
+//                     t, dtt);
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(FminusSum[i], Y[i]);
 //                     if(isAsy[i]){ 
@@ -3058,18 +3056,18 @@ class Integrate: public Utilities {
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
                 
-                printf("\n\n???+ checkTimestepTolerance: t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
+                printf("\n\n****** TIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d\n", 
                     t, dt, mostDevious, totalEquilReactions);
                 
                 double dtprev = dt;
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    printf("\n???+ checkTimestepTolerance: downdevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                    printf("\n\n****** TIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e\n",
                         t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
-                    printf("\n???+ checkTimestepTolerance: updevious t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                    printf("\n\n****** TIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e\n",
                         t, dtprev, dt, mostDevious);
                 }
                 updatePopulations(dt);
@@ -3094,31 +3092,23 @@ class Integrate: public Utilities {
             
             // See Java lines 6357 ff
             
-            
             if (t < equilibrateTime || !doPE) {
-            //if (t < equilibrateTime || !doPE) {
                 
                 double dtprior = dt;
                 
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-                    printf("\n\n****downbumper t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
-                        t, dtprior, dt, test1, test2, massChecker, sumX);
+printf("\n\n****** TIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e\n", 
+    t, dtprior, dt, test1, test2, massChecker, sumX);
                     updatePopulations(dt);
                     
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-                    printf("\n\n****upbumper t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
-                        t, dtprior, dt, test1, test2, massChecker, sumX);
-                    
-                    // This update populations causes error if included.  Not sure why
-                    // Agrees almost exactly with Java Asy if omitted (but Java includes it).
-                    
-                    //printf("\n++++++ CALL UPDATE 3120:: t=%8.5e dt_prior=%8.5e dt=%8.5e", t, dtprior, dt);
+printf("\n\n****** TIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e\n", 
+    t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
                     
-                    //printf("\n++++++ AFTER UPDATE 3124:: t=%8.5e dt=%8.5e\n", t, dt);
                 }
             }
             
@@ -3141,8 +3131,7 @@ class Integrate: public Utilities {
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             //dtFlux = min(0.1*t, SF/maxdYdt);    // Original Java
             dtt = min(dtFlux, dtLast);
-            //dtt = dtFlux;
-            //printf("\n******dtFlux=%7.4e dtLast=%7.4e", dtFlux, dtLast);
+printf("\n\n****** TIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e\n", t, dtFlux, dtLast, dtt);
             return dtt;
         }
         
@@ -3163,12 +3152,12 @@ class Integrate: public Utilities {
      
     // Function to update by the forward Euler method
         
-    static double eulerUpdate(double fplusSum, double fminusSum, double y0, double dtt){
+    static double eulerUpdate(int i, double fplusSum, double fminusSum, double y0, double dtt){
         
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
-        printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e F+sum=%8.5e F-sum=%8.5e Y0=%8.5e newY=%8.5e", 
-               t, dtt, fplusSum, fminusSum, y0, newY);
+        printf("\n++++++ eulerUpdate 3170: t=%8.5e dt=%8.5e %s F+sum=%8.5e F-sum=%8.5e (F+sum-F-sum)=%8.5e Y0=%8.5e newY=%8.5e", 
+               t, dtt, isoLabel[i], fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3231,7 +3220,7 @@ class Integrate: public Utilities {
             if(isAsy[i]){
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
             } else {
-                Y[i] = eulerUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
+                Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
             }
             X[i] = Y[i] * (double) AA[i];
             
@@ -3621,6 +3610,7 @@ int main() {
         // reaction in the network. Loop over this array and call the computeFlux()
         // method of Reaction on each object. Fluxes must be recomputed at each timestep
         // since they depend on the rates and the abundances. If temperature and density
+        
         // are constant the rates won't change, but the fluxes generally will since
         // the abundances change even if the rates are constant as the network evolves.
         
@@ -3629,6 +3619,9 @@ int main() {
         for(int i=0; i<SIZE; i++){
             reaction[i].computeFlux();
         }
+        
+        printf("\n\n\n--------- t=%7.4e equilReaction=%d equilRG=%d ---------", 
+            t, totalEquilReactions, totalEquilRG );
         
         for(int i=0; i<numberRG; i++){
             RG[i].setRGfluxes();
@@ -3974,7 +3967,7 @@ int main() {
                 indy1, indy2, check);
         } 
         
-        // Test of eulerUpdate(double FplusSum, double FminusSum, double Y, double dt)
+        // Test of eulerUpdate(int i, double FplusSum, double FminusSum, double Y, double dt)
         // and asymptoticUpdate(double Fplus, double Fminus, double Y, double dt)
         
         // Forward Euler
@@ -3983,7 +3976,7 @@ int main() {
         double fminussum = 800.0;
         double yy = 0.22;
         double dtt = 0.0001;
-        double Yupdate = Integrate::eulerUpdate(fplussum, fminussum, yy, dtt);
+        double Yupdate = Integrate::eulerUpdate(0,fplussum, fminussum, yy, dtt);
         printf("\nYupdate = %9.5e\n", Yupdate);
         
         // Asymptotic
