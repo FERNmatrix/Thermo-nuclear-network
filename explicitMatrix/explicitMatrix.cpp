@@ -172,7 +172,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-18;     // Start time for plot output
-double stop_time = 1.0e-2; //1.86e-5;           // Stop time for integration
+double stop_time = 1.0e-3; //1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;    // Initial value of integration dt
 
@@ -3301,7 +3301,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 5.0;
+    T9_start = 7.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;

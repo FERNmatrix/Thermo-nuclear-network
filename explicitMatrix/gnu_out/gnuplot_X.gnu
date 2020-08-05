@@ -72,7 +72,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy C++ T9=5 rho=1e8"
+ds="Asy C++ T9=7 rho=1e8"
 ds = ds.": mass fraction"
 set title ds textcolor rgb title_color
 
@@ -82,7 +82,7 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -2
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -99,7 +99,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-#set grid   # set x-y grid at major ticmarks
+set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
