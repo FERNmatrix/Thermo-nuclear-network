@@ -81,14 +81,14 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -11
-xup = -3
+xlow = -18
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -6
+ylow = -14
 yup = 0
-ytics = 0.5      # Space between major y ticmarks
+ytics = 1.0      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -99,7 +99,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
@@ -107,22 +107,22 @@ set grid   # set x-y grid at major ticmarks
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:8 with lines ls 2 title "1"
-replot file1 using 1:9 with lines ls 3 title "2"
-replot file1 using 1:10 with lines ls 1 title "3"
-#replot file1 using 1:11 with lines ls 4 title "4"
-#replot file1 using 1:12 with lines ls 5 title "5"
-#replot file1 using 1:13 with lines ls 6 title "6"
-#replot file1 using 1:14 with lines ls 7 title "7"
-#replot file1 using 1:15 with lines ls 8 title "8"
-#replot file1 using 1:16 with lines ls 9 title "9"
-#replot file1 using 1:17 with lines ls 10 title "10"
-#replot file1 using 1:18 with lines ls 11 title "11"
-#replot file1 using 1:19 with lines ls 12 title "12"
-#replot file1 using 1:20 with lines ls 13 title "13"
-#replot file1 using 1:21 with lines ls 14 title "14"
-#replot file1 using 1:22 with lines ls 1 title "15"
-#replot file1 using 1:23 with lines ls 2 title "16"
+plot file1 using 1:8 with lines ls 2 title "4He"
+replot file1 using 1:9 with lines ls 3 title "12C"
+replot file1 using 1:10 with lines ls 1 title "16O"
+replot file1 using 1:11 with lines ls 4 title "20Ne"
+replot file1 using 1:12 with lines ls 5 title "24Mg"
+replot file1 using 1:13 with lines ls 6 title "28Si"
+replot file1 using 1:14 with lines ls 7 title "32S"
+replot file1 using 1:15 with lines ls 8 title "36Ar"
+replot file1 using 1:16 with lines ls 9 title "40Ca"
+replot file1 using 1:17 with lines ls 10 title "44Ti"
+replot file1 using 1:18 with lines ls 11 title "48Cr"
+replot file1 using 1:19 with lines ls 12 title "52Fe"
+replot file1 using 1:20 with lines ls 13 title "56Ni"
+replot file1 using 1:21 with lines ls 14 title "60Zn"
+replot file1 using 1:22 with lines ls 1 title "64Ge"
+replot file1 using 1:23 with lines ls 2 title "68Se"
 #replot file1 using 1:24 with lines ls 3 title "17"
 
 # Reset font sizes for .eps and .png output2
