@@ -50,7 +50,7 @@ using std::string;
 
 #define ISOTOPES 16                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 300                  // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
@@ -74,6 +74,7 @@ clock_t startCPU, stopCPU;
 #define START_CPU if ((startCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
 #define STOP_CPU if ((stopCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
 #define PRINT_CPU (printf("Timer: %g ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU (fprintf(pFile, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 
 // File pointer for data read-in
@@ -509,7 +510,9 @@ class Utilities{
                 fprintf(pFile, "# QSS");
             }
             if(doPE) fprintf(pFile, "+PE");
-            fprintf(pFile, " method with %d integration steps\n", totalTimeSteps);
+            fprintf(pFile, " method: %d integration steps ", totalTimeSteps);
+            
+            FPRINTF_CPU;
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
