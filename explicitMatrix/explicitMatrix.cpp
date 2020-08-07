@@ -48,9 +48,9 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 16                    // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 300                  // Number of plot output steps
+#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
+#define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
@@ -85,14 +85,14 @@ FILE *fr;
 // rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,
 // rateLibrary_3alpha.data, rateLibrary_pp.data.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";  
+char rateLibraryFile[] = "data/rateLibrary_3alpha.data";  
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format for 
 // this file. Standard test cases: CUDAnet_alphasolar.inp, CUDAnet_150solar.inp,
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
-char networkFile[] = "data/CUDAnet_alpha.inp";
+char networkFile[] = "data/CUDAnet_3alpha.inp";
 
 // Control diagnostic printout of details (1 to print, 0 to suppress)
 static const int displayInput = 0;
@@ -172,12 +172,12 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
-double startplot_time = 1.0e-18;     // Start time for plot output
-double stop_time = 1.0e-3; //1.86e-5;           // Stop time for integration
+double startplot_time = 1.0e-11;     // Start time for plot output
+double stop_time = 1.0e-2; //1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;    // Initial value of integration dt
 
-double massTol = 1.0e-8;             // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-10;             // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 double dt;                           // Current integration timestep
@@ -333,7 +333,7 @@ double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in 
 // Whether to compute and display partial equilibrium quantities. This is diagnostic.
 // Partial equilibrium is actually imposed only if doPE = true.
 
-bool equilibrate = true; 
+//bool equilibrate = true; 
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -344,7 +344,7 @@ bool equilibrate = true;
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime =  1.0e-6; //2.0e-5;
+double equilibrateTime =  1.0e-8; //2.0e-5;
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -388,8 +388,8 @@ double dEReleasePlot[plotSteps];       // Differential energy release
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}; //alpha
-//int plotXlist[] = {1, 2, 3};  // 3-alpha
+//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}; //alpha
+int plotXlist[] = {1, 2, 3};  // 3-alpha
 int LX;                                // Length of plotXlist array
 
 
@@ -3304,7 +3304,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 7.0;
+    T9_start = 5.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;

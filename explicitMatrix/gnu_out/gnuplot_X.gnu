@@ -19,7 +19,7 @@ width = 8.5
 height = 4.5
 
 # x-axis resolution
-set samples 1000
+set samples 2000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -72,7 +72,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy C++ T9=7 rho=1e8"
+ds="Asy C++ T9=5 rho=1e8"
 ds = ds.": mass fraction"
 set title ds textcolor rgb title_color
 
@@ -81,12 +81,12 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -3
+xlow = -11
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -6
 yup = 0
 ytics = 1.0      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
