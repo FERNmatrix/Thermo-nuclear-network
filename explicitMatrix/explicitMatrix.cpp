@@ -174,7 +174,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2; //1.86e-5;           // Stop time for integration
+double stop_time = 1.0e-2;//1.0e-2; //1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -551,13 +551,17 @@ class Utilities{
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
             
-            string str2 = "#      t       dt  1/minR  1/maxR \n";
+            string str2 = "#      t       dt  1/Rmin   Reaction Rmin    1/Rmax  Reaction Rmax\n";
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
             fprintf(pFile2, stringToChar(str2));
             
             for(int i=0; i<plotSteps; i++){
-                fprintf(pFile2, "%7.4f %7.4f %7.4f %7.4f\n", 
-                    tplot[i], dtplot[i], 1.0/slowestRatePlot[i], 1.0/fastestRatePlot[i]);
+                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s\n", 
+                    tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
+                    reacLabel[ slowestRateIndexPlot[i]],
+                    log10(1.0/fastestRatePlot[i]),
+                    reacLabel[ fastestRateIndexPlot[i]]
+                );
             }
             
             // Write header for gnuplot file
@@ -1591,26 +1595,9 @@ class Reaction: public Utilities {
             
             // Check whether this is a max or min rate
             
-            if (Rrate > fastestCurrentRate) {
-                fastestCurrentRate = Rrate;
-                fastestCurrentRateIndex = getreacIndex();
-            }
-            
-            if (Rrate < slowestCurrentRate && Rrate > 0.0) {
-                slowestCurrentRate = Rrate;
-                slowestCurrentRateIndex = getreacIndex();
-            }
-            
-            if (Rrate > fastestOverallRate) {
-                fastestOverallRate = Rrate;
-                fastestOverallRateIndex = getreacIndex();
-                timeMaxRate = t;
-            }
-            
-            if (Rrate < slowestOverallRate){
-                slowestOverallRate = Rrate;
-                slowestOverallRateIndex = getreacIndex();
-            }
+            printf("\n~~~~~~ t=%7.4e dt=%7.4e fastestCurrent=%7.4e Rrate=%7.4e",
+                t, dt, fastestCurrentRate, Rrate
+            );
             
         }
         
@@ -1621,24 +1608,32 @@ class Reaction: public Utilities {
         void computeFlux(){
             
             string s;
+            double kfac;
             
             switch(numberReactants){
                 
                 case 1:    // 1-body reactions
                     
-                    flux = Rrate*Y[ reactantIndex[0] ];	
+                    kfac = Rrate;
+                    flux = kfac*Y[ reactantIndex[0] ];	
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    fastSlowRates(kfac);
+                    
                     if(showFluxCalc == 1){
                         printf("\n%d %18s reactants=%d iso0=%d Rrate=%7.3e Y1=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0],  Rrate, 
                             Y[ reactantIndex[0] ], flux);
                     }
+                    
                     break;
                     
                 case 2:	   // 2-body reactions	
                     
-                    flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ]; 	
+                    kfac = Rrate * Y[ reactantIndex[0] ];
+                    flux = kfac * Y[ reactantIndex[1] ]; 	
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    fastSlowRates(kfac);
+                    
                     if(showFluxCalc == 1){
                         printf("\n%d %18s reactants=%d iso0=%d iso1=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0], 
@@ -1648,8 +1643,11 @@ class Reaction: public Utilities {
                     
                 case 3:	   // 3-body reactions
                     
-                    flux = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ] * Y[ reactantIndex[2] ];
+                    kfac = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ];
+                    flux = kfac * Y[ reactantIndex[2] ];
                     Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    fastSlowRates(kfac);
+                    
                     if(showFluxCalc == 1){
                         printf("\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
@@ -1660,6 +1658,35 @@ class Reaction: public Utilities {
             }
             
         }    // End of function computeFlux()
+        
+        
+        // Reaction::fastSlowRates(double) to store fastest and slowest rates 
+        // in this timestep, and overall in the calculation. These rates are the
+        // rates kfac computed in computeFlux().
+        
+        void fastSlowRates(double testRate){
+            
+            if (testRate > fastestCurrentRate) {
+                fastestCurrentRate = testRate;
+                fastestCurrentRateIndex = getreacIndex();
+            }
+            
+            if (testRate < slowestCurrentRate && testRate > 0.0) {
+                slowestCurrentRate = testRate;
+                slowestCurrentRateIndex = getreacIndex();
+            }
+            
+            if (testRate > fastestOverallRate) {
+                fastestOverallRate = testRate;
+                fastestOverallRateIndex = getreacIndex();
+                timeMaxRate = t;
+            }
+            
+            if (testRate < slowestOverallRate){
+                slowestOverallRate = testRate;
+                slowestOverallRateIndex = getreacIndex();
+            }
+        }  // End of function fastSlowRates()
         
         
         // Function Reaction::sumFplusFminus() to sum the total F+ and F- for each isotope.  
