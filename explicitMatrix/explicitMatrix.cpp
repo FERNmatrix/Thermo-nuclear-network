@@ -50,7 +50,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 300                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
@@ -75,6 +75,7 @@ clock_t startCPU, stopCPU;
 #define STOP_CPU if ((stopCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
 #define PRINT_CPU (printf("Timer: %g ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU (fprintf(pFile, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU2 (fprintf(pFile2, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 
 // File pointer for data read-in
@@ -175,9 +176,9 @@ double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
 double stop_time = 1.0e-2; //1.86e-5;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 0.01*start_time;    // Initial value of integration dt
+double dt_start = 0.01*start_time;   // Initial value of integration dt
 
-double massTol = 1.0e-10;             // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 double dt;                           // Current integration timestep
@@ -366,6 +367,20 @@ double Ythresh = 0.0;
 gsl_matrix *fluxes;
 gsl_vector *abundances;
 
+// Temporary utility quantities to hold fastest and slowest rate data at
+// a given timestep. The index quantities are the index of the
+// corresponding reaction in reactions[].
+
+double fastestCurrentRate = 0.0;
+int fastestCurrentRateIndex;
+double slowestCurrentRate = 1e30;
+int slowestCurrentRateIndex;
+double fastestOverallRate = 0.0;
+int fastestOverallRateIndex;
+double slowestOverallRate = 1e30;
+int slowestOverallRateIndex;
+double timeMaxRate = 0.0;
+
 
 // -------------------------------------------------------------------------
 // Arrays to hold output quantities at plot timesteps. The variable
@@ -373,7 +388,10 @@ gsl_vector *abundances;
 // at time of execution.
 // -------------------------------------------------------------------------
 
-double plotTimeTargets[plotSteps];     // Target plot times for plot step
+// Target plot times for plot steps. Computed from value of plotSteps in
+// Utilities::log10Spacing().
+
+double plotTimeTargets[plotSteps];
 
 double tplot[plotSteps];               // Actual time for plot step
 double dtplot[plotSteps];              // dt for plot step
@@ -383,6 +401,10 @@ int numAsyplot[plotSteps];             // Number asymptotic species
 int numRG_PEplot[plotSteps];           // Number RG in PE
 double EReleasePlot[plotSteps];        // Integrated energy release
 double dEReleasePlot[plotSteps];       // Differential energy release
+double fastestRatePlot[plotSteps];     // Fastest reaction rate at time t
+int fastestRateIndexPlot[plotSteps];   // Reaction index fastest rate
+double slowestRatePlot[plotSteps];     // Slowest reaction rate at time t
+int slowestRateIndexPlot[plotSteps];   // Reaction index slowest rate
 
 // Following control which mass fractions are exported to the plotting
 // file.  The entries in plotXlist[] are the species indices for the
@@ -486,12 +508,15 @@ class Utilities{
         
         static void plotOutput(){
             
-            // Open a file for ascii output. Assumes that the subdirectory
+            // Open files for ascii output. Assumes that the subdirectory
             // gnu_out already exists. If it doesn't, will compile but
             // crash when executed.
             
             FILE * pFile;
             pFile = fopen("gnu_out/gnufile.data","w");
+            
+            FILE * pFile2;
+            pFile2 = fopen("gnu_out/gnufile2.data","w");
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
@@ -506,18 +531,34 @@ class Utilities{
             
             if(doASY){
                 fprintf(pFile, "# ASY");
+                fprintf(pFile2, "# ASY");
             } else {
                 fprintf(pFile, "# QSS");
+                fprintf(pFile2, "# QSS");
             }
-            if(doPE) fprintf(pFile, "+PE");
+            if(doPE){
+                fprintf(pFile, "+PE");
+                fprintf(pFile2, "+PE");
+            } 
             fprintf(pFile, " method: %d integration steps ", totalTimeSteps);
+            fprintf(pFile2, " method: %d integration steps ", totalTimeSteps);
             
             FPRINTF_CPU;
+            FPRINTF_CPU2;
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
+            
+            string str2 = "#      t       dt  1/minR  1/maxR \n";
+            fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
+            fprintf(pFile2, stringToChar(str2));
+            
+            for(int i=0; i<plotSteps; i++){
+                fprintf(pFile2, "%7.4f %7.4f %7.4f %7.4f\n", 
+                    tplot[i], dtplot[i], 1.0/slowestRatePlot[i], 1.0/fastestRatePlot[i]);
+            }
             
             // Write header for gnuplot file
             
@@ -1547,6 +1588,29 @@ class Reaction: public Utilities {
             
             printf("\n%d %19s densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
                 getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
+            
+            // Check whether this is a max or min rate
+            
+            if (Rrate > fastestCurrentRate) {
+                fastestCurrentRate = Rrate;
+                fastestCurrentRateIndex = getreacIndex();
+            }
+            
+            if (Rrate < slowestCurrentRate && Rrate > 0.0) {
+                slowestCurrentRate = Rrate;
+                slowestCurrentRateIndex = getreacIndex();
+            }
+            
+            if (Rrate > fastestOverallRate) {
+                fastestOverallRate = Rrate;
+                fastestOverallRateIndex = getreacIndex();
+                timeMaxRate = t;
+            }
+            
+            if (Rrate < slowestOverallRate){
+                slowestOverallRate = Rrate;
+                slowestOverallRateIndex = getreacIndex();
+            }
             
         }
         
@@ -3541,6 +3605,8 @@ int main() {
     totalAsy = 0;               // Number asymptotic species
     ERelease = 0.0;             // Total E released from Q values
     int plotCounter = 1;        // Plot output counter
+    fastestOverallRate = 0.0;   // Initialize fastest overall rate
+    timeMaxRate = 0.0;          // Initialize slowest overall rate
     
     Utilities::startTimer();    // Start a timer for integration
     
@@ -3568,8 +3634,12 @@ int main() {
 
     
     while(t < stop_time){
-    //while(t < stop_time && totalTimeSteps < 100000){    
+    //while(t < stop_time && totalTimeSteps < 100000){ 
         
+        // Initialize fastest and slowest rates for this timestep
+        
+        fastestCurrentRate = 0.0;
+        slowestCurrentRate = 1e30;
         
         t += dt;                
         totalTimeSteps ++;  
@@ -3755,8 +3825,17 @@ int main() {
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
             
-            EReleasePlot[plotCounter-1] = log10( abs(ECON*ERelease) );     // log10(abs(ERelease));
-            dEReleasePlot[plotCounter-1] = log10( abs(ECON*netdERelease) );   // log10(abs(dERelease));
+            // log10(abs(ERelease)) and log10(abs(dERelease))
+            
+            EReleasePlot[plotCounter-1] = log10( abs(ECON*ERelease) );
+            dEReleasePlot[plotCounter-1] = log10( abs(ECON*netdERelease) );
+            
+            // Min and Max rate values (Rrate in sec^-1)
+            
+            slowestRatePlot[plotCounter-1] = slowestCurrentRate;
+            slowestRateIndexPlot[plotCounter-1] = slowestCurrentRateIndex;
+            fastestRatePlot[plotCounter-1] = fastestCurrentRate;
+            fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
@@ -3769,6 +3848,8 @@ int main() {
             for(int i=0; i<ISOTOPES; i++){
                 Xplot[i][plotCounter-1] = X[i];
             }
+            
+            
             
             //printf("\nplotSteps=%d logt=%6.3f\n", plotCounter, tplot[plotCounter]);
             
