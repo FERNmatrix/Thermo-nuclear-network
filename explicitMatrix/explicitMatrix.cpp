@@ -2671,7 +2671,7 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
                 
-                printf("\ncomputeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
+                printf("\ncomputeQuad: t=%6.4e RG=%d isoYeq[0]=%6.4e isoYeq[1]=%6.4e isoYeq[2]=%6.4e eqRatio=%5.3e",
                     t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio
                 );
 
@@ -2684,7 +2684,7 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
                 
-                printf("\ncomputeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e isoYeq[3]=%7.4e equilRatio=%7.4e",
+                printf("\ncomputeQuad: t=%5.3e RG=%d isoYeq[0]=%5.3e isoYeq[1]=%5.3e isoYeq[2]=%5.3e isoYeq[3]=%5.3e eqRatio=%5.3e",
                        t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio
                 );
                 
@@ -2769,7 +2769,7 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
             
         }
         
-printf("\ncomputeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
+printf("\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
     t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
         );
         
@@ -3255,7 +3255,7 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
 if(t > diagnoseTime)
-printf("\n  euler: %s t_i=%8.5e dt=%8.5e t_f=%8.5e F+sum=%8.5e F-sum=%8.5e diff=%8.5e Y0=%8.5e newY=%8.5e", 
+printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
     isoLabel[i], t, dtt, t+dtt, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
