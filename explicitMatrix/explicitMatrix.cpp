@@ -2374,21 +2374,22 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("\n$$$$$ t=%7.4e dt=%7.4e memberIndex=%d %s RGclass=%d isForward=%d flux=%7.4e", 
-                t, dt, i, 
-                reacLabel[memberReactions[i]],
-                getrgclass(),
-                getisForward(i),   // prints 1 if true; 0 if false
-                fac*getflux(i)
-            );
+printf("\nmemberIndex=%d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
+    i, 
+    reacLabel[memberReactions[i]],
+    getrgclass(),
+    getisForward(i),   // prints 1 if true; 0 if false
+    t, dt, 
+    fac*getflux(i)
+);
         }
         
-        printf("\n");
-        if(isEquil){
-            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)", t, RGn, netflux); 
-        } else {
-            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)", t, RGn, netflux); 
-        }
+printf("\n");
+if(isEquil){
+    printf("NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
+} else {
+    printf("NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
+}
     }
     
     // Method ReactionGroup::sumRGfluxes to sum net flux for this reaction group
@@ -2768,8 +2769,8 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
             
         }
         
-        printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
-            t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
+printf("\ncomputeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e mostDevious=%7.4e isEquil=%d",
+    t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
         );
         
         // The return statements in the following if-clauses cause reaction
@@ -2810,9 +2811,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
                 if(t > equilibrateTime) {
-                    printf("\n???+ computeEqRatios: t=%7.4e RG=%d iso=%d %s isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
-                           t, RGn, i, isolabel[i], isoYeq[i], isoY[i], eqcheck[i] 
-                    );
+printf("\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
+        i, isolabel[i], RGn, t, isoYeq[i], isoY[i], eqcheck[i] 
+);
 //                     printf("\n??? computeEqRatios: t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
 //                            t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
 //                     );
@@ -3160,7 +3161,7 @@ class Integrate: public Utilities {
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    printf("\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                    printf("\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
@@ -3254,8 +3255,8 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
 if(t > diagnoseTime)
-printf("\n     +++ euler: t_i=%8.5e dt=%8.5e t_f=%8.5e %s F+sum=%8.5e F-sum=%8.5e (F+ - F-)=%8.5e Y0=%8.5e newY=%8.5e isAsy=%d", 
-        t, dtt, t+dtt, isoLabel[i], fplusSum, fminusSum, fplusSum-fminusSum, y0, newY, isAsy[i]);
+printf("\n  euler: %s t_i=%8.5e dt=%8.5e t_f=%8.5e F+sum=%8.5e F-sum=%8.5e diff=%8.5e Y0=%8.5e newY=%8.5e", 
+    isoLabel[i], t, dtt, t+dtt, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3269,7 +3270,7 @@ printf("\n     +++ euler: t_i=%8.5e dt=%8.5e t_f=%8.5e %s F+sum=%8.5e F-sum=%8.5
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-        printf("\n     +++ Asy: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
+        printf("\n  Asy: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
             t, dtt, fminus, fplus);
         
         return newY;  
@@ -3726,8 +3727,8 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        printf("\n\n\n--------- t=%7.4e equilReaction=%d equilRG=%d ---------", 
-            t, totalEquilReactions, totalEquilRG );
+        printf("\n\n\n--------- t_i = %7.4e Step=%d equilReaction=%d equilRG=%d ---------", 
+            t, totalTimeSteps, totalEquilReactions, totalEquilRG );
         
         for(int i=0; i<numberRG; i++){
             RG[i].setRGfluxes();
@@ -3768,17 +3769,17 @@ int main() {
                     } 
                 }
                 
-                // Print results 
-                if(doPE && t>equilibrateTime){
-                    printf("\n");
-                    for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        printf("\n++++ %d RG=%d reacIndex=%d %s flux=%7.4e",
-                            j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
-                            RG[i].getreacString(j),
-                            Flux[RG[i].getmemberReactions(j)]
-                        );
-                    }
-                }
+// // Print results 
+// if(doPE && t>equilibrateTime){
+//     printf("\n");
+//     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+//         printf("\n++++ %d RG=%d reacIndex=%d %s Flux=%7.4e",
+//             j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
+//             RG[i].getreacString(j),
+//             Flux[RG[i].getmemberReactions(j)]
+//         );
+//     }
+// }
             }
         }
         
