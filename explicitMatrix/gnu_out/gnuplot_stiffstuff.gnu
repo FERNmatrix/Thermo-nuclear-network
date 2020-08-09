@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.5
+width = 4.8  # 8.5
+height = 6.0   # 4.5
 
 # x-axis resolution
 set samples 1000
@@ -75,13 +75,13 @@ file1 = "gnufile2.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -11
+xlow = -10
 xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -13
-yup = 8 #-3
+ylow = -12
+yup = 6 #-3
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 

@@ -132,7 +132,9 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibium also
+bool doPE = true;             // Implement partial equilibium also
+
+double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -174,7 +176,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2;//1.0e-2; //1.86e-5;           // Stop time for integration
+double stop_time = 1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -345,7 +347,7 @@ double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in 
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime =  1.0e-8; //2.0e-5;
+double equilibrateTime =  1.0e-6; //2.0e-5;
 
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
 
@@ -1595,9 +1597,9 @@ class Reaction: public Utilities {
             
             // Check whether this is a max or min rate
             
-            printf("\n~~~~~~ t=%7.4e dt=%7.4e fastestCurrent=%7.4e Rrate=%7.4e",
-                t, dt, fastestCurrentRate, Rrate
-            );
+//             printf("\n~~~~~~ t=%7.4e dt=%7.4e fastestCurrent=%7.4e Rrate=%7.4e",
+//                 t, dt, fastestCurrentRate, Rrate
+//             );
             
         }
         
@@ -2383,9 +2385,9 @@ class ReactionGroup:  public Utilities {
         
         printf("\n");
         if(isEquil){
-            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)\n", t, RGn, netflux); 
+            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Equilibrated)", t, RGn, netflux); 
         } else {
-            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)\n", t, RGn, netflux); 
+            printf("$$$$$ t=%7.4e RG=%d NetRGflux=%7.4e (Not Equilibrated)", t, RGn, netflux); 
         }
     }
     
@@ -2479,8 +2481,8 @@ class ReactionGroup:  public Utilities {
             ii = isoindex[k];
             isoY0[k] = Y0[ii];
             isoY[k] = isoY0[k];
-            printf("\n??? putY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
-                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
+// printf("\n??? putY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
+//     t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
         }
         printf("\n");
     }
@@ -2508,12 +2510,12 @@ class ReactionGroup:  public Utilities {
                 crg[0] = isoY0[1] - isoY0[0];
                 crg[1] = isoY0[1] + isoY0[2];
                 
-                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
-                    t, RGn, isoY0[0], isoY0[1], isoY0[2]
-                );
-                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
-                       t, RGn, crg[0], crg[1]
-                );
+printf("\ncomputeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
+    t, RGn, isoY0[0], isoY0[1], isoY0[2]
+);
+printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
+        t, RGn, crg[0], crg[1]
+);
                 
                 break;
                 
@@ -2523,12 +2525,12 @@ class ReactionGroup:  public Utilities {
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
                 
-                printf("\n???+ computeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
-                       t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
-                );
-                printf("\n???+ computeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
-                       t, RGn, crg[0], crg[1], crg[2]
-                );
+printf("\ncomputeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
+        t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
+);
+printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
+        t, RGn, crg[0], crg[1], crg[2]
+);
                 
                 break;
                 
@@ -2578,7 +2580,7 @@ class ReactionGroup:  public Utilities {
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
                 
-                printf("\n???+ computeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                printf("\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
                        t, RGn, aa, bb, cc
                 );
                        
@@ -2590,7 +2592,7 @@ class ReactionGroup:  public Utilities {
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
                 
-                printf("\n???+ computeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                printf("\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
                        t, RGn, aa, bb, cc
                 );
                 
@@ -2631,7 +2633,7 @@ class ReactionGroup:  public Utilities {
             }
             isoYeq[0] = computeYeq(aa, bb, rootq);
             
-            printf("\n???+ computeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
+            printf("\ncomputeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
                    t, RGn, qq, tau, isoYeq[0]
             );
         } else {
@@ -2668,7 +2670,7 @@ class ReactionGroup:  public Utilities {
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
                 
-                printf("\n???+ computeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
+                printf("\ncomputeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e equilRatio=%7.4e",
                     t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio
                 );
 
@@ -2681,7 +2683,7 @@ class ReactionGroup:  public Utilities {
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
                 
-                printf("\n???+ computeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e isoYeq[3]=%7.4e equilRatio=%7.4e",
+                printf("\ncomputeQuad: t=%7.4e RG=%d isoYeq[0]=%7.4e isoYeq[1]=%7.4e isoYeq[2]=%7.4e isoYeq[3]=%7.4e equilRatio=%7.4e",
                        t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio
                 );
                 
@@ -2752,13 +2754,13 @@ class ReactionGroup:  public Utilities {
         
         double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-20));
         
-        printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
-            t, RGn, equilRatio, kratio, thisDevious
-        );
-        
-        printf("\n???*** computeEqRatios: t=%7.4e RG=%d thisDevious=%8.5e mostDevious=%8.5e isEquil=%d", 
-               t, RGn, thisDevious, mostDevious, isEquil
-        );
+// printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
+//     t, RGn, equilRatio, kratio, thisDevious
+// );
+// 
+// printf("\n???*** computeEqRatios: t=%7.4e RG=%d thisDevious=%8.5e mostDevious=%8.5e isEquil=%d", 
+//         t, RGn, thisDevious, mostDevious, isEquil
+// );
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
@@ -3151,18 +3153,18 @@ class Integrate: public Utilities {
                 double deviousMax = 0.5;
                 double deviousMin = 0.1;
                 
-                printf("\n\n****** TIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d\n", 
+                printf("\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
                     t, dt, mostDevious, totalEquilReactions);
                 
                 double dtprev = dt;
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    printf("\n\n****** TIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e\n",
+                    printf("\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
-                    printf("\n\n****** TIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e\n",
+                    printf("\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 }
                 updatePopulations(dt);
@@ -3193,13 +3195,13 @@ class Integrate: public Utilities {
                 
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-printf("\n\n****** TIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e\n", 
+printf("\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
     t, dtprior, dt, test1, test2, massChecker, sumX);
                     updatePopulations(dt);
                     
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-printf("\n\n****** TIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e\n", 
+printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
     t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
@@ -3226,7 +3228,7 @@ printf("\n\n****** TIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e 
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             //dtFlux = min(0.1*t, SF/maxdYdt);    // Original Java
             dtt = min(dtFlux, dtLast);
-printf("\n\n****** TIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e\n", t, dtFlux, dtLast, dtt);
+printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t, dtFlux, dtLast, dtt);
             return dtt;
         }
         
@@ -3251,8 +3253,9 @@ printf("\n\n****** TIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8
         
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
-        printf("\n++++++ eulerUp 3170: t=%8.5e dt=%8.5e %s F+sum=%8.5e F-sum=%8.5e (F+ - F-)=%8.5e Y0=%8.5e newY=%8.5e isAsy=%d", 
-               t, dtt, isoLabel[i], fplusSum, fminusSum, fplusSum-fminusSum, y0, newY, isAsy[i]);
+if(t > diagnoseTime)
+printf("\n     +++ euler: t_i=%8.5e dt=%8.5e t_f=%8.5e %s F+sum=%8.5e F-sum=%8.5e (F+ - F-)=%8.5e Y0=%8.5e newY=%8.5e isAsy=%d", 
+        t, dtt, t+dtt, isoLabel[i], fplusSum, fminusSum, fplusSum-fminusSum, y0, newY, isAsy[i]);
 
         return newY;     // New Y for forward Euler method
         
@@ -3266,7 +3269,7 @@ printf("\n\n****** TIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-        printf("\n++++++ asyUp 3185: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
+        printf("\n     +++ Asy: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
             t, dtt, fminus, fplus);
         
         return newY;  
