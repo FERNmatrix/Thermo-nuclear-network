@@ -176,7 +176,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-5; //1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -614,13 +614,13 @@ class Utilities{
         
         
         // -------------------------------------------------------------------------
-        // Static function Utilities::returnSumX() to return the current sum of the
+        // Static function Utilities::sumMassFractions() to return the current sum of the
         // mass fractions X(i) in the network. If the network conserves particle
         // number this sum should be equal to 1.0.
         // -------------------------------------------------------------------------
         
-        static double returnSumX(void) {
-            double sum = zerod;
+        static double sumMassFractions(void) {
+            double sum = 0.0;
             for(int i=0; i<ISOTOPES; i++){
                 sum += X[i];
             }
@@ -2374,11 +2374,11 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-printf("\nmemberIndex=%d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
+printf("\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
     i, 
     reacLabel[memberReactions[i]],
     getrgclass(),
-    getisForward(i),   // prints 1 if true; 0 if false
+    getisForward(i),   // 1 if true; 0 if false
     t, dt, 
     fac*getflux(i)
 );
@@ -2386,9 +2386,9 @@ printf("\nmemberIndex=%d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e"
         
 printf("\n");
 if(isEquil){
-    printf("NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
+    printf("showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
 } else {
-    printf("NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
+    printf("showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
 }
     }
     
@@ -3174,7 +3174,7 @@ class Integrate: public Utilities {
             // Check the sum of the mass fractions. Should be 1.0 if particle number is
             // being conserved
             
-            sumX = Utilities::returnSumX();
+            sumX = Utilities::sumMassFractions();
             diffX = abs(sumX - 1.0);
             
             // Parameters for old timestepper
@@ -3727,8 +3727,8 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        printf("\n\n\n--------- t_i = %7.4e Step=%d equilReaction=%d equilRG=%d ---------", 
-            t, totalTimeSteps, totalEquilReactions, totalEquilRG );
+        printf("\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d dt=%7.4e equilReaction=%d equilRG=%d ---------", 
+            t, totalTimeSteps, dt, totalEquilReactions, totalEquilRG );
         
         for(int i=0; i<numberRG; i++){
             RG[i].setRGfluxes();
