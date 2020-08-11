@@ -176,12 +176,34 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-5; //1.86e-5;          // Stop time for integration
+double stop_time = 1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
-double massTol = 1.0e-7;             // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
+double massTol = 1.0e-7; //3.0e-4;            // Timestep tolerance parameter (1.0e-7)
+double SF = 7.3e-4; // 1.46e-2;                  // Timestep agressiveness factor (7.3e-4)
+
+// Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
+// this should be determined by the program.  In the Java version this was sometimes
+// needed because starting PE test too early could lead to bad results.  This is 
+// probably a coding error in the Java version, since if operating properly nothing should
+// be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
+// this in a final version for stability, but it might still be useful since early in
+// a calculation typically nothing satisfies PE, so checking for it is a waste of time.
+// On the other hand, check should not be costly.
+
+double equilibrateTime =  1.0e-6; //2.0e-5;  // Begin checking for PE
+double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil
+
+double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from equil
+int mostDeviousIndex;         // Index of RG with mostDevious
+double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in timestep
+
+// Threshold abundance for imposing equil in reactions.  There may be numerical
+// issues if the PE algorithm is imposed for very small abundances early in
+// the calculation.
+
+double Ythresh = 0.0;
 
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
@@ -329,28 +351,6 @@ int RGnumberMembers[SIZE];    // # members each RG; set in class ReactionVectors
 
 int RGindex[SIZE];
 
-double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from equil
-int mostDeviousIndex;         // Index of RG with mostDevious
-double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in timestep
-
-// Whether to compute and display partial equilibrium quantities. This is diagnostic.
-// Partial equilibrium is actually imposed only if doPE = true.
-
-//bool equilibrate = true; 
-
-// Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
-// this should be determined by the program.  In the Java version this was sometimes
-// needed because starting PE test too early could lead to bad results.  This is 
-// probably a coding error in the Java version, since if operating properly nothing should
-// be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
-// this in a final version for stability, but it might still be useful since early in
-// a calculation typically nothing satisfies PE, so checking for it is a waste of time.
-// On the other hand, check should not be costly.
-
-double equilibrateTime =  1.0e-6; //2.0e-5;
-
-double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil 
-
 double Yminner;             // Current minimum Y in reaction group
 double mineqcheck;          // Current minimum value of eqcheck in reaction group
 double maxeqcheck;          // Current max value of eqcheck in reaction group
@@ -359,12 +359,6 @@ bool reacIsActive[SIZE];    // False if reaction has been removed by PE
 
 int totalEquilReactions;    // Total equilibrated reactions for isotope
 int totalEquilRG;           // Total equilibrated reaction groups
-
-// Threshold abundance for imposing equil in reactions.  There may be numerical
-// issues if the PE algorithm is imposed for very small abundances early in
-// the calculation.
-
-double Ythresh = 0.0;       
 
 gsl_matrix *fluxes;
 gsl_vector *abundances;
@@ -3148,7 +3142,6 @@ class Integrate: public Utilities {
             
             // Alter timestepping for PE according to magnitude of mostDevious from last timestep
             
-            //if (doPE && t > equilibrateTime) {
             if (doPE && t > equilibrateTime) {
                 
                 double deviousMax = 0.5;
