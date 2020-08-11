@@ -132,7 +132,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = true;            // Implement partial equilibium also
 
 double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
@@ -180,8 +180,8 @@ double stop_time = 1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
-double massTol = 1.0e-7; //3.0e-4;            // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4; // 1.46e-2;                  // Timestep agressiveness factor (7.3e-4)
+double massTol = 3.0e-4;             // Timestep tolerance parameter (1.0e-7)
+double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -192,7 +192,7 @@ double SF = 7.3e-4; // 1.46e-2;                  // Timestep agressiveness facto
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime =  1.0e-6; //2.0e-5;  // Begin checking for PE
+double equilibrateTime = 1.0e-6; //2.0e-5;  // Begin checking for PE
 double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil
 
 double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from equil
@@ -2255,7 +2255,7 @@ class ReactionGroup:  public Utilities {
         }
     }
        
-    // Method to set all fluxes in RG
+    // ReactionGroup method to set all fluxes in RG
     
     void setRGfluxes(){
 
@@ -2368,22 +2368,18 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-printf("\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
-    i, 
-    reacLabel[memberReactions[i]],
-    getrgclass(),
-    getisForward(i),   // 1 if true; 0 if false
-    t, dt, 
-    fac*getflux(i)
-);
+            printf("\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
+                i, reacLabel[memberReactions[i]], getrgclass(), getisForward(i), t, dt, 
+                fac*getflux(i)
+            );
         }
         
-printf("\n");
-if(isEquil){
-    printf("showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
-} else {
-    printf("showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
-}
+        printf("\n");
+        if(isEquil){
+            printf("showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
+        } else {
+            printf("showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
+        }
     }
     
     // Method ReactionGroup::sumRGfluxes to sum net flux for this reaction group
@@ -3682,7 +3678,6 @@ int main() {
         if(!constant_T9 && totalTimeSteps > 1){
             T9 = Utilities::interpolate_T(t);
         }
-        
         if(!constant_rho && totalTimeSteps > 1){
             rho = Utilities::interpolate_rho(t);
         }
@@ -3691,30 +3686,26 @@ int main() {
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
         // method of Reaction on each object. If constant_T9 and constant_rho are true, 
-        // the rates only need be computed once as they won't change. Otherwise they are
-        // recomputed for each integration step.
+        // the rates only need be computed once as they won't change over this
+        // integration. Otherwise they are recomputed for each integration step.
         
         if( (!constant_T9 || !constant_rho) && totalTimeSteps > 1){
             
             printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
-            
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
                 reaction[i].computeRate(T9, rho);
             }
+            
         }
-        
         
         // Use methods of the Reaction class to compute fluxes.  We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeFlux()
         // method of Reaction on each object. Fluxes must be recomputed at each timestep
         // since they depend on the rates and the abundances. If temperature and density
-        
         // are constant the rates won't change, but the fluxes generally will since
         // the abundances change even if the rates are constant as the network evolves.
-        
-        //printf("\n\nTOTAL FLUXES\n");
         
         for(int i=0; i<SIZE; i++){
             reaction[i].computeFlux();
@@ -3741,9 +3732,8 @@ int main() {
         
         if(doPE && t > equilibrateTime){
             
-            //printf("\n\nIMPOSE EQUILIBRIUM CONDITION ON FLUXES");
+            // Loop over reaction groups an impose equilibrium conditions on fluxes
             
-            // Loop over reaction groups
             for(int i=0; i<numberRG; i++){
                 
                 // If RG equilibrated, loop over members of reaction group and set
@@ -3757,23 +3747,39 @@ int main() {
                 if(ckequil){
                     totalEquilRG ++;
                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+                        
+                        // Set fluxes to 0 in main Flux[] array, the flux field of
+                        // Reaction objects reaction[], and the flux[] fields
+                        // of the member reactions in the ReactioGroup RG[] if the
+                        // corresponding reaction group is in PE.
+                        
                         Flux[RG[i].getmemberReactions(j)] = 0.0; 
+                        reaction[RG[i].getmemberReactions(j)].setflux(0.0);
+                        RG[i].setflux( j, 0.0);
                         totalEquilReactions ++;
                     } 
                 }
-                
-// // Print results 
-// if(doPE && t>equilibrateTime){
-//     printf("\n");
-//     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-//         printf("\n++++ %d RG=%d reacIndex=%d %s Flux=%7.4e",
-//             j, RG[i].getRGn(), RG[i].getmemberReactions(j), 
-//             RG[i].getreacString(j),
-//             Flux[RG[i].getmemberReactions(j)]
-//         );
-//     }
-// }
+
             }
+            
+            printf("\n");
+            for(int i=0; i<SIZE; i++){
+                printf("\n  ~~~~~~~~~~i=%d %s reaction[%d].getflux()=%7.4e Flux[%d]=%7.4e",
+                    i, reaction[i].getreacChar(), i, reaction[i].getflux(),
+                    i, Flux[i]
+                );
+            }
+            
+            printf("\n\n~~~~~~~~~~ Display RG");
+            for(int i=0; i<numberRG; i++){
+                RG[i].showRGfluxes();
+            }
+            printf("\n\n~~~~~~~~~~ End RG");
+                
+            
+            
+            
+            
         }
         
         
@@ -3784,19 +3790,16 @@ int main() {
         Reaction::populateFplusFminus();
         
         // Sum F+ and F- for each isotope
-        
         Reaction::sumFplusFminus();
         
         // Find max dY/dt and corresponding isotope
-        
         getmaxdYdt();
         
         // Perform an integration step
-        
         Integrate::doIntegrationStep();
         
+        // Count total asymptotic species
         totalAsy = 0;
-        
         for(int i=0; i<ISOTOPES; i++){
             if (isAsy[i]){
                 totalAsy ++;
@@ -3804,9 +3807,7 @@ int main() {
         }
         
         // Update the energy release based on Q values for reactions and fluxes
-        
         double netdERelease = 0.0;
-        
         for(int i=0; i<SIZE; i++){
             dERelease = reaction[i].getQ() * reaction[i].getflux();
             reaction[i].setdErate(dERelease);
@@ -3824,7 +3825,6 @@ int main() {
         if(t >= plotTimeTargets[plotCounter-1]){
             
             // Output to screen
-            
             if(showPlotSteps){
                 printf("\n%s%s", dasher, dasher);
                 printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
@@ -3845,7 +3845,6 @@ int main() {
             }
             
             // Output to plot arrays for this timestep
-            
             tplot[plotCounter-1] = log10(t);
             dtplot[plotCounter-1] = log10(dt);
             
@@ -3872,11 +3871,7 @@ int main() {
             for(int i=0; i<ISOTOPES; i++){
                 Xplot[i][plotCounter-1] = X[i];
             }
-            
-            
-            
-            //printf("\nplotSteps=%d logt=%6.3f\n", plotCounter, tplot[plotCounter]);
-            
+
             // Increment the plot counter for next output
             plotCounter ++;
         }
@@ -3885,7 +3880,7 @@ int main() {
     
     
     printf("\nEnd of integration");
-    Utilities::stopTimer();        // Stop timer and print time for integration
+    Utilities::stopTimer();      // Stop timer and print integration time
     printf("\n");
 
     // ------------------------------
