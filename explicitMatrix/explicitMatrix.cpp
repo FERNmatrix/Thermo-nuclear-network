@@ -981,6 +981,7 @@ class Reaction: public Utilities {
         int isEC;                    // Whether electron capture reaction (1) or not (0)
         int isReverse;               // Whether reverse reaction (1) or not (0)
         int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
+        bool isEquil;                // Whether in a RG satisfying PE conditions
         
         double Q;                    // Q-value for reaction
         double prefac;               // The eta prefac for rates
@@ -1020,6 +1021,11 @@ class Reaction: public Utilities {
   
   
     public:
+        
+        // Constructor
+        Reaction(){
+            isEquil = false;
+        }
         
         // Public Reaction setter functions to set values of private class fields
         
@@ -1113,6 +1119,8 @@ class Reaction: public Utilities {
             ispeforward = i;
             isPEforward[reacIndex] = i;
         }
+        
+        void setisEquil(bool e){isEquil = e;}
         
         void setQ(double q){ Q = q; }
         
@@ -1267,6 +1275,8 @@ class Reaction: public Utilities {
         int getisReverse(){ return isReverse; }
         
         int getispeforward(){return ispeforward;}
+        
+        bool getisEquil(){return isEquil;}
         
         double getQ(){ return Q; }
         
@@ -1598,10 +1608,27 @@ class Reaction: public Utilities {
         }
         
         
-        // Reaction::computeFlux() to compute the current flux for reaction corresponding 
-        // to this Reaction object.
+        // Function Reaction::computeFlux() to compute the current flux for reaction 
+        // corresponding to this Reaction object.
         
         void computeFlux(){
+            
+            printf("\n  ******** t=%7.4e reacIndex=%d %s reacIsActive=%d",
+                   t, reacIndex, Utilities::stringToChar(reacString), reacIsActive[reacIndex]
+            );
+            
+            // If we are imposing partial equilibrium and this reaction part of a 
+            // reaction group that is in partial equilibrium, set its flux to zero 
+            // and return.
+            
+            if(doPE  && t > equilibrateTime && !reacIsActive[reacIndex]){
+                printf("\n  ******** RETURN" );
+                flux = 0.0;
+                Flux[reacIndex] = flux;     // Put in flux array in main
+                return;
+            }
+            
+            // Otherwise, compute the flux for this reaction
             
             string s;
             double kfac;
@@ -1612,7 +1639,7 @@ class Reaction: public Utilities {
                     
                     kfac = Rrate;
                     flux = kfac*Y[ reactantIndex[0] ];	
-                    Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    Flux[reacIndex] = flux;         // Put in flux array in main
                     fastSlowRates(kfac);
                     
                     if(showFluxCalc == 1){
@@ -1627,7 +1654,7 @@ class Reaction: public Utilities {
                     
                     kfac = Rrate * Y[ reactantIndex[0] ];
                     flux = kfac * Y[ reactantIndex[1] ]; 	
-                    Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    Flux[reacIndex] = flux;         // Put in flux array in main
                     fastSlowRates(kfac);
                     
                     if(showFluxCalc == 1){
@@ -1641,7 +1668,7 @@ class Reaction: public Utilities {
                     
                     kfac = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ];
                     flux = kfac * Y[ reactantIndex[2] ];
-                    Flux[getreacIndex()] = flux;         // Put in flux array in main
+                    Flux[reacIndex] = flux;         // Put in flux array in main
                     fastSlowRates(kfac);
                     
                     if(showFluxCalc == 1){
@@ -3400,6 +3427,12 @@ int main() {
     
     //double tmax = 1e-11;
     //double dt_init = 1e-17; 
+    
+    // Initialize reacIsActive[] array to true;
+    
+    for (int i=0; i<SIZE; i++){
+        reacIsActive[i] = true;
+    }
     
     // Read in network file and associated partition functions.  This is required only
     // once at the beginning of the entire calculation.  
