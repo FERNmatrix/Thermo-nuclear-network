@@ -3056,7 +3056,7 @@ class Integrate: public Utilities {
             
             isValidUpdate = false;
             int dtcounter = 0;
-            int dtcounterMax = 5;
+            int dtcounterMax = 1;
             
             // Update population with iterated timestep until tolerance satisfied
             
@@ -3225,6 +3225,8 @@ printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.
                     
                 }
             }
+            
+            // Return true for now. Will make more sophisticated later.
             
             return true;
         }
