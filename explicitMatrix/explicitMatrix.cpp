@@ -132,7 +132,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibium also
+bool doPE = true;             // Implement partial equilibium also
 
 double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
@@ -176,7 +176,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-2;//1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -2282,7 +2282,7 @@ class ReactionGroup:  public Utilities {
         }
     }
        
-    // ReactionGroup method to set all fluxes in RG
+    // ReactionGroup method to set all fluxes in RG from the array Flux[].
     
     void setRGfluxes(){
 
@@ -3754,7 +3754,7 @@ int main() {
             if(doPE && t > equilibrateTime){
                 RG[i].sumRGfluxes();
                 RG[i].showRGfluxes();
-                RG[i].computeEquilibrium();
+                //RG[i].computeEquilibrium();
             }
         }
         
@@ -3765,53 +3765,53 @@ int main() {
         totalEquilRG = 0;
         totalEquilReactions=0;
         
-        if(doPE && t > equilibrateTime){
-            
-            // Loop over reaction groups and impose equilibrium conditions on fluxes
-            
-            for(int i=0; i<numberRG; i++){
-                
-                // If RG equilibrated, loop over members of reaction group and set
-                // each reaction flux to zero.
-                
-                bool ckequil = RG[i].getisEquil();
-                
-                // Add RG to equilibrium by setting the member fluxes of the RG
-                // identically equal to zero.
-                
-                if(ckequil){
-                    totalEquilRG ++;
-                    for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
-                        
-                        // Set fluxes to 0 in main Flux[] array, the flux field of
-                        // Reaction objects reaction[], and the flux[] fields
-                        // of the member reactions in the ReactioGroup RG[] if the
-                        // corresponding reaction group is in PE.
-                        
-                        Flux[RG[i].getmemberReactions(j)] = 0.0; 
-                        reaction[RG[i].getmemberReactions(j)].setflux(0.0);
-                        RG[i].setflux( j, 0.0);
-                        totalEquilReactions ++;
-                    } 
-                }
-
-            }
-            
-            printf("\n");
-            for(int i=0; i<SIZE; i++){
-                printf("\n  ~~~~~~~~~~i=%d %s reaction[%d].getflux()=%7.4e Flux[%d]=%7.4e",
-                    i, reaction[i].getreacChar(), i, reaction[i].getflux(),
-                    i, Flux[i]
-                );
-            }
-            
-            printf("\n\n~~~~~~~~~~ Display RG");
-            for(int i=0; i<numberRG; i++){
-                RG[i].showRGfluxes();
-            }
-            printf("\n\n~~~~~~~~~~ End RG");
-                
-        }
+//         if(doPE && t > equilibrateTime){
+//             
+//             // Loop over reaction groups and impose equilibrium conditions on fluxes
+//             
+//             for(int i=0; i<numberRG; i++){
+//                 
+//                 // If RG equilibrated, loop over members of reaction group and set
+//                 // each reaction flux to zero.
+//                 
+//                 bool ckequil = RG[i].getisEquil();
+//                 
+//                 // Add RG to equilibrium by setting the member fluxes of the RG
+//                 // identically equal to zero.
+//                 
+//                 if(ckequil){
+//                     totalEquilRG ++;
+//                     for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+//                         
+//                         // Set fluxes to 0 in main Flux[] array, the flux field of
+//                         // Reaction objects reaction[], and the flux[] fields
+//                         // of the member reactions in the ReactioGroup RG[] if the
+//                         // corresponding reaction group is in PE.
+//                         
+//                         Flux[RG[i].getmemberReactions(j)] = 0.0; 
+//                         reaction[RG[i].getmemberReactions(j)].setflux(0.0);
+//                         RG[i].setflux( j, 0.0);
+//                         totalEquilReactions ++;
+//                     } 
+//                 }
+// 
+//             }
+//             
+//             printf("\n");
+//             for(int i=0; i<SIZE; i++){
+//                 printf("\n  ~~~~~~~~~~i=%d %s reaction[%d].getflux()=%7.4e Flux[%d]=%7.4e",
+//                     i, reaction[i].getreacChar(), i, reaction[i].getflux(),
+//                     i, Flux[i]
+//                 );
+//             }
+//             
+//             printf("\n\n~~~~~~~~~~ Display RG");
+//             for(int i=0; i<numberRG; i++){
+//                 RG[i].showRGfluxes();
+//             }
+//             printf("\n\n~~~~~~~~~~ End RG");
+//                 
+//         }
         
         
         // Call the static function Reaction::populateFplusFminus() to populate F+ and F-
@@ -3828,6 +3828,17 @@ int main() {
         
         // Perform an integration step
         Integrate::doIntegrationStep();
+
+        // Following implementation of computing equilibrium breaks results because it
+        // causes PE to be implemented.  Commenting out gives almost correct results.
+        // Errors are probably because the timestepping is not correct.
+        
+//         for(int i=0; i<numberRG; i++){
+//             RG[i].setRGfluxes();
+//             if(doPE && t > equilibrateTime){
+//                 RG[i].computeEquilibrium();
+//             }
+//         }
         
         // Count total asymptotic species
         totalAsy = 0;
