@@ -1614,7 +1614,7 @@ class Reaction: public Utilities {
         void computeFlux(){
             
             printf("\n  ******** t=%7.4e reacIndex=%d %s reacIsActive=%d",
-                   t, reacIndex, Utilities::stringToChar(reacString), reacIsActive[reacIndex]
+                   t, reacIndex, getreacChar(), reacIsActive[reacIndex]
             );
             
             // If we are imposing partial equilibrium and this reaction part of a 
@@ -1622,13 +1622,13 @@ class Reaction: public Utilities {
             // and return.
             
             if(doPE  && t > equilibrateTime && !reacIsActive[reacIndex]){
-                printf("\n  ******** RETURN" );
                 flux = 0.0;
                 Flux[reacIndex] = flux;     // Put in flux array in main
                 return;
             }
             
-            // Otherwise, compute the flux for this reaction
+            // Otherwise, this reaction is in a RG that is not in equilibrium, so we
+            // need to compute its flux
             
             string s;
             double kfac;
@@ -2390,14 +2390,14 @@ class ReactionGroup:  public Utilities {
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
-            if(getisForward(i)){
+            if(isForward[i]){
                 fac = 1.0;
             } else {
                 fac = -1.0;
             }
             printf("\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
-                i, reacLabel[memberReactions[i]], getrgclass(), getisForward(i), t, dt, 
-                fac*getflux(i)
+                i, reacLabel[memberReactions[i]], rgclass, isForward[i], t, dt, 
+                fac*flux[i]
             );
         }
         
@@ -3765,7 +3765,7 @@ int main() {
         
         if(doPE && t > equilibrateTime){
             
-            // Loop over reaction groups an impose equilibrium conditions on fluxes
+            // Loop over reaction groups and impose equilibrium conditions on fluxes
             
             for(int i=0; i<numberRG; i++){
                 
@@ -3809,10 +3809,6 @@ int main() {
             }
             printf("\n\n~~~~~~~~~~ End RG");
                 
-            
-            
-            
-            
         }
         
         
