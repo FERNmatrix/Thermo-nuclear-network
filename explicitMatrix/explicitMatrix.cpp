@@ -132,7 +132,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = false;             // Implement partial equilibium also
 
 double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
@@ -176,11 +176,11 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-2;//1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
-double massTol = 3.0e-4;             // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-8;//3.0e-4;             // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
@@ -284,8 +284,10 @@ int totalFminus = 0;
 // Arrays to hold non-zero fluxes in the network. Corresponding memory will be allocated dynamically 
 // below with malloc
 
-double* Fplus;        // Dynamically-allocated 1D array for non-zero F+ (Dim totalFplus)
-double* Fminus;       // Dynamically-allocated 1D array for non-zero F- (Dim totalFminus)
+double* Fplus;           // Dynamically-allocated 1D array for non-zero F+ (Dim totalFplus)
+double* Fminus;          // Dynamically-allocated 1D array for non-zero F- (Dim totalFminus)
+
+double keff[ISOTOPES];   // Effective decay constant in asymptotic approx for given isotope
 
 // Arrays to hold number species factors for F+ and F- arrays. For example, for 12C+12C ->
 // 4He + 20Ne the species factor is 1 for 4He and 20Ne diff. equation terms but 2 for
@@ -772,12 +774,14 @@ class Species: public Utilities {
         int ZZ;              // proton number
         int NN;              // neutron number
         int A;               // atomic mass number
-        double YY;           // abundance  Y = X/A
+        double YY0;          // Abundance Y at beginning of timestep
+        double YY;           // current abundance  Y = X/A
         double XX;           // mass fraction  X = Y*A
         double MassExcess;   // mass excess
         double pf[24];       // partition function entries
         double fplus;        // Total flux currently adding to abundance of this isotope
         double fminus;       // Total flux currently adding to abundance of this isotope
+        double keff;         // Effective decay constant = fminus/YY
         double dYdt;         // Current dY/dt for this isotope
         double dXdt;         // Current dX/dt for this isotope
         
@@ -816,6 +820,8 @@ class Species: public Utilities {
             X[isoindex] = XX;   // Array in main
         }
         
+        void setY0(double y){ YY0 = y; }
+        
         void setX(double x){
             XX = x;             // Class field
             YY = XX/(double)A;  // Corresponding Y
@@ -853,6 +859,8 @@ class Species: public Utilities {
             FplusSum[isoindex] = f;     // Array in main
         }
         
+        void setkeff(double f){ keff=f; }
+        
         void setdYdt(double d){
             dYdt = d; 
             dXdt = d*(double)A;
@@ -870,6 +878,7 @@ class Species: public Utilities {
         int getZ() {return ZZ; };
         int getN() {return NN; };
         int getA() {return A; };
+        double getY0() { return YY0; }
         double getY() {return YY; };
         double getX() {return XX; };
         double getM(){return MassExcess; };
@@ -911,6 +920,8 @@ class Species: public Utilities {
         double getfplus(){
             return fplus; 
         }
+        
+        double getkeff(){ return keff; }
         
         double getdYdt(){
             return dYdt;              
@@ -1009,14 +1020,12 @@ class Reaction: public Utilities {
         
         double Dens[3];              // Powers of density
         double densfac;              // prefac x powers of density
-        
         double rate;                 // Current T-dependent part of rate for reaction
         double Rrate;                // Current full rate (s^-1) for reaction
-        double flux;                 // Current flux of reaction
+        double flux;                 // Current net flux of reaction
         double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
-        
         string ss;                   // Utility string
   
   
@@ -1596,8 +1605,8 @@ class Reaction: public Utilities {
             // Write to rate array in main
             Rate[getreacIndex()] = Rrate;
             
-            printf("\n%d %19s densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
-                getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
+//             printf("\n%d %19s densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
+//                 getreacIndex(), getreacChar(), getdensfac(), getrate(), getRrate());
             
             // Check whether this is a max or min rate
             
@@ -1607,15 +1616,27 @@ class Reaction: public Utilities {
             
         }
         
+        // Function Reaction::showRates() to display computed rates for this
+        // Reaction object.
+        
+        void showRates(){
+            
+            printf("\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
+                   getreacIndex(), getreacChar(), getreacGroupClass(), getdensfac(), 
+                   getrate(), getRrate()
+            );
+            
+        }
+        
         
         // Function Reaction::computeFlux() to compute the current flux for reaction 
         // corresponding to this Reaction object.
         
         void computeFlux(){
             
-            printf("\n  ******** t=%7.4e reacIndex=%d %s reacIsActive=%d",
-                   t, reacIndex, getreacChar(), reacIsActive[reacIndex]
-            );
+//             printf("\n  ******** t=%7.4e reacIndex=%d %s reacIsActive=%d",
+//                    t, reacIndex, getreacChar(), reacIsActive[reacIndex]
+//             );
             
             // If we are imposing partial equilibrium and this reaction part of a 
             // reaction group that is in partial equilibrium, set its flux to zero 
@@ -1726,7 +1747,7 @@ class Reaction: public Utilities {
                 // Sum F+ for each isotope
                 if(i>0) minny = FplusMax[i-1]+1;
                 if(showFluxCalc == 1) printf("\n\nFplusMax=%d", FplusMax[i-1]);
-                accum = zerod;	
+                accum = 0.0;	
                 for(int j=minny; j<=FplusMax[i]; j++){
                     accum += Fplus[j];
                     if(showFluxCalc == 1) printf("\ni=%d j=%d Fplus=%g FplusSum=%8.4e", 
@@ -1739,13 +1760,13 @@ class Reaction: public Utilities {
                 minny = 0;
                 if(i>0) minny = FminusMax[i-1]+1;
                 if(showFluxCalc == 1) printf("\n\nFminusMax=%d", FminusMax[i-1]);
-                accum = zerod;
+                accum = 0.0;
                 for(int j=minny; j<=FminusMax[i]; j++){
                     accum += Fminus[j];
                     if(showFluxCalc == 1) printf("\ni=%d j=%d Fminus=%g FminusSum=%8.4e", 
                         i, j, Fminus[j], accum);
                 }
-                setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum;
+                setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
                 //printf("\nFminusSum[%d]=%8.4e", i, FminusSum[i]);
                 
@@ -3093,20 +3114,11 @@ class Integrate: public Utilities {
             // asymptotic condition.
             
             if(doASY){
- 
-                //printf("\n++++++ if(doAsy) 2978: t=%8.5e dt=%8.5e", t, dtt);
 
-//                 printf("\n?????? Check asymptotic condition (t=%7.4e, dt=%7.4e)\n",
-//                     t, dtt);
                 for(int i=0; i<ISOTOPES; i++){
-                    isAsy[i] = checkAsy(FminusSum[i], Y[i]);
-//                     if(isAsy[i]){ 
-//                         totalAsy ++; 
-//                         printf("\n++++++%s totalAsy=%d", isoLabel[i], totalAsy);
-//                     } 
+                    isAsy[i] = checkAsy(keff[i]);
+                    //isAsy[i] = checkAsy(FminusSum[i], Y0[i]);
                 }
-                
-                
                 
                 // Summarize results
                 
@@ -3117,10 +3129,10 @@ class Integrate: public Utilities {
                         asyck = false;
                         if(isAsy[i]) asyck=true;
                         double ck;
-                        if(Y[i] > zerod){
+                        if(Y[i] > 0.0){
                             ck = FminusSum[i]*dtt/Y[i];
                         } else {
-                            ck = zerod;
+                            ck = 0.0;
                         }
                     }
                     
@@ -3212,13 +3224,13 @@ class Integrate: public Utilities {
                 
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-printf("\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
+printf("\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
     t, dtprior, dt, test1, test2, massChecker, sumX);
                     updatePopulations(dt);
                     
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX= %8.5e", 
+printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
     t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
@@ -3295,12 +3307,23 @@ printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y
         
     }
     
-    // Function to determine whether an isotope satisfies the
+    // Function to checkAsy to determine whether an isotope satisfies the
     // asymptotic condition. Returns true (1) if it does and false (0) if not.
+    // Two overloaded forms taking either Fminus and Y0, or keff as arguments.
     
     static bool checkAsy(double Fminus, double YY){
 
         if(YY > 0.0 && Fminus*dt/YY > 1.0){
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    static bool checkAsy(double k){
+        
+        if(k*dt> 1.0){
             return true;
         } else {
             return false;
@@ -3653,8 +3676,8 @@ int main() {
     printf("\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
     dt = dt_start;              // Integration start time
-    t = start_time - dt;        // Current integration time
-    totalTimeSteps = 0;         // Integration step counter
+    t = start_time;             // Current integration time
+    totalTimeSteps = 1;         // Integration step counter
     totalEquilRG = 0;           // Number quilibrated reaction groups
     totalEquilReactions = 0;    // Number equilibrated reactions
     totalAsy = 0;               // Number asymptotic species
@@ -3673,11 +3696,16 @@ int main() {
     // reaction in the network. Loop over this array and call the computeRate()
     // method of Reaction on each object. 
     
-    printf("\n\nINITIAL COMPUTED RATES\n");
     
     for(int i=0; i<SIZE; i++){
         reaction[i].computeConstantFacs(T9, rho);
         reaction[i].computeRate(T9, rho);
+    }
+    
+    // Summarize computed rates
+    printf("\nINITIAL COMPUTED RATES\n");
+    for(int i=0; i<SIZE; i++){
+        reaction[i].showRates();
     }
     
     if(constant_T9 && constant_rho){
@@ -3694,15 +3722,13 @@ int main() {
         // Initialize fastest and slowest rates for this timestep
         
         fastestCurrentRate = 0.0;
-        slowestCurrentRate = 1e30;
-        
-        t += dt;                
-        totalTimeSteps ++;  
+        slowestCurrentRate = 1e30; 
         
         // Update Y0[] array with current Y[] values
         
         for(int i=0; i<ISOTOPES; i++){
             Y0[i] = Y[i];
+            isotope[i].setY0(Y[i]);
         }
         
         // Specify temperature T9 and density rho. If constant_T9 = true, a constant
@@ -3746,8 +3772,9 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        printf("\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d dt=%7.4e equilReaction=%d equilRG=%d ---------", 
-            t, totalTimeSteps, dt, totalEquilReactions, totalEquilRG );
+        printf("\n\n\n--------- START NEW TIMESTEP: ");
+        printf("t_i = %7.4e Step=%d dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
+            t, totalTimeSteps, dt, totalAsy, totalEquilReactions, totalEquilRG );
         
         for(int i=0; i<numberRG; i++){
             RG[i].setRGfluxes();
@@ -3823,22 +3850,39 @@ int main() {
         // Sum F+ and F- for each isotope
         Reaction::sumFplusFminus();
         
+        // Summarize flux information
+        
+        printf("\n\nISOTOPE FLUXES:");
+        
+        for (int i=0; i<ISOTOPES; i++){
+            printf("\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+                i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+                isotope[i].getfplus(), isotope[i].getfminus(), 
+                isotope[i].getfplus() - isotope[i].getfminus(),  
+                isotope[i].getkeff()
+            );
+        }
+        
         // Find max dY/dt and corresponding isotope
         getmaxdYdt();
         
         // Perform an integration step
         Integrate::doIntegrationStep();
+        
+        // Update time to end of integration step and increment step counter
+        t += dt; 
+        totalTimeSteps ++; 
 
         // Following implementation of computing equilibrium breaks results because it
         // causes PE to be implemented.  Commenting out gives almost correct results.
         // Errors are probably because the timestepping is not correct.
         
-//         for(int i=0; i<numberRG; i++){
-//             RG[i].setRGfluxes();
-//             if(doPE && t > equilibrateTime){
-//                 RG[i].computeEquilibrium();
-//             }
-//         }
+        for(int i=0; i<numberRG; i++){
+            RG[i].setRGfluxes();
+            if(doPE && t > equilibrateTime){
+                RG[i].computeEquilibrium();
+            }
+        }
         
         // Count total asymptotic species
         totalAsy = 0;
@@ -3848,7 +3892,7 @@ int main() {
             }
         }
         
-        // Update the energy release based on Q values for reactions and fluxes
+        // Update the energy release based on Q values and fluxes for reactions
         double netdERelease = 0.0;
         for(int i=0; i<SIZE; i++){
             dERelease = reaction[i].getQ() * reaction[i].getflux();
@@ -4924,8 +4968,11 @@ void setSpeciesfplus(int index, double fp){
 // Helper function that can be called from another class to set field
 // in the Species objects isotope[].
 
-void setSpeciesfminus(int index, double fp){
-    isotope[index].setfminus(fp);
+void setSpeciesfminus(int index, double fm){
+    isotope[index].setfminus(fm);
+    //isotope[index].setkeff(fm/(Y0[index]+1.0e-30));
+    isotope[index].setkeff(fm/(isotope[index].getY0()+1.0e-30));
+    keff[index] = isotope[index].getkeff();
 }
 
 // Helper function that can be called from another class to set field
