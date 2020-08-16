@@ -10,7 +10,18 @@
  * 
  * where | tee temp.txt is unix shell script outputting to screen and also piped to a file temp.txt. 
  * Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
- * your machine but should be similar.  
+ * your machine but should be similar.
+ *  
+ * 
+ * To change calculation:
+ * 
+ * 1. Set ISOTOPES and SIZE
+ * 2. Set two input files for networkFile and rateLibraryFile
+ * 3. Set doAsy, doQSS, and doPE
+ * 4. Change parameters like lines 184-209 like stop_time, massTol, ...
+ * 5. Change temperature and density, lines
+ * 6. Change plot output mask
+ * 7. Change T9_start and rho_start in lines 3452-3455
  *
  * 
  * AUTHORS:
@@ -48,7 +59,7 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
+#define ISOTOPES 3                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
 #define plotSteps 100                 // Number of plot output steps
 
@@ -123,6 +134,7 @@ void setSpeciesdYdt(int, double);
 void assignRG(void);
 void plotOutput(void);
 void getmaxdYdt(void);
+void evolveToEquilibrium(void);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -132,7 +144,7 @@ void getmaxdYdt(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibium also
+bool doPE = true;             // Implement partial equilibium also
 
 double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
@@ -176,11 +188,11 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2;//1.86e-5;          // Stop time for integration
+double stop_time = 1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
-double massTol = 1.0e-8;//3.0e-4;             // Timestep tolerance parameter (1.0e-7)
+double massTol = 3.0e-4;             // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
@@ -2184,7 +2196,7 @@ class ReactionGroup:  public Utilities {
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
         int niso;                              // Number isotopic species in this RG object
-        int RGn;                               // Index ReactionGroup in RG array (0,1,... #RG)
+        int RGn;                               // Index this object in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
         int memberReactions[maxreac];          // reacIndex of reactions in reaction group
         int numberReactants[maxreac];          // Number of reactants for each reaction in RG
@@ -2198,19 +2210,18 @@ class ReactionGroup:  public Utilities {
         double flux[maxreac];                  // Current flux for each reaction in RG
         double netflux;                        // Net flux for the entire reaction group
         char reaclabel[maxreac][LABELSIZE];    // Member reaction label
-        //int RGarrayIndex;                      // Index of ReactionGroup RG[] array
         
         // Partial equilibrium quantities
         
-        double Yzero[ISOTOPES];        // Hold Y for this species at beginning of timestep
+        //double Yzero[ISOTOPES];        // Hold Y for this species at beginning of timestep
         
-        double crg[4];                 // Constants c1,c2, ... (1-4 entries; allocate dynamically?)
-        int numberC;                   // Number constants crg[] for this rg class (1-4 entries)
+        double crg[4];                 // Constants c1,c2, ... (allocate dynamically?)
+        int numberC;                   // Number constants crg[] for this RG object
         double rgkf;                   // Forward rate parameter for partial equilibrium
         double rgkr;                   // Reverse rate parameter for partial equilibrium
         
         double aa, bb, cc;             // Quadratic coefficients a, b, c
-        double alpha, beta, gamma;     // Helper coefficients for cubic ~ quadratic approximation
+        double alpha, beta, gamma;     // Coefficients for cubic ~ quadratic approximation
         double qq;                     // q = 4ac-b^2
         double rootq;                  // Math.sqrt(-q)
         double tau;                    // Timescale for equilibrium
@@ -2227,11 +2238,11 @@ class ReactionGroup:  public Utilities {
         
         int isoindex[5];               // Species index for participants in reaction   
         char isolabel[5][5];           // Isotopic label of species in RG reactions
-        int isoZ[5];                   // Z for the niso isotopes in the reactions of the group
-        int isoN[5];                   // N for the niso isotopes in the reactions of the group
-        double isoA[5];                // A for the niso isotopes in the reactions of the group
-        double isoYeq[5];              // Y_eq for the niso isotopes in the reactions of the group
-        double isoY[5];                // Current Y for niso isotopes in reactions of the group
+        int isoZ[5];                   // Z for niso isotopes in the reactions of the group
+        int isoN[5];                   // N for niso isotopes in the reactions of the group
+        double isoA[5];                // A for niso isotopes in the reactions of the group
+        double isoYeq[5];              // Y_eq for niso isotopes in reactions of the group
+        double isoY[5];                // Current Y for niso isotopes in reactions of group
         double isoY0[5];               // Y0 for niso isotopes in the reactions of the group
 
     
@@ -2334,6 +2345,8 @@ class ReactionGroup:  public Utilities {
     
     void setisoA(int i, int j){isoA[i] = j;}
     
+    void setisoY0(int i, double y){isoY0[i] = y;}
+    
     void setisoY(int i, double y){isoY[i] = y;}
     
     void setisoYeq(int i, double y){isoYeq[i] = y;}
@@ -2390,6 +2403,8 @@ class ReactionGroup:  public Utilities {
     int getisoN(int i){return isoN[i];}
     
     int getisoA(int i){return isoA[i];}
+    
+    double getisoY0(int i){return isoY0[i];}
     
     double getisoY(int i){return isoY[i];}
     
@@ -3284,9 +3299,9 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
-if(t > diagnoseTime)
-printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-    isoLabel[i], t, dtt, t+dtt, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
+        //if(t > diagnoseTime)
+        printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+            isoLabel[i], t, dtt, t+dtt, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3776,14 +3791,14 @@ int main() {
         printf("t_i = %7.4e Step=%d dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
             t, totalTimeSteps, dt, totalAsy, totalEquilReactions, totalEquilRG );
         
-        for(int i=0; i<numberRG; i++){
-            RG[i].setRGfluxes();
-            if(doPE && t > equilibrateTime){
-                RG[i].sumRGfluxes();
-                RG[i].showRGfluxes();
-                //RG[i].computeEquilibrium();
-            }
-        }
+//         for(int i=0; i<numberRG; i++){
+//             RG[i].setRGfluxes();
+//             if(doPE && t > equilibrateTime){
+//                 RG[i].sumRGfluxes();
+//                 RG[i].showRGfluxes();
+//                 //RG[i].computeEquilibrium();
+//             }
+//         }
         
         // If partial equilibrium approximation (doPE = true), set fluxes identically to
         // zero for all reactions in reaction groups that are judged to be in equilibrium
@@ -3880,9 +3895,18 @@ int main() {
         for(int i=0; i<numberRG; i++){
             RG[i].setRGfluxes();
             if(doPE && t > equilibrateTime){
+                RG[i].sumRGfluxes();
+                RG[i].showRGfluxes();
                 RG[i].computeEquilibrium();
             }
         }
+        
+//         for(int i=0; i<numberRG; i++){
+//             RG[i].setRGfluxes();
+//             if(doPE && t > equilibrateTime){
+//                 RG[i].computeEquilibrium();
+//             }
+//         }
         
         // Count total asymptotic species
         totalAsy = 0;
@@ -4226,6 +4250,35 @@ int main() {
     
 }  // End of main routine
 
+
+
+// **********************************************************
+// ************* FUNCTIONS DEFINED IN MAIN ******************
+// **********************************************************
+
+
+// ----------------------------------------------------------------------
+// Function to set abundances for reaction groups in equilibrium to the
+// current numerically integrated value and then evolve the abundances 
+// algebraically to their equilibrium values.
+// ----------------------------------------------------------------------
+
+void evolveToEquilibrium() {
+
+    for (int i = 0; i < numberRG; i++) {
+        if ( RG[i].getisEquil() ) {
+            // Loop over species in RG
+            for (int j = 0; j < RG[i].getniso(); j++) {
+                int indy = RG[i].getisoindex(j);
+                Y0[indy] = Y[indy];
+                RG[i].setisoY0(j, Y[indy]);
+            }
+            // Compute equilibrium with new values of Y0
+            RG[i].computeEquilibrium();
+        }
+    }
+    
+}
 
 
 // Find the maximum dY/dt for an isotope in the network
