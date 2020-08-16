@@ -730,6 +730,24 @@ class Utilities{
         
         
         // ----------------------------------------------------------------------
+        // Static function Utilities::isoIsInRG(int isoindex, rgindex) to return 
+        // true if isotope labeled by species index isoindex is in the RG 
+        // labeled by rgindex and false otherwise.
+        // ----------------------------------------------------------------------
+        
+        static bool isoIsInRG(int isoindex, int rgindex) {
+            
+            for (int j=0; j<RG[rgindex].getniso(); j++){
+                if( RG[index].getisoindex(j) == isoindex )
+                    return true;
+            }
+            return false;
+            
+        }
+        
+        
+        
+        // ----------------------------------------------------------------------
         // Static function Utilities::minimumOf(x,y) to return minimum of two 
         // numbers.  Overloaded to accept either integer or double arguments.
         // ----------------------------------------------------------------------
@@ -4397,8 +4415,8 @@ void restoreEquilibriumProg() {
         // Y[] averaged over all reaction groups that are in equilibrium and
         // contain the isotope.
         
-        int numberCases = 0;
-        double Ysum = 0;
+        int numberCases;
+        double Ysum;
 //         if (showRestoreEQ) {
 //             System.out.println("\n---- "
 //             + totalTimeSteps
@@ -4409,9 +4427,33 @@ void restoreEquilibriumProg() {
 //             + " ----------------------------------------------------------");
 //         }
         
-        for(int i=0; i<)
+        // Loop over isotopes checking for those in equilbrium in some RG
         
+        for(int i=0; i<ISOTOPES; i++){
+            
+            // If isotope is in at least one equilibrated RG
+            
+            if (isotopeInEquil[i]) {
+                numberCases = 0;
+                Ysum = 0.0;
+                
+                // See now many equilibrated RGs the isotope appears in
+                
+                for(int j=0; j<numberRG; j++){
+                    if( RG[j].getisEqual() ){
+                        for(int k=0; k<RG[j].getniso(); k++){
+                            if(i == RG[j].getisoindex(k)) {
+                                Ysum += RG[j].getisoYeq(k)
+                                numberCases ++;
+                            }
+                        }
+                    }
+                }
+            }
+            Y[i] = Ysum/(double) numberCases;
+        }
         
+    /*
         for (int i = minNetZ; i <= maxNetZ; i++) {
             int indy = Math.min(maxNetN[i], nmax - 1);
             for (int j = minNetN[i]; j <= indy; j++) {
@@ -4451,6 +4493,9 @@ void restoreEquilibriumProg() {
                 }
             }
         }
+        
+*/
+    
     } // end while loop
     
 //     // Set up renormalization of all Ys so that this total integration step
