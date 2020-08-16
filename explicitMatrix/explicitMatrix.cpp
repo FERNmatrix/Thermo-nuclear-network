@@ -730,24 +730,6 @@ class Utilities{
         
         
         // ----------------------------------------------------------------------
-        // Static function Utilities::isoIsInRG(int isoindex, rgindex) to return 
-        // true if isotope labeled by species index isoindex is in the RG 
-        // labeled by rgindex and false otherwise.
-        // ----------------------------------------------------------------------
-        
-        static bool isoIsInRG(int isoindex, int rgindex) {
-            
-            for (int j=0; j<RG[rgindex].getniso(); j++){
-                if( RG[index].getisoindex(j) == isoindex )
-                    return true;
-            }
-            return false;
-            
-        }
-        
-        
-        
-        // ----------------------------------------------------------------------
         // Static function Utilities::minimumOf(x,y) to return minimum of two 
         // numbers.  Overloaded to accept either integer or double arguments.
         // ----------------------------------------------------------------------
@@ -4440,10 +4422,10 @@ void restoreEquilibriumProg() {
                 // See now many equilibrated RGs the isotope appears in
                 
                 for(int j=0; j<numberRG; j++){
-                    if( RG[j].getisEqual() ){
+                    if( RG[j].getisEquil() ){
                         for(int k=0; k<RG[j].getniso(); k++){
                             if(i == RG[j].getisoindex(k)) {
-                                Ysum += RG[j].getisoYeq(k)
+                                Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
                             }
                         }
@@ -4540,6 +4522,22 @@ void evolveToEquilibrium() {
         }
     }
     
+}
+
+
+// ----------------------------------------------------------------------
+// Function isoIsInRG(int isoindex, rgindex) to return 
+// true if isotope labeled by species index isoindex is in the RG 
+// labeled by rgindex and false otherwise.
+// ----------------------------------------------------------------------
+
+bool isoIsInRG(int isoindex, int rgindex) {
+    
+    for (int j=0; j<RG[rgindex].getniso(); j++){
+        if( RG[rgindex].getisoindex(j) == isoindex )
+            return true;
+    }
+    return false;
 }
 
 
