@@ -13,15 +13,14 @@
  * your machine but should be similar.
  *  
  * 
- * To change calculation:
+ * To set up specific calculation:
  * 
- * 1. Set ISOTOPES and SIZE
- * 2. Set two input files for networkFile and rateLibraryFile
- * 3. Set doAsy, doQSS, and doPE
- * 4. Change parameters like lines 184-209 like stop_time, massTol, ...
- * 5. Change temperature and density, lines
- * 6. Change plot output mask
- * 7. Change T9_start and rho_start in lines 3452-3455
+ * 1. Change ISOTOPES and SIZE
+ * 2. Change two input files for networkFile and rateLibraryFile
+ * 3. Change doAsy, doQSS, and doPE
+ * 4. Change parameters in lines ~184-209 like stop_time, massTol, ...
+ * 5. Change plot output mask plotXlist[] lines ~424
+ * 6. Change T9_start and rho_start in lines 3452-3455
  *
  * 
  * AUTHORS:
@@ -118,6 +117,7 @@ static const int showFunctionTests = 0;
 static const int showPlotSteps = 0;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
+static const bool showRestoreEq = false;
 
 
 // Function signatures:
@@ -134,6 +134,7 @@ void setSpeciesdYdt(int, double);
 void assignRG(void);
 void plotOutput(void);
 void getmaxdYdt(void);
+void restoreEquilibriumProg(void);
 void evolveToEquilibrium(void);
 
 // Control which explicit algebraic approximations are used. Eventually
@@ -144,7 +145,7 @@ void evolveToEquilibrium(void);
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibium also
+bool doPE = true;             // Implement partial equilibrium also
 
 double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
@@ -167,6 +168,12 @@ double dERelease;             // Energy released per unit time
 // True (1) if asyptotic; else false (0).
 
 bool isAsy[ISOTOPES];
+
+// Whether isotope part of any RG in partial equilibrium this timestep
+bool isotopeInEquil [ISOTOPES]; 
+
+// isotopeInEquil[] from last timestep
+bool isotopeInEquilLast [ISOTOPES]; 
 
 // Force a constant timestep constant_dt for testing purposes by
 // setting constantTimestep=true.  Normally constantTimestep=false
@@ -628,11 +635,53 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static double sumMassFractions(void) {
+            
             double sum = 0.0;
             for(int i=0; i<ISOTOPES; i++){
                 sum += X[i];
             }
             return sum; 
+            
+        }
+        
+        
+        // ------------------------------------------------------------------
+        // Static function Utilities::sumXEquil() to return the sum of mass 
+        // fractions for isotopes participating in at least one RG currently
+        // in partial equilibrium
+        // ------------------------------------------------------------------
+        
+        static double sumXEquil() {
+            
+            double sum = 0;
+            
+            for(int i=0; i<ISOTOPES; i++){
+                if( isotopeInEquil[i] ){
+                    sum += X[i];
+                }
+            }
+            
+            return sum;
+        }
+        
+        
+        // -----------------------------------------------------------------------
+        // Static function Utilities::sumXNotEquil() to return the sum of mass 
+        // fractions for isotopes not participating in any RG currently in
+        // partial equilibrium
+        // -----------------------------------------------------------------------
+        
+        static double sumXNotEquil() {
+            
+            double sum = 0;
+            
+            for(int i=0; i<ISOTOPES; i++){
+                if( !isotopeInEquil[i] ){
+                    sum += X[i];
+                }
+            }
+            return sum;
+
         }
         
     
@@ -4255,6 +4304,174 @@ int main() {
 // **********************************************************
 // ************* FUNCTIONS DEFINED IN MAIN ******************
 // **********************************************************
+
+
+/* Method to adjust populations at end of timestep when in partial equilibrium 
+ * to correct for deviations from equilibrium during the timestep. Uses progress 
+ * variables. This method sets the progress variable for each reaction group to 
+ * its equilibrium value at the end of the numerical timestep, and then sets the 
+ * corresponding equilibrium values of other isotopes in the reaction group (since 
+ * they are directly related to the equilibrium value of the progress variable for 
+ * the reaction group). Then, the corrected abundances Y for all isotopes participating 
+ * in partial equilibrium are averaged if they participate in more than one reaction 
+ * group. Finally, after Ys are updated by their average equilibrium values, all 
+ * abundances are rescaled so that total nucleon number is conserved by the overall 
+ * timestep. Thus this method for restoring equilibrium does not require a matrix solution 
+ * or Newton-Raphson iteration. It should scale approximately linearly with the network 
+ * size. Contrast with the different approach taken in the method restoreEquilibrium(). */
+
+void restoreEquilibriumProg() {
+    
+    int Z, N;
+    int countConstraints = 0;
+    int countEquilIsotopes = 0;
+    // Reaction groups in equilibrium
+    //int Ydim = numberRG;
+    // Array to hold index of RG in equilibrium
+    int RGindy[numberRG]; 
+    double sumXNeq = 0.0;
+    double sumXeq = 0.0;
+    sumX = Utilities::sumMassFractions();
+    
+//     if (showRestoreEQ)
+//         System.out.println("Restoring equilibrium using method restoreEquilibriumProg():");
+    
+    /* In general when we compute the equilibrium value of say alpha in the 
+     *  reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
+     *  values of 16O and 20Ne (i.e., their values will not be the values that they 
+     *  will have after this step). Add a while loop that permits iteration to try 
+     *  to fix this. Preliminary tests indicate it has essentially no effect except 
+     *  that things go crazy if too many iterations so set to one iteration for now. */
+    
+    int itcounter = 0;
+    while (itcounter < 1) {
+        countConstraints = 0;
+        countEquilIsotopes = 0;
+        itcounter ++;
+        
+        /* Compute equilibrium value of the Ys participating in equilibrium 
+         *	  starting from the value of Y at the end of the numerical timestep, 
+         *	  presently stored in Y[Z][N]. Do so by first setting 
+         *	  StochasticElements.Yzero[Z][N] to the current value of Y[Z][N], which 
+         *	  is the numerically computed value at the END of the timestep. Then 
+         *	  evolve that initial value to the corresponding equilibrium value 
+         *	  algebraically by calculating the equilibrium value for that Yzero[Z][N] 
+         *	  and setting Y[Z][N] to it (a form of operator splitting within the 
+         *	  network timestep). */
+        
+        evolveToEquilibrium();
+        
+        // Inventory reaction groups in equilibrium
+        
+        for (int i = 0; i < numberRG; i++) {
+            if ( RG[i].getisEquil() ) {
+                RGindy[countConstraints] = i;
+                countConstraints++;
+//                 if (showRestoreEQ)
+//                     System.out.println("  RG=" + i + " "
+//                     + RGgroup[i].reactions[0].reacString);
+                for (int j = 0; j < RG[i].getniso(); j++) {
+                    //Z = RGgroup[i].isoZ[j];
+                    //N = RGgroup[i].isoN[j];
+                    int speciesIndy = RG[i].getisoindex(j);
+                    if (!isotopeInEquil[speciesIndy]) {
+                        isotopeInEquil[speciesIndy] = true;
+                        countEquilIsotopes++;
+                    }
+//                     if (showRestoreEQ) {
+//                         System.out.println("    Z=" + Z + " N=" + N
+//                         + " Ynum=" + deci(8, Y[Z][N]) + " Yeq="
+//                         + deci(8, RGgroup[i].isoYeq[j]));
+//                     }
+                }
+            }
+        }
+        
+        // Check mass fractions separately for isotopes participating in
+        // equilibrium and those not
+        
+        sumXeq = Utilities::sumXEquil();
+        sumXNeq = Utilities::sumXNotEquil();
+        
+        // Loop over reaction groups in equilibrium and compute equilibrated
+        // Y[] averaged over all reaction groups that are in equilibrium and
+        // contain the isotope.
+        
+        int numberCases = 0;
+        double Ysum = 0;
+//         if (showRestoreEQ) {
+//             System.out.println("\n---- "
+//             + totalTimeSteps
+//             + " t="
+//             + deci(6, time)
+//             + " equilReac="
+//             + totalEquilReactions
+//             + " ----------------------------------------------------------");
+//         }
+        
+        for(int i=0; i<)
+        
+        
+        for (int i = minNetZ; i <= maxNetZ; i++) {
+            int indy = Math.min(maxNetN[i], nmax - 1);
+            for (int j = minNetN[i]; j <= indy; j++) {
+                if (isotopeInEquil[i][j]) {
+                    numberCases = 0;
+//                     if (showRestoreEQ)
+//                         System.out.println("Z=" + i + " N=" + j + " Y="
+//                         + deci(8, Y[i][j]));
+                    Ysum = 0;
+                    // Loop over only the RG in equi (countConstraints of
+                    // them; (RGindy[] holds their indices)
+                    for (int k = 0; k < countConstraints; k++) {
+                        int rgin = RGindy[k];
+                        // Loop over isotopes within this equilibrated, RG
+                        // checking for match
+                        for (int m = 0; m < RGgroup[rgin].niso; m++) {
+                            if (i == RGgroup[rgin].isoZ[m]
+                                && j == RGgroup[rgin].isoN[m]) {
+                                Ysum += RGgroup[rgin].isoYeq[m];
+//                             if (showRestoreEQ) {
+//                                 System.out.println("  RG="
+//                                 + RGgroup[rgin].RGindy
+//                                 + " "
+//                                 + RGgroup[rgin].reactions[0].reacString
+//                                 + " Yeq="
+//                                 + deci(8, RGgroup[rgin].isoYeq[m]));
+//                             }
+                            numberCases++;
+                                }
+                        }
+                    }
+                    // Store Y averaged over all reaction groups in which it
+                    // participates
+                    Y[i][j] = Ysum / (double) numberCases;
+//                     if (showRestoreEQ)
+//                         System.out.println("  Avg. Yeq=" + deci(8, Y[i][j]));
+                }
+            }
+        }
+    } // end while loop
+    
+//     // Set up renormalization of all Ys so that this total integration step
+//     // conserves particle number
+//     
+//     double sumXeqTemp = sumXEquil();
+//     // Factor to enforce particle number conservation
+//     XcorrFac = 1 / (sumXNeq + sumXeqTemp);
+//     sumXeq = sumXeqTemp;
+//     sumXNeq = sumXNotEquil();
+//     // Loop over all Ys and renormalize
+//     for (int i = minNetZ; i <= maxNetZ; i++) {
+//         int indy = Math.min(maxNetN[i], nmax - 1);
+//         for (int j = minNetN[i]; j <= indy; j++) {
+//             Y[i][j] *= XcorrFac;
+//             pop[i][j] = Y[i][j] * nT;
+//         }
+//     }
+//     sumX = sumMassFractions();
+    
+}
 
 
 // ----------------------------------------------------------------------
