@@ -136,6 +136,7 @@ void plotOutput(void);
 void getmaxdYdt(void);
 void restoreEquilibriumProg(void);
 void evolveToEquilibrium(void);
+bool isoIsInRG(int, int);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -371,6 +372,11 @@ int RGnumberMembers[SIZE];    // # members each RG; set in class ReactionVectors
 // This array is populated by the function ReactionVector::sortReactionGroups()
 
 int RGindex[SIZE];
+
+// Could save a little memory by assigning dynamically to size [numberRG][ISOTOPES] 
+// once numberRG determined
+
+bool RGisoMembers[SIZE][ISOTOPES];
 
 double Yminner;             // Current minimum Y in reaction group
 double mineqcheck;          // Current minimum value of eqcheck in reaction group
@@ -3690,7 +3696,22 @@ int main() {
     
     assignRG();
     
+    // Populate boolean array RGisoMembers[RG][isotopes] giving the isotopes 
+    // appearing in each RG. Entry in array is true (1) if the isotope appears
+    // in the corresponding reaction group and false (0) otherwise.
     
+    for(int i=0; i<numberRG; i++){
+        for(int j=0; j<ISOTOPES; j++){
+            if( RG[i].speciesIsInRG(j) ){
+                RGisoMembers[i][j] = true;
+            } else {
+                RGisoMembers[i][j] = false;
+            }
+//             printf("\n###### RG=%d Isotope=%d isIn=%d",
+//                 i, j, RGisoMembers[i][j]
+//             );
+        }
+    }
     
     // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
@@ -3936,19 +3957,30 @@ int main() {
         // Update time to end of integration step and increment step counter
         t += dt; 
         totalTimeSteps ++; 
-
-        // Following implementation of computing equilibrium breaks results because it
-        // causes PE to be implemented.  Commenting out gives almost correct results.
-        // Errors are probably because the timestepping is not correct.
         
-        for(int i=0; i<numberRG; i++){
-            RG[i].setRGfluxes();
-            if(doPE && t > equilibrateTime){
-                RG[i].sumRGfluxes();
-                RG[i].showRGfluxes();
+        // Compute equilibrium conditions
+        
+        if(doPE && t > equilibrateTime){
+            for(int i = 0; i < numberRG; i++) {
                 RG[i].computeEquilibrium();
             }
+            if(totalEquilReactions > 0){
+                restoreEquilibriumProg();
+            }
         }
+
+//         // Following implementation of computing equilibrium breaks results because it
+//         // causes PE to be implemented.  Commenting out gives almost correct results.
+//         // Errors are probably because the timestepping is not correct.
+//         
+//         for(int i=0; i<numberRG; i++){
+//             RG[i].setRGfluxes();
+//             if(doPE && t > equilibrateTime){
+//                 RG[i].sumRGfluxes();
+//                 RG[i].showRGfluxes();
+//                 RG[i].computeEquilibrium();
+//             }
+//         }
         
 //         for(int i=0; i<numberRG; i++){
 //             RG[i].setRGfluxes();
@@ -4069,6 +4101,12 @@ int main() {
     // Output of data to plot files after integration
     
     Utilities::plotOutput();
+    
+//     int testeriso = 1;
+//     int testerrg = 1;
+//     printf("\n\nisoindex=%d rgindex=%d bool=%d",
+//            testeriso, testerrg, isoIsInRG(testeriso, testerrg)
+//     );
     
     
     // ------------------------------------------------------------
@@ -4318,11 +4356,12 @@ int main() {
  * abundances are rescaled so that total nucleon number is conserved by the overall 
  * timestep. Thus this method for restoring equilibrium does not require a matrix solution 
  * or Newton-Raphson iteration. It should scale approximately linearly with the network 
- * size. Contrast with the different approach taken in the method restoreEquilibrium(). */
+ * size. Contrast with the different approach taken in the method restoreEquilibrium()
+ * of the Java code. */
 
 void restoreEquilibriumProg() {
     
-    int Z, N;
+    //int Z, N;
     int countConstraints = 0;
     int countEquilIsotopes = 0;
     // Reaction groups in equilibrium
@@ -4419,7 +4458,14 @@ void restoreEquilibriumProg() {
                 numberCases = 0;
                 Ysum = 0.0;
                 
-                // See now many equilibrated RGs the isotope appears in
+                // Find the equilibrated RGs the isotope appears in
+                
+//                 for(int j=0; j<numberRG; j++){
+//                     if(RG[j].getisEquil() && RGisoMembers[j][i] ){
+//                         Ysum += RG[j].getisoYeq(k);
+//                         numberCases ++;
+//                     }
+//                 }
                 
                 for(int j=0; j<numberRG; j++){
                     if( RG[j].getisEquil() ){
@@ -4432,63 +4478,83 @@ void restoreEquilibriumProg() {
                     }
                 }
             }
-            Y[i] = Ysum/(double) numberCases;
+            
+            // Store Y averaged over all reaction groups in which it
+            // participates
+            
+            Y[i] = Ysum/(double)numberCases;
+            X[i] = Y[i]*(double)AA[i];
         }
         
-    /*
-        for (int i = minNetZ; i <= maxNetZ; i++) {
-            int indy = Math.min(maxNetN[i], nmax - 1);
-            for (int j = minNetN[i]; j <= indy; j++) {
-                if (isotopeInEquil[i][j]) {
-                    numberCases = 0;
-//                     if (showRestoreEQ)
-//                         System.out.println("Z=" + i + " N=" + j + " Y="
-//                         + deci(8, Y[i][j]));
-                    Ysum = 0;
-                    // Loop over only the RG in equi (countConstraints of
-                    // them; (RGindy[] holds their indices)
-                    for (int k = 0; k < countConstraints; k++) {
-                        int rgin = RGindy[k];
-                        // Loop over isotopes within this equilibrated, RG
-                        // checking for match
-                        for (int m = 0; m < RGgroup[rgin].niso; m++) {
-                            if (i == RGgroup[rgin].isoZ[m]
-                                && j == RGgroup[rgin].isoN[m]) {
-                                Ysum += RGgroup[rgin].isoYeq[m];
-//                             if (showRestoreEQ) {
-//                                 System.out.println("  RG="
-//                                 + RGgroup[rgin].RGindy
-//                                 + " "
-//                                 + RGgroup[rgin].reactions[0].reacString
-//                                 + " Yeq="
-//                                 + deci(8, RGgroup[rgin].isoYeq[m]));
-//                             }
-                            numberCases++;
-                                }
-                        }
-                    }
-                    // Store Y averaged over all reaction groups in which it
-                    // participates
-                    Y[i][j] = Ysum / (double) numberCases;
-//                     if (showRestoreEQ)
-//                         System.out.println("  Avg. Yeq=" + deci(8, Y[i][j]));
-                }
-            }
-        }
+    
+//         for (int i = minNetZ; i <= maxNetZ; i++) {
+//             int indy = Math.min(maxNetN[i], nmax - 1);
+//             for (int j = minNetN[i]; j <= indy; j++) {
+//                 if (isotopeInEquil[i][j]) {
+//                     numberCases = 0;
+// //                     if (showRestoreEQ)
+// //                         System.out.println("Z=" + i + " N=" + j + " Y="
+// //                         + deci(8, Y[i][j]));
+//                     Ysum = 0;
+//                     // Loop over only the RG in equi (countConstraints of
+//                     // them; (RGindy[] holds their indices)
+//                     for (int k = 0; k < countConstraints; k++) {
+//                         int rgin = RGindy[k];
+//                         // Loop over isotopes within this equilibrated, RG
+//                         // checking for match
+//                         for (int m = 0; m < RGgroup[rgin].niso; m++) {
+//                             if (i == RGgroup[rgin].isoZ[m]
+//                                 && j == RGgroup[rgin].isoN[m]) {
+//                                 Ysum += RGgroup[rgin].isoYeq[m];
+// //                             if (showRestoreEQ) {
+// //                                 System.out.println("  RG="
+// //                                 + RGgroup[rgin].RGindy
+// //                                 + " "
+// //                                 + RGgroup[rgin].reactions[0].reacString
+// //                                 + " Yeq="
+// //                                 + deci(8, RGgroup[rgin].isoYeq[m]));
+// //                             }
+//                             numberCases++;
+//                                 }
+//                         }
+//                     }
+//                     
+//                     // Store Y averaged over all reaction groups in which it
+//                     // participates
+//                     
+//                     Y[i][j] = Ysum / (double) numberCases;
+// //                     if (showRestoreEQ)
+// //                         System.out.println("  Avg. Yeq=" + deci(8, Y[i][j]));
+//                 }
+//             }
+//         }
         
-*/
+
     
     } // end while loop
     
-//     // Set up renormalization of all Ys so that this total integration step
-//     // conserves particle number
-//     
-//     double sumXeqTemp = sumXEquil();
-//     // Factor to enforce particle number conservation
-//     XcorrFac = 1 / (sumXNeq + sumXeqTemp);
-//     sumXeq = sumXeqTemp;
-//     sumXNeq = sumXNotEquil();
-//     // Loop over all Ys and renormalize
+    // Set up renormalization of all Ys so that this integration step
+    // conserves total particle number
+    
+    double sumXeqTemp = Utilities::sumXEquil();
+    
+    // Factor to enforce particle number conservation
+    double XcorrFac = 1.0/Utilities::sumMassFractions();
+    
+    //XcorrFac = 1.0 / (sumXNeq + sumXeqTemp);
+    //sumXeq = sumXeqTemp;
+    //sumXNeq = Utilities::sumXNotEquil();
+    
+    // Loop over all isotopes and renormalize so sum X = 1
+    
+    for(int i=0; i<ISOTOPES; i++){
+        X[i] *= XcorrFac;
+        Y[i] = X[i]/(double)AA[i];
+        Y0[i] = Y[i];
+        //X[i] = Y[i] * (double)AA;
+        
+    }
+    
 //     for (int i = minNetZ; i <= maxNetZ; i++) {
 //         int indy = Math.min(maxNetN[i], nmax - 1);
 //         for (int j = minNetN[i]; j <= indy; j++) {
@@ -4496,7 +4562,7 @@ void restoreEquilibriumProg() {
 //             pop[i][j] = Y[i][j] * nT;
 //         }
 //     }
-//     sumX = sumMassFractions();
+    sumX = Utilities::sumMassFractions();
     
 }
 
@@ -4515,7 +4581,7 @@ void evolveToEquilibrium() {
             for (int j = 0; j < RG[i].getniso(); j++) {
                 int indy = RG[i].getisoindex(j);
                 Y0[indy] = Y[indy];
-                RG[i].setisoY0(j, Y[indy]);
+                RG[i].setisoY0(j, Y0[indy]);
             }
             // Compute equilibrium with new values of Y0
             RG[i].computeEquilibrium();
@@ -4528,7 +4594,9 @@ void evolveToEquilibrium() {
 // ----------------------------------------------------------------------
 // Function isoIsInRG(int isoindex, rgindex) to return 
 // true if isotope labeled by species index isoindex is in the RG 
-// labeled by rgindex and false otherwise.
+// labeled by rgindex and false otherwise. Not presently used
+// since ReactionGroup::speciesIsInRG(speciesIndex) duplicates
+// this functionality.
 // ----------------------------------------------------------------------
 
 bool isoIsInRG(int isoindex, int rgindex) {
