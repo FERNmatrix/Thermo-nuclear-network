@@ -60,7 +60,7 @@ using std::string;
 
 #define ISOTOPES 3                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
