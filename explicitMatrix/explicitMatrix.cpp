@@ -118,6 +118,7 @@ static const int showPlotSteps = 0;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
 static const bool showRestoreEq = false;
+static const bool plotFluxes = true;
 
 
 // Function signatures:
@@ -169,6 +170,7 @@ double dERelease;             // Energy released per unit time
 // True (1) if asyptotic; else false (0).
 
 bool isAsy[ISOTOPES];
+double asycheck;              // Species asymptotic if asycheck > 1.0
 
 // Whether isotope part of any RG in partial equilibrium this timestep
 bool isotopeInEquil [ISOTOPES]; 
@@ -541,6 +543,9 @@ class Utilities{
             FILE * pFile2;
             pFile2 = fopen("gnu_out/gnufile2.data","w");
             
+            FILE * pFile3;
+            pFile3 = fopen("gnu_out/gnufileFlux.data","w");
+            
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
@@ -555,17 +560,21 @@ class Utilities{
             if(doASY){
                 fprintf(pFile, "# ASY");
                 fprintf(pFile2, "# ASY");
+                if(plotFluxes){fprintf(pFile3, "# ASY");}
             } else {
                 fprintf(pFile, "# QSS");
                 fprintf(pFile2, "# QSS");
+                if(plotFluxes){fprintf(pFile3, "# QSS");}
             }
             if(doPE){
                 fprintf(pFile, "+PE");
                 fprintf(pFile2, "+PE");
+                if(plotFluxes){fprintf(pFile3, "+PE");}
             } 
             fprintf(pFile, " method: %d integration steps ", totalTimeSteps);
             fprintf(pFile2, " method: %d integration steps ", totalTimeSteps);
-            
+            if(plotFluxes) fprintf(pFile3, " method: %d integration steps ", totalTimeSteps);
+                
             FPRINTF_CPU;
             FPRINTF_CPU2;
             
@@ -2603,6 +2612,8 @@ class ReactionGroup:  public Utilities {
    
     void computeC() {
         
+printf("\nRG=%d", RGn);
+        
         switch (rgclass) {
             
             // Reaclib class 7, which can't equilibrate
@@ -3355,8 +3366,8 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
         //if(t > diagnoseTime)
-        printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-            isoLabel[i], t, dtt, t+dtt, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
+        printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+            isoLabel[i], t, dtt, t+dtt, fminusSum/y0, fminusSum*dt/y0, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3370,8 +3381,11 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-        printf("\n  Asy: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
-            t, dtt, fminus, fplus);
+        printf("\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+               t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+        
+//         printf("\n  Asymp: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
+//             t, dtt, fminus, fplus);
         
         return newY;  
         
@@ -3382,8 +3396,12 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
     // Two overloaded forms taking either Fminus and Y0, or keff as arguments.
     
     static bool checkAsy(double Fminus, double YY){
+        
+        asycheck = Fminus*dt/YY;
+        
+//printf("\n$$$$$$ Fminus=%7.4e Y=%7.4e dt=%7.4e asycheck=%7.4e", Fminus, YY, dt, asycheck);
 
-        if(YY > 0.0 && Fminus*dt/YY > 1.0){
+        if(YY > 0.0 && asycheck > 1.0){
             return true;
         } else {
             return false;
@@ -3393,7 +3411,13 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
     
     static bool checkAsy(double k){
         
-        if(k*dt> 1.0){
+        asycheck = k*dt;
+        
+//printf("\n$$$$$$ k=%7.4e dt=%7.4e asycheck=%7.4e", k, dt, asycheck);
+        
+        //printf("\nFminus=%7.4e ");
+        
+        if(asycheck > 1.0){
             return true;
         } else {
             return false;
@@ -3874,8 +3898,8 @@ int main() {
         // zero for all reactions in reaction groups that are judged to be in equilibrium
         // (RG[i].isEquil = true).
         
-        totalEquilRG = 0;
-        totalEquilReactions=0;
+        //totalEquilRG = 0;
+        //totalEquilReactions=0;
         
 //         if(doPE && t > equilibrateTime){
 //             
@@ -3964,8 +3988,21 @@ int main() {
             for(int i = 0; i < numberRG; i++) {
                 RG[i].computeEquilibrium();
             }
-            if(totalEquilReactions > 0){
+            if(totalEquilRG > 0){
+                printf("\n\n********* BEGIN PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+                
                 restoreEquilibriumProg();
+                
+                printf("\n\nISOTOPE FLUXES:");
+                for (int i=0; i<ISOTOPES; i++){
+                    printf("\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+                           i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+                           isotope[i].getfplus(), isotope[i].getfminus(), 
+                           isotope[i].getfplus() - isotope[i].getfminus(),  
+                           isotope[i].getkeff());
+                }
+                
+                printf("\n\n********* END PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
             }
         }
 
