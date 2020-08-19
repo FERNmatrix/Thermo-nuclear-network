@@ -418,18 +418,20 @@ double timeMaxRate = 0.0;
 
 double plotTimeTargets[plotSteps];
 
-double tplot[plotSteps];               // Actual time for plot step
-double dtplot[plotSteps];              // dt for plot step
-double Xplot[ISOTOPES][plotSteps];     // Mass fractions X
-double sumXplot[plotSteps];            // Sum of mass fractions
-int numAsyplot[plotSteps];             // Number asymptotic species
-int numRG_PEplot[plotSteps];           // Number RG in PE
-double EReleasePlot[plotSteps];        // Integrated energy release
-double dEReleasePlot[plotSteps];       // Differential energy release
-double fastestRatePlot[plotSteps];     // Fastest reaction rate at time t
-int fastestRateIndexPlot[plotSteps];   // Reaction index fastest rate
-double slowestRatePlot[plotSteps];     // Slowest reaction rate at time t
-int slowestRateIndexPlot[plotSteps];   // Reaction index slowest rate
+double tplot[plotSteps];                     // Actual time for plot step
+double dtplot[plotSteps];                    // dt for plot step
+double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
+double sumXplot[plotSteps];                  // Sum of mass fractions
+int numAsyplot[plotSteps];                   // Number asymptotic species
+int numRG_PEplot[plotSteps];                 // Number RG in PE
+double EReleasePlot[plotSteps];              // Integrated energy release
+double dEReleasePlot[plotSteps];             // Differential energy release
+double fastestRatePlot[plotSteps];           // Fastest reaction rate at time t
+int fastestRateIndexPlot[plotSteps];         // Reaction index fastest rate
+double slowestRatePlot[plotSteps];           // Slowest reaction rate at time t
+int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
+double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
+double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 // Following control which mass fractions are exported to the plotting
 // file.  The entries in plotXlist[] are the species indices for the
@@ -552,9 +554,13 @@ class Utilities{
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
             string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+            string strflux = "\n#    t     dt   ";
             string app = "  ";
             string app1;
+            string appflux;
             string Xstring = "X(";
+            string Fpstring = "F+(";
+            string Fmstring = "F-(";
             string iso;
             
             if(doASY){
@@ -596,7 +602,7 @@ class Utilities{
                 );
             }
             
-            // Write header for gnuplot file
+            // Write header for file pointed to by pFile
             
             for(int i=0; i<LX; i++){
                 iso = isoLabel[i];
@@ -607,7 +613,28 @@ class Utilities{
             str1.append(app);
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
+            
             printf("\n");
+            
+            // Write header for file pointed to by pFile3
+
+            for(int i=0; i<LX; i++){
+                iso = isoLabel[i];
+                appflux.append(Fpstring);
+                appflux.append(iso);
+                appflux.append(")   ");
+            }
+            for(int i=0; i<LX; i++){
+                iso = isoLabel[i];
+                appflux.append(Fmstring);
+                appflux.append(iso);
+                appflux.append(")   ");
+            }
+            
+            strflux.append(appflux);
+            //strflux.append("\n");
+            fprintf(pFile3, stringToChar(strflux));
+            
             
             // Write the data to the file line by line using concatenated fprintf
             // statements.
@@ -637,6 +664,24 @@ class Utilities{
                 }
                 
                 fprintf(pFile, "\n");
+                
+                // Fluxes
+                fprintf(pFile3, "\n%+6.3f %+6.3f",// %6.3f %6.3f %5.3f %5.3f %5.3f",
+                        tplot[i], dtplot[i]
+                );
+                
+                // Now add one data field for each FplusSumPlot. Add
+                // 1e-24 to X in case it is identically zero since we are
+                // taking the log.
+                
+                for(int j=0; j<LX; j++){
+                    fprintf(pFile3, " %5.3e", log10(FplusSumPlot[j][i]+1e-24));
+                }
+                for(int j=0; j<LX; j++){
+                    fprintf(pFile3, " %5.3e", log10(FminusSumPlot[j][i]+1e-24));
+                }
+                
+                
             }
             
             fclose (pFile);
@@ -4098,6 +4143,8 @@ int main() {
             
             for(int i=0; i<ISOTOPES; i++){
                 Xplot[i][plotCounter-1] = X[i];
+                FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
+                FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
             }
 
             // Increment the plot counter for next output
