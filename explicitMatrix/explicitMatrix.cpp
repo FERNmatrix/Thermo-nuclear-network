@@ -198,7 +198,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-2; //5.0e-5; //1.0e-2; //1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -675,12 +675,15 @@ class Utilities{
                 // taking the log.
                 
                 for(int j=0; j<LX; j++){
-                    fprintf(pFile3, " %5.3e", log10(FplusSumPlot[j][i]+1e-24));
+                    fprintf(pFile3, " %5.3e", log10(abs( FplusSumPlot[j][i]+1e-24) ));
                 }
                 for(int j=0; j<LX; j++){
-                    fprintf(pFile3, " %5.3e", log10(FminusSumPlot[j][i]+1e-24));
+                    fprintf(pFile3, " %5.3e", log10(abs( FminusSumPlot[j][i]+1e-24)));
                 }
-                
+                for(int j=0; j<LX; j++){
+                    fprintf(pFile3, " %5.3e", 
+                        log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
+                }
                 
             }
             

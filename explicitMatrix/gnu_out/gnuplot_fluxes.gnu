@@ -76,13 +76,13 @@ file1 = "gnufileFlux.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -7
-xup = -4
+xup = -2
 xtics = 0.5     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 3.5
+ylow = -2.0; #3.5
 yup = 4.4 
-ytics = 0.1      # Space between major y ticmarks
+ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -101,14 +101,24 @@ set grid   # set x-y grid at major ticmarks
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:2 with lines ls 1 title "dt"
-replot file1 using 1:3 with lines ls 2 title "F+(1)"
-replot file1 using 1:4 with lines ls 3 title "F+(2)"
-replot file1 using 1:5 with lines ls 4 title "F+(3)"
-replot file1 using 1:6 with lines ls 5 title "F-(1)"
-replot file1 using 1:7 with lines ls 6 title "F-(2)"
-replot file1 using 1:8 with lines ls 7 title "F-(3)"
+# F+ and F-
+
+#plot file1 using 1:2 with lines ls 1 title "dt"
+#replot file1 using 1:3 with lines ls 2 title "F+(1)"
+#replot file1 using 1:4 with lines ls 3 title "F+(2)"
+#replot file1 using 1:5 with lines ls 4 title "F+(3)"
+#replot file1 using 1:6 with lines ls 5 title "F-(1)"
+#replot file1 using 1:7 with lines ls 6 title "F-(2)"
+#replot file1 using 1:8 with lines ls 7 title "F-(3)"
 #replot file1 using 1:12 with lines ls 8 title "Be7"
+
+
+# dF = F+ - F-
+
+plot file1 using 1:2 with lines ls 1 title "dt"
+replot file1 using 1:9 with lines ls 2 title "dF(1)"
+replot file1 using 1:10 with lines ls 3 title "dF(2)"
+replot file1 using 1:11 with lines ls 4 title "dF(3)"
 
 
 # Reset font sizes for .eps and .png output2
