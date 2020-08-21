@@ -583,6 +583,8 @@ class Utilities{
             string Fmstring = "F-(";
             string iso;
             
+            fprintf(pFileD, "\n\n");
+            
             if(doASY){
                 fprintf(pFile, "# ASY");
                 fprintf(pFile2, "# ASY");
@@ -1770,7 +1772,7 @@ class Reaction: public Utilities {
         
         void showRates(){
             
-            printf("\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
+            fprintf(pFileD, "\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
                    getreacIndex(), getreacChar(), getreacGroupClass(), getdensfac(), 
                    getrate(), getRrate()
             );
@@ -3887,8 +3889,8 @@ int main() {
     // *** Begin main time integration while-loop ***
     // -----------------------------------------------
     
-    
     printf("\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
+    fprintf(pFileD, "\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
     dt = dt_start;              // Integration start time
     t = start_time;             // Current integration time
@@ -3918,15 +3920,15 @@ int main() {
     }
     
     // Summarize computed rates
-    printf("\nINITIAL COMPUTED RATES\n");
+    fprintf(pFileD, "\nINITIAL COMPUTED RATES\n");
     for(int i=0; i<SIZE; i++){
         reaction[i].showRates();
     }
     
     if(constant_T9 && constant_rho){
-        printf("\n\n**** Rates not computed again since T and rho won't change in integration ****\n");
+        fprintf(pFileD, "\n\n**** Rates not computed again since T and rho won't change in integration ****\n");
     } else {
-        printf("\n\n**** Rates will be recomputed at each timestep since T and rho may change ****\n");
+        fprintf(pFileD, "\n\n**** Rates will be recomputed at each timestep since T and rho may change ****\n");
     }
     
 
@@ -5244,7 +5246,7 @@ void  writeRates(char *label)
 void setRG(int index, int RGclass, int RGindex){
     //reaction[index].setreacGroupClass(RGclass);
     reaction[index].setrgindex(RGindex);
-    printf("\nsetRG: index=%d RGclass=%d RGindex=%d", 
+    fprintf(pFileD, "\nsetRG: index=%d RGclass=%d RGindex=%d", 
         index, reaction[index].getreacGroupClass(), reaction[index].getrgindex());
 }
 
@@ -5255,46 +5257,55 @@ void setRG(int index, int RGclass, int RGindex){
 
 void assignRG(){
     
-    printf("\n\nREACTIONS IN RGclass[]:\n");
+    fprintf(pFileD, "\n\nREACTIONS IN RGclass[]:\n");
     for(int m=0; m<SIZE; m++){
-        printf("\n%s RGclass[%d] = %d", reacLabel[m], m, RGclass[m]);
+        fprintf(pFileD, "\n%s RGclass[%d] = %d", reacLabel[m], m, RGclass[m]);
     }
     
     // Write out some fields for Reaction objects reaction[]
     
-    printf("\n\n\nSOME FIELDS FOR THE %d Reaction OBJECTS reaction[]:\n", SIZE);
+    fprintf(pFileD, "\n\n\nSOME FIELDS FOR THE %d Reaction OBJECTS reaction[]:\n", SIZE);
     
     for(int i=0; i<SIZE; i++){
         
-        cout << "\nreaction[" << i 
-             << "]: " << reaction[i].getreacChar() 
-             << " RGclass=" << reaction[i].getreacGroupClass() 
-             << " #reac=" << reaction[i].getnumberReactants() 
-             << " #prod=" << reaction[i].getnumberProducts() 
-             << " RGmemberIndex=" << reaction[i].getRGmemberIndex() 
-             << " RG=" << reaction[i].getrgindex();
+        fprintf(pFileD, "\nreaction[%d]: %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d RG=%d",
+                i, reaction[i].getreacChar(), 
+                reaction[i].getreacGroupClass(),
+                reaction[i].getnumberReactants(),
+                reaction[i].getnumberProducts(),
+                reaction[i].getRGmemberIndex(), 
+                reaction[i].getrgindex()
+        );
+        
+//         cout << "\nreaction[" << i 
+//              << "]: " << reaction[i].getreacChar() 
+//              << " RGclass=" << reaction[i].getreacGroupClass() 
+//              << " #reac=" << reaction[i].getnumberReactants() 
+//              << " #prod=" << reaction[i].getnumberProducts() 
+//              << " RGmemberIndex=" << reaction[i].getRGmemberIndex() 
+//              << " RG=" << reaction[i].getrgindex();
         
         int nummreac = reaction[i].getnumberReactants();
         int nummprod = reaction[i].getnumberProducts();
         
         // Write reactant symbols
-        printf("\nRG=%d  REACTANTS: iso[0]=%s", 
+        fprintf(pFileD, "\nRG=%d  REACTANTS: iso[0]=%s", 
             RG[i].getRGn(), isoLabel[reaction[i].getreactantIndex(0)]);
-        if(nummreac > 1) printf(" iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
-        if(nummreac > 2) printf(" iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
+        if(nummreac > 1) fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
+        if(nummreac > 2) fprintf(pFileD, " iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
         
         // Write product Symbols
-        printf("  PRODUCTS: iso[%d]=%s", nummreac, isoLabel[reaction[i].getproductIndex(0)]);
-        if(nummprod > 1) printf(" iso[%d]=%s", nummreac+1, isoLabel[reaction[i].getproductIndex(1)]);
-        if(nummprod > 2) printf(" iso[%d]=%s", nummreac+2, isoLabel[reaction[i].getproductIndex(2)]);
+        fprintf(pFileD, "  PRODUCTS: iso[%d]=%s", nummreac, isoLabel[reaction[i].getproductIndex(0)]);
+        if(nummprod > 1) fprintf(pFileD, " iso[%d]=%s", nummreac+1, isoLabel[reaction[i].getproductIndex(1)]);
+        if(nummprod > 2) fprintf(pFileD, " iso[%d]=%s", nummreac+2, isoLabel[reaction[i].getproductIndex(2)]);
         
-        printf("\n");
+        fprintf(pFileD, "\n");
     }
     
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    printf("\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
+    fprintf(pFileD, "\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){
         
@@ -5389,7 +5400,7 @@ void assignRG(){
                 }
                 
                 
-                printf("\nreacIndex=%d memberIndex=%d %s RGclass=%d isForward=%d", 
+                fprintf(pFileD, "\nreacIndex=%d memberIndex=%d %s RGclass=%d isForward=%d", 
                     RG[i].getmemberReactions(rgindex),
                     rgindex,
                     RG[i].getreacString(rgindex),  
@@ -5408,7 +5419,7 @@ void assignRG(){
         
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
-        printf("\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
+        fprintf(pFileD, "\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
                RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
                RG[i].getniso(), RG[i].getnumberMemberReactions()
         );
@@ -5417,11 +5428,11 @@ void assignRG(){
     // Summary of reaction groups
     
     for(int i=0; i<numberRG; i++){
-        printf("\n\nSummary: RG=%d", RG[i].getRGn());
+        fprintf(pFileD, "\n\nSummary: RG=%d", RG[i].getRGn());
         int numr = RG[i].getnumberMemberReactions();
         for(int j=0; j<numr; j++){
             int reacID = RG[i].getmemberReactions(j);
-            printf("\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
+            fprintf(pFileD, "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
                    j, reacLabel[reacID], RG[i].getisolabel(0),
                    RG[i].getisolabel(1), RG[i].getisolabel(2),
                    RG[i].getisolabel(3)
@@ -5433,7 +5444,7 @@ void assignRG(){
     // reaction group consistent with the order used for partial equilibrium
     // in the original Java code.
     
-    printf("\n\n\nSUMMARY of order for isotopes for PE in ReactionGroup objects:");
+    fprintf(pFileD, "\n\n\nSUMMARY of order for isotopes for PE in ReactionGroup objects:");
     
     for(int i=0; i<numberRG; i++){
         
@@ -5441,7 +5452,7 @@ void assignRG(){
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
         
         
-        printf("\n\nRG=%d  RGclass=%d %s Species Index:", 
+        fprintf(pFileD, "\n\nRG=%d  RGclass=%d %s Species Index:", 
                i, RG[i].getrgclass(),
                Utilities::stringToChar( 
                reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
@@ -5449,47 +5460,47 @@ void assignRG(){
         );
         
         for(int jj=0; jj<upjj; jj++){
-            printf(" iso[%d]=%d", jj, RG[i].getisoindex(jj));
+            fprintf(pFileD, " iso[%d]=%d", jj, RG[i].getisoindex(jj));
         }
         
-        printf("\n     ");
+        fprintf(pFileD, "\n     ");
         for(int jj=0; jj<upjj; jj++){
-            printf(" isolabel[%d]=%s", jj, RG[i].getisolabel(jj));
+            fprintf(pFileD, " isolabel[%d]=%s", jj, RG[i].getisolabel(jj));
         }
         
-        printf("\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
+        fprintf(pFileD, "\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberReactants(rn); jj++){
-            printf(" reactantIndex[%d]=%d", jj, RG[i].getreactantIsoIndex(jj));
+            fprintf(pFileD, " reactantIndex[%d]=%d", jj, RG[i].getreactantIsoIndex(jj));
         }
         
-        printf("\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
+        fprintf(pFileD, "\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberProducts(rn); jj++){
-            printf(" productIndex[%d]=%d", jj, RG[i].getproductIsoIndex(jj));
+            fprintf(pFileD, " productIndex[%d]=%d", jj, RG[i].getproductIsoIndex(jj));
         }
         
-        printf("\n      Z[0]=%d", RG[i].getisoZ(0));
+        fprintf(pFileD, "\n      Z[0]=%d", RG[i].getisoZ(0));
         for(int jj=1; jj<upjj; jj++){
-            printf(" Z[%d]=%d", jj, RG[i].getisoZ(jj));
+            fprintf(pFileD, " Z[%d]=%d", jj, RG[i].getisoZ(jj));
         }
         
-        printf("\n      N[0]=%d", RG[i].getisoN(0));
+        fprintf(pFileD, "\n      N[0]=%d", RG[i].getisoN(0));
         for(int jj=1; jj<upjj; jj++){
-            printf(" N[%d]=%d", jj, RG[i].getisoN(jj));
+            fprintf(pFileD, " N[%d]=%d", jj, RG[i].getisoN(jj));
         }
         
-        printf("\n      A[0]=%d", RG[i].getisoA(0));
+        fprintf(pFileD, "\n      A[0]=%d", RG[i].getisoA(0));
         for(int jj=1; jj<upjj; jj++){
-            printf(" A[%d]=%d", jj, RG[i].getisoA(jj));
+            fprintf(pFileD, " A[%d]=%d", jj, RG[i].getisoA(jj));
         }
         
-        printf("\n      isoY[0]=%8.5e", RG[i].getisoY(0));
+        fprintf(pFileD, "\n      isoY[0]=%8.5e", RG[i].getisoY(0));
         for(int jj=1; jj<upjj; jj++){
-            printf(" isoY[%d]=%8.5e", jj, RG[i].getisoY(jj));
+            fprintf(pFileD, " isoY[%d]=%8.5e", jj, RG[i].getisoY(jj));
         }
         
-        printf("\n      isoYeq[0]=%8.5e", RG[i].getisoYeq(0));
+        fprintf(pFileD, "\n      isoYeq[0]=%8.5e", RG[i].getisoYeq(0));
         for(int jj=1; jj<upjj; jj++){
-            printf(" isoYeq[%d]=%8.5e", jj, RG[i].getisoYeq(jj));
+            fprintf(pFileD, " isoYeq[%d]=%8.5e", jj, RG[i].getisoYeq(jj));
         }
     }
     
