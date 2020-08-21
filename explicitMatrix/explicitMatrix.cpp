@@ -110,20 +110,23 @@ char networkFile[] = "data/CUDAnet_3alpha.inp";
 
 FILE *pFileD;
 
-// Control diagnostic printout of details (1 to print, 0 to suppress)
-static const int displayInput = 0;
-static const int showParsing = 0;
-static const int showFparsing = 0;
-static const int showFluxCalc = 0;
-static const int showRVdetails = 0;
-static const int showRGsorting = 0;
-static const int showAsyTest = 0;
-static const int showFunctionTests = 0;
-static const int showPlotSteps = 0;
+// Control diagnostic printout of details (true=1 to print, false=0 to suppress)
+
+static const int displayInput = false;
+static const int showParsing = false;
+static const int showFparsing = false;
+static const int showFluxCalc = false;
+static const int showRVdetails = false;
+static const int showRGsorting = false;
+static const int showAsyTest = false;
+static const int showFunctionTests = false;
+static const int showPlotSteps = false;
 // Whether to write message when RG added/removed from equil
 static const bool showAddRemove = true; 
 static const bool showRestoreEq = false;
 static const bool plotFluxes = true;
+static const bool diagnose1 = true;
+static const bool diagnose2 = true;
 
 
 // Function signatures:
@@ -203,7 +206,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-4; //1.0e-2; //1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-2; //1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -641,7 +644,7 @@ class Utilities{
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
             
-            printf("\n");
+            fprintf(pFile, "\n");
             
             // Write header for file pointed to by pFile3
 
@@ -1613,38 +1616,38 @@ class Reaction: public Utilities {
             // Optional diagnostic output
             
             if(showFparsing == 1){
-                printf("\n\n\n--- %d NON-VANISHING F+ SOURCE TERMS ---\n", totalFplus);
-                printf("\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
+                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F+ SOURCE TERMS ---\n", totalFplus);
+                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
                        isoLabel[FplusIsotopeIndex[0]], FplusIsotopeIndex[0],
                        numFluxPlus[FplusIsotopeIndex[0]]);
                 for(int i=0; i<totalFplus; i++){
-                    printf("\n   Isotope index = %d F+ index = %d Reac index = %d  %s", 
+                    fprintf(pFileD, "\n   Isotope index = %d F+ index = %d Reac index = %d  %s", 
                            FplusIsotopeIndex[i], i, MapFplus[i], 
                            reacLabel[MapFplus[i]]); 
                     if(i == (FplusIsotopeCut[FplusIsotopeIndex[i]] - 1)  && i != totalFplus-1)
                     {
-                        printf("\n");
-                        printf("\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
+                        fprintf(pFileD, "\n");
+                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
                                isoLabel[FplusIsotopeIndex[i+1]], FplusIsotopeIndex[i+1],
                                numFluxPlus[FplusIsotopeIndex[i+1]]);
                     }
                 }	
-                printf("\n\n\n--- %d NON-VANISHING F- SOURCE TERMS ---\n", totalFminus);
-                printf("\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
+                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F- SOURCE TERMS ---\n", totalFminus);
+                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
                        isoLabel[FminusIsotopeIndex[0]], FminusIsotopeIndex[0],
                        numFluxMinus[FminusIsotopeIndex[0]] );
                 for(int i=0; i<totalFminus; i++){
-                    printf("\n   Isotope index = %d F- index = %d Reac index=%d  %s", 
+                    fprintf(pFileD, "\n   Isotope index = %d F- index = %d Reac index=%d  %s", 
                            FminusIsotopeIndex[i], i, MapFminus[i], reacLabel[MapFminus[i]]);
                     if(i == (FminusIsotopeCut[FminusIsotopeIndex[i]] - 1) && i != totalFminus-1 ){
-                        printf("\n");
-                        printf("\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
+                        fprintf(pFileD, "\n");
+                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
                                isoLabel[FminusIsotopeIndex[i+1]], FminusIsotopeIndex[i+1],
                                numFluxMinus[FminusIsotopeIndex[i+1]]
                         );
                     }
                 }
-                printf("\n\n");
+                fprintf(pFileD, "\n\n");
             }
         }
         
@@ -1658,7 +1661,6 @@ class Reaction: public Utilities {
             
             // Populate the F+ and F- arrays from the master Flux array
             
-            //printf("\n\nVALUES F+\n\n");
 
             for(int i=0; i<totalFplus; i++){
                 int indy = MapFplus[i];
@@ -1667,7 +1669,6 @@ class Reaction: public Utilities {
 //                     i, FplusFac[i], Flux[indy], Fplus[i]);
             }
             
-            //printf("\nVALUES F-\n\n");
             
             for(int i=0; i<totalFminus; i++){
                 int indy = MapFminus[i];
@@ -1675,7 +1676,7 @@ class Reaction: public Utilities {
 //                 printf("i=%d FminusFac=%3.1f Flux=%7.3e Fminus=%7.3e\n", 
 //                        i, FminusFac[i], Flux[indy], Fminus[i]);
             }
-            //printf("\n");
+
         }
         
         
@@ -1923,7 +1924,6 @@ class Reaction: public Utilities {
                 
             }
             
-            //printf("\n");
         }
         
         
@@ -2097,7 +2097,7 @@ class ReactionVector:  public Utilities {
             for (int i=0; i<SIZE; i++){
                 scorekeeper = 0;
                 if(i==0) rindex ++;
-                if(showRGsorting == 1) printf("\n\nRG=%d", rindex);
+                if(showRGsorting == 1) fprintf(pFileD, "\n\nRG=%d", rindex);
                 for(int j=0; j<SIZE; j++){
                     
                     if(RGindex[i] < 0) RGindex[i] = rindex;
@@ -2175,7 +2175,7 @@ class ReactionVector:  public Utilities {
         static void parseF(){
             
             if(showParsing == 1)
-                printf("\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
+                fprintf(pFileD, "\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
             
             int incrementPlus = 0;
             int incrementMinus = 0;
@@ -2186,7 +2186,7 @@ class ReactionVector:  public Utilities {
                 int total = 0;
                 int numFplus = 0;
                 int numFminus = 0;
-                if(showParsing == 1) printf("\n");
+                if(showParsing == 1) fprintf(pFileD, "\n");
                 
                 // Loop over all possible reactions for this isotope, finding those that
                 // change its population up (contributing to F+) or down (contributing to F-).
@@ -2212,7 +2212,7 @@ class ReactionVector:  public Utilities {
                         reacMask[i][j] = -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
                         if(showParsing == 1)
-                            printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
+                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
                                 isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
                                 totalR, total);
                     } 
@@ -2221,7 +2221,7 @@ class ReactionVector:  public Utilities {
                         reacMask[i][j] = -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
                         if(showParsing == 1)
-                            printf("\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
+                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
                                 isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
                                 totalR, total);
                     } else {           // Does not contribute to flux for this isotope
@@ -2561,7 +2561,7 @@ class ReactionGroup:  public Utilities {
     
     void showRGfluxes(){
         
-        printf("\n\nRG=%d", RGn);
+        fprintf(pFileD, "\n\nRG=%d", RGn);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2570,17 +2570,17 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            printf("\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
+            fprintf(pFileD, "\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e", 
                 i, reacLabel[memberReactions[i]], rgclass, isForward[i], t, dt, 
                 fac*flux[i]
             );
         }
         
-        printf("\n");
+        fprintf(pFileD, "\n");
         if(isEquil){
-            printf("showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
+            fprintf(pFileD, "showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED",  netflux); 
         } else {
-            printf("showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
+            fprintf(pFileD, "showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED", netflux); 
         }
     }
     
@@ -2591,16 +2591,13 @@ class ReactionGroup:  public Utilities {
         
         double sumf = 0.0;
         double fac;
-//printf("\n");
+
         for (int i=0; i<numberMemberReactions; i++){
             fac = -1.0;
             if(isForward[i]) fac = 1.0;
             sumf += fac*flux[i];
-// printf("\n++++++ sumRGfluxes: t=%8.5e dt=%8.5e RG=%d memberIndex=%d flux=%8.5e",
-//     t, dt, RGn, i, flux[i]
-// );
         }
-//printf("\n++++++ sumRGfluxes: netFluxRG=%8.5e", sumf);
+
         netflux = sumf;
         return sumf;
         
@@ -2670,14 +2667,16 @@ class ReactionGroup:  public Utilities {
     void putY0() {
         
         int ii;
+        if(diagnose2) fprintf(pFileD, "\n");
         for (int k = 0; k < niso; k++) {
             ii = isoindex[k];
             isoY0[k] = Y0[ii];
             isoY[k] = isoY0[k];
-// printf("\n??? putY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
-//     t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
+            if(diagnose2)
+            fprintf(pFileD, "\nputY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e Y[ii]=%8.5e", 
+                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], Y[ii]);
         }
-        printf("\n");
+        if(diagnose2) fprintf(pFileD, "\n");
     }
     
    
@@ -2687,7 +2686,7 @@ class ReactionGroup:  public Utilities {
    
     void computeC() {
         
-printf("\nRG=%d", RGn);
+        if(diagnose2) fprintf(pFileD, "\n\nRG=%d", RGn);
         
         switch (rgclass) {
             
@@ -2705,12 +2704,15 @@ printf("\nRG=%d", RGn);
                 crg[0] = isoY0[1] - isoY0[0];
                 crg[1] = isoY0[1] + isoY0[2];
                 
-printf("\ncomputeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
-    t, RGn, isoY0[0], isoY0[1], isoY0[2]
-);
-printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
-        t, RGn, crg[0], crg[1]
-);
+                if(diagnose2){
+                    
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
+                           t, RGn, isoY0[0], isoY0[1], isoY0[2]
+                    );
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
+                           t, RGn, crg[0], crg[1]
+                    );
+                }
                 
                 break;
                 
@@ -2720,12 +2722,14 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
                 
-printf("\ncomputeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
-        t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
-);
-printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
-        t, RGn, crg[0], crg[1], crg[2]
-);
+                if(diagnose2){
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
+                            t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3]
+                    );
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
+                            t, RGn, crg[0], crg[1], crg[2]
+                    );
+                }
                 
                 break;
                 
@@ -2775,9 +2779,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
                 
-                printf("\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
-                       t, RGn, aa, bb, cc
-                );
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                    t, RGn, aa, bb, cc);
                        
                 break;
                 
@@ -2787,9 +2791,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
                 
-                printf("\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
-                       t, RGn, aa, bb, cc
-                );
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                    t, RGn, aa, bb, cc);
                 
                 break;
                 
@@ -2828,9 +2832,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
             }
             isoYeq[0] = computeYeq(aa, bb, rootq);
             
-            printf("\ncomputeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
-                   t, RGn, qq, tau, isoYeq[0]
-            );
+            if(diagnose2)
+            fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
+                t, RGn, qq, tau, isoYeq[0]);
         } else {
             qq = -1.0;
             tau = 1.0 / rgkf;
@@ -2865,9 +2869,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
                 
-                printf("\ncomputeQuad: t=%6.4e RG=%d isoYeq[0]=%6.4e isoYeq[1]=%6.4e isoYeq[2]=%6.4e eqRatio=%5.3e",
-                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio
-                );
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%6.4e RG=%d isoYeq[0]=%6.4e isoYeq[1]=%6.4e isoYeq[2]=%6.4e eqRatio=%5.3e",
+                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio);
 
                 break;
                 
@@ -2878,9 +2882,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
                 
-                printf("\ncomputeQuad: t=%5.3e RG=%d isoYeq[0]=%5.3e isoYeq[1]=%5.3e isoYeq[2]=%5.3e isoYeq[3]=%5.3e eqRatio=%5.3e",
-                       t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio
-                );
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%5.3e RG=%d isoYeq[0]=%5.3e isoYeq[1]=%5.3e isoYeq[2]=%5.3e isoYeq[3]=%5.3e eqRatio=%5.3e",
+                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio);
                 
                 break;
                 
@@ -2901,11 +2905,6 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
                 equilRatio = isoY[0] * isoY[1] / (isoY[2] * isoY[3] * isoY[4]);
                 break;
         }
-        
-//         printf("\n&&& t=%7.4e RG=%d PARAMETERS: Y1eq=%7.4e Y2eq=%7.4e Y3eq=%7.4e",
-//               t, RGn, isoYeq[1], isoYeq[2], isoYeq[3]
-//         );
-        
         
         
         // Compute the equilibrium value of the progress variable
@@ -2945,17 +2944,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
     
     void computeEqRatios() {
         
-        // Add 1e-20 to denominator to prevent possible divide by zero
+        // Add 1e-24 to denominator to prevent possible divide by zero
         
-        double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-20));
-        
-// printf("\n???+ computeEqRatios: t=%7.4e RG=%d equilRatio=%7.4e kratio=%7.4e thisDevious=%7.4e",
-//     t, RGn, equilRatio, kratio, thisDevious
-// );
-// 
-// printf("\n???*** computeEqRatios: t=%7.4e RG=%d thisDevious=%8.5e mostDevious=%8.5e isEquil=%d", 
-//         t, RGn, thisDevious, mostDevious, isEquil
-// );
+        double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-24));
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
@@ -2963,9 +2954,9 @@ printf("\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
             
         }
         
-printf("\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
-    t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil
-        );
+        if(diagnose2)
+        fprintf(pFileD, "\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
+            t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil);
         
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. If the 
@@ -3004,13 +2995,9 @@ printf("\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%
                 
                 eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
                 
-                if(t > equilibrateTime) {
-printf("\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
-        i, isolabel[i], RGn, t, isoYeq[i], isoY[i], eqcheck[i] 
-);
-//                     printf("\n??? computeEqRatios: t=%7.4e RG=%d iso=%d %s R%d=%7.4e R%d/equiTol=%7.4e",
-//                            t, RGn, i, isolabel[i], i, eqcheck[i], i, eqcheck[i]/equiTol
-//                     );
+                if(t > equilibrateTime && diagnose2) {
+                fprintf(pFileD, "\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
+                    i, isolabel[i], RGn, t, isoYeq[i], isoY[i], eqcheck[i] );
                 }
                 
                 
@@ -3038,11 +3025,6 @@ printf("\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqche
                 
                 }
             }
-//             printf("\n&&& computeEqRatios t=%7.4e RG=%d Rmax/equiTol=%7.4e", 
-//                 t, RGn, maxeqcheck/equiTol);
-//             printf("\n&&& computeEqRatios t=%7.4e RG=%d Yratio=%7.4e kratio=%7.4e fracDiff=%7.4e dt/tau=%7.4e isEquil=%d",
-//                 t, RGn, equilRatio, kratio, abs((kratio-equilRatio)/kratio), dt/tau, isEquil);
-            
             
             // Check whether would be in equil without time or threshhold condition
             
@@ -3069,22 +3051,22 @@ printf("\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqche
             
             if (isEquil) {
                 if (showAddRemove) {
-                    printf("\n\n************************************************");
-                    printf("\nADD RG %d TO EQUIL: Steps=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
+                    fprintf(pFileD, "\n\n************************************************");
+                    fprintf(pFileD, "\nADD RG %d TO EQUIL: Steps=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
                            RGn, totalTimeSteps, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
                 }
                 
                 for (int i = 0; i < niso; i++) {
                     //isEquil = false;
                     if (showAddRemove) {
-                        printf("\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.4e Rnow=%8.5e",
+                        fprintf(pFileD, "\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.4e Rnow=%8.5e",
                                 isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
                                 abs(isoY[i] - isoYeq[i]) / isoYeq[i]
                         );
                     }
                 }
                 if (showAddRemove) 
-                    printf("\n************************************************\n");
+                    fprintf(pFileD, "\n************************************************\n");
                 
                 // Is equivalent of following necessary?
                 
@@ -3336,21 +3318,26 @@ class Integrate: public Utilities {
             if (doPE && t > equilibrateTime) {
                 
                 double deviousMax = 0.5;
-                double deviousMin = 0.1;
+                double deviousMin = 0.10;
                 
-                printf("\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
+                if(diagnose1)
+                fprintf(pFileD, "\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
                     t, dt, mostDevious, totalEquilReactions);
                 
                 double dtprev = dt;
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    printf("\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e new_dt=%8.5e mostDevious=%8.5e",
+                    if(diagnose1)
+                    fprintf(pFileD, "\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
-                    printf("\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
+                    if(diagnose1)
+                    fprintf(pFileD, "\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
+                } else {
+                    dt *= 1.02;  // New option not in Java version.  Without C++ version can get stuck
                 }
                 updatePopulations(dt);
             }
@@ -3380,14 +3367,16 @@ class Integrate: public Utilities {
                 
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     dt *= max(massTol / massChecker, downbumper);
-printf("\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
-    t, dtprior, dt, test1, test2, massChecker, sumX);
+                    if(diagnose1)
+                        fprintf(pFileD, "\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
+                        t, dtprior, dt, test1, test2, massChecker, sumX);
                     updatePopulations(dt);
                     
                 } else if (massChecker < massTolUp) {
                     dt *= (massTol / (max(massChecker, upbumper)));
-printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
-    t, dtprior, dt, test1, test2, massChecker, sumX);
+                    if(diagnose1)
+                        fprintf(pFileD, "\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
+                        t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
                     
@@ -3415,7 +3404,11 @@ printf("\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             //dtFlux = min(0.1*t, SF/maxdYdt);    // Original Java
             dtt = min(dtFlux, dtLast);
-printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t, dtFlux, dtLast, dtt);
+            if(diagnose1){
+                fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
+                    t, dtFlux, dtLast, dtt);
+            }
+            
             return dtt;
         }
         
@@ -3440,9 +3433,12 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         
         double newY = y0 + (fplusSum-fminusSum)*dtt;
         
-        //if(t > diagnoseTime)
-        printf("\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+        if(diagnose2){
+            
+            fprintf(pFileD, 
+            "\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
             isoLabel[i], t, dtt, t+dtt, fminusSum/y0, fminusSum*dt/y0, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
+        }
 
         return newY;     // New Y for forward Euler method
         
@@ -3456,12 +3452,14 @@ printf("\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", t
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
-        printf("\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-               t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+        if(diagnose2){
+            
+            fprintf(pFileD, 
+            "\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+            t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+        }
         
-//         printf("\n  Asymp: t=%8.5e dt=%8.5e F+=%8.5e F-=%8.5e", 
-//             t, dtt, fminus, fplus);
-        
+
         return newY;  
         
     }
@@ -3889,7 +3887,7 @@ int main() {
     // *** Begin main time integration while-loop ***
     // -----------------------------------------------
     
-    printf("\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
+    printf("\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     fprintf(pFileD, "\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
     dt = dt_start;              // Integration start time
@@ -3989,8 +3987,8 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        printf("\n\n\n--------- START NEW TIMESTEP: ");
-        printf("t_i = %7.4e Step=%d dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
+        fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: ");
+        fprintf(pFileD, "t_i = %7.4e Step=%d dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
             t, totalTimeSteps, dt, totalAsy, totalEquilReactions, totalEquilRG );
         
 //         for(int i=0; i<numberRG; i++){
@@ -4069,16 +4067,20 @@ int main() {
         
         // Summarize flux information
         
-        printf("\n\nISOTOPE FLUXES:");
-        
-        for (int i=0; i<ISOTOPES; i++){
-            printf("\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
-                i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
-                isotope[i].getfplus(), isotope[i].getfminus(), 
-                isotope[i].getfplus() - isotope[i].getfminus(),  
-                isotope[i].getkeff()
-            );
+        if(diagnose1){
+            
+            fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+            
+            for (int i=0; i<ISOTOPES; i++){
+                fprintf(pFileD, "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+                        i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+                        isotope[i].getfplus(), isotope[i].getfminus(), 
+                        isotope[i].getfplus() - isotope[i].getfminus(),  
+                        isotope[i].getkeff()
+                );
+            }
         }
+        
         
         // Find max dY/dt and corresponding isotope
         getmaxdYdt();
@@ -4096,21 +4098,21 @@ int main() {
             for(int i = 0; i < numberRG; i++) {
                 RG[i].computeEquilibrium();
             }
-            if(totalEquilRG > 0){
-                printf("\n\n********* BEGIN PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+            if(totalEquilRG > 0 && diagnose2){
+                fprintf(pFileD, "\n\n********* BEGIN PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
                 
                 restoreEquilibriumProg();
                 
-                printf("\n\nISOTOPE FLUXES:");
+                fprintf(pFileD, "\n\nISOTOPE FLUXES:");
                 for (int i=0; i<ISOTOPES; i++){
-                    printf("\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+                    fprintf(pFileD, "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
                            i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
                            isotope[i].getfplus(), isotope[i].getfminus(), 
                            isotope[i].getfplus() - isotope[i].getfminus(),  
                            isotope[i].getkeff());
                 }
                 
-                printf("\n\n********* END PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+                fprintf(pFileD, "\n\n********* END PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
             }
         }
 
@@ -4162,22 +4164,22 @@ int main() {
             
             // Output to screen
             if(showPlotSteps){
-                printf("\n%s%s", dasher, dasher);
-                printf("\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
+                fprintf(pFileD, "\n%s%s", dasher, dasher);
+                fprintf(pFileD, "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
                     totalAsy, ISOTOPES, sumX);
-                printf("\n%s%s", dasher, dasher);
+                fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
-                printf("%s%s", tempest1, tempest2);
+                fprintf(pFileD, "%s%s", tempest1, tempest2);
                 
                 for(int i=0; i<ISOTOPES; i++){
-                    printf("%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
+                    fprintf(pFileD, "%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
                         i, isoLabel[i], Y[i], X[i], isotope[i].getdYdt(), isotope[i].getdXdt(),
                         isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
                     );
                 }
-                printf("%s%s\n", dasher, dasher);
+                fprintf(pFileD, "%s%s\n", dasher, dasher);
             }
             
             // Output to plot arrays for this timestep
@@ -4209,6 +4211,16 @@ int main() {
                 FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
             }
+            
+            // Display to screen
+            
+            //printf("\n");
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EquilRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
+                   plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
+                numberRG, sumX,
+                ECON*netdERelease,
+                ECON*ERelease
+            );
 
             // Increment the plot counter for next output
             plotCounter ++;
@@ -4217,9 +4229,9 @@ int main() {
     }   // End time integration while-loop
     
     
-    printf("\nEnd of integration");
+    printf("\n\nEnd of integration");
     Utilities::stopTimer();      // Stop timer and print integration time
-    printf("\n");
+    //printf("\n");
 
     // ------------------------------
     // *** End time integration ***
@@ -4229,11 +4241,20 @@ int main() {
     // Display abundances and mass fractions at end of integration
 
     printf("\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
+    fprintf(pFileD, "\n\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
     for(int i=0; i<ISOTOPES; i++){
         printf("\n%d %s Y=%7.3e X=%7.3e F+Sum=%7.3e F-Sum=%7.3e dY/dt=%+7.3e dX/dt=%+7.3e", 
-               i, 
-               isotope[i].getLabel(), 
+               i, isotope[i].getLabel(), 
+               isotope[i].getY(), 
+               isotope[i].getX(),
+               isotope[i].getfplus(),     // or FplusSum[i],
+               isotope[i].getfminus(),    // or FminusSum[i]
+               isotope[i].getdYdt(),
+               isotope[i].getdXdt()
+        );
+        fprintf(pFileD, "\n%d %s Y=%7.3e X=%7.3e F+Sum=%7.3e F-Sum=%7.3e dY/dt=%+7.3e dX/dt=%+7.3e", 
+               i, isotope[i].getLabel(), 
                isotope[i].getY(), 
                isotope[i].getX(),
                isotope[i].getfplus(),     // or FplusSum[i],
@@ -4248,12 +4269,6 @@ int main() {
     // Output of data to plot files after integration
     
     Utilities::plotOutput();
-    
-//     int testeriso = 1;
-//     int testerrg = 1;
-//     printf("\n\nisoindex=%d rgindex=%d bool=%d",
-//            testeriso, testerrg, isoIsInRG(testeriso, testerrg)
-//     );
     
     
     // ------------------------------------------------------------
