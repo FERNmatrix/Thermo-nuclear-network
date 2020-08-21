@@ -40,6 +40,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdbool.h>
+#include <ctime>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
@@ -86,6 +87,7 @@ clock_t startCPU, stopCPU;
 #define PRINT_CPU (printf("Timer: %g ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU (fprintf(pFile, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU2 (fprintf(pFile2, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPUD (fprintf(pFileD, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 
 // File pointer for data read-in
@@ -104,6 +106,9 @@ char rateLibraryFile[] = "data/rateLibrary_3alpha.data";
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
 char networkFile[] = "data/CUDAnet_3alpha.inp";
+// File pointer for diagnostics output
+
+FILE *pFileD;
 
 // Control diagnostic printout of details (1 to print, 0 to suppress)
 static const int displayInput = 0;
@@ -198,7 +203,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2; //5.0e-5; //1.0e-2; //1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-4; //1.0e-2; //1.86e-5;          // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -462,6 +467,21 @@ class Utilities{
     
     public:
         
+        // Static function Utilities::showTime() to return date and local time as a 
+        // character array
+        
+        static char* showTime(){
+            
+            // Current date/time 
+            time_t now = time(0);
+            
+            // convert to string
+            char* tnow = ctime(&now);
+            
+            return tnow;
+            //cout << "The local date and time is: " << tnow << endl;
+        }
+        
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_T(t) to find an interpolated T9
         // as a function of time if constant_T9 = false.
@@ -567,22 +587,27 @@ class Utilities{
                 fprintf(pFile, "# ASY");
                 fprintf(pFile2, "# ASY");
                 if(plotFluxes){fprintf(pFile3, "# ASY");}
+                fprintf(pFileD, "# ASY");
             } else {
                 fprintf(pFile, "# QSS");
                 fprintf(pFile2, "# QSS");
                 if(plotFluxes){fprintf(pFile3, "# QSS");}
+                fprintf(pFileD, "# QSS");
             }
             if(doPE){
                 fprintf(pFile, "+PE");
                 fprintf(pFile2, "+PE");
                 if(plotFluxes){fprintf(pFile3, "+PE");}
+                fprintf(pFileD, "+PE");
             } 
             fprintf(pFile, " method: %d integration steps ", totalTimeSteps);
             fprintf(pFile2, " method: %d integration steps ", totalTimeSteps);
             if(plotFluxes) fprintf(pFile3, " method: %d integration steps ", totalTimeSteps);
+            fprintf(pFileD, " method: %d integration steps ", totalTimeSteps);
                 
             FPRINTF_CPU;
             FPRINTF_CPU2;
+            FPRINTF_CPUD;
             
             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
@@ -1926,19 +1951,19 @@ class ReactionVector:  public Utilities {
             // Write out the array containing components of the reaction vectors
             
             int uppity = minimumOf(25, numberSpecies);  // limit printout width to 25 species
-            printf("\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
+            fprintf(pFileD, "\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
                 numberReactions, ISOTOPES);
-            printf("\nReaction \\ Species           ");
+            fprintf(pFileD, "\nReaction \\ Species           ");
             for(int k=0; k<uppity; k++){
-                printf("%4s  ",isoLabel[k]);
+                fprintf(pFileD, "%4s  ",isoLabel[k]);
             }
-            printf("\n");
+            fprintf(pFileD, "\n");
             for(int j=0; j<numberReactions; j++){
-                printf("%4d %22s [ ",j,reacLabel[j]);
+                fprintf(pFileD, "%4d %22s [ ",j,reacLabel[j]);
                 for(int k=0; k<uppity-1; k++){
-                    printf("%2d    ", reacMask[k][j]);
+                    fprintf(pFileD, "%2d    ", reacMask[k][j]);
                 }
-                printf("%2d ]\n", reacMask[uppity-1][j]);
+                fprintf(pFileD, "%2d ]\n", reacMask[uppity-1][j]);
             }
             
             // -----------------------------------------------------------------------
@@ -1985,11 +2010,11 @@ class ReactionVector:  public Utilities {
             
             // Display reaction vectors as component list
             
-            printf("\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
+            fprintf(pFileD, "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
                 SIZE, ISOTOPES);
             
             for (int i = 0; i < SIZE; i++) {
-                printf("\nrv[%d]: [",i);
+                fprintf(pFileD, "\nrv[%d]: [",i);
                 for(int j=0; j<ISOTOPES; j++){
                     
                     // Define a pointer that will point to the GSL vector in array entry rv[i].
@@ -1997,9 +2022,9 @@ class ReactionVector:  public Utilities {
                     
                     // Assign the jth component of the vector in rv[i] to a variable
                     int component = gsl_vector_get (vector, j);
-                    printf ("%3d", component);
+                    fprintf (pFileD, "%3d", component);
                 }
-                printf(" ]");
+                fprintf(pFileD, " ]");
             }
             
         }  // End function makeReactionVectors()
@@ -2064,7 +2089,7 @@ class ReactionVector:  public Utilities {
                 RGindex[i] = -1;
             }
             
-            if(showRGsorting == 1) printf("\n\n\n--- SORTING REACTION GROUPS ---");
+            if(showRGsorting == 1) fprintf(pFileD, "\n\n\n--- SORTING REACTION GROUPS ---");
             
             int scorekeeper;
             for (int i=0; i<SIZE; i++){
@@ -2081,7 +2106,7 @@ class ReactionVector:  public Utilities {
                         scorekeeper ++;
                     }
                     if(showRGsorting==1){
-                        printf("\ni=%d %s j=%d %s RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
+                        fprintf(pFileD, "\ni=%d %s j=%d %s RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
                             i, reacLabel[i], j, reacLabel[j], j, RGindex[j], ck, rindex, scorekeeper);
                     }
                 }
@@ -2097,7 +2122,7 @@ class ReactionVector:  public Utilities {
                     // Increment the RG number
                     rindex++;
                     
-                    if(showRGsorting==1) printf("\nFound RG=%d RGnumberMembers=%d", 
+                    if(showRGsorting==1) fprintf(pFileD, "\nFound RG=%d RGnumberMembers=%d", 
                         rindex-1, RGnumberMembers[rindex-1]);
                 }
 
@@ -2108,30 +2133,30 @@ class ReactionVector:  public Utilities {
             // Diagnostic showing reaction group associated with each reaction
             
             if(showRGsorting == 1){
-                printf("\n\n-- SUMMARY OF REACTION GROUPS:\n");
+                fprintf(pFileD, "\n\n-- SUMMARY OF REACTION GROUPS:\n");
                 for(int i=0; i<SIZE; i++){
-                    printf("\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
+                    fprintf(pFileD, "\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
                         i, reacLabel[i], RGindex[i], RGMemberIndex[i]);
                 }
             }
             
             // Write out the components of the reaction groups
             
-            printf("\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
+            fprintf(pFileD, "\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
             for(int i=0; i<numberRG; i++){
-                printf("\n\nReaction Group %d:", i);
+                fprintf(pFileD, "\n\nReaction Group %d:", i);
                 int rgindex = -1;
                 for(int j=0; j<SIZE; j++){
                     if(RGindex[j] == i){
                         rgindex ++; 
                         setRG(j, RGclass[j], RGindex[j]);
-                        printf("\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
+                        fprintf(pFileD, "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
                             isPEforward[j], stringToChar(RGstring[j]));
                     }
                 }
             }
-            printf("\n");
+            fprintf(pFileD, "\n");
             
         }      // End function sortReactionGroups()
         
@@ -2213,27 +2238,27 @@ class ReactionVector:  public Utilities {
                 incrementMinus += numFminus;
                 
                 if(showParsing == 1)
-                    printf("\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
+                    fprintf(pFileD, "\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
             }
             
             // Display isotope component array
             
-            printf("\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
-            printf("\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
+            fprintf(pFileD, "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
+            fprintf(pFileD, "\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
             
             int uppity = minimumOf(30, numberSpecies);  // limit printout width to 30 species
-            printf("\n\nIndex             Reaction");
+            fprintf(pFileD, "\n\nIndex             Reaction");
             for(int k=0; k<uppity; k++){
-                printf("%5s", isoLabel[k]);
+                fprintf(pFileD, "%5s", isoLabel[k]);
             }
             for(int j=0; j<numberReactions; j++){
-                printf("\n%3d %22s",j,reacLabel[j]);
+                fprintf(pFileD, "\n%3d %22s",j,reacLabel[j]);
                 for(int k=0; k<uppity; k++){
-                    printf(" %4d",reacMask[k][j]);
+                    fprintf(pFileD, " %4d",reacMask[k][j]);
                 }
             }
             
-            printf("\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
+            fprintf(pFileD, "\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
                 totalFplus, totalFminus, SIZE, ISOTOPES, SIZE*ISOTOPES);
             
         }   // End of function parseF()
@@ -3556,6 +3581,23 @@ ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
 
 int main() { 
     
+    // Open a file for diagnostics output
+    
+    pFileD = fopen("gnu_out/diagnostics.data","w");
+    
+    // Write the time
+    
+    fprintf(pFileD, Utilities::showTime());
+    printf("%s", Utilities::showTime());
+    
+//     // current date/time based on current system
+//     time_t now = time(0);
+//     
+//     // convert now to string form
+//     char* tnow = ctime(&now);
+//     
+//     cout << "The local date and time is: " << tnow << endl;
+    
     // Set labels and check consistency of choice for explicit algebraic methods set.
     // Generally we use either asymptotic (Asy) or quasi-steady-state (QSS) algorithms.
     // In either case we may choose to add the partial equilibrium (PE) algorithm. So
@@ -3563,15 +3605,20 @@ int main() {
     
     if(doASY && !doPE){
        cout << "Using ASY method";
+       fprintf(pFileD, "Using ASY method\n");
        doQSS = false;
     } else if (doQSS && !doPE) {
         cout << "Using QSS method";
         doASY = false;
+        fprintf(pFileD, "Using QSS method\n");
     } else if (doASY && doPE){
         cout << "Using ASY+PE method";
+        fprintf(pFileD, "Using ASY+PE method\n");
     } else if (doQSS && doPE){
         cout << "Using QSS+PE method";
+        fprintf(pFileD, "Using QSS+PE method\n");
     }
+
     
     // Set the temperature in units of 10^9 K and density in units of g/cm^3. In a
     // realistic calculation the temperature and density will be passed from the hydro 
@@ -3617,82 +3664,93 @@ int main() {
     // Print out some quantitites from the Reaction object reaction[].  
     
     for(int i=0; i<SIZE; i++){
-        printf("\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
-            reaction[i].getreacIndex(), 
-            reaction[i].getreacChar(),  
-            reaction[i].getreacClass(),
-            reaction[i].getnumberReactants(),
-            reaction[i].getnumberProducts(),
-            reaction[i].getisEC(),
-            reaction[i].getisReverse(),
-            reaction[i].getQ(),
-            reaction[i].getprefac()
+//         printf("\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
+//             reaction[i].getreacIndex(), 
+//             reaction[i].getreacChar(),  
+//             reaction[i].getreacClass(),
+//             reaction[i].getnumberReactants(),
+//             reaction[i].getnumberProducts(),
+//             reaction[i].getisEC(),
+//             reaction[i].getisReverse(),
+//             reaction[i].getQ(),
+//             reaction[i].getprefac()
+//         );
+        fprintf(pFileD, "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
+               reaction[i].getreacIndex(), 
+               reaction[i].getreacChar(),  
+               reaction[i].getreacClass(),
+               reaction[i].getnumberReactants(),
+               reaction[i].getnumberProducts(),
+               reaction[i].getisEC(),
+               reaction[i].getisReverse(),
+               reaction[i].getQ(),
+               reaction[i].getprefac()
         );
     }
     
-    printf("\n\nReactantIndex[][] and ProductIndex[][]:\n\n");
+    fprintf(pFileD, "\n\nReactantIndex[][] and ProductIndex[][]:\n\n");
     for(int i=0; i<SIZE; i++){
-        printf("%17s: ", reacLabel[i]);
+        fprintf(pFileD, "%17s: ", reacLabel[i]);
         for(int j=0; j<reaction[i].getnumberReactants(); j++){
-            printf("ReactantIndex[%d][%d]=%d ", i, j, ReactantIndex[i][j]);
+            fprintf(pFileD, "ReactantIndex[%d][%d]=%d ", i, j, ReactantIndex[i][j]);
         }
         for(int j=0; j<reaction[i].getnumberProducts(); j++){
-            printf(" ProductIndex[%d][%d]=%d", i, j, ProductIndex[i][j]);
+            fprintf(pFileD, " ProductIndex[%d][%d]=%d", i, j, ProductIndex[i][j]);
         }
-        printf("\n");
+        fprintf(pFileD, "\n");
     }
     
-    printf("\n\n\nREACLIB PARAMETERS FOR %d REACTIONS\n", SIZE);
-    printf("\n                                p0         p1         p2         p3         ");
-    printf("p4         p5         p6");
+    fprintf(pFileD, "\n\n\nREACLIB PARAMETERS FOR %d REACTIONS\n", SIZE);
+    fprintf(pFileD, "\n                                p0         p1         p2         p3         ");
+    fprintf(pFileD, "p4         p5         p6");
     for (int i=0; i<SIZE; i++){
-        printf("\n%3d  %18s %10.4f", i, reaction[i].getreacChar(), reaction[i].getp(0));
+        fprintf(pFileD, "\n%3d  %18s %10.4f", i, reaction[i].getreacChar(), reaction[i].getp(0));
         for(int j=1; j<7; j++){
-            printf(" %10.4f", reaction[i].getp(j));
+            fprintf(pFileD, " %10.4f", reaction[i].getp(j));
         }
     }
     
-    printf("\n\nZ and N for reactants:\n", SIZE);
+    fprintf(pFileD, "\n\nZ and N for reactants:\n", SIZE);
     
     for (int i=0; i<SIZE; i++){
-        printf("\n%3d %18s ", i, reaction[i].getreacChar());
+        fprintf(pFileD, "\n%3d %18s ", i, reaction[i].getreacChar());
         for(int j=0; j<reaction[i].getnumberReactants(); j++){
-            printf(" Z[%d]=%d", j, reaction[i].getreactantZ(j));
+            fprintf(pFileD, " Z[%d]=%d", j, reaction[i].getreactantZ(j));
         }
-        printf(" ");
+        fprintf(pFileD, " ");
         for(int j=0; j<reaction[i].getnumberReactants(); j++){
-            printf(" N[%d]=%d", j, reaction[i].getreactantN(j));
+            fprintf(pFileD, " N[%d]=%d", j, reaction[i].getreactantN(j));
         }
     }
     
-    printf("\n\nZ and N for products:\n", SIZE);
+    fprintf(pFileD, "\n\nZ and N for products:\n", SIZE);
     
     for (int i=0; i<SIZE; i++){
-        printf("\n%3d %18s ", i, reaction[i].getreacChar());
+        fprintf(pFileD, "\n%3d %18s ", i, reaction[i].getreacChar());
         for(int j=0; j<reaction[i].getnumberProducts(); j++){
-            printf(" Z[%d]=%d", j, reaction[i].getproductZ(j));
+            fprintf(pFileD, " Z[%d]=%d", j, reaction[i].getproductZ(j));
         }
-        printf(" ");
+        fprintf(pFileD, " ");
         for(int j=0; j<reaction[i].getnumberProducts(); j++){
-            printf(" N[%d]=%d", j, reaction[i].getproductN(j));
+            fprintf(pFileD, " N[%d]=%d", j, reaction[i].getproductN(j));
         }
     }
 
-    printf("\n\nreactantIndex for %d reactions (index of species vector for each reactant):\n", SIZE);
+    fprintf(pFileD, "\n\nreactantIndex for %d reactions (index of species vector for each reactant):\n", SIZE);
 
     for (int i=0; i<SIZE; i++){
-        printf("\n%d %18s ",i,reaction[i].getreacChar());
+        fprintf(pFileD, "\n%d %18s ",i,reaction[i].getreacChar());
         for(int j=0; j<reaction[i].getnumberReactants(); j++){
-            printf(" reactantIndex[%d]=%d", j, reaction[i].getreactantIndex(j));
+            fprintf(pFileD, " reactantIndex[%d]=%d", j, reaction[i].getreactantIndex(j));
         }
     }
     
-    printf("\n\nproductIndex for %d reactions (index of species vector for each product):\n", SIZE);
+    fprintf(pFileD, "\n\nproductIndex for %d reactions (index of species vector for each product):\n", SIZE);
     
     for (int i=0; i<SIZE; i++){
-        printf("\n%d %18s ",i,reaction[i].getreacChar());
+        fprintf(pFileD, "\n%d %18s ",i,reaction[i].getreacChar());
         for(int j=0; j<reaction[i].getnumberProducts(); j++){
-            printf(" productIndex[%d]=%d", j, reaction[i].getproductIndex(j));
+            fprintf(pFileD, " productIndex[%d]=%d", j, reaction[i].getproductIndex(j));
         }
     }
     
@@ -3741,12 +3799,12 @@ int main() {
     ReactionVector::parseF();
     
     // Print out the network species vector
-    printf("\n\nNETWORK SPECIES VECTOR (%d components):\n\nIndex  Species    Z     N",
+    fprintf(pFileD, "\n\nNETWORK SPECIES VECTOR (%d components):\n\nIndex  Species    Z     N",
         numberSpecies);
     for(int i=0; i<numberSpecies; i++){
-        printf("\n%5d    %5s  %3d  %4d", i, isoLabel[i], Z[i], N[i]);
+        fprintf(pFileD, "\n%5d    %5s  %3d  %4d", i, isoLabel[i], Z[i], N[i]);
     }
-    printf("\n");
+    fprintf(pFileD, "\n");
     
     // Use the information gleaned from ReactionVector::parseF() to define the reaction vectors
     // for the network using the static makeReactionVectors function of the class
@@ -5106,7 +5164,8 @@ void readLibraryParams (char *fileName)
     
     numberReactions = n+1;
     
-    printf("\n%d REACTIONS\n",numberReactions);
+    //printf("\n%d REACTIONS\n",numberReactions);
+    fprintf(pFileD, "\n%d REACTIONS\n",numberReactions);
     
     fclose(fr);           // Close the file
     
@@ -5119,29 +5178,41 @@ void readLibraryParams (char *fileName)
 
 void writeNetwork()
 {
-    printf("\n%d ISOTOPES IN NETWORK:\n\n",numberSpecies);
-    printf("Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)\n");
+    //printf("\n%d ISOTOPES IN NETWORK:\n\n",numberSpecies);
+    fprintf(pFileD, "\n%d ISOTOPES IN NETWORK:\n\n",numberSpecies);
+    //printf("Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)\n");
+    fprintf(pFileD, "Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)\n");
     for (int i=0; i<numberSpecies; i++){
-        printf("%5d %8s %3d %3d %3d  %8.5e   %9.6f   %10.5f\n",  
-               i, isoLabel[i], AA[i], Z[i], N[i], 
-               Y[i], X[i], massExcess[i]);
+//         printf("%5d %8s %3d %3d %3d  %8.5e   %9.6f   %10.5f\n",  
+//             i, isoLabel[i], AA[i], Z[i], N[i], 
+//             Y[i], X[i], massExcess[i]);
+        fprintf(pFileD, "%5d %8s %3d %3d %3d  %8.5e   %9.6f   %10.5f\n",  
+            i, isoLabel[i], AA[i], Z[i], N[i], 
+            Y[i], X[i], massExcess[i]);
     }
     
     // Print out partition function table from isotope[]
     
-    printf("\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
-    printf("\n T9 = ");
+    //printf("\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
+    fprintf(pFileD, "\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
+    //printf("\n T9 = ");
+    fprintf(pFileD, "\n T9 = ");
     for(int k=0; k<24; k++){
-        printf("%4.2f ", isotope[0].getTpf(k));
+        //printf("%4.2f ", isotope[0].getTpf(k));
+        fprintf(pFileD, "%4.2f ", isotope[0].getTpf(k));
     }
     for(int i=0; i<ISOTOPES; i++){
-        printf("\n");
-        printf("%-5s ",isotope[i].getLabel());
+        //printf("\n");
+        //printf("%-5s ",isotope[i].getLabel());
+        fprintf(pFileD, "\n");
+        fprintf(pFileD, "%-5s ",isotope[i].getLabel());
         for(int j=0; j<24; j++){
-            printf("%4.2f ", isotope[i].getpf(j)); 
+            //printf("%4.2f ", isotope[i].getpf(j)); 
+            fprintf(pFileD, "%4.2f ", isotope[i].getpf(j)); 
         }
     }
-    printf("\n\n");
+    //printf("\n\n");
+    fprintf(pFileD, "\n\n");
     
 }   // End of function writeNetwork()
 
