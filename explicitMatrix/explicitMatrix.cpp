@@ -18,9 +18,9 @@
  * 1. Change ISOTOPES and SIZE
  * 2. Change two input files for networkFile and rateLibraryFile
  * 3. Change doAsy, doQSS, and doPE
- * 4. Change parameters in lines ~184-209 like stop_time, massTol, ...
- * 5. Change plot output mask plotXlist[] lines ~424
- * 6. Change T9_start and rho_start in lines 3452-3455
+ * 4. Change control parameters like stop_time, massTol, ...
+ * 5. Change plot output mask plotXlist[]
+ * 6. Change values of T9_start and rho_start
  *
  * 
  * AUTHORS:
@@ -61,7 +61,7 @@ using std::string;
 
 #define ISOTOPES 3                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
@@ -121,15 +121,15 @@ static const int showRGsorting = false;
 static const int showAsyTest = false;
 static const int showFunctionTests = false;
 static const int showPlotSteps = false;
-// Whether to write message when RG added/removed from equil
-static const bool showAddRemove = true; 
+static const bool showAddRemove = false; 
 static const bool showRestoreEq = false;
-static const bool plotFluxes = true;
-static const bool diagnose1 = true;
-static const bool diagnose2 = true;
+static const bool plotFluxes = false;
+static const bool diagnose1 = false;
+static const bool diagnose2 = false;
 
 
 // Function signatures:
+
 void devcheck(int);
 void readLibraryParams(char *);
 void readNetwork(char *);
@@ -206,7 +206,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;         // Start time for integration
 double logStart = log10(start_time); // Base 10 log start time
 double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2; //1.86e-5;          // Stop time for integration
+double stop_time = 1.0e-2;           // Stop time for integration
 double logStop = log10(stop_time);   // Base-10 log stop time
 double dt_start = 0.01*start_time;   // Initial value of integration dt
 
@@ -222,8 +222,8 @@ double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6; //2.0e-5;  // Begin checking for PE
-double equiTol = 0.01;      // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6; // Begin checking for PE
+double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 
 double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from equil
 int mostDeviousIndex;         // Index of RG with mostDevious
@@ -3987,9 +3987,14 @@ int main() {
             reaction[i].computeFlux();
         }
         
-        fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: ");
-        fprintf(pFileD, "t_i = %7.4e Step=%d dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
-            t, totalTimeSteps, dt, totalAsy, totalEquilReactions, totalEquilRG );
+        if(diagnose1){
+            fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d",
+                    t, totalTimeSteps 
+            );
+            fprintf(pFileD, " dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
+                dt, totalAsy, totalEquilReactions, totalEquilRG );
+        }
+        
         
 //         for(int i=0; i<numberRG; i++){
 //             RG[i].setRGfluxes();
@@ -4095,24 +4100,31 @@ int main() {
         // Compute equilibrium conditions
         
         if(doPE && t > equilibrateTime){
+            
             for(int i = 0; i < numberRG; i++) {
                 RG[i].computeEquilibrium();
             }
-            if(totalEquilRG > 0 && diagnose2){
+            
+            if(totalEquilRG > 0){
+                
+                if(diagnose2)
                 fprintf(pFileD, "\n\n********* BEGIN PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
                 
                 restoreEquilibriumProg();
                 
-                fprintf(pFileD, "\n\nISOTOPE FLUXES:");
-                for (int i=0; i<ISOTOPES; i++){
-                    fprintf(pFileD, "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
-                           i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
-                           isotope[i].getfplus(), isotope[i].getfminus(), 
-                           isotope[i].getfplus() - isotope[i].getfminus(),  
-                           isotope[i].getkeff());
+                if(diagnose2){
+                    fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+                    for (int i=0; i<ISOTOPES; i++){
+                        fprintf(pFileD, "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+                                i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+                                isotope[i].getfplus(), isotope[i].getfminus(), 
+                                isotope[i].getfplus() - isotope[i].getfminus(),  
+                                isotope[i].getkeff());
+                    }
+                    
+                    fprintf(pFileD, "\n\n********* END PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
                 }
                 
-                fprintf(pFileD, "\n\n********* END PE RESTORE: Timestep from t_i = %7.4e to t_f=%7.4e", t-dt, t);
             }
         }
 
