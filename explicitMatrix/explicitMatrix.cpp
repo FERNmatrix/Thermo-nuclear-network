@@ -59,7 +59,7 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 3                   // Max isotopes in network (e.g. 16 for alpha network)
+#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
 #define plotSteps 100                 // Number of plot output steps
 
@@ -106,8 +106,8 @@ char rateLibraryFile[] = "data/rateLibrary_3alpha.data";
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
 char networkFile[] = "data/CUDAnet_3alpha.inp";
-// File pointer for diagnostics output
 
+// File pointer for diagnostics output
 FILE *pFileD;
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
@@ -128,7 +128,7 @@ static const bool diagnose1 = false;
 static const bool diagnose2 = false;
 
 
-// Function signatures:
+// Function signatures in main:
 
 void devcheck(int);
 void readLibraryParams(char *);
@@ -156,8 +156,6 @@ bool isoIsInRG(int, int);
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibrium also
-
-double diagnoseTime = 1e-6;   // Time to turn on PE diagnostics
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -200,18 +198,18 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 // The variables start_time and stop_time define the range of integration.  
 // The variable startplot_time allows the plotting interval output
 // in gnu_out/gnufile.data to be a subset of the full integration interval. 
-// Generally, startplot_time >= start_time.  By default the stop time for
+// Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1.0e-20;         // Start time for integration
-double logStart = log10(start_time); // Base 10 log start time
-double startplot_time = 1.0e-11;     // Start time for plot output
-double stop_time = 1.0e-2;           // Stop time for integration
-double logStop = log10(stop_time);   // Base-10 log stop time
-double dt_start = 0.01*start_time;   // Initial value of integration dt
+double start_time = 1.0e-20;           // Start time for integration
+double logStart = log10(start_time);   // Base 10 log start time
+double startplot_time = 1.0e-11;       // Start time for plot output
+double stop_time = 1.0e-2;             // Stop time for integration
+double logStop = log10(stop_time);     // Base-10 log stop time
+double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 3.0e-4;             // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
+double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
 // this should be determined by the program.  In the Java version this was sometimes
@@ -222,12 +220,14 @@ double SF = 7.3e-4;                  // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6; // Begin checking for PE
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equiTol = 0.01;             // Tolerance for checking whether Ys in RG in equil
 
-double mostDevious = 0.0;     // Largest deviation of equilibrium k ratio from equil
+double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
+double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
+double mostDevious;           // Largest current deviation of k ratio from equil
 int mostDeviousIndex;         // Index of RG with mostDevious
-double maxDevious = 0.5;      // Max allowed deviation of Y from equil value in timestep
+
 
 // Threshold abundance for imposing equil in reactions.  There may be numerical
 // issues if the PE algorithm is imposed for very small abundances early in
@@ -445,9 +445,9 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}; //alpha
-int plotXlist[] = {1, 2, 3};  // 3-alpha
-int LX;                                // Length of plotXlist array
+//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+int plotXlist[] = {1, 2, 3};    // 3-alpha
+int LX;                         // Length of plotXlist array
 
 
 
@@ -2611,6 +2611,7 @@ class ReactionGroup:  public Utilities {
     
     void computeEquilibrium() {
         
+        mostDevious = 0.0;
         computeEquilibriumRates();
         putY0();
         computeC();
@@ -2951,7 +2952,6 @@ class ReactionGroup:  public Utilities {
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
             mostDeviousIndex = RGn;
-            
         }
         
         if(diagnose2)
@@ -2960,12 +2960,12 @@ class ReactionGroup:  public Utilities {
         
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. If the 
-        // maxDevious > tolerance check is implemented it can cause a
+        // deviousMax > tolerance check is implemented it can cause a
         // reaction group to drop out of equilibrium.
         
-        if (isEquil && thisDevious < maxDevious) {
+        if (isEquil && thisDevious < deviousMax) {
             return;
-        } else if (isEquil && thisDevious > maxDevious && doPE
+        } else if (isEquil && thisDevious > deviousMax && doPE
             && t > equilibrateTime) {
             removeFromEquilibrium();
             return;
@@ -3317,8 +3317,8 @@ class Integrate: public Utilities {
             
             if (doPE && t > equilibrateTime) {
                 
-                double deviousMax = 0.5;
-                double deviousMin = 0.10;
+                //double deviousMax = 0.5;
+                //double deviousMin = 0.10;
                 
                 if(diagnose1)
                 fprintf(pFileD, "\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
@@ -3336,8 +3336,15 @@ class Integrate: public Utilities {
                     if(diagnose1)
                     fprintf(pFileD, "\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
+                    
+                // Following option not in Java version. Inserted because I found that dt was no longer
+                // increasing after a certain time.  Found now reason was that I was failing to to initialize
+                // mostDevious = 0.0 at beginning of computeEquilibrium(). Thus after a certain time the
+                // mostDevious < deviousMin could never be satisfied.  However, I found that including the
+                // following improved the timestepping over the Java version for the 3-alpha network.
+                    
                 } else {
-                    dt *= 1.02;  // New option not in Java version.  Without C++ version can get stuck
+                    //dt *= 1.02; 
                 }
                 updatePopulations(dt);
             }
