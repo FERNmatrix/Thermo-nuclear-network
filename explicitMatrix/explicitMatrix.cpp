@@ -622,6 +622,7 @@ class Utilities{
             fprintf(pFile2, stringToChar(str2));
             
             for(int i=0; i<plotSteps; i++){
+                
                 fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s\n", 
                     tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
                     reacLabel[ slowestRateIndexPlot[i]],
@@ -638,6 +639,7 @@ class Utilities{
                 app.append(iso);
                 app.append(")     ");
             }
+            
             str1.append(app);
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
@@ -652,6 +654,7 @@ class Utilities{
                 appflux.append(iso);
                 appflux.append(")   ");
             }
+            
             for(int i=0; i<LX; i++){
                 iso = isoLabel[i];
                 appflux.append(Fmstring);
@@ -718,6 +721,7 @@ class Utilities{
             fclose (pFile);
             fclose (pFile2);
             fclose (pFile3);
+            
         }
         
         
@@ -1835,7 +1839,8 @@ class Reaction: public Utilities {
                     fastSlowRates(kfac);
                     
                     if(showFluxCalc == 1){
-                        fprintf(pFileD, "\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
+                        fprintf(pFileD, 
+                            "\n%d %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
                             reacIndex, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
                             reactantIndex[2], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
                             Y[ reactantIndex[2] ], flux);
@@ -2089,6 +2094,7 @@ class ReactionVector:  public Utilities {
             int ck = -1;
             
             // Initialize
+            
             for(int i=0; i<SIZE; i++){
                 RGindex[i] = -1;
             }
@@ -2248,12 +2254,13 @@ class ReactionVector:  public Utilities {
                 incrementMinus += numFminus;
                 
                 if(showParsing == 1)
-                    fprintf(pFileD, "\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
+                fprintf(pFileD, "\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
             }
             
             // Display isotope component array
             
-            fprintf(pFileD, "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
+            fprintf(pFileD, 
+                "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
             fprintf(pFileD, "\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
             
             int uppity = minimumOf(30, numberSpecies);  // limit printout width to 30 species
@@ -2268,7 +2275,8 @@ class ReactionVector:  public Utilities {
                 }
             }
             
-            fprintf(pFileD, "\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
+            fprintf(pFileD, 
+                "\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d, out of %d x %d = %d possibilities.\n", 
                 totalFplus, totalFminus, SIZE, ISOTOPES, SIZE*ISOTOPES);
             
         }   // End of function parseF()
@@ -5011,6 +5019,7 @@ void assignRG(){
                 RG[i].setisForward(rgindex, isPEforward[j] );
                 
                 ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[i]
+                
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
                 RG[i].setreaclabel(rgindex, reaction[ck1].getreacString());
@@ -5023,6 +5032,7 @@ void assignRG(){
                 // Loop over reactant isotopes within this reaction
                 
                 for(int k=0; k<nrn; k++){
+                    
                     int qqq = reaction[ppp].getreactantIndex(k);
                     RG[i].setisoindex(k, qqq);
                     RG[i].setreactantIsoIndex(k, qqq);
@@ -5030,6 +5040,7 @@ void assignRG(){
                     RG[i].setisoN(k, reaction[ppp].getreactantN(k));
                     RG[i].setisoA(k, reaction[ppp].getreactantA(k));
                     RG[i].setisolabel(k, isoLabel[qqq]);
+                    
                 }
                 
                 // Loop over product isotopes
@@ -5038,6 +5049,7 @@ void assignRG(){
                 upper2 = reaction[ck1].getnumberProducts();
                 
                 for(int k=0; k<nrn2; k++){
+                    
                     int qqq = reaction[ppp].getproductIndex(k);
                     RG[i].setisoindex(k+nrn, qqq);
                     RG[i].setproductIsoIndex(k, qqq);
@@ -5045,31 +5057,29 @@ void assignRG(){
                     RG[i].setisoN(k+nrn, reaction[ppp].getproductN(k));
                     RG[i].setisoA(k+nrn, reaction[ppp].getproductA(k));
                     RG[i].setisolabel(k+nrn, isoLabel[qqq]);
+                    
                 }
 
                 // Set the Ys in the RG
 
                 int upk = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
+                
                 for(int k=0; k<upk; k++){
+                    
                     int yindex = RG[i].getisoindex(k);
                     RG[i].setisoY(k, Y[yindex]);
+                    
                 }
-                
                 
                 fprintf(pFileD, "\nreacIndex=%d memberIndex=%d %s RGclass=%d isForward=%d", 
                     RG[i].getmemberReactions(rgindex),
-                    rgindex,
-                    RG[i].getreacString(rgindex),  
+                    rgindex, RG[i].getreacString(rgindex),  
                     RG[i].getrgclass(),
                     RG[i].getisForward(rgindex)
                 );
                 
             }
         }
-        
-        //int checkRG = RG[i].getmemberReactions(reffer);
-        //int checkRG2 = RGclass[checkRG];
-        //printf("\n******** RG[%d] checkRG=%d checkRG2=%d", i, checkRG, checkRG2);
         
         // Populate the species index array for this RG using reference reaction reffer
         
@@ -5084,14 +5094,17 @@ void assignRG(){
     // Summary of reaction groups
     
     for(int i=0; i<numberRG; i++){
+        
         fprintf(pFileD, "\n\nSummary: RG=%d", RG[i].getRGn());
         int numr = RG[i].getnumberMemberReactions();
+        
         for(int j=0; j<numr; j++){
+            
             int reacID = RG[i].getmemberReactions(j);
             fprintf(pFileD, "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
-                   j, reacLabel[reacID], RG[i].getisolabel(0),
-                   RG[i].getisolabel(1), RG[i].getisolabel(2),
-                   RG[i].getisolabel(3)
+                j, reacLabel[reacID], RG[i].getisolabel(0),
+                RG[i].getisolabel(1), RG[i].getisolabel(2),
+                RG[i].getisolabel(3)
             );
         }
     }
@@ -5106,13 +5119,10 @@ void assignRG(){
         
         int rn = RG[i].getrefreac();
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
-        
-        
         fprintf(pFileD, "\n\nRG=%d  RGclass=%d %s Species Index:", 
                i, RG[i].getrgclass(),
                Utilities::stringToChar( 
-               reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
-               )
+               reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() )
         );
         
         for(int jj=0; jj<upjj; jj++){
@@ -5168,22 +5178,27 @@ void assignRG(){
 // in the Species objects isotope[].
 
 void setSpeciesfplus(int index, double fp){
+    
     isotope[index].setfplus(fp);
+    
 }
 
 // Helper function that can be called from another class to set field
 // in the Species objects isotope[].
 
 void setSpeciesfminus(int index, double fm){
+    
     isotope[index].setfminus(fm);
-    //isotope[index].setkeff(fm/(Y0[index]+1.0e-30));
     isotope[index].setkeff(fm/(isotope[index].getY0()+1.0e-30));
     keff[index] = isotope[index].getkeff();
+    
 }
 
 // Helper function that can be called from another class to set field
 // in the Species objects isotope[].
 
 void setSpeciesdYdt(int index, double dydt){
+    
     isotope[index].setdYdt(dydt);
+    
 }
