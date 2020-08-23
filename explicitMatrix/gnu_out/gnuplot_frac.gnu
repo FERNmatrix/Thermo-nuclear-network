@@ -67,7 +67,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy+PE T9=5 rho=1e8"
+ds="Asy T9=5 rho=1e8"
 ds = ds.": Fraction asymptotic and equilibrated vs t"
 
 set title ds textcolor rgb title_color
@@ -78,7 +78,7 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -11
-xup = -3
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
