@@ -147,6 +147,7 @@ void getmaxdYdt(void);
 void restoreEquilibriumProg(void);
 void evolveToEquilibrium(void);
 bool isoIsInRG(int, int);
+void setReactionFluxes();
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -154,9 +155,9 @@ bool isoIsInRG(int, int);
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = true;            // Whether to use asymptotic approximation
+bool doASY = false;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -209,7 +210,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double stop_time = 1.0e-7;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -320,10 +321,13 @@ int totalFminus = 0;
 // Arrays to hold non-zero fluxes in the network. Corresponding memory will be allocated dynamically 
 // below with malloc
 
-double* Fplus;           // Dynamically-allocated 1D array for non-zero F+ (Dim totalFplus)
-double* Fminus;          // Dynamically-allocated 1D array for non-zero F- (Dim totalFminus)
+double* Fplus;           // Dynamical 1D array for non-zero F+ (Dim totalFplus)
+double* Fminus;          // Dynamical 1D array for non-zero F- (Dim totalFminus)
 
-double keff[ISOTOPES];   // Effective decay constant in asymptotic approx for given isotope
+double FplusZero[ISOTOPES];  // Used in QSS approximation
+
+double keff[ISOTOPES];        // Effective decay constant for given isotope
+double keffZero[ISOTOPES];    // Used in QSS approximation
 
 // Arrays to hold number species factors for F+ and F- arrays. For example, for 12C+12C ->
 // 4He + 20Ne the species factor is 1 for 4He and 20Ne diff. equation terms but 2 for
@@ -3212,7 +3216,9 @@ class Integrate: public Utilities {
             if(doQSS){
 
                 for (int i=0; i<ISOTOPES; i++){
-                    QSSupdate(Fplus[i], Fminus[i], Y0[i], dt);
+                    
+                    //QSSupdate(Fplus[i], Fminus[i], Y0[i], dt);
+                    QSSupdate();
                 }
                 
             }
@@ -3434,25 +3440,13 @@ class Integrate: public Utilities {
     }
     
     
-    // Function to update by the Quasi-Steady-State (QSS) approximation.  Placeholder
-    // for now.  Should be able to adapt Adam's neutrino QSS algorithm.
-    
-    static void QSSupdate(double fplus, double fminus, double y0, double dtt){
-        
-        // *************************
-        // QSS algorithm goes here.
-        // *************************
-        
-    }
-    
-    
     /* Use the fluxes to update the populations for this timestep
-     For now we shall assume the asymptotic method. We determine whether each isotope 
+     F or now we shall assume the asymptot*ic method. We determine whether each isotope 
      satisfies the asymptotic condition. If it does we update with the asymptotic formula. 
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
-
+        
         for(int i=0; i<numberSpecies; i++){	
             
             if(isAsy[i]){
@@ -3468,18 +3462,164 @@ class Integrate: public Utilities {
     }    // End function updateAsyEuler()
     
     
+    // Function to update by the Quasi-Steady-State (QSS) approximation. This function 
+    // replicates method steadyState(dt) in Java code. nitQSS is the number of
+    // predictor-corrector iterations.  Found with Java code that increasing beyond 1
+    // did not help much, so generally use nitQSS = 1, but code allows nitQSS > 1.
+    
+    static void QSSupdate(){
+        
+    //static void QSSupdate(double fplus, double fminus, double y0, double dtt){
+        
+        // Iteration loop (nitQSS is number of predictor-corrector iterations; 
+        // normally nit=1)
+        
+        int nitQSS = 1;
+        
+        for (int i = 0; i < nitQSS; i++) {
+            
+            ssPredictor();
+            ssCorrector();
+            
+            if (nitQSS > 1) {
+//                 for (int k = minNetZ; k <= maxNetZ; k++) {
+//                     int indy = Math.min(maxNetN[k], nmax - 1);
+//                     for (int j = minNetN[k]; j <= indy; j++) {
+//                         // Clear flux accumulators for flux update for next
+//                         // iteration
+//                         dpopPlus[k][j] = 0;
+//                         dpopMinus[k][j] = 0;
+//                     }
+//                 }
+//                 
+                // Zero energy accumulators for next iteration
+                //dERelease = 0;
+                //dEReleaseA = 0;
+                
+                //updateLightIonFluxes();
+                //updateHeavyFluxes();
+                //computekeff();
+                
+                // update fluxes for next predictor step
+                
+                setReactionFluxes();
+            }
+        }
+
+    }
+    
+    
+    // ----------------------------------------------------------------------
+    // Integrate::ssPredictor() to implement steady-state predictor step
+    // ----------------------------------------------------------------------
+    
+    static void ssPredictor() {
+        
+        // Save current values of F+, F-, and keff for later use. Y0[]
+        // already contains the saved populations before update 
+        // (i.e., from last timestep)
+        
+        for (int i = 0; i < ISOTOPES; i++) {
+
+            FplusZero[i] = Fplus[i];
+            keffZero[i] = keff[i];
+            
+        }
+        
+        // Loop over all active isotopes and calculate the predictor
+        // populations. Unlike for asymptotic method, we will update all 
+        // populations with the same predictor, irrespective of value of 
+        // keff*dt for an isotope.
+        
+        for (int i = 0; i < ISOTOPES; i++) {
+            
+                double kdt = keff[i] * dt;
+                double deno = 1.0 + kdt*alphaValue(kdt);
+                
+                Y[i] = Y0[i] + (Fplus[i] - Fminus[i])*dt / deno;
+                
+//                 pop[i][j] = tempPop[i][j] + (Fplus[i][j] - Fminus[i][j]) * dt
+//                             / (1.0 + kdt * alphaValue(kdt));
+                            
+                // Clear flux accumulators for flux update for corrector step
+                //dpopPlus[i][j] = 0;
+                //dpopMinus[i][j] = 0;
+        }
+        
+        // Zero energy accumulators for the corrector step
+        
+        //dERelease = 0;
+        //dEReleaseA = 0;
+        
+        // pop[Z][N] now contains the populations updated by the predictor for
+        // timestep dt. Use these predicted populations to update the fluxes 
+        // and keff, using the same rates as for the predictor step.
+        
+        //updateLightIonFluxes();
+        //updateHeavyFluxes();
+        
+        //reaction[i].computeFluxes();
+        //updateFluxes();
+        //computekeff();
+        
+        // Update all fluxes for the following corrector step
+        
+        setReactionFluxes();
+        
+    }
+    
+    
+    // ------------------------------------------------------------------
+    // Integrate::ssCorrector() to implement steady-state corrector step
+    // ------------------------------------------------------------------
+    
+    static void ssCorrector() {
+        
+        double kBar;
+        double kdt;
+        double alphaBar;
+        double FplusTilde;
+        sumX = 0.0;
+        //asysumX = 0.0;
+        //numberAsymptotic = 0;
+        
+        for (int i = 0; i< ISOTOPES; i++) {
+
+                kBar = 0.5 * (keffZero[i] + keff[i]);
+                kdt = kBar * dt;
+                alphaBar = alphaValue(kdt);
+                FplusTilde = alphaBar * Fplus[i] + (1.0 - alphaBar) * FplusZero[i];
+                Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
+                //Y[i][j] = pop[i][j] / nT;
+                if (kdt >= 1.0) {
+                    isAsy[i] = true;
+                    totalAsy ++;
+                    //asysumX += (Y[i][j] * AA[i][j]);
+                } else {
+                    isAsy[i] = false;
+                }
+                sumX += (Y[i] * (double) AA[i]);
+        }
+    }
+ 
     
     // ----------------------------------------------------------------
     // Function Integrate::alphaValue(double) to calculate alpha(kdt) 
     // for steady state approximation.
     // ----------------------------------------------------------------
     
-    double alphaValue(double a) {
+    static double alphaValue(double a) {
         
-        if (a < 1.e-20) a = 1e-20; // Necessary to start integration correctly.
-        double ainv = 1.0/a;
-        double a2 = a * a;
-        double a3 = a2 * a;
+        double aa = a;
+        
+        // Following necessary to start integration correctly.
+        
+        if (aa < 1.e-20) aa = 1e-20; 
+        
+        double ainv = 1.0/aa;
+        double a2 = ainv * ainv;
+        double a3 = a2 * ainv;
+        
         return (180.0 * a3 + 60.0 * a2 + 11.0 * ainv + 1.0)
             / (360.0 * a3 + 60.0 * a2 + 12.0 * ainv + 1.0);
         
@@ -4184,6 +4324,7 @@ int main() {
 // **********************************************************
 // ************  FUNCTIONS USED IN MAIN  ********************
 // **********************************************************
+
 
 
 
@@ -5191,7 +5332,6 @@ void assignRG(){
 }       // End function assignRG()
 
 
-
 // Helper function that can be called from another class to set field
 // in the Species objects isotope[].
 
@@ -5220,3 +5360,18 @@ void setSpeciesdYdt(int index, double dydt){
     isotope[index].setdYdt(dydt);
     
 }
+
+// Helper function that can be called from another class to set
+// flux fields in the reaction[] objects
+
+void setReactionFluxes(){
+    
+    for(int i=0; i<SIZE; i++){
+        reaction[i].computeFlux();
+    }
+    
+    Reaction::populateFplusFminus();
+    Reaction::sumFplusFminus();
+}
+
+
