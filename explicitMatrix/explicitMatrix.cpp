@@ -3468,6 +3468,24 @@ class Integrate: public Utilities {
     }    // End function updateAsyEuler()
     
     
+    
+    // ----------------------------------------------------------------
+    // Function Integrate::alphaValue(double) to calculate alpha(kdt) 
+    // for steady state approximation.
+    // ----------------------------------------------------------------
+    
+    double alphaValue(double a) {
+        
+        if (a < 1.e-20) a = 1e-20; // Necessary to start integration correctly.
+        double ainv = 1.0/a;
+        double a2 = a * a;
+        double a3 = a2 * a;
+        return (180.0 * a3 + 60.0 * a2 + 11.0 * ainv + 1.0)
+            / (360.0 * a3 + 60.0 * a2 + 12.0 * ainv + 1.0);
+        
+	}
+    
+    
 };    // End class Integrate
 
 
