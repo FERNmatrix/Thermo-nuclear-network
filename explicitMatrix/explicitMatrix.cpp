@@ -214,7 +214,7 @@ double stop_time = 1.0e-7;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-7; //3.0e-4;               // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
@@ -3477,7 +3477,7 @@ class Integrate: public Utilities {
         int nitQSS = 1;
         
         for (int i = 0; i < nitQSS; i++) {
-            
+            printf("\n  +++++++++++++ qssUPDATE\n");
             ssPredictor();
             ssCorrector();
             
@@ -3538,6 +3538,10 @@ class Integrate: public Utilities {
                 
                 Y[i] = Y0[i] + (Fplus[i] - Fminus[i])*dt / deno;
                 
+                printf("\n  +++++++++++++ SS PREDICTOR: %d Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
+                    i, Fplus[i], Fminus[i], dt, deno, Y[i]
+                );
+                
 //                 pop[i][j] = tempPop[i][j] + (Fplus[i][j] - Fminus[i][j]) * dt
 //                             / (1.0 + kdt * alphaValue(kdt));
                             
@@ -3591,6 +3595,11 @@ class Integrate: public Utilities {
                 FplusTilde = alphaBar * Fplus[i] + (1.0 - alphaBar) * FplusZero[i];
                 Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
                 //Y[i][j] = pop[i][j] / nT;
+                
+                printf("\n  +++++++++++++ SS Corrector: %d Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
+                       i, Fplus[i], Fminus[i], dt, 1 + alphaBar * kdt, Y[i]
+                );
+                
                 if (kdt >= 1.0) {
                     isAsy[i] = true;
                     totalAsy ++;
