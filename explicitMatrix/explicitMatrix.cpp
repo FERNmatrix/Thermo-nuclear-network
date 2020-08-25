@@ -210,17 +210,17 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-7;             // Stop time for integration
+double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 1.0e-7; //3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-7;  //3.0e-4;               // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
-// Time to begin trying to impose partial equilibrium.  Hardwired for now, but eventually
-// this should be determined by the program.  In the Java version this was sometimes
+// Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
+// eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
-// probably a coding error in the Java version, since if operating properly nothing should
+// probably an error in the Java version, since if operating properly nothing should
 // be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
 // this in a final version for stability, but it might still be useful since early in
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
@@ -3215,11 +3215,11 @@ class Integrate: public Utilities {
             
             if(doQSS){
 
-                for (int i=0; i<ISOTOPES; i++){
+                //for (int i=0; i<ISOTOPES; i++){
                     
                     //QSSupdate(Fplus[i], Fminus[i], Y0[i], dt);
                     QSSupdate();
-                }
+                //}
                 
             }
             
@@ -3477,7 +3477,7 @@ class Integrate: public Utilities {
         int nitQSS = 1;
         
         for (int i = 0; i < nitQSS; i++) {
-            printf("\n  +++++++++++++ qssUPDATE\n");
+            //printf("\n\n  +++++++++++++ qssUPDATE t=%7.4e", t);
             ssPredictor();
             ssCorrector();
             
@@ -3521,9 +3521,9 @@ class Integrate: public Utilities {
         
         for (int i = 0; i < ISOTOPES; i++) {
 
-            FplusZero[i] = Fplus[i];
+            FplusZero[i] = FplusSum[i];
             keffZero[i] = keff[i];
-            
+            Y0[i] = Y[i];
         }
         
         // Loop over all active isotopes and calculate the predictor
@@ -3536,11 +3536,12 @@ class Integrate: public Utilities {
                 double kdt = keff[i] * dt;
                 double deno = 1.0 + kdt*alphaValue(kdt);
                 
-                Y[i] = Y0[i] + (Fplus[i] - Fminus[i])*dt / deno;
+                Y[i] = Y0[i] + (FplusSum[i] - FminusSum[i])*dt / deno;
                 
-                printf("\n  +++++++++++++ SS PREDICTOR: %d Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
-                    i, Fplus[i], Fminus[i], dt, deno, Y[i]
-                );
+//                 printf(
+//                     "\n  +++++++++++++ SS PREDICTOR: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e alph=%7.4e kdt=%7.4e deno=%7.4e Y=%7.4e",
+//                     i, t, FplusSum[i], FminusSum[i], dt, alphaValue(kdt), kdt, deno, Y[i]
+//                 );
                 
 //                 pop[i][j] = tempPop[i][j] + (Fplus[i][j] - Fminus[i][j]) * dt
 //                             / (1.0 + kdt * alphaValue(kdt));
@@ -3592,13 +3593,14 @@ class Integrate: public Utilities {
                 kBar = 0.5 * (keffZero[i] + keff[i]);
                 kdt = kBar * dt;
                 alphaBar = alphaValue(kdt);
-                FplusTilde = alphaBar * Fplus[i] + (1.0 - alphaBar) * FplusZero[i];
+                FplusTilde = alphaBar * FplusSum[i] + (1.0 - alphaBar) * FplusZero[i];
                 Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
-                //Y[i][j] = pop[i][j] / nT;
+                //Y[i][j] = pop[i][j] / nT
+                X[i] = Y[i] * (double)AA[i];
                 
-                printf("\n  +++++++++++++ SS Corrector: %d Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
-                       i, Fplus[i], Fminus[i], dt, 1 + alphaBar * kdt, Y[i]
-                );
+//                 printf("\n  +++++++++++++ SS Corrector: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
+//                        i, t, FplusSum[i], FminusSum[i], dt, 1 + alphaBar * kdt, Y[i]
+//                 );
                 
                 if (kdt >= 1.0) {
                     isAsy[i] = true;
@@ -3607,7 +3609,7 @@ class Integrate: public Utilities {
                 } else {
                     isAsy[i] = false;
                 }
-                sumX += (Y[i] * (double) AA[i]);
+                sumX += X[i];
         }
     }
  
