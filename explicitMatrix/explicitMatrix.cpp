@@ -127,6 +127,8 @@ static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
 static const bool diagnose2 = false;
+static const bool diagnose_dt = false;
+static const bool diagnoseQSS = false;
 
 
 // Function signatures in main:
@@ -3267,7 +3269,7 @@ class Integrate: public Utilities {
             
             if (doPE && t > equilibrateTime) {
                 
-                if(diagnose1)
+                if(diagnose_dt)
                 fprintf(pFileD, "\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
                     t, dt, mostDevious, totalEquilReactions);
                 
@@ -3275,12 +3277,12 @@ class Integrate: public Utilities {
                 
                 if (mostDevious > deviousMax) {
                     dt *= 0.93;
-                    if(diagnose1)
+                    if(diagnose_dt)
                     fprintf(pFileD, "\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                 } else if (mostDevious < deviousMin) {
                     dt *= 1.03;
-                    if(diagnose1)
+                    if(diagnose_dt)
                     fprintf(pFileD, "\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
                         t, dtprev, dt, mostDevious);
                     
@@ -3320,8 +3322,8 @@ class Integrate: public Utilities {
                 if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
                     
                     dt *= max(massTol / massChecker, downbumper);
-                    if(diagnose1)
-                        fprintf(pFileD, "\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
+                    if(diagnose_dt)
+                        fprintf(pFileD, "\n\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
                         t, dtprior, dt, test1, test2, massChecker, sumX);
                     
                     updatePopulations(dt);
@@ -3329,8 +3331,8 @@ class Integrate: public Utilities {
                 } else if (massChecker < massTolUp) {
                     
                     dt *= (massTol / (max(massChecker, upbumper)));
-                    if(diagnose1)
-                        fprintf(pFileD, "\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
+                    if(diagnose_dt)
+                        fprintf(pFileD, "\n\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
                         t, dtprior, dt, test1, test2, massChecker, sumX);
 
                     updatePopulations(dt);
@@ -3356,7 +3358,7 @@ class Integrate: public Utilities {
             
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             dtt = min(dtFlux, dtLast);
-            if(diagnose1)
+            if(diagnose_dt)
             fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
                 t, dtFlux, dtLast, dtt);
 
@@ -3477,7 +3479,9 @@ class Integrate: public Utilities {
         int nitQSS = 1;
         
         for (int i = 0; i < nitQSS; i++) {
-            //printf("\n\n  +++++++++++++ qssUPDATE t=%7.4e", t);
+            
+if(diagnoseQSS) fprintf(pFileD, "\n\nQSS_UPDATE t=%7.4e", t);
+            
             ssPredictor();
             ssCorrector();
             
@@ -3537,11 +3541,12 @@ class Integrate: public Utilities {
                 double deno = 1.0 + kdt*alphaValue(kdt);
                 
                 Y[i] = Y0[i] + (FplusSum[i] - FminusSum[i])*dt / deno;
+                X[i] = Y[i] * (double)AA[i];
                 
-//                 printf(
-//                     "\n  +++++++++++++ SS PREDICTOR: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e alph=%7.4e kdt=%7.4e deno=%7.4e Y=%7.4e",
-//                     i, t, FplusSum[i], FminusSum[i], dt, alphaValue(kdt), kdt, deno, Y[i]
-//                 );
+if(diagnoseQSS) fprintf(pFileD, 
+    "\nSS PREDICTOR: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e alph=%7.4e k=%7.4e kdt=%7.4e deno=%7.4e Y=%7.4e",
+    i, t, FplusSum[i], FminusSum[i], dt, alphaValue(kdt), keff[i], kdt, deno, Y[i]
+);
                 
 //                 pop[i][j] = tempPop[i][j] + (Fplus[i][j] - Fminus[i][j]) * dt
 //                             / (1.0 + kdt * alphaValue(kdt));
@@ -3597,10 +3602,11 @@ class Integrate: public Utilities {
                 Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
                 //Y[i][j] = pop[i][j] / nT
                 X[i] = Y[i] * (double)AA[i];
-                
-//                 printf("\n  +++++++++++++ SS Corrector: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
-//                        i, t, FplusSum[i], FminusSum[i], dt, 1 + alphaBar * kdt, Y[i]
-//                 );
+ 
+// if(diagnoseQSS) fprintf(pFileD, 
+//     "\nSS CORRECTOR: %d t=%7.4e Fplus[i]=%7.4e Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
+//             i, t, FplusSum[i], FminusSum[i], dt, 1 + alphaBar * kdt, Y[i]
+// );
                 
                 if (kdt >= 1.0) {
                     isAsy[i] = true;
