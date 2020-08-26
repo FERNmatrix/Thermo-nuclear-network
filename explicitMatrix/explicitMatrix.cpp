@@ -216,7 +216,7 @@ double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 1.0e-7;  //3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+double massTol = 1.0e-6;  //3.0e-4;               // Timestep tolerance parameter (1.0e-7)
 double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -3527,7 +3527,7 @@ if(diagnoseQSS) fprintf(pFileD, "\n\nQSS_UPDATE t=%7.4e", t);
 
             FplusZero[i] = FplusSum[i];
             keffZero[i] = keff[i];
-            Y0[i] = Y[i];
+            //Y0[i] = Y[i];
         }
         
         // Loop over all active isotopes and calculate the predictor
