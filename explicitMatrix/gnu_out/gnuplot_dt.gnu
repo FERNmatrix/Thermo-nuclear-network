@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8"
+ds="QSS+PE T9=5 rho=1e8"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
