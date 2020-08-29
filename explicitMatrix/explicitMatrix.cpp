@@ -17,7 +17,7 @@
  * 
  * 1. Change ISOTOPES and SIZE
  * 2. Change two input files for networkFile and rateLibraryFile
- * 3. Change doAsy, doQSS, and doPE
+ * 3. Change doAsy, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
  * 4. Change control parameters like stop_time, massTol, ...
  * 5. Change plot output mask plotXlist[]
  * 6. Change values of T9_start and rho_start
@@ -175,6 +175,16 @@ bool constant_rho = true;     // Whether density constant in integration
 
 double ERelease;              // Total energy released
 double dERelease;             // Energy released per unit time
+
+// Partition function controls. If dopf = true, reaction rates are
+// corrected by temperature-dependent partition functions.  However
+// partition function factors differ from 1 only at high temperature
+// so we only implement partition function corrections if T9 > pfCut9,
+// where pfCut9 is a cutoff temperature in units of T9. Typically we 
+// will choose dopf = true and pfCut9 = 1.0.
+
+bool dopf = true;
+double pfCut9 = 1.0;
 
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
@@ -950,7 +960,7 @@ class Species: public Utilities {
         double YY;           // current abundance  Y = X/A
         double XX;           // mass fraction  X = Y*A
         double MassExcess;   // mass excess
-        double pf[24];       // partition function entries
+        double pf[PF];       // partition function entries
         double fplus;        // Total flux currently adding to abundance of this isotope
         double fminus;       // Total flux currently adding to abundance of this isotope
         double keff;         // Effective decay constant = fminus/YY
@@ -958,7 +968,7 @@ class Species: public Utilities {
         double dXdt;         // Current dX/dt for this isotope
         
         // Temperatures in units of 10^9 K for partition function table (see pf[]). 
-        const double Tpf[24] = { 0.1f, 0.15f, 0.2f, 0.3f, 0.4f, 0.5f, 
+        const double Tpf[PF] = { 0.1f, 0.15f, 0.2f, 0.3f, 0.4f, 0.5f, 
             0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 
             4.0f, 4.5f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f };
     
@@ -1748,8 +1758,9 @@ class Reaction: public Utilities {
             setdensfac(densfac);
         }
         
-        // Reaction::computeRate(double, double) to compute rates at T and rho. The quantity rate
-        // is the temperature-dependent part.  The quantity Rrrate is rate multiplied by
+        // Reaction::computeRate(double, double) to compute rates at T and rho. 
+        // The quantity rate is the temperature-dependent part, including a possible 
+        // partition-function correction.  The quantity Rrrate is rate multiplied by
         // appropriate density and statistical factors, which give units of s^-1.  The 
         // flux follows from multiplying Rrate by appropriate abundances Y in computeFlux().
         
@@ -1758,6 +1769,40 @@ class Reaction: public Utilities {
             // Temperature-dependent rate from ReacLib library
             
             rate = expf( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
+            
+            // If necessary, correct by multiplying by partition functions
+            
+            double pfnum;
+            double pfden;
+            double pfFactor;
+            
+            // Make a partition function correction if this is a reverse reaction in
+            // the sense defined in ReacLib
+            
+            if(dopf && T9 > pfCut9 && isReverse){
+                
+                if(reacClass == 2){
+                    
+                    pfden = pfInterpolator (reactantIndex[0], log10(T9));
+                    pfnum = pfInterpolator (productIndex[1], log10(T9));
+                    
+                } else if(reacClass == 5){
+                    
+                    pfden = pfInterpolator (reactantIndex[1], log10(T9));
+                    pfnum = pfInterpolator (productIndex[1], log10(T9));
+                    
+                } else {
+                    
+                    pfden = 1.0;
+                    pfnum = 1.0;
+                    
+                }
+                
+                pfFactor = pfnum/pfden;
+                rate *= pfFactor;
+                
+            }
+            
             setrate(rate);
 
             // Full rate factor in s^-1 (rate above multiplied by density factors)
@@ -1768,6 +1813,31 @@ class Reaction: public Utilities {
             // Write to rate array in main
             
             Rate[getreacIndex()] = Rrate;
+            
+        }
+        
+        
+        // ------------------------------------------------------------------------
+        // Return the partition function of isotope labeled by index at log_10 of
+        // temperature t9 (note that the third argument is log_10(t9), not t9).
+        // ------------------------------------------------------------------------
+        
+        double pfInterpolator(int index, double logt9) {
+            
+//             double rdt;
+//             double term1;
+//             double term2;
+//             double sumterms;
+//             double bob;
+//             rdt = (logt9 - Tpf[lowPFindex]) / (Tpf[lowPFindex + 1] - Tpf[lowPFindex]);
+//             term1 = rdt * Math.log(pf[Z][N][lowPFindex + 1]);
+//             term2 = (1.0 - rdt) * Math.log(pf[Z][N][lowPFindex]);
+//             sumterms = term1 + term2;
+//             bob = Math.exp(sumterms);
+//             // System.out.println("PF stuff: "+t9+" "+Z+" "+N+" "+rdt+" "+sumterms+" "+bob);
+//             return bob;
+            
+            return 1.0;  // Temporary
             
         }
         
