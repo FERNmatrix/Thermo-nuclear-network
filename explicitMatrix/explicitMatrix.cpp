@@ -84,10 +84,10 @@ using std::string;
 clock_t startCPU, stopCPU;
 #define START_CPU if ((startCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
 #define STOP_CPU if ((stopCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
-#define PRINT_CPU (printf("Timer: %g ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
-#define FPRINTF_CPU (fprintf(pFile, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
-#define FPRINTF_CPU2 (fprintf(pFile2, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
-#define FPRINTF_CPUD (fprintf(pFileD, "computed in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define PRINT_CPU (printf("Timer: %7.4e ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU (fprintf(pFile, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU2 (fprintf(pFile2, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPUD (fprintf(pFileD, "in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 
 // File pointer for data read-in
@@ -157,7 +157,7 @@ void setReactionFluxes();
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = false;            // Whether to use asymptotic approximation
+bool doASY = false;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibrium also
 
@@ -613,16 +613,30 @@ class Utilities{
                 if(plotFluxes){fprintf(pFile3, "# QSS");}
                 fprintf(pFileD, "# QSS");
             }
+            
             if(doPE){
                 fprintf(pFile, "+PE");
                 fprintf(pFile2, "+PE");
                 if(plotFluxes){fprintf(pFile3, "+PE");}
                 fprintf(pFileD, "+PE");
             } 
-            fprintf(pFile, " method: %d integration steps ", totalTimeSteps);
-            fprintf(pFile2, " method: %d integration steps ", totalTimeSteps);
-            if(plotFluxes) fprintf(pFile3, " method: %d integration steps ", totalTimeSteps);
-            fprintf(pFileD, " method: %d integration steps ", totalTimeSteps);
+            
+            if(dopf){
+                fprintf(pFile, " method (with partition functions): ");
+                fprintf(pFile2, " method (with partition functions): ");
+                if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
+                fprintf(pFileD, "+ method (with partition functions): ");
+            } else {
+                fprintf(pFile, " method (no partition functions): ");
+                fprintf(pFile2, " method (no partition functions): ");
+                if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
+                fprintf(pFileD, "+ method (no partition functions): "); 
+            }
+            
+            fprintf(pFile, "%d integration steps ", totalTimeSteps);
+            fprintf(pFile2, "%d integration steps ", totalTimeSteps);
+            if(plotFluxes) fprintf(pFile3, "%d integration steps ", totalTimeSteps);
+            fprintf(pFileD, "%d integration steps ", totalTimeSteps);
                 
             FPRINTF_CPU;
             FPRINTF_CPU2;
@@ -1777,7 +1791,14 @@ class Reaction: public Utilities {
             double pfFactor;
             
             // Make a partition function correction if this is a reverse reaction in
-            // the sense defined in ReacLib
+            // the sense defined in ReacLib. Realistic calculations should use
+            // the partition functions so generally set dopf=true unless testing.
+            // Partition functions are very near 1.000 if T9 < 1, so we will typically
+            // only implement partition function correction if T9 > pfCut9 = 1.0.
+            // Interpolation is in the log10 of the temperature, so pass log10(T9)
+            // rather than T9 to pfInterpolator (index, logt9).
+            
+printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
@@ -1801,6 +1822,8 @@ class Reaction: public Utilities {
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
                 
+printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
+                
             }
             
             setrate(rate);
@@ -1823,6 +1846,9 @@ class Reaction: public Utilities {
         // ------------------------------------------------------------------------
         
         double pfInterpolator(int index, double logt9) {
+            
+            // Following commented out for testing purposes until spline interpolator
+            // is implemented
             
 //             double rdt;
 //             double term1;
