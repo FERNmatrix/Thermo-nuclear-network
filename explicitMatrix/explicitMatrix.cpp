@@ -61,7 +61,7 @@ using std::string;
 
 #define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
@@ -157,9 +157,9 @@ void setReactionFluxes();
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = false;           // Whether to use asymptotic approximation
+bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -1784,19 +1784,47 @@ class Reaction: public Utilities {
             
             rate = expf( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
             
-            // If necessary, correct by multiplying by partition functions
+            // If necessary, correct rate by multiplying by partition functions
+            
+            pfUpdate();
+            
+            setrate(rate);
+
+            // Full rate factor in s^-1 (rate above multiplied by density factors)
+            
+            Rrate = getdensfac() * rate;
+            setRrate(Rrate);
+            
+            // Write to rate array in main
+            
+            Rate[getreacIndex()] = Rrate;
+            
+        }
+        
+        
+        // Function Reaction::pfUpdate() to correct the rates using partition 
+        // function factors if appropriate.
+        
+        void pfUpdate(){
             
             double pfnum;
             double pfden;
             double pfFactor;
             
-            // Make a partition function correction if this is a reverse reaction in
-            // the sense defined in ReacLib. Realistic calculations should use
+            // Make a partition function correction if this is reverse reaction in
+            // sense defined in ReacLib (defined by field Reaction::isReverse=true). 
+            // Realistic calculations at higher temperatures should use
             // the partition functions so generally set dopf=true unless testing.
             // Partition functions are very near 1.000 if T9 < 1, so we will typically
-            // only implement partition function correction if T9 > pfCut9 = 1.0.
+            // only implement partition function correction if T9 > pfCut9 = 1.0, but
+            // the table of partition functions allows pfCut9 as small as 0.1.
             // Interpolation is in the log10 of the temperature, so pass log10(T9)
-            // rather than T9 to pfInterpolator (index, logt9).
+            // rather than T9 to pfInterpolator (index, logt9). Because for the 
+            // temperatures of interest the partition functions for all light ions
+            // (protons, neutrons, alphas, tritons) are equal to 1.0, the structure
+            // of the 8 Reaclib reaction classes specified by Reaction::reacClass
+            // means that this correction is only required for reverse reactions
+            // in Reaclib classes reacClass = 2, 5.
             
 printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
             
@@ -1825,24 +1853,22 @@ printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reac
 printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
                 
             }
-            
-            setrate(rate);
-
-            // Full rate factor in s^-1 (rate above multiplied by density factors)
-            
-            Rrate = getdensfac() * rate;
-            setRrate(Rrate);
-            
-            // Write to rate array in main
-            
-            Rate[getreacIndex()] = Rrate;
-            
         }
         
         
         // ------------------------------------------------------------------------
-        // Return the partition function of isotope labeled by index at log_10 of
-        // temperature t9 (note that the third argument is log_10(t9), not t9).
+        // Return partition function of isotope labeled by isoIndex at log_10 of
+        // temperature T9. Note that the 2nd argument is log10(T9), not T9,
+        // because the interpolation in the partition function table is in the 
+        // log10 of the temperature.  The following commented-out code assumes
+        // that the object interpolatepf of the SplineInterpolator class has
+        // first invoked the interpolatepf.bisection method to use bisection 
+        // to find the interval containing root and store the lower index of
+        // that interval in lowPFindex. Then SplineInterpolator interpolates
+        // the root restricted to that interval.  This guards against the
+        // spline interpolator finding the wrong root if there are multiple
+        // roots (as could be true in the general case, though probably not here
+        // since the function is typically monotonic).
         // ------------------------------------------------------------------------
         
         double pfInterpolator(int index, double logt9) {
