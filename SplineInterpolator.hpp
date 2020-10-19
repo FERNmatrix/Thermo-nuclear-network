@@ -1,4 +1,4 @@
-
+#include <cstdio>
 /*
 Class to implement 1D and 2D cubic spline interpolation. Adapted from algorithms 
 in Numerical Recipes. For 1D interpolations, use the method spline to set up an 
@@ -20,14 +20,14 @@ class SplineInterpolator {
 
 	public:
 
-    double x[];
-	double x1a[];
-	double x2a[];
-	double ya[][];
-	double y[];
-	double y2[];
-	double y2a[][];
-	double u[];
+    double *x;
+	double *x1a;
+	double *x2a;
+	double **ya;
+	double *y;
+	double *y2;
+	double **y2a;
+	double *u;
 	int n,m;
 	double maxx1,minx1,maxx2,minx2;
 	
@@ -45,17 +45,18 @@ class SplineInterpolator {
 	 getSplined2(index).
     -------------------------------------------------------------------------------*/
 	
-	void spline( double xarray[], double yarray[]) {
-		int n = xarray.length;
-		if(n != yarray.length){
-			System.out.println("\nWarning: lengths of x and y(x) arrays not equal:"
-				+" xarray.length="+n+" yarray.length="+yarray.length);
+	void spline(double xarray[], double yarray[]) {
+		int n = arrayLength1d(xarray);
+		int m = arrayLength1d(yarray);
+
+		if(n != m){
+			printf("\nWarning: lengths of x and y(x) arrays not equal: xarray.length= %d, yarray.length= %d", n, m);
 		}
-	
-		x = new double[n];
-		y = new double[n];
-		y2 = new double[n];
-		u = new double[n];
+
+		//x[n] = {};
+		//y[n] = {};
+		//y2[n] = {};
+		//u[n] = {};
 		
 		// Copy passed arrays to internal arrays
 
@@ -106,15 +107,14 @@ class SplineInterpolator {
 	 derivative table has been created.
  	---------------------------------------------------------------------------*/
 
-	public double splint(double xvalue) {
+	double splint(double xvalue) {
 
-		int n = x.length;
+		int n = arrayLength1d(x);
 
 		// Return -1 with error message if argument out of table bounds
 
 		if (xvalue < x[0] || xvalue > x[n-1]) {
-			System.out.println("Argument (" + xvalue 
-				        + ") Out of Table Bounds "+x[0]+"-"+x[n-1]);
+			printf("Argument (%f) Out of Table Bounds %f - %f", x[0], x[n-1], xvalue);
 			return -1;
 		}
 
@@ -152,9 +152,9 @@ class SplineInterpolator {
 	-------------------------------------------------------------------------------*/
 
 
-	public int bisection(double [] xarray, double xvalue){
+	int bisection(double xarray[], int arrLen, double xvalue){
 
-		int n = xarray.length;
+		int n = arrLen;
 
 		// Check that xvalue is within bounds of the table.  If not, quit
 		// with error message and return -1
@@ -162,7 +162,7 @@ class SplineInterpolator {
 		double minx = xarray[0];
 		double maxx = xarray[n-1];
 		if(xvalue > maxx || xvalue < minx){
-			System.out.println("Abort bisection: argument ("+ xvalue + ") Out of Bounds");
+			printf("Abort bisection: argument (%f) Out of Bounds", xvalue);
 			return -1;
 		}
 
@@ -189,16 +189,19 @@ class SplineInterpolator {
 	/*-----------------------------------------------------------------------------
 	 Method to set up spline 2nd deriv table for a 2D spline interpolation.
 	 x1array and x2array are 1D arrays holding the independent (x1,x2) variables. 
-	 ya is a 2D array holding y=f(x1,x2). Note that the independent variable 
+	 yarray is a 2D array holding y=f(x1,x2), however 2D arrays of undefined size
+	 cannot be directly passed and so we will use a double pointer that holds the
+	 address of the beginning of the 2D array. The calling function will also need 
+	 to utilize double pointers to call this function. Note that the independent variable 
 	 arrays are assumed to both be in ascending order.  The second derivatives are 
 	 stored in the array y2a.  Elements of the y2a array can be accessed for 
 	 diagnostic purposes using the method getSpline2d2(row,column).
 	------------------------------------------------------------------------------*/
 	
-	public void spline2( double[] x1array, double[] x2array, double[][] yarray) {
+	void spline2( double x1array[], int x1Len, double x2array[], int x2Len, double **yarray) {
 
-		n = x1array.length;
-		m = x2array.length;
+		n = arrayLength1d(x1array);
+		m = arrayLength1d(x2array);
 
 		//  Store min and max for later checks
 
@@ -209,19 +212,25 @@ class SplineInterpolator {
 
 		// Set up temporary 1D array required for 2D interpolations.
 		
-		double [] ytmp = new double[m];
+		double ytmp[m]= {};
 		
-		x1a = new double[n];     // 2D independent variable x1
-		x2a = new double[m];     // 2D independent variable x2
+		double x1a[n] = {};     // 2D independent variable x1
+		double x2a[m] = {};     // 2D independent variable x2
 
 		// Set up the 2d array ya[i][j] that will hold the dependent 
 		// variable y(x1,x2)
 
-		ya = new double [n][m];
+		ya = new double*[n];
+		for(int i=0; i<n; i++){
+			ya[i] = new double[m];
+		}
 
 		// Set up the 2d array y2a[i][j] that will hold the second derivatives
 
-		y2a = new double [n][m];
+		y2a = new double*[n];
+		for(int i=0; i<n; i++){
+			y2a[i] = new double[m];
+		}
 
 		// Fill the local arrays x1a, x2a, and ya with the user-supplied dependent 
 		// and independent variable data from arrays on the timeline containing this clip
@@ -256,23 +265,23 @@ class SplineInterpolator {
 	 derivative table has been created.
  	-------------------------------------------------------------------------*/
 
-	public double splint2 (double x1, double x2) {
+	double splint2 (double x1, double x2) {
 
 		//  Check that the arguments lie within the range of the table.  If not,
 		//  terminate with error message and return -1.
 
 		if (x1<minx1 || x1 > maxx1){
-			System.out.println("*** Error: (x1="+x1+ " out of table range; return -1) ***");
+			printf("*** Error: (x1=%f out of table range; return -1) ***",x1);
 			return -1; 
 		}
 		if (x2<minx2 || x2 > maxx2){
-			System.out.println("*** Error: (x2="+x2+ " out of table range; return -1) ***");
+			printf("*** Error: (x2=%f out of table range; return -1) ***",x2);
 			return -1; 
 		}
 		
 		// Set up temporary 1D array that will be required in 2D interpolations. 
 		
-		double[] yytmp = new double[m];
+		double yytmp[m] = {};
 
 		for (int j=0; j<m; j++) {
 			for (int k=0; k<n; k++) {
@@ -289,7 +298,7 @@ class SplineInterpolator {
 	// Public method to return element of spline 2nd derivative array for 1D
 	// interpolation.  Mostly useful for diagnostics.
 
-	public double getSplined2(int index){
+	double getSplined2(int index){
 		return y2[index];
 	}
 
@@ -297,7 +306,12 @@ class SplineInterpolator {
     // Public method to return element of spline 2nd derivative array for 2D
 	// interpolation.  Mostly useful for diagnostics.
 
-	public double getSpline2d2(int row, int column){
+	double getSpline2d2(int row, int column){
 		return y2a[row][column];
 	}
-}
+
+	int arrayLength1d(double arr[]){
+		return sizeof(arr)/sizeof(arr[0]);
+		//return *(&arr+1) - arr;
+	}
+};

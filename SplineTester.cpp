@@ -1,40 +1,40 @@
+#include "SplineInterpolator.hpp"
 
 // ---------------------------------------------------------------------------
 //  Class SplineTester to test spline algorithms in class SplineInterpolator
 // ---------------------------------------------------------------------------
 
-public class SplineTester {
+class SplineTester {
 
-    public static void main (String[] args) {
+	public:
 
-        SplineInterpolator si = new SplineInterpolator();
+    void test() {
+
+        SplineInterpolator si = SplineInterpolator();
 
 		// Test bisection method
 
-		double [] x = {10,12,14,16,18};
+		double x[] = {10,12,14,16,18};
 		double xvalue = 12.2;
-		int ilow = si.bisection(x,xvalue);
+		int ilow = si.bisection(x, 5, xvalue);
 		int ihigh= ilow + 1;
 
-        System.out.println();
 		if(ilow == -1){
-			System.out.println("Bisection test:  Out of range; -1 returned");
+			printf("\nBisection test:  Out of range; -1 returned\n");
 		} else {
-			System.out.println("Bisection test:  ilow="+ilow+" ihigh="+ihigh);
+			printf("Bisection test:  ilow=%d ihigh=%d\n\n", ilow, ihigh);
 		}
-		System.out.println();
 
 		// Test 1D spline interpolation
 
-		double [] xx = {10,12,14,16,18};
-		double [] yy = {1.3,1.8,2.0,1.6,-1.2};
+		double xx[] = {10,12,14,16,18};
+		double yy[] = {1.3,1.8,2.0,1.6,-1.2};
 
 		si.spline(xx,yy);
 
 		double tryx = 12.2;
 		double value = si.splint(tryx);
-		System.out.println("1D interpolation test:  y(x) = y("+tryx+")="+value);
-		System.out.println();
+		printf("1D interpolation test:  y(x) = y(%f)=%f\n", tryx, value);
 
 
 		// Test 2D spline interpolation
@@ -44,8 +44,8 @@ public class SplineTester {
 
 		int rows = 11;
 		int columns = 11;
-		double [] x1 = new double[rows];
-		double [] x2 = new double[columns];
+		double x1[rows];
+		double x2[columns];
 
 		for (int i=0; i<rows; i++) {
 			x1[i] = (double)i/2;
@@ -56,15 +56,16 @@ public class SplineTester {
 
 		// Create a 2d array to hold data
 
-		double[][] array2d = new double[rows][columns];
+		//double array2d[rows][columns];
+		double **array2d = new double*[rows];
 
 		//  Print out the independent variable arrays
 
 		for(int i=0; i<rows; i++){
-			System.out.println("2D x1=" + x1[i]);
+			printf("2D x1=%f", x1[i]);
 		}
 		for(int j=0; j<columns; j++){
-			System.out.println("2D x2=" + x2[j]);
+			printf("2D x2=%f", x2[j]);
 		}
 
 		//  Fill the 2d array with the sum of squares for x1 and x2
@@ -78,10 +79,10 @@ public class SplineTester {
 
 		//  Print out the 2D array just stored
 
-		System.out.println("\nPrintout of full 2d Array f(x1,x2)\n");
+		printf("\nPrintout of full 2d Array f(x1,x2)\n");
 		for(int j=0; j<columns; j++){
 			for (int i=0; i<rows; i++){
-				System.out.println("row "+i+" column "+j+": "+ array2d[i][j]);
+				printf("row %d column %d: %f", i, j, array2d[i][j]);
 			}
 		}
 
@@ -91,14 +92,14 @@ public class SplineTester {
 		si.spline2(x1, x2, array2d);
 
 		//  Print 2nd derivative array
-		System.out.println("\nPrintout of 2nd Derivative Array\n");
+		printf("\nPrintout of 2nd Derivative Array\n");
 
 		for (int i=0; i<rows; i++){
 			for (int j=0; j<columns; j++) {
-				System.out.println("2nd deriv:  "+i+" " +j+ ": "+si.getSpline2d2(i, j));
+				printf("2nd deriv:  %d %d: %f", i, j, si.getSpline2d2(i, j));
 			}
 		}
-		System.out.println();
+		printf("\n");
 
 
 		// Now use splint2 to interpolate particular values from 2D array
@@ -106,27 +107,35 @@ public class SplineTester {
 		double xx1 = 2.2; 
 		double xx2=3.2;
 		double yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated);
+
+		printf("2D Interpolation: x1=%f x2=%f y=%f", xx1, xx2, yinterpolated);
 
 		xx1 = 1.1; xx2=2.1;
 		yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated);
+		printf("2D Interpolation: x1=%f x2=%f y=%f", xx1, xx2, yinterpolated);
 
 		xx1 = 3.6; xx2=4.5;
 		yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated);
+		printf("2D Interpolation: x1=%f x2=%f y=%f", xx1, xx2, yinterpolated);
 
 		xx1 = 2.4; xx2=4.9;
 		yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated);
+		printf("2D Interpolation: x1=%f x2=%f y=%f", xx1, xx2, yinterpolated);
 
 		xx1 = 16.4; xx2=3.1;
 		yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated
-			+ "; return -1 due to attempt to interpolate out of table.");
+		printf("2D Interpolation: x1=%f x2=%f y=%f; return -1 due to attempt to interpolate out of table.", xx1, xx2, yinterpolated);
 
 		xx1 = 5; xx2=4;
 		yinterpolated = si.splint2(xx1, xx2);
-		System.out.println("2D Interpolation: x1="+xx1+" x2="+xx2+ " y="+yinterpolated);
-    }
+		printf("2D Interpolation: x1=%f x2=%f y=%f", xx1, xx2, yinterpolated);
+	}
+};
+
+int main(){
+	SplineTester st = SplineTester();
+	st.test();
+
+	return 0;
+
 }
