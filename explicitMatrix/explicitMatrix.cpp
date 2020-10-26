@@ -164,10 +164,11 @@ bool doPE = false;             // Implement partial equilibrium also
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
 
-double T9_start;              // Start temperature in units of 10^9 K
-double rho_start;             // Start density in units of g/cm^3
-double T9;                    // Current temperature in units of 10^9 K
-double rho;                   // Current density in units of g/cm^3
+const int nMAX = 100;	       // nMAX hard coded in for number of Initial Conditions
+double T9_start[nMAX] = {1.0};              // Start temperature in units of 10^9 K
+double rho_start[nMAX] = {1.0e8};             // Start density in units of g/cm^3
+double T9[nMAX] ;                    // Current temperature in units of 10^9 K
+double rho[nMAX];                   // Current density in units of g/cm^3
 bool constant_T9 = true;      // Whether temperature constant in integration
 bool constant_rho = true;     // Whether density constant in integration
 
@@ -509,14 +510,15 @@ class Utilities{
             // Will call spline interpolator in hydro profile table to return 
             // T9 at this value of time t.  For now, we just return T9_start.
             
-            double temp;            // Interpolated temperature
-            temp = T9_start;        // Temporary for testing
+            for (int n = 1; n < nMAX; n++){
+            double temp[nMAX];            // Interpolated temperature
+            temp[n] = T9_start[n];        // Temporary for testing
             
             printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
                 t, temp
-            );
-            
-            return temp;
+            );         
+            return temp[n];
+             } // end for loop
         }
         
         
@@ -530,14 +532,16 @@ class Utilities{
             // Will call spline interpolator in hydro profile table to return 
             // rho at this value of time t.  For now, we just return rho_start.
             
-            double rhonow;             // Interpolated density
-            rhonow = rho_start;        // Temporary for testing
+            for(int m = 1; m <nMAX; m++){
+            double rhonow[nMAX];             // Interpolated density
+            rhonow[m] = rho_start[m];        // Temporary for testing
             
             printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
                    t, rhonow
             );
-            
-            return rhonow;
+
+            return rhonow[m];
+                        } // end for loop
         }
         
         
@@ -1828,17 +1832,17 @@ class Reaction: public Utilities {
             
 printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
             
-            if(dopf && T9 > pfCut9 && isReverse){
+            if(dopf && T9[1] > pfCut9 && isReverse){
                 
                 if(reacClass == 2){
                     
-                    pfden = pfInterpolator (reactantIndex[0], log10(T9));
-                    pfnum = pfInterpolator (productIndex[1], log10(T9));
+                    pfden = pfInterpolator (reactantIndex[0], log10(T9[1]));
+                    pfnum = pfInterpolator (productIndex[1], log10(T9[1]));
                     
                 } else if(reacClass == 5){
                     
-                    pfden = pfInterpolator (reactantIndex[1], log10(T9));
-                    pfnum = pfInterpolator (productIndex[1], log10(T9));
+                    pfden = pfInterpolator (reactantIndex[1], log10(T9[1]));
+                    pfnum = pfInterpolator (productIndex[1], log10(T9[1]));
                     
                 } else {
                     
@@ -3845,11 +3849,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 5.0;
-    T9 = T9_start;
-    rho_start = 1.0e8;
-    rho = rho_start;
-    
+
     // Initialize reacIsActive[] array to true;
     
     for (int i=0; i<SIZE; i++){ 
@@ -4132,8 +4132,8 @@ int main() {
     
     
     for(int i=0; i<SIZE; i++){
-        reaction[i].computeConstantFacs(T9, rho);
-        reaction[i].computeRate(T9, rho);
+        reaction[i].computeConstantFacs(T9[1], rho[1]);
+        reaction[i].computeRate(T9[1], rho[1]);
     }
     
     // Summarize computed rates
@@ -4151,7 +4151,22 @@ int main() {
         fprintf(pFileD, "rho may change ****\n");
     }
     
-
+	int n = 1;
+	const int nMAX = 100;
+	double rho_start[nMAX];
+	double T9_start[nMAX];
+	// int nMAX = 100; DEFINED on LINE 166
+	
+		// Set initial conditions. Rho and T9 have n -> nMAX entries 
+		 for (int j = 1; j < nMAX; j++){
+     	    		T9_start[n] = 1.0*(0.1*n);
+     	    		T9[n] = T9_start[n];
+       		rho_start[n] = 1.0e7*(0.1*n);
+       		rho[n] = rho_start[n];
+		}; //end for loop 
+		
+   while(n < nMAX){    // end bracket on 4435
+   
     
     while(t < stop_time){ 
         
@@ -4175,10 +4190,12 @@ int main() {
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
         if(!constant_T9 && totalTimeSteps > 1){
-            T9 = Utilities::interpolate_T(t);
+            T9[n] = Utilities::interpolate_T(t);
+           // T9[n] = T9_init[n] 
         }
         if(!constant_rho && totalTimeSteps > 1){
-            rho = Utilities::interpolate_rho(t);
+           rho[n] = Utilities::interpolate_rho(t);
+           //rho[n] = rho_init[n];
         }
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
@@ -4194,8 +4211,8 @@ int main() {
             
             for(int i=0; i<SIZE; i++){
                 
-                reaction[i].computeConstantFacs(T9, rho);
-                reaction[i].computeRate(T9, rho);
+                reaction[i].computeConstantFacs(T9[n], rho[n]);
+                reaction[i].computeRate(T9[n], rho[n]);
                 
             }
             
@@ -4419,6 +4436,9 @@ int main() {
     
     }   // End time integration while-loop
     
+    n = n +1; // increment n to go to next set of Initial Con.
+    
+    } // end loop with Initial conditions
     
     printf("\n\nEnd of integration");
     
