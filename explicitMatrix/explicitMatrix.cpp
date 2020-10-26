@@ -4119,7 +4119,50 @@ int main() {
     int plotCounter = 1;        // Plot output counter
     fastestOverallRate = 0.0;   // Initialize fastest overall rate
     timeMaxRate = 0.0;          // Initialize slowest overall rate
-    
+
+    int maxIntSteps = 3000;
+
+    // Arrays to store diagnositc information for later output
+    int totalTimeSteps_save[maxIntSteps];          
+    double tIntTime_save[maxIntSteps];             
+    double dtCurrentTimestep_save[maxIntSteps];    
+    int totalAsy_save[maxIntSteps];
+    int totalEquilReactions_save[maxIntSteps];
+    int totalEquilRG_save[maxIntSteps];
+
+    int iFlux_save[ISOTOPES][maxIntSteps];
+    char* isotopeLabel_save[ISOTOPES][maxIntSteps];
+    int YIsoptopeAbun_save[ISOTOPES][maxIntSteps];
+    double isotopeFplus_save[ISOTOPES][maxIntSteps];
+    double isotopeFminus_save[ISOTOPES][maxIntSteps];
+    double isotopeKeff_save[ISOTOPES][maxIntSteps];
+
+    int iFluxPE_save[ISOTOPES][maxIntSteps];
+    char* isotopeLabelPE_save[ISOTOPES][maxIntSteps];
+    int YIsoptopeAbunPE_save[ISOTOPES][maxIntSteps];
+    double isotopeFplusPE_save[ISOTOPES][maxIntSteps];
+    double isotopeFminusPE_save[ISOTOPES][maxIntSteps];
+    double isotopeKeffPE_save[ISOTOPES][maxIntSteps];
+
+    int plotCounter_save[maxIntSteps];
+    int plotSteps_save[maxIntSteps];
+    int totalTimeStepsPlot_save[maxIntSteps];
+    double T9Plot_save[maxIntSteps];
+    double rhoPlot_save[maxIntSteps];
+    double tIntTimePlot_save[maxIntSteps];
+    double dtPlot_save[maxIntSteps];
+    int totalAsyPlot_save[maxIntSteps];
+    double sumXPlot_save[maxIntSteps];
+
+    int iPlot_save[ISOTOPES][maxIntSteps];
+    double YAbunPlot_save[ISOTOPES][maxIntSteps];
+    double XMassFracPlot_save[ISOTOPES][maxIntSteps];
+    double isotopedYdTPlot_save[ISOTOPES][maxIntSteps];
+    double isotopedXdTPlot_save[ISOTOPES][maxIntSteps];
+
+
+
+
     Utilities::startTimer();    // Start a timer for integration
     
     // Compute initial rates. If constant_T9 and constant_rho are true, rates won't
@@ -4217,10 +4260,19 @@ int main() {
         
         if(diagnose1){
             
-            fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d",
-                    t, totalTimeSteps );
-            fprintf(pFileD, " dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
-                dt, totalAsy, totalEquilReactions, totalEquilRG );
+            //fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d",
+            //        t, totalTimeSteps );
+
+            totalTimeSteps_save[totalTimeSteps] = totalTimeSteps;
+            tIntTime_save[totalTimeSteps] = t;
+
+            //fprintf(pFileD, " dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
+            //    dt, totalAsy, totalEquilReactions, totalEquilRG );
+
+            dtCurrentTimestep_save[totalTimeSteps] = dt;
+            totalAsy_save[totalTimeSteps] = totalAsy;
+            totalEquilReactions_save[totalTimeSteps] = totalEquilReactions;
+            totalEquilRG_save[totalTimeSteps] = totalEquilRG;
             
         }
         
@@ -4241,17 +4293,25 @@ int main() {
         
         if(diagnose1){
             
-            fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+            //fprintf(pFileD, "\n\nISOTOPE FLUXES:");
             
             for (int i=0; i<ISOTOPES; i++){
                 
-                fprintf(pFileD, 
+                /*
+                    fprintf(pFileD, 
                     "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
                     i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
                     isotope[i].getfplus(), isotope[i].getfminus(), 
                     isotope[i].getfplus() - isotope[i].getfminus(),  
                     isotope[i].getkeff() );
-                
+                */
+
+                iFlux_save[i][totalTimeSteps] = i;
+                isotopeLabel_save[i][totalTimeSteps] = isotope[i].getLabel();
+                YIsoptopeAbun_save[i][totalTimeSteps] = Y[i];
+                isotopeFplus_save[i][totalTimeSteps] = isotope[i].getfplus();
+                isotopeFminus_save[i][totalTimeSteps] = isotope[i].getfminus();
+                isotopeKeff_save[i][totalTimeSteps] = isotope[i].getkeff();
             }
         }
         
@@ -4283,8 +4343,8 @@ int main() {
             if(totalEquilRG > 0){
                 
                 if(diagnose2)
-                fprintf(pFileD, 
-                "\n\n********* BEGIN PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+                //fprintf(pFileD, 
+                //"\n\n********* BEGIN PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
                 
                 // Restore species in equilibrium to their unperturbed equilibrium values at 
                 // the end of the timestep.  See the comments for function 
@@ -4293,18 +4353,28 @@ int main() {
                 restoreEquilibriumProg();
                 
                 if(diagnose2){
-                    fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+                    //fprintf(pFileD, "\n\nISOTOPE FLUXES:");
                     for (int i=0; i<ISOTOPES; i++){
+                        
+                        /*
                         fprintf(pFileD, 
                             "\n%d %s Y=%7.4e F+Sum=%7.4e F-Sum=%7.4e dF=%7.4e keff=%7.4e",
                             i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
                             isotope[i].getfplus(), isotope[i].getfminus(), 
                             isotope[i].getfplus() - isotope[i].getfminus(),  
                             isotope[i].getkeff());
+                        */
+                            iFluxPE_save[i][totalTimeSteps] = i;
+                            isotopeLabelPE_save[i][totalTimeSteps] = isotope[i].getLabel();
+                            YIsoptopeAbunPE_save[i][totalTimeSteps] = Y[i];
+                            isotopeFplusPE_save[i][totalTimeSteps] = isotope[i].getfplus();
+                            isotopeFminusPE_save[i][totalTimeSteps] = isotope[i].getfminus();
+                            isotopeKeffPE_save[i][totalTimeSteps] = isotope[i].getkeff();
+                    
                     }
                     
-                    fprintf(pFileD, 
-                    "\n\n********* END PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+                    //fprintf(pFileD, 
+                    //"\n\n********* END PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
                 }
                 
             }
@@ -4350,24 +4420,43 @@ int main() {
             // Optional output to diagnostic files
             
             if(showPlotSteps){
-                fprintf(pFileD, "\n%s%s", dasher, dasher);
+                ///fprintf(pFileD, "\n%s%s", dasher, dasher);
+                /*
                 fprintf(pFileD, 
                     "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
                     totalAsy, ISOTOPES, sumX);
-                fprintf(pFileD, "\n%s%s", dasher, dasher);
-                char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
-                char tempest2[] = "        dX/dt           dY           dX\n";
-                fprintf(pFileD, "%s%s", tempest1, tempest2);
+                */
+                plotCounter_save[totalTimeSteps] = plotCounter;
+                plotSteps_save[totalTimeSteps] = plotSteps;
+                totalTimeStepsPlot_save[totalTimeSteps] = totalTimeSteps;
+                T9Plot_save[totalTimeSteps] = T9;
+                rhoPlot_save[totalTimeSteps] = rho;
+                tIntTimePlot_save[totalTimeSteps] = t;
+                dtPlot_save[totalTimeSteps] = dt;
+                totalAsyPlot_save[totalTimeSteps] = totalAsy;
+                sumXPlot_save[totalTimeSteps] = sumX; 
+
+                //fprintf(pFileD, "\n%s%s", dasher, dasher);
+                //char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
+                //char tempest2[] = "        dX/dt           dY           dX\n";
+                //fprintf(pFileD, "%s%s", tempest1, tempest2);
                 
                 for(int i=0; i<ISOTOPES; i++){
+                    /*
                     fprintf(pFileD, "%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
                         i, isoLabel[i], Y[i], X[i], isotope[i].getdYdt(), isotope[i].getdXdt(),
                         isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
                     );
+                    */
+                    iPlot_save[i][totalTimeSteps] = i;
+                    YAbunPlot_save[i][totalTimeSteps] = Y[i];
+                    XMassFracPlot_save[i][totalTimeSteps] = X[i];
+                    isotopedYdTPlot_save[i][totalTimeSteps] = isotope[i].getdYdt();
+                    isotopedXdTPlot_save[i][totalTimeSteps] = isotope[i].getdXdt();
                 }
                 
-                fprintf(pFileD, "%s%s\n", dasher, dasher);
+                //fprintf(pFileD, "%s%s\n", dasher, dasher);
             }
             
             // Output to plot arrays for this timestep
