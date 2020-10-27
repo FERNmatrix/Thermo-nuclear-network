@@ -1306,7 +1306,7 @@ class Reaction: public Utilities {
             
             // Set corresponding character array reacLabel in main
             char p[s.length()];  
-            for (int i = 0; i < sizeof(p); i++) { 
+            for (int i = 0; i < sizeof(char)*s.length; i++) { 
                 p[i] = s[i]; 
                 reacLabel[reacIndex][i] = p[i];
             }
