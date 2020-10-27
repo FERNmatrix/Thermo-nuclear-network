@@ -4152,7 +4152,7 @@ int main() {
     }
     
 	int n = 1;
-	const int nMAX = 100;
+	const int nMAX = 10000;
 	double rho_start[nMAX];
 	double T9_start[nMAX];
 	// int nMAX = 100; DEFINED on LINE 166
@@ -4165,12 +4165,19 @@ int main() {
        		rho[n] = rho_start[n];
 		}; //end for loop 
 		
-   while(n < nMAX){    // end bracket on 4435
+ 
+ 	printf(Utilities::showTime());
+   for(n = 1; n < nMAX; n++){    // end bracket on 4435
    
-    
+   	t = 0.0001*stop_time;
+   	 
     while(t < stop_time){ 
-        
-        // Initialize fastest and slowest rates for this timestep
+    
+    	for(int i = 0; i < ISOTOPES; i++){
+    	Y0[i] = 2*Y[i];
+        }
+        t= 1.2*t;
+   /*     // Initialize fastest and slowest rates for this timestep
         
         fastestCurrentRate = 0.0;
         slowestCurrentRate = 1e30; 
@@ -4433,10 +4440,11 @@ int main() {
             
             plotCounter ++;
         }
-    
+    */
     }   // End time integration while-loop
+ 
     
-    n = n +1; // increment n to go to next set of Initial Con.
+   // n = n +1; // increment n to go to next set of Initial Con.
     
     } // end loop with Initial conditions
     
