@@ -505,7 +505,7 @@ class Utilities{
         // as a function of time if constant_T9 = false.
         // -------------------------------------------------------------------------
         
-        static double interpolate_T(double t){
+        double interpolate_T(double t){
             
             // Will call spline interpolator in hydro profile table to return 
             // T9 at this value of time t.  For now, we just return T9_start.
@@ -527,7 +527,7 @@ class Utilities{
         // density rho as a function of time if constant_rho = false.
         // -------------------------------------------------------------------------
         
-        static double interpolate_rho(double t){
+         double interpolate_rho(double t){
             
             // Will call spline interpolator in hydro profile table to return 
             // rho at this value of time t.  For now, we just return rho_start.
@@ -1306,7 +1306,7 @@ class Reaction: public Utilities {
             
             // Set corresponding character array reacLabel in main
             char p[s.length()];  
-            for (int i = 0; i < sizeof(char)*s.length; i++) { 
+            for (int i = 0; i < sizeof(char)*s.length(); i++) { 
                 p[i] = s[i]; 
                 reacLabel[reacIndex][i] = p[i];
             }
@@ -2597,7 +2597,7 @@ class ReactionGroup:  public Utilities {
         // Convert from string to char array
         
         char p[s.length()+1];  
-        for (int i = 0; i < sizeof(p); i++) { 
+        for (int i = 0; i < sizeof(char)*s.length(); i++) { 
             p[i] = s[i]; 
             reaclabel[k][i] = p[i];
         }
@@ -4152,7 +4152,7 @@ int main() {
     }
     
 	int n = 1;
-	const int nMAX = 10000;
+	const int nMAX = 100000;
 	double rho_start[nMAX];
 	double T9_start[nMAX];
 	// int nMAX = 100; DEFINED on LINE 166
@@ -4161,23 +4161,25 @@ int main() {
 		 for (int j = 1; j < nMAX; j++){
      	    		T9_start[n] = 1.0*(0.1*n);
      	    		T9[n] = T9_start[n];
-       		rho_start[n] = 1.0e7*(0.1*n);
-       		rho[n] = rho_start[n];
+       			rho_start[n] = 1.0e7*(0.1*n);
+       			rho[n] = rho_start[n];
 		}; //end for loop 
 		
  
  	printf(Utilities::showTime());
+	#pragma acc parallel loop 
    for(n = 1; n < nMAX; n++){    // end bracket on 4435
    
    	t = 0.0001*stop_time;
    	 
     while(t < stop_time){ 
-    
-    	for(int i = 0; i < ISOTOPES; i++){
-    	Y0[i] = 2*Y[i];
-        }
-        t= 1.2*t;
-   /*     // Initialize fastest and slowest rates for this timestep
+    //
+    //GPU TESTING LOOP
+    //	for(int i = 0; i < ISOTOPES; i++){
+    //	Y0[i] = 2*Y[i];
+     //   }
+      //  t= 1.2*t;
+        // Initialize fastest and slowest rates for this timestep
         
         fastestCurrentRate = 0.0;
         slowestCurrentRate = 1e30; 
@@ -4190,21 +4192,21 @@ int main() {
             isotope[i].setY0(Y[i]);
             
         }
-        
-        // Specify temperature T9 and density rho. If constant_T9 = true, a constant
+	
+  	t = 1.2*t;    
+/*        // Specify temperature T9 and density rho. If constant_T9 = true, a constant
         // temperature is assumed for the entire network calculation, set by T9_start
         // above.  Otherwise (constant_T9 = false) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
-        
+       
         if(!constant_T9 && totalTimeSteps > 1){
             T9[n] = Utilities::interpolate_T(t);
-           // T9[n] = T9_init[n] 
-        }
+           }
         if(!constant_rho && totalTimeSteps > 1){
            rho[n] = Utilities::interpolate_rho(t);
-           //rho[n] = rho_init[n];
-        }
-    
+            }
+ 
+	 	 
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
@@ -4222,9 +4224,10 @@ int main() {
                 reaction[i].computeRate(T9[n], rho[n]);
                 
             }
-            
+     
         }
-        
+   		
+     
         // Use functions of the Reaction class to compute fluxes.  We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeFlux()
@@ -4238,6 +4241,7 @@ int main() {
             reaction[i].computeFlux();
             
         }
+
         
         if(diagnose1){
             
@@ -4440,7 +4444,7 @@ int main() {
             
             plotCounter ++;
         }
-    */
+   */ 
     }   // End time integration while-loop
  
     
