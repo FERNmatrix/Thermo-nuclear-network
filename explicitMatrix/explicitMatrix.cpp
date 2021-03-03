@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EM_TS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -127,7 +127,7 @@ static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
 static const bool diagnose2 = false;
-static const bool diagnose_dt = false;
+static const bool diagnose_dt = true;
 static const bool diagnoseQSS = false;
 
 
@@ -3301,18 +3301,19 @@ class Integrate: public Utilities {
             // Determine trial timestep.  This timestep will be updated in the various 
             // integration methods to a final timestep using getTimestep(). 
             
-            dtLast = dt;
-            sumXlast = sumX;
+           dtLast = dt;
+           sumXlast = sumX;
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
             
-            if(constantTimestep){
-                dt = constant_dt;      // Constant timestep
-            } else {
-                dt = getTrialTimestep();    // Trial adaptive timestep
-                //dt = getTimestep();    // Adaptive timestep
-            }
+          //  if(constantTimestep){
+            //    dt = constant_dt;      // Constant timestep
+           // } else {
+                //dt = getTrialTimestep();    // Trial adaptive timestep
+                dt = getTimestep();    // Adaptive timestep
+                
+           // }
             
             //updatePopulations(dt);
             
@@ -3328,8 +3329,8 @@ class Integrate: public Utilities {
                 updatePopulations(dt);
                 isValidUpdate = checkTimestepTolerance();
             }
-            
-        }    // End of doIntegrationStep
+           // return dt; 
+        }     //End of doIntegrationStep 
         
         
         
@@ -3481,8 +3482,7 @@ class Integrate: public Utilities {
             
             double dtFlux;
             double dtt;
-            
-            // Trial timestep, which is required to initiate the iteration to the final 
+            // Trial timestep, which is required to initiate the iteration to the final diagn
             // timestep for this time interval.
             
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
@@ -3490,23 +3490,88 @@ class Integrate: public Utilities {
             if(diagnose_dt)
             fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
                 t, dtFlux, dtLast, dtt);
-
+printf("The value of dt is:%f\n",dtt);
             return dtt;
         }
         
         
     // Function to set the current integration timestep
         
-    static double getTimestep(){
-        
-        // Placeholder. The adaptive timestepping algorithm will go here. We should be
-        // able to use the neutrino transport adaptive timestepper that Aaron and Adam
-        // have been testing with suitable modification.  For now just 
-        // return a constant.
-        
-        double timestep = constant_dt;
-        return timestep;
-    }
+	static double getTimestep(){
+	
+		int dtcount = 0; // number of times dt has been recalculated
+		int cycle = 0; // number of iterations that have 
+		double tol = 1.0e-7;
+		double dt_grow = 1.03;
+		double dt_dec = 0.93;
+		double dt;
+		double sumX1;
+		bool restep;
+	
+	// call the check function to get the initial value of restep based on initial time step
+	restep = check();
+	
+	// get an initial sumX by calling IntStep
+	sumX1 = IntStep();
+	dt = getTrialTimestep();
+	
+	//MAKE SURE TO CALCULATE DT. IF RESTEP IS 0 NO DT IS CALCULATED/RETURNED. NO DT INITIATED IN WHILE LOOP
+	
+	//while loop will adjust dt for restep = 1 ------ will need a way to evaluate dt for restep = 0 to maximize efficiency
+	while (restep == 1){
+		//decrement dt 
+		dtcount = dtcount + 1;
+ 		dt = dt*dt_dec;
+ 		
+ 		//update sumX with new dt by updatePopulations() and calling utilities function
+ 		updatePopulations(dt);
+ 		sumX1 = Utilities::sumMassFractions();
+ 		
+		// re-evaluate restep, check function uses trial timestep
+		diffX = sumX1 - 1.0;
+  		if (diffX < tol){
+  			restep = 0;
+  			}
+  		else restep = 1;
+  		//
+  		//maybe an if statement for restep = 0 in order to maximize dt?
+  		//
+	} // end while loop
+	
+	printf("sumX1 is :%f\n",sumX1);
+	printf("The number of steps is:%d\n",dtcount);
+	printf("The value of dt is:%f\n",dt);
+	return dt;
+	}// end getTimeStep
+	
+	
+	// do an initial integration step with a trial TS that will calculate the populations and sumX
+	static double IntStep(){
+		double sumX2;
+		dt = getTrialTimestep();
+		updatePopulations(dt);
+		sumX2 = Utilities::sumMassFractions();
+		return sumX2;
+	}// end of trial integration step
+	
+	
+
+	// Compare the trial sumX to a tolerance and determine if a restep is needed
+	static bool check(){
+		double tol = 1.0e-7;
+		double sumX3;
+		double diffX;
+		bool restep;
+		
+ 		sumX3 = IntStep();
+  		diffX = sumX3 - 1.0;
+  		
+  		if (diffX < tol)
+  			restep = 0;
+  		else restep = 1;
+  			
+  	return restep;
+	}// end function to check for restep
     
      
     // Function to update by the forward Euler method.  Returns the updated value of Y.
