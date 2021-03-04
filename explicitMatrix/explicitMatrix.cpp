@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc EM_TS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -21,7 +21,6 @@
  * 4. Change control parameters like stop_time, massTol, ...
  * 5. Change plot output mask plotXlist[]
  * 6. Change values of T9_start and rho_start
- *
  *
  * 
  * AUTHORS:
@@ -3311,7 +3310,7 @@ class Integrate: public Utilities {
           //  if(constantTimestep){
             //    dt = constant_dt;      // Constant timestep
            // } else {
-                //dt = getTrialTimestep();    // Trial adaptive timestep
+              //  dt = getTrialTimestep();    // Trial adaptive timestep
                 dt = getTimestep();    // Adaptive timestep
                 
            // }
@@ -3488,10 +3487,10 @@ class Integrate: public Utilities {
             
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             dtt = min(dtFlux, dtLast);
-            if(diagnose_dt)
-            fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
-                t, dtFlux, dtLast, dtt);
-printf("The value of dt is:%f\n",dtt);
+       //     if(diagnose_dt)
+     //       fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
+   //             t, dtFlux, dtLast, dtt);
+// printf("The value of dtt is:%f\n",dtt);
             return dtt;
         }
         
@@ -3514,12 +3513,19 @@ printf("The value of dt is:%f\n",dtt);
 	
 	// get an initial sumX by calling IntStep
 	sumX1 = IntStep();
-	dt = getTrialTimestep();
+
+            double dtFlux;
+            double dtt;
+            // Trial timestep, which is required to initiate the iteration to the final diagn
+            // timestep for this time interval.
+            
+            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
+            dt = min(dtFlux, dtLast);
 	
 	//MAKE SURE TO CALCULATE DT. IF RESTEP IS 0 NO DT IS CALCULATED/RETURNED. NO DT INITIATED IN WHILE LOOP
 	
 	//while loop will adjust dt for restep = 1 ------ will need a way to evaluate dt for restep = 0 to maximize efficiency
-	while (restep == 1){
+	if (restep == 1){
 		//decrement dt 
 		dtcount = dtcount + 1;
  		dt = dt*dt_dec;
@@ -3538,10 +3544,14 @@ printf("The value of dt is:%f\n",dtt);
   		//maybe an if statement for restep = 0 in order to maximize dt?
   		//
 	} // end while loop
+	else if (restep == 0){
+		dt = min(dtFlux, dtLast);
+	}
 	
-	printf("sumX1 is :%f\n",sumX1);
-	printf("The number of steps is:%d\n",dtcount);
-	printf("The value of dt is:%f\n",dt);
+	//printf("sumX1 is :%f\n",sumX1);
+	//printf("The number of steps is:%d\n",dtcount);
+	//printf("The value of dt is:%f\n",dt);
+
 	return dt;
 	}// end getTimeStep
 	
@@ -3549,7 +3559,15 @@ printf("The value of dt is:%f\n",dtt);
 	// do an initial integration step with a trial TS that will calculate the populations and sumX
 	static double IntStep(){
 		double sumX2;
-		dt = getTrialTimestep();
+
+            double dtFlux;
+            double dtt;
+            // Trial timestep, which is required to initiate the iteration to the final diagn
+            // timestep for this time interval.
+            
+            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
+            dt = min(dtFlux, dtLast);
+
 		updatePopulations(dt);
 		sumX2 = Utilities::sumMassFractions();
 		return sumX2;
@@ -5615,5 +5633,6 @@ void setReactionFluxes(){
     Reaction::populateFplusFminus();
     Reaction::sumFplusFminus();
 }
+
 
 
