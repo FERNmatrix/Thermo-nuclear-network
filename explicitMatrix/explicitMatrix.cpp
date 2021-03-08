@@ -3505,6 +3505,7 @@ class Integrate: public Utilities {
 		double dt_grow = 1.03;
 		double dt_dec = 0.93;
 		double dt;
+		double tempdt;
 		double sumX1;
 		bool restep;
 	
@@ -3514,21 +3515,18 @@ class Integrate: public Utilities {
 	// get an initial sumX by calling IntStep
 	sumX1 = IntStep();
 
-            double dtFlux;
-            double dtt;
             // Trial timestep, which is required to initiate the iteration to the final diagn
             // timestep for this time interval.
-            
+            double dtFlux;
             dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
             dt = min(dtFlux, dtLast);
 	
-	//MAKE SURE TO CALCULATE DT. IF RESTEP IS 0 NO DT IS CALCULATED/RETURNED. NO DT INITIATED IN WHILE LOOP
-	
 	//while loop will adjust dt for restep = 1 ------ will need a way to evaluate dt for restep = 0 to maximize efficiency
-	if (restep == 1){
+	for (restep == 1; dt = dt*dt_dec;){
 		//decrement dt 
-		dtcount = dtcount + 1;
- 		dt = dt*dt_dec;
+		//dtcount = dtcount + 1;
+ 		//dt = dt*dt_dec;
+ 		tempdt = dt;
  		
  		//update sumX with new dt by updatePopulations() and calling utilities function
  		updatePopulations(dt);
@@ -3536,22 +3534,35 @@ class Integrate: public Utilities {
  		
 		// re-evaluate restep, check function uses trial timestep
 		diffX = sumX1 - 1.0;
-  		if (diffX < tol){
+  		if (diffX <= tol){
   			restep = 0;
+  			break;
   			}
   		else restep = 1;
-  		//
-  		//maybe an if statement for restep = 0 in order to maximize dt?
-  		//
-	} // end while loop
-	else if (restep == 0){
-		dt = min(dtFlux, dtLast);
+	} 
+
+	for (restep == 0; dt = dt*dt_grow;){
+		
+ 		//update sumX with new dt by updatePopulations() and calling utilities function
+ 		updatePopulations(dt);
+ 		sumX1 = Utilities::sumMassFractions();
+ 		
+		// re-evaluate restep, check function uses trial timestep
+		diffX = sumX1 - 1.0;
+  		if (diffX <= tol){
+  			restep = 0;
+  			tempdt = dt;
+  			}
+  		else{
+			 //restep = 1;
+			 break;
+			}
 	}
 	
 	//printf("sumX1 is :%f\n",sumX1);
 	//printf("The number of steps is:%d\n",dtcount);
 	//printf("The value of dt is:%f\n",dt);
-
+	dt = tempdt;
 	return dt;
 	}// end getTimeStep
 	
