@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     c
+ *     gcc infiniteTS.cpp -o infiniteTS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -3306,7 +3306,10 @@ class Integrate: public Utilities {
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
-            dt = getTimestep();
+
+            dt = getTimestep();    // Adaptive timestep
+            
+           
         }    // End of doIntegrationStep
         
         
@@ -3314,11 +3317,12 @@ class Integrate: public Utilities {
         
         // Function to do population update with current dt
         
-        static void updatePopulations(double dt){
+        static void updatePopulations(double dtt){
 
             // If using the QSS approximation, apply QSS approximation to all isotopes
-            
+           // printf("\nThe UpdatePop dt value is =%2.20f\n",dtt);
             if(doQSS){
+printf("\nThe UpdatePop (QSS) dt value is =%2.20f\n",dtt);
 
                 QSSupdate();
                 
@@ -3343,7 +3347,7 @@ class Integrate: public Utilities {
                         if(isAsy[i]) asyck=true;
                         double ck;
                         if( Y[i] > 0.0 ){
-                            ck = FminusSum[i]*dt/Y[i];
+                            ck = FminusSum[i]*dtt/Y[i];
                         } else {
                             ck = 0.0;
                         }
@@ -3353,40 +3357,27 @@ class Integrate: public Utilities {
                 // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
                 // by PE approximation (individual fluxes in RG that are in equilibrium) and 
                 // asymptotic approximation (rows and columns of matrix)
-                
+                printf("\nThe UpdatePop (ASY) dt value is =%2.20f\n",dtt);
+                printf("Mass fraction for He is:%2.8f\n",X[0]);
+                printf("Mass fraction for C is:%2.8f\n",X[1]);
+                printf("Mass fraction for O is:%2.8f\n",X[2]);
+
                 updateAsyEuler();
             }
             
         }
-            
-        // Function to set the trial integration timestep
         
-        static double getTrialTimestep(){
-            
-            double dtFlux;
-            double dt;
-            
-            // Trial timestep, which is required to initiate the iteration to the final 
-            // timestep for this time interval.
-            
-            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
-            dt = min(dtFlux, dtLast);
-          //  if(diagnose_dt)
-          //  fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
-          //      t, dtFlux, dtLast, dt);
-
-            return dt;
-        }
-        
-        
+       
     // Function to set the current integration timestep
         
     static double getTimestep(){
 
-    	//define counters to keep track of recounts
+    	//define counters to keep track of recounts if needed
     	int recount1 = 0;
    		int recount2 = 0;
-   		int recount3 = 0;
+
+   		//boolean variable to determine quality of dt
+   		bool tolcon; //tolerance condition
 
    		//define tolerances
    		double uptol = 1.0e-7;
@@ -3395,11 +3386,10 @@ class Integrate: public Utilities {
    		//define different dts
    		double dtnew;
    		double dt;
-   		double trialdt;
-
+   		
    		//define adjustments to dt
-   		double dtgrow = 1.05;
-   		double dtdec = 0.95;
+   		double dtgrow = 1.01;
+   		double dtdec = 0.93;
    		double dtmax;
 
    		//define coniditional variables
@@ -3407,77 +3397,94 @@ class Integrate: public Utilities {
    		double diffX;
 
    		//Begin calculations
-   		trialdt = getTrialTimestep();
-   		dtnew = trialdt*dtgrow;
-   		//dt = dtnew;
+   		dtnew = dtLast*dtgrow;
 
-   		updatePopulations(dt);
+   		updatePopulations(dtnew);
    		sumX = Utilities::sumMassFractions();
    		diffX = abs(sumX - 1.0);
-   		// 3 possible cases here for diffX and the adjustment to dt
-   		//CASE 1: diffX is less than the lowtol bound, dt can grow while dt < dtmax
-   		if(diffX < lowtol){
-   			dtmax = dtnew*1.15; 
+   		//printf("initial diffX is:%2.10f\n",diffX);
 
-   			while(diffX < lowtol && dt < dtmax){
-   				dt = dtnew*dtdec;
+   		//boolen condition defined
+   		//if (diffX > lowtol && diffX < uptol){
+   		//	tolcon = 1;
+   		//}
+   	    //else tolcon = 0;
+
+   		//Either the new value of dt falls within tol or can be modified further
+
+   		//CASE 1 the tolerance condition is not satisfied and dt needs to be redone
+   		while (diffX > uptol || diffX < lowtol){
+
+   			//2 more possible cases here. 1: dt needs to be decreased or 2: dt can be increased further
+   			//CASE 2-1: dt needs to be decreased to brind diffX within tol condition
+   			if(diffX > uptol){
+   				
+   				dtnew = dtnew*dtdec;
    				recount1++;
-
-   				updatePopulations(dt);
-   			   	sumX = Utilities::sumMassFractions();
-   				diffX = abs(sumX - 1.0);	
-
+   			//	updatePopulations(dtnew);
+   				
+   			//  printf("diffX =:%2.10f\n",diffX);
+   			//	printf("using dt dec");
+   			//	printf("dt was lowered to:%2.15f\n",dtnew);
    			}
-   			printf("\nFIRST case used\n");
-   			printf("The value of dt is: %2.10f\n",dt);
-   			printf("# of resteps is: %d\n",recount1);
-   		}
-   		//CASE 2: diffX falls within the tolerance range and no adjustment to dt is needed
-   		else if(diffX > lowtol && diffX < uptol){
-   			dt = dtnew;
-   			printf("\nSECOND case used\n");
-   			printf("The value of dt is: %2.20f\n",dt);
-   			printf("The value of diffX is currently: %2.10f\n",diffX);
-   			//printf("# of resteps is: %d\n",recount1);
-
-   		}
-   		//CASE 3: diffX is higher than the uptol bound and needs to be decreased until diffX is < uptol
-   		else if(diffX > uptol){
-   			//initialize temp varible 
-   			double diffX3, sumX3, dt3;
-
-   			diffX3 = diffX;
-
-   			while(diffX3 > uptol){
-   				dt3 = dtnew*dtdec;
-   				recount3++;
-
-   				updatePopulations(dt3);
-   				sumX3 = Utilities::sumMassFractions();
-   				diffX3 = abs(sumX3 - 1.0);
-   				printf("The value of diffX3 is now: %2.10f\n",diffX3);
-   			}
-   			dt = dt3;
-   			printf("\nTHIRD case used\n");
-   			printf("The value of dt3 is: %2.10f\n",dt3);
-   			printf("# of resteps is: %d\n",recount3);
+   				
+   				//sumX = Utilities::sumMassFractions();
+   				//diffX = abs(sumX - 1.0);
    			
-   		} 
-        
-   		return dt;
-    }
+   			//CASE 2-2: dt can be increased since diffX is under the lower bound of the accepted tolerance 
+   			else {
+
+   				dtnew = dtnew*dtgrow;
+   				recount2++;
+
+   				//updatePopulations(dtnew);
+   			
+   			//	sumX = Utilities::sumMassFractions();
+   			//	diffX = abs(sumX - 1.0);
+
+   				printf("\nusing dt grow\n");
+   				printf("dt has been increased to:%2.15f\n",dtnew);
+   			//  printf("diffX is now:%2.10f\n",diffX);
+   			}
+   			updatePopulations(dtnew);
+   			sumX = Utilities::sumMassFractions();
+   			diffX = abs(sumX - 1.0);
+   			printf("diffX is now:%2.10f\n",diffX);
+   			printf("The number of steps is at: %d\n",recount1);
+
+   		//	if (diffX > lowtol && diffX < uptol){
+   		//		tolcon = 1;
+        //		dt = dtnew;
+	    //	}
+   	    //	else {
+   	    //		tolcon = 0;	
+   				//printf("\ndiffX has not passed tol, TRY AGAIN\n");
+   		//	}
+
+   		} // end while loop
+
+   		// CASE 2: The tolerance condition is satisified and dt can be passed along
+   		if (diffX < uptol && diffX > lowtol){
+   			dt = dtnew;
+   			dtLast = dt;
+   			printf("\nThe tolerance condition was satified, the value of dt is: %2.15f\n", dt);
+   		  	printf("diffX is:%2.10f\n", diffX);
+   			
+   			return dt;
+   		}
+    }// End Timestep function
     
      
     // Function to update by the forward Euler method.  Returns the updated value of Y.
         
-    static double eulerUpdate(int i, double fplusSum, double fminusSum, double y0, double dt){
+    static double eulerUpdate(int i, double fplusSum, double fminusSum, double y0, double dtt){
         
-        double newY = y0 + (fplusSum-fminusSum)*dt;
+        double newY = y0 + (fplusSum-fminusSum)*dtt;
         
         if(diagnose2)
         fprintf(pFileD, 
         "\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-        isoLabel[i], t, dt, t+dt, fminusSum/y0, fminusSum*dt/y0, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
+        isoLabel[i], t, dtt, t+dtt, fminusSum/y0, fminusSum*dt/y0, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
 
         return newY;     // New Y for forward Euler method
         
@@ -3486,16 +3493,16 @@ class Integrate: public Utilities {
     // Function to update by the asymptotic method using Sophia He formula. Returns
     // the updated value of Y.
     
-    static double asymptoticUpdate(double fplus, double fminus, double y, double dt){
+    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
         
         // Compute new Y for asymptotic method
         
-        double newY = (y + fplus*dt)/(1.0 + fminus*dt/y);  
+        double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         
         if(diagnose2)
         fprintf(pFileD, 
         "\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-        t, dt, t+dt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+        t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
         
         return newY;  
         
@@ -3546,6 +3553,7 @@ class Integrate: public Utilities {
             }
             
             X[i] = Y[i] * (double) AA[i];
+            printf("The mass fraction for the ith isotope is:%2.8f\n",X[i]);
             
         }
         
@@ -4366,7 +4374,7 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%1.10f dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
                 numberRG, sumX, ECON*netdERelease, ECON*ERelease
             );
