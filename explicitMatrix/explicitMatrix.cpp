@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc infiniteTS.cpp -o infiniteTS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -127,7 +127,7 @@ static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
 static const bool diagnose2 = false;
-static const bool diagnose_dt = false;
+static const bool diagnose_dt = true;
 static const bool diagnoseQSS = false;
 
 
@@ -577,7 +577,7 @@ class Utilities{
             // crash when executed.
             
             FILE * pFile;
-            pFile = fopen("gnu_out/gnufile.data","w");
+            pFile = fopen("gnu_out/EMATSgnufile.data","w");
             
             FILE * pFile2;
             pFile2 = fopen("gnu_out/gnufile2.data","w");
@@ -3301,16 +3301,14 @@ class Integrate: public Utilities {
             // Determine trial timestep.  This timestep will be updated in the various 
             // integration methods to a final timestep using getTimestep(). 
             
-            dtLast = dt;
-            sumXlast = sumX;
+           dtLast = dt;
+           sumXlast = sumX;
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
+           dt = getTimestep();    // Adaptive timestep
 
-            dt = getTimestep();    // Adaptive timestep
-            
-           
-        }    // End of doIntegrationStep
+        }     //End of doIntegrationStep 
         
         
         
@@ -3320,11 +3318,11 @@ class Integrate: public Utilities {
         static void updatePopulations(double dtt){
 
             // If using the QSS approximation, apply QSS approximation to all isotopes
-           // printf("\nThe UpdatePop dt value is =%2.20f\n",dtt);
+            
             if(doQSS){
-printf("\nThe UpdatePop (QSS) dt value is =%2.20f\n",dtt);
 
                 QSSupdate();
+                printf("\nThe updatePop (QSS) update has dt of: %2.15\n",dtt);
                 
             }
             
@@ -3357,122 +3355,66 @@ printf("\nThe UpdatePop (QSS) dt value is =%2.20f\n",dtt);
                 // If Asy+PE, compute the matrix multiply for forward euler, with fluxes removed
                 // by PE approximation (individual fluxes in RG that are in equilibrium) and 
                 // asymptotic approximation (rows and columns of matrix)
-                printf("\nThe UpdatePop (ASY) dt value is =%2.20f\n",dtt);
-                printf("Mass fraction for He is:%2.8f\n",X[0]);
-                printf("Mass fraction for C is:%2.8f\n",X[1]);
-                printf("Mass fraction for O is:%2.8f\n",X[2]);
-
+                
                 updateAsyEuler();
+              //  printf("\nUpdate Pop (ASY) has a dt entry =%2.15f\n",dtt);
+               // printf("Mass fraction for He is:%2.8f\n",X[0]);
+                //printf("Mass fraction for C is:%2.8f\n",X[1]);
+                //printf("Mass fraction for O is:%2.8f\n",X[2]);
             }
             
         }
-        
-       
+
     // Function to set the current integration timestep
         
-    static double getTimestep(){
+	static double getTimestep(){
 
-    	//define counters to keep track of recounts if needed
-    	int recount1 = 0;
-   		int recount2 = 0;
+		//define variables for keeping track of recalculation
+		int recount=0;
+		//int recountUp;
 
-   		//boolean variable to determine quality of dt
-   		bool tolcon; //tolerance condition
+		//define any variances of dt uses, dt is global
+		double dtgrow = 1.01;
+		double dtdec = 0.9;
+		double dtnew;
 
-   		//define tolerances
-   		double uptol = 1.0e-7;
-   		double lowtol = 1.0e-10;
+		//Tolerances
+		double uptol = 1.0e-7;
+		double lowtol = 1.0e-10;
 
-   		//define different dts
-   		double dtnew;
-   		double dt;
-   		
-   		//define adjustments to dt
-   		double dtgrow = 1.01;
-   		double dtdec = 0.93;
-   		double dtmax;
+		//conditional variables diffX and sumX are global
 
-   		//define coniditional variables
-   		double sumX;
-   		double diffX;
+		//Begin calculations
+		dtnew = dtLast*dtgrow;
+		updatePopulations(dtnew);
+		sumX = Utilities::sumMassFractions();
+		diffX = abs(sumX - 1.0);
 
-   		//Begin calculations
-   		dtnew = dtLast*dtgrow;
+		dt = dtnew;
+		while(diffX > uptol){
 
-   		updatePopulations(dtnew);
-   		sumX = Utilities::sumMassFractions();
-   		diffX = abs(sumX - 1.0);
-   		//printf("initial diffX is:%2.10f\n",diffX);
+			dt = dt*dtdec;
+			recount++;
 
-   		//boolen condition defined
-   		//if (diffX > lowtol && diffX < uptol){
-   		//	tolcon = 1;
-   		//}
-   	    //else tolcon = 0;
+			updatePopulations(dt);
+			sumX = sumMassFractions();
+			diffX = abs(sumX - 1.0);
 
-   		//Either the new value of dt falls within tol or can be modified further
+			//printf("The tol WAS NOT satsisfied, diffX =%2.10f\n",diffX);
+		//	printf("The value of dt is =%2.15f\n",dt);
+		//	printf("The number of recalculations is %d\n",recount);
 
-   		//CASE 1 the tolerance condition is not satisfied and dt needs to be redone
-   		while (diffX > uptol || diffX < lowtol){
+		}
 
-   			//2 more possible cases here. 1: dt needs to be decreased or 2: dt can be increased further
-   			//CASE 2-1: dt needs to be decreased to brind diffX within tol condition
-   			if(diffX > uptol){
-   				
-   				dtnew = dtnew*dtdec;
-   				recount1++;
-   			//	updatePopulations(dtnew);
-   				
-   			//  printf("diffX =:%2.10f\n",diffX);
-   			//	printf("using dt dec");
-   			//	printf("dt was lowered to:%2.15f\n",dtnew);
-   			}
-   				
-   				//sumX = Utilities::sumMassFractions();
-   				//diffX = abs(sumX - 1.0);
-   			
-   			//CASE 2-2: dt can be increased since diffX is under the lower bound of the accepted tolerance 
-   			else {
+		if(diffX < uptol){
+			dtLast = dt;
+			//printf("dt has been passed on with value =%2.10f\n",dt);
+		//	printf("tol was satisfied with a diffX of:%2.10f\n",diffX);
+			return dt;
 
-   				dtnew = dtnew*dtgrow;
-   				recount2++;
+		}
 
-   				//updatePopulations(dtnew);
-   			
-   			//	sumX = Utilities::sumMassFractions();
-   			//	diffX = abs(sumX - 1.0);
-
-   				printf("\nusing dt grow\n");
-   				printf("dt has been increased to:%2.15f\n",dtnew);
-   			//  printf("diffX is now:%2.10f\n",diffX);
-   			}
-   			updatePopulations(dtnew);
-   			sumX = Utilities::sumMassFractions();
-   			diffX = abs(sumX - 1.0);
-   			printf("diffX is now:%2.10f\n",diffX);
-   			printf("The number of steps is at: %d\n",recount1);
-
-   		//	if (diffX > lowtol && diffX < uptol){
-   		//		tolcon = 1;
-        //		dt = dtnew;
-	    //	}
-   	    //	else {
-   	    //		tolcon = 0;	
-   				//printf("\ndiffX has not passed tol, TRY AGAIN\n");
-   		//	}
-
-   		} // end while loop
-
-   		// CASE 2: The tolerance condition is satisified and dt can be passed along
-   		if (diffX < uptol && diffX > lowtol){
-   			dt = dtnew;
-   			dtLast = dt;
-   			printf("\nThe tolerance condition was satified, the value of dt is: %2.15f\n", dt);
-   		  	printf("diffX is:%2.10f\n", diffX);
-   			
-   			return dt;
-   		}
-    }// End Timestep function
+	} // end getTimestep
     
      
     // Function to update by the forward Euler method.  Returns the updated value of Y.
@@ -3553,8 +3495,8 @@ printf("\nThe UpdatePop (QSS) dt value is =%2.20f\n",dtt);
             }
             
             X[i] = Y[i] * (double) AA[i];
-            printf("The mass fraction for the ith isotope is:%2.8f\n",X[i]);
-            
+      //      printf("In update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
+          //  printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
         }
         
     }    // End function updateAsyEuler()
@@ -3767,11 +3709,11 @@ int main() {
     
     // Open a file for diagnostics output
     
-    pFileD = fopen("gnu_out/diagnostics.data","w");
+    pFileD = fopen("gnu_out/EMATSdiagnostics.data","w");
     
     // Write the time
     
-    //fprintf(pFileD, Utilities::showTime());
+    fprintf(pFileD, Utilities::showTime());
     printf("%s", Utilities::showTime());
     
     // Set labels and check consistency of choice for explicit algebraic methods set.
@@ -4374,7 +4316,7 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%1.10f dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
                 numberRG, sumX, ECON*netdERelease, ECON*ERelease
             );
