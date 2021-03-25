@@ -577,7 +577,7 @@ class Utilities{
             // crash when executed.
             
             FILE * pFile;
-            pFile = fopen("gnu_out/gnufile.data","w");
+            pFile = fopen("gnu_out/EMATSgnufile.data","w");
             
             FILE * pFile2;
             pFile2 = fopen("gnu_out/gnufile2.data","w");
@@ -3306,30 +3306,8 @@ class Integrate: public Utilities {
             
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
-            
-          //  if(constantTimestep){
-            //    dt = constant_dt;      // Constant timestep
-           // } else {
-              //  dt = getTrialTimestep();    // Trial adaptive timestep
-                dt = getTimestep();    // Adaptive timestep
-                
-           // }
-            
-            //updatePopulations(dt);
-            
-            isValidUpdate = false;
-            int dtcounter = 0;
-            int dtcounterMax = 1;
-            
-            // Update population with iterated timestep until tolerance satisfied.  Presently
-            // dtcounterMax is set to 1.
-            
-            while(!isValidUpdate && dtcounter < dtcounterMax){
-                dtcounter ++;
-                updatePopulations(dt);
-                isValidUpdate = checkTimestepTolerance();
-            }
-           // return dt; 
+           dt = getTimestep();    // Adaptive timestep
+
         }     //End of doIntegrationStep 
         
         
@@ -3344,6 +3322,7 @@ class Integrate: public Utilities {
             if(doQSS){
 
                 QSSupdate();
+                printf("\nThe updatePop (QSS) update has dt of: %2.15\n",dtt);
                 
             }
             
@@ -3378,219 +3357,72 @@ class Integrate: public Utilities {
                 // asymptotic approximation (rows and columns of matrix)
                 
                 updateAsyEuler();
+              //  printf("\nUpdate Pop (ASY) has a dt entry =%2.15f\n",dtt);
+               // printf("Mass fraction for He is:%2.8f\n",X[0]);
+                //printf("Mass fraction for C is:%2.8f\n",X[1]);
+                //printf("Mass fraction for O is:%2.8f\n",X[2]);
             }
             
-        }
-        
-        
-        // Function to check whether timestep meets tolerance requirements
-        
-        static bool checkTimestepTolerance(){
-            
-            // Alter timestepping for PE according to magnitude of mostDevious from last timestep
-            
-            if (doPE && t > equilibrateTime) {
-                
-                if(diagnose_dt)
-                fprintf(pFileD, 
-                    "\nTIMESTEP: TOLERANCE t=%7.4e dt=%7.4e mostdevious=%7.4e totalEquilReactions=%d", 
-                    t, dt, mostDevious, totalEquilReactions);
-                
-                double dtprev = dt;
-                
-                if (mostDevious > deviousMax) {
-                    dt *= 0.93;
-                    if(diagnose_dt)
-                    fprintf(pFileD, 
-                        "\nTIMESTEP: DOWNDEVIOUS t=%8.5e old_dt=%8.5e new_dt=%8.5e mostDevious=%8.5e",
-                        t, dtprev, dt, mostDevious);
-                } else if (mostDevious < deviousMin) {
-                    dt *= 1.03;
-                    if(diagnose_dt)
-                    fprintf(pFileD, 
-                        "\nTIMESTEP: UPDEVIOUS t=%8.5e old_dt=%8.5e  new_dt=%8.5e mostDevious=%8.5e",
-                        t, dtprev, dt, mostDevious);
-                    
-                // Following option not in Java version. Inserted because I found that dt was 
-                // no longer increasing after a certain time.  Found reason was that I was failing 
-                // to initialize mostDevious = 0.0 at beginning of computeEquilibrium(). Thus after 
-                // a certain time the mostDevious < deviousMin condition could never be satisfied.  
-                // However, I found that including the the following improved the timestepping 
-                // somewhat over the Java version for the 3-alpha network.
-                    
-                } else {
-                    
-                    //dt *= 1.02; 
-                }
-                
-                updatePopulations(dt);
-            }
-            
-            // Check the sum of the mass fractions. Should be 1.0 if particle number is
-            // being conserved
-            
-            sumX = Utilities::sumMassFractions();
-            diffX = abs(sumX - 1.0);
-            
-            // Parameters for old timestepper
-            
-            double massChecker = abs(sumXlast - sumX);
-            double test1 = sumXlast - 1.0;
-            double test2 = sumX - 1.0;
-            double upbumper = 0.9 * massTol;
-            double downbumper = 0.1;
-            double massTolUp = 0.25 * massTol;
-            
-            if (t < equilibrateTime || !doPE) {
-                
-                double dtprior = dt;
-                
-                if ( (abs(test2) > abs(test1)) && (massChecker > massTol) ) {
-                    
-                    dt *= max(massTol / massChecker, downbumper);
-                    
-                    if(diagnose_dt)
-                        fprintf(pFileD, 
-                        "\n\nTIMESTEP: DOWNBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
-                        t, dtprior, dt, test1, test2, massChecker, sumX);
-                    
-                    updatePopulations(dt);
-                    
-                } else if (massChecker < massTolUp) {
-                    
-                    dt *= (massTol / (max(massChecker, upbumper)));
-                    
-                    if(diagnose_dt)
-                        fprintf(pFileD, 
-                        "\n\nTIMESTEP: UPBUMPER t=%8.5e dt_old=%8.5e dt=%8.5e test1=%8.5e test2=%8.5e massChecker=%8.5e sumX=%8.5e", 
-                        t, dtprior, dt, test1, test2, massChecker, sumX);
-
-                    updatePopulations(dt);
-                    
-                }
-            }
-            
-            // Return true for now. Will make more sophisticated later.
-            
-            return true;
         }
 
-        
-        // Function to set the trial integration timestep
-        
-        static double getTrialTimestep(){
-            
-            double dtFlux;
-            double dtt;
-            // Trial timestep, which is required to initiate the iteration to the final diagn
-            // timestep for this time interval.
-            
-            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
-            dtt = min(dtFlux, dtLast);
-       //     if(diagnose_dt)
-     //       fprintf(pFileD, "\n\nTIMESTEP: TRIAL t=%8.5e dtFlux=%8.5e dtLast=%8.5e trial_dt=%8.5e", 
-   //             t, dtFlux, dtLast, dtt);
-// printf("The value of dtt is:%f\n",dtt);
-            return dtt;
-        }
-        
-        
     // Function to set the current integration timestep
         
 	static double getTimestep(){
-	
-		int dtcount = 0; // number of times dt has been recalculated
-		int cycle = 0; // number of iterations that have 
-		double tol = 1.0e-7;
-		double dt_grow = 1.03;
-		double dt_dec = 0.93;
-		double dt;
-		double sumX1;
-		bool restep;
-	
-	// call the check function to get the initial value of restep based on initial time step
-	restep = check();
-	
-	// get an initial sumX by calling IntStep
-	sumX1 = IntStep();
 
-            double dtFlux;
-            double dtt;
-            // Trial timestep, which is required to initiate the iteration to the final diagn
-            // timestep for this time interval.
-            
-            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
-            dt = min(dtFlux, dtLast);
-	
-	//MAKE SURE TO CALCULATE DT. IF RESTEP IS 0 NO DT IS CALCULATED/RETURNED. NO DT INITIATED IN WHILE LOOP
-	
-	//while loop will adjust dt for restep = 1 ------ will need a way to evaluate dt for restep = 0 to maximize efficiency
-	if (restep == 1){
-		//decrement dt 
-		dtcount = dtcount + 1;
- 		dt = dt*dt_dec;
- 		
- 		//update sumX with new dt by updatePopulations() and calling utilities function
- 		updatePopulations(dt);
- 		sumX1 = Utilities::sumMassFractions();
- 		
-		// re-evaluate restep, check function uses trial timestep
-		diffX = sumX1 - 1.0;
-  		if (diffX < tol){
-  			restep = 0;
-  			}
-  		else restep = 1;
-  		//
-  		//maybe an if statement for restep = 0 in order to maximize dt?
-  		//
-	} // end while loop
-	else if (restep == 0){
-		dt = min(dtFlux, dtLast);
-	}
-	
-	//printf("sumX1 is :%f\n",sumX1);
-	//printf("The number of steps is:%d\n",dtcount);
-	//printf("The value of dt is:%f\n",dt);
+		//define variables for keeping track of recalculation
+		int recount=0;
+		int recountUp;
 
-	return dt;
-	}// end getTimeStep
-	
-	
-	// do an initial integration step with a trial TS that will calculate the populations and sumX
-	static double IntStep(){
-		double sumX2;
+		//define any variances of dt uses, dt is global
+		double dtgrow = 1.01;
+		double dtdec = 0.9;
+		double dtnew;
+		double dtmax;
 
-            double dtFlux;
-            double dtt;
-            // Trial timestep, which is required to initiate the iteration to the final diagn
-            // timestep for this time interval.
-            
-            dtFlux = min(0.06*t, SF/maxdYdt);     // Adjusted to give safe initial timestep
-            dt = min(dtFlux, dtLast);
+		//Tolerances
+		double uptol = 1.0e-7;
+		double lowtol = 1.0e-9;
 
-		updatePopulations(dt);
-		sumX2 = Utilities::sumMassFractions();
-		return sumX2;
-	}// end of trial integration step
-	
-	
+		//conditional variables diffX and sumX are global
 
-	// Compare the trial sumX to a tolerance and determine if a restep is needed
-	static bool check(){
-		double tol = 1.0e-7;
-		double sumX3;
-		double diffX;
-		bool restep;
-		
- 		sumX3 = IntStep();
-  		diffX = sumX3 - 1.0;
-  		
-  		if (diffX < tol)
-  			restep = 0;
-  		else restep = 1;
-  			
-  	return restep;
-	}// end function to check for restep
+		//Begin calculations
+		dtnew = dtLast*dtgrow;
+		updatePopulations(dtnew);
+		sumX = Utilities::sumMassFractions();
+		diffX = abs(sumX - 1.0);
+
+		dt = dtnew;
+		dtmax = dtnew*1.05;
+		while(diffX > uptol || diffX < lowtol && dt < dtmax){
+
+			if(diffX > uptol){
+				dt = dt*dtdec;
+				recount++;
+			}
+			else{
+				dt = dt*dtgrow;
+				recountUp++;
+			}
+
+			updatePopulations(dt);
+			sumX = sumMassFractions();
+			diffX = abs(sumX - 1.0);
+
+			//printf("The tol WAS NOT satsisfied, diffX =%2.10f\n",diffX);
+		//	printf("The value of dt is =%2.15f\n",dt);
+		//	printf("The number of recalculations is %d\n",recount);
+
+		}
+
+		if(diffX < uptol){
+			dtLast = dt;
+			//printf("dt has been passed on with value =%2.10f\n",dt);
+		//	printf("tol was satisfied with a diffX of:%2.10f\n",diffX);
+			return dt;
+
+		}
+
+	} // end getTimestep
     
      
     // Function to update by the forward Euler method.  Returns the updated value of Y.
@@ -3671,7 +3503,8 @@ class Integrate: public Utilities {
             }
             
             X[i] = Y[i] * (double) AA[i];
-            
+      //      printf("In update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
+          //  printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
         }
         
     }    // End function updateAsyEuler()
@@ -3884,7 +3717,7 @@ int main() {
     
     // Open a file for diagnostics output
     
-    pFileD = fopen("gnu_out/diagnostics.data","w");
+    pFileD = fopen("gnu_out/EMATSdiagnostics.data","w");
     
     // Write the time
     
