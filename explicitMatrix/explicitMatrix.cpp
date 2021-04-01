@@ -265,6 +265,7 @@ bool isValidUpdate;                  // Whether timestep accepted
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - 1.0
+double totalError = 0.0;				 // Keeps tracck of accumulation of diffX over entire integration
 
 double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
@@ -580,10 +581,10 @@ class Utilities{
             pFile = fopen("gnu_out/EMATSgnufile.data","w");
             
             FILE * pFile2;
-            pFile2 = fopen("gnu_out/gnufile2.data","w");
+            pFile2 = fopen("gnu_out/EMATSgnufile2.data","w");
             
             FILE * pFile3;
-            pFile3 = fopen("gnu_out/gnufileFlux.data","w");
+            pFile3 = fopen("gnu_out/EMATSgnufileFlux.data","w");
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
@@ -3303,7 +3304,7 @@ class Integrate: public Utilities {
             
            dtLast = dt;
            sumXlast = sumX;
-            
+           // printf("sumx is =%2.10f",sumX);
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
            dt = getTimestep();    // Adaptive timestep
@@ -3357,10 +3358,10 @@ class Integrate: public Utilities {
                 // asymptotic approximation (rows and columns of matrix)
                 
                 updateAsyEuler();
-              //  printf("\nUpdate Pop (ASY) has a dt entry =%2.15f\n",dtt);
-               // printf("Mass fraction for He is:%2.8f\n",X[0]);
-                //printf("Mass fraction for C is:%2.8f\n",X[1]);
-                //printf("Mass fraction for O is:%2.8f\n",X[2]);
+         //       printf("\nUpdate Pop (ASY) has a dt entry =%2.15f\n",dtt);
+          //      printf("Mass fraction for He is:%2.8f\n",X[0]);
+           //    printf("Mass fraction for C is:%2.8f\n",X[1]);
+            //    printf("Mass fraction for O is:%2.8f\n",X[2]);
             }
             
         }
@@ -3371,19 +3372,21 @@ class Integrate: public Utilities {
 
 		//define variables for keeping track of recalculation
 		int recount=0;
-		int recountUp;
+		int recountUp=0;
 
 		//define any variances of dt uses, dt is global
-		double dtgrow = 1.01;
-		double dtdec = 0.9;
+		double dtgrow = 1.04;
+		double dtdec = 0.91;
 		double dtnew;
 		double dtmax;
 
 		//Tolerances
 		double uptol = 1.0e-7;
-		double lowtol = 1.0e-9;
+		double lowtol = 1.0e-10;
 
-		//conditional variables diffX and sumX are global
+		//conditional variables diffX and sumX are global, keep track of error
+		//double totalError = 0.0;
+		
 
 		//Begin calculations
 		dtnew = dtLast*dtgrow;
@@ -3392,7 +3395,8 @@ class Integrate: public Utilities {
 		diffX = abs(sumX - 1.0);
 
 		dt = dtnew;
-		dtmax = dtnew*1.05;
+		dtmax = dtnew*1.15;
+
 		while(diffX > uptol || diffX < lowtol && dt < dtmax){
 
 			if(diffX > uptol){
@@ -3414,10 +3418,12 @@ class Integrate: public Utilities {
 
 		}
 
-		if(diffX < uptol){
+		if(diffX < uptol && diffX > lowtol){
 			dtLast = dt;
+			totalError = totalError + diffX;
 			//printf("dt has been passed on with value =%2.10f\n",dt);
-		//	printf("tol was satisfied with a diffX of:%2.10f\n",diffX);
+			//printf("\ntol was satisfied with a sumX of:%2.10f\n",sumX);
+			//printf("\n The total  error accumulation is =%2.10f",totalError);
 			return dt;
 
 		}
@@ -3503,8 +3509,8 @@ class Integrate: public Utilities {
             }
             
             X[i] = Y[i] * (double) AA[i];
-      //      printf("In update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
-          //  printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
+         //   printf("\nIn update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
+           // printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
         }
         
     }    // End function updateAsyEuler()
@@ -4347,7 +4353,7 @@ int main() {
     
 
     // Display abundances and mass fractions at end of integration
-
+    //printf("\n The total  error accumulation is =%2.10f",totalError);
     printf("\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
     fprintf(pFileD, "\n\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
