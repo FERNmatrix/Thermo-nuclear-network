@@ -3723,7 +3723,7 @@ int main() {
     
     // Open a file for diagnostics output
     
-    pFileD = fopen("gnu_out/EMATSdiagnostics.data","w");
+    pFileD = fopen("gnu_out/diagnostics.data","w");
     
     // Write the time
     
