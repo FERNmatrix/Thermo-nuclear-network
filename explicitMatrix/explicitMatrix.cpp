@@ -578,13 +578,13 @@ class Utilities{
             // crash when executed.
             
             FILE * pFile;
-            pFile = fopen("gnu_out/EMATSgnufile.data","w");
+            pFile = fopen("gnu_out/gnufile.data","w");
             
             FILE * pFile2;
-            pFile2 = fopen("gnu_out/EMATSgnufile2.data","w");
+            pFile2 = fopen("gnu_out/gnufile2.data","w");
             
             FILE * pFile3;
-            pFile3 = fopen("gnu_out/EMATSgnufileFlux.data","w");
+            pFile3 = fopen("gnu_out/gnufileFlux.data","w");
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
