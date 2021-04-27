@@ -1,0 +1,14 @@
+*discription of repository*
+
+Each folder contains both figures( PDF, LaTex, ect) and GNU scripts for recreation.
+ 
+
+to do:
+
+1). find optemum test values for temperature and dencity.
+2). test pure ASY and find best peramiters; create both mass fraction and timestep plots
+3). test pure QSS and find best peramiters; create both mass fraction and timestep plots
+4). test ASY+PE and find best peramiters; create both mass fraction and timestep plots
+5). compare to benchmark and see if there is improvement.
+
+6). do steps 1-5 for Full Alpha.
