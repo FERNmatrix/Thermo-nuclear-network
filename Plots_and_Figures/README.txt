@@ -1,3 +1,5 @@
+See reop branch 'Plots_and_Figures'
+
 *discription of repository*
 
 Each folder contains both figures( PDF, LaTex, ect) and GNU scripts for recreation.
@@ -5,7 +7,7 @@ Each folder contains both figures( PDF, LaTex, ect) and GNU scripts for recreati
 
 to do:
 
-1). find optemum test values for temperature and dencity.
+1). find optemum test values for temperature and dencity. (T9 = 7 & roh = 1e8)
 2). test pure ASY and find best peramiters; create both mass fraction and timestep plots
 3). test pure QSS and find best peramiters; create both mass fraction and timestep plots
 4). test ASY+PE and find best peramiters; create both mass fraction and timestep plots
