@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -157,7 +157,7 @@ void setReactionFluxes();
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = true;           // Whether to use asymptotic approximation
+bool doASY = false;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = false;             // Implement partial equilibrium also
 
@@ -451,6 +451,7 @@ double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
 double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
 double sumXplot[plotSteps];                  // Sum of mass fractions
+double diffXplot[plotSteps];				 // Deviation of sumX from 1.0
 int numAsyplot[plotSteps];                   // Number asymptotic species
 int numRG_PEplot[plotSteps];                 // Number RG in PE
 double EReleasePlot[plotSteps];              // Integrated energy release
@@ -585,13 +586,15 @@ class Utilities{
             
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
-            
+
+
+
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX, diffX";
             string strflux = "\n#    t     dt   ";
             string app = "  ";
             string app1;
@@ -707,11 +710,11 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %2.4e",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
+                    sumXplot[i], diffXplot[i]
                 );
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
@@ -752,6 +755,7 @@ class Utilities{
             fclose (pFile);
             fclose (pFile2);
             fclose (pFile3);
+            
             
         }
         
@@ -3301,13 +3305,13 @@ class Integrate: public Utilities {
             
             // Determine trial timestep.  This timestep will be updated in the various 
             // integration methods to a final timestep using getTimestep(). 
-            
            dtLast = dt;
            sumXlast = sumX;
            // printf("sumx is =%2.10f",sumX);
             // Find the isotope with the max change in population.
             // Returns index of isotope with most rapidly changing population.
            dt = getTimestep();    // Adaptive timestep
+
 
         }     //End of doIntegrationStep 
         
@@ -3323,7 +3327,7 @@ class Integrate: public Utilities {
             if(doQSS){
 
                 QSSupdate();
-                printf("\nThe updatePop (QSS) update has dt of: %2.15\n",dtt);
+               // printf("\nThe updatePop (QSS) update has dt of: %2.15\n",dtt);
                 
             }
             
@@ -3373,15 +3377,14 @@ class Integrate: public Utilities {
 		//define variables for keeping track of recalculation
 		int recount=0;
 		int recountUp=0;
-
 		//define any variances of dt uses, dt is global
-		double dtgrow = 1.04;
-		double dtdec = 0.91;
+		double dtgrow = 1.03;
+		double dtdec = 0.93;
 		double dtnew;
 		double dtmax;
 
 		//Tolerances
-		double uptol = 1.0e-7;
+		double uptol = 1.0e-3;
 		double lowtol = 1.0e-10;
 
 		//conditional variables diffX and sumX are global, keep track of error
@@ -3395,9 +3398,9 @@ class Integrate: public Utilities {
 		diffX = abs(sumX - 1.0);
 
 		dt = dtnew;
-		dtmax = dtnew*1.15;
-
-		while(diffX > uptol || diffX < lowtol && dt < dtmax){
+		dtmax = dtnew*1.10; // Limits the amount dt can grow in 1 step
+		
+		while(diffX > uptol || diffX < lowtol){
 
 			if(diffX > uptol){
 				dt = dt*dtdec;
@@ -3406,24 +3409,29 @@ class Integrate: public Utilities {
 			else{
 				dt = dt*dtgrow;
 				recountUp++;
+		}
+
+			if(dt > dtmax){
+				break;
 			}
 
 			updatePopulations(dt);
 			sumX = sumMassFractions();
 			diffX = abs(sumX - 1.0);
 
-			//printf("The tol WAS NOT satsisfied, diffX =%2.10f\n",diffX);
-		//	printf("The value of dt is =%2.15f\n",dt);
-		//	printf("The number of recalculations is %d\n",recount);
+			 // printf("\nThe tol WAS NOT satsisfied, diffX =%2.8e\n",diffX);
+			 // printf("The BAD VALUE of dt is =%7.4e\n",dt);
+			//printf("The number of recalculations is %d\n",recount);
 
 		}
 
-		if(diffX < uptol && diffX > lowtol){
+		if(diffX <= uptol && diffX > lowtol){
 			dtLast = dt;
 			totalError = totalError + diffX;
-			//printf("dt has been passed on with value =%2.10f\n",dt);
-			//printf("\ntol was satisfied with a sumX of:%2.10f\n",sumX);
+			//printf("\n------------DT-------- =%7.4e\n",dt);
+			//printf("------------diffX---------:%2.8e\n",diffX);
 			//printf("\n The total  error accumulation is =%2.10f",totalError);
+			
 			return dt;
 
 		}
@@ -3509,7 +3517,7 @@ class Integrate: public Utilities {
             }
             
             X[i] = Y[i] * (double) AA[i];
-         //   printf("\nIn update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
+           // printf("\nIn update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
            // printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
         }
         
@@ -3535,6 +3543,8 @@ class Integrate: public Utilities {
             ssPredictor();
             ssCorrector();
             
+   //  printf("The value of dt for QSS update is: %7.4e\n",dt);
+
             // Recompute fluxes if another predictor-corrector iteration follows
             
             if (nitQSS > 1) {
@@ -3578,6 +3588,8 @@ class Integrate: public Utilities {
                 Y[i] = Y0[i] + (FplusSum[i] - FminusSum[i])*dt / deno;
                 X[i] = Y[i] * (double)AA[i];
                 
+   //  printf("QSS PREdICTOR has DT = %7.4e\n",dt);
+
                 if(diagnoseQSS) {
                     fprintf(pFileD, "\nSS PREDICTOR: %d t=%7.4e Fplus[i]=%7.4e",
                             i, t, FplusSum[i]);
@@ -3619,6 +3631,8 @@ class Integrate: public Utilities {
                 FplusTilde = alphaBar * FplusSum[i] + (1.0 - alphaBar) * FplusZero[i];
                 Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
                 X[i] = Y[i] * (double)AA[i];
+
+   //   printf("The QSS CORRECTOR has dt = %7.4e\n",dt);
                 
                 if(diagnoseQSS) {
                     
@@ -4193,6 +4207,12 @@ int main() {
         
         t += dt; 
         totalTimeSteps ++; 
+
+      if (totalTimeSteps > 100e6){
+            Utilities::stopTimer();
+            Utilities::plotOutput();
+            return 0;
+        }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4275,9 +4295,9 @@ int main() {
             if(showPlotSteps){
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 fprintf(pFileD, 
-                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
+                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f diffX=%8.4e", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
-                    totalAsy, ISOTOPES, sumX);
+                    totalAsy, ISOTOPES, sumX, diffX);
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
@@ -4313,6 +4333,7 @@ int main() {
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
+            diffXplot[plotCounter -1] = log10(diffX);
             
             for(int i=0; i<numberRG;i++){
                 if(RG[i].getisEquil()) totalEquilRG ++;
@@ -4330,9 +4351,9 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.8f diffX=%2.4e dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumX, ECON*netdERelease, ECON*ERelease
+                numberRG, sumX, diffX, ECON*netdERelease, ECON*ERelease
             );
 
             // Increment the plot output counter for next graphics output
@@ -4353,7 +4374,7 @@ int main() {
     
 
     // Display abundances and mass fractions at end of integration
-    //printf("\n The total  error accumulation is =%2.10f",totalError);
+    printf("\n The total  error accumulation is =%2.10f",totalError);
     printf("\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
     fprintf(pFileD, "\n\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
