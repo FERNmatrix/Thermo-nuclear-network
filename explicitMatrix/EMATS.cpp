@@ -6,7 +6,7 @@
  * 
  * Resulting compiled code can be executed with
  * 
- *     ./explicitMatrix  | tee temp.txt
+ *     ./EMATS  | tee temp.txt
  * 
  * where | tee temp.txt is unix shell script outputting to screen and also piped to a file temp.txt. 
  * Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
@@ -59,8 +59,8 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network, 3 for 3-alpha)
+#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network, 8 for 3-alpha)
 #define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -127,7 +127,7 @@ static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
 static const bool diagnose2 = false;
-static const bool diagnose_dt = true;
+static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
 
 
@@ -157,7 +157,7 @@ void setReactionFluxes();
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = false;           // Whether to use asymptotic approximation
+bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = false;             // Implement partial equilibrium also
 
@@ -451,7 +451,7 @@ double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
 double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
 double sumXplot[plotSteps];                  // Sum of mass fractions
-double diffXplot[plotSteps];				 // Deviation of sumX from 1.0
+//double diffXplot[plotSteps];				 // Deviation of sumX from 1.0
 int numAsyplot[plotSteps];                   // Number asymptotic species
 int numRG_PEplot[plotSteps];                 // Number RG in PE
 double EReleasePlot[plotSteps];              // Integrated energy release
@@ -594,7 +594,7 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX, diffX";
+            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX"; //add diffX to keep track of it at every step
             string strflux = "\n#    t     dt   ";
             string app = "  ";
             string app1;
@@ -710,12 +710,12 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %2.4e",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i], diffXplot[i]
-                );
+                    sumXplot[i]
+                );//diffXplot[i]
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
                 // 1e-24 to X in case it is identically zero since we are
@@ -3384,7 +3384,7 @@ class Integrate: public Utilities {
 		double dtmax;
 
 		//Tolerances
-		double uptol = 1.0e-3;
+		double uptol = 1.0e-7;
 		double lowtol = 1.0e-10;
 
 		//conditional variables diffX and sumX are global, keep track of error
@@ -3411,9 +3411,9 @@ class Integrate: public Utilities {
 				recountUp++;
 		}
 
-			if(dt > dtmax){
-				break;
-			}
+		//	if(dt > dtmax){
+		//		break;
+		//	}
 
 			updatePopulations(dt);
 			sumX = sumMassFractions();
@@ -3425,7 +3425,7 @@ class Integrate: public Utilities {
 
 		}
 
-		if(diffX <= uptol && diffX > lowtol){
+		if(diffX < uptol && diffX > lowtol){
 			dtLast = dt;
 			totalError = totalError + diffX;
 			//printf("\n------------DT-------- =%7.4e\n",dt);
@@ -3606,7 +3606,6 @@ class Integrate: public Utilities {
         setReactionFluxes();
         
     }
-    
     
     // ------------------------------------------------------------------
     // Integrate::ssCorrector() to implement steady-state corrector step
@@ -4295,9 +4294,9 @@ int main() {
             if(showPlotSteps){
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 fprintf(pFileD, 
-                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f diffX=%8.4e", 
+                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
-                    totalAsy, ISOTOPES, sumX, diffX);
+                    totalAsy, ISOTOPES, sumX); // diffX); // add diffX=%8.4e to print out diffX
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
@@ -4333,7 +4332,7 @@ int main() {
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
-            diffXplot[plotCounter -1] = log10(diffX);
+           // diffXplot[plotCounter -1] = log10(diffX); // add to output diffX to files for plotting 
             
             for(int i=0; i<numberRG;i++){
                 if(RG[i].getisEquil()) totalEquilRG ++;
@@ -4351,10 +4350,10 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.8f diffX=%2.4e dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumX, diffX, ECON*netdERelease, ECON*ERelease
-            );
+                numberRG, sumX, ECON*netdERelease, ECON*ERelease
+            ); //add diffX and diffX=%2.4e to plot diffX in output
 
             // Increment the plot output counter for next graphics output
             
@@ -5493,6 +5492,7 @@ void setReactionFluxes(){
     Reaction::populateFplusFminus();
     Reaction::sumFplusFminus();
 }
+
 
 
 
