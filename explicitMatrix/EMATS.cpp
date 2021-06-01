@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -3384,8 +3384,8 @@ class Integrate: public Utilities {
 		double dtmax;
 
 		//Tolerances
-		double uptol = 1.0e-7;
-		double lowtol = 1.0e-10;
+		double const uptol = 1.0e-7;
+		double const lowtol = 1.0e-10;
 
 		//conditional variables diffX and sumX are global, keep track of error
 		//double totalError = 0.0;
@@ -3398,7 +3398,7 @@ class Integrate: public Utilities {
 		diffX = abs(sumX - 1.0);
 
 		dt = dtnew;
-		dtmax = dtnew*1.10; // Limits the amount dt can grow in 1 step
+		dtmax = dt*1.10; // Limits the amount dt can grow in 1 step
 		
 		while(diffX > uptol || diffX < lowtol){
 
@@ -3411,21 +3411,21 @@ class Integrate: public Utilities {
 				recountUp++;
 		}
 
-		//	if(dt > dtmax){
-		//		break;
-		//	}
+			if(dt > dtmax){
+                dt = dtmax;
+				break;
+			}
 
 			updatePopulations(dt);
 			sumX = sumMassFractions();
 			diffX = abs(sumX - 1.0);
 
 			 // printf("\nThe tol WAS NOT satsisfied, diffX =%2.8e\n",diffX);
-			 // printf("The BAD VALUE of dt is =%7.4e\n",dt);
-			//printf("The number of recalculations is %d\n",recount);
+			 ///printf("The number of recalculations is %d\n",recount);
 
 		}
 
-		if(diffX < uptol && diffX > lowtol){
+		if(diffX < uptol || dt <= dtmax){
 			dtLast = dt;
 			totalError = totalError + diffX;
 			//printf("\n------------DT-------- =%7.4e\n",dt);
@@ -3656,6 +3656,7 @@ class Integrate: public Utilities {
                     isAsy[i] = false;
                     
                 }
+                
                 
                 // Update sum of mass fractions
                 
