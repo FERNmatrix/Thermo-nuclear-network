@@ -6,3 +6,9 @@ explicitMatrix/temp.txt
 explicitMatrix/gnu_out/*.eps
 explicitMatrix/gnu_out/*.png
 explicitMatrix/gnu_out/*.data
+EMATS
+NATS
+PE.out
+NATS.out
+QSS.out
+eM.out
