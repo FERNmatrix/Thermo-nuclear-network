@@ -99,6 +99,8 @@ FILE *fr;
 // rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,
 // rateLibrary_3alpha.data, rateLibrary_pp.data.
 
+
+
 char rateLibraryFile[] = "data/rateLibrary_3alpha.data";  
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
