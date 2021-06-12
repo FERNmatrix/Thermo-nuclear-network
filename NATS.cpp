@@ -157,7 +157,7 @@ void setReactionFluxes();
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = true;           // Whether to use asymptotic approximation
+bool doASY = false;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = false;             // Implement partial equilibrium also
 
@@ -452,6 +452,7 @@ double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
 double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
 double sumXplot[plotSteps];                  // Sum of mass fractions
+double diffXplot[plotSteps];               // Deviation of sumX from 1.0
 int numAsyplot[plotSteps];                   // Number asymptotic species
 int numRG_PEplot[plotSteps];                 // Number RG in PE
 double EReleasePlot[plotSteps];              // Integrated energy release
@@ -592,7 +593,7 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX diffX"; //add diffX to keep track of it at every step
             string strflux = "\n#    t     dt   ";
             string app = "  ";
             string app1;
@@ -708,12 +709,12 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %5.3e",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
-                );
+                    sumXplot[i],diffXplot[i]
+                );// to plot diffX add diffXplot[i] and %5.3e at the end of 712
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
                 // 1e-24 to X in case it is identically zero since we are
@@ -3308,6 +3309,12 @@ class Integrate: public Utilities {
             int recountDown = 0;
             int recountUp = 0;
             
+            //Define tolerances for methods 1 and 2
+            double const uptol = 1e-7;
+            double const lowtol = 1e-10;
+            double const tolC = 1e-9;
+            double diffP;
+
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
             double dtnew;
             double dtmax;
@@ -3316,59 +3323,49 @@ class Integrate: public Utilities {
             dt = dtnew;
             dtmax = dt*1.10;
 
-            bool validdt = dtCheck(dt);
-
-            while(validdt ==  false){
-                dt = dt*dtdec;
-                recountDown++;
-                validdt = dtCheck(dt);
-            }
-
-            while(validdt == true && dt < dtmax){
-                dt = dt*dtgrow;
-                recountUp++;
-                validdt = dtCheck(dt);
-
-                if (dt > dtmax){
-                    dt = dtmax;
-                }
-            }
-
-            return dt;
-        }    // End of doIntegrationStep
-
-        
-        //Function to check whether or not dt can be passed on (returns true or false)
-
-        static bool dtCheck(double dt){
-
-            bool Passdt;
-
-            //Tolerance conditions set to control the error btwn sumX and 1.0
-            double const uptol = 1.0e-7;      //upper tolerance bound
-            double const lowtol = 1.0e-10;    // lower tolerance bound
-
             updatePopulations(dt);
             sumX = Utilities::sumMassFractions();
+
             diffX = abs(sumX - 1.0);
+            diffP = (abs(sumX - sumXlast))/ sumX;
 
-            //Use old sumX and diffX for comparisons
+            while(diffX > uptol){
 
-           // double CheckSum = abs(sumX - sumXlast);
-           // double diffXlast= abs(sumXlast -1.0);
+                dt = dt*dtdec;
+                recountDown++;
 
-            if(diffX > uptol || diffX < lowtol){
+                updatePopulations(dt);
+                sumX = Utilities::sumMassFractions();
+                diffX = abs(sumX - 1.0);
 
-                Passdt = false;
+
             }
-            else if(diffX < uptol){
-                Passdt = true;
+            if (diffX < uptol){
 
+               if(diffP < tolC){
+                   dt = dtmax;
+                }
+                while (diffX < lowtol){
+                    dt = dt*dtgrow;
+                    recountUp++;
+
+                    updatePopulations(dt);
+                    sumX = Utilities::sumMassFractions();
+                    diffX = abs(sumX - 1.0);
+
+                    if(dt > dtmax){
+                        dt = dtmax;
+                        break;
+                    }
+                }
             }
-        return Passdt;
+               //updatePopulations(dt);
+               // sumX = Utilities::sumMassFractions();
+
+        return dt;
         }
-        
-        
+
+
         // Function to do population update with current dt
         
         static void updatePopulations(double dtt){
@@ -4179,6 +4176,13 @@ int main() {
         
         t += dt; 
         totalTimeSteps ++; 
+
+
+      if (totalTimeSteps > 100e6){
+            Utilities::stopTimer();
+            Utilities::plotOutput();
+            return 0;
+        }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4261,9 +4265,9 @@ int main() {
             if(showPlotSteps){
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 fprintf(pFileD, 
-                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
+                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f diffX=%8.4e",
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
-                    totalAsy, ISOTOPES, sumX);
+                    totalAsy, ISOTOPES, sumX, diffX);// diffX); // add diffX=%8.4e to print out diffX
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
@@ -4299,6 +4303,7 @@ int main() {
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
+            diffXplot[plotCounter -1] = log10(diffX); // add to output diffX to files for plotting
             
             for(int i=0; i<numberRG;i++){
                 if(RG[i].getisEquil()) totalEquilRG ++;
@@ -4316,10 +4321,10 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f diffX=%2.4e dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumX, ECON*netdERelease, ECON*ERelease
-            );
+                numberRG, sumX, diffX, ECON*netdERelease, ECON*ERelease
+            );//add diffX and diffX=%2.4e to plot diffX in output
 
             // Increment the plot output counter for next graphics output
             
