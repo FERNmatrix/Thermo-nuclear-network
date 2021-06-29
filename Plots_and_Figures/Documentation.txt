@@ -1,0 +1,19 @@
+
+
+This is a place to record the prosses of testing the Asy and the Asy+Pe with the new timestepper. Initialy on the triple alpha and then on the full alpha. 
+
+
+To Do: 
+
+1). Verify Asy is working correctly with new timestepper.
+    1.a). Create repository of all data files.
+    1.b). Compare thrugh scripts or superposition.
+    1.c). Make convincing figure that says as much with correct lables. 
+
+2).  Verify Asy+Pe is working correctly with new timestepper.
+    2.a). same as 1.a)
+    2.b). same as 1.b)
+    2.c). same as 1.c)
+
+3). Now repete steps 1) and 2) but on full alpha.
+
