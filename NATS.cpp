@@ -3386,7 +3386,7 @@ class Integrate: public Utilities {
                 }
             }
         
-// without partial EQ
+ // without partial EQ
             else{
 
              while(diffX > uptol){
