@@ -126,7 +126,7 @@ static const bool showAddRemove = false;
 static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
-static const bool diagnose2 = false;
+static const bool diagnose2 = true;
 static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
 
@@ -3386,7 +3386,7 @@ class Integrate: public Utilities {
                 }
             }
         
- // without partial EQ
+// without partial EQ
             else{
 
              while(diffX > uptol){
@@ -4251,10 +4251,10 @@ int main() {
             
             if(totalEquilRG > 0){
                 
-                if(diagnose2)
+                if(diagnose2){
                 fprintf(pFileD, 
                 "\n\n********* BEGIN PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
-                
+                }
                 // Restore species in equilibrium to their unperturbed equilibrium values at 
                 // the end of the timestep.  See the comments for function 
                 // restoreEquilibriumProg() below for justification.
@@ -4484,7 +4484,7 @@ int main() {
  * of the Java code. */
 
 
-void restoreEquilibriumProg() {
+void restoreEquilibriumProg(){
 
     int countConstraints = 0;
     int countEquilIsotopes = 0;
@@ -4499,7 +4499,7 @@ void restoreEquilibriumProg() {
      * to one iteration for now. */
     
     int itcounter = 0;
-    
+
     while (itcounter < 1) {
         
         countConstraints = 0;
@@ -4580,6 +4580,8 @@ void restoreEquilibriumProg() {
         }
     
     } // end while iteration loop
+
+
     
     
     // Set up renormalization of all Ys so that this integration step
@@ -4609,7 +4611,6 @@ void restoreEquilibriumProg() {
     sumX = Utilities::sumMassFractions();
     
 }
-
 
 // ----------------------------------------------------------------------
 // Function to set abundances for reaction groups in equilibrium to the
