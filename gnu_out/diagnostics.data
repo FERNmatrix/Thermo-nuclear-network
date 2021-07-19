@@ -1,0 +1,2112 @@
+Mon Jul 19 17:31:09 2021
+Using ASY+PE method
+
+--- Read in network and partition function ---
+
+4He 4 2 2 0.000000 2.425000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+12C 12 6 6 0.041667 0.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+16O 16 8 8 0.031250 -4.737000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+20Ne 20 10 10 0.000000 -7.042000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.010000 1.020000
+1.040000 1.070000 1.110000 1.220000 1.340000 1.490000 1.660000 1.850000
+
+24Mg 24 12 12 0.000000 -13.933000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.010000 1.030000 1.050000
+1.090000 1.150000 1.210000 1.360000 1.530000 1.730000 1.940000 2.170000
+
+28Si 28 14 14 0.000000 -21.493000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.010000 1.010000
+1.030000 1.050000 1.080000 1.160000 1.270000 1.390000 1.540000 1.700000
+
+32S 32 16 16 0.000000 -26.016000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.010000 1.020000 1.030000 1.070000 1.140000 1.240000 1.390000 1.590000
+
+36Ar 36 18 18 0.000000 -30.230000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.010000
+1.020000 1.030000 1.050000 1.120000 1.220000 1.370000 1.570000 1.860000
+
+40Ca 40 20 20 0.000000 -34.846000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.010000 1.040000 1.090000 1.200000 1.380000
+
+44Ti 44 22 22 0.000000 -37.548000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.010000 1.030000 1.080000 1.140000
+1.230000 1.350000 1.490000 1.850000 2.350000 3.010000 3.860000 4.940000
+
+48Cr 48 24 24 0.000000 -42.815000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.010000 1.060000 1.150000 1.280000 1.430000
+1.610000 1.800000 2.000000 2.460000 3.000000 3.630000 4.440000 5.540000
+
+52Fe 52 26 26 0.000000 -48.329000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.010000 1.040000 1.100000 1.190000 1.300000
+1.440000 1.580000 1.740000 2.100000 2.510000 3.000000 3.650000 4.570000
+
+56Ni 56 28 28 0.000000 -53.900000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.010000 1.010000 1.030000 1.080000 1.180000 1.350000 1.670000
+
+60Zn 60 30 30 0.000000 -54.183000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.010000 1.050000 1.100000 1.190000
+1.290000 1.410000 1.550000 1.910000 2.410000 3.160000 4.400000 6.560000
+
+64Ge 64 32 32 0.000000 -54.425000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.030000 1.080000 1.170000 1.290000
+1.440000 1.630000 1.840000 2.340000 2.980000 3.930000 5.680000 9.480000
+
+68Se 68 34 34 0.000000 -53.553000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.010000 1.030000 1.090000 1.190000 1.360000
+1.590000 1.900000 2.310000 3.470000 5.360000 8.550000 14.300000 25.440000
+
+16 ISOTOPES IN NETWORK:
+
+Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)
+    0      4He   4   2   2  0.00000e+00    0.000000      2.42500
+    1      12C  12   6   6  4.16666e-02    0.499999      0.00000
+    2      16O  16   8   8  3.12500e-02    0.500000     -4.73700
+    3     20Ne  20  10  10  0.00000e+00    0.000000     -7.04200
+    4     24Mg  24  12  12  0.00000e+00    0.000000    -13.93300
+    5     28Si  28  14  14  0.00000e+00    0.000000    -21.49300
+    6      32S  32  16  16  0.00000e+00    0.000000    -26.01600
+    7     36Ar  36  18  18  0.00000e+00    0.000000    -30.23000
+    8     40Ca  40  20  20  0.00000e+00    0.000000    -34.84600
+    9     44Ti  44  22  22  0.00000e+00    0.000000    -37.54800
+   10     48Cr  48  24  24  0.00000e+00    0.000000    -42.81500
+   11     52Fe  52  26  26  0.00000e+00    0.000000    -48.32900
+   12     56Ni  56  28  28  0.00000e+00    0.000000    -53.90000
+   13     60Zn  60  30  30  0.00000e+00    0.000000    -54.18300
+   14     64Ge  64  32  32  0.00000e+00    0.000000    -54.42500
+   15     68Se  68  34  34  0.00000e+00    0.000000    -53.55300
+
+
+PARTITION FUNCTION TABLE from Species object isotope[]:
+
+ T9 = 0.10 0.15 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00 1.50 2.00 2.50 3.00 3.50 4.00 4.50 5.00 6.00 7.00 8.00 9.00 10.00 
+4He   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+12C   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+16O   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+20Ne  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.04 1.07 1.11 1.22 1.34 1.49 1.66 1.85 
+24Mg  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.05 1.09 1.15 1.21 1.36 1.53 1.73 1.94 2.17 
+28Si  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.01 1.03 1.05 1.08 1.16 1.27 1.39 1.54 1.70 
+32S   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.03 1.07 1.14 1.24 1.39 1.59 
+36Ar  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.03 1.05 1.12 1.22 1.37 1.57 1.86 
+40Ca  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.04 1.09 1.20 1.38 
+44Ti  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.08 1.14 1.23 1.35 1.49 1.85 2.35 3.01 3.86 4.94 
+48Cr  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.06 1.15 1.28 1.43 1.61 1.80 2.00 2.46 3.00 3.63 4.44 5.54 
+52Fe  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.04 1.10 1.19 1.30 1.44 1.58 1.74 2.10 2.51 3.00 3.65 4.57 
+56Ni  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.01 1.03 1.08 1.18 1.35 1.67 
+60Zn  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.05 1.10 1.19 1.29 1.41 1.55 1.91 2.41 3.16 4.40 6.56 
+64Ge  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.03 1.08 1.17 1.29 1.44 1.63 1.84 2.34 2.98 3.93 5.68 9.48 
+68Se  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.09 1.19 1.36 1.59 1.90 2.31 3.47 5.36 8.55 14.30 25.44 
+
+
+--- READ IN REACTIONS DATA---
+
+Reaction 0: he4+he4+he4-->c12 reaclib=0 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+he4+he4-->c12 3 0 8 3 1 0 0 0.166667 7.275000
+-24.993500 -4.297020 -6.693040 15.590300 -1.573870 0.170588 -9.028000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[2]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Reactant[2]: N=2
+  Product[0]: Z=6
+  Product[0]: N=6
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ReactantIndex[2]: N=0
+  ProductIndex[0]: N=1
+
+Reaction 1: he4+he4+he4-->c12 reaclib=1 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+he4+he4-->c12 3 1 8 3 1 0 0 0.166667 7.275000
+-49.494800 0.328290 -86.901600 75.015100 128.427000 -215.288000 -51.602600
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[2]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Reactant[2]: N=2
+  Product[0]: Z=6
+  Product[0]: N=6
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ReactantIndex[2]: N=0
+  ProductIndex[0]: N=1
+
+Reaction 2: c12-->he4+he4+he4 reaclib=2 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=2
+--------------------------------------------------------------------------------
+c12-->he4+he4+he4 3 2 3 1 3 0 0 1.000000 -7.275000
+-2.749940 -84.091700 -86.901600 75.015100 128.427000 -215.288000 -48.602600
+  Reactant[0]: Z=6
+  Reactant[0]: N=6
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[2]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  Product[2]: N=2
+  ReactantIndex[0]: N=1
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=0
+
+Reaction 3: c12-->he4+he4+he4 reaclib=3 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=3
+--------------------------------------------------------------------------------
+c12-->he4+he4+he4 3 3 3 1 3 0 0 1.000000 -7.275000
+21.751300 -88.717000 -6.693040 15.590300 -1.573870 0.170588 -6.028000
+  Reactant[0]: Z=6
+  Reactant[0]: N=6
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[2]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  Product[2]: N=2
+  ReactantIndex[0]: N=1
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=0
+
+Reaction 4: he4+c12-->o16 reaclib=4 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+c12-->o16 2 0 4 2 1 0 0 1.000000 7.162000
+18.497700 0.004821 -33.252200 3.335170 -0.701714 0.078197 -2.807510
+  Reactant[0]: Z=2
+  Reactant[1]: Z=6
+  Reactant[0]: N=2
+  Reactant[1]: N=6
+  Product[0]: Z=8
+  Product[0]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=2
+
+Reaction 5: he4+c12-->o16 reaclib=5 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+c12-->o16 2 1 4 2 1 0 0 1.000000 7.162000
+142.191000 -89.160800 2204.350000 -2380.310000 108.931000 -5.314720 1361.180000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=6
+  Reactant[0]: N=2
+  Reactant[1]: N=6
+  Product[0]: Z=8
+  Product[0]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=2
+
+Reaction 6: o16-->he4+c12 reaclib=6 RG:(a+b<->c) RGclass=2 RGmemberIndex=2
+--------------------------------------------------------------------------------
+o16-->he4+c12 2 2 2 1 2 0 1 1.000000 -7.162000
+43.158700 -83.106200 -33.252200 3.335170 -0.701714 0.078197 -1.307510
+  Reactant[0]: Z=8
+  Reactant[0]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=6
+  Product[0]: N=2
+  Product[1]: N=6
+  ReactantIndex[0]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=1
+
+Reaction 7: o16-->he4+c12 reaclib=7 RG:(a+b<->c) RGclass=2 RGmemberIndex=3
+--------------------------------------------------------------------------------
+o16-->he4+c12 2 3 2 1 2 0 1 1.000000 -7.162000
+166.852000 -172.272000 2204.350000 -2380.310000 108.931000 -5.314720 1362.680000
+  Reactant[0]: Z=8
+  Reactant[0]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=6
+  Product[0]: N=2
+  Product[1]: N=6
+  ReactantIndex[0]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=1
+
+Reaction 8: c12+c12-->he4+ne20 reaclib=8 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=0
+--------------------------------------------------------------------------------
+c12+c12-->he4+ne20 4 0 5 2 2 0 0 0.500000 4.621000
+61.286300 0.000000 -84.165000 -1.566270 -0.073608 -0.072797 -0.666667
+  Reactant[0]: Z=6
+  Reactant[1]: Z=6
+  Reactant[0]: N=6
+  Reactant[1]: N=6
+  Product[0]: Z=2
+  Product[1]: Z=10
+  Product[0]: N=2
+  Product[1]: N=10
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+
+Reaction 9: he4+ne20-->c12+c12 reaclib=9 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+ne20-->c12+c12 4 1 5 2 2 0 1 1.000000 -4.621000
+61.474800 -53.624400 -84.165000 -1.566270 -0.073608 -0.072797 -0.666667
+  Reactant[0]: Z=2
+  Reactant[1]: Z=10
+  Reactant[0]: N=2
+  Reactant[1]: N=10
+  Product[0]: Z=6
+  Product[1]: Z=6
+  Product[0]: N=6
+  Product[1]: N=6
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=1
+
+Reaction 10: he4+o16-->ne20 reaclib=10 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+o16-->ne20 2 0 4 2 1 0 0 1.000000 4.734000
+39.034000 -0.035860 -34.345700 -25.193900 4.798550 -1.464440 6.343330
+  Reactant[0]: Z=2
+  Reactant[1]: Z=8
+  Reactant[0]: N=2
+  Reactant[1]: N=8
+  Product[0]: Z=10
+  Product[0]: N=10
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=3
+
+Reaction 11: he4+o16-->ne20 reaclib=11 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+o16-->ne20 2 1 4 2 1 0 0 1.000000 4.734000
+84.552200 -17.821400 293.664000 -384.974000 20.238000 -1.003790 199.693000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=8
+  Reactant[0]: N=2
+  Reactant[1]: N=8
+  Product[0]: Z=10
+  Product[0]: N=10
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=3
+
+Reaction 12: ne20-->he4+o16 reaclib=12 RG:(a+b<->c) RGclass=2 RGmemberIndex=2
+--------------------------------------------------------------------------------
+ne20-->he4+o16 2 2 2 1 2 0 1 1.000000 -4.734000
+63.791500 -54.972900 -34.345700 -25.193900 4.798550 -1.464440 7.843330
+  Reactant[0]: Z=10
+  Reactant[0]: N=10
+  Product[0]: Z=2
+  Product[1]: Z=8
+  Product[0]: N=2
+  Product[1]: N=8
+  ReactantIndex[0]: N=3
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=2
+
+Reaction 13: ne20-->he4+o16 reaclib=13 RG:(a+b<->c) RGclass=2 RGmemberIndex=3
+--------------------------------------------------------------------------------
+ne20-->he4+o16 2 3 2 1 2 0 1 1.000000 -4.734000
+109.310000 -72.758400 293.664000 -384.974000 20.238000 -1.003790 201.193000
+  Reactant[0]: Z=10
+  Reactant[0]: N=10
+  Product[0]: Z=2
+  Product[1]: Z=8
+  Product[0]: N=2
+  Product[1]: N=8
+  ReactantIndex[0]: N=3
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=2
+
+Reaction 14: c12+o16-->he4+mg24 reaclib=14 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=0
+--------------------------------------------------------------------------------
+c12+o16-->he4+mg24 4 0 5 2 2 0 0 1.000000 6.771000
+48.534100 0.372040 -133.413000 50.157200 -3.159870 0.017825 -23.702700
+  Reactant[0]: Z=6
+  Reactant[1]: Z=8
+  Reactant[0]: N=6
+  Reactant[1]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=12
+  Product[0]: N=2
+  Product[1]: N=12
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=4
+
+Reaction 15: he4+mg24-->c12+o16 reaclib=15 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+mg24-->c12+o16 4 1 5 2 2 0 1 1.000000 -6.771000
+49.573800 -78.202000 -133.413000 50.157200 -3.159870 0.017825 -23.702700
+  Reactant[0]: Z=2
+  Reactant[1]: Z=12
+  Reactant[0]: N=2
+  Reactant[1]: N=12
+  Product[0]: Z=6
+  Product[1]: Z=8
+  Product[0]: N=6
+  Product[1]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=4
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=2
+
+Reaction 16: o16+o16-->he4+si28 reaclib=16 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=0
+--------------------------------------------------------------------------------
+o16+o16-->he4+si28 4 0 5 2 2 0 0 0.500000 9.593000
+97.243500 -0.268514 -119.324000 -32.249700 1.462140 -0.200893 13.214800
+  Reactant[0]: Z=8
+  Reactant[1]: Z=8
+  Reactant[0]: N=8
+  Reactant[1]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=14
+  Product[0]: N=2
+  Product[1]: N=14
+  ReactantIndex[0]: N=2
+  ReactantIndex[1]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=5
+
+Reaction 17: he4+si28-->o16+o16 reaclib=17 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+si28-->o16+o16 4 1 5 2 2 0 1 1.000000 -9.593000
+97.790400 -111.590000 -119.324000 -32.249700 1.462140 -0.200893 13.214800
+  Reactant[0]: Z=2
+  Reactant[1]: Z=14
+  Reactant[0]: N=2
+  Reactant[1]: N=14
+  Product[0]: Z=8
+  Product[1]: Z=8
+  Product[0]: N=8
+  Product[1]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=2
+  ProductIndex[1]: N=2
+
+Reaction 18: he4+ne20-->mg24 reaclib=18 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ne20-->mg24 2 0 4 2 1 0 0 1.000000 9.312000
+32.158800 -0.015149 -44.641000 -8.338670 2.416310 -0.778056 1.935760
+  Reactant[0]: Z=2
+  Reactant[1]: Z=10
+  Reactant[0]: N=2
+  Reactant[1]: N=10
+  Product[0]: Z=12
+  Product[0]: N=12
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=4
+
+Reaction 19: he4+ne20-->mg24 reaclib=19 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+ne20-->mg24 2 1 4 2 1 0 0 1.000000 9.312000
+-291.641000 -12.096600 -63.372500 394.643000 -36.243200 2.640600 -121.219000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=10
+  Reactant[0]: N=2
+  Reactant[1]: N=10
+  Product[0]: Z=12
+  Product[0]: N=12
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=4
+
+Reaction 20: mg24-->he4+ne20 reaclib=20 RG:(a+b<->c) RGclass=2 RGmemberIndex=2
+--------------------------------------------------------------------------------
+mg24-->he4+ne20 2 2 2 1 2 0 1 1.000000 -9.312000
+56.978100 -108.074000 -44.641000 -8.338670 2.416310 -0.778056 3.435760
+  Reactant[0]: Z=12
+  Reactant[0]: N=12
+  Product[0]: Z=2
+  Product[1]: Z=10
+  Product[0]: N=2
+  Product[1]: N=10
+  ReactantIndex[0]: N=4
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+
+Reaction 21: mg24-->he4+ne20 reaclib=21 RG:(a+b<->c) RGclass=2 RGmemberIndex=3
+--------------------------------------------------------------------------------
+mg24-->he4+ne20 2 3 2 1 2 0 1 1.000000 -9.312000
+-266.822000 -120.156000 -63.372500 394.643000 -36.243200 2.640600 -119.719000
+  Reactant[0]: Z=12
+  Reactant[0]: N=12
+  Product[0]: Z=2
+  Product[1]: Z=10
+  Product[0]: N=2
+  Product[1]: N=10
+  ReactantIndex[0]: N=4
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=3
+
+Reaction 22: c12+ne20-->he4+si28 reaclib=22 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=0
+--------------------------------------------------------------------------------
+c12+ne20-->he4+si28 4 0 5 2 2 0 0 1.000000 12.021100
+-308.905000 -47.217500 514.197000 -200.896000 -6.427130 0.758256 236.359000
+  Reactant[0]: Z=6
+  Reactant[1]: Z=10
+  Reactant[0]: N=6
+  Reactant[1]: N=10
+  Product[0]: Z=2
+  Product[1]: Z=14
+  Product[0]: N=2
+  Product[1]: N=14
+  ReactantIndex[0]: N=1
+  ReactantIndex[1]: N=3
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=5
+
+Reaction 23: he4+si28-->c12+ne20 reaclib=23 RG:(a+b<->c+d) RGclass=4 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+si28-->c12+ne20 4 1 5 2 2 0 1 1.000000 -12.021100
+-307.762000 -186.722000 514.197000 -200.896000 -6.427130 0.758256 236.359000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=14
+  Reactant[0]: N=2
+  Reactant[1]: N=14
+  Product[0]: Z=6
+  Product[1]: Z=10
+  Product[0]: N=6
+  Product[1]: N=10
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=1
+  ProductIndex[1]: N=3
+
+Reaction 24: he4+mg24-->si28 reaclib=24 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+mg24-->si28 2 0 4 2 1 0 0 1.000000 9.984000
+497.162000 -6.395600 434.667000 -994.288000 65.630800 -4.125030 425.446000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=12
+  Reactant[0]: N=2
+  Reactant[1]: N=12
+  Product[0]: Z=14
+  Product[0]: N=14
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=4
+  ProductIndex[0]: N=5
+
+Reaction 25: he4+mg24-->si28 reaclib=25 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+mg24-->si28 2 1 4 2 1 0 0 1.000000 9.984000
+-9.103640 -13.697900 -51.642800 68.462500 -3.865120 0.208028 -33.572700
+  Reactant[0]: Z=2
+  Reactant[1]: Z=12
+  Reactant[0]: N=2
+  Reactant[1]: N=12
+  Product[0]: Z=14
+  Product[0]: N=14
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=4
+  ProductIndex[0]: N=5
+
+Reaction 26: si28-->he4+mg24 reaclib=26 RG:(a+b<->c) RGclass=2 RGmemberIndex=2
+--------------------------------------------------------------------------------
+si28-->he4+mg24 2 2 2 1 2 0 1 1.000000 -9.984000
+522.024000 -122.258000 434.667000 -994.288000 65.630800 -4.125030 426.946000
+  Reactant[0]: Z=14
+  Reactant[0]: N=14
+  Product[0]: Z=2
+  Product[1]: Z=12
+  Product[0]: N=2
+  Product[1]: N=12
+  ReactantIndex[0]: N=5
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=4
+
+Reaction 27: si28-->he4+mg24 reaclib=27 RG:(a+b<->c) RGclass=2 RGmemberIndex=3
+--------------------------------------------------------------------------------
+si28-->he4+mg24 2 3 2 1 2 0 1 1.000000 -9.984000
+15.758000 -129.560000 -51.642800 68.462500 -3.865120 0.208028 -32.072700
+  Reactant[0]: Z=14
+  Reactant[0]: N=14
+  Product[0]: Z=2
+  Product[1]: Z=12
+  Product[0]: N=2
+  Product[1]: N=12
+  ReactantIndex[0]: N=5
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=4
+
+Reaction 28: he4+si28-->s32 reaclib=28 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+si28-->s32 2 0 4 2 1 0 0 1.000000 6.948000
+97.100660 -3.324446 53.585240 -165.683000 7.199997 -0.282844 79.338730
+  Reactant[0]: Z=2
+  Reactant[1]: Z=14
+  Reactant[0]: N=2
+  Reactant[1]: N=14
+  Product[0]: Z=16
+  Product[0]: N=16
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=5
+  ProductIndex[0]: N=6
+
+Reaction 29: s32-->he4+si28 reaclib=29 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+s32-->he4+si28 2 1 2 1 2 0 1 1.000000 -6.948000
+121.992400 -83.952510 53.585240 -165.683000 7.199997 -0.282844 80.838730
+  Reactant[0]: Z=16
+  Reactant[0]: N=16
+  Product[0]: Z=2
+  Product[1]: Z=14
+  Product[0]: N=2
+  Product[1]: N=14
+  ReactantIndex[0]: N=6
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=5
+
+Reaction 30: he4+s32-->ar36 reaclib=30 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+s32-->ar36 2 0 4 2 1 0 0 1.000000 6.639000
+-191.700500 0.679791 -338.473700 550.160900 -38.812610 2.530003 -243.238400
+  Reactant[0]: Z=2
+  Reactant[1]: Z=16
+  Reactant[0]: N=2
+  Reactant[1]: N=16
+  Product[0]: Z=18
+  Product[0]: N=18
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=6
+  ProductIndex[0]: N=7
+
+Reaction 31: ar36-->he4+s32 reaclib=31 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+ar36-->he4+s32 2 1 2 1 2 0 1 1.000000 -6.639000
+-166.785100 -76.362480 -338.473700 550.160900 -38.812610 2.530003 -241.738400
+  Reactant[0]: Z=18
+  Reactant[0]: N=18
+  Product[0]: Z=2
+  Product[1]: Z=16
+  Product[0]: N=2
+  Product[1]: N=16
+  ReactantIndex[0]: N=7
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=6
+
+Reaction 32: he4+ar36-->ca40 reaclib=32 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ar36-->ca40 2 0 4 2 1 0 0 1.000000 7.040000
+-129.014000 0.325200 -332.278000 468.770300 -29.136710 1.765989 -222.453900
+  Reactant[0]: Z=2
+  Reactant[1]: Z=18
+  Reactant[0]: N=2
+  Reactant[1]: N=18
+  Product[0]: Z=20
+  Product[0]: N=20
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=7
+  ProductIndex[0]: N=8
+
+Reaction 33: ca40-->he4+ar36 reaclib=33 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+ca40-->he4+ar36 2 1 2 1 2 0 1 1.000000 -7.040000
+-104.080000 -81.370480 -332.278000 468.770300 -29.136710 1.765989 -220.953900
+  Reactant[0]: Z=20
+  Reactant[0]: N=20
+  Product[0]: Z=2
+  Product[1]: Z=18
+  Product[0]: N=2
+  Product[1]: N=18
+  ReactantIndex[0]: N=8
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=7
+
+Reaction 34: he4+ca40-->ti44 reaclib=34 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ca40-->ti44 2 0 4 2 1 0 0 1.000000 5.127000
+-748.055600 12.358530 -1360.082000 2199.106000 -133.080300 7.734556 -1034.036000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=20
+  Reactant[0]: N=2
+  Reactant[1]: N=20
+  Product[0]: Z=22
+  Product[0]: N=22
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=8
+  ProductIndex[0]: N=9
+
+Reaction 35: ti44-->he4+ca40 reaclib=35 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+ti44-->he4+ca40 2 1 2 1 2 0 1 1.000000 -5.127000
+-723.106500 -47.137740 -1360.082000 2199.106000 -133.080300 7.734556 -1032.536000
+  Reactant[0]: Z=22
+  Reactant[0]: N=22
+  Product[0]: Z=2
+  Product[1]: Z=20
+  Product[0]: N=2
+  Product[1]: N=20
+  ReactantIndex[0]: N=9
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=8
+
+Reaction 36: he4+ti44-->cr48 reaclib=36 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ti44-->cr48 2 0 4 2 1 0 0 1.000000 7.692000
+-913.083700 15.949060 -1694.960000 2711.843000 -157.535300 8.856425 -1292.620000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=22
+  Reactant[0]: N=2
+  Reactant[1]: N=22
+  Product[0]: Z=24
+  Product[0]: N=24
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=9
+  ProductIndex[0]: N=10
+
+Reaction 37: cr48-->he4+ti44 reaclib=37 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+cr48-->he4+ti44 2 1 2 1 2 0 1 1.000000 -7.692000
+-888.122200 -73.312750 -1694.960000 2711.843000 -157.535300 8.856425 -1291.120000
+  Reactant[0]: Z=24
+  Reactant[0]: N=24
+  Product[0]: Z=2
+  Product[1]: Z=22
+  Product[0]: N=2
+  Product[1]: N=22
+  ReactantIndex[0]: N=10
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=9
+
+Reaction 38: he4+cr48-->fe52 reaclib=38 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+cr48-->fe52 2 0 4 2 1 0 0 1.000000 7.939000
+-929.103100 20.572990 -2039.678000 3077.998000 -171.570700 9.388271 -1509.299000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=24
+  Reactant[0]: N=2
+  Reactant[1]: N=24
+  Product[0]: Z=26
+  Product[0]: N=26
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=10
+  ProductIndex[0]: N=11
+
+Reaction 39: fe52-->he4+cr48 reaclib=39 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+fe52-->he4+cr48 2 1 2 1 2 0 1 1.000000 -7.939000
+-904.131100 -71.555140 -2039.678000 3077.998000 -171.570700 9.388271 -1507.799000
+  Reactant[0]: Z=26
+  Reactant[0]: N=26
+  Product[0]: Z=2
+  Product[1]: Z=24
+  Product[0]: N=2
+  Product[1]: N=24
+  ReactantIndex[0]: N=11
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=10
+
+Reaction 40: he4+fe52-->ni56 reaclib=40 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+fe52-->ni56 2 0 4 2 1 0 0 1.000000 7.995000
+-1051.633000 22.559880 -2240.776000 3416.331000 -192.543500 10.631880 -1666.427000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=26
+  Reactant[0]: N=2
+  Reactant[1]: N=26
+  Product[0]: Z=28
+  Product[0]: N=28
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=11
+  ProductIndex[0]: N=12
+
+Reaction 41: ni56-->he4+fe52 reaclib=41 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+ni56-->he4+fe52 2 1 2 1 2 0 1 1.000000 -7.995000
+-1026.652000 -70.218100 -2240.776000 3416.331000 -192.543500 10.631880 -1664.927000
+  Reactant[0]: Z=28
+  Reactant[0]: N=28
+  Product[0]: Z=2
+  Product[1]: Z=26
+  Product[0]: N=2
+  Product[1]: N=26
+  ReactantIndex[0]: N=12
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=11
+
+Reaction 42: he4+ni56-->zn60 reaclib=42 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ni56-->zn60 2 0 4 2 1 0 0 1.000000 2.708000
+-1043.410000 22.802610 -2281.027000 3453.872000 -196.919400 11.018850 -1685.657000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=28
+  Reactant[0]: N=2
+  Reactant[1]: N=28
+  Product[0]: Z=30
+  Product[0]: N=30
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=12
+  ProductIndex[0]: N=13
+
+Reaction 43: zn60-->he4+ni56 reaclib=43 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+zn60-->he4+ni56 2 1 2 1 2 0 1 1.000000 -2.708000
+-1018.421000 -8.622378 -2281.027000 3453.872000 -196.919400 11.018850 -1684.157000
+  Reactant[0]: Z=30
+  Reactant[0]: N=30
+  Product[0]: Z=2
+  Product[1]: Z=28
+  Product[0]: N=2
+  Product[1]: N=28
+  ReactantIndex[0]: N=13
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=12
+
+Reaction 44: he4+zn60-->ge64 reaclib=44 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+zn60-->ge64 2 0 4 2 1 0 0 1.000000 2.667000
+-876.444500 24.335080 -2362.566000 3352.363000 -183.321800 10.004160 -1686.780000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=30
+  Reactant[0]: N=2
+  Reactant[1]: N=30
+  Product[0]: Z=32
+  Product[0]: N=32
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=13
+  ProductIndex[0]: N=14
+
+Reaction 45: ge64-->he4+zn60 reaclib=45 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+ge64-->he4+zn60 2 1 2 1 2 0 1 1.000000 -2.667000
+-851.449300 -6.614125 -2362.566000 3352.363000 -183.321800 10.004160 -1685.280000
+  Reactant[0]: Z=32
+  Reactant[0]: N=32
+  Product[0]: Z=2
+  Product[1]: Z=30
+  Product[0]: N=2
+  Product[1]: N=30
+  ReactantIndex[0]: N=14
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=13
+
+Reaction 46: he4+ge64-->se68 reaclib=46 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+ge64-->se68 2 0 4 2 1 0 0 1.000000 2.942000
+-911.696300 26.321980 -2543.550000 3570.935000 -190.349100 10.114380 -1810.217000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=32
+  Reactant[0]: N=2
+  Reactant[1]: N=32
+  Product[0]: Z=34
+  Product[0]: N=34
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=14
+  ProductIndex[0]: N=15
+
+Reaction 47: se68-->he4+ge64 reaclib=47 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+se68-->he4+ge64 2 1 2 1 2 0 1 1.000000 -2.942000
+-886.695100 -7.818461 -2543.550000 3570.935000 -190.349100 10.114380 -1808.717000
+  Reactant[0]: Z=34
+  Reactant[0]: N=34
+  Product[0]: Z=2
+  Product[1]: Z=32
+  Product[0]: N=2
+  Product[1]: N=32
+  ReactantIndex[0]: N=15
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=14
+48 REACTIONS
+
+0 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667
+1 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667
+2 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000
+3 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000
+4 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000
+5 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000
+6 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000
+7 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000
+8 c12+c12-->he4+ne20 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=4.6210 prefac=0.5000
+9 he4+ne20-->c12+c12 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-4.6210 prefac=1.0000
+10 he4+o16-->ne20 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=4.7340 prefac=1.0000
+11 he4+o16-->ne20 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=4.7340 prefac=1.0000
+12 ne20-->he4+o16 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-4.7340 prefac=1.0000
+13 ne20-->he4+o16 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-4.7340 prefac=1.0000
+14 c12+o16-->he4+mg24 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=6.7710 prefac=1.0000
+15 he4+mg24-->c12+o16 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-6.7710 prefac=1.0000
+16 o16+o16-->he4+si28 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=9.5930 prefac=0.5000
+17 he4+si28-->o16+o16 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-9.5930 prefac=1.0000
+18 he4+ne20-->mg24 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.3120 prefac=1.0000
+19 he4+ne20-->mg24 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.3120 prefac=1.0000
+20 mg24-->he4+ne20 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.3120 prefac=1.0000
+21 mg24-->he4+ne20 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.3120 prefac=1.0000
+22 c12+ne20-->he4+si28 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=12.0211 prefac=1.0000
+23 he4+si28-->c12+ne20 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-12.0211 prefac=1.0000
+24 he4+mg24-->si28 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.9840 prefac=1.0000
+25 he4+mg24-->si28 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.9840 prefac=1.0000
+26 si28-->he4+mg24 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.9840 prefac=1.0000
+27 si28-->he4+mg24 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.9840 prefac=1.0000
+28 he4+si28-->s32 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=6.9480 prefac=1.0000
+29 s32-->he4+si28 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-6.9480 prefac=1.0000
+30 he4+s32-->ar36 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=6.6390 prefac=1.0000
+31 ar36-->he4+s32 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-6.6390 prefac=1.0000
+32 he4+ar36-->ca40 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.0400 prefac=1.0000
+33 ca40-->he4+ar36 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.0400 prefac=1.0000
+34 he4+ca40-->ti44 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=5.1270 prefac=1.0000
+35 ti44-->he4+ca40 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-5.1270 prefac=1.0000
+36 he4+ti44-->cr48 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.6920 prefac=1.0000
+37 cr48-->he4+ti44 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.6920 prefac=1.0000
+38 he4+cr48-->fe52 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.9390 prefac=1.0000
+39 fe52-->he4+cr48 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.9390 prefac=1.0000
+40 he4+fe52-->ni56 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.9950 prefac=1.0000
+41 ni56-->he4+fe52 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.9950 prefac=1.0000
+42 he4+ni56-->zn60 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.7080 prefac=1.0000
+43 zn60-->he4+ni56 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.7080 prefac=1.0000
+44 he4+zn60-->ge64 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.6670 prefac=1.0000
+45 ge64-->he4+zn60 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.6670 prefac=1.0000
+46 he4+ge64-->se68 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.9420 prefac=1.0000
+47 se68-->he4+ge64 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.9420 prefac=1.0000
+
+ReactantIndex[][] and ProductIndex[][]:
+
+he4+he4+he4-->c12: ReactantIndex[0][0]=0 ReactantIndex[0][1]=0 ReactantIndex[0][2]=0  ProductIndex[0][0]=1
+he4+he4+he4-->c12: ReactantIndex[1][0]=0 ReactantIndex[1][1]=0 ReactantIndex[1][2]=0  ProductIndex[1][0]=1
+c12-->he4+he4+he4: ReactantIndex[2][0]=1  ProductIndex[2][0]=0 ProductIndex[2][1]=0 ProductIndex[2][2]=0
+c12-->he4+he4+he4: ReactantIndex[3][0]=1  ProductIndex[3][0]=0 ProductIndex[3][1]=0 ProductIndex[3][2]=0
+    he4+c12-->o16: ReactantIndex[4][0]=0 ReactantIndex[4][1]=1  ProductIndex[4][0]=2
+    he4+c12-->o16: ReactantIndex[5][0]=0 ReactantIndex[5][1]=1  ProductIndex[5][0]=2
+    o16-->he4+c12: ReactantIndex[6][0]=2  ProductIndex[6][0]=0 ProductIndex[6][1]=1
+    o16-->he4+c12: ReactantIndex[7][0]=2  ProductIndex[7][0]=0 ProductIndex[7][1]=1
+c12+c12-->he4+ne20: ReactantIndex[8][0]=1 ReactantIndex[8][1]=1  ProductIndex[8][0]=0 ProductIndex[8][1]=3
+he4+ne20-->c12+c12: ReactantIndex[9][0]=0 ReactantIndex[9][1]=3  ProductIndex[9][0]=1 ProductIndex[9][1]=1
+   he4+o16-->ne20: ReactantIndex[10][0]=0 ReactantIndex[10][1]=2  ProductIndex[10][0]=3
+   he4+o16-->ne20: ReactantIndex[11][0]=0 ReactantIndex[11][1]=2  ProductIndex[11][0]=3
+   ne20-->he4+o16: ReactantIndex[12][0]=3  ProductIndex[12][0]=0 ProductIndex[12][1]=2
+   ne20-->he4+o16: ReactantIndex[13][0]=3  ProductIndex[13][0]=0 ProductIndex[13][1]=2
+c12+o16-->he4+mg24: ReactantIndex[14][0]=1 ReactantIndex[14][1]=2  ProductIndex[14][0]=0 ProductIndex[14][1]=4
+he4+mg24-->c12+o16: ReactantIndex[15][0]=0 ReactantIndex[15][1]=4  ProductIndex[15][0]=1 ProductIndex[15][1]=2
+o16+o16-->he4+si28: ReactantIndex[16][0]=2 ReactantIndex[16][1]=2  ProductIndex[16][0]=0 ProductIndex[16][1]=5
+he4+si28-->o16+o16: ReactantIndex[17][0]=0 ReactantIndex[17][1]=5  ProductIndex[17][0]=2 ProductIndex[17][1]=2
+  he4+ne20-->mg24: ReactantIndex[18][0]=0 ReactantIndex[18][1]=3  ProductIndex[18][0]=4
+  he4+ne20-->mg24: ReactantIndex[19][0]=0 ReactantIndex[19][1]=3  ProductIndex[19][0]=4
+  mg24-->he4+ne20: ReactantIndex[20][0]=4  ProductIndex[20][0]=0 ProductIndex[20][1]=3
+  mg24-->he4+ne20: ReactantIndex[21][0]=4  ProductIndex[21][0]=0 ProductIndex[21][1]=3
+c12+ne20-->he4+si28: ReactantIndex[22][0]=1 ReactantIndex[22][1]=3  ProductIndex[22][0]=0 ProductIndex[22][1]=5
+he4+si28-->c12+ne20: ReactantIndex[23][0]=0 ReactantIndex[23][1]=5  ProductIndex[23][0]=1 ProductIndex[23][1]=3
+  he4+mg24-->si28: ReactantIndex[24][0]=0 ReactantIndex[24][1]=4  ProductIndex[24][0]=5
+  he4+mg24-->si28: ReactantIndex[25][0]=0 ReactantIndex[25][1]=4  ProductIndex[25][0]=5
+  si28-->he4+mg24: ReactantIndex[26][0]=5  ProductIndex[26][0]=0 ProductIndex[26][1]=4
+  si28-->he4+mg24: ReactantIndex[27][0]=5  ProductIndex[27][0]=0 ProductIndex[27][1]=4
+   he4+si28-->s32: ReactantIndex[28][0]=0 ReactantIndex[28][1]=5  ProductIndex[28][0]=6
+   s32-->he4+si28: ReactantIndex[29][0]=6  ProductIndex[29][0]=0 ProductIndex[29][1]=5
+   he4+s32-->ar36: ReactantIndex[30][0]=0 ReactantIndex[30][1]=6  ProductIndex[30][0]=7
+   ar36-->he4+s32: ReactantIndex[31][0]=7  ProductIndex[31][0]=0 ProductIndex[31][1]=6
+  he4+ar36-->ca40: ReactantIndex[32][0]=0 ReactantIndex[32][1]=7  ProductIndex[32][0]=8
+  ca40-->he4+ar36: ReactantIndex[33][0]=8  ProductIndex[33][0]=0 ProductIndex[33][1]=7
+  he4+ca40-->ti44: ReactantIndex[34][0]=0 ReactantIndex[34][1]=8  ProductIndex[34][0]=9
+  ti44-->he4+ca40: ReactantIndex[35][0]=9  ProductIndex[35][0]=0 ProductIndex[35][1]=8
+  he4+ti44-->cr48: ReactantIndex[36][0]=0 ReactantIndex[36][1]=9  ProductIndex[36][0]=10
+  cr48-->he4+ti44: ReactantIndex[37][0]=10  ProductIndex[37][0]=0 ProductIndex[37][1]=9
+  he4+cr48-->fe52: ReactantIndex[38][0]=0 ReactantIndex[38][1]=10  ProductIndex[38][0]=11
+  fe52-->he4+cr48: ReactantIndex[39][0]=11  ProductIndex[39][0]=0 ProductIndex[39][1]=10
+  he4+fe52-->ni56: ReactantIndex[40][0]=0 ReactantIndex[40][1]=11  ProductIndex[40][0]=12
+  ni56-->he4+fe52: ReactantIndex[41][0]=12  ProductIndex[41][0]=0 ProductIndex[41][1]=11
+  he4+ni56-->zn60: ReactantIndex[42][0]=0 ReactantIndex[42][1]=12  ProductIndex[42][0]=13
+  zn60-->he4+ni56: ReactantIndex[43][0]=13  ProductIndex[43][0]=0 ProductIndex[43][1]=12
+  he4+zn60-->ge64: ReactantIndex[44][0]=0 ReactantIndex[44][1]=13  ProductIndex[44][0]=14
+  ge64-->he4+zn60: ReactantIndex[45][0]=14  ProductIndex[45][0]=0 ProductIndex[45][1]=13
+  he4+ge64-->se68: ReactantIndex[46][0]=0 ReactantIndex[46][1]=14  ProductIndex[46][0]=15
+  se68-->he4+ge64: ReactantIndex[47][0]=15  ProductIndex[47][0]=0 ProductIndex[47][1]=14
+
+
+
+REACLIB PARAMETERS FOR 48 REACTIONS
+
+                                p0         p1         p2         p3         p4         p5         p6
+  0   he4+he4+he4-->c12   -24.9935    -4.2970    -6.6930    15.5903    -1.5739     0.1706    -9.0280
+  1   he4+he4+he4-->c12   -49.4948     0.3283   -86.9016    75.0151   128.4270  -215.2880   -51.6026
+  2   c12-->he4+he4+he4    -2.7499   -84.0917   -86.9016    75.0151   128.4270  -215.2880   -48.6026
+  3   c12-->he4+he4+he4    21.7513   -88.7170    -6.6930    15.5903    -1.5739     0.1706    -6.0280
+  4       he4+c12-->o16    18.4977     0.0048   -33.2522     3.3352    -0.7017     0.0782    -2.8075
+  5       he4+c12-->o16   142.1910   -89.1608  2204.3500 -2380.3100   108.9310    -5.3147  1361.1800
+  6       o16-->he4+c12    43.1587   -83.1062   -33.2522     3.3352    -0.7017     0.0782    -1.3075
+  7       o16-->he4+c12   166.8520  -172.2720  2204.3500 -2380.3100   108.9310    -5.3147  1362.6800
+  8  c12+c12-->he4+ne20    61.2863     0.0000   -84.1650    -1.5663    -0.0736    -0.0728    -0.6667
+  9  he4+ne20-->c12+c12    61.4748   -53.6244   -84.1650    -1.5663    -0.0736    -0.0728    -0.6667
+ 10      he4+o16-->ne20    39.0340    -0.0359   -34.3457   -25.1939     4.7985    -1.4644     6.3433
+ 11      he4+o16-->ne20    84.5522   -17.8214   293.6640  -384.9740    20.2380    -1.0038   199.6930
+ 12      ne20-->he4+o16    63.7915   -54.9729   -34.3457   -25.1939     4.7985    -1.4644     7.8433
+ 13      ne20-->he4+o16   109.3100   -72.7584   293.6640  -384.9740    20.2380    -1.0038   201.1930
+ 14  c12+o16-->he4+mg24    48.5341     0.3720  -133.4130    50.1572    -3.1599     0.0178   -23.7027
+ 15  he4+mg24-->c12+o16    49.5738   -78.2020  -133.4130    50.1572    -3.1599     0.0178   -23.7027
+ 16  o16+o16-->he4+si28    97.2435    -0.2685  -119.3240   -32.2497     1.4621    -0.2009    13.2148
+ 17  he4+si28-->o16+o16    97.7904  -111.5900  -119.3240   -32.2497     1.4621    -0.2009    13.2148
+ 18     he4+ne20-->mg24    32.1588    -0.0151   -44.6410    -8.3387     2.4163    -0.7781     1.9358
+ 19     he4+ne20-->mg24  -291.6410   -12.0966   -63.3725   394.6430   -36.2432     2.6406  -121.2190
+ 20     mg24-->he4+ne20    56.9781  -108.0740   -44.6410    -8.3387     2.4163    -0.7781     3.4358
+ 21     mg24-->he4+ne20  -266.8220  -120.1560   -63.3725   394.6430   -36.2432     2.6406  -119.7190
+ 22  c12+ne20-->he4+si28  -308.9050   -47.2175   514.1970  -200.8960    -6.4271     0.7583   236.3590
+ 23  he4+si28-->c12+ne20  -307.7620  -186.7220   514.1970  -200.8960    -6.4271     0.7583   236.3590
+ 24     he4+mg24-->si28   497.1620    -6.3956   434.6670  -994.2880    65.6308    -4.1250   425.4460
+ 25     he4+mg24-->si28    -9.1036   -13.6979   -51.6428    68.4625    -3.8651     0.2080   -33.5727
+ 26     si28-->he4+mg24   522.0240  -122.2580   434.6670  -994.2880    65.6308    -4.1250   426.9460
+ 27     si28-->he4+mg24    15.7580  -129.5600   -51.6428    68.4625    -3.8651     0.2080   -32.0727
+ 28      he4+si28-->s32    97.1007    -3.3244    53.5852  -165.6830     7.2000    -0.2828    79.3387
+ 29      s32-->he4+si28   121.9924   -83.9525    53.5852  -165.6830     7.2000    -0.2828    80.8387
+ 30      he4+s32-->ar36  -191.7005     0.6798  -338.4737   550.1609   -38.8126     2.5300  -243.2384
+ 31      ar36-->he4+s32  -166.7851   -76.3625  -338.4737   550.1609   -38.8126     2.5300  -241.7384
+ 32     he4+ar36-->ca40  -129.0140     0.3252  -332.2780   468.7703   -29.1367     1.7660  -222.4539
+ 33     ca40-->he4+ar36  -104.0800   -81.3705  -332.2780   468.7703   -29.1367     1.7660  -220.9539
+ 34     he4+ca40-->ti44  -748.0556    12.3585 -1360.0820  2199.1060  -133.0803     7.7346 -1034.0360
+ 35     ti44-->he4+ca40  -723.1065   -47.1377 -1360.0820  2199.1060  -133.0803     7.7346 -1032.5360
+ 36     he4+ti44-->cr48  -913.0837    15.9491 -1694.9600  2711.8430  -157.5353     8.8564 -1292.6200
+ 37     cr48-->he4+ti44  -888.1222   -73.3127 -1694.9600  2711.8430  -157.5353     8.8564 -1291.1200
+ 38     he4+cr48-->fe52  -929.1031    20.5730 -2039.6780  3077.9980  -171.5707     9.3883 -1509.2990
+ 39     fe52-->he4+cr48  -904.1311   -71.5551 -2039.6780  3077.9980  -171.5707     9.3883 -1507.7990
+ 40     he4+fe52-->ni56 -1051.6330    22.5599 -2240.7760  3416.3310  -192.5435    10.6319 -1666.4270
+ 41     ni56-->he4+fe52 -1026.6520   -70.2181 -2240.7760  3416.3310  -192.5435    10.6319 -1664.9270
+ 42     he4+ni56-->zn60 -1043.4100    22.8026 -2281.0270  3453.8720  -196.9194    11.0189 -1685.6570
+ 43     zn60-->he4+ni56 -1018.4210    -8.6224 -2281.0270  3453.8720  -196.9194    11.0189 -1684.1570
+ 44     he4+zn60-->ge64  -876.4445    24.3351 -2362.5660  3352.3630  -183.3218    10.0042 -1686.7800
+ 45     ge64-->he4+zn60  -851.4493    -6.6141 -2362.5660  3352.3630  -183.3218    10.0042 -1685.2800
+ 46     he4+ge64-->se68  -911.6963    26.3220 -2543.5500  3570.9350  -190.3491    10.1144 -1810.2170
+ 47     se68-->he4+ge64  -886.6951    -7.8185 -2543.5500  3570.9350  -190.3491    10.1144 -1808.7170
+
+Z and N for reactants:
+
+  0  he4+he4+he4-->c12  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  1  he4+he4+he4-->c12  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  2  c12-->he4+he4+he4  Z[0]=6  N[0]=6
+  3  c12-->he4+he4+he4  Z[0]=6  N[0]=6
+  4      he4+c12-->o16  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  5      he4+c12-->o16  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  6      o16-->he4+c12  Z[0]=8  N[0]=8
+  7      o16-->he4+c12  Z[0]=8  N[0]=8
+  8 c12+c12-->he4+ne20  Z[0]=6 Z[1]=6  N[0]=6 N[1]=6
+  9 he4+ne20-->c12+c12  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+ 10     he4+o16-->ne20  Z[0]=2 Z[1]=8  N[0]=2 N[1]=8
+ 11     he4+o16-->ne20  Z[0]=2 Z[1]=8  N[0]=2 N[1]=8
+ 12     ne20-->he4+o16  Z[0]=10  N[0]=10
+ 13     ne20-->he4+o16  Z[0]=10  N[0]=10
+ 14 c12+o16-->he4+mg24  Z[0]=6 Z[1]=8  N[0]=6 N[1]=8
+ 15 he4+mg24-->c12+o16  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 16 o16+o16-->he4+si28  Z[0]=8 Z[1]=8  N[0]=8 N[1]=8
+ 17 he4+si28-->o16+o16  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 18    he4+ne20-->mg24  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+ 19    he4+ne20-->mg24  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+ 20    mg24-->he4+ne20  Z[0]=12  N[0]=12
+ 21    mg24-->he4+ne20  Z[0]=12  N[0]=12
+ 22 c12+ne20-->he4+si28  Z[0]=6 Z[1]=10  N[0]=6 N[1]=10
+ 23 he4+si28-->c12+ne20  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 24    he4+mg24-->si28  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 25    he4+mg24-->si28  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 26    si28-->he4+mg24  Z[0]=14  N[0]=14
+ 27    si28-->he4+mg24  Z[0]=14  N[0]=14
+ 28     he4+si28-->s32  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 29     s32-->he4+si28  Z[0]=16  N[0]=16
+ 30     he4+s32-->ar36  Z[0]=2 Z[1]=16  N[0]=2 N[1]=16
+ 31     ar36-->he4+s32  Z[0]=18  N[0]=18
+ 32    he4+ar36-->ca40  Z[0]=2 Z[1]=18  N[0]=2 N[1]=18
+ 33    ca40-->he4+ar36  Z[0]=20  N[0]=20
+ 34    he4+ca40-->ti44  Z[0]=2 Z[1]=20  N[0]=2 N[1]=20
+ 35    ti44-->he4+ca40  Z[0]=22  N[0]=22
+ 36    he4+ti44-->cr48  Z[0]=2 Z[1]=22  N[0]=2 N[1]=22
+ 37    cr48-->he4+ti44  Z[0]=24  N[0]=24
+ 38    he4+cr48-->fe52  Z[0]=2 Z[1]=24  N[0]=2 N[1]=24
+ 39    fe52-->he4+cr48  Z[0]=26  N[0]=26
+ 40    he4+fe52-->ni56  Z[0]=2 Z[1]=26  N[0]=2 N[1]=26
+ 41    ni56-->he4+fe52  Z[0]=28  N[0]=28
+ 42    he4+ni56-->zn60  Z[0]=2 Z[1]=28  N[0]=2 N[1]=28
+ 43    zn60-->he4+ni56  Z[0]=30  N[0]=30
+ 44    he4+zn60-->ge64  Z[0]=2 Z[1]=30  N[0]=2 N[1]=30
+ 45    ge64-->he4+zn60  Z[0]=32  N[0]=32
+ 46    he4+ge64-->se68  Z[0]=2 Z[1]=32  N[0]=2 N[1]=32
+ 47    se68-->he4+ge64  Z[0]=34  N[0]=34
+
+Z and N for products:
+
+  0  he4+he4+he4-->c12  Z[0]=6  N[0]=6
+  1  he4+he4+he4-->c12  Z[0]=6  N[0]=6
+  2  c12-->he4+he4+he4  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  3  c12-->he4+he4+he4  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  4      he4+c12-->o16  Z[0]=8  N[0]=8
+  5      he4+c12-->o16  Z[0]=8  N[0]=8
+  6      o16-->he4+c12  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  7      o16-->he4+c12  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  8 c12+c12-->he4+ne20  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+  9 he4+ne20-->c12+c12  Z[0]=6 Z[1]=6  N[0]=6 N[1]=6
+ 10     he4+o16-->ne20  Z[0]=10  N[0]=10
+ 11     he4+o16-->ne20  Z[0]=10  N[0]=10
+ 12     ne20-->he4+o16  Z[0]=2 Z[1]=8  N[0]=2 N[1]=8
+ 13     ne20-->he4+o16  Z[0]=2 Z[1]=8  N[0]=2 N[1]=8
+ 14 c12+o16-->he4+mg24  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 15 he4+mg24-->c12+o16  Z[0]=6 Z[1]=8  N[0]=6 N[1]=8
+ 16 o16+o16-->he4+si28  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 17 he4+si28-->o16+o16  Z[0]=8 Z[1]=8  N[0]=8 N[1]=8
+ 18    he4+ne20-->mg24  Z[0]=12  N[0]=12
+ 19    he4+ne20-->mg24  Z[0]=12  N[0]=12
+ 20    mg24-->he4+ne20  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+ 21    mg24-->he4+ne20  Z[0]=2 Z[1]=10  N[0]=2 N[1]=10
+ 22 c12+ne20-->he4+si28  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 23 he4+si28-->c12+ne20  Z[0]=6 Z[1]=10  N[0]=6 N[1]=10
+ 24    he4+mg24-->si28  Z[0]=14  N[0]=14
+ 25    he4+mg24-->si28  Z[0]=14  N[0]=14
+ 26    si28-->he4+mg24  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 27    si28-->he4+mg24  Z[0]=2 Z[1]=12  N[0]=2 N[1]=12
+ 28     he4+si28-->s32  Z[0]=16  N[0]=16
+ 29     s32-->he4+si28  Z[0]=2 Z[1]=14  N[0]=2 N[1]=14
+ 30     he4+s32-->ar36  Z[0]=18  N[0]=18
+ 31     ar36-->he4+s32  Z[0]=2 Z[1]=16  N[0]=2 N[1]=16
+ 32    he4+ar36-->ca40  Z[0]=20  N[0]=20
+ 33    ca40-->he4+ar36  Z[0]=2 Z[1]=18  N[0]=2 N[1]=18
+ 34    he4+ca40-->ti44  Z[0]=22  N[0]=22
+ 35    ti44-->he4+ca40  Z[0]=2 Z[1]=20  N[0]=2 N[1]=20
+ 36    he4+ti44-->cr48  Z[0]=24  N[0]=24
+ 37    cr48-->he4+ti44  Z[0]=2 Z[1]=22  N[0]=2 N[1]=22
+ 38    he4+cr48-->fe52  Z[0]=26  N[0]=26
+ 39    fe52-->he4+cr48  Z[0]=2 Z[1]=24  N[0]=2 N[1]=24
+ 40    he4+fe52-->ni56  Z[0]=28  N[0]=28
+ 41    ni56-->he4+fe52  Z[0]=2 Z[1]=26  N[0]=2 N[1]=26
+ 42    he4+ni56-->zn60  Z[0]=30  N[0]=30
+ 43    zn60-->he4+ni56  Z[0]=2 Z[1]=28  N[0]=2 N[1]=28
+ 44    he4+zn60-->ge64  Z[0]=32  N[0]=32
+ 45    ge64-->he4+zn60  Z[0]=2 Z[1]=30  N[0]=2 N[1]=30
+ 46    he4+ge64-->se68  Z[0]=34  N[0]=34
+ 47    se68-->he4+ge64  Z[0]=2 Z[1]=32  N[0]=2 N[1]=32
+
+reactantIndex for 48 reactions (index of species vector for each reactant):
+
+0  he4+he4+he4-->c12  reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+1  he4+he4+he4-->c12  reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+2  c12-->he4+he4+he4  reactantIndex[0]=1
+3  c12-->he4+he4+he4  reactantIndex[0]=1
+4      he4+c12-->o16  reactantIndex[0]=0 reactantIndex[1]=1
+5      he4+c12-->o16  reactantIndex[0]=0 reactantIndex[1]=1
+6      o16-->he4+c12  reactantIndex[0]=2
+7      o16-->he4+c12  reactantIndex[0]=2
+8 c12+c12-->he4+ne20  reactantIndex[0]=1 reactantIndex[1]=1
+9 he4+ne20-->c12+c12  reactantIndex[0]=0 reactantIndex[1]=3
+10     he4+o16-->ne20  reactantIndex[0]=0 reactantIndex[1]=2
+11     he4+o16-->ne20  reactantIndex[0]=0 reactantIndex[1]=2
+12     ne20-->he4+o16  reactantIndex[0]=3
+13     ne20-->he4+o16  reactantIndex[0]=3
+14 c12+o16-->he4+mg24  reactantIndex[0]=1 reactantIndex[1]=2
+15 he4+mg24-->c12+o16  reactantIndex[0]=0 reactantIndex[1]=4
+16 o16+o16-->he4+si28  reactantIndex[0]=2 reactantIndex[1]=2
+17 he4+si28-->o16+o16  reactantIndex[0]=0 reactantIndex[1]=5
+18    he4+ne20-->mg24  reactantIndex[0]=0 reactantIndex[1]=3
+19    he4+ne20-->mg24  reactantIndex[0]=0 reactantIndex[1]=3
+20    mg24-->he4+ne20  reactantIndex[0]=4
+21    mg24-->he4+ne20  reactantIndex[0]=4
+22 c12+ne20-->he4+si28  reactantIndex[0]=1 reactantIndex[1]=3
+23 he4+si28-->c12+ne20  reactantIndex[0]=0 reactantIndex[1]=5
+24    he4+mg24-->si28  reactantIndex[0]=0 reactantIndex[1]=4
+25    he4+mg24-->si28  reactantIndex[0]=0 reactantIndex[1]=4
+26    si28-->he4+mg24  reactantIndex[0]=5
+27    si28-->he4+mg24  reactantIndex[0]=5
+28     he4+si28-->s32  reactantIndex[0]=0 reactantIndex[1]=5
+29     s32-->he4+si28  reactantIndex[0]=6
+30     he4+s32-->ar36  reactantIndex[0]=0 reactantIndex[1]=6
+31     ar36-->he4+s32  reactantIndex[0]=7
+32    he4+ar36-->ca40  reactantIndex[0]=0 reactantIndex[1]=7
+33    ca40-->he4+ar36  reactantIndex[0]=8
+34    he4+ca40-->ti44  reactantIndex[0]=0 reactantIndex[1]=8
+35    ti44-->he4+ca40  reactantIndex[0]=9
+36    he4+ti44-->cr48  reactantIndex[0]=0 reactantIndex[1]=9
+37    cr48-->he4+ti44  reactantIndex[0]=10
+38    he4+cr48-->fe52  reactantIndex[0]=0 reactantIndex[1]=10
+39    fe52-->he4+cr48  reactantIndex[0]=11
+40    he4+fe52-->ni56  reactantIndex[0]=0 reactantIndex[1]=11
+41    ni56-->he4+fe52  reactantIndex[0]=12
+42    he4+ni56-->zn60  reactantIndex[0]=0 reactantIndex[1]=12
+43    zn60-->he4+ni56  reactantIndex[0]=13
+44    he4+zn60-->ge64  reactantIndex[0]=0 reactantIndex[1]=13
+45    ge64-->he4+zn60  reactantIndex[0]=14
+46    he4+ge64-->se68  reactantIndex[0]=0 reactantIndex[1]=14
+47    se68-->he4+ge64  reactantIndex[0]=15
+
+productIndex for 48 reactions (index of species vector for each product):
+
+0  he4+he4+he4-->c12  productIndex[0]=1
+1  he4+he4+he4-->c12  productIndex[0]=1
+2  c12-->he4+he4+he4  productIndex[0]=0 productIndex[1]=0 productIndex[2]=0
+3  c12-->he4+he4+he4  productIndex[0]=0 productIndex[1]=0 productIndex[2]=0
+4      he4+c12-->o16  productIndex[0]=2
+5      he4+c12-->o16  productIndex[0]=2
+6      o16-->he4+c12  productIndex[0]=0 productIndex[1]=1
+7      o16-->he4+c12  productIndex[0]=0 productIndex[1]=1
+8 c12+c12-->he4+ne20  productIndex[0]=0 productIndex[1]=3
+9 he4+ne20-->c12+c12  productIndex[0]=1 productIndex[1]=1
+10     he4+o16-->ne20  productIndex[0]=3
+11     he4+o16-->ne20  productIndex[0]=3
+12     ne20-->he4+o16  productIndex[0]=0 productIndex[1]=2
+13     ne20-->he4+o16  productIndex[0]=0 productIndex[1]=2
+14 c12+o16-->he4+mg24  productIndex[0]=0 productIndex[1]=4
+15 he4+mg24-->c12+o16  productIndex[0]=1 productIndex[1]=2
+16 o16+o16-->he4+si28  productIndex[0]=0 productIndex[1]=5
+17 he4+si28-->o16+o16  productIndex[0]=2 productIndex[1]=2
+18    he4+ne20-->mg24  productIndex[0]=4
+19    he4+ne20-->mg24  productIndex[0]=4
+20    mg24-->he4+ne20  productIndex[0]=0 productIndex[1]=3
+21    mg24-->he4+ne20  productIndex[0]=0 productIndex[1]=3
+22 c12+ne20-->he4+si28  productIndex[0]=0 productIndex[1]=5
+23 he4+si28-->c12+ne20  productIndex[0]=1 productIndex[1]=3
+24    he4+mg24-->si28  productIndex[0]=5
+25    he4+mg24-->si28  productIndex[0]=5
+26    si28-->he4+mg24  productIndex[0]=0 productIndex[1]=4
+27    si28-->he4+mg24  productIndex[0]=0 productIndex[1]=4
+28     he4+si28-->s32  productIndex[0]=6
+29     s32-->he4+si28  productIndex[0]=0 productIndex[1]=5
+30     he4+s32-->ar36  productIndex[0]=7
+31     ar36-->he4+s32  productIndex[0]=0 productIndex[1]=6
+32    he4+ar36-->ca40  productIndex[0]=8
+33    ca40-->he4+ar36  productIndex[0]=0 productIndex[1]=7
+34    he4+ca40-->ti44  productIndex[0]=9
+35    ti44-->he4+ca40  productIndex[0]=0 productIndex[1]=8
+36    he4+ti44-->cr48  productIndex[0]=10
+37    cr48-->he4+ti44  productIndex[0]=0 productIndex[1]=9
+38    he4+cr48-->fe52  productIndex[0]=11
+39    fe52-->he4+cr48  productIndex[0]=0 productIndex[1]=10
+40    he4+fe52-->ni56  productIndex[0]=12
+41    ni56-->he4+fe52  productIndex[0]=0 productIndex[1]=11
+42    he4+ni56-->zn60  productIndex[0]=13
+43    zn60-->he4+ni56  productIndex[0]=0 productIndex[1]=12
+44    he4+zn60-->ge64  productIndex[0]=14
+45    ge64-->he4+zn60  productIndex[0]=0 productIndex[1]=13
+46    he4+ge64-->se68  productIndex[0]=15
+47    se68-->he4+ge64  productIndex[0]=0 productIndex[1]=14
+
+
+FLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):
+numberSpecies=16 numberReactions=48
+
+Index             Reaction  4He  12C  16O 20Ne 24Mg 28Si  32S 36Ar 40Ca 44Ti 48Cr 52Fe 56Ni 60Zn 64Ge 68Se
+  0      he4+he4+he4-->c12   -3    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+  1      he4+he4+he4-->c12   -3    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+  2      c12-->he4+he4+he4    3   -1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+  3      c12-->he4+he4+he4    3   -1    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+  4          he4+c12-->o16   -1   -1    1    0    0    0    0    0    0    0    0    0    0    0    0    0
+  5          he4+c12-->o16   -1   -1    1    0    0    0    0    0    0    0    0    0    0    0    0    0
+  6          o16-->he4+c12    1    1   -1    0    0    0    0    0    0    0    0    0    0    0    0    0
+  7          o16-->he4+c12    1    1   -1    0    0    0    0    0    0    0    0    0    0    0    0    0
+  8     c12+c12-->he4+ne20    1   -2    0    1    0    0    0    0    0    0    0    0    0    0    0    0
+  9     he4+ne20-->c12+c12   -1    2    0   -1    0    0    0    0    0    0    0    0    0    0    0    0
+ 10         he4+o16-->ne20   -1    0   -1    1    0    0    0    0    0    0    0    0    0    0    0    0
+ 11         he4+o16-->ne20   -1    0   -1    1    0    0    0    0    0    0    0    0    0    0    0    0
+ 12         ne20-->he4+o16    1    0    1   -1    0    0    0    0    0    0    0    0    0    0    0    0
+ 13         ne20-->he4+o16    1    0    1   -1    0    0    0    0    0    0    0    0    0    0    0    0
+ 14     c12+o16-->he4+mg24    1   -1   -1    0    1    0    0    0    0    0    0    0    0    0    0    0
+ 15     he4+mg24-->c12+o16   -1    1    1    0   -1    0    0    0    0    0    0    0    0    0    0    0
+ 16     o16+o16-->he4+si28    1    0   -2    0    0    1    0    0    0    0    0    0    0    0    0    0
+ 17     he4+si28-->o16+o16   -1    0    2    0    0   -1    0    0    0    0    0    0    0    0    0    0
+ 18        he4+ne20-->mg24   -1    0    0   -1    1    0    0    0    0    0    0    0    0    0    0    0
+ 19        he4+ne20-->mg24   -1    0    0   -1    1    0    0    0    0    0    0    0    0    0    0    0
+ 20        mg24-->he4+ne20    1    0    0    1   -1    0    0    0    0    0    0    0    0    0    0    0
+ 21        mg24-->he4+ne20    1    0    0    1   -1    0    0    0    0    0    0    0    0    0    0    0
+ 22    c12+ne20-->he4+si28    1   -1    0   -1    0    1    0    0    0    0    0    0    0    0    0    0
+ 23    he4+si28-->c12+ne20   -1    1    0    1    0   -1    0    0    0    0    0    0    0    0    0    0
+ 24        he4+mg24-->si28   -1    0    0    0   -1    1    0    0    0    0    0    0    0    0    0    0
+ 25        he4+mg24-->si28   -1    0    0    0   -1    1    0    0    0    0    0    0    0    0    0    0
+ 26        si28-->he4+mg24    1    0    0    0    1   -1    0    0    0    0    0    0    0    0    0    0
+ 27        si28-->he4+mg24    1    0    0    0    1   -1    0    0    0    0    0    0    0    0    0    0
+ 28         he4+si28-->s32   -1    0    0    0    0   -1    1    0    0    0    0    0    0    0    0    0
+ 29         s32-->he4+si28    1    0    0    0    0    1   -1    0    0    0    0    0    0    0    0    0
+ 30         he4+s32-->ar36   -1    0    0    0    0    0   -1    1    0    0    0    0    0    0    0    0
+ 31         ar36-->he4+s32    1    0    0    0    0    0    1   -1    0    0    0    0    0    0    0    0
+ 32        he4+ar36-->ca40   -1    0    0    0    0    0    0   -1    1    0    0    0    0    0    0    0
+ 33        ca40-->he4+ar36    1    0    0    0    0    0    0    1   -1    0    0    0    0    0    0    0
+ 34        he4+ca40-->ti44   -1    0    0    0    0    0    0    0   -1    1    0    0    0    0    0    0
+ 35        ti44-->he4+ca40    1    0    0    0    0    0    0    0    1   -1    0    0    0    0    0    0
+ 36        he4+ti44-->cr48   -1    0    0    0    0    0    0    0    0   -1    1    0    0    0    0    0
+ 37        cr48-->he4+ti44    1    0    0    0    0    0    0    0    0    1   -1    0    0    0    0    0
+ 38        he4+cr48-->fe52   -1    0    0    0    0    0    0    0    0    0   -1    1    0    0    0    0
+ 39        fe52-->he4+cr48    1    0    0    0    0    0    0    0    0    0    1   -1    0    0    0    0
+ 40        he4+fe52-->ni56   -1    0    0    0    0    0    0    0    0    0    0   -1    1    0    0    0
+ 41        ni56-->he4+fe52    1    0    0    0    0    0    0    0    0    0    0    1   -1    0    0    0
+ 42        he4+ni56-->zn60   -1    0    0    0    0    0    0    0    0    0    0    0   -1    1    0    0
+ 43        zn60-->he4+ni56    1    0    0    0    0    0    0    0    0    0    0    0    1   -1    0    0
+ 44        he4+zn60-->ge64   -1    0    0    0    0    0    0    0    0    0    0    0    0   -1    1    0
+ 45        ge64-->he4+zn60    1    0    0    0    0    0    0    0    0    0    0    0    0    1   -1    0
+ 46        he4+ge64-->se68   -1    0    0    0    0    0    0    0    0    0    0    0    0    0   -1    1
+ 47        se68-->he4+ge64    1    0    0    0    0    0    0    0    0    0    0    0    0    0    1   -1
+
+FLUX SPARSENESS: Non-zero F+ = 72; Non-zero F- = 72, out of 48 x 16 = 768 possibilities.
+
+
+NETWORK SPECIES VECTOR (16 components):
+
+Index  Species    Z     N
+    0      4He    2     2
+    1      12C    6     6
+    2      16O    8     8
+    3     20Ne   10    10
+    4     24Mg   12    12
+    5     28Si   14    14
+    6      32S   16    16
+    7     36Ar   18    18
+    8     40Ca   20    20
+    9     44Ti   22    22
+   10     48Cr   24    24
+   11     52Fe   26    26
+   12     56Ni   28    28
+   13     60Zn   30    30
+   14     64Ge   32    32
+   15     68Se   34    34
+
+
+REACTION VECTOR ARRAY (48 Reaction vectors with 16 species components):
+
+Reaction \ Species            4He   12C   16O  20Ne  24Mg  28Si   32S  36Ar  40Ca  44Ti  48Cr  52Fe  56Ni  60Zn  64Ge  68Se  
+   0      he4+he4+he4-->c12 [ -3     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   1      he4+he4+he4-->c12 [ -3     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   2      c12-->he4+he4+he4 [  3    -1     0     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   3      c12-->he4+he4+he4 [  3    -1     0     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   4          he4+c12-->o16 [ -1    -1     1     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   5          he4+c12-->o16 [ -1    -1     1     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   6          o16-->he4+c12 [  1     1    -1     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   7          o16-->he4+c12 [  1     1    -1     0     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   8     c12+c12-->he4+ne20 [  1    -2     0     1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+   9     he4+ne20-->c12+c12 [ -1     2     0    -1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+  10         he4+o16-->ne20 [ -1     0    -1     1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+  11         he4+o16-->ne20 [ -1     0    -1     1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+  12         ne20-->he4+o16 [  1     0     1    -1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+  13         ne20-->he4+o16 [  1     0     1    -1     0     0     0     0     0     0     0     0     0     0     0     0 ]
+  14     c12+o16-->he4+mg24 [  1    -1    -1     0     1     0     0     0     0     0     0     0     0     0     0     0 ]
+  15     he4+mg24-->c12+o16 [ -1     1     1     0    -1     0     0     0     0     0     0     0     0     0     0     0 ]
+  16     o16+o16-->he4+si28 [  1     0    -2     0     0     1     0     0     0     0     0     0     0     0     0     0 ]
+  17     he4+si28-->o16+o16 [ -1     0     2     0     0    -1     0     0     0     0     0     0     0     0     0     0 ]
+  18        he4+ne20-->mg24 [ -1     0     0    -1     1     0     0     0     0     0     0     0     0     0     0     0 ]
+  19        he4+ne20-->mg24 [ -1     0     0    -1     1     0     0     0     0     0     0     0     0     0     0     0 ]
+  20        mg24-->he4+ne20 [  1     0     0     1    -1     0     0     0     0     0     0     0     0     0     0     0 ]
+  21        mg24-->he4+ne20 [  1     0     0     1    -1     0     0     0     0     0     0     0     0     0     0     0 ]
+  22    c12+ne20-->he4+si28 [  1    -1     0    -1     0     1     0     0     0     0     0     0     0     0     0     0 ]
+  23    he4+si28-->c12+ne20 [ -1     1     0     1     0    -1     0     0     0     0     0     0     0     0     0     0 ]
+  24        he4+mg24-->si28 [ -1     0     0     0    -1     1     0     0     0     0     0     0     0     0     0     0 ]
+  25        he4+mg24-->si28 [ -1     0     0     0    -1     1     0     0     0     0     0     0     0     0     0     0 ]
+  26        si28-->he4+mg24 [  1     0     0     0     1    -1     0     0     0     0     0     0     0     0     0     0 ]
+  27        si28-->he4+mg24 [  1     0     0     0     1    -1     0     0     0     0     0     0     0     0     0     0 ]
+  28         he4+si28-->s32 [ -1     0     0     0     0    -1     1     0     0     0     0     0     0     0     0     0 ]
+  29         s32-->he4+si28 [  1     0     0     0     0     1    -1     0     0     0     0     0     0     0     0     0 ]
+  30         he4+s32-->ar36 [ -1     0     0     0     0     0    -1     1     0     0     0     0     0     0     0     0 ]
+  31         ar36-->he4+s32 [  1     0     0     0     0     0     1    -1     0     0     0     0     0     0     0     0 ]
+  32        he4+ar36-->ca40 [ -1     0     0     0     0     0     0    -1     1     0     0     0     0     0     0     0 ]
+  33        ca40-->he4+ar36 [  1     0     0     0     0     0     0     1    -1     0     0     0     0     0     0     0 ]
+  34        he4+ca40-->ti44 [ -1     0     0     0     0     0     0     0    -1     1     0     0     0     0     0     0 ]
+  35        ti44-->he4+ca40 [  1     0     0     0     0     0     0     0     1    -1     0     0     0     0     0     0 ]
+  36        he4+ti44-->cr48 [ -1     0     0     0     0     0     0     0     0    -1     1     0     0     0     0     0 ]
+  37        cr48-->he4+ti44 [  1     0     0     0     0     0     0     0     0     1    -1     0     0     0     0     0 ]
+  38        he4+cr48-->fe52 [ -1     0     0     0     0     0     0     0     0     0    -1     1     0     0     0     0 ]
+  39        fe52-->he4+cr48 [  1     0     0     0     0     0     0     0     0     0     1    -1     0     0     0     0 ]
+  40        he4+fe52-->ni56 [ -1     0     0     0     0     0     0     0     0     0     0    -1     1     0     0     0 ]
+  41        ni56-->he4+fe52 [  1     0     0     0     0     0     0     0     0     0     0     1    -1     0     0     0 ]
+  42        he4+ni56-->zn60 [ -1     0     0     0     0     0     0     0     0     0     0     0    -1     1     0     0 ]
+  43        zn60-->he4+ni56 [  1     0     0     0     0     0     0     0     0     0     0     0     1    -1     0     0 ]
+  44        he4+zn60-->ge64 [ -1     0     0     0     0     0     0     0     0     0     0     0     0    -1     1     0 ]
+  45        ge64-->he4+zn60 [  1     0     0     0     0     0     0     0     0     0     0     0     0     1    -1     0 ]
+  46        he4+ge64-->se68 [ -1     0     0     0     0     0     0     0     0     0     0     0     0     0    -1     1 ]
+  47        se68-->he4+ge64 [  1     0     0     0     0     0     0     0     0     0     0     0     0     0     1    -1 ]
+
+GSL REACTION VECTOR COMPONENTS (48 reaction vectors with 16 components)
+
+rv[0]: [ -3  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[1]: [ -3  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[2]: [  3 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[3]: [  3 -1  0  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[4]: [ -1 -1  1  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[5]: [ -1 -1  1  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[6]: [  1  1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[7]: [  1  1 -1  0  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[8]: [  1 -2  0  1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[9]: [ -1  2  0 -1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[10]: [ -1  0 -1  1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[11]: [ -1  0 -1  1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[12]: [  1  0  1 -1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[13]: [  1  0  1 -1  0  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[14]: [  1 -1 -1  0  1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[15]: [ -1  1  1  0 -1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[16]: [  1  0 -2  0  0  1  0  0  0  0  0  0  0  0  0  0 ]
+rv[17]: [ -1  0  2  0  0 -1  0  0  0  0  0  0  0  0  0  0 ]
+rv[18]: [ -1  0  0 -1  1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[19]: [ -1  0  0 -1  1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[20]: [  1  0  0  1 -1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[21]: [  1  0  0  1 -1  0  0  0  0  0  0  0  0  0  0  0 ]
+rv[22]: [  1 -1  0 -1  0  1  0  0  0  0  0  0  0  0  0  0 ]
+rv[23]: [ -1  1  0  1  0 -1  0  0  0  0  0  0  0  0  0  0 ]
+rv[24]: [ -1  0  0  0 -1  1  0  0  0  0  0  0  0  0  0  0 ]
+rv[25]: [ -1  0  0  0 -1  1  0  0  0  0  0  0  0  0  0  0 ]
+rv[26]: [  1  0  0  0  1 -1  0  0  0  0  0  0  0  0  0  0 ]
+rv[27]: [  1  0  0  0  1 -1  0  0  0  0  0  0  0  0  0  0 ]
+rv[28]: [ -1  0  0  0  0 -1  1  0  0  0  0  0  0  0  0  0 ]
+rv[29]: [  1  0  0  0  0  1 -1  0  0  0  0  0  0  0  0  0 ]
+rv[30]: [ -1  0  0  0  0  0 -1  1  0  0  0  0  0  0  0  0 ]
+rv[31]: [  1  0  0  0  0  0  1 -1  0  0  0  0  0  0  0  0 ]
+rv[32]: [ -1  0  0  0  0  0  0 -1  1  0  0  0  0  0  0  0 ]
+rv[33]: [  1  0  0  0  0  0  0  1 -1  0  0  0  0  0  0  0 ]
+rv[34]: [ -1  0  0  0  0  0  0  0 -1  1  0  0  0  0  0  0 ]
+rv[35]: [  1  0  0  0  0  0  0  0  1 -1  0  0  0  0  0  0 ]
+rv[36]: [ -1  0  0  0  0  0  0  0  0 -1  1  0  0  0  0  0 ]
+rv[37]: [  1  0  0  0  0  0  0  0  0  1 -1  0  0  0  0  0 ]
+rv[38]: [ -1  0  0  0  0  0  0  0  0  0 -1  1  0  0  0  0 ]
+rv[39]: [  1  0  0  0  0  0  0  0  0  0  1 -1  0  0  0  0 ]
+rv[40]: [ -1  0  0  0  0  0  0  0  0  0  0 -1  1  0  0  0 ]
+rv[41]: [  1  0  0  0  0  0  0  0  0  0  0  1 -1  0  0  0 ]
+rv[42]: [ -1  0  0  0  0  0  0  0  0  0  0  0 -1  1  0  0 ]
+rv[43]: [  1  0  0  0  0  0  0  0  0  0  0  0  1 -1  0  0 ]
+rv[44]: [ -1  0  0  0  0  0  0  0  0  0  0  0  0 -1  1  0 ]
+rv[45]: [  1  0  0  0  0  0  0  0  0  0  0  0  0  1 -1  0 ]
+rv[46]: [ -1  0  0  0  0  0  0  0  0  0  0  0  0  0 -1  1 ]
+rv[47]: [  1  0  0  0  0  0  0  0  0  0  0  0  0  0  1 -1 ]
+
+
+PARTIAL EQUILIBRIUM REACTION GROUPS
+
+Reaction Group 0:
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=1 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=1 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=0 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=0 RG: a+b+c<->d
+
+Reaction Group 1:
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 2:
+c12+c12-->he4+ne20 reacIndex=8 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+ne20-->c12+c12 reacIndex=9 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 3:
+he4+o16-->ne20 reacIndex=10 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+o16-->ne20 reacIndex=11 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+ne20-->he4+o16 reacIndex=12 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+ne20-->he4+o16 reacIndex=13 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 4:
+c12+o16-->he4+mg24 reacIndex=14 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+mg24-->c12+o16 reacIndex=15 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 5:
+o16+o16-->he4+si28 reacIndex=16 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+si28-->o16+o16 reacIndex=17 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 6:
+he4+ne20-->mg24 reacIndex=18 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+ne20-->mg24 reacIndex=19 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+mg24-->he4+ne20 reacIndex=20 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+mg24-->he4+ne20 reacIndex=21 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 7:
+c12+ne20-->he4+si28 reacIndex=22 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+si28-->c12+ne20 reacIndex=23 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 8:
+he4+mg24-->si28 reacIndex=24 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+mg24-->si28 reacIndex=25 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+si28-->he4+mg24 reacIndex=26 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+si28-->he4+mg24 reacIndex=27 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 9:
+he4+si28-->s32 reacIndex=28 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+s32-->he4+si28 reacIndex=29 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 10:
+he4+s32-->ar36 reacIndex=30 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ar36-->he4+s32 reacIndex=31 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 11:
+he4+ar36-->ca40 reacIndex=32 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ca40-->he4+ar36 reacIndex=33 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 12:
+he4+ca40-->ti44 reacIndex=34 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ti44-->he4+ca40 reacIndex=35 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 13:
+he4+ti44-->cr48 reacIndex=36 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+cr48-->he4+ti44 reacIndex=37 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 14:
+he4+cr48-->fe52 reacIndex=38 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+fe52-->he4+cr48 reacIndex=39 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 15:
+he4+fe52-->ni56 reacIndex=40 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ni56-->he4+fe52 reacIndex=41 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 16:
+he4+ni56-->zn60 reacIndex=42 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+zn60-->he4+ni56 reacIndex=43 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 17:
+he4+zn60-->ge64 reacIndex=44 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ge64-->he4+zn60 reacIndex=45 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 18:
+he4+ge64-->se68 reacIndex=46 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+se68-->he4+ge64 reacIndex=47 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+
+REACTIONS IN RGclass[]:
+
+he4+he4+he4-->c12 RGclass[0] = 3
+he4+he4+he4-->c12 RGclass[1] = 3
+c12-->he4+he4+he4 RGclass[2] = 3
+c12-->he4+he4+he4 RGclass[3] = 3
+he4+c12-->o16 RGclass[4] = 2
+he4+c12-->o16 RGclass[5] = 2
+o16-->he4+c12 RGclass[6] = 2
+o16-->he4+c12 RGclass[7] = 2
+c12+c12-->he4+ne20 RGclass[8] = 4
+he4+ne20-->c12+c12 RGclass[9] = 4
+he4+o16-->ne20 RGclass[10] = 2
+he4+o16-->ne20 RGclass[11] = 2
+ne20-->he4+o16 RGclass[12] = 2
+ne20-->he4+o16 RGclass[13] = 2
+c12+o16-->he4+mg24 RGclass[14] = 4
+he4+mg24-->c12+o16 RGclass[15] = 4
+o16+o16-->he4+si28 RGclass[16] = 4
+he4+si28-->o16+o16 RGclass[17] = 4
+he4+ne20-->mg24 RGclass[18] = 2
+he4+ne20-->mg24 RGclass[19] = 2
+mg24-->he4+ne20 RGclass[20] = 2
+mg24-->he4+ne20 RGclass[21] = 2
+c12+ne20-->he4+si28 RGclass[22] = 4
+he4+si28-->c12+ne20 RGclass[23] = 4
+he4+mg24-->si28 RGclass[24] = 2
+he4+mg24-->si28 RGclass[25] = 2
+si28-->he4+mg24 RGclass[26] = 2
+si28-->he4+mg24 RGclass[27] = 2
+he4+si28-->s32 RGclass[28] = 2
+s32-->he4+si28 RGclass[29] = 2
+he4+s32-->ar36 RGclass[30] = 2
+ar36-->he4+s32 RGclass[31] = 2
+he4+ar36-->ca40 RGclass[32] = 2
+ca40-->he4+ar36 RGclass[33] = 2
+he4+ca40-->ti44 RGclass[34] = 2
+ti44-->he4+ca40 RGclass[35] = 2
+he4+ti44-->cr48 RGclass[36] = 2
+cr48-->he4+ti44 RGclass[37] = 2
+he4+cr48-->fe52 RGclass[38] = 2
+fe52-->he4+cr48 RGclass[39] = 2
+he4+fe52-->ni56 RGclass[40] = 2
+ni56-->he4+fe52 RGclass[41] = 2
+he4+ni56-->zn60 RGclass[42] = 2
+zn60-->he4+ni56 RGclass[43] = 2
+he4+zn60-->ge64 RGclass[44] = 2
+ge64-->he4+zn60 RGclass[45] = 2
+he4+ge64-->se68 RGclass[46] = 2
+se68-->he4+ge64 RGclass[47] = 2
+
+
+SOME FIELDS FOR THE 48 Reaction OBJECTS reaction[]:
+
+reaction[0]: he4+he4+he4-->c12 RGclass=3 #reac=3 #prod=1 RGmemberIndex=0 RG=0
+RG=0  REACTANTS: iso[0]=4He iso[1]=4He iso[2]=4He  PRODUCTS: iso[3]=12C
+
+reaction[1]: he4+he4+he4-->c12 RGclass=3 #reac=3 #prod=1 RGmemberIndex=1 RG=0
+RG=0  REACTANTS: iso[0]=4He iso[1]=4He iso[2]=4He  PRODUCTS: iso[3]=12C
+
+reaction[2]: c12-->he4+he4+he4 RGclass=3 #reac=1 #prod=3 RGmemberIndex=2 RG=0
+RG=0  REACTANTS: iso[0]=12C  PRODUCTS: iso[1]=4He iso[2]=4He iso[3]=4He
+
+reaction[3]: c12-->he4+he4+he4 RGclass=3 #reac=1 #prod=3 RGmemberIndex=3 RG=0
+RG=0  REACTANTS: iso[0]=12C  PRODUCTS: iso[1]=4He iso[2]=4He iso[3]=4He
+
+reaction[4]: he4+c12-->o16 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=1
+RG=0  REACTANTS: iso[0]=4He iso[1]=12C  PRODUCTS: iso[2]=16O
+
+reaction[5]: he4+c12-->o16 RGclass=2 #reac=2 #prod=1 RGmemberIndex=1 RG=1
+RG=0  REACTANTS: iso[0]=4He iso[1]=12C  PRODUCTS: iso[2]=16O
+
+reaction[6]: o16-->he4+c12 RGclass=2 #reac=1 #prod=2 RGmemberIndex=2 RG=1
+RG=0  REACTANTS: iso[0]=16O  PRODUCTS: iso[1]=4He iso[2]=12C
+
+reaction[7]: o16-->he4+c12 RGclass=2 #reac=1 #prod=2 RGmemberIndex=3 RG=1
+RG=0  REACTANTS: iso[0]=16O  PRODUCTS: iso[1]=4He iso[2]=12C
+
+reaction[8]: c12+c12-->he4+ne20 RGclass=4 #reac=2 #prod=2 RGmemberIndex=0 RG=2
+RG=0  REACTANTS: iso[0]=12C iso[1]=12C  PRODUCTS: iso[2]=4He iso[3]=20Ne
+
+reaction[9]: he4+ne20-->c12+c12 RGclass=4 #reac=2 #prod=2 RGmemberIndex=1 RG=2
+RG=0  REACTANTS: iso[0]=4He iso[1]=20Ne  PRODUCTS: iso[2]=12C iso[3]=12C
+
+reaction[10]: he4+o16-->ne20 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=3
+RG=0  REACTANTS: iso[0]=4He iso[1]=16O  PRODUCTS: iso[2]=20Ne
+
+reaction[11]: he4+o16-->ne20 RGclass=2 #reac=2 #prod=1 RGmemberIndex=1 RG=3
+RG=0  REACTANTS: iso[0]=4He iso[1]=16O  PRODUCTS: iso[2]=20Ne
+
+reaction[12]: ne20-->he4+o16 RGclass=2 #reac=1 #prod=2 RGmemberIndex=2 RG=3
+RG=0  REACTANTS: iso[0]=20Ne  PRODUCTS: iso[1]=4He iso[2]=16O
+
+reaction[13]: ne20-->he4+o16 RGclass=2 #reac=1 #prod=2 RGmemberIndex=3 RG=3
+RG=0  REACTANTS: iso[0]=20Ne  PRODUCTS: iso[1]=4He iso[2]=16O
+
+reaction[14]: c12+o16-->he4+mg24 RGclass=4 #reac=2 #prod=2 RGmemberIndex=0 RG=4
+RG=0  REACTANTS: iso[0]=12C iso[1]=16O  PRODUCTS: iso[2]=4He iso[3]=24Mg
+
+reaction[15]: he4+mg24-->c12+o16 RGclass=4 #reac=2 #prod=2 RGmemberIndex=1 RG=4
+RG=0  REACTANTS: iso[0]=4He iso[1]=24Mg  PRODUCTS: iso[2]=12C iso[3]=16O
+
+reaction[16]: o16+o16-->he4+si28 RGclass=4 #reac=2 #prod=2 RGmemberIndex=0 RG=5
+RG=0  REACTANTS: iso[0]=16O iso[1]=16O  PRODUCTS: iso[2]=4He iso[3]=28Si
+
+reaction[17]: he4+si28-->o16+o16 RGclass=4 #reac=2 #prod=2 RGmemberIndex=1 RG=5
+RG=0  REACTANTS: iso[0]=4He iso[1]=28Si  PRODUCTS: iso[2]=16O iso[3]=16O
+
+reaction[18]: he4+ne20-->mg24 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=6
+RG=0  REACTANTS: iso[0]=4He iso[1]=20Ne  PRODUCTS: iso[2]=24Mg
+
+reaction[19]: he4+ne20-->mg24 RGclass=2 #reac=2 #prod=1 RGmemberIndex=1 RG=6
+RG=0  REACTANTS: iso[0]=4He iso[1]=20Ne  PRODUCTS: iso[2]=24Mg
+
+reaction[20]: mg24-->he4+ne20 RGclass=2 #reac=1 #prod=2 RGmemberIndex=2 RG=6
+RG=0  REACTANTS: iso[0]=24Mg  PRODUCTS: iso[1]=4He iso[2]=20Ne
+
+reaction[21]: mg24-->he4+ne20 RGclass=2 #reac=1 #prod=2 RGmemberIndex=3 RG=6
+RG=0  REACTANTS: iso[0]=24Mg  PRODUCTS: iso[1]=4He iso[2]=20Ne
+
+reaction[22]: c12+ne20-->he4+si28 RGclass=4 #reac=2 #prod=2 RGmemberIndex=0 RG=7
+RG=0  REACTANTS: iso[0]=12C iso[1]=20Ne  PRODUCTS: iso[2]=4He iso[3]=28Si
+
+reaction[23]: he4+si28-->c12+ne20 RGclass=4 #reac=2 #prod=2 RGmemberIndex=1 RG=7
+RG=0  REACTANTS: iso[0]=4He iso[1]=28Si  PRODUCTS: iso[2]=12C iso[3]=20Ne
+
+reaction[24]: he4+mg24-->si28 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=8
+RG=0  REACTANTS: iso[0]=4He iso[1]=24Mg  PRODUCTS: iso[2]=28Si
+
+reaction[25]: he4+mg24-->si28 RGclass=2 #reac=2 #prod=1 RGmemberIndex=1 RG=8
+RG=0  REACTANTS: iso[0]=4He iso[1]=24Mg  PRODUCTS: iso[2]=28Si
+
+reaction[26]: si28-->he4+mg24 RGclass=2 #reac=1 #prod=2 RGmemberIndex=2 RG=8
+RG=0  REACTANTS: iso[0]=28Si  PRODUCTS: iso[1]=4He iso[2]=24Mg
+
+reaction[27]: si28-->he4+mg24 RGclass=2 #reac=1 #prod=2 RGmemberIndex=3 RG=8
+RG=0  REACTANTS: iso[0]=28Si  PRODUCTS: iso[1]=4He iso[2]=24Mg
+
+reaction[28]: he4+si28-->s32 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=9
+RG=0  REACTANTS: iso[0]=4He iso[1]=28Si  PRODUCTS: iso[2]=32S
+
+reaction[29]: s32-->he4+si28 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=9
+RG=0  REACTANTS: iso[0]=32S  PRODUCTS: iso[1]=4He iso[2]=28Si
+
+reaction[30]: he4+s32-->ar36 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=10
+RG=0  REACTANTS: iso[0]=4He iso[1]=32S  PRODUCTS: iso[2]=36Ar
+
+reaction[31]: ar36-->he4+s32 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=10
+RG=0  REACTANTS: iso[0]=36Ar  PRODUCTS: iso[1]=4He iso[2]=32S
+
+reaction[32]: he4+ar36-->ca40 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=11
+RG=0  REACTANTS: iso[0]=4He iso[1]=36Ar  PRODUCTS: iso[2]=40Ca
+
+reaction[33]: ca40-->he4+ar36 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=11
+RG=0  REACTANTS: iso[0]=40Ca  PRODUCTS: iso[1]=4He iso[2]=36Ar
+
+reaction[34]: he4+ca40-->ti44 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=12
+RG=0  REACTANTS: iso[0]=4He iso[1]=40Ca  PRODUCTS: iso[2]=44Ti
+
+reaction[35]: ti44-->he4+ca40 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=12
+RG=0  REACTANTS: iso[0]=44Ti  PRODUCTS: iso[1]=4He iso[2]=40Ca
+
+reaction[36]: he4+ti44-->cr48 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=13
+RG=0  REACTANTS: iso[0]=4He iso[1]=44Ti  PRODUCTS: iso[2]=48Cr
+
+reaction[37]: cr48-->he4+ti44 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=13
+RG=0  REACTANTS: iso[0]=48Cr  PRODUCTS: iso[1]=4He iso[2]=44Ti
+
+reaction[38]: he4+cr48-->fe52 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=14
+RG=0  REACTANTS: iso[0]=4He iso[1]=48Cr  PRODUCTS: iso[2]=52Fe
+
+reaction[39]: fe52-->he4+cr48 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=14
+RG=0  REACTANTS: iso[0]=52Fe  PRODUCTS: iso[1]=4He iso[2]=48Cr
+
+reaction[40]: he4+fe52-->ni56 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=15
+RG=0  REACTANTS: iso[0]=4He iso[1]=52Fe  PRODUCTS: iso[2]=56Ni
+
+reaction[41]: ni56-->he4+fe52 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=15
+RG=0  REACTANTS: iso[0]=56Ni  PRODUCTS: iso[1]=4He iso[2]=52Fe
+
+reaction[42]: he4+ni56-->zn60 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=16
+RG=0  REACTANTS: iso[0]=4He iso[1]=56Ni  PRODUCTS: iso[2]=60Zn
+
+reaction[43]: zn60-->he4+ni56 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=16
+RG=0  REACTANTS: iso[0]=60Zn  PRODUCTS: iso[1]=4He iso[2]=56Ni
+
+reaction[44]: he4+zn60-->ge64 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=17
+RG=0  REACTANTS: iso[0]=4He iso[1]=60Zn  PRODUCTS: iso[2]=64Ge
+
+reaction[45]: ge64-->he4+zn60 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=17
+RG=0  REACTANTS: iso[0]=64Ge  PRODUCTS: iso[1]=4He iso[2]=60Zn
+
+reaction[46]: he4+ge64-->se68 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=18
+RG=0  REACTANTS: iso[0]=4He iso[1]=64Ge  PRODUCTS: iso[2]=68Se
+
+reaction[47]: se68-->he4+ge64 RGclass=2 #reac=1 #prod=2 RGmemberIndex=1 RG=18
+RG=0  REACTANTS: iso[0]=68Se  PRODUCTS: iso[1]=4He iso[2]=64Ge
+
+
+CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS
+
+reacIndex=0 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1
+reacIndex=1 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1
+reacIndex=2 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0
+reacIndex=3 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0
+RG[0]: refreac=0 RGclassRef=3 niso=4 Reactions=4
+
+reacIndex=4 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1
+reacIndex=5 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1
+reacIndex=6 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0
+reacIndex=7 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0
+RG[1]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+
+reacIndex=8 memberIndex=0 c12+c12-->he4+ne20 RGclass=4 isForward=1
+reacIndex=9 memberIndex=1 he4+ne20-->c12+c12 RGclass=4 isForward=0
+RG[2]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+
+reacIndex=10 memberIndex=0 he4+o16-->ne20 RGclass=2 isForward=1
+reacIndex=11 memberIndex=1 he4+o16-->ne20 RGclass=2 isForward=1
+reacIndex=12 memberIndex=2 ne20-->he4+o16 RGclass=2 isForward=0
+reacIndex=13 memberIndex=3 ne20-->he4+o16 RGclass=2 isForward=0
+RG[3]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+
+reacIndex=14 memberIndex=0 c12+o16-->he4+mg24 RGclass=4 isForward=1
+reacIndex=15 memberIndex=1 he4+mg24-->c12+o16 RGclass=4 isForward=0
+RG[4]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+
+reacIndex=16 memberIndex=0 o16+o16-->he4+si28 RGclass=4 isForward=1
+reacIndex=17 memberIndex=1 he4+si28-->o16+o16 RGclass=4 isForward=0
+RG[5]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+
+reacIndex=18 memberIndex=0 he4+ne20-->mg24 RGclass=2 isForward=1
+reacIndex=19 memberIndex=1 he4+ne20-->mg24 RGclass=2 isForward=1
+reacIndex=20 memberIndex=2 mg24-->he4+ne20 RGclass=2 isForward=0
+reacIndex=21 memberIndex=3 mg24-->he4+ne20 RGclass=2 isForward=0
+RG[6]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+
+reacIndex=22 memberIndex=0 c12+ne20-->he4+si28 RGclass=4 isForward=1
+reacIndex=23 memberIndex=1 he4+si28-->c12+ne20 RGclass=4 isForward=0
+RG[7]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+
+reacIndex=24 memberIndex=0 he4+mg24-->si28 RGclass=2 isForward=1
+reacIndex=25 memberIndex=1 he4+mg24-->si28 RGclass=2 isForward=1
+reacIndex=26 memberIndex=2 si28-->he4+mg24 RGclass=2 isForward=0
+reacIndex=27 memberIndex=3 si28-->he4+mg24 RGclass=2 isForward=0
+RG[8]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+
+reacIndex=28 memberIndex=0 he4+si28-->s32 RGclass=2 isForward=1
+reacIndex=29 memberIndex=1 s32-->he4+si28 RGclass=2 isForward=0
+RG[9]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=30 memberIndex=0 he4+s32-->ar36 RGclass=2 isForward=1
+reacIndex=31 memberIndex=1 ar36-->he4+s32 RGclass=2 isForward=0
+RG[10]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=32 memberIndex=0 he4+ar36-->ca40 RGclass=2 isForward=1
+reacIndex=33 memberIndex=1 ca40-->he4+ar36 RGclass=2 isForward=0
+RG[11]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=34 memberIndex=0 he4+ca40-->ti44 RGclass=2 isForward=1
+reacIndex=35 memberIndex=1 ti44-->he4+ca40 RGclass=2 isForward=0
+RG[12]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=36 memberIndex=0 he4+ti44-->cr48 RGclass=2 isForward=1
+reacIndex=37 memberIndex=1 cr48-->he4+ti44 RGclass=2 isForward=0
+RG[13]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=38 memberIndex=0 he4+cr48-->fe52 RGclass=2 isForward=1
+reacIndex=39 memberIndex=1 fe52-->he4+cr48 RGclass=2 isForward=0
+RG[14]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=40 memberIndex=0 he4+fe52-->ni56 RGclass=2 isForward=1
+reacIndex=41 memberIndex=1 ni56-->he4+fe52 RGclass=2 isForward=0
+RG[15]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=42 memberIndex=0 he4+ni56-->zn60 RGclass=2 isForward=1
+reacIndex=43 memberIndex=1 zn60-->he4+ni56 RGclass=2 isForward=0
+RG[16]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=44 memberIndex=0 he4+zn60-->ge64 RGclass=2 isForward=1
+reacIndex=45 memberIndex=1 ge64-->he4+zn60 RGclass=2 isForward=0
+RG[17]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+reacIndex=46 memberIndex=0 he4+ge64-->se68 RGclass=2 isForward=1
+reacIndex=47 memberIndex=1 se68-->he4+ge64 RGclass=2 isForward=0
+RG[18]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+
+
+Summary: RG=0
+0 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+1 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+2 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+3 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+
+Summary: RG=1
+0 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+1 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+2 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+3 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+
+Summary: RG=2
+0 c12+c12-->he4+ne20 iso[0]=12C iso[1]=12C iso[2]=4He iso[3]=20Ne
+1 he4+ne20-->c12+c12 iso[0]=12C iso[1]=12C iso[2]=4He iso[3]=20Ne
+
+Summary: RG=3
+0 he4+o16-->ne20 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+1 he4+o16-->ne20 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+2 ne20-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+3 ne20-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+
+Summary: RG=4
+0 c12+o16-->he4+mg24 iso[0]=12C iso[1]=16O iso[2]=4He iso[3]=24Mg
+1 he4+mg24-->c12+o16 iso[0]=12C iso[1]=16O iso[2]=4He iso[3]=24Mg
+
+Summary: RG=5
+0 o16+o16-->he4+si28 iso[0]=16O iso[1]=16O iso[2]=4He iso[3]=28Si
+1 he4+si28-->o16+o16 iso[0]=16O iso[1]=16O iso[2]=4He iso[3]=28Si
+
+Summary: RG=6
+0 he4+ne20-->mg24 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+1 he4+ne20-->mg24 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+2 mg24-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+3 mg24-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+
+Summary: RG=7
+0 c12+ne20-->he4+si28 iso[0]=12C iso[1]=20Ne iso[2]=4He iso[3]=28Si
+1 he4+si28-->c12+ne20 iso[0]=12C iso[1]=20Ne iso[2]=4He iso[3]=28Si
+
+Summary: RG=8
+0 he4+mg24-->si28 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+1 he4+mg24-->si28 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+2 si28-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+3 si28-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+
+Summary: RG=9
+0 he4+si28-->s32 iso[0]=4He iso[1]=28Si iso[2]=32S iso[3]=
+1 s32-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=32S iso[3]=
+
+Summary: RG=10
+0 he4+s32-->ar36 iso[0]=4He iso[1]=32S iso[2]=36Ar iso[3]=
+1 ar36-->he4+s32 iso[0]=4He iso[1]=32S iso[2]=36Ar iso[3]=
+
+Summary: RG=11
+0 he4+ar36-->ca40 iso[0]=4He iso[1]=36Ar iso[2]=40Ca iso[3]=
+1 ca40-->he4+ar36 iso[0]=4He iso[1]=36Ar iso[2]=40Ca iso[3]=
+
+Summary: RG=12
+0 he4+ca40-->ti44 iso[0]=4He iso[1]=40Ca iso[2]=44Ti iso[3]=
+1 ti44-->he4+ca40 iso[0]=4He iso[1]=40Ca iso[2]=44Ti iso[3]=
+
+Summary: RG=13
+0 he4+ti44-->cr48 iso[0]=4He iso[1]=44Ti iso[2]=48Cr iso[3]=
+1 cr48-->he4+ti44 iso[0]=4He iso[1]=44Ti iso[2]=48Cr iso[3]=
+
+Summary: RG=14
+0 he4+cr48-->fe52 iso[0]=4He iso[1]=48Cr iso[2]=52Fe iso[3]=
+1 fe52-->he4+cr48 iso[0]=4He iso[1]=48Cr iso[2]=52Fe iso[3]=
+
+Summary: RG=15
+0 he4+fe52-->ni56 iso[0]=4He iso[1]=52Fe iso[2]=56Ni iso[3]=
+1 ni56-->he4+fe52 iso[0]=4He iso[1]=52Fe iso[2]=56Ni iso[3]=
+
+Summary: RG=16
+0 he4+ni56-->zn60 iso[0]=4He iso[1]=56Ni iso[2]=60Zn iso[3]=
+1 zn60-->he4+ni56 iso[0]=4He iso[1]=56Ni iso[2]=60Zn iso[3]=
+
+Summary: RG=17
+0 he4+zn60-->ge64 iso[0]=4He iso[1]=60Zn iso[2]=64Ge iso[3]=
+1 ge64-->he4+zn60 iso[0]=4He iso[1]=60Zn iso[2]=64Ge iso[3]=
+
+Summary: RG=18
+0 he4+ge64-->se68 iso[0]=4He iso[1]=64Ge iso[2]=68Se iso[3]=
+1 se68-->he4+ge64 iso[0]=4He iso[1]=64Ge iso[2]=68Se iso[3]=
+
+
+SUMMARY of order for isotopes for PE in ReactionGroup objects:
+
+RG=0  RGclass=3 a+b+c<->d Species Index: iso[0]=0 iso[1]=0 iso[2]=0 iso[3]=1
+      isolabel[0]=4He isolabel[1]=4He isolabel[2]=4He isolabel[3]=12C
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+      PRODUCTS: productIndex[0]=1
+      Z[0]=2 Z[1]=2 Z[2]=2 Z[3]=6
+      N[0]=2 N[1]=2 N[2]=2 N[3]=6
+      A[0]=4 A[1]=4 A[2]=4 A[3]=12
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=4.16666e-02
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.67275e-310
+
+RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
+      isolabel[0]=4He isolabel[1]=12C isolabel[2]=16O
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=1
+      PRODUCTS: productIndex[0]=2
+      Z[0]=2 Z[1]=6 Z[2]=8
+      N[0]=2 N[1]=6 N[2]=8
+      A[0]=4 A[1]=12 A[2]=16
+      isoY[0]=0.00000e+00 isoY[1]=4.16666e-02 isoY[2]=3.12500e-02
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=2  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=1 iso[2]=0 iso[3]=3
+      isolabel[0]=12C isolabel[1]=12C isolabel[2]=4He isolabel[3]=20Ne
+      REACTANTS: reactantIndex[0]=1 reactantIndex[1]=1
+      PRODUCTS: productIndex[0]=0 productIndex[1]=3
+      Z[0]=6 Z[1]=6 Z[2]=2 Z[3]=10
+      N[0]=6 N[1]=6 N[2]=2 N[3]=10
+      A[0]=12 A[1]=12 A[2]=4 A[3]=20
+      isoY[0]=4.16666e-02 isoY[1]=4.16666e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.67275e-310
+
+RG=3  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=2 iso[2]=3
+      isolabel[0]=4He isolabel[1]=16O isolabel[2]=20Ne
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=2
+      PRODUCTS: productIndex[0]=3
+      Z[0]=2 Z[1]=8 Z[2]=10
+      N[0]=2 N[1]=8 N[2]=10
+      A[0]=4 A[1]=16 A[2]=20
+      isoY[0]=0.00000e+00 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=4  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=2 iso[2]=0 iso[3]=4
+      isolabel[0]=12C isolabel[1]=16O isolabel[2]=4He isolabel[3]=24Mg
+      REACTANTS: reactantIndex[0]=1 reactantIndex[1]=2
+      PRODUCTS: productIndex[0]=0 productIndex[1]=4
+      Z[0]=6 Z[1]=8 Z[2]=2 Z[3]=12
+      N[0]=6 N[1]=8 N[2]=2 N[3]=12
+      A[0]=12 A[1]=16 A[2]=4 A[3]=24
+      isoY[0]=4.16666e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.67275e-310
+
+RG=5  RGclass=4 a+b<->c+d Species Index: iso[0]=2 iso[1]=2 iso[2]=0 iso[3]=5
+      isolabel[0]=16O isolabel[1]=16O isolabel[2]=4He isolabel[3]=28Si
+      REACTANTS: reactantIndex[0]=2 reactantIndex[1]=2
+      PRODUCTS: productIndex[0]=0 productIndex[1]=5
+      Z[0]=8 Z[1]=8 Z[2]=2 Z[3]=14
+      N[0]=8 N[1]=8 N[2]=2 N[3]=14
+      A[0]=16 A[1]=16 A[2]=4 A[3]=28
+      isoY[0]=3.12500e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.67275e-310
+
+RG=6  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=3 iso[2]=4
+      isolabel[0]=4He isolabel[1]=20Ne isolabel[2]=24Mg
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=3
+      PRODUCTS: productIndex[0]=4
+      Z[0]=2 Z[1]=10 Z[2]=12
+      N[0]=2 N[1]=10 N[2]=12
+      A[0]=4 A[1]=20 A[2]=24
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=7  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=3 iso[2]=0 iso[3]=5
+      isolabel[0]=12C isolabel[1]=20Ne isolabel[2]=4He isolabel[3]=28Si
+      REACTANTS: reactantIndex[0]=1 reactantIndex[1]=3
+      PRODUCTS: productIndex[0]=0 productIndex[1]=5
+      Z[0]=6 Z[1]=10 Z[2]=2 Z[3]=14
+      N[0]=6 N[1]=10 N[2]=2 N[3]=14
+      A[0]=12 A[1]=20 A[2]=4 A[3]=28
+      isoY[0]=4.16666e-02 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.67275e-310
+
+RG=8  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=4 iso[2]=5
+      isolabel[0]=4He isolabel[1]=24Mg isolabel[2]=28Si
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=4
+      PRODUCTS: productIndex[0]=5
+      Z[0]=2 Z[1]=12 Z[2]=14
+      N[0]=2 N[1]=12 N[2]=14
+      A[0]=4 A[1]=24 A[2]=28
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=9  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=5 iso[2]=6
+      isolabel[0]=4He isolabel[1]=28Si isolabel[2]=32S
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=5
+      PRODUCTS: productIndex[0]=6
+      Z[0]=2 Z[1]=14 Z[2]=16
+      N[0]=2 N[1]=14 N[2]=16
+      A[0]=4 A[1]=28 A[2]=32
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=10  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=6 iso[2]=7
+      isolabel[0]=4He isolabel[1]=32S isolabel[2]=36Ar
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=6
+      PRODUCTS: productIndex[0]=7
+      Z[0]=2 Z[1]=16 Z[2]=18
+      N[0]=2 N[1]=16 N[2]=18
+      A[0]=4 A[1]=32 A[2]=36
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=11  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=7 iso[2]=8
+      isolabel[0]=4He isolabel[1]=36Ar isolabel[2]=40Ca
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=7
+      PRODUCTS: productIndex[0]=8
+      Z[0]=2 Z[1]=18 Z[2]=20
+      N[0]=2 N[1]=18 N[2]=20
+      A[0]=4 A[1]=36 A[2]=40
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=12  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=8 iso[2]=9
+      isolabel[0]=4He isolabel[1]=40Ca isolabel[2]=44Ti
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=8
+      PRODUCTS: productIndex[0]=9
+      Z[0]=2 Z[1]=20 Z[2]=22
+      N[0]=2 N[1]=20 N[2]=22
+      A[0]=4 A[1]=40 A[2]=44
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=13  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=9 iso[2]=10
+      isolabel[0]=4He isolabel[1]=44Ti isolabel[2]=48Cr
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=9
+      PRODUCTS: productIndex[0]=10
+      Z[0]=2 Z[1]=22 Z[2]=24
+      N[0]=2 N[1]=22 N[2]=24
+      A[0]=4 A[1]=44 A[2]=48
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=14  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=10 iso[2]=11
+      isolabel[0]=4He isolabel[1]=48Cr isolabel[2]=52Fe
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=10
+      PRODUCTS: productIndex[0]=11
+      Z[0]=2 Z[1]=24 Z[2]=26
+      N[0]=2 N[1]=24 N[2]=26
+      A[0]=4 A[1]=48 A[2]=52
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=15  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=11 iso[2]=12
+      isolabel[0]=4He isolabel[1]=52Fe isolabel[2]=56Ni
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=11
+      PRODUCTS: productIndex[0]=12
+      Z[0]=2 Z[1]=26 Z[2]=28
+      N[0]=2 N[1]=26 N[2]=28
+      A[0]=4 A[1]=52 A[2]=56
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=16  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=12 iso[2]=13
+      isolabel[0]=4He isolabel[1]=56Ni isolabel[2]=60Zn
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=12
+      PRODUCTS: productIndex[0]=13
+      Z[0]=2 Z[1]=28 Z[2]=30
+      N[0]=2 N[1]=28 N[2]=30
+      A[0]=4 A[1]=56 A[2]=60
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=17  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=13 iso[2]=14
+      isolabel[0]=4He isolabel[1]=60Zn isolabel[2]=64Ge
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=13
+      PRODUCTS: productIndex[0]=14
+      Z[0]=2 Z[1]=30 Z[2]=32
+      N[0]=2 N[1]=30 N[2]=32
+      A[0]=4 A[1]=60 A[2]=64
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
+      isolabel[0]=4He isolabel[1]=64Ge isolabel[2]=68Se
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=14
+      PRODUCTS: productIndex[0]=15
+      Z[0]=2 Z[1]=32 Z[2]=34
+      N[0]=2 N[1]=32 N[2]=34
+      A[0]=4 A[1]=64 A[2]=68
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90370e-310 isoYeq[2]=3.45846e-323
+
+
+
+                 --- BEGIN TIME INTEGRATION ---
+
+INITIAL COMPUTED RATES
+
+0   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 1.01261e-10 Rrate=1.68768e+05
+1   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 0.00000e+00 Rrate=0.00000e+00
+2   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 0.00000e+00 Rrate=0.00000e+00
+3   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 1.17688e+05 Rrate=1.17688e+05
+4       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 1.19062e-01 Rrate=1.19062e+07
+5       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 2.42472e+00 Rrate=2.42472e+08
+6       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 4.12508e+03 Rrate=4.12508e+03
+7       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 8.40052e+04 Rrate=8.40052e+04
+8  c12+c12-->he4+ne20 RG=4 densfac=5.000e+07 rate= 9.75281e+02 Rrate=4.87641e+10
+9  he4+ne20-->c12+c12 RG=4 densfac=1.000e+08 rate= 2.58963e-02 Rrate=2.58963e+06
+10      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 1.17940e-05 Rrate=1.17940e+03
+11      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 1.03333e+01 Rrate=1.03333e+09
+12      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 1.26006e+02 Rrate=1.26006e+02
+13      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 1.10434e+08 Rrate=1.10434e+08
+14  c12+o16-->he4+mg24 RG=4 densfac=1.000e+08 rate= 1.44248e+01 Rrate=1.44248e+09
+15  he4+mg24-->c12+o16 RG=4 densfac=1.000e+08 rate= 6.10649e-06 Rrate=6.10649e+02
+16  o16+o16-->he4+si28 RG=4 densfac=5.000e+07 rate= 1.23011e-01 Rrate=6.15053e+06
+17  he4+si28-->o16+o16 RG=4 densfac=1.000e+08 rate= 4.55194e-11 Rrate=4.55194e-03
+18     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 1.24307e-02 Rrate=1.24307e+06
+19     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 4.05293e+02 Rrate=4.05293e+10
+20     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 3.43530e+00 Rrate=3.43530e+00
+21     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 1.11959e+05 Rrate=1.11959e+05
+22 c12+ne20-->he4+si28 RG=4 densfac=1.000e+08 rate= 1.62620e-01 Rrate=1.62620e+07
+23 he4+si28-->c12+ne20 RG=4 densfac=1.000e+08 rate= 3.89373e-13 Rrate=3.89373e-05
+24     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 1.15160e+01 Rrate=1.15160e+09
+25     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 1.10800e+02 Rrate=1.10800e+10
+26     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 6.97437e+02 Rrate=6.97437e+02
+27     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 6.70832e+03 Rrate=6.70832e+03
+28      he4+si28-->s32 RG=2 densfac=1.000e+08 rate= 5.53790e+01 Rrate=5.53790e+09
+29      s32-->he4+si28 RG=2 densfac=1.000e+00 rate= 3.97083e+06 Rrate=3.97083e+06
+30      he4+s32-->ar36 RG=2 densfac=1.000e+08 rate= 1.49612e+01 Rrate=1.49612e+09
+31      ar36-->he4+s32 RG=2 densfac=1.000e+00 rate= 2.25028e+06 Rrate=2.25028e+06
+32     he4+ar36-->ca40 RG=2 densfac=1.000e+08 rate= 1.53611e+00 Rrate=1.53611e+08
+33     ca40-->he4+ar36 RG=2 densfac=1.000e+00 rate= 9.28065e+04 Rrate=9.28065e+04
+34     he4+ca40-->ti44 RG=2 densfac=1.000e+08 rate= 1.84552e+01 Rrate=1.84552e+09
+35     ti44-->he4+ca40 RG=2 densfac=1.000e+00 rate= 9.59512e+07 Rrate=9.59512e+07
+36     he4+ti44-->cr48 RG=2 densfac=1.000e+08 rate= 8.10555e-02 Rrate=8.10555e+06
+37     cr48-->he4+ti44 RG=2 densfac=1.000e+00 rate= 1.10840e+03 Rrate=1.10840e+03
+38     he4+cr48-->fe52 RG=2 densfac=1.000e+08 rate= 1.47566e-02 Rrate=1.47566e+06
+39     fe52-->he4+cr48 RG=2 densfac=1.000e+00 rate= 1.14946e+02 Rrate=1.14946e+02
+40     he4+fe52-->ni56 RG=2 densfac=1.000e+08 rate= 6.87266e-03 Rrate=6.87266e+05
+41     ni56-->he4+fe52 RG=2 densfac=1.000e+00 rate= 4.74348e+01 Rrate=4.74348e+01
+42     he4+ni56-->zn60 RG=2 densfac=1.000e+08 rate= 3.97624e-02 Rrate=3.97624e+06
+43     zn60-->he4+ni56 RG=2 densfac=1.000e+00 rate= 5.90164e+07 Rrate=5.90164e+07
+44     he4+zn60-->ge64 RG=2 densfac=1.000e+08 rate= 2.82473e-03 Rrate=2.82473e+05
+45     ge64-->he4+zn60 RG=2 densfac=1.000e+00 rate= 4.63976e+06 Rrate=4.63976e+06
+46     he4+ge64-->se68 RG=2 densfac=1.000e+08 rate= 6.73628e-03 Rrate=6.73628e+05
+47     se68-->he4+ge64 RG=2 densfac=1.000e+00 rate= 5.87973e+06 Rrate=5.87973e+06
+
+**** Rates won't be computed again since T and rho won't change in integration ****
+
+
+FINAL ABUNDANCES Y AND MASS FRACTIONS X
+
+0 4He Y=   -nan X=   -nan
+1 12C Y=   -nan X=   -nan
+2 16O Y=   -nan X=   -nan
+3 20Ne Y=   -nan X=   -nan
+4 24Mg Y=   -nan X=   -nan
+5 28Si Y=   -nan X=   -nan
+6 32S Y=   -nan X=   -nan
+7 36Ar Y=   -nan X=   -nan
+8 40Ca Y=   -nan X=   -nan
+9 44Ti Y=   -nan X=   -nan
+10 48Cr Y=   -nan X=   -nan
+11 52Fe Y=   -nan X=   -nan
+12 56Ni Y=   -nan X=   -nan
+13 60Zn Y=   -nan X=   -nan
+14 64Ge Y=   -nan X=   -nan
+15 68Se Y=   -nan X=   -nan
+
+# ASY+PE+ method (with partition functions): 1066 integration steps in 0.020297 seconds

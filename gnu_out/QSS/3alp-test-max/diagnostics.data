@@ -1,0 +1,419 @@
+Wed Jun 16 12:04:11 2021
+Using QSS method
+
+--- Read in network and partition function ---
+
+4He 4 2 2 0.000000 2.425000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+12C 12 6 6 0.041667 0.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+16O 16 8 8 0.031250 -4.737000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000
+
+3 ISOTOPES IN NETWORK:
+
+Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)
+    0      4He   4   2   2  0.00000e+00    0.000000      2.42500
+    1      12C  12   6   6  4.16667e-02    0.500000      0.00000
+    2      16O  16   8   8  3.12500e-02    0.500000     -4.73700
+
+
+PARTITION FUNCTION TABLE from Species object isotope[]:
+
+ T9 = 0.10 0.15 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00 1.50 2.00 2.50 3.00 3.50 4.00 4.50 5.00 6.00 7.00 8.00 9.00 10.00 
+4He   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+12C   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+16O   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+
+
+--- READ IN REACTIONS DATA---
+
+Reaction 0: he4+he4+he4-->c12 reaclib=0 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+he4+he4-->c12 3 0 8 3 1 0 0 0.166667 7.275000
+-24.993500 -4.297020 -6.693040 15.590300 -1.573870 0.170588 -9.028000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[2]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Reactant[2]: N=2
+  Product[0]: Z=6
+  Product[0]: N=6
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ReactantIndex[2]: N=0
+  ProductIndex[0]: N=1
+
+Reaction 1: he4+he4+he4-->c12 reaclib=1 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+he4+he4-->c12 3 1 8 3 1 0 0 0.166667 7.275000
+-49.494800 0.328290 -86.901600 75.015100 128.427000 -215.288000 -51.602600
+  Reactant[0]: Z=2
+  Reactant[1]: Z=2
+  Reactant[2]: Z=2
+  Reactant[0]: N=2
+  Reactant[1]: N=2
+  Reactant[2]: N=2
+  Product[0]: Z=6
+  Product[0]: N=6
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=0
+  ReactantIndex[2]: N=0
+  ProductIndex[0]: N=1
+
+Reaction 2: c12-->he4+he4+he4 reaclib=2 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=2
+--------------------------------------------------------------------------------
+c12-->he4+he4+he4 3 2 3 1 3 0 0 1.000000 -7.275000
+-2.749940 -84.091700 -86.901600 75.015100 128.427000 -215.288000 -48.602600
+  Reactant[0]: Z=6
+  Reactant[0]: N=6
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[2]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  Product[2]: N=2
+  ReactantIndex[0]: N=1
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=0
+
+Reaction 3: c12-->he4+he4+he4 reaclib=3 RG:(a+b+c<->d) RGclass=3 RGmemberIndex=3
+--------------------------------------------------------------------------------
+c12-->he4+he4+he4 3 3 3 1 3 0 0 1.000000 -7.275000
+21.751300 -88.717000 -6.693040 15.590300 -1.573870 0.170588 -6.028000
+  Reactant[0]: Z=6
+  Reactant[0]: N=6
+  Product[0]: Z=2
+  Product[1]: Z=2
+  Product[2]: Z=2
+  Product[0]: N=2
+  Product[1]: N=2
+  Product[2]: N=2
+  ReactantIndex[0]: N=1
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=0
+  ProductIndex[2]: N=0
+
+Reaction 4: he4+c12-->o16 reaclib=4 RG:(a+b<->c) RGclass=2 RGmemberIndex=0
+--------------------------------------------------------------------------------
+he4+c12-->o16 2 0 4 2 1 0 0 1.000000 7.162000
+18.497700 0.004821 -33.252200 3.335170 -0.701714 0.078197 -2.807510
+  Reactant[0]: Z=2
+  Reactant[1]: Z=6
+  Reactant[0]: N=2
+  Reactant[1]: N=6
+  Product[0]: Z=8
+  Product[0]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=2
+
+Reaction 5: he4+c12-->o16 reaclib=5 RG:(a+b<->c) RGclass=2 RGmemberIndex=1
+--------------------------------------------------------------------------------
+he4+c12-->o16 2 1 4 2 1 0 0 1.000000 7.162000
+142.191000 -89.160800 2204.350000 -2380.310000 108.931000 -5.314720 1361.180000
+  Reactant[0]: Z=2
+  Reactant[1]: Z=6
+  Reactant[0]: N=2
+  Reactant[1]: N=6
+  Product[0]: Z=8
+  Product[0]: N=8
+  ReactantIndex[0]: N=0
+  ReactantIndex[1]: N=1
+  ProductIndex[0]: N=2
+
+Reaction 6: o16-->he4+c12 reaclib=6 RG:(a+b<->c) RGclass=2 RGmemberIndex=2
+--------------------------------------------------------------------------------
+o16-->he4+c12 2 2 2 1 2 0 1 1.000000 -7.162000
+43.158700 -83.106200 -33.252200 3.335170 -0.701714 0.078197 -1.307510
+  Reactant[0]: Z=8
+  Reactant[0]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=6
+  Product[0]: N=2
+  Product[1]: N=6
+  ReactantIndex[0]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=1
+
+Reaction 7: o16-->he4+c12 reaclib=7 RG:(a+b<->c) RGclass=2 RGmemberIndex=3
+--------------------------------------------------------------------------------
+o16-->he4+c12 2 3 2 1 2 0 1 1.000000 -7.162000
+166.852000 -172.272000 2204.350000 -2380.310000 108.931000 -5.314720 1362.680000
+  Reactant[0]: Z=8
+  Reactant[0]: N=8
+  Product[0]: Z=2
+  Product[1]: Z=6
+  Product[0]: N=2
+  Product[1]: N=6
+  ReactantIndex[0]: N=2
+  ProductIndex[0]: N=0
+  ProductIndex[1]: N=1
+8 REACTIONS
+
+0 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667
+1 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667
+2 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000
+3 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000
+4 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000
+5 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000
+6 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000
+7 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000
+
+ReactantIndex[][] and ProductIndex[][]:
+
+he4+he4+he4-->c12: ReactantIndex[0][0]=0 ReactantIndex[0][1]=0 ReactantIndex[0][2]=0  ProductIndex[0][0]=1
+he4+he4+he4-->c12: ReactantIndex[1][0]=0 ReactantIndex[1][1]=0 ReactantIndex[1][2]=0  ProductIndex[1][0]=1
+c12-->he4+he4+he4: ReactantIndex[2][0]=1  ProductIndex[2][0]=0 ProductIndex[2][1]=0 ProductIndex[2][2]=0
+c12-->he4+he4+he4: ReactantIndex[3][0]=1  ProductIndex[3][0]=0 ProductIndex[3][1]=0 ProductIndex[3][2]=0
+    he4+c12-->o16: ReactantIndex[4][0]=0 ReactantIndex[4][1]=1  ProductIndex[4][0]=2
+    he4+c12-->o16: ReactantIndex[5][0]=0 ReactantIndex[5][1]=1  ProductIndex[5][0]=2
+    o16-->he4+c12: ReactantIndex[6][0]=2  ProductIndex[6][0]=0 ProductIndex[6][1]=1
+    o16-->he4+c12: ReactantIndex[7][0]=2  ProductIndex[7][0]=0 ProductIndex[7][1]=1
+
+
+
+REACLIB PARAMETERS FOR 8 REACTIONS
+
+                                p0         p1         p2         p3         p4         p5         p6
+  0   he4+he4+he4-->c12   -24.9935    -4.2970    -6.6930    15.5903    -1.5739     0.1706    -9.0280
+  1   he4+he4+he4-->c12   -49.4948     0.3283   -86.9016    75.0151   128.4270  -215.2880   -51.6026
+  2   c12-->he4+he4+he4    -2.7499   -84.0917   -86.9016    75.0151   128.4270  -215.2880   -48.6026
+  3   c12-->he4+he4+he4    21.7513   -88.7170    -6.6930    15.5903    -1.5739     0.1706    -6.0280
+  4       he4+c12-->o16    18.4977     0.0048   -33.2522     3.3352    -0.7017     0.0782    -2.8075
+  5       he4+c12-->o16   142.1910   -89.1608  2204.3500 -2380.3100   108.9310    -5.3147  1361.1800
+  6       o16-->he4+c12    43.1587   -83.1062   -33.2522     3.3352    -0.7017     0.0782    -1.3075
+  7       o16-->he4+c12   166.8520  -172.2720  2204.3500 -2380.3100   108.9310    -5.3147  1362.6800
+
+Z and N for reactants:
+
+  0  he4+he4+he4-->c12  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  1  he4+he4+he4-->c12  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  2  c12-->he4+he4+he4  Z[0]=6  N[0]=6
+  3  c12-->he4+he4+he4  Z[0]=6  N[0]=6
+  4      he4+c12-->o16  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  5      he4+c12-->o16  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  6      o16-->he4+c12  Z[0]=8  N[0]=8
+  7      o16-->he4+c12  Z[0]=8  N[0]=8
+
+Z and N for products:
+
+  0  he4+he4+he4-->c12  Z[0]=6  N[0]=6
+  1  he4+he4+he4-->c12  Z[0]=6  N[0]=6
+  2  c12-->he4+he4+he4  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  3  c12-->he4+he4+he4  Z[0]=2 Z[1]=2 Z[2]=2  N[0]=2 N[1]=2 N[2]=2
+  4      he4+c12-->o16  Z[0]=8  N[0]=8
+  5      he4+c12-->o16  Z[0]=8  N[0]=8
+  6      o16-->he4+c12  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+  7      o16-->he4+c12  Z[0]=2 Z[1]=6  N[0]=2 N[1]=6
+
+reactantIndex for 8 reactions (index of species vector for each reactant):
+
+0  he4+he4+he4-->c12  reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+1  he4+he4+he4-->c12  reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+2  c12-->he4+he4+he4  reactantIndex[0]=1
+3  c12-->he4+he4+he4  reactantIndex[0]=1
+4      he4+c12-->o16  reactantIndex[0]=0 reactantIndex[1]=1
+5      he4+c12-->o16  reactantIndex[0]=0 reactantIndex[1]=1
+6      o16-->he4+c12  reactantIndex[0]=2
+7      o16-->he4+c12  reactantIndex[0]=2
+
+productIndex for 8 reactions (index of species vector for each product):
+
+0  he4+he4+he4-->c12  productIndex[0]=1
+1  he4+he4+he4-->c12  productIndex[0]=1
+2  c12-->he4+he4+he4  productIndex[0]=0 productIndex[1]=0 productIndex[2]=0
+3  c12-->he4+he4+he4  productIndex[0]=0 productIndex[1]=0 productIndex[2]=0
+4      he4+c12-->o16  productIndex[0]=2
+5      he4+c12-->o16  productIndex[0]=2
+6      o16-->he4+c12  productIndex[0]=0 productIndex[1]=1
+7      o16-->he4+c12  productIndex[0]=0 productIndex[1]=1
+
+
+FLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):
+numberSpecies=3 numberReactions=8
+
+Index             Reaction  4He  12C  16O
+  0      he4+he4+he4-->c12   -3    1    0
+  1      he4+he4+he4-->c12   -3    1    0
+  2      c12-->he4+he4+he4    3   -1    0
+  3      c12-->he4+he4+he4    3   -1    0
+  4          he4+c12-->o16   -1   -1    1
+  5          he4+c12-->o16   -1   -1    1
+  6          o16-->he4+c12    1    1   -1
+  7          o16-->he4+c12    1    1   -1
+
+FLUX SPARSENESS: Non-zero F+ = 10; Non-zero F- = 10, out of 8 x 3 = 24 possibilities.
+
+
+NETWORK SPECIES VECTOR (3 components):
+
+Index  Species    Z     N
+    0      4He    2     2
+    1      12C    6     6
+    2      16O    8     8
+
+
+REACTION VECTOR ARRAY (8 Reaction vectors with 3 species components):
+
+Reaction \ Species            4He   12C   16O  
+   0      he4+he4+he4-->c12 [ -3     1     0 ]
+   1      he4+he4+he4-->c12 [ -3     1     0 ]
+   2      c12-->he4+he4+he4 [  3    -1     0 ]
+   3      c12-->he4+he4+he4 [  3    -1     0 ]
+   4          he4+c12-->o16 [ -1    -1     1 ]
+   5          he4+c12-->o16 [ -1    -1     1 ]
+   6          o16-->he4+c12 [  1     1    -1 ]
+   7          o16-->he4+c12 [  1     1    -1 ]
+
+GSL REACTION VECTOR COMPONENTS (8 reaction vectors with 3 components)
+
+rv[0]: [ -3  1  0 ]
+rv[1]: [ -3  1  0 ]
+rv[2]: [  3 -1  0 ]
+rv[3]: [  3 -1  0 ]
+rv[4]: [ -1 -1  1 ]
+rv[5]: [ -1 -1  1 ]
+rv[6]: [  1  1 -1 ]
+rv[7]: [  1  1 -1 ]
+
+
+PARTIAL EQUILIBRIUM REACTION GROUPS
+
+Reaction Group 0:
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=1 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=1 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=0 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=0 RG: a+b+c<->d
+
+Reaction Group 1:
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+
+REACTIONS IN RGclass[]:
+
+he4+he4+he4-->c12 RGclass[0] = 3
+he4+he4+he4-->c12 RGclass[1] = 3
+c12-->he4+he4+he4 RGclass[2] = 3
+c12-->he4+he4+he4 RGclass[3] = 3
+he4+c12-->o16 RGclass[4] = 2
+he4+c12-->o16 RGclass[5] = 2
+o16-->he4+c12 RGclass[6] = 2
+o16-->he4+c12 RGclass[7] = 2
+
+
+SOME FIELDS FOR THE 8 Reaction OBJECTS reaction[]:
+
+reaction[0]: he4+he4+he4-->c12 RGclass=3 #reac=3 #prod=1 RGmemberIndex=0 RG=0
+RG=0  REACTANTS: iso[0]=4He iso[1]=4He iso[2]=4He  PRODUCTS: iso[3]=12C
+
+reaction[1]: he4+he4+he4-->c12 RGclass=3 #reac=3 #prod=1 RGmemberIndex=1 RG=0
+RG=0  REACTANTS: iso[0]=4He iso[1]=4He iso[2]=4He  PRODUCTS: iso[3]=12C
+
+reaction[2]: c12-->he4+he4+he4 RGclass=3 #reac=1 #prod=3 RGmemberIndex=2 RG=0
+RG=0  REACTANTS: iso[0]=12C  PRODUCTS: iso[1]=4He iso[2]=4He iso[3]=4He
+
+reaction[3]: c12-->he4+he4+he4 RGclass=3 #reac=1 #prod=3 RGmemberIndex=3 RG=0
+RG=0  REACTANTS: iso[0]=12C  PRODUCTS: iso[1]=4He iso[2]=4He iso[3]=4He
+
+reaction[4]: he4+c12-->o16 RGclass=2 #reac=2 #prod=1 RGmemberIndex=0 RG=1
+RG=0  REACTANTS: iso[0]=4He iso[1]=12C  PRODUCTS: iso[2]=16O
+
+reaction[5]: he4+c12-->o16 RGclass=2 #reac=2 #prod=1 RGmemberIndex=1 RG=1
+RG=0  REACTANTS: iso[0]=4He iso[1]=12C  PRODUCTS: iso[2]=16O
+
+reaction[6]: o16-->he4+c12 RGclass=2 #reac=1 #prod=2 RGmemberIndex=2 RG=1
+RG=0  REACTANTS: iso[0]=16O  PRODUCTS: iso[1]=4He iso[2]=12C
+
+reaction[7]: o16-->he4+c12 RGclass=2 #reac=1 #prod=2 RGmemberIndex=3 RG=1
+RG=0  REACTANTS: iso[0]=16O  PRODUCTS: iso[1]=4He iso[2]=12C
+
+
+CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS
+
+reacIndex=0 memberIndex=0 he4+he4+he4-->c12 RGclass=3 isForward=1
+reacIndex=1 memberIndex=1 he4+he4+he4-->c12 RGclass=3 isForward=1
+reacIndex=2 memberIndex=2 c12-->he4+he4+he4 RGclass=3 isForward=0
+reacIndex=3 memberIndex=3 c12-->he4+he4+he4 RGclass=3 isForward=0
+RG[0]: refreac=0 RGclassRef=3 niso=4 Reactions=4
+
+reacIndex=4 memberIndex=0 he4+c12-->o16 RGclass=2 isForward=1
+reacIndex=5 memberIndex=1 he4+c12-->o16 RGclass=2 isForward=1
+reacIndex=6 memberIndex=2 o16-->he4+c12 RGclass=2 isForward=0
+reacIndex=7 memberIndex=3 o16-->he4+c12 RGclass=2 isForward=0
+RG[1]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+
+
+Summary: RG=0
+0 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+1 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+2 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+3 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+
+Summary: RG=1
+0 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+1 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+2 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+3 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+
+
+SUMMARY of order for isotopes for PE in ReactionGroup objects:
+
+RG=0  RGclass=3 a+b+c<->d Species Index: iso[0]=0 iso[1]=0 iso[2]=0 iso[3]=1
+      isolabel[0]=4He isolabel[1]=4He isolabel[2]=4He isolabel[3]=12C
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=0 reactantIndex[2]=0
+      PRODUCTS: productIndex[0]=1
+      Z[0]=2 Z[1]=2 Z[2]=2 Z[3]=6
+      N[0]=2 N[1]=2 N[2]=2 N[3]=6
+      A[0]=4 A[1]=4 A[2]=4 A[3]=12
+      isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=4.16667e-02
+      isoYeq[0]=1.08299e-320 isoYeq[1]=6.94932e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.65143e-310
+
+RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
+      isolabel[0]=4He isolabel[1]=12C isolabel[2]=16O
+      REACTANTS: reactantIndex[0]=0 reactantIndex[1]=1
+      PRODUCTS: productIndex[0]=2
+      Z[0]=2 Z[1]=6 Z[2]=8
+      N[0]=2 N[1]=6 N[2]=8
+      A[0]=4 A[1]=12 A[2]=16
+      isoY[0]=0.00000e+00 isoY[1]=4.16667e-02 isoY[2]=3.12500e-02
+      isoYeq[0]=1.08299e-320 isoYeq[1]=6.94932e-310 isoYeq[2]=3.45846e-323
+
+
+
+                 --- BEGIN TIME INTEGRATION ---
+
+INITIAL COMPUTED RATES
+
+0   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 1.01261e-10 Rrate=1.68768e+05
+1   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 0.00000e+00 Rrate=0.00000e+00
+2   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 0.00000e+00 Rrate=0.00000e+00
+3   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 1.17688e+05 Rrate=1.17688e+05
+4       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 1.19062e-01 Rrate=1.19062e+07
+5       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 2.42472e+00 Rrate=2.42472e+08
+6       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 4.12508e+03 Rrate=4.12508e+03
+7       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 8.40052e+04 Rrate=8.40052e+04
+
+**** Rates won't be computed again since T and rho won't change in integration ****
+
+
+FINAL ABUNDANCES Y AND MASS FRACTIONS X
+
+0 4He Y=2.276e-03 X=9.104e-03
+1 12C Y=1.708e-02 X=2.050e-01
+2 16O Y=4.912e-02 X=7.859e-01
+
+# QSS+ method (with partition functions): 59973541 integration steps in 2864.48 seconds
