@@ -3797,7 +3797,7 @@ int main() {
         
         fprintf(pFilePE, "PE FIX\n");
         fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
-        fprintf(pFilePE, "\nTimeSteps     dt      RG    isEquil     F+                F-           pecheck\n");
+        fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck\n");
 
     } else if (doQSS && doPE){
         
@@ -4294,11 +4294,11 @@ int main() {
             if(diagnosePE){
                 fprintf(pFilePE, "%d,     %2.4e", totalTimeSteps, dt);
                 for(int i=0; i<numberRG; i++){
-                    
-                    pecheck[i] = abs(RG[i].getisoYeq() - RG[i].getisoY()/RG[i].getisoYeq());
+
+                    pecheck[i] = abs(RG[i].getisoYeq(i) - RG[i].getisoY(i)/RG[i].getisoYeq(i));
 
                     if(i != 0){ fprintf(pFilePE, "%s",blank);}
-                 fprintf (pFilePE, "   %d    %d              %2.5e       %2.5e      %2.5e\n", i, RG[i].getisEquil(), RG[i].getisoYeq(), RG[i].getisoY(), pecheck[i]);
+                 fprintf (pFilePE, "   %d    %d              %2.4f      %2.4f      %2.3f\n", i, RG[i].getisEquil(), RG[i].getisoYeq(i), RG[i].getisoY(i), pecheck[i]);
                 }
 
              //   for(int j=0; j < ISOTOPES; j++){
