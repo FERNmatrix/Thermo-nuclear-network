@@ -111,7 +111,7 @@ char networkFile[] = "data/CUDAnet_alpha.inp";
 // File pointer for diagnostics output
 
 FILE *pFileD;
-
+FILE *pFilePE;
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
 static const int displayInput = true;
@@ -129,7 +129,7 @@ static const bool diagnose1 = false;
 static const bool diagnose2 = true;
 static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
-
+static const bool diagnosePE = true;
 
 // Function signatures in main:
 
@@ -3763,6 +3763,10 @@ int main() {
     // Open a file for diagnostics output
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
+    pFilePE = fopen("gnu_out/PE_fix.data","w");
+        // opening and closing TS for PE_fix
+        int t1 = 545;
+        int t2 = 575;
     
     // Write the time
     
@@ -3791,6 +3795,10 @@ int main() {
         cout << "Using ASY+PE method";
         fprintf(pFileD, "Using ASY+PE method\n");
         
+        fprintf(pFilePE, "PE FIX\n");
+        fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
+        fprintf(pFilePE, "\nTimeSteps     dt     isEquil     F+     F-     Y\n");
+
     } else if (doQSS && doPE){
         
         cout << "Using QSS+PE method";
@@ -4279,9 +4287,18 @@ int main() {
             }
         }
 
-        if(totalTimeSteps >= 570 && totalTimeSteps < 575){
-            for(int i=0; i<ISOTOPES; i++){
-            printf ("\n*****sotopes in EQUIL RG******%d %d %d\n", RG[i].getisEquil(), i, totalTimeSteps);
+
+
+        if(totalTimeSteps >= t1 && totalTimeSteps < t2){
+            if(diagnosePE){
+                fprintf(pFilePE, "%d, %2.4e", totalTimeSteps, dt);
+                for(int i=0; i<numberRG; i++){
+                 fprintf (pFilePE, "%d, %2.5e, %2.5e, %2.5e", RG[i].getisEquil(), Fplus, Fminus);
+                }
+
+                for(int j=0; j < ISOTOPES; j++){
+                    fprintf (pFilePE, "%2.5e\n", Y[j]);
+                }
             }
         } 
         
@@ -4437,6 +4454,7 @@ int main() {
     // Close output file
     
     fclose (pFileD);
+    fclose (pFilePE);
    
     // Free allocated memory
     
