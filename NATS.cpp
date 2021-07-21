@@ -3087,7 +3087,7 @@ class ReactionGroup:  public Utilities {
         
         // Add 1e-24 to denominator in following to prevent possible divide by zero
         
-        double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-24));
+           double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-24));
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
@@ -3334,7 +3334,7 @@ class Integrate: public Utilities {
             diffP = (abs(sumX - sumXlast)/sumX);
 
 //Partial EQ addition
-            if (doPE){
+          if (doPE){
                 if(mostDevious > deviousMax) {
                     dt = dt*dtdec;
                     recountDown++;
@@ -3384,7 +3384,7 @@ class Integrate: public Utilities {
                         }
                     }   
                 }
-            }
+            } 
         
 // without partial EQ
             else{
@@ -4231,7 +4231,7 @@ int main() {
         // has possibly been modified in doIntegrationStep() to satisfy tolerance conditions.
         
         t += dt; 
-        totalTimeSteps ++; 
+        totalTimeSteps ++;   
 
 
       if (totalTimeSteps > 100e6){
@@ -4278,6 +4278,12 @@ int main() {
                 
             }
         }
+
+        if(totalTimeSteps >= 570 && totalTimeSteps < 575){
+            for(int i=0; i<ISOTOPES; i++){
+            printf ("\n*****sotopes in EQUIL RG******%d %d %d\n", RG[i].getisEquil(), i, totalTimeSteps);
+            }
+        } 
         
         // Count total asymptotic species
         
@@ -4517,6 +4523,7 @@ void restoreEquilibriumProg(){
         
         evolveToEquilibrium();
         
+        if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4577,6 +4584,7 @@ void restoreEquilibriumProg(){
             Y[i] = Ysum/(double)numberCases;
             X[i] = Y[i]*(double)AA[i];
             
+        }
         }
     
     } // end while iteration loop
