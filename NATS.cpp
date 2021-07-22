@@ -471,8 +471,8 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
-int plotXlist[] = {1, 2, 3};    // 3-alpha
+int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+//int plotXlist[] = {1, 2, 3};    // 3-alpha
 int LX;                         // Length of plotXlist array
 
 
@@ -3313,9 +3313,9 @@ class Integrate: public Utilities {
             int recountUp = 0;
             
             //Define tolerances
-            double const uptol = 1e-6;
+            double const uptol = 1e-4;
             double const lowtol = 1e-10;
-            double const tolC = 1e-8;
+            double const tolC = 1e-7;
             double diffP;
 
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
@@ -3385,9 +3385,10 @@ class Integrate: public Utilities {
                     }   
                 }
             } 
+            
         
 // without partial EQ
-            else{
+           else{
 
              while(diffX > uptol){
                 dt = dt*dtdec;
@@ -3765,8 +3766,8 @@ int main() {
     pFileD = fopen("gnu_out/diagnostics.data","w");
     pFilePE = fopen("gnu_out/PE_fix.data","w");
         // opening and closing TS for PE_fix
-        int t1 = 545;
-        int t2 = 575;
+        int t1 = 21000;
+        int t2 = 23000;
     
     // Write the time
     
@@ -3797,7 +3798,7 @@ int main() {
         
         fprintf(pFilePE, "PE FIX\n");
         fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
-        fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck\n");
+        fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck      eqcheck     diff\n");
 
     } else if (doQSS && doPE){
         
@@ -4247,6 +4248,10 @@ int main() {
             Utilities::plotOutput();
             return 0;
         }
+
+        if(totalTimeSteps == 22919){
+            printf("Error incoming");
+        }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4289,16 +4294,18 @@ int main() {
 
         char blank[] = "                   ";
         double pecheck[numberRG];
+        double diff[numberRG];
 
         if(totalTimeSteps >= t1 && totalTimeSteps < t2){
             if(diagnosePE){
                 fprintf(pFilePE, "%d,     %2.4e", totalTimeSteps, dt);
                 for(int i=0; i<numberRG; i++){
 
-                    pecheck[i] = abs(RG[i].getisoYeq(i) - RG[i].getisoY(i)/RG[i].getisoYeq(i));
+                    pecheck[i] = abs(RG[i].getisoYeq(i) - RG[i].getisoY(i))/RG[i].getisoYeq(i);
+                    diff[i] = (pecheck[i] - RG[i].geteqcheck(i));
 
                     if(i != 0){ fprintf(pFilePE, "%s",blank);}
-                 fprintf (pFilePE, "   %d    %d              %2.4f      %2.4f      %2.3f\n", i, RG[i].getisEquil(), RG[i].getisoYeq(i), RG[i].getisoY(i), pecheck[i]);
+                 fprintf (pFilePE, "   %d    %d              %2.3e      %2.3e      %2.3e     %2.3e      %2.3e\n", i, RG[i].getisEquil(), RG[i].getisoYeq(i), RG[i].getisoY(i), pecheck[i], RG[i].geteqcheck(i), diff[i]);
                 }
 
              //   for(int j=0; j < ISOTOPES; j++){
@@ -4595,6 +4602,7 @@ void restoreEquilibriumProg(){
                             if(i == RG[j].getisoindex(k)) {
                                 Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
+                                Y[i] = Ysum/(double)numberCases;
                             }
                         }
                     }
@@ -4604,7 +4612,7 @@ void restoreEquilibriumProg(){
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-            Y[i] = Ysum/(double)numberCases;
+          //  Y[i] = Ysum/(double)numberCases;
             X[i] = Y[i]*(double)AA[i];
             
         }
