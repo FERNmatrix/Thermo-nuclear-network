@@ -3820,6 +3820,38 @@ int main() {
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
+
+    //******************AC***************
+    int i1 = 1;
+    int i2 = 2;
+
+    double ax1 = 0;
+    double ax2 = 0;
+    double ax3 = 0;
+    double ax4 = 0;
+    double ax5 = 0;
+
+    double ay1 = 0;
+    double ay2 = 0;
+    double ay3 = 0;
+    double ay4 = 0;
+    double ay5 = 0;
+
+    double bx1 = 0;
+    double bx2 = 0;
+    double bx3 = 0;
+    double bx4 = 0;
+    double bx5 = 0;
+
+    double by1 = 0;
+    double by2 = 0;
+    double by3 = 0;
+    double by4 = 0;
+    double by5 = 0;
+
+
+    //***********************************
+
     
     // Initialize reacIsActive[] array to true;
     
@@ -4252,6 +4284,59 @@ int main() {
        // if(totalTimeSteps == 22919){
        //     printf("Error incoming");
        // }
+
+        //****************AC****************
+
+        if (t > 1e-15 && i1 < 5){
+            if(i1 == 1){
+                ax1 = t;
+                ay1 = dt;
+            }
+            if(i1 == 2){
+                ax2 = t;
+                ay2 = dt;
+            }
+            if(i1 == 3){
+                ax3 = t;
+                ay3 = dt;
+            }
+            if(i1 == 4){
+                ax4 = t;
+                ay4 = dt;
+            }
+            if(i1 == 5){
+                ax5 = t;
+                ay5 = dt;
+            }
+            i1++;   
+        }
+
+        if (t > 1e-12 && i2 < 5){
+            if(i2 == 1){
+                bx1 = t;
+                by1 = dt;
+            }
+            if(i2 == 2){
+                bx2 = t;
+                by2 = dt;
+            }
+            if(i2 == 3){
+                bx3 = t;
+                by3 = dt;
+            }
+            if(i2 == 4){
+                bx4 = t;
+                by4 = dt;
+            }
+            if(i2 == 5){
+                bx5 = t;
+                by5 = dt;
+            }
+            i2++;
+        }
+
+
+        //**********************************
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4433,6 +4518,16 @@ int main() {
     // *** End time integration ***
     // ------------------------------
     
+    //****************AC**************
+    FILE *pFileTfac;
+    pFileTfac = fopen("gnu_out/Tfac.data","w");
+    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ax1, ax2, ax3, ax4, ax5);
+    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ay1, ay2, ay3, ay4, ay5);
+    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",bx1, bx2, bx3, bx4, bx5);
+    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",by1, by2, by3, by4, by5);
+
+
+    //********************************
 
     // Display abundances and mass fractions at end of integration
 
