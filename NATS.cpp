@@ -4249,9 +4249,9 @@ int main() {
             return 0;
         }
 
-        if(totalTimeSteps == 22919){
-            printf("Error incoming");
-        }
+       // if(totalTimeSteps == 22919){
+       //     printf("Error incoming");
+       // }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
