@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc NATS.cpp -o NATS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc dtrange.cpp -o dtrange -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -253,12 +253,17 @@ int mostDeviousIndex;         // Index of RG with mostDevious
 
 double Ythresh = 0.0;
 
+//********************** TIMESTEP PARAMETERS****************************//
 double dt;                           // Current integration timestep
-double dtgrow = 1.05;                // growth factor of dt
-double dtdec = 0.95;                 // decrementing factor of dt
-// double const uptol = 1e-7;        // upper tolerance condition
-// double const lowtol = 1e-10;      // lower tolerance condition
-// double tolC = 1e-7;               // %difference tolerance
+//double dtgrow = 1.03;                // growth factor of dt
+//double dtdec = 0.97;                 // decrementing factor of dt
+// double const uptol = 1e-4;        // upper tolerance condition
+// double const lowtol = 1e-9;      // lower tolerance condition
+// double tolC = 1e-10;               // %difference in sumX tolerance
+double dtRangeD;
+double dtRangeU;
+//**********************************************************************//
+
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
@@ -451,6 +456,8 @@ double timeMaxRate = 0.0;
 
 double plotTimeTargets[plotSteps];
 
+double dtRangeUplot[plotSteps];                    // plotting the upper limit of dt @ 10% t
+double dtRangeDplot[plotSteps];                   // plotting the lower limit of dt @ 1% t
 double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
 double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
@@ -596,7 +603,7 @@ class Utilities{
             
             LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
-            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX"; //add diffX to keep track of it at every step
+            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX      dtUpper     dtLower"; //add diffX to keep track of it at every step
             string strflux = "\n#    t     dt   ";
             string app = "  ";
             string app1;
@@ -712,11 +719,11 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %3.4e %3.4e",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
+                    sumXplot[i], dtRangeUplot[i], dtRangeDplot[i]
                 );// to plot diffX add diffXplot[i] and %5.3e at the end of 712
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
@@ -3311,6 +3318,8 @@ class Integrate: public Utilities {
             //define variable for keeping track of any recalculations (mainly used for debugging purposes)
             int recountDown = 0;
             int recountUp = 0;
+            dtRangeD = 0.01*t;
+            dtRangeU = 0.1*t;
             
             //Define tolerances
             double const uptol = 1e-4;
@@ -3319,6 +3328,8 @@ class Integrate: public Utilities {
             double diffP;
 
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+            double dtgrow = 1.03;
+            double dtdec = 0.97;
             double dtnew;
             double dtmax = 0.1*t;
             double dtmin = 0.01*t;
@@ -4208,10 +4219,6 @@ int main() {
             Utilities::plotOutput();
             return 0;
         }
-
-        if(totalTimeSteps == 22919){
-            printf("Error incoming");
-        }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4316,9 +4323,9 @@ int main() {
             if(showPlotSteps){
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 fprintf(pFileD, 
-                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f",
+                    "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f dtUpper = %3.4e  dtLower = %3.4e",
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
-                    totalAsy, ISOTOPES, sumX);// diffX); // add diffX=%8.4e to print out diffX
+                    totalAsy, ISOTOPES, sumX, dtRangeD, dtRangeU);// diffX); // add diffX=%8.4e to print out diffX
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
@@ -4354,6 +4361,8 @@ int main() {
             sumXplot[plotCounter-1] = sumX;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
+            dtRangeDplot[plotCounter-1] = log10(dtRangeD);
+            dtRangeUplot[plotCounter-1] = log10(dtRangeU);
            // diffXplot[plotCounter -1] = log10(diffX); // add to output diffX to files for plotting
             
             for(int i=0; i<numberRG;i++){
