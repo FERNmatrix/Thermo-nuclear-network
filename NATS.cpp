@@ -3823,7 +3823,7 @@ int main() {
 
     //******************AC***************
     int i1 = 1;
-    int i2 = 2;
+    int i2 = 1;
 
     double ax1 = 0;
     double ax2 = 0;
@@ -3848,6 +3848,11 @@ int main() {
     double by3 = 0;
     double by4 = 0;
     double by5 = 0;
+
+    //double A[2];
+    //double B[2];
+
+
 
 
     //***********************************
@@ -4287,7 +4292,7 @@ int main() {
 
         //****************AC****************
 
-        if (t > 1e-15 && i1 < 5){
+        if (t > 1e-15 && i1 < 6){
             if(i1 == 1){
                 ax1 = t;
                 ay1 = dt;
@@ -4311,7 +4316,7 @@ int main() {
             i1++;   
         }
 
-        if (t > 1e-12 && i2 < 5){
+        if (t > 1e-12 && i2 < 6){
             if(i2 == 1){
                 bx1 = t;
                 by1 = dt;
@@ -4525,6 +4530,15 @@ int main() {
     fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ay1, ay2, ay3, ay4, ay5);
     fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",bx1, bx2, bx3, bx4, bx5);
     fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",by1, by2, by3, by4, by5);
+
+    //A[1] = ax3;
+    //A[2] = ay3;
+
+    //B[1] = bx3;
+    //B[2] = by3;
+
+    //fprintf(pFileTfac, "\n%3.20f\n%3.20f" A[1], A[2]);
+    //fprintf(pFileTfac, "\n%3.20f\n%3.20f" [1], B[2]);
 
 
     //********************************
