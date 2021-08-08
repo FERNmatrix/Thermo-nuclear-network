@@ -59,8 +59,8 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 16                 // Max isotopes in network (e.g. 16 for alpha network, 7 in pp, 3 in triple alpha)
-#define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network, 28 in pp, 8 in triple alpha)
+#define ISOTOPES 3               // Max isotopes in network (e.g. 16 for alpha network, 7 in pp, 3 in triple alpha)
+#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network, 28 in pp, 8 in triple alpha)
 #define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -99,19 +99,19 @@ FILE *fr;
 // rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,
 // rateLibrary_3alpha.data, rateLibrary_pp.data.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_3alpha.data";
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format for 
 // this file. Standard test cases: CUDAnet_alphasolar.inp, CUDAnet_150solar.inp,
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
-char networkFile[] = "data/CUDAnet_alpha.inp";
+char networkFile[] = "data/CUDAnet_3alpha.inp";
 
 // File pointer for diagnostics output
 
 FILE *pFileD;
-
+FILE *pFilePE;
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
 static const int displayInput = true;
@@ -129,7 +129,7 @@ static const bool diagnose1 = false;
 static const bool diagnose2 = true;
 static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
-
+static const bool diagnosePE = false;
 
 // Function signatures in main:
 
@@ -471,8 +471,8 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
-int plotXlist[] = {1, 2, 3};    // 3-alpha
+int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+//int plotXlist[] = {1, 2, 3};    // 3-alpha
 int LX;                         // Length of plotXlist array
 
 
@@ -3087,7 +3087,7 @@ class ReactionGroup:  public Utilities {
         
         // Add 1e-24 to denominator in following to prevent possible divide by zero
         
-        double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-24));
+           double thisDevious = abs((equilRatio - kratio) / (kratio + 1.0e-24));
         
         if (isEquil && thisDevious > mostDevious) {
             mostDevious = thisDevious;
@@ -3313,9 +3313,9 @@ class Integrate: public Utilities {
             int recountUp = 0;
             
             //Define tolerances
-            double const uptol = 1e-6;
+            double const uptol = 1e-4;
             double const lowtol = 1e-10;
-            double const tolC = 1e-8;
+            double const tolC = 1e-7;
             double diffP;
 
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
@@ -3334,7 +3334,7 @@ class Integrate: public Utilities {
             diffP = (abs(sumX - sumXlast)/sumX);
 
 //Partial EQ addition
-            if (doPE){
+          if (doPE){
                 if(mostDevious > deviousMax) {
                     dt = dt*dtdec;
                     recountDown++;
@@ -3371,8 +3371,8 @@ class Integrate: public Utilities {
                             dt = dtmax;
                             break;
                         }
-                       }
-                    }
+                       }   
+                    } 
                     else{
                         while(diffX > uptol){
                          dt = dt*dtdec;
@@ -3382,12 +3382,13 @@ class Integrate: public Utilities {
                          sumX = Utilities::sumMassFractions();
                          diffX = abs(sumX - 1.0);
                         }
-                    }
+                    }   
                 }
-            }
-
+            } 
+            
+        
 // without partial EQ
-            else{
+           else{
 
              while(diffX > uptol){
                 dt = dt*dtdec;
@@ -3763,6 +3764,10 @@ int main() {
     // Open a file for diagnostics output
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
+    pFilePE = fopen("gnu_out/PE_fix.data","w");
+        // opening and closing TS for PE_fix
+        int t1 = 21000;
+        int t2 = 23000;
     
     // Write the time
     
@@ -3791,6 +3796,10 @@ int main() {
         cout << "Using ASY+PE method";
         fprintf(pFileD, "Using ASY+PE method\n");
         
+        fprintf(pFilePE, "PE FIX\n");
+        fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
+        fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck      eqcheck     diff\n");
+
     } else if (doQSS && doPE){
         
         cout << "Using QSS+PE method";
@@ -4231,13 +4240,17 @@ int main() {
         // has possibly been modified in doIntegrationStep() to satisfy tolerance conditions.
         
         t += dt; 
-        totalTimeSteps ++; 
+        totalTimeSteps ++;   
 
 
       if (totalTimeSteps > 100e6){
             Utilities::stopTimer();
             Utilities::plotOutput();
             return 0;
+        }
+
+        if(totalTimeSteps == 22919){
+            printf("Error incoming");
         }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
@@ -4251,10 +4264,10 @@ int main() {
             
             if(totalEquilRG > 0){
                 
-                if(diagnose2)
+                if(diagnose2){
                 fprintf(pFileD, 
                 "\n\n********* BEGIN PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
-                
+                }
                 // Restore species in equilibrium to their unperturbed equilibrium values at 
                 // the end of the timestep.  See the comments for function 
                 // restoreEquilibriumProg() below for justification.
@@ -4278,6 +4291,28 @@ int main() {
                 
             }
         }
+
+        char blank[] = "                   ";
+        double pecheck[numberRG];
+        double diff[numberRG];
+
+        if(totalTimeSteps >= t1 && totalTimeSteps < t2){
+            if(diagnosePE){
+                fprintf(pFilePE, "%d,     %2.4e", totalTimeSteps, dt);
+                for(int i=0; i<numberRG; i++){
+
+                    pecheck[i] = abs(RG[i].getisoYeq(i) - RG[i].getisoY(i))/RG[i].getisoYeq(i);
+                    diff[i] = (pecheck[i] - RG[i].geteqcheck(i));
+
+                    if(i != 0){ fprintf(pFilePE, "%s",blank);}
+                 fprintf (pFilePE, "   %d    %d              %2.3e      %2.3e      %2.3e     %2.3e      %2.3e\n", i, RG[i].getisEquil(), RG[i].getisoYeq(i), RG[i].getisoY(i), pecheck[i], RG[i].geteqcheck(i), diff[i]);
+                }
+
+             //   for(int j=0; j < ISOTOPES; j++){
+             //       fprintf (pFilePE, "    %2.5e\n", Y[j]);
+             //   }
+            }
+        } 
         
         // Count total asymptotic species
         
@@ -4431,6 +4466,7 @@ int main() {
     // Close output file
     
     fclose (pFileD);
+    fclose (pFilePE);
    
     // Free allocated memory
     
@@ -4484,7 +4520,7 @@ int main() {
  * of the Java code. */
 
 
-void restoreEquilibriumProg() {
+void restoreEquilibriumProg(){
 
     int countConstraints = 0;
     int countEquilIsotopes = 0;
@@ -4499,7 +4535,7 @@ void restoreEquilibriumProg() {
      * to one iteration for now. */
     
     int itcounter = 0;
-    
+
     while (itcounter < 1) {
         
         countConstraints = 0;
@@ -4517,6 +4553,7 @@ void restoreEquilibriumProg() {
         
         evolveToEquilibrium();
         
+        if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4565,6 +4602,7 @@ void restoreEquilibriumProg() {
                             if(i == RG[j].getisoindex(k)) {
                                 Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
+                                Y[i] = Ysum/(double)numberCases;
                             }
                         }
                     }
@@ -4574,12 +4612,15 @@ void restoreEquilibriumProg() {
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-            Y[i] = Ysum/(double)numberCases;
+          //  Y[i] = Ysum/(double)numberCases;
             X[i] = Y[i]*(double)AA[i];
             
         }
+        }
     
     } // end while iteration loop
+
+
     
     
     // Set up renormalization of all Ys so that this integration step
@@ -4609,7 +4650,6 @@ void restoreEquilibriumProg() {
     sumX = Utilities::sumMassFractions();
     
 }
-
 
 // ----------------------------------------------------------------------
 // Function to set abundances for reaction groups in equilibrium to the
