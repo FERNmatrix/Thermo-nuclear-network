@@ -3315,7 +3315,7 @@ class Integrate: public Utilities {
             //Define tolerances
             double const uptol = 1e-4;
             double const lowtol = 1e-10;
-            double const tolC = 1e-7;
+            double const tolC = 1e-10;
             double diffP;
 
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
@@ -3577,11 +3577,11 @@ class Integrate: public Utilities {
             
             // Recompute fluxes if another predictor-corrector iteration follows
             
-            if (nitQSS > 1) {
+           // if (nitQSS > 1) {
                 
-                setReactionFluxes();
+           //     setReactionFluxes();
                 
-            }
+            //}
         }
     }
     
@@ -3687,6 +3687,8 @@ class Integrate: public Utilities {
                 // Update sum of mass fractions
                 
                 sumX += X[i];
+
+                setReactionFluxes();
                 
         }
     }
