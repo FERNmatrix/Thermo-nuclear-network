@@ -3,11 +3,11 @@ CFLAGS=-I. -g3
 
 #compiler flags
 LIBS=-lgsl -lgslcblas
-all: EMATS.cpp NATS.cpp explicitMatrix.cpp
+all: EMATS.cpp NATS.cpp dtrange.cpp #explicitMatrix.cpp
 	$(CC) -o EMATS EMATS.cpp $(CFLAGS) $(LIBS)
 	$(CC) -o NATS NATS.cpp $(CFLAGS) $(LIBS)
-	$(CC) -o explicitMatrix explicitMatrix.cpp  $(CFLAGS) $(LIBS)
-#######	$(CC) -o dtranges dtranges.cpp $(CFLAGS) $(LIBS)
+######	$(CC) -o explicitMatrix explicitMatrix.cpp  $(CFLAGS) $(LIBS)
+	$(CC) -o dtrange dtrange.cpp $(CFLAGS) $(LIBS)
 #NATS: NATS.cpp
 #	$(CC) -o NATS NATS.cpp $(LIBS)
 
