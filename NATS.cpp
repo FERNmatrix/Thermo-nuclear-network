@@ -151,6 +151,13 @@ void evolveToEquilibrium(void);
 bool isoIsInRG(int, int);
 void setReactionFluxes();
 
+//************AC***********
+
+bool AdpvPeram = false;
+int method = 0;
+
+//*************************
+
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
 // (which toggles doQSS to false). To use quasi-steady-state (QSS), set 
@@ -256,9 +263,9 @@ double Ythresh = 0.0;
 double dt;                           // Current integration timestep
 double dtgrow = 1.02;                // growth factor of dt
 double dtdec = 0.98;                 // decrementing factor of dt
-// double const uptol = 1e-7;        // upper tolerance condition
-// double const lowtol = 1e-10;      // lower tolerance condition
-// double tolC = 1e-7;               // %difference tolerance
+double const uptol = 1e-7;        // upper tolerance condition
+double const lowtol = 1e-10;      // lower tolerance condition 
+double tolC = 1e-7;               // %difference tolerance
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
@@ -3762,6 +3769,33 @@ ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
 
 
 int main() { 
+
+    if (AdpvPeram == true){
+        cout << "Adaptive Peramiter is on \n";
+        cout << "provide method 1,2, 3 or 4\n";
+        cin >> method;
+
+        if (method == 1){ //'ASY'
+            doASY = true;
+            doQSS = false;
+            doPE = false;
+        }
+        else if (method == 2){ //'ASY+PE'
+            doASY = true;
+            doQSS = false;
+            doPE = true;
+        }
+        else if (method == 3){ //'QSS'
+            doASY = false;
+            doQSS = true;
+            doPE = false;
+        }
+        else if (method == 4){ //'QSS+PE'
+            doASY = false;
+            doQSS = true;
+            doPE = true;
+        }
+    }
     
     // Open a file for diagnostics output
     
