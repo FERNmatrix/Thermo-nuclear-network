@@ -151,12 +151,13 @@ void evolveToEquilibrium(void);
 bool isoIsInRG(int, int);
 void setReactionFluxes();
 
-//************AC***********
+//------------AC-----------
 
-bool AdpvPeram = false;
+bool AdpvPeram = true;
 int method = 0;
+int num_runs = 0;
 
-//*************************
+//-------------------------
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -597,6 +598,23 @@ class Utilities{
             
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
+
+            //------------AC-----------------
+            FILE * pFile4;
+            if (method = 1){
+                pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
+            }
+            if (method = 2){
+                pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
+            }
+            if (method = 3){
+                pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
+            }
+            if (method = 4){
+                pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
+            }
+            
+            //-------------------------------
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
@@ -620,11 +638,13 @@ class Utilities{
                 fprintf(pFile2, "# ASY");
                 if(plotFluxes){fprintf(pFile3, "# ASY");}
                 fprintf(pFileD, "# ASY");
+                fprintf(pFile4, "# ASY");                                   //AC
             } else {
                 fprintf(pFile, "# QSS");
                 fprintf(pFile2, "# QSS");
                 if(plotFluxes){fprintf(pFile3, "# QSS");}
                 fprintf(pFileD, "# QSS");
+                fprintf(pFile4, "# QSS");                                   //AC
             }
             
             if(doPE){
@@ -632,6 +652,7 @@ class Utilities{
                 fprintf(pFile2, "+PE");
                 if(plotFluxes){fprintf(pFile3, "+PE");}
                 fprintf(pFileD, "+PE");
+                fprintf(pFile4, "+PE");                                     //AC
             } 
             
             if(dopf){
@@ -639,17 +660,20 @@ class Utilities{
                 fprintf(pFile2, " method (with partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
                 fprintf(pFileD, "+ method (with partition functions): ");
+                fprintf(pFile4, " method (with partition functions): ");    //AC
             } else {
                 fprintf(pFile, " method (no partition functions): ");
                 fprintf(pFile2, " method (no partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
-                fprintf(pFileD, "+ method (no partition functions): "); 
+                fprintf(pFileD, "+ method (no partition functions): ");
+                fprintf(pFile4, " method (no partition functions): ");      //AC 
             }
             
             fprintf(pFile, "%d integration steps ", totalTimeSteps);
             fprintf(pFile2, "%d integration steps ", totalTimeSteps);
             if(plotFluxes) fprintf(pFile3, "%d integration steps ", totalTimeSteps);
             fprintf(pFileD, "%d integration steps ", totalTimeSteps);
+            fprintf(pFile4, "%d integration steps ", totalTimeSteps);       //AC
                 
             FPRINTF_CPU;
             FPRINTF_CPU2;
@@ -659,6 +683,11 @@ class Utilities{
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
+
+            fprintf(pFile4, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
+            fprintf(pFile4, "# Log of absolute values for E and dE/dt as they can be negative\n");
+            fprintf(pFile4, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
+            fprintf(pFile4, "#\n");
             
             string str2 = "#      t       dt  1/Rmin   Reaction Rmin    1/Rmax  Reaction Rmax\n";
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
@@ -686,8 +715,10 @@ class Utilities{
             str1.append(app);
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
+            fprintf(pFile4, stringToChar(str1));
             
             fprintf(pFile, "\n");
+            fprintf(pFile4, "\n");
             
             // Write header for file pointed to by pFile3
 
@@ -725,6 +756,13 @@ class Utilities{
                     (double)numRG_PEplot[i]/(double)numberRG,
                     sumXplot[i]
                 );// to plot diffX add diffXplot[i] and %5.3e at the end of 712
+
+                fprintf(pFile4, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                    tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
+                    (double)numAsyplot[i]/(double)ISOTOPES,
+                    (double)numRG_PEplot[i]/(double)numberRG,
+                    sumXplot[i]
+                );
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
                 // 1e-24 to X in case it is identically zero since we are
@@ -735,6 +773,12 @@ class Utilities{
                 }
                 
                 fprintf(pFile, "\n");
+
+                for(int j=0; j<LX; j++){
+                    fprintf(pFile4, " %5.3e", log10(Xplot[j][i]+1e-24)); //add log10 in to use log plots with X (set y range in gnufile for gnuplot_X.gnu)
+                }
+                
+                fprintf(pFile4, "\n");
                 
                 // Fluxes
                 
@@ -764,6 +808,8 @@ class Utilities{
             fclose (pFile);
             fclose (pFile2);
             fclose (pFile3);
+
+            fclose (pFile4);
             
         }
         
@@ -3772,6 +3818,8 @@ int main() {
 
     if (AdpvPeram == true){
         cout << "Adaptive Peramiter is on \n";
+        cout << "num_runs = \n";
+        cin >> num_runs;
         cout << "provide method 1,2, 3 or 4\n";
         cin >> method;
 
@@ -3795,6 +3843,9 @@ int main() {
             doQSS = true;
             doPE = true;
         }
+
+        cout << "provide tolC (normaly 1e-7)\n";
+        cin >> tolC;
     }
     
     // Open a file for diagnostics output
@@ -3857,7 +3908,7 @@ int main() {
     rho_start = 1.0e8;
     rho = rho_start;
 
-    //******************AC***************
+    //----------------AC------------------
     int i1 = 1;
     int i2 = 1;
 
@@ -3891,7 +3942,7 @@ int main() {
 
 
 
-    //***********************************
+    //------------------------------------
 
     
     // Initialize reacIsActive[] array to true;
@@ -4326,7 +4377,7 @@ int main() {
        //     printf("Error incoming");
        // }
 
-        //****************AC****************
+        //-----------------AC--------------------
 
         if (t > 1e-15 && i1 < 6){
             if(i1 == 1){
@@ -4377,7 +4428,7 @@ int main() {
         }
 
 
-        //**********************************
+        //-----------------------------------
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4559,7 +4610,7 @@ int main() {
     // *** End time integration ***
     // ------------------------------
     
-    //****************AC**************
+    //------------------AC------------------
     FILE *pFileTfac;
     pFileTfac = fopen("gnu_out/Tfac.data","w");
     fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ax1, ax2, ax3, ax4, ax5);
@@ -4577,7 +4628,7 @@ int main() {
     //fprintf(pFileTfac, "\n%3.20f\n%3.20f" [1], B[2]);
 
 
-    //********************************
+    //-------------------------------------
 
     // Display abundances and mass fractions at end of integration
 
