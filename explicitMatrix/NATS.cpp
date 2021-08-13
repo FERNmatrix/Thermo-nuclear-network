@@ -59,7 +59,7 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 16                 // Max isotopes in network (e.g. 16 for alpha network, 7 in pp, 3 in triple alpha)
+#define ISOTOPES 16                // Max isotopes in network (e.g. 16 for alpha network, 7 in pp, 3 in triple alpha)
 #define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network, 28 in pp, 8 in triple alpha)
 #define plotSteps 300                 // Number of plot output steps
 
@@ -111,7 +111,7 @@ char networkFile[] = "data/CUDAnet_alpha.inp";
 // File pointer for diagnostics output
 
 FILE *pFileD;
-FILE *pFilePE;
+//FILE *pFilePE;
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
 static const int displayInput = true;
@@ -126,10 +126,10 @@ static const bool showAddRemove = false;
 static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
-static const bool diagnose2 = true;
+static const bool diagnose2 = false;
 static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
-static const bool diagnosePE = true;
+static const bool diagnosePE = false;
 
 // Function signatures in main:
 
@@ -151,21 +151,13 @@ void evolveToEquilibrium(void);
 bool isoIsInRG(int, int);
 void setReactionFluxes();
 
-//------------AC-----------
-
-bool AdpvPeram = true;
-int method = 0;
-int num_runs = 0;
-
-//-------------------------
-
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
 // (which toggles doQSS to false). To use quasi-steady-state (QSS), set 
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS.
 
-bool doASY = true;           // Whether to use asymptotic approximation
+bool doASY = true;          // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
 bool doPE = true;             // Implement partial equilibrium also
 
@@ -229,8 +221,8 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double startplot_time = 1.0e-18;       // Start time for plot output
+double stop_time = 1.0e2;            // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -246,8 +238,8 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6;   // Begin checking for PE
-double equiTol = 0.01;             // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-9;   // Begin checking for PE
+double equiTol = 0.001825;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -261,12 +253,15 @@ int mostDeviousIndex;         // Index of RG with mostDevious
 
 double Ythresh = 0.0;
 
+//********************** TIMESTEP PARAMETERS****************************//
 double dt;                           // Current integration timestep
-double dtgrow = 1.02;                // growth factor of dt
-double dtdec = 0.98;                 // decrementing factor of dt
-double const uptol = 1e-7;        // upper tolerance condition
-double const lowtol = 1e-10;      // lower tolerance condition 
-double tolC = 1e-7;               // %difference tolerance
+//double dtgrow = 1.03;                // growth factor of dt
+//double dtdec = 0.97;                 // decrementing factor of dt
+// double const uptol = 1e-4;        // upper tolerance condition
+// double const lowtol = 1e-9;      // lower tolerance condition
+// double tolC = 1e-10;               // %difference in sumX tolerance
+//**********************************************************************//
+
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
@@ -480,6 +475,7 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // isotopes in the network to be plotted.
 
 int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+
 //int plotXlist[] = {1, 2, 3};    // 3-alpha
 int LX;                         // Length of plotXlist array
 
@@ -598,23 +594,6 @@ class Utilities{
             
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
-
-            //------------AC-----------------
-            FILE * pFile4;
-            if (method = 1){
-                pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
-            }
-            if (method = 2){
-                pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
-            }
-            if (method = 3){
-                pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
-            }
-            if (method = 4){
-                pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
-            }
-            
-            //-------------------------------
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
@@ -638,13 +617,11 @@ class Utilities{
                 fprintf(pFile2, "# ASY");
                 if(plotFluxes){fprintf(pFile3, "# ASY");}
                 fprintf(pFileD, "# ASY");
-                fprintf(pFile4, "# ASY");                                   //AC
             } else {
                 fprintf(pFile, "# QSS");
                 fprintf(pFile2, "# QSS");
                 if(plotFluxes){fprintf(pFile3, "# QSS");}
                 fprintf(pFileD, "# QSS");
-                fprintf(pFile4, "# QSS");                                   //AC
             }
             
             if(doPE){
@@ -652,7 +629,6 @@ class Utilities{
                 fprintf(pFile2, "+PE");
                 if(plotFluxes){fprintf(pFile3, "+PE");}
                 fprintf(pFileD, "+PE");
-                fprintf(pFile4, "+PE");                                     //AC
             } 
             
             if(dopf){
@@ -660,20 +636,17 @@ class Utilities{
                 fprintf(pFile2, " method (with partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
                 fprintf(pFileD, "+ method (with partition functions): ");
-                fprintf(pFile4, " method (with partition functions): ");    //AC
             } else {
                 fprintf(pFile, " method (no partition functions): ");
                 fprintf(pFile2, " method (no partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
-                fprintf(pFileD, "+ method (no partition functions): ");
-                fprintf(pFile4, " method (no partition functions): ");      //AC 
+                fprintf(pFileD, "+ method (no partition functions): "); 
             }
             
             fprintf(pFile, "%d integration steps ", totalTimeSteps);
             fprintf(pFile2, "%d integration steps ", totalTimeSteps);
             if(plotFluxes) fprintf(pFile3, "%d integration steps ", totalTimeSteps);
             fprintf(pFileD, "%d integration steps ", totalTimeSteps);
-            fprintf(pFile4, "%d integration steps ", totalTimeSteps);       //AC
                 
             FPRINTF_CPU;
             FPRINTF_CPU2;
@@ -683,11 +656,6 @@ class Utilities{
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
-
-            fprintf(pFile4, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
-            fprintf(pFile4, "# Log of absolute values for E and dE/dt as they can be negative\n");
-            fprintf(pFile4, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
-            fprintf(pFile4, "#\n");
             
             string str2 = "#      t       dt  1/Rmin   Reaction Rmin    1/Rmax  Reaction Rmax\n";
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
@@ -715,10 +683,8 @@ class Utilities{
             str1.append(app);
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
-            fprintf(pFile4, stringToChar(str1));
             
             fprintf(pFile, "\n");
-            fprintf(pFile4, "\n");
             
             // Write header for file pointed to by pFile3
 
@@ -756,13 +722,6 @@ class Utilities{
                     (double)numRG_PEplot[i]/(double)numberRG,
                     sumXplot[i]
                 );// to plot diffX add diffXplot[i] and %5.3e at the end of 712
-
-                fprintf(pFile4, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-                    tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
-                    (double)numAsyplot[i]/(double)ISOTOPES,
-                    (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
-                );
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
                 // 1e-24 to X in case it is identically zero since we are
@@ -773,12 +732,6 @@ class Utilities{
                 }
                 
                 fprintf(pFile, "\n");
-
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile4, " %5.3e", log10(Xplot[j][i]+1e-24)); //add log10 in to use log plots with X (set y range in gnufile for gnuplot_X.gnu)
-                }
-                
-                fprintf(pFile4, "\n");
                 
                 // Fluxes
                 
@@ -808,8 +761,6 @@ class Utilities{
             fclose (pFile);
             fclose (pFile2);
             fclose (pFile3);
-
-            fclose (pFile4);
             
         }
         
@@ -3355,7 +3306,7 @@ class Integrate: public Utilities {
         // already been calculated and relevant fluxes set to zero if PE approximation
         // and the reaction group has been judged to be in equilibrium.
         
-        static double getTimestep(){
+   static double getTimestep(){
 
             // Store dt and sumX from previous step 
             dtLast = dt;
@@ -3372,13 +3323,17 @@ class Integrate: public Utilities {
             double diffP;
 
             //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+            double dtgrow = 1.03;
+            double dtdec = 0.93;
             double dtnew;
             double dtmax;
+            double dtlow;
 
             // start calculations that grow dt and update abundances + sumX
             dtnew = dtLast * dtgrow;
             dt = dtnew;
-            dtmax = dt*1.10;
+            dtmax = 0.1*t;
+            dtlow = 0.01*t;
 
             updatePopulations(dt);
             sumX = Utilities::sumMassFractions();
@@ -3386,62 +3341,35 @@ class Integrate: public Utilities {
             diffX = abs(sumX - 1.0);
             diffP = (abs(sumX - sumXlast)/sumX);
 
-//Partial EQ addition
-          if (doPE){
-                if(mostDevious > deviousMax) {
+            if(doPE){
+                while(diffX > uptol){
                     dt = dt*dtdec;
                     recountDown++;
 
                     updatePopulations(dt);
                     sumX = Utilities::sumMassFractions();
                     diffX = abs(sumX - 1.0);
+            }
+                while (diffX < lowtol){
+                    dt = dt*dtgrow;
+                    recountUp++;
 
-                     while(diffX > uptol){
-                         dt = dt*dtdec;
-                         recountDown++;
+                    updatePopulations(dt);
+                    sumX = Utilities::sumMassFractions();
+                    diffX = abs(sumX - 1.0);
 
-                         updatePopulations(dt);
-                          sumX = Utilities::sumMassFractions();
-                         diffX = abs(sumX - 1.0);
-                        }
+                    if(dt > dtmax){
+                        dt = dtmax;
+                        break;
+                    }
                 }
-                else if (mostDevious < deviousMin){
-
-                    if (diffX < uptol){
-
-                            if(diffP < tolC){
-                                dt = dtmax;
-                            }
-                       else while (diffX < lowtol){
-                        dt = dt*dtgrow;
-                        recountUp++;
-
-                        updatePopulations(dt);
-                        sumX = Utilities::sumMassFractions();
-                        diffX = abs(sumX - 1.0);
-
-                        if(dt > dtmax){
-                            dt = dtmax;
-                            break;
-                        }
-                       }   
-                    } 
-                    else{
-                        while(diffX > uptol){
-                         dt = dt*dtdec;
-                         recountDown++;
-
-                         updatePopulations(dt);
-                         sumX = Utilities::sumMassFractions();
-                         diffX = abs(sumX - 1.0);
-                        }
-                    }   
+                if(diffP < tolC && diffX < uptol && diffX > lowtol){
+                     dt = dtlow;
                 }
-            } 
-            
-        
-// without partial EQ
-           else{
+            }
+
+            // without partial EQ
+            else{
 
              while(diffX > uptol){
                 dt = dt*dtdec;
@@ -3455,7 +3383,7 @@ class Integrate: public Utilities {
             if (diffX < uptol){
 
                if(diffP < tolC){
-                   dt = dtmax;
+                   dt = dt*1.10;
                 }
                else while (diffX < lowtol){
                     dt = dt*dtgrow;
@@ -3472,6 +3400,7 @@ class Integrate: public Utilities {
                 }
             }
            }
+
         return dt;
         }
 
@@ -3632,7 +3561,7 @@ class Integrate: public Utilities {
             
            // if (nitQSS > 1) {
                 
-           //     setReactionFluxes();
+              //  setReactionFluxes();
                 
             //}
         }
@@ -3740,7 +3669,6 @@ class Integrate: public Utilities {
                 // Update sum of mass fractions
                 
                 sumX += X[i];
-
                 setReactionFluxes();
                 
         }
@@ -3815,43 +3743,11 @@ ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
 
 
 int main() { 
-
-    if (AdpvPeram == true){
-        cout << "Adaptive Peramiter is on \n";
-        cout << "num_runs = \n";
-        cin >> num_runs;
-        cout << "provide method 1,2, 3 or 4\n";
-        cin >> method;
-
-        if (method == 1){ //'ASY'
-            doASY = true;
-            doQSS = false;
-            doPE = false;
-        }
-        else if (method == 2){ //'ASY+PE'
-            doASY = true;
-            doQSS = false;
-            doPE = true;
-        }
-        else if (method == 3){ //'QSS'
-            doASY = false;
-            doQSS = true;
-            doPE = false;
-        }
-        else if (method == 4){ //'QSS+PE'
-            doASY = false;
-            doQSS = true;
-            doPE = true;
-        }
-
-        cout << "provide tolC (normaly 1e-7)\n";
-        cin >> tolC;
-    }
     
     // Open a file for diagnostics output
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
-    pFilePE = fopen("gnu_out/PE_fix.data","w");
+    //pFilePE = fopen("gnu_out/PE_fix.data","w");
         // opening and closing TS for PE_fix
         int t1 = 21000;
         int t2 = 23000;
@@ -3883,9 +3779,9 @@ int main() {
         cout << "Using ASY+PE method";
         fprintf(pFileD, "Using ASY+PE method\n");
         
-        fprintf(pFilePE, "PE FIX\n");
-        fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
-        fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck      eqcheck     diff\n");
+      //  fprintf(pFilePE, "PE FIX\n");
+      //  fprintf(pFilePE, "*** from %d to %d ***\n",t1, t2);
+      //  fprintf(pFilePE, "\nTimeSteps     dt      RG   isEquil       isoYeq       isoY     pecheck      eqcheck     diff\n");
 
     } else if (doQSS && doPE){
         
@@ -3907,43 +3803,6 @@ int main() {
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
-
-    //----------------AC------------------
-    int i1 = 1;
-    int i2 = 1;
-
-    double ax1 = 0;
-    double ax2 = 0;
-    double ax3 = 0;
-    double ax4 = 0;
-    double ax5 = 0;
-
-    double ay1 = 0;
-    double ay2 = 0;
-    double ay3 = 0;
-    double ay4 = 0;
-    double ay5 = 0;
-
-    double bx1 = 0;
-    double bx2 = 0;
-    double bx3 = 0;
-    double bx4 = 0;
-    double bx5 = 0;
-
-    double by1 = 0;
-    double by2 = 0;
-    double by3 = 0;
-    double by4 = 0;
-    double by5 = 0;
-
-    //double A[2];
-    //double B[2];
-
-
-
-
-    //------------------------------------
-
     
     // Initialize reacIsActive[] array to true;
     
@@ -4372,63 +4231,6 @@ int main() {
             Utilities::plotOutput();
             return 0;
         }
-
-       // if(totalTimeSteps == 22919){
-       //     printf("Error incoming");
-       // }
-
-        //-----------------AC--------------------
-
-        if (t > 1e-15 && i1 < 6){
-            if(i1 == 1){
-                ax1 = t;
-                ay1 = dt;
-            }
-            if(i1 == 2){
-                ax2 = t;
-                ay2 = dt;
-            }
-            if(i1 == 3){
-                ax3 = t;
-                ay3 = dt;
-            }
-            if(i1 == 4){
-                ax4 = t;
-                ay4 = dt;
-            }
-            if(i1 == 5){
-                ax5 = t;
-                ay5 = dt;
-            }
-            i1++;   
-        }
-
-        if (t > 1e-12 && i2 < 6){
-            if(i2 == 1){
-                bx1 = t;
-                by1 = dt;
-            }
-            if(i2 == 2){
-                bx2 = t;
-                by2 = dt;
-            }
-            if(i2 == 3){
-                bx3 = t;
-                by3 = dt;
-            }
-            if(i2 == 4){
-                bx4 = t;
-                by4 = dt;
-            }
-            if(i2 == 5){
-                bx5 = t;
-                by5 = dt;
-            }
-            i2++;
-        }
-
-
-        //-----------------------------------
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4473,7 +4275,7 @@ int main() {
         double pecheck[numberRG];
         double diff[numberRG];
 
-        if(totalTimeSteps >= t1 && totalTimeSteps < t2){
+   /*     if(totalTimeSteps >= t1 && totalTimeSteps < t2){
             if(diagnosePE){
                 fprintf(pFilePE, "%d,     %2.4e", totalTimeSteps, dt);
                 for(int i=0; i<numberRG; i++){
@@ -4490,6 +4292,7 @@ int main() {
              //   }
             }
         } 
+        */
         
         // Count total asymptotic species
         
@@ -4610,25 +4413,6 @@ int main() {
     // *** End time integration ***
     // ------------------------------
     
-    //------------------AC------------------
-    FILE *pFileTfac;
-    pFileTfac = fopen("gnu_out/Tfac.data","w");
-    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ax1, ax2, ax3, ax4, ax5);
-    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",ay1, ay2, ay3, ay4, ay5);
-    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",bx1, bx2, bx3, bx4, bx5);
-    fprintf(pFileTfac, "\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n%3.20f\n",by1, by2, by3, by4, by5);
-
-    //A[1] = ax3;
-    //A[2] = ay3;
-
-    //B[1] = bx3;
-    //B[2] = by3;
-
-    //fprintf(pFileTfac, "\n%3.20f\n%3.20f" A[1], A[2]);
-    //fprintf(pFileTfac, "\n%3.20f\n%3.20f" [1], B[2]);
-
-
-    //-------------------------------------
 
     // Display abundances and mass fractions at end of integration
 
@@ -4662,7 +4446,7 @@ int main() {
     // Close output file
     
     fclose (pFileD);
-    fclose (pFilePE);
+   // fclose (pFilePE);
    
     // Free allocated memory
     
@@ -4748,7 +4532,8 @@ void restoreEquilibriumProg(){
          *    network timestep). This work is done in evolveToEquilibrium(). */
         
         evolveToEquilibrium();
-        
+
+        // Prevent errors occuring when te first RG is going in and out of EQ.         
         if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
@@ -4808,7 +4593,7 @@ void restoreEquilibriumProg(){
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-          //  Y[i] = Ysum/(double)numberCases;
+          //  Y[i] = Ysum/(double)numberCases; // move into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
             X[i] = Y[i]*(double)AA[i];
             
         }
