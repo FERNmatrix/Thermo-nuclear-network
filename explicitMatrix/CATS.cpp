@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc NATS.cpp -o NATS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc CATS.cpp -o CATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -159,7 +159,9 @@ void setReactionFluxes();
 
 bool doASY = true;          // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
+
+int method; 
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -255,11 +257,15 @@ double Ythresh = 0.0;
 
 //********************** TIMESTEP PARAMETERS****************************//
 double dt;                           // Current integration timestep
-//double dtgrow = 1.03;                // growth factor of dt
-//double dtdec = 0.97;                 // decrementing factor of dt
-// double const uptol = 1e-4;        // upper tolerance condition
-// double const lowtol = 1e-9;      // lower tolerance condition
-// double tolC = 1e-10;               // %difference in sumX tolerance
+double dtnew;                 // temporary storage for dt
+double dtgrow;                // growth factor of dt
+double dtdec;                 // decrementing factor of dt
+double uptol;                // upper tolerance condition
+double lowtol;               // lower tolerance condition
+double tolC;                 // %difference in sumX tolerance
+double dtlow;
+double dtmax;
+double dtmin;
 //**********************************************************************//
 
 double t;                            // Current time in integration
@@ -273,6 +279,7 @@ bool isValidUpdate;                  // Whether timestep accepted
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - 1.0
+double diffP;                        // % difference btwn last sumX and current sumX
 
 double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
@@ -3315,25 +3322,84 @@ class Integrate: public Utilities {
             //define variable for keeping track of any recalculations (mainly used for debugging purposes)
             int recountDown = 0;
             int recountUp = 0;
-            
-            //Define tolerances
-            double const uptol = 1e-6;
-            double const lowtol = 1e-10;
-            double const tolC = 1e-10;
-            double diffP;
 
-            //define any dt adjusment parameters, dt. dtgrow, dtdec are global
-            double dtgrow = 1.03;
-            double dtdec = 0.93;
-            double dtnew;
-            double dtmax;
-            double dtlow;
+            // ASY: method = 1;
+            // ASY + PE: method = 2;
+            // QSS: method = 3;
+            // QSS + PE: = 4
 
-            // start calculations that grow dt and update abundances + sumX
+            switch (method){
+
+                case 1: //ASY
+
+                    //Define tolerances
+                    uptol = 1.0e-6;
+                    lowtol = 1e-10;
+                    tolC = 1e-10;
+
+                    //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+                    dtgrow = 1.03;
+                    dtdec = 0.93;
+                    dtmax = 0.1*t;
+                    dtlow = 0.01*t;
+                    dtmin = 0.001*t;
+
+
+                    break;
+
+                case 2: // ASY + PE
+
+                    //Define tolerances
+                    uptol = 5.0e-5;
+                    lowtol = 1e-8;
+                    tolC = 1e-8;
+
+                    //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+                    dtgrow = 1.03;
+                    dtdec = 0.93;
+                    dtmax = 0.1*t;
+                    dtlow = 0.01*t;
+
+
+                    break;
+
+                case 3: // QSS
+
+                    //Define tolerances
+                    uptol = 1.0e-6;
+                    lowtol = 1e-10;
+                    tolC = 1e-10;
+
+                    //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+                    dtgrow = 1.03;
+                    dtdec = 0.93;
+                    dtmax = 0.1*t;
+                    dtlow = 0.01*t;
+                    dtmin = 0.001*t;
+
+                    break;
+
+                case 4: //QSS + PE
+
+
+                    //Define tolerances
+                    uptol = 5.0e-5;
+                    lowtol = 1e-8;
+                    tolC = 1e-8;
+
+                    //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+                    dtgrow = 1.03;
+                    dtdec = 0.93;
+                    dtmax = 0.1*t;
+                    dtlow = 0.01*t;
+
+                    break;
+            }
+
+
+            //****************** Initialize new calculation of dt before determining any adjsutments ******************//
             dtnew = dtLast * dtgrow;
             dt = dtnew;
-            dtmax = 0.1*t;
-            dtlow = 0.01*t;
 
             updatePopulations(dt);
             sumX = Utilities::sumMassFractions();
@@ -3341,7 +3407,10 @@ class Integrate: public Utilities {
             diffX = abs(sumX - 1.0);
             diffP = (abs(sumX - sumXlast)/sumX);
 
+            //**************** Determine how to calculate dt based on whether or not PE is invoked ******************//
+            // Used if doPE
             if(doPE){
+
                 while(diffX > uptol){
                     dt = dt*dtdec;
                     recountDown++;
@@ -3349,7 +3418,9 @@ class Integrate: public Utilities {
                     updatePopulations(dt);
                     sumX = Utilities::sumMassFractions();
                     diffX = abs(sumX - 1.0);
-            }
+
+                }
+
                 while (diffX < lowtol){
                     dt = dt*dtgrow;
                     recountUp++;
@@ -3363,42 +3434,43 @@ class Integrate: public Utilities {
                         break;
                     }
                 }
+
                 if(diffP < tolC && diffX < uptol && diffX > lowtol){
                      dt = dtlow;
                 }
             }
 
-            // without partial EQ
-            else{
+            // Used if !doPE
+              else{
 
-             while(diffX > uptol){
-                dt = dt*dtdec;
-                recountDown++;
-
-                updatePopulations(dt);
-                sumX = Utilities::sumMassFractions();
-                diffX = abs(sumX - 1.0);
-
-            }
-            if (diffX < uptol){
-
-               if(diffP < tolC){
-                   dt = dtlow;
-                }
-               else while (diffX < lowtol){
-                    dt = dt*dtgrow;
-                    recountUp++;
+                while(diffX > uptol){
+                    dt = dt*dtdec;
+                    recountDown++;
 
                     updatePopulations(dt);
                     sumX = Utilities::sumMassFractions();
                     diffX = abs(sumX - 1.0);
 
-                    if(dt > dtmax){
-                        dt = dtmax;
-                        break;
-                    }
                 }
-            }
+                if (diffX < uptol){
+
+                    if(diffP < tolC){
+                        dt = dtmin;
+                    }
+                    else while (diffX < lowtol){
+                        dt = dt*dtgrow;
+                        recountUp++;
+
+                        updatePopulations(dt);
+                        sumX = Utilities::sumMassFractions();
+                        diffX = abs(sumX - 1.0);
+
+                        if(dt > dtmax){
+                            dt = dtmin;
+                            break;
+                        }
+                    }
+                }   
            }
 
         return dt;
@@ -3743,6 +3815,20 @@ ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
 
 
 int main() { 
+
+
+    if (doASY && !doPE){
+    method = 1;
+}
+else if(doASY && doPE){
+    method = 2;
+}
+else if(doQSS && !doPE){
+    method = 3;
+}
+else if(doQSS && doPE){
+    method = 4;
+}
     
     // Open a file for diagnostics output
     

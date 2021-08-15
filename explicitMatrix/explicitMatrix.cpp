@@ -59,8 +59,8 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                    // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network)
 #define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -99,14 +99,14 @@ FILE *fr;
 // rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,
 // rateLibrary_3alpha.data, rateLibrary_pp.data.
 
-char rateLibraryFile[] = "data/rateLibrary_3alpha.data";  
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";  
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format for 
 // this file. Standard test cases: CUDAnet_alphasolar.inp, CUDAnet_150solar.inp,
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
-char networkFile[] = "data/CUDAnet_3alpha.inp";
+char networkFile[] = "data/CUDAnet_alpha.inp";
 
 // File pointer for diagnostics output
 
@@ -158,8 +158,8 @@ void setReactionFluxes();
 // with either Asymptotic or QSS.
 
 bool doASY = true;           // Whether to use asymptotic approximation
-bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doQSS = !doASY;          // Whether to uses QSS approximation 
+bool doPE = true;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -204,8 +204,8 @@ bool isotopeInEquilLast [ISOTOPES];
 // setting constantTimestep=true.  Normally constantTimestep=false
 // for adaptive timestepping.
 
-bool constantTimestep = false;    // Adaptible timestep if false
-double constant_dt = 1.1e-9;      // Value of constant timestep
+bool constantTimestep = true;    // Adaptible timestep if false
+double const constant_dt = 1.0e-9;      // Value of constant timestep
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -221,8 +221,8 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double startplot_time = 1.0e-18;       // Start time for plot output
+double stop_time = 1.0e0;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -238,7 +238,7 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equilibrateTime = 1.0e-9;   // Begin checking for PE
 double equiTol = 0.01;             // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
@@ -465,8 +465,8 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
-int plotXlist[] = {1, 2, 3};    // 3-alpha
+int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+//int plotXlist[] = {1, 2, 3};    // 3-alpha
 int LX;                         // Length of plotXlist array
 
 
@@ -1162,7 +1162,7 @@ class Reaction: public Utilities {
         //
         //      string s = "Howdy World!";
         //      char cs[s.size() + 1];
-        //      strcpy(cs, &s[0]);	// or strcpy(cs, s.c_str());
+        //      strcpy(cs, &s[0]);  // or strcpy(cs, s.c_str());
         //      printf("\n\nstring=%s\n", strcpy(cs, &s[0]));
         //
         // The function getreacChar() below returns the string reacString as a
@@ -1594,7 +1594,7 @@ class Reaction: public Utilities {
             
             // Optional diagnostic output if showFparsing==1
             if(showFparsing == 1){
-                fprintf(pFileD, "\n\n--- MAX F+ and F- INDEX FOR EACH ISOTOPE ---\n");	
+                fprintf(pFileD, "\n\n--- MAX F+ and F- INDEX FOR EACH ISOTOPE ---\n");  
                 for(int i=0; i<numberSpecies; i++){
                     fprintf(pFileD, "\nIsotope index = %d  %s  Max index F+ = %d  Max index F- = %d", 
                         i, isoLabel[i], FplusIsotopeCut[i]-1, FminusIsotopeCut[i]-1);
@@ -1616,7 +1616,7 @@ class Reaction: public Utilities {
             
             for(int i=1; i<numberSpecies; i++){
                 FplusMin[i] = FplusMax[i-1] + 1;
-                FplusMax[i] = FplusMin[i] + numFluxPlus[i] -1 ;	
+                FplusMax[i] = FplusMin[i] + numFluxPlus[i] -1 ; 
             }
             
             // Populate the FminusMin and FminusMax arrays
@@ -1625,7 +1625,7 @@ class Reaction: public Utilities {
             FminusMax[0] = numFluxMinus[0]-1;
             for(int i=1; i<numberSpecies; i++){
                 FminusMin[i] = FminusMax[i-1] + 1;
-                FminusMax[i] = FminusMin[i] + numFluxMinus[i] -1 ;	
+                FminusMax[i] = FminusMin[i] + numFluxMinus[i] -1 ;  
             }
             
             // Populate the FplusFac and FminusFac arrays that hold the factors counting the
@@ -1646,7 +1646,7 @@ class Reaction: public Utilities {
                     {
                         FminusFac[tempCountMinus] = -(double) reacMask[i][j];
                         tempCountMinus ++;
-                    }	
+                    }   
                 }
             }
             
@@ -1668,7 +1668,7 @@ class Reaction: public Utilities {
                                isoLabel[FplusIsotopeIndex[i+1]], FplusIsotopeIndex[i+1],
                                numFluxPlus[FplusIsotopeIndex[i+1]]);
                     }
-                }	
+                }   
                 fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F- SOURCE TERMS ---\n", totalFminus);
                 fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
                        isoLabel[FminusIsotopeIndex[0]], FminusIsotopeIndex[0],
@@ -1932,7 +1932,7 @@ printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrat
                 case 1:    // 1-body reactions
                     
                     kfac = Rrate;
-                    flux = kfac*Y[ reactantIndex[0] ];	
+                    flux = kfac*Y[ reactantIndex[0] ];  
                     Flux[reacIndex] = flux;         // Put in flux array in main
                     fastSlowRates(kfac);
                     
@@ -1944,10 +1944,10 @@ printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrat
                     
                     break;
                     
-                case 2:	   // 2-body reactions	
+                case 2:    // 2-body reactions  
                     
                     kfac = Rrate * Y[ reactantIndex[0] ];
-                    flux = kfac * Y[ reactantIndex[1] ]; 	
+                    flux = kfac * Y[ reactantIndex[1] ];    
                     Flux[reacIndex] = flux;         // Put in flux array in main
                     fastSlowRates(kfac);
                     
@@ -1959,7 +1959,7 @@ printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrat
                     
                     break;
                     
-                case 3:	   // 3-body reactions
+                case 3:    // 3-body reactions
                     
                     kfac = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ];
                     flux = kfac * Y[ reactantIndex[2] ];
@@ -2019,13 +2019,13 @@ printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrat
             double accum;
             double dydt;
             
-            for(int i=0; i < numberSpecies; i++){	
+            for(int i=0; i < numberSpecies; i++){   
                 
                 // Sum F+ for each isotope
                 
                 if(i>0) minny = FplusMax[i-1]+1;
                 if(showFluxCalc == 1) fprintf(pFileD, "\n\nFplusMax=%d", FplusMax[i-1]);
-                accum = 0.0;	
+                accum = 0.0;    
                 for(int j=minny; j<=FplusMax[i]; j++){
                     accum += Fplus[j];
                     if(showFluxCalc == 1) fprintf(pFileD, "\ni=%d j=%d Fplus=%g FplusSum=%8.4e", 
@@ -3578,7 +3578,7 @@ class Integrate: public Utilities {
     
     static void updateAsyEuler(){
         
-        for(int i=0; i<numberSpecies; i++){	
+        for(int i=0; i<numberSpecies; i++){ 
             
             if(isAsy[i]){
                 Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
@@ -3749,7 +3749,7 @@ class Integrate: public Utilities {
         return (180.0 * a3 + 60.0 * a2 + 11.0 * ainv + 1.0)
             / (360.0 * a3 + 60.0 * a2 + 12.0 * ainv + 1.0);
         
-	}
+    }
     
     
 };    // End class Integrate
@@ -4537,13 +4537,13 @@ void restoreEquilibriumProg() {
         itcounter ++;
         
         /* Compute equilibrium value of the Ys participating in equilibrium 
-         *	  starting from the value of Y at the end of the numerical timestep, 
-         *	  presently stored in Y[i]. Do so by first setting Y0[i] to the current 
+         *    starting from the value of Y at the end of the numerical timestep, 
+         *    presently stored in Y[i]. Do so by first setting Y0[i] to the current 
          *    value of Y[i], which is the computed value at the END of the timestep. 
          *    Then evolve that initial value to the corresponding equilibrium value 
-         *	  algebraically by calculating the equilibrium value for that Y0[i] 
-         *	  and setting Y[i] to it (a form of operator splitting within the 
-         *	  network timestep). This work is done in evolveToEquilibrium(). */
+         *    algebraically by calculating the equilibrium value for that Y0[i] 
+         *    and setting Y[i] to it (a form of operator splitting within the 
+         *    network timestep). This work is done in evolveToEquilibrium(). */
         
         evolveToEquilibrium();
         
@@ -4595,6 +4595,7 @@ void restoreEquilibriumProg() {
                             if(i == RG[j].getisoindex(k)) {
                                 Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
+                                Y[i] = Ysum/(double)numberCases;
                             }
                         }
                     }
@@ -4604,7 +4605,7 @@ void restoreEquilibriumProg() {
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-            Y[i] = Ysum/(double)numberCases;
+           // Y[i] = Ysum/(double)numberCases;
             X[i] = Y[i]*(double)AA[i];
             
         }
@@ -4717,10 +4718,10 @@ void getmaxdYdt(){
 /* Function readNetwork to read the network data file line by line, with the filename as argument.
  * This file is expected to have 4 lines per isotope with the line structure
  * 
- *	 isotopeSymbol A  Z  N  Y  MassExcess
- *	 pf00 pf01 pf02 pf03 pf04 pf05 pf06 pf07
- *	 pf10 pf11 pf12 pf13 pf14 pf15 pf16 pf17
- *	 pf20 pf21 pf22 pf23 pf24 pf25 pf26 pf27
+ *   isotopeSymbol A  Z  N  Y  MassExcess
+ *   pf00 pf01 pf02 pf03 pf04 pf05 pf06 pf07
+ *   pf10 pf11 pf12 pf13 pf14 pf15 pf16 pf17
+ *   pf20 pf21 pf22 pf23 pf24 pf25 pf26 pf27
  * 
  * where isotopeSymbol is an isotope label, A=Z+N is the atomic mass number, Z is the proton number, 
  * N is the neutron number, Y is the initial abundance, MassExcess is the mass
@@ -4734,10 +4735,10 @@ void getmaxdYdt(){
  * All fields on a line are separated by a blank space and there is no whitespace in the isotopeSymbol.
  * The type signature of these four lines corresponding to a single isotope is
  * 
- *	string int int int double double
- *	double double double double double double double double
- *	double double double double double double double double
- *	double double double double double double double double
+ *  string int int int double double
+ *  double double double double double double double double
+ *  double double double double double double double double
+ *  double double double double double double double double
  * 
  * Here is an example for two isotopes:
  * 
@@ -4752,7 +4753,7 @@ void getmaxdYdt(){
  * 
  * A file with this format is written from the Java code to the file output/CUDAnetwork.inp using the
  * Java stream toCUDAnet.
- *	
+ *  
  */
 
 void readNetwork (char *fileName) {
