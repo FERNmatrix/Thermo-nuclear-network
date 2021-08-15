@@ -153,7 +153,7 @@ void setReactionFluxes();
 
 //------------AC-----------
 
-bool AdpvPeram = true;
+bool AdpvPeram = false;
 int method = 0;
 int num_runs = 0;
 
@@ -601,16 +601,16 @@ class Utilities{
 
             //------------AC-----------------
             FILE * pFile4;
-            if (method = 1){
+            if (method == 1){
                 pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
             }
-            if (method = 2){
+            if (method == 2){
                 pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
             }
-            if (method = 3){
+            if (method == 3){
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
             }
-            if (method = 4){
+            if (method == 4){
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
             }
             
