@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;          // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 
 int method; 
 
@@ -224,7 +224,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-18;       // Start time for plot output
-double stop_time = 1.0e2;            // Stop time for integration
+double stop_time = 1.0e-2;           // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -241,7 +241,7 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // On the other hand, check should not be costly.
 
 double equilibrateTime = 1.0e-9;   // Begin checking for PE
-double equiTol = 0.001825;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.001;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -3335,24 +3335,25 @@ class Integrate: public Utilities {
                     //Define tolerances
                     uptol = 1.0e-6;
                     lowtol = 1e-10;
-                    tolC = 1e-10;
+                    tolC = 1e-7;
 
                     //define any dt adjusment parameters, dt. dtgrow, dtdec are global
-                    dtgrow = 1.03;
+                    dtgrow = 1.05;
                     dtdec = 0.93;
                     dtmax = 0.1*t;
                     dtlow = 0.01*t;
-                    dtmin = 0.001*t;
+                    dtmin = 2.0;
 
 
                     break;
 
                 case 2: // ASY + PE
 
+                    if(ISOTOPES == 16){ // could possibly jsut be if ISO > 3, the extra set of params may just be ecessar for 3-alpha
                     //Define tolerances
                     uptol = 5.0e-5;
-                    lowtol = 1e-8;
-                    tolC = 1e-8;
+                    lowtol = 1e-9;
+                    tolC = 1e-7;
 
                     //define any dt adjusment parameters, dt. dtgrow, dtdec are global
                     dtgrow = 1.03;
@@ -3360,8 +3361,22 @@ class Integrate: public Utilities {
                     dtmax = 0.1*t;
                     dtlow = 0.01*t;
 
+                    break;
+                    }
+                    else if(ISOTOPES == 3){
+                    //Define tolerances
+                    uptol = 1.0e-2;
+                    lowtol = 1e-9;
+                    tolC = 1e-9;
+
+                    //define any dt adjusment parameters, dt. dtgrow, dtdec are global
+                    dtgrow = 1.03;
+                    dtdec = 0.93;
+                    dtmax = 0.1*t;
+                    dtlow = 0.01*t;
 
                     break;
+                    }
 
                 case 3: // QSS
 
@@ -3441,38 +3456,29 @@ class Integrate: public Utilities {
             }
 
             // Used if !doPE
-              else{
+            else{
 
-                while(diffX > uptol){
-                    dt = dt*dtdec;
-                    recountDown++;
+                while(diffX > uptol || diffX < lowtol){
 
-                    updatePopulations(dt);
-                    sumX = Utilities::sumMassFractions();
-                    diffX = abs(sumX - 1.0);
+                    if(diffX > uptol){
+                        dt = dt*dtdec;
+                    }
+
+                    else{
+                        dt = dt*dtgrow;
+                    }
+
+                updatePopulations(dt);
+                sumX = Utilities::sumMassFractions();
+                diffX = abs(sumX - 1.0);
 
                 }
-                if (diffX < uptol){
 
-                    if(diffP < tolC){
-                        dt = dtmin;
-                    }
-                    else while (diffX < lowtol){
-                        dt = dt*dtgrow;
-                        recountUp++;
+                if(diffX < uptol && diffP , tolC){
+                    dt = dt*2.0;
+                }
 
-                        updatePopulations(dt);
-                        sumX = Utilities::sumMassFractions();
-                        diffX = abs(sumX - 1.0);
-
-                        if(dt > dtmax){
-                            dt = dtmin;
-                            break;
-                        }
-                    }
-                }   
-           }
-
+            }
         return dt;
         }
 
