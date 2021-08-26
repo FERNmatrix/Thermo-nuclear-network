@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -239,7 +239,7 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // On the other hand, check should not be costly.
 
 double equilibrateTime = 1.0e-9;   // Begin checking for PE
-double equiTol = 0.002;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.0025;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -3325,7 +3325,7 @@ class Integrate: public Utilities {
             dtRangeD = 0.01*t;
             
             //Define tolerances
-            double const uptol = 1.0e-4;
+            double const uptol = 5.0e-5;
             double const lowtol = 1e-8;
             double const tolC = 1e-8;
             double diffP;
