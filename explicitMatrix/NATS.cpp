@@ -129,7 +129,7 @@ static const bool diagnose1 = false;
 static const bool diagnose2 = true;
 static const bool diagnose_dt = false;
 static const bool diagnoseQSS = false;
-static const bool diagnosePE = true;
+static const bool diagnosePE = false;
 
 // Function signatures in main:
 
@@ -153,7 +153,7 @@ void setReactionFluxes();
 
 //------------AC-----------
 
-bool AdpvPeram = false;
+bool AdpvPeram = true;
 int method = 0;
 int num_runs = 0;
 
@@ -230,7 +230,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double stop_time = 1.0e2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -601,18 +601,27 @@ class Utilities{
 
             //------------AC-----------------
             FILE * pFile4;
-            if (method == 1){
+
+            switch(method){
+
+            case 1:  //ASY  
                 pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
-            }
-            if (method == 2){
-                pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
-            }
-            if (method == 3){
+                break;
+            case 2: //ASY + PE
+                string name = "Adaptive_Peramiters_Log/ASY+PE" + num_runs;
+                string name2 = name + ".data";
+                pFile4 = fopen(stringToChar(name2),"w");
+                break;
+
+            case 3: //QSS
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
-            }
-            if (method == 4){
+                break;
+
+            case 4: //QSS + PE
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
+                break;
             }
+            
             
             //-------------------------------
             
