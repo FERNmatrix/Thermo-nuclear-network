@@ -2,7 +2,10 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++ -lgmp
+
+        gcc -ggdb EMATS.cpp -o EMATS.out -lgsl -lgslcblas -lm -lstdc++ -lgmp
+
  * 
  * Resulting compiled code can be executed with
  * 
@@ -35,6 +38,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <iomanip>
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
@@ -44,6 +48,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
+#include <gmp.h>
 
 using namespace std;
 using std::string;
@@ -59,8 +64,8 @@ using std::string;
 // for the 7-isotope pp-chain network.  These sizes are hardwired for now but eventually we may want to read
 // them in and assign them dynamically.
 
-#define ISOTOPES 3                    // Max isotopes in network (e.g. 16 for alpha network, 3 for 3-alpha)
-#define SIZE 8                        // Max number of reactions (e.g. 48 for alpha network, 8 for 3-alpha)
+#define ISOTOPES 16                    // Max isotopes in network (e.g. 16 for alpha network, 3 for 3-alpha)
+#define SIZE 48                        // Max number of reactions (e.g. 48 for alpha network, 8 for 3-alpha)
 #define plotSteps 300                 // Number of plot output steps
 
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -96,17 +101,16 @@ FILE *fr;
 
 // Filename for input rates library data. The file rateLibrary.data output by the Java code through 
 // the stream toRateData has the expected format for this file.  Standard test cases: 
-// rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,
-// rateLibrary_3alpha.data, rateLibrary_pp.data.
+// rateLibrary_alpha.data, rateLibrary_150.data, rateLibrary_365.data, rateLibrary_nova134.data,// rateLibrary_3alpha.data, rateLibrary_pp.data.
 
-char rateLibraryFile[] = "data/rateLibrary_3alpha.data";  
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format for 
 // this file. Standard test cases: CUDAnet_alphasolar.inp, CUDAnet_150solar.inp,
 // CUDAnet_365solar.inp, CUDAnet_nova134.inp, CUDAnet_3alpha.inp, CUDAnet_pp.inp.
 
-char networkFile[] = "data/CUDAnet_3alpha.inp";
+char networkFile[] = "data/CUDAnet_alpha.inp";
 
 // File pointer for diagnostics output
 
@@ -172,7 +176,6 @@ bool constant_T9 = true;      // Whether temperature constant in integration
 bool constant_rho = true;     // Whether density constant in integration
 
 // Energy variables (from Q values)
-
 double ERelease;              // Total energy released
 double dERelease;             // Energy released per unit time
 
@@ -183,7 +186,7 @@ double dERelease;             // Energy released per unit time
 // where pfCut9 is a cutoff temperature in units of T9. Typically we 
 // will choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = true;
+bool dopf = false;
 double pfCut9 = 1.0;
 
 // Array to hold whether given species satisfies asymptotic condition
@@ -221,8 +224,8 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1.0e-11;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double startplot_time = 1.0e-20;       // Start time for plot output
+double stop_time = 1.0e0;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -238,8 +241,8 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6;   // Begin checking for PE
-double equiTol = 0.01;             // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-8;   // Begin checking for PE
+double equiTol = 0.0075;             // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -285,6 +288,9 @@ double X[ISOTOPES];              // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
 char isoLabel[ISOTOPES][5];      // Isotope labels (max 5 characters; e.g. 238pu)
 double dYDt[ISOTOPES];           // Rate of change for Y
+
+double diffISOX[ISOTOPES];           // difference in each isotope btwn population calculations
+double XLast[ISOTOPES];         // last stored X value
 
 // -----------
 
@@ -467,8 +473,8 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 // file.  The entries in plotXlist[] are the species indices for the
 // isotopes in the network to be plotted.
 
-//int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
-int plotXlist[] = {1, 2, 3};    // 3-alpha
+int plotXlist[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};   //alpha
+//int plotXlist[] = {1, 2, 3};    // 3-alpha
 int LX;                         // Length of plotXlist array
 
 
@@ -3065,7 +3071,7 @@ class ReactionGroup:  public Utilities {
     // ---------------------------------------------------------------------
     
     double computeq(double a, double b, double c) {
-        return 4 * a * c - b * b;
+        return (4 * a * c) - (b * b);
     }
     
     // ---------------------------------------------------------------------
@@ -3297,26 +3303,6 @@ class Integrate: public Utilities {
         
     public:
         
-        // Function to execute a single integration step.  Assumes that all fluxes have
-        // already been calculated and relevant fluxes set to zero if PE approximation
-        // and the reaction group has been judged to be in equilibrium.
-        
-        static void doIntegrationStep(){
-            
-            // Determine trial timestep.  This timestep will be updated in the various 
-            // integration methods to a final timestep using getTimestep(). 
-           dtLast = dt;
-           sumXlast = sumX;
-           // printf("sumx is =%2.10f",sumX);
-            // Find the isotope with the max change in population.
-            // Returns index of isotope with most rapidly changing population.
-           dt = getTimestep();    // Adaptive timestep
-
-
-        }     //End of doIntegrationStep 
-        
-        
-        
         
         // Function to do population update with current dt
         
@@ -3327,7 +3313,6 @@ class Integrate: public Utilities {
             if(doQSS){
 
                 QSSupdate();
-               // printf("\nThe updatePop (QSS) update has dt of: %2.15\n",dtt);
                 
             }
             
@@ -3363,9 +3348,12 @@ class Integrate: public Utilities {
                 
                 updateAsyEuler();
          //       printf("\nUpdate Pop (ASY) has a dt entry =%2.15f\n",dtt);
-          //      printf("Mass fraction for He is:%2.8f\n",X[0]);
-           //    printf("Mass fraction for C is:%2.8f\n",X[1]);
-            //    printf("Mass fraction for O is:%2.8f\n",X[2]);
+              //  double sumMF;
+              //      for(int i=0; i<ISOTOPES; i++){
+              //          sumMF += X[i];
+              //          printf("\n The mass fraction of isotope %d = %2.3e", i, X[i]);
+              //      }
+              //      printf("\n The sum of the MF = %e",sumMF);
             }
             
         }
@@ -3374,67 +3362,81 @@ class Integrate: public Utilities {
         
 	static double getTimestep(){
 
+        dtLast = dt;
+        sumXlast = sumX;
+
 		//define variables for keeping track of recalculation
 		int recount=0;
-		int recountUp=0;
+              int TS;
+
 		//define any variances of dt uses, dt is global
 		double dtgrow = 1.03;
 		double dtdec = 0.93;
-		double dtnew;
 		double dtmax;
 
 		//Tolerances
 		double const uptol = 1.0e-7;
-		double const lowtol = 1.0e-10;
-
-		//conditional variables diffX and sumX are global, keep track of error
-		//double totalError = 0.0;
-		
+		double const lowtol = 1.0e-13;
 
 		//Begin calculations
-		dtnew = dtLast*dtgrow;
-		updatePopulations(dtnew);
+
+ // printf("\n                      ******** BEGINNING OF TIMESTEP: %d ******** t:%e     dt:%e          ", totalTimeSteps,t,dt);
+
+		dt = dtLast*dtgrow;
+              dtmax = 0.1*t;
+
+		updatePopulations(dt);
 		sumX = Utilities::sumMassFractions();
 		diffX = abs(sumX - 1.0);
 
-		dt = dtnew;
-		dtmax = dt*1.10; // Limits the amount dt can grow in 1 step
-		
-		while(diffX > uptol || diffX < lowtol){
+  //  printf("\n INITIAL CALCULATIONS:     dt=%2.15e,       dtLast=%2.4e,       DIFFX = %2.10e", dt, dtLast, diffX);
 
-			if(diffX > uptol){
-				dt = dt*dtdec;
-				recount++;
-			}
-			else{
-				dt = dt*dtgrow;
-				recountUp++;
-		}
+       while(diffX > uptol || diffX < lowtol){
 
-			if(dt > dtmax){
-                dt = dtmax;
-				break;
-			}
+            if(diffX > uptol){
+                dt = dt*dtdec;
+                recount++;
+                TS =1;
+            }
+            else if(diffX < lowtol){
+               dt = dt*dtgrow;
+               TS=2;
+             //   dt = dt*1.0;
+             //   break;
+            }
 
-			updatePopulations(dt);
-			sumX = sumMassFractions();
-			diffX = abs(sumX - 1.0);
+            updatePopulations(dt);
+            sumX = Utilities::sumMassFractions();
+            diffX = abs(sumX - 1.0);
 
-			 // printf("\nThe tol WAS NOT satsisfied, diffX =%2.8e\n",diffX);
-			 ///printf("The number of recalculations is %d\n",recount);
+//   printf("\n RECALCULATIONS ARE: alteration:%d     dt: %2.4e     diffX:%2.10e    dt was decreased %d times    sumX=%2.20f", TS, dt, diffX, recount, sumX);
 
-		}
+                // DT IS ONLY ALLOWED TO GROW UP TO 10% OF T, CAP IT OFF AT 10%T HERE
+                if(dt > dtmax){
+                    dt = dtmax;
 
-		if(diffX < uptol || dt <= dtmax){
-			dtLast = dt;
-			totalError = totalError + diffX;
-			//printf("\n------------DT-------- =%7.4e\n",dt);
-			//printf("------------diffX---------:%2.8e\n",diffX);
-			//printf("\n The total  error accumulation is =%2.10f",totalError);
-			
-			return dt;
+                    updatePopulations(dt);
+                    sumX = Utilities::sumMassFractions();
+                    diffX = abs(sumX - 1.0);
+                  //  printf("\n *****DT MAX HAS BEEN REACHED*****  dt:%2.4e   diffX is: %2.4e", dt, diffX);
 
-		}
+                    break;
+                }
+
+                // IF DT HAD TO BE DECREASED, DO NOT ALLOW IT TO NCREASE AT ALL ONCE THE MASS TOL IS SATISFIED, EVEN IF IT IS < LOWTOL
+                if(diffX < uptol && recount > 0){
+                    break;
+                }
+
+        }
+
+        if(diffX < uptol || dt == dtmax){
+            // RATIO OF T AND DT, SHOULD TYPICALLY BE BWTN 1 AND 10 WHEN doPE IS TRUE, MAX VALUE OF 10.00
+            double dtVt;
+            dtVt = (dt/t)*100;
+            //printf("\n dt vs t:  %f", dtVt);
+            return dt;
+        }
 
 	} // end getTimestep
     
@@ -3444,7 +3446,11 @@ class Integrate: public Utilities {
     static double eulerUpdate(int i, double fplusSum, double fminusSum, double y0, double dtt){
         
         double newY = y0 + (fplusSum-fminusSum)*dtt;
-        
+
+        if(totalTimeSteps == 180427){ //3-alpha has 309
+       //     printf("\n %d  %2.20f  %4.20f  %4.20f %2.10e", i, y0, fplusSum, fminusSum, dtt);
+       }
+
         if(diagnose2)
         fprintf(pFileD, 
         "\n  euler: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
@@ -3457,12 +3463,18 @@ class Integrate: public Utilities {
     // Function to update by the asymptotic method using Sophia He formula. Returns
     // the updated value of Y.
     
-    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
+    static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
         
         // Compute new Y for asymptotic method
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
-        
+
+       if(totalTimeSteps == 180427){
+     //       printf("\n ASY %d  %2.20f  %4.20f  %4.20f %2.10e", i, y, fplus, fminus, dtt);
+
+       }
+
+
         if(diagnose2)
         fprintf(pFileD, 
         "\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
@@ -3479,6 +3491,8 @@ class Integrate: public Utilities {
     static bool checkAsy(double Fminus, double YY){
         
         asycheck = Fminus*dt/YY;
+
+      //  printf("\n checkASY 1 wih fminus and y0");
         
         if(YY > 0.0 && asycheck > 1.0){
             return true;
@@ -3491,6 +3505,8 @@ class Integrate: public Utilities {
     static bool checkAsy(double k){
         
         asycheck = k*dt;
+
+    //    printf("\n Check ASY 2 with kdt, asycheck= %2.3e and k=%2.15f and dt=%2.6e", asycheck, k, dt);
         
         if(asycheck > 1.0){
             return true;
@@ -3507,18 +3523,26 @@ class Integrate: public Utilities {
      If not, we update numerically using the forward Euler formula. */
     
     static void updateAsyEuler(){
+
+        double sumISOX=0;
+        diffISOX[ISOTOPES] = {0.0};
         
         for(int i=0; i<numberSpecies; i++){	
-            
+
+
             if(isAsy[i]){
-                Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
+                Y[i] = asymptoticUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
             } else {
                 Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
             }
             
             X[i] = Y[i] * (double) AA[i];
-           // printf("\nIn update AsyEuler, the mass fractions are:%2.8f\n",X[i]);
-           // printf("In update AsyEuler, the value of dt is = %2.15f\n",dt);
+
+            if(totalTimeSteps == 359){
+
+              printf("\n %d   %2.20f     %2.20f     %2.10e", i, Y[i], X[i], dt);
+            }
+         //   printf("\nIn update AsyEuler, the value of dt is = %e",dt);
         }
         
     }    // End function updateAsyEuler()
@@ -4066,8 +4090,39 @@ int main() {
     // a set of Reaction objects in the array reaction[i], one entry for each
     // reaction in the network. Loop over this array and call the computeRate()
     // function of Reaction on each object. 
-    
-    
+    double Xholder = 1.0e-24;
+
+    for(int j=0; j < ISOTOPES; j++){
+        Xholder += sqrt(X[j]*X[j]);
+
+       // printf("\n X's calculated as %2.10f",X[j]);
+       // printf("\n Xholder =%e", Xholder);
+    }
+
+   // double magX;
+   // magX = sqrt(Xholder);
+   // printf("\n magnitude of X = %e",magX);
+
+  // renormalize X and Y's so initial sumX = 1.0 and Y's reflect that
+    double Xprime[ISOTOPES];
+
+    if(totalTimeSteps == 1){
+        for(int i=0; i < ISOTOPES; i++){
+
+           Xprime[i]= X[i]/Xholder;
+            X[i] = Xprime[i];
+            printf("\n values of X[%d] are =%2.13f", i, X[i]);
+            sumX += X[i];
+
+            Y[i] = X[i] / (double) AA[i];
+            Y0[i] = Y[i];
+
+            printf("\n Y[%d] = %2.13f     Y0[%d] = %2.13f ",i, Y[i],i, Y0[i]);
+        }
+        printf("\n Initial sumX has been renormalized to %2.20f",sumX);
+    }
+
+
     for(int i=0; i<SIZE; i++){
         reaction[i].computeConstantFacs(T9, rho);
         reaction[i].computeRate(T9, rho);
@@ -4200,19 +4255,23 @@ int main() {
         
         // Perform an integration step
         
-        Integrate::doIntegrationStep();
+        Integrate::getTimestep();
         
         // Update time to end of integration step and increment step counter.  The dt added here
         // has possibly been modified in doIntegrationStep() to satisfy tolerance conditions.
-        
+
+
         t += dt; 
         totalTimeSteps ++; 
 
-      if (totalTimeSteps > 100e6){
-            Utilities::stopTimer();
-            Utilities::plotOutput();
-            return 0;
-        }
+
+    //  if (totalTimeSteps >1.75e5 && dt < 1.0e-9){
+    //  if(totalTimeSteps > 2e6){
+    //   printf("\n error incoming");
+    //      Utilities::stopTimer();
+    //      Utilities::plotOutput();
+    //    return 0;
+    //    }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4351,9 +4410,9 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f dE=%7.4e E=%7.4e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%2.3e diffX =%2.3e",//dE=%7.4e E=%7.4e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumX, ECON*netdERelease, ECON*ERelease
+                numberRG, sumX, diffX //ECON*netdERelease, ECON*ERelease
             ); //add diffX and diffX=%2.4e to plot diffX in output
 
             // Increment the plot output counter for next graphics output
@@ -4374,7 +4433,6 @@ int main() {
     
 
     // Display abundances and mass fractions at end of integration
-    printf("\n The total  error accumulation is =%2.10f",totalError);
     printf("\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
     fprintf(pFileD, "\n\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
@@ -4458,7 +4516,7 @@ int main() {
  * of the Java code. */
 
 
-void restoreEquilibriumProg() {
+void restoreEquilibriumProg(){
 
     int countConstraints = 0;
     int countEquilIsotopes = 0;
@@ -4473,7 +4531,7 @@ void restoreEquilibriumProg() {
      * to one iteration for now. */
     
     int itcounter = 0;
-    
+
     while (itcounter < 1) {
         
         countConstraints = 0;
@@ -4481,16 +4539,18 @@ void restoreEquilibriumProg() {
         itcounter ++;
         
         /* Compute equilibrium value of the Ys participating in equilibrium 
-         *	  starting from the value of Y at the end of the numerical timestep, 
-         *	  presently stored in Y[i]. Do so by first setting Y0[i] to the current 
+         *    starting from the value of Y at the end of the numerical timestep,
+         *    presently stored in Y[i]. Do so by first setting Y0[i] to the current
          *    value of Y[i], which is the computed value at the END of the timestep. 
          *    Then evolve that initial value to the corresponding equilibrium value 
-         *	  algebraically by calculating the equilibrium value for that Y0[i] 
-         *	  and setting Y[i] to it (a form of operator splitting within the 
-         *	  network timestep). This work is done in evolveToEquilibrium(). */
+         *    algebraically by calculating the equilibrium value for that Y0[i]
+         *    and setting Y[i] to it (a form of operator splitting within the
+         *    network timestep). This work is done in evolveToEquilibrium(). */
         
         evolveToEquilibrium();
-        
+
+        // Prevent errors occuring when te first RG is going in and out of EQ.
+        if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4539,6 +4599,7 @@ void restoreEquilibriumProg() {
                             if(i == RG[j].getisoindex(k)) {
                                 Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
+                                Y[i] = Ysum/(double)numberCases;
                             }
                         }
                     }
@@ -4548,12 +4609,14 @@ void restoreEquilibriumProg() {
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-            Y[i] = Ysum/(double)numberCases;
+          //  Y[i] = Ysum/(double)numberCases; // move into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y
             X[i] = Y[i]*(double)AA[i];
-            
+        }
         }
     
     } // end while iteration loop
+
+
     
     
     // Set up renormalization of all Ys so that this integration step
@@ -4575,7 +4638,6 @@ void restoreEquilibriumProg() {
         X[i] *= XcorrFac;
         Y[i] = X[i] / (double)AA[i];
         Y0[i] = Y[i];
-        
     }
     
     // Recompute total sumX 
@@ -4583,6 +4645,7 @@ void restoreEquilibriumProg() {
     sumX = Utilities::sumMassFractions();
     
 }
+
 
 
 // ----------------------------------------------------------------------
