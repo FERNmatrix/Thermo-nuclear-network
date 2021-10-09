@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="QSS+PE T9=5 rho=1e8"
+ds="ASY+PE T9=5 rho=1e8"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
@@ -75,13 +75,13 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -11
-xup = -2
+xlow = -18
+xup = 2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -13
-yup = -3
+ylow = -18
+yup =4
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -102,6 +102,8 @@ set grid   # set x-y grid at major ticmarks
 # read in from data file
 
 plot file1 using 1:2 with lines ls 1 title "dt"
+replot file1 using 1:8 with lines ls 2 title "10% of t"
+replot file1 using 1:9 with lines ls 3 title "1% of t"
 #replot file1 using 1:6 with lines ls 4 title "12C"
 #replot file1 using 1:7 with lines ls 9 title "16O"
 #replot file1 using 1:8 with lines ls 10 title "t"

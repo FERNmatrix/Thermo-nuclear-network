@@ -72,7 +72,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy C++ T9=5 rho=1e8"
+ds="ASY+PE T9=5 rho=1e8"
 ds = ds.": mass fraction"
 set title ds textcolor rgb title_color
 
@@ -81,12 +81,12 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -11
-xup = -2
+xlow = -18
+xup = 2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -6
+ylow = -14
 yup = 0
 ytics = 1.0      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -107,23 +107,23 @@ set mytics minytics   # minor y tics per major tic
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:8 with lines ls 2 title "4He"
-replot file1 using 1:9 with lines ls 3 title "12C"
-replot file1 using 1:10 with lines ls 1 title "16O"
-replot file1 using 1:11 with lines ls 4 title "20Ne"
-replot file1 using 1:12 with lines ls 5 title "24Mg"
-replot file1 using 1:13 with lines ls 6 title "28Si"
-replot file1 using 1:14 with lines ls 7 title "32S"
-replot file1 using 1:15 with lines ls 8 title "36Ar"
-replot file1 using 1:16 with lines ls 9 title "40Ca"
-replot file1 using 1:17 with lines ls 10 title "44Ti"
-replot file1 using 1:18 with lines ls 11 title "48Cr"
-replot file1 using 1:19 with lines ls 12 title "52Fe"
-replot file1 using 1:20 with lines ls 13 title "56Ni"
-replot file1 using 1:21 with lines ls 14 title "60Zn"
-replot file1 using 1:22 with lines ls 1 title "64Ge"
-replot file1 using 1:23 with lines ls 2 title "68Se"
-#replot file1 using 1:24 with lines ls 3 title "17"
+plot file1 using 1:10 with lines ls 2 title "4He"
+replot file1 using 1:11 with lines ls 3 title "12C"
+replot file1 using 1:12 with lines ls 1 title "16O"
+replot file1 using 1:13 with lines ls 4 title "20Ne"
+replot file1 using 1:14 with lines ls 5 title "24Mg"
+replot file1 using 1:15 with lines ls 6 title "28Si"
+replot file1 using 1:16 with lines ls 7 title "32S"
+replot file1 using 1:17 with lines ls 8 title "36Ar"
+replot file1 using 1:18 with lines ls 9 title "40Ca"
+replot file1 using 1:19 with lines ls 10 title "44Ti"
+replot file1 using 1:20 with lines ls 11 title "48Cr"
+replot file1 using 1:21 with lines ls 12 title "52Fe"
+replot file1 using 1:22 with lines ls 13 title "56Ni"
+replot file1 using 1:23 with lines ls 14 title "60Zn"
+replot file1 using 1:24 with lines ls 1 title "64Ge"
+replot file1 using 1:25 with lines ls 2 title "68Se"
+#replot file1 using 1:26 with lines ls 3 title "17"
 
 # Reset font sizes for .eps and .png output2
 

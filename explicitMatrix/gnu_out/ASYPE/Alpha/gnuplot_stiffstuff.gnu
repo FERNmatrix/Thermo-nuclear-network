@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy T9=5 rho=1e8"
+ds="ASY+PE T9=5 rho=1e8"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
@@ -75,8 +75,8 @@ file1 = "gnufile2.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -10
-xup = -2
+xlow = -18
+xup = 2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
