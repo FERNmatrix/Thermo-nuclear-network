@@ -222,7 +222,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-18;       // Start time for plot output
-double stop_time = 1.0e0;             // Stop time for integration
+double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -239,7 +239,7 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // On the other hand, check should not be costly.
 
 double equilibrateTime = 1.0e-9;   // Begin checking for PE
-double equiTol = 0.01;             // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.001;             // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -266,6 +266,8 @@ bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXlast;                     // sumX from last timestep
+double sumMF;                        // sumX for timestep when PE is invoked
+double sumMFlast;                    // sumXlast for timestep when PE is invoked
 double diffX;                        // sumX - 1.0
 
 double diffC;                        // percent difference btwn consectutive sumXs abs(sumXlast - sumX)/sumX;
@@ -3313,13 +3315,13 @@ class Integrate: public Utilities {
 
               //Re-initialize variables from previous step, reset diffX to 0        
               dtLast = dt;
-              sumXlast = sumX;
+              sumMFlast = sumMF;
               diffX = 0;
               diffC = 0;
 
               //Define variables relevant only to Timestep function
               bool passdt;
-              //double sumMF; replace sumX with this once TS works to get correct value for PE addition (PE sets it to 1.0 so value may not be most accurate)
+              //double sumMF; replace sumMF with this once TS works to get correct value for PE addition (PE sets it to 1.0 so value may not be most accurate)
               int recount =0;
               int dtINC = 0;
               int TScase;
@@ -3335,68 +3337,59 @@ class Integrate: public Utilities {
               //double DTLower = dtmin;
 
               //Define Tolerances
-              double const uptol = 1.0e-8;
+              //double const uptol = 1.0e-7; // USE for comapring sumX directly to 1 (for more accurate cases)
               double const lowtol = 1.0e-13;
-              double const tolC = 3.0e-10;
+              double const tolC = 1.0e-12;
 
-//printf("\n     t=%e              **************TIMESTEP %d**************            dt=%e", totalTimeSteps, t, dt);
-              //INITIAL CALCULATIONS: grow dt and evaluate based on that
               dtnew = dtLast*dtgrow;
               updatePopulations(dtnew);
-              sumX = Utilities::sumMassFractions();
+              sumMF = Utilities::sumMassFractions();
 
-              diffX = abs(sumX - 1.0);
-              diffC = (abs(sumXlast - sumX)/sumX);
+              diffC = (abs(sumMFlast - sumMF));
 
               //Cases to determine value of passdt
-              if(diffX > uptol) passdt = false;
-              else if(diffX < uptol && diffX > lowtol) passdt = true;
-              else if (diffX < lowtol) passdt = false;
+              if(diffC > tolC) passdt = false;
+              if(diffC < lowtol) passdt = false;
+              if (diffC > lowtol && diffC < tolC) passdt = true;
+
 
               dt = dtnew;
-              //Alter dt if passdt is false
-              while(passdt == false){
 
-                     if(diffX > uptol){
+            //Alter dt if passdt is false
+            while(passdt == false){
+
+                     if(diffC > tolC){
                             dt *= dtdec;
                             recount++;
                      }
-                     else if(diffX < lowtol){
+                     else if(diffC < lowtol){
                             dt *=dtgrow;
                             dtINC++;
                      }
                      updatePopulations(dt);
-                     sumX = Utilities::sumMassFractions();
+                     sumMF = Utilities::sumMassFractions();
+                     diffC = (abs(sumMFlast - sumMF));
 
-                     diffX = abs(sumX - 1.0);
-                     diffC = (abs(sumXlast - sumX)/sumX);
+                    if(diffC > tolC){
 
-                     if(diffX > uptol) passdt = false;
-                     else if(diffX < uptol && diffX > lowtol) passdt = true;
-                     else if (diffX < lowtol) passdt = false;
+                        passdt = false;
+                        break;
+                    }
+                    if(diffC < lowtol) passdt = false;
+                    if (diffC > lowtol && diffC < tolC) passdt = true; 
+                    
+                    if(dt > dtmax){
+                        dt = dtmax;
+                        passdt = true;
+                        break;
+                    }
+                // Update the populations for the rest of the iteration, no need to calculate diffC or sumX again here
+                updatePopulations(dt);
+            }
 
-//printf("\n RECALCULATIONS: dt=%e  diffX=%2.7e   diffC=%2.7e   sumX=%2.16f    DECREASED %d TIMES  INCREASED %d TIMES", dt, diffX, diffC, sumX,recount, dtINC);
-                     //Breaking conditions to set passdt to be true
-                     if(diffC < tolC){
-                            dt = dtLast;
-                            passdt = true;
-                            break;
-                     } 
-                     if(diffX < uptol && recount > 0){
-                            passdt = true;
-                            break;
-                     }
-                     if(dt > dtmax){
-                            dt = dtmax;
-                            updatePopulations(dtmax);
-                            passdt = true;
-                            break;
-                     }
-              }
-
-              if(passdt == true){
-                     return dt;
-              }
+            if(passdt == true){
+                return dt;
+            }
        }
 
                 
@@ -3622,7 +3615,7 @@ class Integrate: public Utilities {
         double kdt;
         double alphaBar;
         double FplusTilde;
-        sumX = 0.0;
+        sumMF = 0.0;
         
         // Loop over all isotopes and update the result of the predictor step
         
@@ -3661,7 +3654,7 @@ class Integrate: public Utilities {
                 
                 // Update sum of mass fractions
                 
-                sumX += X[i];
+                sumMF += X[i];
                 
         }
     }
@@ -3783,7 +3776,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 5.0;
+    T9_start = 7.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
@@ -4088,14 +4081,14 @@ int main() {
            Xprime[i]= X[i]/Xholder;
             X[i] = Xprime[i];
           //  printf("\n values of X[%d] are =%2.13f", i, X[i]);
-            sumX += X[i];
+            sumMF += X[i];
 
             Y[i] = X[i] / (double) AA[i];
             Y0[i] = Y[i];
 
           //  printf("\n Y[%d] = %2.13f     Y0[%d] = %2.13f ",i, Y[i],i, Y0[i]);
         }
-        printf("\n Initial sumX has been renormalized to %2.20f",sumX);
+        printf("\n Initial sumX has been renormalized to %2.20f",sumMF);
     }   
     // END OF RENORMALIZATION BLOCK   
     
@@ -4238,6 +4231,16 @@ int main() {
         
         t += dt; 
         totalTimeSteps ++; 
+
+        //************** DEBUGGER BLOCK ***********************//
+
+     // if (totalTimeSteps > 1384321){
+     //       Utilities::stopTimer();
+     //       Utilities::plotOutput();
+     //       return 0;
+     //   }
+
+        //****************************************************//
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented.
@@ -4322,7 +4325,7 @@ int main() {
                 fprintf(pFileD, 
                     "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
                     plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
-                    totalAsy, ISOTOPES, sumX);
+                    totalAsy, ISOTOPES, sumMF);
                 fprintf(pFileD, "\n%s%s", dasher, dasher);
                 char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
                 char tempest2[] = "        dX/dt           dY           dX\n";
@@ -4355,7 +4358,7 @@ int main() {
             fastestRatePlot[plotCounter-1] = fastestCurrentRate;
             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
-            sumXplot[plotCounter-1] = sumX;
+            sumXplot[plotCounter-1] = sumMF;
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
             
@@ -4375,9 +4378,9 @@ int main() {
             
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumX=%5.3f diffX=%2.5e  diffC=%2.5e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%3.10f  diffC=%2.5e",
                 plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumX, diffX, diffC //ECON*netdERelease, ECON*ERelease
+                numberRG, sumMF, diffC //ECON*netdERelease, ECON*ERelease
             );
 
             // Increment the plot output counter for next graphics output
