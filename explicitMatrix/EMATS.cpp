@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -3321,7 +3321,6 @@ class Integrate: public Utilities {
 
               //Define variables relevant only to Timestep function
               bool passdt;
-              //double sumMF; replace sumMF with this once TS works to get correct value for PE addition (PE sets it to 1.0 so value may not be most accurate)
               int recount =0;
               int dtINC = 0;
               int TScase;
@@ -3337,9 +3336,9 @@ class Integrate: public Utilities {
               //double DTLower = dtmin;
 
               //Define Tolerances
-              //double const uptol = 1.0e-7; // USE for comapring sumX directly to 1 (for more accurate cases)
+              //double const uptol = 1.0e-7; // Use for comapring sumX directly to 1.0 at each step
               double const lowtol = 1.0e-13;
-              double const tolC = 1.0e-12;
+              double const tolC = 1.0e-5;
 
               dtnew = dtLast*dtgrow;
               updatePopulations(dtnew);
@@ -3371,7 +3370,6 @@ class Integrate: public Utilities {
                      diffC = (abs(sumMFlast - sumMF));
 
                     if(diffC > tolC){
-
                         passdt = false;
                         break;
                     }
