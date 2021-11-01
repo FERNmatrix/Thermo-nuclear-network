@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -260,17 +260,20 @@ double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-
 double dtLast;                       // Last timestep
 bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXlast;                     // sumX from last timestep
+
 double sumMF;                        // sumX for timestep when PE is invoked
 double sumMFlast;                    // sumXlast for timestep when PE is invoked
-double diffX;                        // sumX - 1.0
 
-double diffC;                        // percent difference btwn consectutive sumXs abs(sumXlast - sumX)/sumX;
+double diffX;                        // sumX - 1.0
+double diffC;                        // percent difference btwn consectutive sumXs abs(sumXlast - sumX)
+
+//double totalError;   
+
 //double dtgrow = 1.03;              // Factor to grow dt by
 //double dtdec = 0.98;               // Factor to decease dt by
 //double dtmax;                      // Maximum allowed value for dt (typically 10% of t)
@@ -3311,7 +3314,7 @@ class Integrate: public Utilities {
         
     // Function to set the current integration timestep
         
-       static double getTimestep(){
+        static double getTimestep(){ 
 
               //Re-initialize variables from previous step, reset diffX to 0        
               dtLast = dt;
@@ -3327,10 +3330,11 @@ class Integrate: public Utilities {
 
               //Define Timestep variables (some will go global later on)
               double dtnew;
-              double dtgrow = 1.02;
+              double dtgrow = 1.03;
               double dtdec = 0.93;
               double dtmax = 0.1*t;
               double dtmin = 0.01*t;
+
               //For plotting dt ranges
               //double DTUpper = dtmax;
               //double DTLower = dtmin;
@@ -3338,12 +3342,11 @@ class Integrate: public Utilities {
               //Define Tolerances
               //double const uptol = 1.0e-7; // Use for comapring sumX directly to 1.0 at each step
               double const lowtol = 1.0e-13;
-              double const tolC = 1.0e-5;
+              double const tolC = 1.0e-6;
 
               dtnew = dtLast*dtgrow;
               updatePopulations(dtnew);
               sumMF = Utilities::sumMassFractions();
-
               diffC = (abs(sumMFlast - sumMF));
 
               //Cases to determine value of passdt
@@ -3365,27 +3368,37 @@ class Integrate: public Utilities {
                             dt *=dtgrow;
                             dtINC++;
                      }
+                     //alter populations with new dt value
                      updatePopulations(dt);
                      sumMF = Utilities::sumMassFractions();
                      diffC = (abs(sumMFlast - sumMF));
 
+                    double Rmax = 1/fastestCurrentRate;     
                     if(diffC > tolC){
-                        passdt = false;
-                        break;
+
+                        dt = Rmax;
+                        passdt = true;
                     }
                     if(diffC < lowtol) passdt = false;
+
+                    //break conditions that change passdt to be true
                     if (diffC > lowtol && diffC < tolC) passdt = true; 
-                    
+                    if(diffC < tolC && recount > 0) passdt = true;
                     if(dt > dtmax){
                         dt = dtmax;
                         passdt = true;
                         break;
                     }
                 // Update the populations for the rest of the iteration, no need to calculate diffC or sumX again here
-                updatePopulations(dt);
+                if(passdt == true){
+                    updatePopulations(dt);
+                    sumMF = Utilities::sumMassFractions();
+                    diffC = abs(sumMFlast - sumMF);
+                }
             }
 
             if(passdt == true){
+                //totalError += diffC;
                 return dt;
             }
        }
@@ -3409,7 +3422,7 @@ class Integrate: public Utilities {
             if(doASY){
 
                 for(int i=0; i<ISOTOPES; i++){
-                    isAsy[i] = checkAsy(keff[i]);
+                    isAsy[i] = checkAsy(i,keff[i]);
                 }
                 
                 // Summarize results
@@ -3456,16 +3469,18 @@ class Integrate: public Utilities {
     // Function to update by the asymptotic method using Sophia He formula. Returns
     // the updated value of Y.
     
-    static double asymptoticUpdate(double fplus, double fminus, double y, double dtt){
+    static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
         
         // Compute new Y for asymptotic method
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
+
+       // printf("\n ** ASY USED**   t=%e          dt=%e        RMAX=%e", t, dt, 1/fastestCurrentRate);
         
         if(diagnose2)
         fprintf(pFileD, 
-        "\n  Asy: t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
-        t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+        "\n *** Asy: %s t_i=%6.4e dt=%6.4e t_f=%6.4e  k=%2.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+        isoLabel[i], t, dtt, t+dtt, keff[i], asycheck, fplus, fminus, fplus-fminus, y, newY);
         
         return newY;  
         
@@ -3487,11 +3502,12 @@ class Integrate: public Utilities {
         
     }
     
-    static bool checkAsy(double k){
+    static bool checkAsy(int i, double k){
         
         asycheck = k*dt;
         
         if(asycheck > 1.0){
+//printf("\n********* ASY CHECK ***** %s         k=%2.5e      dt= %2.5e         ASY=%2.5e",isoLabel[i], k, dt, asycheck);
             return true;
         } else {
             return false;
@@ -3507,18 +3523,18 @@ class Integrate: public Utilities {
     
     static void updateAsyEuler(){
         
-        for(int i=0; i<numberSpecies; i++){      
-            
-            if(isAsy[i]){
-                Y[i] = asymptoticUpdate(FplusSum[i], FminusSum[i], Y0[i], dt);
-            } else {
-                Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
-            }
-            
+        for(int i=0; i<numberSpecies; i++){
+    
+                if(isAsy[i]){
+                    Y[i] = asymptoticUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
+                //    printf("\n*******   dt > RMAX and is using ***ASY UPDATE*** dt=%e   RMAX=%e", dt, Rmax);
+                } else {
+                    Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
+               //     printf("\n *********  dt > RMAX and is using EULER UPDATE   dt=%e    RMAX=%e",dt,Rmax);
+                }
+
             X[i] = Y[i] * (double) AA[i];
-            
         }
-        
     }    // End function updateAsyEuler()
     
     
@@ -4230,9 +4246,15 @@ int main() {
         t += dt; 
         totalTimeSteps ++; 
 
+ //      if(totalTimeSteps > 259 && totalTimeSteps < 301){
+
+            //printf("\n STEP#:%d     dt=%e       sumMF=%2.20f      diffC=%2.20f     TOTAL:%2.20f",totalTimeSteps,dt,sumMF, diffC, totalError);
+  //      }
+
         //************** DEBUGGER BLOCK ***********************//
 
-     // if (totalTimeSteps > 1384321){
+    //  if (totalTimeSteps > 400){
+     //   printf("\nMEH");
      //       Utilities::stopTimer();
      //       Utilities::plotOutput();
      //       return 0;
@@ -4373,11 +4395,11 @@ int main() {
                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
                 
             }
-            
+
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%3.10f  diffC=%2.5e",
-                plotCounter, plotSteps, t, dt, totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%3.5e  diffC=%2.5e",
+                plotCounter, plotSteps, t, dt,totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
                 numberRG, sumMF, diffC //ECON*netdERelease, ECON*ERelease
             );
 
