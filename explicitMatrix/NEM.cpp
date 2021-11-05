@@ -154,8 +154,8 @@ void setReactionFluxes();
 //--------------ADAPTIVE PARAMETER TESTING-----------------//
 
 bool AdpvPeram = true;
-int method = 2;
-int num_runs = 0;
+int method;
+int num_runs;
 
 //--------------------------------------------------------//
 
@@ -617,21 +617,29 @@ class Utilities{
 
             switch(method){
 
-            case 1:  //ASY  
+            case 1:  //ASY 
+                { 
                 pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
+                }
                 break;
             case 2: //ASY + PE
+                {
                 string name = "Adaptive_Peramiters_Log/ASY+PE" + num_runs;
                 string name2 = name + ".data";
                 pFile4 = fopen(stringToChar(name2),"w");
+                }
                 break;
 
             case 3: //QSS
+                {
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
+                }
                 break;
 
             case 4: //QSS + PE
+                {
                 pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
+                }
                 break;
             }           
             
