@@ -624,10 +624,10 @@ class Utilities{
                 break;
             case 2: //ASY + PE
                 {
-               // string name = "Adaptive_Peramiters_Log/ASY+PE" + num_runs;
-               // string name2 = name + ".data";
-               // pFile4 = fopen(stringToChar(name2),"w");
-                pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
+                string name = "Adaptive_Peramiters_Log/ASY+PE" + num_runs;
+                string name2 = name + ".data";
+                pFile4 = fopen(stringToChar(name2),"w");
+                //pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
                 }
                 break;
 

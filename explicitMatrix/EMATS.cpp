@@ -226,8 +226,8 @@ double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
+//double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+//double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
@@ -269,10 +269,9 @@ double sumXlast;                     // sumX from last timestep
 double sumMF;                        // sumX for timestep when PE is invoked
 double sumMFlast;                    // sumXlast for timestep when PE is invoked
 
-double diffX;                        // sumX - 1.0
-double diffC;                        // percent difference btwn consectutive sumXs abs(sumXlast - sumX)
-
-//double totalError;   
+double diffX;                        // sumMFlast - sumMF
+double diffC;                        // |sumMF - 1.0| for current timestep value
+double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
 //double dtgrow = 1.03;              // Factor to grow dt by
 //double dtdec = 0.98;               // Factor to decease dt by
@@ -280,8 +279,8 @@ double diffC;                        // percent difference btwn consectutive sum
 //double dtmin;                      // Ideal minimum value for dt (typically ~1% of t)
 
 //double const uptol = 1.0e-7;       // Upper bound of Mass Tolerance, should not be exceeded
-//double const lowtol = 1.03e-13;    // Lower bound of Mass Tolerance, dt can grow if diffX is under this
-//double const tolC = 1.0e-7;        // Limit of differences of sumX's of consecutive steps
+//double const lowtol = 1.0e-13;    // Lower bound of Mass Tolerance, dt can grow if diffX is under this
+//double const tolX = 1.0e-7;        // Limit of differences of sumX's of consecutive steps
 
 //************************************************************************//
 
@@ -3326,12 +3325,11 @@ class Integrate: public Utilities {
               bool passdt;
               int recount =0;
               int dtINC = 0;
-              int TScase;
 
               //Define Timestep variables (some will go global later on)
-              double dtnew;
               double dtgrow = 1.03;
               double dtdec = 0.93;
+              double dtnew;
               double dtmax = 0.1*t;
               double dtmin = 0.01*t;
 
@@ -3340,19 +3338,23 @@ class Integrate: public Utilities {
               //double DTLower = dtmin;
 
               //Define Tolerances
-              //double const uptol = 1.0e-7; // Use for comapring sumX directly to 1.0 at each step
-              double const lowtol = 1.0e-13;
-              double const tolC = 1.0e-6;
+              double const lowtol = 1.0e-10;
+              double const tolX = 1.0e-5;
 
+              //Calculations for the new iteration
               dtnew = dtLast*dtgrow;
               updatePopulations(dtnew);
               sumMF = Utilities::sumMassFractions();
-              diffC = (abs(sumMFlast - sumMF));
+
+              //Comparison values to be made to tolerances or eachother
+              diffX = abs(sumMFlast - sumMF);
+              diffP = abs(sumMFlast - 1.0);
+              diffC = abs(sumMF - 1.0);
 
               //Cases to determine value of passdt
-              if(diffC > tolC) passdt = false;
-              if(diffC < lowtol) passdt = false;
-              if (diffC > lowtol && diffC < tolC) passdt = true;
+              if(diffX >= tolX) passdt = false;                          // |-----X-----|tolX|---------------|lowtol|-----------| -> Decrease
+              if(diffX <= lowtol) passdt = false;                        // |-----------|tolX|---------------|lowtol|------X----| -> Increase
+              if (diffX > lowtol && diffX < tolX) passdt = true;         // |-----------|tolX|-------X-------|lowtol|-----------| -> Pass along
 
 
               dt = dtnew;
@@ -3360,45 +3362,50 @@ class Integrate: public Utilities {
             //Alter dt if passdt is false
             while(passdt == false){
 
-                     if(diffC > tolC){
-                            dt *= dtdec;
-                            recount++;
-                     }
-                     else if(diffC < lowtol){
-                            dt *=dtgrow;
-                            dtINC++;
-                     }
-                     //alter populations with new dt value
-                     updatePopulations(dt);
-                     sumMF = Utilities::sumMassFractions();
-                     diffC = (abs(sumMFlast - sumMF));
+                //  |-----X-----|tolX|---------------|lowtol|-----------| *** |------|diffC 1|-----|diffX Previous|-------|diffC 2|------|
 
-                    double Rmax = 1/fastestCurrentRate;     
-                    if(diffC > tolC){
+                if(diffX >= tolX && diffC >= diffP){  // diffC case 1: diffC > diffP: sumMF is further from 1.0 than last step
+                    dt *= dtdec;
+                    recount++;
+                }
+                if(diffX > tolX && diffC < diffP){ // diffC case 2: diffC < diffP: sumMF is closer to 1.0 than last step
+                    dt = dtnew;
+                }
 
-                        dt = Rmax;
-                        passdt = true;
-                    }
-                    if(diffC < lowtol) passdt = false;
+                // |-----------|tolX|---------------|lowtol|------X----| 
+                if(diffX < lowtol){
+                    dt *= dtgrow;
+                }
 
-                    //break conditions that change passdt to be true
-                    if (diffC > lowtol && diffC < tolC) passdt = true; 
-                    if(diffC < tolC && recount > 0) passdt = true;
-                    if(dt > dtmax){
-                        dt = dtmax;
-                        passdt = true;
-                        break;
-                    }
-                // Update the populations for the rest of the iteration, no need to calculate diffC or sumX again here
+                //Recalculte populations and comaprisons with new dt value
+                updatePopulations(dt);
+                sumMF = Utilities::sumMassFractions();
+                diffX = abs(sumMFlast - sumMF);
+                diffC = abs(sumMF - 1.0);
+
+                //determine whether passdt can be true
+                if(diffX >= tolX){
+                    if(diffC >= diffP) passdt = false;
+                    if(diffC < diffP) passdt = true;
+                }
+                if(diffX >= lowtol && diffX < tolX) passdt = true;
+                if(diffX < lowtol) passdt = false;
+
+                //any break condtions that are neccessary
+                if(diffX < tolX && recount > 0) passdt = true;
+                if(dt >= dtmax){
+                    dt = dtmax;
+                    passdt = true;
+                }
                 if(passdt == true){
                     updatePopulations(dt);
                     sumMF = Utilities::sumMassFractions();
-                    diffC = abs(sumMFlast - sumMF);
+                    break;
                 }
+
             }
 
             if(passdt == true){
-                //totalError += diffC;
                 return dt;
             }
        }
@@ -3509,7 +3516,8 @@ class Integrate: public Utilities {
         if(asycheck > 1.0){
 //printf("\n********* ASY CHECK ***** %s         k=%2.5e      dt= %2.5e         ASY=%2.5e",isoLabel[i], k, dt, asycheck);
             return true;
-        } else {
+        } 
+        else if(asycheck <= 1.0) {
             return false;
         }
         
