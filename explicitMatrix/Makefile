@@ -3,14 +3,9 @@ CFLAGS=-I. -g3
 
 #compiler flags
 LIBS=-lgsl -lgslcblas -lgmp
-all: EMATS.cpp NEM.cpp #NATS.cpp  EMATS.cpp CEM.cpp #dtrange.cpp CATS.cpp  explicitMatrix.cpp
+all: EMATS.cpp NEM.cpp
 	$(CC) -o EMATS EMATS.cpp $(CFLAGS) $(LIBS)
 	$(CC) -o NEM NEM.cpp $(CFLAGS) $(LIBS)
-#	$(CC) -o NATS NATS.cpp $(CFLAGS) $(LIBS)
-#	$(CC) -o CEM CEM.cpp $(CFLAGS) $(LIBS)
-#	$(CC) -o explicitMatrix explicitMatrix.cpp  $(CFLAGS) $(LIBS)
-#	$(CC) -o dtrange dtrange.cpp $(CFLAGS) $(LIBS)
-#	$(CC) -o CATS CATS.cpp $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 

@@ -12,3 +12,24 @@ See https://www.includehelp.com/c-programming-questions/error-undefined-referenc
 where | tee temp.txt allows output to screen and also piped to a file temp.txt.
 
 Execution for Mac or PC will depend on the C compiler installed on your machine.
+
+
+                                 ******************************CLEAN SLATE BRANCH*************************************************
+This branch will contain all impovements/corrections to original explicitMatrix code in MASTER
+There will be a clean version of the working code titled explcitMatrix.cpp and then a version or 2 of the code with diagnostics and Autoscript capabailities
+
+Currently (11/09/21):
+	EMATS has up to date version of Timestepper with all corrections to PE, ASY and renormalization of X's. Current timestep function produces graph of mass fractions very close to benchmark cases for T9=7 and rho=1e8. Likely a systematic error causing a slight discrepency.
+-Timestep updated to include a case for comapring the previous sumX to 1.0 (diffP) and the current sumX to 1.0 (diffC) and updating dt based on the comparison of those 2 variables as well as the change in sumX btwn consecutive timesteps
+			
+	NEM has all the previous version of the timestep from EMATS (not using diffP or diffC) but has the Auto-Script implemented for quickly testing parameters and methods.  Currently in ASY+PE, the code to produce more than one data file casuses a seg fault error, likely an error due to not having any files to write to with the correct naming. May want to look into being able to automatically change certain parameters or have access to changing 2?
+	
+	Makefile contains auto-compilation of 2 codes: EMATS and NEM
+	
+	CompareT7.sh has the automated commands to copy data to the compare/T9=7 folder and open gnuplot, using command: 
+	<load 'GNUplots.gnu'> will load 5 plots
+		1. dt vs t
+		2. sumX vs t
+		3. frac equil vs t
+		4. dt & limiting rates vs t
+		5. Mass fractions vs t
