@@ -222,7 +222,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-18;       // Start time for plot output
-double stop_time = 1.0e-2;             // Stop time for integration
+double stop_time = 1.0e2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -238,8 +238,8 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-9;   // Begin checking for PE
-double equiTol = 0.001;             // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -253,8 +253,8 @@ int mostDeviousIndex;         // Index of RG with mostDevious
 
 double Ythresh = 0.0;
 //************************************************************************//
-//***********************TIMESTEP VARIABLE BLOCK************8*************//
-//***********************************************************************//
+//***********************TIMESTEP VARIABLE BLOCK**************************//
+//************************************************************************//
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -273,14 +273,13 @@ double diffX;                        // sumMFlast - sumMF
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-//double dtgrow = 1.03;              // Factor to grow dt by
-//double dtdec = 0.98;               // Factor to decease dt by
-//double dtmax;                      // Maximum allowed value for dt (typically 10% of t)
-//double dtmin;                      // Ideal minimum value for dt (typically ~1% of t)
+double tolX = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
+double lowtol;      // Lower bound of mass tolerance that would allow dt to increase more if possible
 
-//double const uptol = 1.0e-7;       // Upper bound of Mass Tolerance, should not be exceeded
-//double const lowtol = 1.0e-13;    // Lower bound of Mass Tolerance, dt can grow if diffX is under this
-//double const tolX = 1.0e-7;        // Limit of differences of sumX's of consecutive steps
+//double dtgrow = 1.03;               // Amount dt grows by initially (3%)
+//double dtdec = 0.93;                // Amount dt decreases by if needed (-7%)
+//double dtmax = 0.1*t;               // Maximum value of dt
+//double dtmin = 0.01*t;              // Ideal minimum value of dt
 
 //************************************************************************//
 
@@ -2490,7 +2489,7 @@ class MatrixUtils: public Utilities {
 };  // end of class MatrixUtils
 
 
-
+ 
 // Class ReactionGroup to handle reaction groups.  Inherits from class Utilities
 
 class ReactionGroup:  public Utilities {
@@ -3318,16 +3317,19 @@ class Integrate: public Utilities {
               //Re-initialize variables from previous step, reset diffX to 0        
               dtLast = dt;
               sumMFlast = sumMF;
+
+              //reset diff variables to = 0
               diffX = 0;
               diffC = 0;
+              diffP = 0;
 
               //Define variables relevant only to Timestep function
               bool passdt;
-              int recount =0;
-              int dtINC = 0;
+              int recount =0; // debugging purposes
+              int dtINC = 0;  // debugging purposes
 
               //Define Timestep variables (some will go global later on)
-              double dtgrow = 1.03;
+              double dtgrow = 1.02;
               double dtdec = 0.93;
               double dtnew;
               double dtmax = 0.1*t;
@@ -3336,10 +3338,7 @@ class Integrate: public Utilities {
               //For plotting dt ranges
               //double DTUpper = dtmax;
               //double DTLower = dtmin;
-
-              //Define Tolerances
-              double const lowtol = 1.0e-10;
-              double const tolX = 1.0e-5;
+              
 
               //Calculations for the new iteration
               dtnew = dtLast*dtgrow;
@@ -3364,7 +3363,7 @@ class Integrate: public Utilities {
 
                 //  |-----X-----|tolX|---------------|lowtol|-----------| *** |------|diffC 1|-----|diffX Previous|-------|diffC 2|------|
 
-                if(diffX >= tolX && diffC >= diffP){  // diffC case 1: diffC > diffP: sumMF is further from 1.0 than last step
+                if(diffX > tolX && diffC >= diffP){  // diffC case 1: diffC > diffP: sumMF is further from 1.0 than last step
                     dt *= dtdec;
                     recount++;
                 }
@@ -3375,6 +3374,7 @@ class Integrate: public Utilities {
                 // |-----------|tolX|---------------|lowtol|------X----| 
                 if(diffX < lowtol){
                     dt *= dtgrow;
+                    dtINC++;
                 }
 
                 //Recalculte populations and comaprisons with new dt value
@@ -3384,28 +3384,37 @@ class Integrate: public Utilities {
                 diffC = abs(sumMF - 1.0);
 
                 //determine whether passdt can be true
-                if(diffX >= tolX){
+                if(diffX > tolX){
                     if(diffC >= diffP) passdt = false;
-                    if(diffC < diffP) passdt = true;
+                    
+                    if(diffC < diffP){
+                        passdt = true;
+                        updatePopulations(dt);
+                    }
                 }
-                if(diffX >= lowtol && diffX < tolX) passdt = true;
                 if(diffX < lowtol) passdt = false;
 
+                if(diffX >= lowtol && diffX < tolX){
+                    passdt = true;
+                    updatePopulations(dt);
+                }
                 //any break condtions that are neccessary
-                if(diffX < tolX && recount > 0) passdt = true;
+                if(diffX < tolX && recount > 0){
+                 passdt = true;
+                 updatePopulations(dt);
+                }
+
                 if(dt >= dtmax){
                     dt = dtmax;
+                    updatePopulations(dt);
                     passdt = true;
                 }
-                if(passdt == true){
-                    updatePopulations(dt);
-                    sumMF = Utilities::sumMassFractions();
-                    break;
-                }
+
 
             }
 
             if(passdt == true){
+                sumMF = Utilities::sumMassFractions();
                 return dt;
             }
        }
@@ -3480,7 +3489,7 @@ class Integrate: public Utilities {
         
         // Compute new Y for asymptotic method
         
-        double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
+        double newY = (y + fplus*dtt)/(1.0 + fminus*(dtt/y));  
 
        // printf("\n ** ASY USED**   t=%e          dt=%e        RMAX=%e", t, dt, 1/fastestCurrentRate);
         
@@ -3514,7 +3523,6 @@ class Integrate: public Utilities {
         asycheck = k*dt;
         
         if(asycheck > 1.0){
-//printf("\n********* ASY CHECK ***** %s         k=%2.5e      dt= %2.5e         ASY=%2.5e",isoLabel[i], k, dt, asycheck);
             return true;
         } 
         else if(asycheck <= 1.0) {
@@ -3693,7 +3701,7 @@ class Integrate: public Utilities {
         
         // Following necessary to start integration correctly.
         
-        if (aa < 1.e-20) aa = 1e-20; 
+        if (aa < 1.0e-20) aa = 1e-20; 
         
         double ainv = 1.0/aa;
         double a2 = ainv * ainv;
@@ -3798,7 +3806,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 7.0;
+    T9_start = 5.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
@@ -4084,14 +4092,11 @@ int main() {
     // function of Reaction on each object. 
 
 
-    // Block to renormalize the initial values and sumX to be 1.
+  // Block to renormalize the initial values and sumX to be 1.
     double Xholder = 1.0e-24;
 
     for(int j=0; j < ISOTOPES; j++){
         Xholder += sqrt(X[j]*X[j]);
-
-       // printf("\n X's calculated as %2.10f",X[j]);
-       // printf("\n Xholder =%e", Xholder);
     }
 
   // renormalize X and Y's so initial sumX = 1.0 and Y's reflect that
@@ -4100,15 +4105,13 @@ int main() {
     if(totalTimeSteps == 1){
         for(int i=0; i < ISOTOPES; i++){
 
-           Xprime[i]= X[i]/Xholder;
+            Xprime[i]= X[i]/Xholder;
             X[i] = Xprime[i];
-          //  printf("\n values of X[%d] are =%2.13f", i, X[i]);
+
             sumMF += X[i];
 
             Y[i] = X[i] / (double) AA[i];
             Y0[i] = Y[i];
-
-          //  printf("\n Y[%d] = %2.13f     Y0[%d] = %2.13f ",i, Y[i],i, Y0[i]);
         }
         printf("\n Initial sumX has been renormalized to %2.20f",sumMF);
     }   
@@ -4254,12 +4257,7 @@ int main() {
         t += dt; 
         totalTimeSteps ++; 
 
- //      if(totalTimeSteps > 259 && totalTimeSteps < 301){
-
-            //printf("\n STEP#:%d     dt=%e       sumMF=%2.20f      diffC=%2.20f     TOTAL:%2.20f",totalTimeSteps,dt,sumMF, diffC, totalError);
-  //      }
-
-        //************** DEBUGGER BLOCK ***********************//
+        //************** DEBUGGER BLOCK FOR GDB ***********************//
 
     //  if (totalTimeSteps > 400){
      //   printf("\nMEH");
@@ -4606,7 +4604,7 @@ void restoreEquilibriumProg(){
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-          //  Y[i] = Ysum/(double)numberCases; // move into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
+          //  Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
             X[i] = Y[i]*(double)AA[i];
         }
         }
@@ -4707,7 +4705,7 @@ void getmaxdYdt(){
         
         ck = isotope[i].getdYdt();
         
-        if( abs(ck) > abs(maxdYdt) ){
+        if( abs(ck) >= abs(maxdYdt) ){
             maxdYdtIndex = i;
             maxdYdt = abs(ck);
         }
