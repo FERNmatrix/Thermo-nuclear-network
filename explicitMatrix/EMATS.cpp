@@ -111,6 +111,7 @@ char networkFile[] = "data/CUDAnet_alpha.inp";
 // File pointer for diagnostics output
 
 FILE *pFileD;
+FILE * pFileTS;
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
@@ -239,7 +240,7 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // On the other hand, check should not be costly.
 
 double equilibrateTime = 1.0e-6;   // Begin checking for PE
-double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -255,6 +256,12 @@ double Ythresh = 0.0;
 //************************************************************************//
 //***********************TIMESTEP VARIABLE BLOCK**************************//
 //************************************************************************//
+//**AC**
+bool TS_Case_run = true;
+int TS_Case = 0;
+int TS_Case_temp = 0;
+int CT = 0;
+//******
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -273,8 +280,8 @@ double diffX;                        // sumMFlast - sumMF
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double tolX = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
-double lowtol;      // Lower bound of mass tolerance that would allow dt to increase more if possible
+double tolX = 1.0e-6;         // Mass tolerance btwn consecutive sumXs
+double lowtol = 1.0e-14;      // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
 //double dtdec = 0.93;                // Amount dt decreases by if needed (-7%)
@@ -601,6 +608,7 @@ class Utilities{
             
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
+
             
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
@@ -767,6 +775,7 @@ class Utilities{
             
             fclose (pFile);
             fclose (pFile2);
+            fclose (pFile3);
             fclose (pFile3);
             
         }
@@ -3330,7 +3339,7 @@ class Integrate: public Utilities {
 
               //Define Timestep variables (some will go global later on)
               double dtgrow = 1.02;
-              double dtdec = 0.93;
+              double dtdec = 0.97;
               double dtnew;
               double dtmax = 0.1*t;
               double dtmin = 0.01*t;
@@ -3353,10 +3362,17 @@ class Integrate: public Utilities {
               //Cases to determine value of passdt
               if(diffX >= tolX) passdt = false;                          // |-----X-----|tolX|---------------|lowtol|-----------| -> Decrease
               if(diffX <= lowtol) passdt = false;                        // |-----------|tolX|---------------|lowtol|------X----| -> Increase
-              if (diffX > lowtol && diffX < tolX) passdt = true;         // |-----------|tolX|-------X-------|lowtol|-----------| -> Pass along
-
+              if (diffX > lowtol && diffX < tolX){
+              //*****FLAG1******
+              TS_Case = 1;
+              CT++;
+              fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+              //****************
+             passdt = true; }        // |-----------|tolX|-------X-------|lowtol|-----------| -> Pass along
 
               dt = dtnew;
+
+              
 
             //Alter dt if passdt is false
             while(passdt == false){
@@ -3366,15 +3382,31 @@ class Integrate: public Utilities {
                 if(diffX > tolX && diffC >= diffP){  // diffC case 1: diffC > diffP: sumMF is further from 1.0 than last step
                     dt *= dtdec;
                     recount++;
+                    //*****FLAG2******
+                    TS_Case = 2;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
                 }
                 if(diffX > tolX && diffC < diffP){ // diffC case 2: diffC < diffP: sumMF is closer to 1.0 than last step
                     dt = dtnew;
+                    //*****FLAG3******;
+                    TS_Case = 3;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
                 }
 
                 // |-----------|tolX|---------------|lowtol|------X----| 
                 if(diffX < lowtol){
                     dt *= dtgrow;
                     dtINC++;
+                    //*****FLAG4******;
+                    TS_Case = 4;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
+
                 }
 
                 //Recalculte populations and comaprisons with new dt value
@@ -3389,6 +3421,7 @@ class Integrate: public Utilities {
                     
                     if(diffC < diffP){
                         passdt = true;
+                        TS_Case_temp = 1;
                         updatePopulations(dt);
                     }
                 }
@@ -3396,19 +3429,53 @@ class Integrate: public Utilities {
 
                 if(diffX >= lowtol && diffX < tolX){
                     passdt = true;
+                    TS_Case_temp = 2;
                     updatePopulations(dt);
                 }
                 //any break condtions that are neccessary
                 if(diffX < tolX && recount > 0){
                  passdt = true;
+                 TS_Case_temp = 3;
                  updatePopulations(dt);
                 }
 
                 if(dt >= dtmax){
                     dt = dtmax;
+                    TS_Case_temp = 4;
                     updatePopulations(dt);
                     passdt = true;
                 }
+                if(TS_Case_temp == 1){
+                    //*****FLAG5******;
+                    TS_Case = 5;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
+
+                }
+                else if (TS_Case_temp == 2){
+                    //*****FLAG6******;
+                    TS_Case = 6;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
+                }
+                else if (TS_Case_temp == 3){
+                    //*****FLAG7******;
+                    TS_Case = 7;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
+                }
+                else if (TS_Case_temp == 4){
+                    //*****FLAG8******;
+                    TS_Case = 8;
+                    CT++;
+                    fprintf(pFileTS, "%d %d %e %2.7f \n", CT, TS_Case, t, sumMF);
+                    //****************
+                }
+                
+                
 
 
             }
@@ -4136,7 +4203,12 @@ int main() {
         fprintf(pFileD, "\n\n**** Rates will be recomputed at each timestep since T and ");
         fprintf(pFileD, "rho may change ****\n");
     }
-    
+
+    //**********AC*************
+   
+    pFileTS = fopen("gnu_out/gnufileTS_Case.data","w");
+
+    //*************************
 
     
     while(t < stop_time){ 
@@ -4458,6 +4530,7 @@ int main() {
     // Close output file
     
     fclose (pFileD);
+    fclose (pFileTS);
    
     // Free allocated memory
     
