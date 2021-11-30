@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++   || debugger: gcc -ggdb EMATS.cpp -o a.out -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -238,8 +238,8 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6;   // Begin checking for PE
-double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-7;   // Begin checking for PE
+double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -273,7 +273,7 @@ double diffX;                        // sumMFlast - sumMF
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double tolX = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
+double tolX = 1.0e-6;         // Mass tolerance btwn consecutive sumXs
 double lowtol;      // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
@@ -282,6 +282,19 @@ double lowtol;      // Lower bound of mass tolerance that would allow dt to incr
 //double dtmin = 0.01*t;              // Ideal minimum value of dt
 
 //************************************************************************//
+
+
+
+//---------------------------------------------------------------------------//
+//----------------------- DIAGNOSTIC VARIABLE BLOCK--------------------------//
+//---------------------------------------------------------------------------//
+
+double ASYkdt[ISOTOPES]; //ASY approximation condition (if kdt>1, isASY = true)
+// PLOT diffX
+// PLOT diffC
+
+
+//---------------------------------------------------------------------------//
 
 double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
@@ -477,6 +490,13 @@ double slowestRatePlot[plotSteps];           // Slowest reaction rate at time t
 int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
 double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
 double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
+//-------------------------------------------------------------------------------------//
+//---------------------------------DIAGNOSTIC PLOTTING---------------------------------//
+
+double ASYkdtplot[ISOTOPES][plotSteps];                //plot kdt value for each isotope
+double diffCplot[plotSteps];
+//------------------------------------------------------------------------------------//
+
 
 // Following control which mass fractions are exported to the plotting
 // file.  The entries in plotXlist[] are the species indices for the
@@ -723,11 +743,11 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %3.5f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
+                    sumXplot[i], diffCplot[i]
                 );
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
@@ -736,6 +756,7 @@ class Utilities{
                 
                 for(int j=0; j<LX; j++){
                     fprintf(pFile, " %5.3e", log10(Xplot[j][i]+1e-24));
+                    fprintf(pFile, " %3.4e", log10(ASYkdtplot[j][i]+1e-24));
                 }
                 
                 fprintf(pFile, "\n");
@@ -3330,7 +3351,7 @@ class Integrate: public Utilities {
 
               //Define Timestep variables (some will go global later on)
               double dtgrow = 1.02;
-              double dtdec = 0.93;
+              double dtdec = 0.97;
               double dtnew;
               double dtmax = 0.1*t;
               double dtmin = 0.01*t;
@@ -3338,6 +3359,7 @@ class Integrate: public Utilities {
               //For plotting dt ranges
               //double DTUpper = dtmax;
               //double DTLower = dtmin;
+              lowtol = 1.0e-14;
               
 
               //Calculations for the new iteration
@@ -3406,14 +3428,14 @@ class Integrate: public Utilities {
 
                 if(dt >= dtmax){
                     dt = dtmax;
-                    updatePopulations(dt);
+                    updatePopulations(dtmax);
                     passdt = true;
                 }
-
 
             }
 
             if(passdt == true){
+               // updatePopulations(dt);
                 sumMF = Utilities::sumMassFractions();
                 return dt;
             }
@@ -3491,6 +3513,7 @@ class Integrate: public Utilities {
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*(dtt/y));  
 
+
        // printf("\n ** ASY USED**   t=%e          dt=%e        RMAX=%e", t, dt, 1/fastestCurrentRate);
         
         if(diagnose2)
@@ -3522,10 +3545,10 @@ class Integrate: public Utilities {
         
         asycheck = k*dt;
         
-        if(asycheck > 1.0){
+        if(asycheck >= 1.0){
             return true;
         } 
-        else if(asycheck <= 1.0) {
+        else if(asycheck < 1.0) {
             return false;
         }
         
@@ -3548,9 +3571,13 @@ class Integrate: public Utilities {
                     Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
                //     printf("\n *********  dt > RMAX and is using EULER UPDATE   dt=%e    RMAX=%e",dt,Rmax);
                 }
-
+            ASYkdt[i] = keff[i]*dt;
             X[i] = Y[i] * (double) AA[i];
         }
+        //    if(t < 1.0e-6){
+        //    double kHe = keff[0]*dt;
+        //    printf("\n The kdt value for helium is %e  when keff[He]=%e and dt=%e for step#:%d  diffX=%e",kHe,keff[0],dt,totalTimeSteps, diffX);
+        //   }
     }    // End function updateAsyEuler()
     
     
@@ -3687,6 +3714,7 @@ class Integrate: public Utilities {
                 sumMF += X[i];
                 
         }
+        // setReactionFluxes();
     }
  
     
@@ -4259,12 +4287,12 @@ int main() {
 
         //************** DEBUGGER BLOCK FOR GDB ***********************//
 
-    //  if (totalTimeSteps > 400){
-     //   printf("\nMEH");
+      //if (totalTimeSteps >= 315){
+      //   printf("\nMEH");
      //       Utilities::stopTimer();
      //       Utilities::plotOutput();
      //       return 0;
-     //   }
+       // }
 
         //****************************************************//
         
@@ -4385,6 +4413,7 @@ int main() {
             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
             sumXplot[plotCounter-1] = sumMF;
+            diffCplot[plotCounter-1] = log10(diffC);
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
             
@@ -4399,7 +4428,7 @@ int main() {
                 Xplot[i][plotCounter-1] = X[i];
                 FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
-                
+                ASYkdtplot[i][plotCounter-1] = ASYkdt[i];
             }
 
             // Output to screen
