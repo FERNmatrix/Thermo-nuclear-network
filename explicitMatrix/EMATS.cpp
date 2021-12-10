@@ -222,7 +222,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-18;       // Start time for plot output
-double stop_time = 1.0e2;             // Stop time for integration
+double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -238,8 +238,8 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-7;   // Begin checking for PE
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -273,7 +273,7 @@ double diffX;                        // sumMF - 1.0
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double massTol = 1.0e-6;         // Mass tolerance btwn consecutive sumXs
+double massTol = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
 double lowtol = 1e-10;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
@@ -3350,9 +3350,9 @@ class Integrate: public Utilities {
 
             //Comparison varaibles
             double diffX;
-            double diffC;
-            double diffP;
-            double diffSum;
+           // double diffC;
+           // double diffP;
+           // double diffSum;
 
             //limitations / graphing puroposes for dt
             double dtmax = 0.1*t;
@@ -3362,7 +3362,7 @@ class Integrate: public Utilities {
 
             //Tolerances
             //massTol and lowtol are global ~line 260
-            double tolD = 1.0e-1;
+            //double tolD = 1.0e-6;
 
             //Calculations to initially grow dt
             dtnew = dtLast*dtgrow;
@@ -4561,7 +4561,7 @@ void restoreEquilibriumProg(){
         evolveToEquilibrium();
 
         // Prevent errors occuring when te first RG is going in and out of EQ.         
-        if (totalEquilRG > 0){
+   //     if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4610,7 +4610,7 @@ void restoreEquilibriumProg(){
                             if(i == RG[j].getisoindex(k)) {
                                 Ysum += RG[j].getisoYeq(k);
                                 numberCases ++;
-                                Y[i] = Ysum/(double)numberCases;
+                                //Y[i] = Ysum/(double)numberCases;
                             }
                         }
                     }
@@ -4619,11 +4619,10 @@ void restoreEquilibriumProg(){
             
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
-            
-          //  Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
+            if(numberCases > 0) Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y
             X[i] = Y[i]*(double)AA[i];
         }
-        }
+    //    }
     
     } // end while iteration loop
   
