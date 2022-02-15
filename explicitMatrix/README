@@ -12,3 +12,5 @@ See https://www.includehelp.com/c-programming-questions/error-undefined-referenc
 where | tee temp.txt allows output to screen and also piped to a file temp.txt.
 
 Execution for Mac or PC will depend on the C compiler installed on your machine.
+
+Code with latest timestep fucntion to test
