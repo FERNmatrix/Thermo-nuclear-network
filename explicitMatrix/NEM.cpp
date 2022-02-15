@@ -273,7 +273,7 @@ double diffX;                        // sumMF - 1.0
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double massTol = 1.0e-5;         // Mass tolerance btwn consecutive sumXs
+double massTol = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
 double lowtol = 1e-12;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
