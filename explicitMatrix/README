@@ -22,7 +22,7 @@ Currently (11/09/21):
 	EMATS has up to date version of Timestepper with all corrections to PE, ASY and renormalization of X's. Current timestep function produces graph of mass fractions very close to benchmark cases for T9=7 and rho=1e8. Likely a systematic error causing a slight discrepency.
 -Timestep updated to include a case for comapring the previous sumX to 1.0 (diffP) and the current sumX to 1.0 (diffC) and updating dt based on the comparison of those 2 variables as well as the change in sumX btwn consecutive timesteps
 			
-	NEM has all the previous version of the timestep from EMATS (not using diffP or diffC) but has the Auto-Script implemented for quickly testing parameters and methods.  Currently in ASY+PE, the code to produce more than one data file casuses a seg fault error, likely an error due to not having any files to write to with the correct naming. May want to look into being able to automatically change certain parameters or have access to changing 2?
+	
 	
 	Makefile contains auto-compilation of 2 codes: EMATS and NEM
 	
