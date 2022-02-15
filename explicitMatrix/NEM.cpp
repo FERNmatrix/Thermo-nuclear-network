@@ -2,7 +2,7 @@
  * Code to implement explicit algebraic integration of astrophysical thermonuclear networks.
  * Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc NEM.cpp -o NEM -lgsl -lgslcblas -lm -lstdc++
+ *     gcc EMATS.cpp -o EMATS -lgsl -lgslcblas -lm -lstdc++   || debugger: gcc -ggdb EMATS.cpp -o a.out -lgsl -lgslcblas -lm -lstdc++
  * 
  * Resulting compiled code can be executed with
  * 
@@ -151,14 +151,6 @@ void evolveToEquilibrium(void);
 bool isoIsInRG(int, int);
 void setReactionFluxes();
 
-//--------------ADAPTIVE PARAMETER TESTING-----------------//
-
-bool AdpvPeram = true;
-int method;
-int num_runs;
-
-//--------------------------------------------------------//
-
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
 // (which toggles doQSS to false). To use quasi-steady-state (QSS), set 
@@ -167,7 +159,7 @@ int num_runs;
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -234,8 +226,8 @@ double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
-double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
-double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
+//double massTol = 3.0e-4;               // Timestep tolerance parameter (1.0e-7)
+//double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
@@ -246,8 +238,8 @@ double SF = 7.3e-4;                    // Timestep agressiveness factor (7.3e-4)
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-9;   // Begin checking for PE
-double equiTol = 0.001;             // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -261,8 +253,8 @@ int mostDeviousIndex;         // Index of RG with mostDevious
 
 double Ythresh = 0.0;
 //************************************************************************//
-//***********************TIMESTEP VARIABLE BLOCK************8*************//
-//***********************************************************************//
+//***********************TIMESTEP VARIABLE BLOCK**************************//
+//************************************************************************//
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -277,21 +269,32 @@ double sumXlast;                     // sumX from last timestep
 double sumMF;                        // sumX for timestep when PE is invoked
 double sumMFlast;                    // sumXlast for timestep when PE is invoked
 
-double diffX;                        // sumX - 1.0
-double diffC;                        // percent difference btwn consectutive sumXs abs(sumXlast - sumX)
+double diffX;                        // sumMF - 1.0
+double diffC;                        // |sumMF - 1.0| for current timestep value
+double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-//double totalError;   
+double massTol = 1.0e-5;         // Mass tolerance btwn consecutive sumXs
+double lowtol = 1e-12;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
-//double dtgrow = 1.03;              // Factor to grow dt by
-//double dtdec = 0.98;               // Factor to decease dt by
-//double dtmax;                      // Maximum allowed value for dt (typically 10% of t)
-//double dtmin;                      // Ideal minimum value for dt (typically ~1% of t)
-
-//double const uptol = 1.0e-7;       // Upper bound of Mass Tolerance, should not be exceeded
-//double const lowtol = 1.03e-13;    // Lower bound of Mass Tolerance, dt can grow if diffX is under this
-double tolC;        // Limit of differences of sumX's of consecutive steps
+//double dtgrow = 1.03;               // Amount dt grows by initially (3%)
+//double dtdec = 0.93;                // Amount dt decreases by if needed (-7%)
+//double dtmax = 0.1*t;               // Maximum value of dt
+//double dtmin = 0.01*t;              // Ideal minimum value of dt
 
 //************************************************************************//
+
+
+
+//---------------------------------------------------------------------------//
+//----------------------- DIAGNOSTIC VARIABLE BLOCK--------------------------//
+//---------------------------------------------------------------------------//
+
+double ASYkdt[ISOTOPES]; //ASY approximation condition (if kdt>1, isASY = true)
+// PLOT diffX
+// PLOT diffC
+
+
+//---------------------------------------------------------------------------//
 
 double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
@@ -487,6 +490,13 @@ double slowestRatePlot[plotSteps];           // Slowest reaction rate at time t
 int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
 double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
 double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
+//-------------------------------------------------------------------------------------//
+//---------------------------------DIAGNOSTIC PLOTTING---------------------------------//
+
+double ASYkdtplot[ISOTOPES][plotSteps];                //plot kdt value for each isotope
+double diffXplot[plotSteps];
+//------------------------------------------------------------------------------------//
+
 
 // Following control which mass fractions are exported to the plotting
 // file.  The entries in plotXlist[] are the species indices for the
@@ -611,41 +621,7 @@ class Utilities{
             
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
-
-            //----------------ADAPTIVE PARAMETER TESTING--------------------//
-            FILE * pFile4;
-
-            switch(method){
-
-            case 1:  //ASY 
-                { 
-                pFile4 = fopen("Adaptive_Peramiters_Log/ASY.data","w");
-                }
-                break;
-            case 2: //ASY + PE
-                {
-                string name = "Adaptive_Peramiters_Log/ASY+PE" + num_runs;
-                string name2 = name + ".data";
-                pFile4 = fopen(stringToChar(name2),"w");
-                //pFile4 = fopen("Adaptive_Peramiters_Log/ASY+PE.data","w");
-                }
-                break;
-
-            case 3: //QSS
-                {
-                pFile4 = fopen("Adaptive_Peramiters_Log/QSS.data","w");
-                }
-                break;
-
-            case 4: //QSS + PE
-                {
-                pFile4 = fopen("Adaptive_Peramiters_Log/QSS+PE.data","w");
-                }
-                break;
-            }           
             
-            //---------------------------------------------------------------//
-         
             // Get length of array plotXlist holding the species indices for isotopes
             // that we will plot mass fraction X for.
             
@@ -668,13 +644,11 @@ class Utilities{
                 fprintf(pFile2, "# ASY");
                 if(plotFluxes){fprintf(pFile3, "# ASY");}
                 fprintf(pFileD, "# ASY");
-                fprintf(pFile4, "# ASY"); 
             } else {
                 fprintf(pFile, "# QSS");
                 fprintf(pFile2, "# QSS");
                 if(plotFluxes){fprintf(pFile3, "# QSS");}
                 fprintf(pFileD, "# QSS");
-                fprintf(pFile4, "# QSS"); 
             }
             
             if(doPE){
@@ -682,7 +656,6 @@ class Utilities{
                 fprintf(pFile2, "+PE");
                 if(plotFluxes){fprintf(pFile3, "+PE");}
                 fprintf(pFileD, "+PE");
-                fprintf(pFile4, "+PE"); 
             } 
             
             if(dopf){
@@ -690,20 +663,17 @@ class Utilities{
                 fprintf(pFile2, " method (with partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
                 fprintf(pFileD, "+ method (with partition functions): ");
-                fprintf(pFile4, " method (with partition functions): ");
             } else {
                 fprintf(pFile, " method (no partition functions): ");
                 fprintf(pFile2, " method (no partition functions): ");
                 if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
                 fprintf(pFileD, "+ method (no partition functions): "); 
-                fprintf(pFile4, " method (no partition functions): ");
             }
             
             fprintf(pFile, "%d integration steps ", totalTimeSteps);
             fprintf(pFile2, "%d integration steps ", totalTimeSteps);
             if(plotFluxes) fprintf(pFile3, "%d integration steps ", totalTimeSteps);
             fprintf(pFileD, "%d integration steps ", totalTimeSteps);
-            fprintf(pFile4, "%d integration steps ", totalTimeSteps); 
                 
             FPRINTF_CPU;
             FPRINTF_CPU2;
@@ -713,11 +683,6 @@ class Utilities{
             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
-
-            fprintf(pFile4, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
-            fprintf(pFile4, "# Log of absolute values for E and dE/dt as they can be negative\n");
-            fprintf(pFile4, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
-            fprintf(pFile4, "#\n");
             
             string str2 = "#      t       dt  1/Rmin   Reaction Rmin    1/Rmax  Reaction Rmax\n";
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
@@ -745,10 +710,8 @@ class Utilities{
             str1.append(app);
             str1.append("\n");
             fprintf(pFile, stringToChar(str1));
-            fprintf(pFile4, stringToChar(str1));
             
             fprintf(pFile, "\n");
-            fprintf(pFile4, "\n");
             
             // Write header for file pointed to by pFile3
 
@@ -780,18 +743,11 @@ class Utilities{
                 // Initial data fields for t, dt, sumX, fraction of asymptotic
                 // isotopes, and fraction of reaction groups in equilibrium.
                 
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f %3.5f",
                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
                     (double)numAsyplot[i]/(double)ISOTOPES,
                     (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
-                );
-
-                fprintf(pFile4, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-                    tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
-                    (double)numAsyplot[i]/(double)ISOTOPES,
-                    (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
+                    sumXplot[i], diffXplot[i]
                 );
                 
                 // Now add one data field for each X(i) in plotXlist[]. Add
@@ -800,15 +756,10 @@ class Utilities{
                 
                 for(int j=0; j<LX; j++){
                     fprintf(pFile, " %5.3e", log10(Xplot[j][i]+1e-24));
+                    fprintf(pFile, " %3.4e", log10(ASYkdtplot[j][i]+1e-24));
                 }
                 
                 fprintf(pFile, "\n");
-
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile4, " %5.3e", log10(Xplot[j][i]+1e-24)); //add log10 in to use log plots with X (set y range in gnufile for gnuplot_X.gnu)
-                }
-                
-                fprintf(pFile4, "\n");
                 
                 // Fluxes
                 
@@ -838,7 +789,6 @@ class Utilities{
             fclose (pFile);
             fclose (pFile2);
             fclose (pFile3);
-            fclose (pFile4);
             
         }
         
@@ -1914,7 +1864,7 @@ class Reaction: public Utilities {
             // means that this correction is only required for reverse reactions
             // in Reaclib classes reacClass = 2, 5.
             
-printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
+            printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
@@ -1938,7 +1888,7 @@ printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reac
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
                 
-printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
+                printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
                 
             }
         }
@@ -2560,7 +2510,7 @@ class MatrixUtils: public Utilities {
 };  // end of class MatrixUtils
 
 
-
+ 
 // Class ReactionGroup to handle reaction groups.  Inherits from class Utilities
 
 class ReactionGroup:  public Utilities {
@@ -3380,99 +3330,98 @@ class Integrate: public Utilities {
         
     public:
         
-        
-    // Function to set the current integration timestep
-        
-        static double getTimestep(){ 
+        //Function to calculate the value of dt to pass and use in main function
+        static double getTimestep(){
 
-              //Re-initialize variables from previous step, reset diffX to 0        
-              dtLast = dt;
-              sumMFlast = sumMF;
-              diffX = 0;
-              diffC = 0;
+            dtLast = dt;
+            sumMFlast = sumMF;
 
-              //Define variables relevant only to Timestep function
-              bool passdt;
-              int recount =0;
-              int dtINC = 0;
-              int TScase;
+            //Recounting variables
+            int recountD = 0;
+            int recountI = 0;
 
-              //Define Timestep variables (some will go global later on)
-              double dtnew;
-              double dtgrow = 1.03;
-              double dtdec = 0.93;
-              double dtmax = 0.1*t;
-              double dtmin = 0.01*t;
+            //Boolean for dt
+            bool passdt;
 
-              //For plotting dt ranges
-              //double DTUpper = dtmax;
-              //double DTLower = dtmin;
+            //dt alterations
+            double dtgrow = 1.02;
+            double dtdec = 0.97;
+            double dtnew;
 
-              //Define Tolerances
-              //double const uptol = 1.0e-7; // Use for comapring sumX directly to 1.0 at each step
-              double const lowtol = 1.0e-13;
-              double  tolC = 1.0e-6;
+            //Comparison varaibles
+            double diffX;
 
-              dtnew = dtLast*dtgrow;
-              updatePopulations(dtnew);
-              sumMF = Utilities::sumMassFractions();
-              diffC = (abs(sumMFlast - sumMF));
+            //limitations / graphing puroposes for dt
+            double dtmax = 0.1*t;
+            double dtmin = 0.01*t;
+            //double dtRangeU = dtmax;
+            //double dtRangeL = dtmin;
 
-              //Cases to determine value of passdt
-              if(diffC > tolC) passdt = false;
-              if(diffC < lowtol) passdt = false;
-              if (diffC > lowtol && diffC < tolC) passdt = true;
+            //Tolerances
+            //massTol and lowtol are global ~line 260
+            //double tolD = 1.0e-6;
 
+            //Calculations to initially grow dt
+            dtnew = dtLast*dtgrow;
+            updatePopulations(dtnew);
+            sumMF = Utilities::sumMassFractions();
 
-              dt = dtnew;
+            //Comparison variables
+            diffX = abs(sumMF - 1.0);
 
-            //Alter dt if passdt is false
+            //Conditions to set passdt --> only depend of diffX initially
+            if(diffX > massTol) passdt = false;
+            if(diffX < lowtol) passdt = false;
+            if(diffX >= lowtol && diffX <= massTol) passdt = true;
+
+            dt = dtnew;
+
             while(passdt == false){
 
-                     if(diffC > tolC){
-                            dt *= dtdec;
-                            recount++;
-                     }
-                     else if(diffC < lowtol){
-                            dt *=dtgrow;
-                            dtINC++;
-                     }
-                     //alter populations with new dt value
-                     updatePopulations(dt);
-                     sumMF = Utilities::sumMassFractions();
-                     diffC = (abs(sumMFlast - sumMF));
+                //alter dt accordingly
+                if(diffX > massTol){
+                    dt *= dtdec;
+                    recountD++;
+                }
+                if(diffX < lowtol){
+                    dt *= dtgrow;
+                    recountI++;
+                }
+                //Recalculation of Populations, sumMF, dX and dC
+                updatePopulations(dt);
+                sumMF = Utilities::sumMassFractions();
+                diffX = abs(sumMF - 1.0);
 
-                    double Rmax = 1/fastestCurrentRate;     
-                    if(diffC > tolC){
+                //Redetermine passdt with new calculations
+                //if dX > tolerance go and see trend of sumMF (if closer to 1.0 without too much variance from previous sumMF pass it along)
+                if(diffX > massTol){passdt = false;}
+                if(diffX < lowtol) passdt = false;
+                if(diffX >= lowtol && diffX <= massTol) passdt = true;
 
-                        dt = Rmax;
-                        passdt = true;
-                    }
-                    if(diffC < lowtol) passdt = false;
+                //Cases to break out of loop
+                //1. if dt >= dtmax, do not allow dt to be more than 10% of t, so cap it off at dtmax for a singe timestep
+                if(dt >= dtmax){
+                    dt = dtmax;
+                    passdt = true;
+                }
+                //2. If dt has been decreased to make diffX < massTol, even if diffX is now < lowtol, pass along dt
+                if(diffX < massTol && recountD > 0) passdt = true;
 
-                    //break conditions that change passdt to be true
-                    if (diffC > lowtol && diffC < tolC) passdt = true; 
-                    if(diffC < tolC && recount > 0) passdt = true;
-                    if(dt > dtmax){
-                        dt = dtmax;
-                        passdt = true;
-                        break;
-                    }
-                // Update the populations for the rest of the iteration, no need to calculate diffC or sumX again here
+
+                //Before exiting loop, make sure all populations are correct and sum the mass fractions as well
                 if(passdt == true){
                     updatePopulations(dt);
                     sumMF = Utilities::sumMassFractions();
-                    diffC = abs(sumMFlast - sumMF);
                 }
             }
 
-            if(passdt == true){
-                //totalError += diffC;
+            //ONLY PASS ALONG DT IF PASSDT HAS BEEN SET TO TRUE
+            if(passdt = true){
                 return dt;
             }
-       }
 
-                
+
+        }
         // Function to do population update with current dt
         
         static void updatePopulations(double dtt){
@@ -3542,7 +3491,8 @@ class Integrate: public Utilities {
         
         // Compute new Y for asymptotic method
         
-        double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
+        double newY = (y + fplus*dtt)/(1.0 + fminus*(dtt/y));  
+
 
        // printf("\n ** ASY USED**   t=%e          dt=%e        RMAX=%e", t, dt, 1/fastestCurrentRate);
         
@@ -3575,10 +3525,10 @@ class Integrate: public Utilities {
         
         asycheck = k*dt;
         
-        if(asycheck > 1.0){
-//printf("\n********* ASY CHECK ***** %s         k=%2.5e      dt= %2.5e         ASY=%2.5e",isoLabel[i], k, dt, asycheck);
+        if(asycheck >= 1.0){
             return true;
-        } else {
+        } 
+        else if(asycheck < 1.0) {
             return false;
         }
         
@@ -3601,9 +3551,13 @@ class Integrate: public Utilities {
                     Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
                //     printf("\n *********  dt > RMAX and is using EULER UPDATE   dt=%e    RMAX=%e",dt,Rmax);
                 }
-
+            ASYkdt[i] = keff[i]*dt;
             X[i] = Y[i] * (double) AA[i];
         }
+        //    if(t < 1.0e-6){
+        //    double kHe = keff[0]*dt;
+        //    printf("\n The kdt value for helium is %e  when keff[He]=%e and dt=%e for step#:%d  diffX=%e",kHe,keff[0],dt,totalTimeSteps, diffX);
+        //   }
     }    // End function updateAsyEuler()
     
     
@@ -3740,6 +3694,7 @@ class Integrate: public Utilities {
                 sumMF += X[i];
                 
         }
+        // setReactionFluxes();
     }
  
     
@@ -3754,7 +3709,7 @@ class Integrate: public Utilities {
         
         // Following necessary to start integration correctly.
         
-        if (aa < 1.e-20) aa = 1e-20; 
+        if (aa < 1.0e-20) aa = 1e-20; 
         
         double ainv = 1.0/aa;
         double a2 = ainv * ainv;
@@ -3811,40 +3766,6 @@ ReactionGroup* RG;   // Dynamically allocated 1D array for reaction groups
 
 
 int main() { 
-
-    //-----------------------------ADAPTIVE PARAMETER TESTING----------------//
-        if (AdpvPeram == true){
-        cout << "Adaptive Peramiter is on \n";
-        cout << "num_runs = \n";
-        cin >> num_runs;
-        cout << "provide method 1,2, 3 or 4\n";
-        cin >> method;
-
-        if (method == 1){ //'ASY'
-            doASY = true;
-            doQSS = false;
-            doPE = false;
-        }
-        else if (method == 2){ //'ASY+PE'
-            doASY = true;
-            doQSS = false;
-            doPE = true;
-        }
-        else if (method == 3){ //'QSS'
-            doASY = false;
-            doQSS = true;
-            doPE = false;
-        }
-        else if (method == 4){ //'QSS+PE'
-            doASY = false;
-            doQSS = true;
-            doPE = true;
-        }
-
-        cout << "provide tolC (normaly 1e-7)\n";
-        cin >> tolC;
-        }
-    //----------------------------------------------------------------------//
     
     // Open a file for diagnostics output
     
@@ -3893,7 +3814,7 @@ int main() {
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
-    T9_start = 7.0;
+    T9_start = 5.0;
     T9 = T9_start;
     rho_start = 1.0e8;
     rho = rho_start;
@@ -4179,14 +4100,11 @@ int main() {
     // function of Reaction on each object. 
 
 
-    // Block to renormalize the initial values and sumX to be 1.
+  // Block to renormalize the initial values and sumX to be 1.
     double Xholder = 1.0e-24;
 
     for(int j=0; j < ISOTOPES; j++){
         Xholder += sqrt(X[j]*X[j]);
-
-       // printf("\n X's calculated as %2.10f",X[j]);
-       // printf("\n Xholder =%e", Xholder);
     }
 
   // renormalize X and Y's so initial sumX = 1.0 and Y's reflect that
@@ -4195,18 +4113,17 @@ int main() {
     if(totalTimeSteps == 1){
         for(int i=0; i < ISOTOPES; i++){
 
-           Xprime[i]= X[i]/Xholder;
+            Xprime[i]= X[i]/Xholder;
             X[i] = Xprime[i];
-          //  printf("\n values of X[%d] are =%2.13f", i, X[i]);
+
             sumMF += X[i];
 
             Y[i] = X[i] / (double) AA[i];
             Y0[i] = Y[i];
-
-          //  printf("\n Y[%d] = %2.13f     Y0[%d] = %2.13f ",i, Y[i],i, Y0[i]);
         }
         printf("\n Initial sumX has been renormalized to %2.20f",sumMF);
-    }   
+    }   printf("Carbon has X=%2.16f",X[1]);
+        printf("Oxygen has X=%2.16f",X[2]);
     // END OF RENORMALIZATION BLOCK   
     
     for(int i=0; i<SIZE; i++){
@@ -4349,19 +4266,14 @@ int main() {
         t += dt; 
         totalTimeSteps ++; 
 
- //      if(totalTimeSteps > 259 && totalTimeSteps < 301){
+        //************** DEBUGGER BLOCK FOR GDB ***********************//
 
-            //printf("\n STEP#:%d     dt=%e       sumMF=%2.20f      diffC=%2.20f     TOTAL:%2.20f",totalTimeSteps,dt,sumMF, diffC, totalError);
-  //      }
-
-        //************** DEBUGGER BLOCK ***********************//
-
-    //  if (totalTimeSteps > 400){
-     //   printf("\nMEH");
+      if (totalTimeSteps >= 338){
+//         printf("\nMEH");
      //       Utilities::stopTimer();
      //       Utilities::plotOutput();
      //       return 0;
-     //   }
+        }
 
         //****************************************************//
         
@@ -4482,6 +4394,7 @@ int main() {
             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
             sumXplot[plotCounter-1] = sumMF;
+            diffXplot[plotCounter-1] = log10(diffX);    //PLOT DIFFX vs TIME
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
             
@@ -4496,14 +4409,14 @@ int main() {
                 Xplot[i][plotCounter-1] = X[i];
                 FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
-                
+                ASYkdtplot[i][plotCounter-1] = ASYkdt[i];  //PLOT KDT VALUES OF EACH ISOTOPE VS TIME
             }
 
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%3.5e  diffC=%2.5e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%e diffX=%e",  //dE=%e E=%e",
                 plotCounter, plotSteps, t, dt,totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumMF, diffC //ECON*netdERelease, ECON*ERelease
+                numberRG, sumMF, diffX //ECON*netdERelease, ECON*ERelease
             );
 
             // Increment the plot output counter for next graphics output
@@ -4642,7 +4555,7 @@ void restoreEquilibriumProg(){
         evolveToEquilibrium();
 
         // Prevent errors occuring when te first RG is going in and out of EQ.         
-        if (totalEquilRG > 0){
+   //     if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4700,11 +4613,10 @@ void restoreEquilibriumProg(){
             
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
-            
-          //  Y[i] = Ysum/(double)numberCases; // move into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
+           //Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y
             X[i] = Y[i]*(double)AA[i];
         }
-        }
+    //    }
     
     } // end while iteration loop
   
@@ -4802,7 +4714,7 @@ void getmaxdYdt(){
         
         ck = isotope[i].getdYdt();
         
-        if( abs(ck) > abs(maxdYdt) ){
+        if( abs(ck) >= abs(maxdYdt) ){
             maxdYdtIndex = i;
             maxdYdt = abs(ck);
         }
