@@ -18,11 +18,15 @@ Execution for Mac or PC will depend on the C compiler installed on your machine.
 This branch will contain all impovements/corrections to original explicitMatrix code in MASTER
 There will be a clean version of the working code titled explcitMatrix.cpp and then a version or 2 of the code with diagnostics and Autoscript capabailities
 
-Currently (11/09/21):
-	EMATS has up to date version of Timestepper with all corrections to PE, ASY and renormalization of X's. Current timestep function produces graph of mass fractions very close to benchmark cases for T9=7 and rho=1e8. Likely a systematic error causing a slight discrepency.
--Timestep updated to include a case for comapring the previous sumX to 1.0 (diffP) and the current sumX to 1.0 (diffC) and updating dt based on the comparison of those 2 variables as well as the change in sumX btwn consecutive timesteps
+Currently (2/15/22):
+	EMATS has up to date version of Timestepper with all corrections to PE, ASY and renormalization of X's.
+		Currently ASY works fine, PE has some errors and leads to discrepency btwn the X's.
+		The diagnostic plots for ASY kdt and diffX are commented out, but can easily be used if necessary
+			The GNUplots gnuscript automates the plotting process for 5 plots
+			The gnuDiagnostics.gnu file is the gnuscript to be used if ASYkdt and DiffX are wanting to be plotted
 			
-	
+	NEM is old and the timestep is out of date, but a good thing to do with that is copy the current EMATS file and include the
+	ASYkdt and diffC diagnostics as well as any ohter diagnosic tools we had before that could be useful.
 	
 	Makefile contains auto-compilation of 2 codes: EMATS and NEM
 	
@@ -33,3 +37,5 @@ Currently (11/09/21):
 		3. frac equil vs t
 		4. dt & limiting rates vs t
 		5. Mass fractions vs t
+	CompareT5.sh does the same thing but for T9=5
+
