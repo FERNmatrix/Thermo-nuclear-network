@@ -1,5 +1,5 @@
-Mon Nov  1 15:11:17 2021
-Using ASY method
+Tue Dec  7 11:18:41 2021
+Using ASY+PE method
 
 --- Read in network and partition function ---
 
@@ -1850,7 +1850,7 @@ RG=0  RGclass=3 a+b+c<->d Species Index: iso[0]=0 iso[1]=0 iso[2]=0 iso[3]=1
       N[0]=2 N[1]=2 N[2]=2 N[3]=6
       A[0]=4 A[1]=4 A[2]=4 A[3]=12
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=4.16666e-02
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68629e-310
 
 RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
       isolabel[0]=4He isolabel[1]=12C isolabel[2]=16O
@@ -1860,7 +1860,7 @@ RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
       N[0]=2 N[1]=6 N[2]=8
       A[0]=4 A[1]=12 A[2]=16
       isoY[0]=0.00000e+00 isoY[1]=4.16666e-02 isoY[2]=3.12500e-02
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=2  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=1 iso[2]=0 iso[3]=3
       isolabel[0]=12C isolabel[1]=12C isolabel[2]=4He isolabel[3]=20Ne
@@ -1870,7 +1870,7 @@ RG=2  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=1 iso[2]=0 iso[3]=3
       N[0]=6 N[1]=6 N[2]=2 N[3]=10
       A[0]=12 A[1]=12 A[2]=4 A[3]=20
       isoY[0]=4.16666e-02 isoY[1]=4.16666e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68629e-310
 
 RG=3  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=2 iso[2]=3
       isolabel[0]=4He isolabel[1]=16O isolabel[2]=20Ne
@@ -1880,7 +1880,7 @@ RG=3  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=2 iso[2]=3
       N[0]=2 N[1]=8 N[2]=10
       A[0]=4 A[1]=16 A[2]=20
       isoY[0]=0.00000e+00 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=4  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=2 iso[2]=0 iso[3]=4
       isolabel[0]=12C isolabel[1]=16O isolabel[2]=4He isolabel[3]=24Mg
@@ -1890,7 +1890,7 @@ RG=4  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=2 iso[2]=0 iso[3]=4
       N[0]=6 N[1]=8 N[2]=2 N[3]=12
       A[0]=12 A[1]=16 A[2]=4 A[3]=24
       isoY[0]=4.16666e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68629e-310
 
 RG=5  RGclass=4 a+b<->c+d Species Index: iso[0]=2 iso[1]=2 iso[2]=0 iso[3]=5
       isolabel[0]=16O isolabel[1]=16O isolabel[2]=4He isolabel[3]=28Si
@@ -1900,7 +1900,7 @@ RG=5  RGclass=4 a+b<->c+d Species Index: iso[0]=2 iso[1]=2 iso[2]=0 iso[3]=5
       N[0]=8 N[1]=8 N[2]=2 N[3]=14
       A[0]=16 A[1]=16 A[2]=4 A[3]=28
       isoY[0]=3.12500e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68629e-310
 
 RG=6  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=3 iso[2]=4
       isolabel[0]=4He isolabel[1]=20Ne isolabel[2]=24Mg
@@ -1910,7 +1910,7 @@ RG=6  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=3 iso[2]=4
       N[0]=2 N[1]=10 N[2]=12
       A[0]=4 A[1]=20 A[2]=24
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=7  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=3 iso[2]=0 iso[3]=5
       isolabel[0]=12C isolabel[1]=20Ne isolabel[2]=4He isolabel[3]=28Si
@@ -1920,7 +1920,7 @@ RG=7  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=3 iso[2]=0 iso[3]=5
       N[0]=6 N[1]=10 N[2]=2 N[3]=14
       A[0]=12 A[1]=20 A[2]=4 A[3]=28
       isoY[0]=4.16666e-02 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68629e-310
 
 RG=8  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=4 iso[2]=5
       isolabel[0]=4He isolabel[1]=24Mg isolabel[2]=28Si
@@ -1930,7 +1930,7 @@ RG=8  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=4 iso[2]=5
       N[0]=2 N[1]=12 N[2]=14
       A[0]=4 A[1]=24 A[2]=28
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=9  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=5 iso[2]=6
       isolabel[0]=4He isolabel[1]=28Si isolabel[2]=32S
@@ -1940,7 +1940,7 @@ RG=9  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=5 iso[2]=6
       N[0]=2 N[1]=14 N[2]=16
       A[0]=4 A[1]=28 A[2]=32
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=10  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=6 iso[2]=7
       isolabel[0]=4He isolabel[1]=32S isolabel[2]=36Ar
@@ -1950,7 +1950,7 @@ RG=10  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=6 iso[2]=7
       N[0]=2 N[1]=16 N[2]=18
       A[0]=4 A[1]=32 A[2]=36
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=11  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=7 iso[2]=8
       isolabel[0]=4He isolabel[1]=36Ar isolabel[2]=40Ca
@@ -1960,7 +1960,7 @@ RG=11  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=7 iso[2]=8
       N[0]=2 N[1]=18 N[2]=20
       A[0]=4 A[1]=36 A[2]=40
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=12  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=8 iso[2]=9
       isolabel[0]=4He isolabel[1]=40Ca isolabel[2]=44Ti
@@ -1970,7 +1970,7 @@ RG=12  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=8 iso[2]=9
       N[0]=2 N[1]=20 N[2]=22
       A[0]=4 A[1]=40 A[2]=44
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=13  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=9 iso[2]=10
       isolabel[0]=4He isolabel[1]=44Ti isolabel[2]=48Cr
@@ -1980,7 +1980,7 @@ RG=13  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=9 iso[2]=10
       N[0]=2 N[1]=22 N[2]=24
       A[0]=4 A[1]=44 A[2]=48
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=14  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=10 iso[2]=11
       isolabel[0]=4He isolabel[1]=48Cr isolabel[2]=52Fe
@@ -1990,7 +1990,7 @@ RG=14  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=10 iso[2]=11
       N[0]=2 N[1]=24 N[2]=26
       A[0]=4 A[1]=48 A[2]=52
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=15  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=11 iso[2]=12
       isolabel[0]=4He isolabel[1]=52Fe isolabel[2]=56Ni
@@ -2000,7 +2000,7 @@ RG=15  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=11 iso[2]=12
       N[0]=2 N[1]=26 N[2]=28
       A[0]=4 A[1]=52 A[2]=56
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=16  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=12 iso[2]=13
       isolabel[0]=4He isolabel[1]=56Ni isolabel[2]=60Zn
@@ -2010,7 +2010,7 @@ RG=16  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=12 iso[2]=13
       N[0]=2 N[1]=28 N[2]=30
       A[0]=4 A[1]=56 A[2]=60
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=17  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=13 iso[2]=14
       isolabel[0]=4He isolabel[1]=60Zn isolabel[2]=64Ge
@@ -2020,7 +2020,7 @@ RG=17  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=13 iso[2]=14
       N[0]=2 N[1]=30 N[2]=32
       A[0]=4 A[1]=60 A[2]=64
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
       isolabel[0]=4He isolabel[1]=64Ge isolabel[2]=68Se
@@ -2030,7 +2030,7 @@ RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
       N[0]=2 N[1]=32 N[2]=34
       A[0]=4 A[1]=64 A[2]=68
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90561e-310 isoYeq[2]=3.45846e-323
 
 
 
@@ -2092,21 +2092,21 @@ INITIAL COMPUTED RATES
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=1.144e-01 X=4.574e-01
-1 12C Y=6.279e-06 X=7.535e-05
-2 16O Y=1.083e-05 X=1.733e-04
-3 20Ne Y=3.031e-07 X=6.062e-06
-4 24Mg Y=1.577e-05 X=3.784e-04
-5 28Si Y=2.395e-03 X=6.707e-02
-6 32S Y=2.301e-03 X=7.364e-02
-7 36Ar Y=1.294e-03 X=4.657e-02
-8 40Ca Y=1.388e-03 X=5.551e-02
-9 44Ti Y=6.151e-05 X=2.706e-03
-10 48Cr Y=1.892e-04 X=9.081e-03
-11 52Fe Y=8.672e-04 X=4.509e-02
-12 56Ni Y=4.323e-03 X=2.421e-01
-13 60Zn Y=3.338e-06 X=2.003e-04
-14 64Ge Y=2.393e-09 X=1.532e-07
-15 68Se Y=2.690e-12 X=1.829e-10
+0 4He Y=1.142e-01 X=4.566e-01
+1 12C Y=6.301e-06 X=7.561e-05
+2 16O Y=1.093e-05 X=1.749e-04
+3 20Ne Y=3.072e-07 X=6.144e-06
+4 24Mg Y=1.610e-05 X=3.864e-04
+5 28Si Y=2.446e-03 X=6.848e-02
+6 32S Y=2.345e-03 X=7.505e-02
+7 36Ar Y=1.316e-03 X=4.736e-02
+8 40Ca Y=1.408e-03 X=5.633e-02
+9 44Ti Y=6.183e-05 X=2.721e-03
+10 48Cr Y=1.880e-04 X=9.025e-03
+11 52Fe Y=8.579e-04 X=4.461e-02
+12 56Ni Y=4.267e-03 X=2.389e-01
+13 60Zn Y=3.289e-06 X=1.973e-04
+14 64Ge Y=2.354e-09 X=1.506e-07
+15 68Se Y=2.640e-12 X=1.795e-10
 
-# ASY+ method (with partition functions): 5960699 integration steps in 20.5622 seconds
+# ASY+PE+ method (with partition functions): 5729 integration steps in 0.061043 seconds

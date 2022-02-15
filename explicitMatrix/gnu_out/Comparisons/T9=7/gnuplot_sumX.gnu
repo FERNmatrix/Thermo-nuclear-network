@@ -67,7 +67,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="ASY+PE T9=7 rho=1e8"
+ds="ASY+PE T9=5 rho=1e8"
 ds = ds.": Sum X  vs t"
 set title ds textcolor rgb title_color
 

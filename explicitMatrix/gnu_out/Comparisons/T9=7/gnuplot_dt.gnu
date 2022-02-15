@@ -66,12 +66,11 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="ASY+PE T9=7 rho=1e8"
+ds="ASY+PE T9=5 rho=1e8"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
 file1 = "gnufile.data"
-file2 = "gnufileBENCH.data"
 
 
 # -------- Axis ranges and ticmarks -----------
@@ -103,7 +102,6 @@ set grid   # set x-y grid at major ticmarks
 # read in from data file
 
 plot file1 using 1:2 with lines ls 1 title "dt"
-replot file2 using 1:2 with lines ls 2 title "Benchmark dt"
 #replot file1 using 1:6 with lines ls 4 title "12C"
 #replot file1 using 1:7 with lines ls 9 title "16O"
 #replot file1 using 1:8 with lines ls 10 title "t"

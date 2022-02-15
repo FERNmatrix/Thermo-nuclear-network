@@ -40,7 +40,6 @@ set style line 12 lc rgb 'gray' pt 4   # open circle
 set style line 13 lc rgb 'gold' pt 4   # open circle
 set style line 14 lc rgb 'orange' pt 4   # open circle
 
-
 #set xtics rotate        # Rotates x tic numbers by 90 degrees
 #set ytics rotate        # Rotates y tic numbers by 90 degrees
 
@@ -54,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Frac Asy, Frac RG equil' textcolor rgb tic_color font "Arial,32"
+set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -68,9 +67,8 @@ set key top outside   # Move legend to outside top
 #set timestamp       # Date/time
 
 ds="ASY+PE T9=5 rho=1e8"
-ds = ds.": Fraction asymptotic and equilibrated vs t"
-
-set title ds textcolor rgb title_color
+ds = ds.": Log |E| vs t"
+set title ds textcolor rgb title_color font "Arial,22"
 
 file1 = "gnufile.data"
 
@@ -82,9 +80,9 @@ xup = 2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0.0 #-0.01
-yup = 1.0 #1.01
-ytics = 0.1      # Space between major y ticmarks
+ylow = 11
+yup = 18
+ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -100,13 +98,13 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
-
+set title ds textcolor rgb title_color
 
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:5 with lines ls 2 title "Frac Asy"
-replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
+plot file1 using 1:3 with lines ls 1 title "Log |E|"
+#replot file1 using 1:6 with lines ls 4 title "12C"
 #replot file1 using 1:7 with lines ls 9 title "16O"
 #replot file1 using 1:8 with lines ls 10 title "t"
 #replot file1 using 1:9 with lines ls 10 title "He3"
@@ -117,20 +115,20 @@ replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
+set title ds textcolor rgb title_color font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Frac Asy, Frac RG equil' textcolor rgb tic_color font "Arial,28"
+set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_frac.eps"    # Output file
+set out "gnuplot_E.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_frac.png"
+set out "gnuplot_E.png"
 # Assume 72 pixels/inch and make bitmap twice as large for display resolution
 set terminal png transparent size 2*width*72, 2*height*72 lw 2
 replot

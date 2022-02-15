@@ -1,4 +1,4 @@
-Mon Nov  1 15:11:17 2021
+Tue Feb 15 12:05:42 2022
 Using ASY method
 
 --- Read in network and partition function ---
@@ -1850,7 +1850,7 @@ RG=0  RGclass=3 a+b+c<->d Species Index: iso[0]=0 iso[1]=0 iso[2]=0 iso[3]=1
       N[0]=2 N[1]=2 N[2]=2 N[3]=6
       A[0]=4 A[1]=4 A[2]=4 A[3]=12
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=4.16666e-02
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68148e-310
 
 RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
       isolabel[0]=4He isolabel[1]=12C isolabel[2]=16O
@@ -1860,7 +1860,7 @@ RG=1  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=1 iso[2]=2
       N[0]=2 N[1]=6 N[2]=8
       A[0]=4 A[1]=12 A[2]=16
       isoY[0]=0.00000e+00 isoY[1]=4.16666e-02 isoY[2]=3.12500e-02
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=2  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=1 iso[2]=0 iso[3]=3
       isolabel[0]=12C isolabel[1]=12C isolabel[2]=4He isolabel[3]=20Ne
@@ -1870,7 +1870,7 @@ RG=2  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=1 iso[2]=0 iso[3]=3
       N[0]=6 N[1]=6 N[2]=2 N[3]=10
       A[0]=12 A[1]=12 A[2]=4 A[3]=20
       isoY[0]=4.16666e-02 isoY[1]=4.16666e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68148e-310
 
 RG=3  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=2 iso[2]=3
       isolabel[0]=4He isolabel[1]=16O isolabel[2]=20Ne
@@ -1880,7 +1880,7 @@ RG=3  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=2 iso[2]=3
       N[0]=2 N[1]=8 N[2]=10
       A[0]=4 A[1]=16 A[2]=20
       isoY[0]=0.00000e+00 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=4  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=2 iso[2]=0 iso[3]=4
       isolabel[0]=12C isolabel[1]=16O isolabel[2]=4He isolabel[3]=24Mg
@@ -1890,7 +1890,7 @@ RG=4  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=2 iso[2]=0 iso[3]=4
       N[0]=6 N[1]=8 N[2]=2 N[3]=12
       A[0]=12 A[1]=16 A[2]=4 A[3]=24
       isoY[0]=4.16666e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68148e-310
 
 RG=5  RGclass=4 a+b<->c+d Species Index: iso[0]=2 iso[1]=2 iso[2]=0 iso[3]=5
       isolabel[0]=16O isolabel[1]=16O isolabel[2]=4He isolabel[3]=28Si
@@ -1900,7 +1900,7 @@ RG=5  RGclass=4 a+b<->c+d Species Index: iso[0]=2 iso[1]=2 iso[2]=0 iso[3]=5
       N[0]=8 N[1]=8 N[2]=2 N[3]=14
       A[0]=16 A[1]=16 A[2]=4 A[3]=28
       isoY[0]=3.12500e-02 isoY[1]=3.12500e-02 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68148e-310
 
 RG=6  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=3 iso[2]=4
       isolabel[0]=4He isolabel[1]=20Ne isolabel[2]=24Mg
@@ -1910,7 +1910,7 @@ RG=6  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=3 iso[2]=4
       N[0]=2 N[1]=10 N[2]=12
       A[0]=4 A[1]=20 A[2]=24
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=7  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=3 iso[2]=0 iso[3]=5
       isolabel[0]=12C isolabel[1]=20Ne isolabel[2]=4He isolabel[3]=28Si
@@ -1920,7 +1920,7 @@ RG=7  RGclass=4 a+b<->c+d Species Index: iso[0]=1 iso[1]=3 iso[2]=0 iso[3]=5
       N[0]=6 N[1]=10 N[2]=2 N[3]=14
       A[0]=12 A[1]=20 A[2]=4 A[3]=28
       isoY[0]=4.16666e-02 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00 isoY[3]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.66813e-310
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323 isoYeq[3]=4.68148e-310
 
 RG=8  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=4 iso[2]=5
       isolabel[0]=4He isolabel[1]=24Mg isolabel[2]=28Si
@@ -1930,7 +1930,7 @@ RG=8  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=4 iso[2]=5
       N[0]=2 N[1]=12 N[2]=14
       A[0]=4 A[1]=24 A[2]=28
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=9  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=5 iso[2]=6
       isolabel[0]=4He isolabel[1]=28Si isolabel[2]=32S
@@ -1940,7 +1940,7 @@ RG=9  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=5 iso[2]=6
       N[0]=2 N[1]=14 N[2]=16
       A[0]=4 A[1]=28 A[2]=32
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=10  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=6 iso[2]=7
       isolabel[0]=4He isolabel[1]=32S isolabel[2]=36Ar
@@ -1950,7 +1950,7 @@ RG=10  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=6 iso[2]=7
       N[0]=2 N[1]=16 N[2]=18
       A[0]=4 A[1]=32 A[2]=36
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=11  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=7 iso[2]=8
       isolabel[0]=4He isolabel[1]=36Ar isolabel[2]=40Ca
@@ -1960,7 +1960,7 @@ RG=11  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=7 iso[2]=8
       N[0]=2 N[1]=18 N[2]=20
       A[0]=4 A[1]=36 A[2]=40
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=12  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=8 iso[2]=9
       isolabel[0]=4He isolabel[1]=40Ca isolabel[2]=44Ti
@@ -1970,7 +1970,7 @@ RG=12  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=8 iso[2]=9
       N[0]=2 N[1]=20 N[2]=22
       A[0]=4 A[1]=40 A[2]=44
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=13  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=9 iso[2]=10
       isolabel[0]=4He isolabel[1]=44Ti isolabel[2]=48Cr
@@ -1980,7 +1980,7 @@ RG=13  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=9 iso[2]=10
       N[0]=2 N[1]=22 N[2]=24
       A[0]=4 A[1]=44 A[2]=48
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=14  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=10 iso[2]=11
       isolabel[0]=4He isolabel[1]=48Cr isolabel[2]=52Fe
@@ -1990,7 +1990,7 @@ RG=14  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=10 iso[2]=11
       N[0]=2 N[1]=24 N[2]=26
       A[0]=4 A[1]=48 A[2]=52
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=15  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=11 iso[2]=12
       isolabel[0]=4He isolabel[1]=52Fe isolabel[2]=56Ni
@@ -2000,7 +2000,7 @@ RG=15  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=11 iso[2]=12
       N[0]=2 N[1]=26 N[2]=28
       A[0]=4 A[1]=52 A[2]=56
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=16  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=12 iso[2]=13
       isolabel[0]=4He isolabel[1]=56Ni isolabel[2]=60Zn
@@ -2010,7 +2010,7 @@ RG=16  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=12 iso[2]=13
       N[0]=2 N[1]=28 N[2]=30
       A[0]=4 A[1]=56 A[2]=60
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=17  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=13 iso[2]=14
       isolabel[0]=4He isolabel[1]=60Zn isolabel[2]=64Ge
@@ -2020,7 +2020,7 @@ RG=17  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=13 iso[2]=14
       N[0]=2 N[1]=30 N[2]=32
       A[0]=4 A[1]=60 A[2]=64
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
       isolabel[0]=4He isolabel[1]=64Ge isolabel[2]=68Se
@@ -2030,7 +2030,7 @@ RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
       N[0]=2 N[1]=32 N[2]=34
       A[0]=4 A[1]=64 A[2]=68
       isoY[0]=0.00000e+00 isoY[1]=0.00000e+00 isoY[2]=0.00000e+00
-      isoYeq[0]=1.02884e-319 isoYeq[1]=6.91367e-310 isoYeq[2]=3.45846e-323
+      isoYeq[0]=1.02884e-319 isoYeq[1]=6.90879e-310 isoYeq[2]=3.45846e-323
 
 
 
@@ -2038,75 +2038,75 @@ RG=18  RGclass=2 a+b<->c Species Index: iso[0]=0 iso[1]=14 iso[2]=15
 
 INITIAL COMPUTED RATES
 
-0   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 6.23561e-11 Rrate=1.03927e+05
+0   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 1.01261e-10 Rrate=1.68768e+05
 1   he4+he4+he4-->c12 RG=3 densfac=1.667e+15 rate= 0.00000e+00 Rrate=0.00000e+00
 2   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 0.00000e+00 Rrate=0.00000e+00
-3   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 2.47509e+07 Rrate=2.47509e+07
-4       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 4.16179e-01 Rrate=4.16179e+07
-5       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 3.44519e+01 Rrate=3.44519e+09
-6       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 2.75857e+06 Rrate=2.75857e+06
-7       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 2.28352e+08 Rrate=2.28352e+08
-8  c12+c12-->he4+ne20 RG=4 densfac=5.000e+07 rate= 4.07403e+04 Rrate=2.03701e+12
-9  he4+ne20-->c12+c12 RG=4 densfac=1.000e+08 rate= 2.31697e+01 Rrate=2.31697e+09
-10      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 7.57626e-09 Rrate=7.57626e-01
-11      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 3.77544e+01 Rrate=3.77544e+09
-12      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 3.09557e+00 Rrate=3.09557e+00
-13      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 1.54307e+10 Rrate=1.54307e+10
-14  c12+o16-->he4+mg24 RG=4 densfac=1.000e+08 rate= 1.10323e+03 Rrate=1.10323e+11
-15  he4+mg24-->c12+o16 RG=4 densfac=1.000e+08 rate= 4.16202e-02 Rrate=4.16202e+06
-16  o16+o16-->he4+si28 RG=4 densfac=5.000e+07 rate= 5.14188e+01 Rrate=2.57094e+09
-17  he4+si28-->o16+o16 RG=4 densfac=1.000e+08 rate= 1.10159e-05 Rrate=1.10159e+03
-18     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 1.69490e-03 Rrate=1.69490e+05
-19     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 6.53937e+02 Rrate=6.53937e+10
-20     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 3.72804e+02 Rrate=3.72804e+02
-21     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 1.43783e+08 Rrate=1.43783e+08
-22 c12+ne20-->he4+si28 RG=4 densfac=1.000e+08 rate= 2.49351e+01 Rrate=2.49351e+09
-23 he4+si28-->c12+ne20 RG=4 densfac=1.000e+08 rate= 1.73006e-07 Rrate=1.73006e+01
-24     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 2.22307e+01 Rrate=2.22307e+09
-25     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 3.47323e+02 Rrate=3.47323e+10
-26     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 1.67373e+06 Rrate=1.67373e+06
-27     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 2.61415e+07 Rrate=2.61415e+07
-28      he4+si28-->s32 RG=2 densfac=1.000e+08 rate= 1.88404e+02 Rrate=1.88404e+10
-29      s32-->he4+si28 RG=2 densfac=1.000e+00 rate= 2.24259e+09 Rrate=2.24259e+09
-30      he4+s32-->ar36 RG=2 densfac=1.000e+08 rate= 3.94409e+01 Rrate=3.94409e+09
-31      ar36-->he4+s32 RG=2 densfac=1.000e+00 rate= 8.02330e+08 Rrate=8.02330e+08
-32     he4+ar36-->ca40 RG=2 densfac=1.000e+08 rate= 1.17121e+01 Rrate=1.17121e+09
-33     ca40-->he4+ar36 RG=2 densfac=1.000e+00 rate= 1.24856e+08 Rrate=1.24856e+08
-34     he4+ca40-->ti44 RG=2 densfac=1.000e+08 rate= 4.80991e+01 Rrate=4.80991e+09
-35     ti44-->he4+ca40 RG=2 densfac=1.000e+00 rate= 1.24099e+10 Rrate=1.24099e+10
-36     he4+ti44-->cr48 RG=2 densfac=1.000e+08 rate= 6.06035e-01 Rrate=6.06035e+07
-37     cr48-->he4+ti44 RG=2 densfac=1.000e+00 rate= 2.25320e+06 Rrate=2.25320e+06
-38     he4+cr48-->fe52 RG=2 densfac=1.000e+08 rate= 1.50055e-01 Rrate=1.50055e+07
-39     fe52-->he4+cr48 RG=2 densfac=1.000e+00 rate= 3.74352e+05 Rrate=3.74352e+05
-40     he4+fe52-->ni56 RG=2 densfac=1.000e+08 rate= 6.25383e-02 Rrate=6.25383e+06
-41     ni56-->he4+fe52 RG=2 densfac=1.000e+00 rate= 1.43472e+05 Rrate=1.43472e+05
-42     he4+ni56-->zn60 RG=2 densfac=1.000e+08 rate= 1.52386e-01 Rrate=1.52386e+07
-43     zn60-->he4+ni56 RG=2 densfac=1.000e+00 rate= 2.25686e+09 Rrate=2.25686e+09
-44     he4+zn60-->ge64 RG=2 densfac=1.000e+08 rate= 1.11614e-02 Rrate=1.11614e+06
-45     ge64-->he4+zn60 RG=2 densfac=1.000e+00 rate= 1.78029e+08 Rrate=1.78029e+08
-46     he4+ge64-->se68 RG=2 densfac=1.000e+08 rate= 7.99797e-02 Rrate=7.99797e+06
-47     se68-->he4+ge64 RG=2 densfac=1.000e+00 rate= 8.13516e+08 Rrate=8.13516e+08
+3   c12-->he4+he4+he4 RG=3 densfac=1.000e+00 rate= 1.17688e+05 Rrate=1.17688e+05
+4       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 1.19062e-01 Rrate=1.19062e+07
+5       he4+c12-->o16 RG=2 densfac=1.000e+08 rate= 2.42472e+00 Rrate=2.42472e+08
+6       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 4.12508e+03 Rrate=4.12508e+03
+7       o16-->he4+c12 RG=2 densfac=1.000e+00 rate= 8.40052e+04 Rrate=8.40052e+04
+8  c12+c12-->he4+ne20 RG=4 densfac=5.000e+07 rate= 9.75281e+02 Rrate=4.87641e+10
+9  he4+ne20-->c12+c12 RG=4 densfac=1.000e+08 rate= 2.58963e-02 Rrate=2.58963e+06
+10      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 1.17940e-05 Rrate=1.17940e+03
+11      he4+o16-->ne20 RG=2 densfac=1.000e+08 rate= 1.03333e+01 Rrate=1.03333e+09
+12      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 1.26006e+02 Rrate=1.26006e+02
+13      ne20-->he4+o16 RG=2 densfac=1.000e+00 rate= 1.10434e+08 Rrate=1.10434e+08
+14  c12+o16-->he4+mg24 RG=4 densfac=1.000e+08 rate= 1.44248e+01 Rrate=1.44248e+09
+15  he4+mg24-->c12+o16 RG=4 densfac=1.000e+08 rate= 6.10649e-06 Rrate=6.10649e+02
+16  o16+o16-->he4+si28 RG=4 densfac=5.000e+07 rate= 1.23011e-01 Rrate=6.15053e+06
+17  he4+si28-->o16+o16 RG=4 densfac=1.000e+08 rate= 4.55194e-11 Rrate=4.55194e-03
+18     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 1.24307e-02 Rrate=1.24307e+06
+19     he4+ne20-->mg24 RG=2 densfac=1.000e+08 rate= 4.05293e+02 Rrate=4.05293e+10
+20     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 3.43530e+00 Rrate=3.43530e+00
+21     mg24-->he4+ne20 RG=2 densfac=1.000e+00 rate= 1.11959e+05 Rrate=1.11959e+05
+22 c12+ne20-->he4+si28 RG=4 densfac=1.000e+08 rate= 1.62620e-01 Rrate=1.62620e+07
+23 he4+si28-->c12+ne20 RG=4 densfac=1.000e+08 rate= 3.89373e-13 Rrate=3.89373e-05
+24     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 1.15160e+01 Rrate=1.15160e+09
+25     he4+mg24-->si28 RG=2 densfac=1.000e+08 rate= 1.10800e+02 Rrate=1.10800e+10
+26     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 6.97437e+02 Rrate=6.97437e+02
+27     si28-->he4+mg24 RG=2 densfac=1.000e+00 rate= 6.70832e+03 Rrate=6.70832e+03
+28      he4+si28-->s32 RG=2 densfac=1.000e+08 rate= 5.53790e+01 Rrate=5.53790e+09
+29      s32-->he4+si28 RG=2 densfac=1.000e+00 rate= 3.97083e+06 Rrate=3.97083e+06
+30      he4+s32-->ar36 RG=2 densfac=1.000e+08 rate= 1.49612e+01 Rrate=1.49612e+09
+31      ar36-->he4+s32 RG=2 densfac=1.000e+00 rate= 2.25028e+06 Rrate=2.25028e+06
+32     he4+ar36-->ca40 RG=2 densfac=1.000e+08 rate= 1.53611e+00 Rrate=1.53611e+08
+33     ca40-->he4+ar36 RG=2 densfac=1.000e+00 rate= 9.28065e+04 Rrate=9.28065e+04
+34     he4+ca40-->ti44 RG=2 densfac=1.000e+08 rate= 1.84552e+01 Rrate=1.84552e+09
+35     ti44-->he4+ca40 RG=2 densfac=1.000e+00 rate= 9.59512e+07 Rrate=9.59512e+07
+36     he4+ti44-->cr48 RG=2 densfac=1.000e+08 rate= 8.10555e-02 Rrate=8.10555e+06
+37     cr48-->he4+ti44 RG=2 densfac=1.000e+00 rate= 1.10840e+03 Rrate=1.10840e+03
+38     he4+cr48-->fe52 RG=2 densfac=1.000e+08 rate= 1.47566e-02 Rrate=1.47566e+06
+39     fe52-->he4+cr48 RG=2 densfac=1.000e+00 rate= 1.14946e+02 Rrate=1.14946e+02
+40     he4+fe52-->ni56 RG=2 densfac=1.000e+08 rate= 6.87266e-03 Rrate=6.87266e+05
+41     ni56-->he4+fe52 RG=2 densfac=1.000e+00 rate= 4.74348e+01 Rrate=4.74348e+01
+42     he4+ni56-->zn60 RG=2 densfac=1.000e+08 rate= 3.97624e-02 Rrate=3.97624e+06
+43     zn60-->he4+ni56 RG=2 densfac=1.000e+00 rate= 5.90164e+07 Rrate=5.90164e+07
+44     he4+zn60-->ge64 RG=2 densfac=1.000e+08 rate= 2.82473e-03 Rrate=2.82473e+05
+45     ge64-->he4+zn60 RG=2 densfac=1.000e+00 rate= 4.63976e+06 Rrate=4.63976e+06
+46     he4+ge64-->se68 RG=2 densfac=1.000e+08 rate= 6.73628e-03 Rrate=6.73628e+05
+47     se68-->he4+ge64 RG=2 densfac=1.000e+00 rate= 5.87973e+06 Rrate=5.87973e+06
 
 **** Rates won't be computed again since T and rho won't change in integration ****
 
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=1.144e-01 X=4.574e-01
-1 12C Y=6.279e-06 X=7.535e-05
-2 16O Y=1.083e-05 X=1.733e-04
-3 20Ne Y=3.031e-07 X=6.062e-06
-4 24Mg Y=1.577e-05 X=3.784e-04
-5 28Si Y=2.395e-03 X=6.707e-02
-6 32S Y=2.301e-03 X=7.364e-02
-7 36Ar Y=1.294e-03 X=4.657e-02
-8 40Ca Y=1.388e-03 X=5.551e-02
-9 44Ti Y=6.151e-05 X=2.706e-03
-10 48Cr Y=1.892e-04 X=9.081e-03
-11 52Fe Y=8.672e-04 X=4.509e-02
-12 56Ni Y=4.323e-03 X=2.421e-01
-13 60Zn Y=3.338e-06 X=2.003e-04
-14 64Ge Y=2.393e-09 X=1.532e-07
-15 68Se Y=2.690e-12 X=1.829e-10
+0 4He Y=6.956e-04 X=2.782e-03
+1 12C Y=9.114e-07 X=1.094e-05
+2 16O Y=4.024e-06 X=6.438e-05
+3 20Ne Y=2.799e-08 X=5.598e-07
+4 24Mg Y=8.461e-06 X=2.031e-04
+5 28Si Y=9.740e-03 X=2.727e-01
+6 32S Y=9.449e-03 X=3.024e-01
+7 36Ar Y=4.370e-03 X=1.573e-01
+8 40Ca Y=5.028e-03 X=2.011e-01
+9 44Ti Y=6.727e-05 X=2.960e-03
+10 48Cr Y=1.930e-04 X=9.266e-03
+11 52Fe Y=3.361e-04 X=1.748e-02
+12 56Ni Y=6.016e-04 X=3.369e-02
+13 60Zn Y=2.819e-08 X=1.692e-06
+14 64Ge Y=1.194e-12 X=7.641e-11
+15 68Se Y=9.513e-17 X=6.469e-15
 
-# ASY+ method (with partition functions): 5960699 integration steps in 20.5622 seconds
+# ASY+ method (with partition functions): 1007252 integration steps in 3.47253 seconds

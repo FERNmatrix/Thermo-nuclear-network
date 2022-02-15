@@ -15,11 +15,11 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.5
+width = 4.8  # 8.5
+height = 6.0   # 4.5
 
 # x-axis resolution
-set samples 2000
+set samples 1000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -40,7 +40,6 @@ set style line 12 lc rgb 'gray' pt 4   # open circle
 set style line 13 lc rgb 'gold' pt 4   # open circle
 set style line 14 lc rgb 'orange' pt 4   # open circle
 
-
 #set xtics rotate        # Rotates x tic numbers by 90 degrees
 #set ytics rotate        # Rotates y tic numbers by 90 degrees
 
@@ -54,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Frac Asy, Frac RG equil' textcolor rgb tic_color font "Arial,32"
+set ylabel 'Log flux' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -68,23 +67,22 @@ set key top outside   # Move legend to outside top
 #set timestamp       # Date/time
 
 ds="ASY+PE T9=5 rho=1e8"
-ds = ds.": Fraction asymptotic and equilibrated vs t"
-
+ds = ds.": fluxes"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile.data"
+file1 = "gnufileFlux.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
 xup = 2
-xtics = 1     # Space between major x ticmarks
+xtics = 0.5     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0.0 #-0.01
-yup = 1.0 #1.01
-ytics = 0.1      # Space between major y ticmarks
+ylow = -2.0; #3.5
+yup = 4.4 
+ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -100,19 +98,27 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
-
-
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:5 with lines ls 2 title "Frac Asy"
-replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
-#replot file1 using 1:7 with lines ls 9 title "16O"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
+# F+ and F-
+
+#plot file1 using 1:2 with lines ls 1 title "dt"
+#replot file1 using 1:3 with lines ls 2 title "F+(1)"
+#replot file1 using 1:4 with lines ls 3 title "F+(2)"
+#replot file1 using 1:5 with lines ls 4 title "F+(3)"
+#replot file1 using 1:6 with lines ls 5 title "F-(1)"
+#replot file1 using 1:7 with lines ls 6 title "F-(2)"
+#replot file1 using 1:8 with lines ls 7 title "F-(3)"
+#replot file1 using 1:12 with lines ls 8 title "Be7"
+
+
+# dF = F+ - F-
+
+plot file1 using 1:2 with lines ls 1 title "dt"
+replot file1 using 1:9 with lines ls 2 title "dF(1)"
+replot file1 using 1:10 with lines ls 3 title "dF(2)"
+replot file1 using 1:11 with lines ls 4 title "dF(3)"
 
 
 # Reset font sizes for .eps and .png output2
@@ -120,17 +126,17 @@ replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Frac Asy, Frac RG equil' textcolor rgb tic_color font "Arial,28"
+set ylabel 'Log flux (s)' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_frac.eps"    # Output file
+set out "gnuplot_fluxes.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_frac.png"
+set out "gnuplot_fluxes.png"
 # Assume 72 pixels/inch and make bitmap twice as large for display resolution
 set terminal png transparent size 2*width*72, 2*height*72 lw 2
 replot

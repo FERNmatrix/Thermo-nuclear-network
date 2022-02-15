@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -222,7 +222,7 @@ double constant_dt = 1.1e-9;      // Value of constant timestep
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1.0e-18;       // Start time for plot output
-double stop_time = 1.0e2;             // Stop time for integration
+double stop_time = 1.0e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 
@@ -238,8 +238,8 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-7;   // Begin checking for PE
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-6;   // Begin checking for PE
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -269,12 +269,12 @@ double sumXlast;                     // sumX from last timestep
 double sumMF;                        // sumX for timestep when PE is invoked
 double sumMFlast;                    // sumXlast for timestep when PE is invoked
 
-double diffX;                        // sumMFlast - sumMF
+double diffX;                        // sumMF - 1.0
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double tolX = 1.0e-6;         // Mass tolerance btwn consecutive sumXs
-double lowtol;      // Lower bound of mass tolerance that would allow dt to increase more if possible
+double massTol = 1.0e-5;         // Mass tolerance btwn consecutive sumXs
+double lowtol = 1e-12;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
 //double dtdec = 0.93;                // Amount dt decreases by if needed (-7%)
@@ -756,7 +756,7 @@ class Utilities{
                 
                 for(int j=0; j<LX; j++){
                     fprintf(pFile, " %5.3e", log10(Xplot[j][i]+1e-24));
-                    fprintf(pFile, " %3.4e", log10(ASYkdtplot[j][i]+1e-24));
+                  //fprintf(pFile, " %3.4e", log10(ASYkdtplot[j][i]+1e-24));
                 }
                 
                 fprintf(pFile, "\n");
@@ -1864,7 +1864,7 @@ class Reaction: public Utilities {
             // means that this correction is only required for reverse reactions
             // in Reaclib classes reacClass = 2, 5.
             
-printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
+            printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reacString), isReverse, reacClass );
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
@@ -1888,7 +1888,7 @@ printf("\n********** %s isReverse=%d reacClass=%d", Utilities::stringToChar(reac
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
                 
-printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
+                printf("\n           pfnum=%7.4e pfden=%7.4e pfFactor=%7.4e newrate=%7.4e oldrate=%7.4e", pfnum, pfden, pfFactor, rate, rate/pfFactor);
                 
             }
         }
@@ -3330,118 +3330,98 @@ class Integrate: public Utilities {
         
     public:
         
-        
-    // Function to set the current integration timestep
-        
-        static double getTimestep(){ 
+        //Function to calculate the value of dt to pass and use in main function
+        static double getTimestep(){
 
-              //Re-initialize variables from previous step, reset diffX to 0        
-              dtLast = dt;
-              sumMFlast = sumMF;
+            dtLast = dt;
+            sumMFlast = sumMF;
 
-              //reset diff variables to = 0
-              diffX = 0;
-              diffC = 0;
-              diffP = 0;
+            //Recounting variables
+            int recountD = 0;
+            int recountI = 0;
 
-              //Define variables relevant only to Timestep function
-              bool passdt;
-              int recount =0; // debugging purposes
-              int dtINC = 0;  // debugging purposes
+            //Boolean for dt
+            bool passdt;
 
-              //Define Timestep variables (some will go global later on)
-              double dtgrow = 1.02;
-              double dtdec = 0.97;
-              double dtnew;
-              double dtmax = 0.1*t;
-              double dtmin = 0.01*t;
+            //dt alterations
+            double dtgrow = 1.02;
+            double dtdec = 0.97;
+            double dtnew;
 
-              //For plotting dt ranges
-              //double DTUpper = dtmax;
-              //double DTLower = dtmin;
-              lowtol = 1.0e-14;
-              
+            //Comparison varaibles
+            double diffX;
 
-              //Calculations for the new iteration
-              dtnew = dtLast*dtgrow;
-              updatePopulations(dtnew);
-              sumMF = Utilities::sumMassFractions();
+            //limitations / graphing puroposes for dt
+            double dtmax = 0.1*t;
+            double dtmin = 0.01*t;
+            //double dtRangeU = dtmax;
+            //double dtRangeL = dtmin;
 
-              //Comparison values to be made to tolerances or eachother
-              diffX = abs(sumMFlast - sumMF);
-              diffP = abs(sumMFlast - 1.0);
-              diffC = abs(sumMF - 1.0);
+            //Tolerances
+            //massTol and lowtol are global ~line 260
+            //double tolD = 1.0e-6;
 
-              //Cases to determine value of passdt
-              if(diffX >= tolX) passdt = false;                          // |-----X-----|tolX|---------------|lowtol|-----------| -> Decrease
-              if(diffX <= lowtol) passdt = false;                        // |-----------|tolX|---------------|lowtol|------X----| -> Increase
-              if (diffX > lowtol && diffX < tolX) passdt = true;         // |-----------|tolX|-------X-------|lowtol|-----------| -> Pass along
+            //Calculations to initially grow dt
+            dtnew = dtLast*dtgrow;
+            updatePopulations(dtnew);
+            sumMF = Utilities::sumMassFractions();
 
+            //Comparison variables
+            diffX = abs(sumMF - 1.0);
 
-              dt = dtnew;
+            //Conditions to set passdt --> only depend of diffX initially
+            if(diffX > massTol) passdt = false;
+            if(diffX < lowtol) passdt = false;
+            if(diffX >= lowtol && diffX <= massTol) passdt = true;
 
-            //Alter dt if passdt is false
+            dt = dtnew;
+
             while(passdt == false){
 
-                //  |-----X-----|tolX|---------------|lowtol|-----------| *** |------|diffC 1|-----|diffX Previous|-------|diffC 2|------|
-
-                if(diffX > tolX && diffC >= diffP){  // diffC case 1: diffC > diffP: sumMF is further from 1.0 than last step
+                //alter dt accordingly
+                if(diffX > massTol){
                     dt *= dtdec;
-                    recount++;
+                    recountD++;
                 }
-                if(diffX > tolX && diffC < diffP){ // diffC case 2: diffC < diffP: sumMF is closer to 1.0 than last step
-                    dt = dtnew;
-                }
-
-                // |-----------|tolX|---------------|lowtol|------X----| 
                 if(diffX < lowtol){
                     dt *= dtgrow;
-                    dtINC++;
+                    recountI++;
                 }
-
-                //Recalculte populations and comaprisons with new dt value
+                //Recalculation of Populations, sumMF, dX and dC
                 updatePopulations(dt);
                 sumMF = Utilities::sumMassFractions();
-                diffX = abs(sumMFlast - sumMF);
-                diffC = abs(sumMF - 1.0);
+                diffX = abs(sumMF - 1.0);
 
-                //determine whether passdt can be true
-                if(diffX > tolX){
-                    if(diffC >= diffP) passdt = false;
-                    
-                    if(diffC < diffP){
-                        passdt = true;
-                        updatePopulations(dt);
-                    }
-                }
+                //Redetermine passdt with new calculations
+                //if dX > tolerance go and see trend of sumMF (if closer to 1.0 without too much variance from previous sumMF pass it along)
+                if(diffX > massTol){passdt = false;}
                 if(diffX < lowtol) passdt = false;
+                if(diffX >= lowtol && diffX <= massTol) passdt = true;
 
-                if(diffX >= lowtol && diffX < tolX){
-                    passdt = true;
-                    updatePopulations(dt);
-                }
-                //any break condtions that are neccessary
-                if(diffX < tolX && recount > 0){
-                 passdt = true;
-                 updatePopulations(dt);
-                }
-
+                //Cases to break out of loop
+                //1. if dt >= dtmax, do not allow dt to be more than 10% of t, so cap it off at dtmax for a singe timestep
                 if(dt >= dtmax){
                     dt = dtmax;
-                    updatePopulations(dtmax);
                     passdt = true;
                 }
+                //2. If dt has been decreased to make diffX < massTol, even if diffX is now < lowtol, pass along dt
+                if(diffX < massTol && recountD > 0) passdt = true;
 
+
+                //Before exiting loop, make sure all populations are correct and sum the mass fractions as well
+                if(passdt == true){
+                    updatePopulations(dt);
+                    sumMF = Utilities::sumMassFractions();
+                }
             }
 
-            if(passdt == true){
-               // updatePopulations(dt);
-                sumMF = Utilities::sumMassFractions();
+            //ONLY PASS ALONG DT IF PASSDT HAS BEEN SET TO TRUE
+            if(passdt = true){
                 return dt;
             }
-       }
 
-                
+
+        }
         // Function to do population update with current dt
         
         static void updatePopulations(double dtt){
@@ -3571,7 +3551,7 @@ class Integrate: public Utilities {
                     Y[i] = eulerUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
                //     printf("\n *********  dt > RMAX and is using EULER UPDATE   dt=%e    RMAX=%e",dt,Rmax);
                 }
-            ASYkdt[i] = keff[i]*dt;
+           // ASYkdt[i] = keff[i]*dt;
             X[i] = Y[i] * (double) AA[i];
         }
         //    if(t < 1.0e-6){
@@ -4142,7 +4122,8 @@ int main() {
             Y0[i] = Y[i];
         }
         printf("\n Initial sumX has been renormalized to %2.20f",sumMF);
-    }   
+    }   printf("Carbon has X=%2.16f",X[1]);
+        printf("Oxygen has X=%2.16f",X[2]);
     // END OF RENORMALIZATION BLOCK   
     
     for(int i=0; i<SIZE; i++){
@@ -4287,12 +4268,12 @@ int main() {
 
         //************** DEBUGGER BLOCK FOR GDB ***********************//
 
-      //if (totalTimeSteps >= 315){
-      //   printf("\nMEH");
+      if (totalTimeSteps >= 338){
+//         printf("\nMEH");
      //       Utilities::stopTimer();
      //       Utilities::plotOutput();
      //       return 0;
-       // }
+        }
 
         //****************************************************//
         
@@ -4413,7 +4394,7 @@ int main() {
             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
             sumXplot[plotCounter-1] = sumMF;
-            diffCplot[plotCounter-1] = log10(diffC);
+            //diffXplot[plotCounter-1] = log10(diffX);    PLOT DIFFX vs TIME
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
             
@@ -4428,14 +4409,14 @@ int main() {
                 Xplot[i][plotCounter-1] = X[i];
                 FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
-                ASYkdtplot[i][plotCounter-1] = ASYkdt[i];
+               // ASYkdtplot[i][plotCounter-1] = ASYkdt[i];  PLOT KDT VALUES OF EACH ISOTOPE VS TIME
             }
 
             // Output to screen
             
-            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%3.5e  diffC=%2.5e",
+            printf("\n%d/%d t=%7.4e dt=%7.4e Steps=%d Asy=%d/%d EqRG=%d/%d sumMF=%e diffX=%e",  //dE=%e E=%e",
                 plotCounter, plotSteps, t, dt,totalTimeSteps, totalAsy, ISOTOPES, totalEquilRG, 
-                numberRG, sumMF, diffC //ECON*netdERelease, ECON*ERelease
+                numberRG, sumMF, diffX //ECON*netdERelease, ECON*ERelease
             );
 
             // Increment the plot output counter for next graphics output
@@ -4574,7 +4555,7 @@ void restoreEquilibriumProg(){
         evolveToEquilibrium();
 
         // Prevent errors occuring when te first RG is going in and out of EQ.         
-        if (totalEquilRG > 0){
+   //     if (totalEquilRG > 0){
         // Inventory reaction groups in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
@@ -4632,11 +4613,10 @@ void restoreEquilibriumProg(){
             
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
-            
-          //  Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y 
+           //Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y
             X[i] = Y[i]*(double)AA[i];
         }
-        }
+    //    }
     
     } // end while iteration loop
   
