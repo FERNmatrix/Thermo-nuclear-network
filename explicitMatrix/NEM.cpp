@@ -273,7 +273,7 @@ double diffX;                        // sumMF - 1.0
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double massTol = 1.0e-7;         // Mass tolerance btwn consecutive sumXs
+double massTol = 1.0e-10;         // Mass tolerance btwn consecutive sumXs
 double lowtol = 1e-12;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
@@ -3407,6 +3407,7 @@ class Integrate: public Utilities {
                 //2. If dt has been decreased to make diffX < massTol, even if diffX is now < lowtol, pass along dt
                 if(diffX < massTol && recountD > 0) passdt = true;
 
+                //printf("\n DiffX = %2.6e      sumMF = %2.6e     dt = %2.5e", diffX, sumMF, dt);
 
                 //Before exiting loop, make sure all populations are correct and sum the mass fractions as well
                 if(passdt == true){
@@ -4125,7 +4126,7 @@ int main() {
     }   printf("Carbon has X=%2.16f",X[1]);
         printf("Oxygen has X=%2.16f",X[2]);
     // END OF RENORMALIZATION BLOCK   
-    
+
     for(int i=0; i<SIZE; i++){
         reaction[i].computeConstantFacs(T9, rho);
         reaction[i].computeRate(T9, rho);
@@ -4394,7 +4395,7 @@ int main() {
             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
             
             sumXplot[plotCounter-1] = sumMF;
-            diffXplot[plotCounter-1] = log10(diffX);    //PLOT DIFFX vs TIME
+            diffXplot[plotCounter-1] = log10(diffX);   // PLOT DIFFX vs TIME
             numAsyplot[plotCounter-1] = totalAsy;
             totalEquilRG = 0;
             
