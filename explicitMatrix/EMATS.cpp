@@ -159,7 +159,7 @@ void setReactionFluxes();
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
@@ -238,8 +238,8 @@ double dt_start = 0.01*start_time;     // Initial value of integration dt
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, check should not be costly.
 
-double equilibrateTime = 1.0e-6;   // Begin checking for PE
-double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1.0e-7;   // Begin checking for PE
+double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -273,7 +273,7 @@ double diffX;                        // sumMF - 1.0
 double diffC;                        // |sumMF - 1.0| for current timestep value
 double diffP;                        // |sumMFlast - 1.0| for previous timestep
 
-double massTol = 1.0e-5;         // Mass tolerance btwn consecutive sumXs
+double massTol = 1.0e-6;         // Mass tolerance btwn consecutive sumXs
 double lowtol = 1e-12;       // Lower bound of mass tolerance that would allow dt to increase more if possible
 
 //double dtgrow = 1.03;               // Amount dt grows by initially (3%)
@@ -3407,7 +3407,6 @@ class Integrate: public Utilities {
                 //2. If dt has been decreased to make diffX < massTol, even if diffX is now < lowtol, pass along dt
                 if(diffX < massTol && recountD > 0) passdt = true;
 
-
                 //Before exiting loop, make sure all populations are correct and sum the mass fractions as well
                 if(passdt == true){
                     updatePopulations(dt);
@@ -4125,7 +4124,7 @@ int main() {
     }   printf("Carbon has X=%2.16f",X[1]);
         printf("Oxygen has X=%2.16f",X[2]);
     // END OF RENORMALIZATION BLOCK   
-    
+
     for(int i=0; i<SIZE; i++){
         reaction[i].computeConstantFacs(T9, rho);
         reaction[i].computeRate(T9, rho);
@@ -4596,7 +4595,7 @@ void restoreEquilibriumProg(){
                 
                 // Find the equilibrated RGs the isotope appears in
                 
-                for(int j=0; j<numberRG; j++){
+                for(int j=0; j<countConstraints; j++){
                     
                     if( RG[j].getisEquil() ){
                         
@@ -4610,11 +4609,14 @@ void restoreEquilibriumProg(){
                     }
                 }
             }
-            
+
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
-           //Y[i] = Ysum/(double)numberCases; // moved into k-for loop to allow other isotopes (not in RGs) to be in EQ but not change Y
-            X[i] = Y[i]*(double)AA[i];
+            
+            if(numberCases>0) {
+                Y[i] = Ysum/(double)numberCases;
+                X[i] = Y[i]*(double)AA[i];
+            }
         }
     //    }
     
