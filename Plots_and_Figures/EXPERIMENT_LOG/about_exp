@@ -1,0 +1,18 @@
+
+Written by Adam Cole
+
+
+Experiment are a method developed by me and my team to catalog our progress in reserching the Explicit Matrix C++ Code
+
+what follows, is a detailed description of the experiment format.
+
+The experiment is a standardised file folder structure that assists in the cataloging data about edits of the C++ code. 
+The name of any experiment is { EXP_Name_Date }. Where Name is replaced by the name of the experiment, and Date is replaced by the date the experiment started. 
+# we could also have a procedure for renaming it after the experiment is completed 
+The contence of the folder will be called an entry, 
+
+1). The first entry of an experiment is a documentation of the modification to the C++ code.
+2). The second entry is a  "Ticker_Tape" readout of every "computer action", The vaiable TC.
+3). The third entry is all standard relivant data/plots i.e. t vs. dt; t vs. mass fraction.
+4). The fourth entry is any extra relivant data/plots.
+5). The fith and last is a text document that has an experiment report. 
