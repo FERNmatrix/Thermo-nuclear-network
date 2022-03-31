@@ -2624,7 +2624,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Its static functions can be called directly from the class
     // without having to instantiate.
     
-    private:
+    public:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
@@ -5782,12 +5782,24 @@ void showY(){
 // update Y0[] array and Species object isotope[] with current Y[] values.
 
 void updateY0(){
+   
+    // Set Y0 in main array Y0[i] and in Species objects isotope[i]
+   
     for(int i=0; i<ISOTOPES; i++){
         Y0[i] = Y[i];
         isotope[i].setY0(Y[i]);
     }
+   
+    // Set Y0 in ReactionGroup objects RG[i]
+   
+    for(int i=0; i<numberRG; i++){
+        for(int j=0; j<RG[i].getniso(); j++){
+            int jj = RG[i].getisoindex(j);
+            RG[i].setisoY0(j, Y[jj]);
+        }
+    }
+   
 }
-
 
 // Function computeReactionFluxes() that can be called from main or another class to set
 // flux fields in the reaction[] objects.  Generally rates only
