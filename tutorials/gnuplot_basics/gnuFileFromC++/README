@@ -1,0 +1,17 @@
+Example of outputting a data file in text format from a C/C++ program
+and reading the data file and plotting with gnuplot. Compile and execute
+the C++ program.  On my Fedora Linux system I used
+
+> gcc gnuFile.cpp -o gnuFile -lm -lstdc++
+> ./gnuFile
+
+to compile and execute.  This produces a data file gnufile.data, which
+can be plotted with
+
+> gnuplot
+gnuplot> load "gnuplot_example.gnu"
+
+which should read the data file, plot to the screen, and also output the plot files
+
+gnuplot_example.eps
+gnuplot_example.png
