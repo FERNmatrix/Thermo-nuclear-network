@@ -1,4 +1,4 @@
-# ASY+PE method (no partition functions): 9011 integration steps in 2.0257e-01 seconds
+# ASY+PE method (no partition functions): 9011 integration steps in 1.1506e+01 seconds
 # All quantities except Asy, RG_PE, and sumX are log10(x)
 # Log of absolute values for E and dE/dt as they can be negative
 # Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless 
