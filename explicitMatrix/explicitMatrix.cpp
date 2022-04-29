@@ -73,7 +73,7 @@ using std::string;
 
 //  SIZE defines the number of reactions to be calculated. ISOTOPES defines the number 
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
-// //  to read them in and assign them dynamically.
+//  to read them in and assign them dynamically.
 
 /*
 ------------------------------------------------------------------------------------------
