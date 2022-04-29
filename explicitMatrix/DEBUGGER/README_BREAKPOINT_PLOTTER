@@ -1,0 +1,165 @@
+Here are some examples of using custom breakpoints in gdb to output a file of 
+variable values that gnuplot can plot. Compile with 
+ 
+ gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+ 
+and execute with
+ 
+ gdb explicitMatrix | tee gdb_debug.out
+ 
+which pipes output simultaneously to the screen and to the file gdb_debug.out.  
+Now at the debugger prompt set custom breakpoints as follows:
+
+ (gdb) b 4436 
+ (gdb) commands
+ >silent
+ >printf"\ngnu: #        t        dt      equilR      kratio  thisDevious maxeqcheck isEquil\n"
+ >end
+ (gdb) b 3324 if totalTimeSteps>304 && RGn==8
+ (gdb) commands
+ >silent
+ >printf "gnu: %d %8.4e %8.4e %8.4e %8.4e %8.4e %8.4e %d\n",totalTimeSteps,t,dt,equilRatio,kratio,thisDevious,maxeqcheck,isEquil
+ >end
+
+(where I have omitted the standard messages output to the screen when the 
+breakpoints and commands are set). Then at the debugger prompt  type "r" to run, 
+and continue to type "c" to continue at each breakpoint until the program 
+completes or you exit the debugger.  The output file corresponding to that 
+screen session is in the file gdb_debug.out attached below.  That file can be 
+cleaned up into gnuplot format by catting the file through grep filters and 
+redirecting to a new output file gdb.out:
+
+ cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb.out
+ 
+Now the file gdb.out should have extraneous output removed and be in a format 
+that gnuplot can read.
+
+NOTES:
+
+1.  The first breakpoint isn't essential to generating the plot;  it is just set 
+outside the loop to provide column names for the humans to read in the input to 
+gnuplot.
+
+2.  The quotes in the grep filters aren't essential for the words used here, but 
+I put them for clarity. (The -v flag for grep  turns "is a match" into "is not a 
+match".)
+
+3.  If you want to run to the end, writing at each breakpoint to the plot file, 
+add the command cont (continue) to the commands for the breakpoint:
+
+(gdb) b 4436
+(gdb) commands
+>silent
+>printf"\n#gnu: steps t        dt      equilR      kratio  thisDevious maxeqcheck isEquil\n"
+>cont
+>end
+(gdb) b 3324 if totalTimeSteps>290 && RGn==8
+(gdb) commands
+>silent
+>printf "gnu: %d %8.4e %8.4e %8.4e %8.4e %8.4e %8.4e %d\n",totalTimeSteps,t,dt,equilRatio,kratio,thisDevious,maxeqcheck,isEquil
+>cont
+>end
+  
+Now execution will continue automatically each time the 3324 breakpoint is 
+encountered with no pause (inserting cont in the breakpoint command string is 
+equivalent to manually hitting a c each time the breakpoint is encountered). 
+This will write the full file gdb_debug.out without user intervention.
+
+Another Example:
+
+b 3289 if totalTimeSteps>304 && RGn==9
+commands
+silent
+printf "\ngnu:#  steps    t         dt    equilRatio rgclass crg0     crg1    crg2      crg3      isoYeq0   isoYeq1   isoYeq2   isoYeq3    isoY0     isoY1        isoY2   isoY3   maxeqcheck mostDevious thisDevious kratio    Y[0]    Y[5]     Y[6]"
+printf "\ngnu: %d %5.3e %5.3e %5.3e %d %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e", totalTimeSteps,t,dt,equilRatio,rgclass,crg[0],abs(crg[1]),abs(crg[2]),abs(crg[3]),isoYeq[0],isoYeq[1],isoYeq[2],isoYeq[3],isoY[0],isoY[1],isoY[2],isoY[3],maxeqcheck,mostDevious,thisDevious,kratio,Y[0],Y[5],Y[6]
+cont
+end
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+b 3302 if t>1e-8 && RGn==9
+commands
+silent
+printf "\ngnu:#  steps    t         dt    equilRatio  |crg0|     |crg1|    |crg2|    |crg3|   isoYeq0   isoYeq1   isoYeq2   isoYeq3    isoY0      isoY1     isoY2       isoY3  maxeqcheck thisDevious kratio    Y[0]      Y[5]      Y[6]        |aa|       |bb|     |cc|    |rootq|"
+printf "\ngnu: %d %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e", totalTimeSteps,t,dt,equilRatio,abs(crg[0]),abs(crg[1]),abs(crg[2]),abs(crg[3]),isoYeq[0],isoYeq[1],isoYeq[2],isoYeq[3],isoY[0],isoY[1],isoY[2],isoY[3],maxeqcheck,thisDevious,kratio,Y[0],Y[5],Y[6],abs(aa),abs(bb),abs(cc),abs(rootq)
+cont
+end
+
+To clean up for gnuplot:
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb.out
+
+
+(gdb)
+b 3343 if totalTimeSteps > 304 && RGn==9 && isEquil
+commands
+silent
+printf"\n3343: step=%d t=%5.3e thisDevious=%5.3e equilRatio=%5.3e kratio=%5.3e ratio=%5.3e\n",totalTimeSteps,t,thisDevious,equilRatio,kratio,abs((equilRatio-kratio)/kratio)
+end
+(gdb)
+
+(gdb) 
+b 3475 if totalTimeSteps > 304 && RGn==9
+commands
+silent
+printf"\n3475: step=%d t=%5.3e thisDevious=%5.3e equilRatio=%5.3e kratio=%5.3e ratio=%5.3e\n",totalTimeSteps,t,thisDevious,equilRatio,kratio,abs((equilRatio-kratio)/kratio)
+end
+(gdb)
+
+(gdb)
+b 3044 if totalTimeSteps > 304 && RGn==9
+commands
+silent
+printf "\n3044: t=%5.3e isoY0[%d]=%6.4e isoY[%d]=%6.4e isoindex=%d",t,k,isoY0[k],k,isoY[k],isoindex[k]
+cont
+end 
+
+(gdb)
+b 3828 if totalTimeSteps > 304 && totalTimeSteps < 316
+commands
+silent
+printf "\n3828: steps=%d t=%5.3e isotope=%d asy=%d Y=%6.4e Y0=%6.4e",totalTimeSteps,t,i,isAsy[i],Y[i],Y0[i]
+cont
+end 
+
+
+b 4520 if t>1e-8 && RG[i].getRGn()==9
+commands
+silent
+printf "\ngnu: #    steps        t        dt   isoY[0]     Y[0]      isoY[1]     Y[5]     isoY[2]     Y[6]"
+printf "\ngnu:  %d %5.3e %5.3e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,t,dt,RG[i].isoY[0],Y[0],RG[i].isoY[1],Y[5],RG[i].isoY[2],Y[6]
+cont
+end
+
+b 4509 if t>1e-8
+commands
+silent
+printf "\ngnu: %d %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e",totalTimeSteps,t,Y[0],Y[5],Y[6],Flux[28],Flux[29],RG[9].getnetflux()
+cont
+end
+
+---------------------------------------------------------
+
+b 4004 if t > 1e-9 && dtMode == 2
+commands
+silent
+printf "\ngnu:  #     Steps      t        Y0[0]    Y0[5]      Y0[6]       Y[0]       Y[5]        Y[6]      F+[0]      F+[5]      F+[6]       F-[0]     F-[5]      F-[6]    |dF[0]|     |dF[5]|  |dF[6]|      keff[0]    keff[5]    keff[6]   flux28      flux29   flux30    flux31"
+printf "\ngnu:  %d %5.3e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,t,Y0[0],Y0[5],Y0[6],Y[0],Y[5],Y[6],FplusSum[0],FplusSum[5],FplusSum[6],FminusSum[0],FminusSum[5],FminusSum[6],dF0,dF5,dF6,keff[0],keff[5],keff[6],reaction[28].flux,reaction[29].flux,reaction[30].flux,reaction[31].flux
+cont
+end
+
+PROCESSING:
+gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+gdb explicitMatrix | tee gdb_debug.out
+Paste in above commnds to insert conditional breakpoint with commands. Then,
+(gdb)r
+(gdb)quit
+Change # to $ in first header in gdb_debug.out
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++.out
+Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++.out
+gdb-C++.out is now a properly formatted gnuplot input file
+
+---------------------------------------------------------
+
+
+

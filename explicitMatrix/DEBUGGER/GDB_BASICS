@@ -1,0 +1,122 @@
+ 
+ * -----------------------------------------------
+ * Using the GDB debugger (Fedora Linux example):
+ * -----------------------------------------------
+ *  
+ * GDB DEBUGGER: For Fedora Linux, install GDB if not already installed:
+ * 
+ *      dnf intall gdb
+ * 
+ * Compile the program with a -g flag; for example:
+ * 
+ *      gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+ * 
+ * Launch the debugger with a simple GUI interface:
+ * 
+ *      gdb -tui <executable name>  
+ * 
+ * (Example: gdb -tui explicitMatrix)
+ * 
+ * NOTE: The format of the two tui windows (default: code in upper window and
+ * gdb commands below that) can get messed up, at least in my implementation.  
+ * The format can be restored by ctrl l.
+ * 
+ * Also, the gdb GUI isn't great so it is often more useful to simply use gdb from
+ * the command line:
+ * 
+ *      gdb <executable> | tee gdb_debug.out
+ * 
+ * which will send debugging output to the screen and to the file debug.out.  This
+ * is particularly the case if you implement some of the breakpoint with constraints
+ * debugging outlined below.
+ * 
+ * Some basic gdb commands:
+ * 
+ *      r   Run code (stopping at any breakpoints)
+ *      break n (or b n)  Set breakpoint at line n
+ *      break n if x>y    Set conditional breakpoint at line n if x>y satisfied.
+ *                        Can be compound legal logical C statements.  
+ *                        Example:  break n if x==3 && (A>1 || B==0).
+ *                        NOTE: Logical equality is x==y, not x=y.
+ *                        Breakpoints must generally be set on executable statements.
+ *      c    Continue execution after breakpoint. (c n to continue through n breakpoints)
+ *      p x    Print value of x at current breakpoint. If x is an array with no
+ *             index argument, prints values of all members of array. Printed values 
+ *             are those of variables BEFORE the breakpoint statement is executed.
+ *      p x[i]    Print value of array member x[i] at current breakpoint
+ *      info b    Gives numbered list of breakpoints that are set with description
+ *          del n     Deletes breakpoint number n from above info b list
+ *          del n m   Deletes breakpoints n and m from info b list
+ *          del n-m   Deletes breakpoints n through m from info b list
+ *      quit   To exit current debugging session
+ * 
+ * The left-right, up-down arrows operate in the upper (code display) window in the
+ * tui interface, not the lower gdb command window, but the following commands
+ * can be used in the gdb command window to recall commands already issued:
+ * 
+ *      ctrl p    Previous gdb command in history list
+ *      ctrl n    Next gdb command in history list
+ * 
+ * This prevents having to type commands over. If you instead use gdb on the 
+ * command line the keys will function normally.
+ * 
+ * To set a conditional breakpoint and automatically print values of variables:
+ * First set the breakpoint with conditions expressed in normal
+ * C syntax, but with parentheses omitted. For example,
+ * 
+ *   gdb explicitMatrix | tee gdb_debug.out
+ *   (gdb) b 3309 if totalTimeSteps>304 && RGn=8
+ *   Breakpoint 2 at 0x40f854: file explicitMatrix.cpp, line 3309.
+ * 
+ * Then type "commands" at the gdb prompt and follow directions:
+ * 
+ *   (gdb) commands
+ *   Type commands for breakpoint(s) 2, one per line.
+ *   End with a line saying just "end".
+ *   >silent
+ *   >printf"totalTimeSteps=%d RGn=%d time=%5.3e isEquil=%d thisDevious=%5.3e\n",totalTimeSteps,RGn,t,isEquil,thisDevious
+ *   >cont
+ *   >end
+ * 
+ * In the string of commands "silent" suppresses the normal gdb breakpoint message,
+ * "cont" is a continue command so the program does not stop and end terminates the 
+ * command string.  If you type the "info b" command for breakpoints at the (gdb) 
+ * prompt you should get:
+ * 
+ *   (gdb) info b
+ *   Num     Type           Disp Enb Address            What
+ *   2       breakpoint     keep y   0x000000000040f854 in ReactionGroup::computeEqRatios() at explicitMatrix.cpp:3309
+ *   stop only if totalTimeSteps>304 && RGn=8
+ *   silent
+ *   printf"totalTimeSteps=%d RGn=%d time=%5.3e isEquil=%d thisDevious=%5.3e",totalTimeSteps,RGn,t,isEquil,thisDevious
+ *   cont
+ *   (gdb)
+ * 
+ * and running with 
+ * 
+ *      (gdb) r 
+ * 
+ * will execute with the conditional breakpoint actions when the code hits
+ * the breakpoint. Here is another example that illustrates using multiple print
+ * statements at the breakpoint.
+ * 
+ * b 4520 if t>1e-8 && RG[i].getRGn()==9
+ * commands
+ * silent
+ * printf "\ngnu:      steps        t        dt"
+ * printf "\ngnu: %d %5.3e %5.3e",totalTimeSteps,t,dt
+ * cont
+ * end
+ * 
+ * A card with a more comprehensive list of GDB commands may be found at
+ * 
+ *      http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf
+ * 
+ * and is included as gdb-refcard.pdf in the directory with the present source code. Get
+ * help from the command line with
+ * 
+ *      gdb --help
+ * 
+ * and from within gdb you can type "help" on the command line.
+ * 
+ * 
