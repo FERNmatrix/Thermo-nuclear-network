@@ -1,0 +1,228 @@
+
+Sat Jan 29 11:33:59 2022
+Using ASY method
+
+Integration using ASY method
+T9=5.000e+00 rho=1.000e+08 massTol=1.000e-08 sf=200.00 equiTol=1.00e-02
+maxit=20 downbumper= 0.700 EpsA=1.00e-04 EpsR=1.00e-04
+Network: data/CUDAnet_4alpha.inp  Rates: data/rateLibrary_4alpha.data
+Integration steps = 0 totalIterations = 0
+Timer: 5.0260e+00 ms used
+
+BEGIN TIME INTEGRATION:
+
+1 it=0 t=1.23e-18 dt=1.23e-19 Steps=54 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.56e+08 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+2 it=0 t=1.48e-18 dt=1.48e-19 Steps=56 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=5.52e+08 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+3 it=0 t=1.80e-18 dt=1.80e-19 Steps=58 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=6.69e+08 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+4 it=0 t=2.17e-18 dt=2.17e-19 Steps=60 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=8.11e+08 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+5 it=0 t=2.39e-18 dt=2.39e-19 Steps=61 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=8.92e+08 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+6 it=0 t=2.89e-18 dt=2.89e-19 Steps=63 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.08e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+7 it=0 t=3.50e-18 dt=3.50e-19 Steps=65 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.31e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+8 it=0 t=4.24e-18 dt=4.24e-19 Steps=67 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.58e+09 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+9 it=0 t=5.13e-18 dt=5.13e-19 Steps=69 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.92e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+10 it=0 t=5.64e-18 dt=5.64e-19 Steps=70 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.11e+09 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+11 it=0 t=6.82e-18 dt=6.82e-19 Steps=72 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.55e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+12 it=0 t=8.26e-18 dt=8.26e-19 Steps=74 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.09e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+13 it=0 t=9.99e-18 dt=9.99e-19 Steps=76 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.74e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+14 it=0 t=1.21e-17 dt=1.21e-18 Steps=78 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.52e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+15 it=0 t=1.46e-17 dt=1.46e-18 Steps=80 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=5.47e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+16 it=0 t=1.61e-17 dt=1.61e-18 Steps=81 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=6.02e+09 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+17 it=0 t=1.95e-17 dt=1.95e-18 Steps=83 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=7.29e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+18 it=0 t=2.36e-17 dt=2.36e-18 Steps=85 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=8.82e+09 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+19 it=0 t=2.85e-17 dt=2.85e-18 Steps=87 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.07e+10 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+20 it=0 t=3.45e-17 dt=3.45e-18 Steps=89 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.29e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+21 it=0 t=3.79e-17 dt=3.79e-18 Steps=90 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.42e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+22 it=0 t=4.59e-17 dt=4.59e-18 Steps=92 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.72e+10 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+23 it=0 t=5.55e-17 dt=5.55e-18 Steps=94 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.08e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+24 it=0 t=6.72e-17 dt=6.72e-18 Steps=96 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.52e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+25 it=0 t=8.13e-17 dt=8.13e-18 Steps=98 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.05e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+26 it=0 t=8.95e-17 dt=8.95e-18 Steps=99 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.35e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+27 it=0 t=1.08e-16 dt=1.08e-17 Steps=101 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.05e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+28 it=0 t=1.31e-16 dt=1.31e-17 Steps=103 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.91e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+29 it=0 t=1.58e-16 dt=1.58e-17 Steps=105 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=5.94e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+30 it=0 t=1.92e-16 dt=1.92e-17 Steps=107 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=7.18e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+31 it=0 t=2.32e-16 dt=2.32e-17 Steps=109 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=8.69e+10 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+32 it=0 t=2.55e-16 dt=2.55e-17 Steps=110 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=9.56e+10 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+33 it=0 t=3.09e-16 dt=3.09e-17 Steps=112 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.16e+11 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+34 it=0 t=3.74e-16 dt=3.74e-17 Steps=114 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.40e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+35 it=0 t=4.52e-16 dt=4.52e-17 Steps=116 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.69e+11 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+36 it=0 t=5.47e-16 dt=5.47e-17 Steps=118 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.05e+11 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+37 it=0 t=6.02e-16 dt=6.02e-17 Steps=119 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.25e+11 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+38 it=0 t=7.28e-16 dt=7.28e-17 Steps=121 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.73e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+39 it=0 t=8.81e-16 dt=8.81e-17 Steps=123 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.30e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+40 it=0 t=1.07e-15 dt=1.07e-16 Steps=125 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.99e+11 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+41 it=0 t=1.29e-15 dt=1.29e-16 Steps=127 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.83e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+42 it=0 t=1.42e-15 dt=1.42e-16 Steps=128 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=5.31e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+43 it=0 t=1.72e-15 dt=1.72e-16 Steps=130 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=6.43e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+44 it=0 t=2.08e-15 dt=2.08e-16 Steps=132 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=7.78e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+45 it=0 t=2.51e-15 dt=2.51e-16 Steps=134 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=9.42e+11 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+46 it=0 t=3.04e-15 dt=3.04e-16 Steps=136 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.14e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+47 it=0 t=3.68e-15 dt=3.68e-16 Steps=138 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.38e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+48 it=0 t=4.05e-15 dt=4.05e-16 Steps=139 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.52e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+49 it=0 t=4.90e-15 dt=4.90e-16 Steps=141 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=1.83e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+50 it=0 t=5.93e-15 dt=5.93e-16 Steps=143 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.22e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+51 it=0 t=7.17e-15 dt=7.17e-16 Steps=145 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=2.69e+12 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+52 it=0 t=8.68e-15 dt=8.68e-16 Steps=147 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.25e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+53 it=0 t=9.55e-15 dt=9.55e-16 Steps=148 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=3.58e+12 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+54 it=0 t=1.16e-14 dt=1.16e-15 Steps=150 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=4.33e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+55 it=0 t=1.40e-14 dt=1.40e-15 Steps=152 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.75e+26 E=5.23e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+56 it=0 t=1.69e-14 dt=1.69e-15 Steps=154 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=6.33e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+57 it=0 t=2.05e-14 dt=2.05e-15 Steps=156 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=7.66e+12 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+58 it=0 t=2.25e-14 dt=2.25e-15 Steps=157 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=8.43e+12 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+59 it=0 t=2.72e-14 dt=2.72e-15 Steps=159 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.02e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+60 it=0 t=3.30e-14 dt=3.30e-15 Steps=161 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.23e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+61 it=0 t=3.99e-14 dt=3.99e-15 Steps=163 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.49e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+62 it=0 t=4.83e-14 dt=4.83e-15 Steps=165 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.81e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+63 it=0 t=5.84e-14 dt=5.84e-15 Steps=167 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=2.19e+13 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+64 it=0 t=6.42e-14 dt=6.42e-15 Steps=168 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=2.40e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+65 it=0 t=7.77e-14 dt=7.77e-15 Steps=170 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=2.91e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+66 it=0 t=9.40e-14 dt=9.40e-15 Steps=172 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=3.52e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+67 it=0 t=1.14e-13 dt=1.14e-14 Steps=174 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=4.26e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+68 it=0 t=1.38e-13 dt=1.38e-14 Steps=176 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=5.15e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+69 it=0 t=1.51e-13 dt=1.51e-14 Steps=177 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=5.67e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+70 it=0 t=1.83e-13 dt=1.83e-14 Steps=179 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=6.86e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+71 it=0 t=2.22e-13 dt=2.22e-14 Steps=181 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=8.30e+13 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+72 it=0 t=2.68e-13 dt=2.68e-14 Steps=183 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.00e+14 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+73 it=0 t=3.25e-13 dt=3.25e-14 Steps=185 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.21e+14 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+74 it=0 t=3.57e-13 dt=3.57e-14 Steps=186 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.74e+26 E=1.34e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+75 it=0 t=4.32e-13 dt=4.32e-14 Steps=188 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.73e+26 E=1.62e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+76 it=0 t=5.23e-13 dt=5.23e-14 Steps=190 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.73e+26 E=1.95e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+77 it=0 t=6.33e-13 dt=6.33e-14 Steps=192 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.73e+26 E=2.36e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+78 it=0 t=7.65e-13 dt=7.65e-14 Steps=194 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.72e+26 E=2.86e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+79 it=0 t=8.42e-13 dt=8.42e-14 Steps=195 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.72e+26 E=3.14e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+80 it=0 t=1.02e-12 dt=1.02e-13 Steps=197 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.72e+26 E=3.80e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+81 it=0 t=1.23e-12 dt=1.23e-13 Steps=199 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.71e+26 E=4.59e+14 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+82 it=0 t=1.49e-12 dt=1.49e-13 Steps=201 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.70e+26 E=5.55e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+83 it=0 t=1.80e-12 dt=1.80e-13 Steps=203 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.69e+26 E=6.71e+14 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+84 it=0 t=2.18e-12 dt=2.18e-13 Steps=205 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.68e+26 E=8.11e+14 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+85 it=0 t=2.40e-12 dt=2.40e-13 Steps=206 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.68e+26 E=8.91e+14 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+86 it=0 t=2.91e-12 dt=2.91e-13 Steps=208 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.66e+26 E=1.08e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+87 it=0 t=3.52e-12 dt=3.52e-13 Steps=210 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.65e+26 E=1.30e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+88 it=0 t=4.26e-12 dt=4.26e-13 Steps=212 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.63e+26 E=1.57e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+89 it=0 t=5.15e-12 dt=5.15e-13 Steps=214 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.60e+26 E=1.89e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+90 it=0 t=5.66e-12 dt=5.66e-13 Steps=215 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.59e+26 E=2.07e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+91 it=0 t=6.85e-12 dt=6.85e-13 Steps=217 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.56e+26 E=2.50e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+92 it=0 t=8.29e-12 dt=8.29e-13 Steps=219 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.52e+26 E=3.01e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+93 it=0 t=1.00e-11 dt=1.00e-12 Steps=221 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.47e+26 E=3.61e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+94 it=0 t=1.21e-11 dt=1.21e-12 Steps=223 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.42e+26 E=4.34e+15 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+95 it=0 t=1.34e-11 dt=1.34e-12 Steps=224 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.39e+26 E=4.75e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+96 it=0 t=1.62e-11 dt=1.62e-12 Steps=226 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.32e+26 E=5.69e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+97 it=0 t=1.96e-11 dt=1.96e-12 Steps=228 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.24e+26 E=6.79e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+98 it=0 t=2.37e-11 dt=2.37e-12 Steps=230 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.15e+26 E=8.09e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+99 it=0 t=2.86e-11 dt=2.86e-12 Steps=232 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.04e+26 E=9.62e+15 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+100 it=0 t=3.46e-11 dt=3.46e-12 Steps=234 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.92e+26 E=1.14e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+101 it=0 t=3.81e-11 dt=3.81e-12 Steps=235 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.85e+26 E=1.24e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+102 it=0 t=4.61e-11 dt=4.61e-12 Steps=237 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.70e+26 E=1.46e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+103 it=0 t=5.58e-11 dt=5.58e-12 Steps=239 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.54e+26 E=1.71e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+104 it=0 t=6.75e-11 dt=6.75e-12 Steps=241 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.36e+26 E=1.99e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+105 it=0 t=8.17e-11 dt=8.17e-12 Steps=243 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.16e+26 E=2.30e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+106 it=0 t=8.99e-11 dt=8.99e-12 Steps=244 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.06e+26 E=2.47e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+107 it=0 t=1.09e-10 dt=1.09e-11 Steps=246 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.85e+26 E=2.83e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+108 it=0 t=1.32e-10 dt=1.32e-11 Steps=248 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.64e+26 E=3.21e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+109 it=0 t=1.59e-10 dt=1.59e-11 Steps=250 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.42e+26 E=3.62e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+110 it=0 t=1.93e-10 dt=1.93e-11 Steps=252 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.21e+26 E=4.04e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+111 it=0 t=2.12e-10 dt=2.12e-11 Steps=253 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.11e+26 E=4.26e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+112 it=0 t=2.56e-10 dt=2.56e-11 Steps=255 Asy=0/4 Eq=0/4 SX=1.000000 dE=9.18e+25 E=4.69e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+113 it=0 t=3.10e-10 dt=3.10e-11 Steps=257 Asy=0/4 Eq=0/4 SX=1.000000 dE=7.42e+25 E=5.11e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+114 it=0 t=3.75e-10 dt=3.75e-11 Steps=259 Asy=0/4 Eq=0/4 SX=1.000000 dE=5.86e+25 E=5.51e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+115 it=0 t=4.54e-10 dt=4.54e-11 Steps=261 Asy=0/4 Eq=0/4 SX=1.000000 dE=4.51e+25 E=5.89e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+116 it=0 t=5.50e-10 dt=5.50e-11 Steps=263 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.38e+25 E=6.24e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+117 it=0 t=6.05e-10 dt=6.05e-11 Steps=264 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.89e+25 E=6.40e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+118 it=0 t=7.31e-10 dt=7.31e-11 Steps=266 Asy=0/4 Eq=0/4 SX=1.000000 dE=2.06e+25 E=6.68e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+119 it=0 t=8.85e-10 dt=8.85e-11 Steps=268 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.40e+25 E=6.92e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+120 it=0 t=1.07e-09 dt=1.07e-10 Steps=270 Asy=0/4 Eq=0/4 SX=1.000000 dE=8.88e+24 E=7.11e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+121 it=0 t=1.30e-09 dt=1.30e-10 Steps=272 Asy=0/4 Eq=0/4 SX=1.000000 dE=5.04e+24 E=7.24e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+122 it=0 t=1.43e-09 dt=1.43e-10 Steps=273 Asy=0/4 Eq=0/4 SX=1.000000 dE=3.52e+24 E=7.29e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+123 it=0 t=1.72e-09 dt=1.72e-10 Steps=275 Asy=0/4 Eq=0/4 SX=1.000000 dE=1.13e+24 E=7.33e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+124 it=0 t=2.09e-09 dt=2.09e-10 Steps=277 Asy=0/4 Eq=0/4 SX=1.000000 dE=-5.34e+23 E=7.33e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+125 it=0 t=2.53e-09 dt=2.53e-10 Steps=279 Asy=0/4 Eq=0/4 SX=1.000000 dE=-1.63e+24 E=7.27e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+126 it=0 t=3.06e-09 dt=3.06e-10 Steps=281 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.29e+24 E=7.15e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+127 it=0 t=3.36e-09 dt=3.36e-10 Steps=282 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.48e+24 E=7.08e+16 E_R=1.11e-12 fast:c12+c12-->he4+ne20 Q=+4.621
+128 it=0 t=4.07e-09 dt=4.07e-10 Steps=284 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.66e+24 E=6.89e+16 E_R=0.00e+00 fast:c12+c12-->he4+ne20 Q=+4.621
+129 it=0 t=4.92e-09 dt=4.92e-10 Steps=286 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.60e+24 E=6.67e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+130 it=0 t=5.95e-09 dt=5.95e-10 Steps=288 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.38e+24 E=6.41e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+131 it=0 t=7.20e-09 dt=7.20e-10 Steps=290 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.05e+24 E=6.15e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+132 it=0 t=8.72e-09 dt=8.72e-10 Steps=292 Asy=0/4 Eq=0/4 SX=1.000000 dE=-1.66e+24 E=5.88e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+133 it=0 t=9.59e-09 dt=9.59e-10 Steps=293 Asy=0/4 Eq=0/4 SX=1.000000 dE=-1.45e+24 E=5.76e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+134 it=0 t=1.16e-08 dt=1.16e-09 Steps=295 Asy=0/4 Eq=0/4 SX=1.000000 dE=-1.05e+24 E=5.52e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+135 it=0 t=1.40e-08 dt=1.40e-09 Steps=297 Asy=0/4 Eq=0/4 SX=1.000000 dE=-6.98e+23 E=5.33e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+136 it=0 t=1.70e-08 dt=1.70e-09 Steps=299 Asy=0/4 Eq=0/4 SX=1.000000 dE=-4.17e+23 E=5.19e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+137 it=0 t=2.06e-08 dt=2.06e-09 Steps=301 Asy=0/4 Eq=0/4 SX=1.000000 dE=-2.18e+23 E=5.10e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+138 it=0 t=2.26e-08 dt=2.26e-09 Steps=302 Asy=0/4 Eq=0/4 SX=1.000000 dE=-1.49e+23 E=5.07e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+139 it=0 t=2.74e-08 dt=2.74e-09 Steps=304 Asy=0/4 Eq=1/4 SX=1.000000 dE=-6.08e+22 E=5.03e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+140 it=0 t=3.31e-08 dt=3.31e-09 Steps=306 Asy=0/4 Eq=1/4 SX=1.000000 dE=-2.13e+22 E=5.02e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+141 it=0 t=4.01e-08 dt=4.01e-09 Steps=308 Asy=0/4 Eq=1/4 SX=1.000000 dE=-8.44e+21 E=5.01e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+142 it=0 t=4.85e-08 dt=4.85e-09 Steps=310 Asy=0/4 Eq=1/4 SX=1.000000 dE=-6.69e+21 E=5.00e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+143 it=0 t=5.33e-08 dt=5.33e-09 Steps=311 Asy=0/4 Eq=1/4 SX=1.000000 dE=-7.18e+21 E=5.00e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+144 it=0 t=6.45e-08 dt=6.45e-09 Steps=313 Asy=0/4 Eq=1/4 SX=1.000000 dE=-8.60e+21 E=4.99e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+145 it=0 t=7.81e-08 dt=7.81e-09 Steps=315 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.70e+21 E=4.98e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+146 it=0 t=9.45e-08 dt=9.45e-09 Steps=317 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.03e+22 E=4.96e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+147 it=1 t=1.08e-07 dt=1.08e-08 Steps=319 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.06e+22 E=4.95e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+148 it=1 t=1.32e-07 dt=1.32e-08 Steps=322 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.08e+22 E=4.92e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+149 it=1 t=1.54e-07 dt=1.54e-08 Steps=325 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.08e+22 E=4.90e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+150 it=2 t=1.84e-07 dt=1.42e-08 Steps=329 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.08e+22 E=4.87e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+151 it=2 t=2.17e-07 dt=1.29e-08 Steps=334 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.07e+22 E=4.83e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+152 it=2 t=2.52e-07 dt=1.69e-08 Steps=338 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.07e+22 E=4.79e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+153 it=2 t=2.99e-07 dt=1.50e-08 Steps=344 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.06e+22 E=4.74e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+154 it=1 t=3.63e-07 dt=1.79e-08 Steps=353 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.05e+22 E=4.67e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+155 it=2 t=4.29e-07 dt=1.52e-08 Steps=361 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.04e+22 E=4.61e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+156 it=2 t=5.08e-07 dt=1.74e-08 Steps=372 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.03e+22 E=4.52e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+157 it=2 t=6.00e-07 dt=1.37e-08 Steps=384 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.02e+22 E=4.43e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+158 it=2 t=7.09e-07 dt=1.47e-08 Steps=398 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.00e+22 E=4.32e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+159 it=2 t=8.46e-07 dt=1.46e-08 Steps=416 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.87e+21 E=4.18e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+160 it=2 t=1.00e-06 dt=1.36e-08 Steps=437 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.66e+21 E=4.03e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+161 it=2 t=1.19e-06 dt=1.68e-08 Steps=462 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.41e+21 E=3.85e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+162 it=2 t=1.41e-06 dt=1.34e-08 Steps=491 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.13e+21 E=3.64e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+163 it=2 t=1.68e-06 dt=1.34e-08 Steps=526 Asy=0/4 Eq=1/4 SX=1.000000 dE=-8.80e+21 E=3.41e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+164 it=2 t=2.00e-06 dt=1.68e-08 Steps=568 Asy=0/4 Eq=1/4 SX=1.000000 dE=-8.41e+21 E=3.13e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+165 it=2 t=2.37e-06 dt=1.27e-08 Steps=617 Asy=0/4 Eq=1/4 SX=1.000000 dE=-7.98e+21 E=2.83e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+166 it=2 t=2.83e-06 dt=1.61e-08 Steps=676 Asy=0/4 Eq=1/4 SX=1.000000 dE=-7.48e+21 E=2.47e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+167 it=2 t=3.35e-06 dt=1.66e-08 Steps=745 Asy=0/4 Eq=1/4 SX=1.000000 dE=-6.93e+21 E=2.10e+16 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+168 it=2 t=3.98e-06 dt=1.27e-08 Steps=829 Asy=0/4 Eq=1/4 SX=1.000000 dE=-6.31e+21 E=1.68e+16 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+169 it=2 t=4.73e-06 dt=1.49e-08 Steps=927 Asy=0/4 Eq=1/4 SX=1.000000 dE=-5.64e+21 E=1.23e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+170 it=2 t=5.62e-06 dt=1.70e-08 Steps=1044 Asy=0/4 Eq=1/4 SX=1.000000 dE=-4.93e+21 E=7.61e+15 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+171 it=2 t=6.69e-06 dt=1.74e-08 Steps=1184 Asy=0/4 Eq=1/4 SX=1.000000 dE=-4.18e+21 E=2.78e+15 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+172 it=2 t=7.95e-06 dt=1.54e-08 Steps=1349 Asy=0/4 Eq=1/4 SX=1.000000 dE=-3.43e+21 E=-1.98e+15 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+173 it=2 t=9.44e-06 dt=1.46e-08 Steps=1546 Asy=0/4 Eq=1/4 SX=1.000000 dE=-2.70e+21 E=-6.55e+15 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+174 it=2 t=1.12e-05 dt=1.33e-08 Steps=1780 Asy=0/4 Eq=1/4 SX=1.000000 dE=-2.03e+21 E=-1.07e+16 E_R=1.11e-12 fast:ne20-->he4+o16 Q=-4.734
+175 it=2 t=1.33e-05 dt=1.46e-08 Steps=2058 Asy=0/4 Eq=1/4 SX=1.000000 dE=-1.44e+21 E=-1.44e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+176 it=2 t=1.59e-05 dt=1.59e-08 Steps=2389 Asy=0/4 Eq=1/4 SX=1.000000 dE=-9.54e+20 E=-1.73e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+177 it=2 t=1.88e-05 dt=1.48e-08 Steps=2781 Asy=0/4 Eq=1/4 SX=1.000000 dE=-5.83e+20 E=-1.96e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+178 it=1 t=2.24e-05 dt=1.80e-08 Steps=3248 Asy=0/4 Eq=2/4 SX=1.000000 dE=-3.24e+20 E=-2.12e+16 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+179 it=2 t=2.66e-05 dt=1.54e-08 Steps=3803 Asy=0/4 Eq=3/4 SX=1.000000 dE=-1.61e+20 E=-2.21e+16 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+180 it=2 t=3.16e-05 dt=1.35e-08 Steps=4463 Asy=0/4 Eq=4/4 SX=1.000000 dE=-6.99e+19 E=-2.27e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+181 it=2 t=3.76e-05 dt=1.70e-08 Steps=5246 Asy=0/4 Eq=4/4 SX=1.000000 dE=-2.59e+19 E=-2.29e+16 E_R=0.00e+00 fast:ne20-->he4+o16 Q=-4.734
+182 it=2 t=4.47e-05 dt=1.31e-08 Steps=6177 Asy=0/4 Eq=4/4 SX=1.000000 dE=-7.98e+18 E=-2.31e+16 E_R=5.55e-13 fast:ne20-->he4+o16 Q=-4.734
+183 it=2 t=5.31e-05 dt=2.06e-08 Steps=7196 Asy=0/4 Eq=4/4 SX=0.999999 dE=-1.94e+18 E=-2.31e+16 E_R=2.16e-05 fast:ne20-->he4+o16 Q=-4.734
+184 it=0 t=6.32e-05 dt=2.60e-07 Steps=7459 Asy=4/4 Eq=4/4 SX=0.999999 dE=-6.19e+17 E=-2.31e+16 E_R=1.13e-05 fast:ne20-->he4+o16 Q=-4.734
+185 it=0 t=7.50e-05 dt=7.88e-08 Steps=7624 Asy=2/4 Eq=4/4 SX=0.999999 dE=-2.77e+17 E=-2.31e+16 E_R=1.20e-05 fast:ne20-->he4+o16 Q=-4.734
+186 it=0 t=8.92e-05 dt=4.74e-07 Steps=7747 Asy=4/4 Eq=4/4 SX=0.999999 dE=-1.47e+17 E=-2.31e+16 E_R=1.49e-05 fast:ne20-->he4+o16 Q=-4.734
+187 it=4 t=1.06e-04 dt=8.57e-08 Steps=7867 Asy=2/4 Eq=4/4 SX=0.999999 dE=-2.46e+16 E=-2.31e+16 E_R=4.38e-05 fast:ne20-->he4+o16 Q=-4.734
+188 it=0 t=1.26e-04 dt=2.30e-06 Steps=7969 Asy=4/4 Eq=4/4 SX=0.999999 dE=3.60e+16 E=-2.31e+16 E_R=8.04e-05 fast:ne20-->he4+o16 Q=-4.734
+189 it=0 t=1.50e-04 dt=3.08e-07 Steps=8097 Asy=4/4 Eq=4/4 SX=0.999999 dE=-2.02e+16 E=-2.31e+16 E_R=1.01e-06 fast:ne20-->he4+o16 Q=-4.734
+190 it=0 t=1.79e-04 dt=2.62e-06 Steps=8201 Asy=4/4 Eq=4/4 SX=0.999999 dE=-3.33e+16 E=-2.31e+16 E_R=2.55e-05 fast:ne20-->he4+o16 Q=-4.734
+191 it=0 t=2.12e-04 dt=2.16e-06 Steps=8274 Asy=4/4 Eq=4/4 SX=0.999999 dE=1.20e+16 E=-2.31e+16 E_R=2.12e-05 fast:ne20-->he4+o16 Q=-4.734
+192 it=0 t=2.52e-04 dt=2.16e-06 Steps=8364 Asy=4/4 Eq=4/4 SX=0.999999 dE=9.67e+15 E=-2.31e+16 E_R=1.71e-05 fast:ne20-->he4+o16 Q=-4.734
+193 it=0 t=3.00e-04 dt=2.62e-06 Steps=8496 Asy=4/4 Eq=4/4 SX=0.999999 dE=-1.32e+16 E=-2.31e+16 E_R=1.01e-05 fast:ne20-->he4+o16 Q=-4.734
+194 it=0 t=3.56e-04 dt=3.62e-06 Steps=8636 Asy=4/4 Eq=4/4 SX=0.999999 dE=-2.51e+16 E=-2.31e+16 E_R=2.71e-05 fast:ne20-->he4+o16 Q=-4.734
+195 it=4 t=4.22e-04 dt=1.29e-07 Steps=8839 Asy=4/4 Eq=4/4 SX=0.999999 dE=-1.19e+16 E=-2.31e+16 E_R=4.61e-05 fast:ne20-->he4+o16 Q=-4.734
+196 it=0 t=5.02e-04 dt=3.62e-06 Steps=9058 Asy=4/4 Eq=4/4 SX=0.999999 dE=-1.62e+16 E=-2.31e+16 E_R=1.61e-05 fast:ne20-->he4+o16 Q=-4.734
+197 it=0 t=5.96e-04 dt=3.62e-06 Steps=9259 Asy=4/4 Eq=4/4 SX=0.999999 dE=-2.92e+16 E=-2.31e+16 E_R=3.11e-05 fast:ne20-->he4+o16 Q=-4.734
+198 it=0 t=7.08e-04 dt=3.28e-07 Steps=9548 Asy=4/4 Eq=4/4 SX=0.999999 dE=-2.29e+14 E=-2.31e+16 E_R=1.99e-08 fast:ne20-->he4+o16 Q=-4.734
+199 it=0 t=8.41e-04 dt=3.62e-06 Steps=9941 Asy=4/4 Eq=4/4 SX=0.999999 dE=-1.22e+16 E=-2.31e+16 E_R=1.14e-05 fast:ne20-->he4+o16 Q=-4.734
+200 it=0 t=1.00e-03 dt=1.31e-06 Steps=10322 Asy=4/4 Eq=4/4 SX=0.999999 dE=-4.83e+16 E=-2.31e+16 E_R=5.36e-05 fast:ne20-->he4+o16 Q=-4.734
+
+Integration using ASY method
+T9=5.000e+00 rho=1.000e+08 massTol=1.000e-08 sf=200.00 equiTol=1.00e-02
+maxit=20 downbumper= 0.700 EpsA=1.00e-04 EpsR=1.00e-04
+Network: data/CUDAnet_4alpha.inp  Rates: data/rateLibrary_4alpha.data
+Integration steps = 10322 totalIterations = 19173
+Timer: 4.1246e+01 ms used
+
+FINAL ABUNDANCES Y AND MASS FRACTIONS X
+
+0 4He Y=5.2153e-02 X=2.0861e-01
+1 12C Y=2.0345e-04 X=2.4415e-03
+2 16O Y=3.0627e-02 X=4.9003e-01
+3 20Ne Y=1.4946e-02 X=2.9892e-01
+

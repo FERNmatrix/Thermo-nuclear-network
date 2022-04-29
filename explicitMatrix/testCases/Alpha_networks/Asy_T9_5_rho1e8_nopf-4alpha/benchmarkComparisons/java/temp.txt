@@ -1,0 +1,3526 @@
+
+Input abundances from file jin/abundance_C-O.inp
+with starting ERelease=0.0
+
+
+  --> Partition function table loaded from jin/partitionFunction.inp
+  --> Mass excesses loaded from jin/partitionFunction.inp
+
+Using Java for integration:
+09:37:41 Jan 29, 2022
+host=unknown000AF72B923D
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+INITIAL VALUES:
+Particles=1.0E30 maxLight=1000 tripleAlphaOnly=false normX=false
+noNeutronsFlag=false Zmax=53 Zmin=3 nT=1.37144425E31 T9=5.00000000
+rho=1.000E8 Ye=0.5 logtmin=-16.0 logtmax=-3.0 diagnoseI=false
+diagnoseII=false tbeg=2.2273E-6 limitByFluxes=false fluxFracThresh=1.0E-16
+E/A(init)=0.0000 Mode=Asy SF=0.2 MassTol=1.0E-9 Ymin=0.0
+T9=5.0 rho=1.0E8 Net=jin/alpha4.inp Rates=all InitY=jin/abundance_C-O.inp|noPF
+-----------------------------------------------------------------
+
+t=1.00000000E-16 logt=-16.000000 dt=1.0798E-17 dt'=7.9590E-18 0/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.386E-8 12C=0.500 16O=0.500 20Ne=1.693E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=3.745E10 sumE_mass=3.742E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.00E16 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.347E-9 dt_Flux=9.719E-18 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=0
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69294139E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46460E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459953E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.16144861E-16 logt=-15.935000 dt=1.2346E-17 dt'=8.9061E-18 1/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.933E-8 12C=0.500 16O=0.500 20Ne=1.966E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=4.350E10 sumE_mass=4.346E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=8.61E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.508E-9 dt_Flux=1.111E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=2
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69294120E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46460E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459857E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.34896288E-16 logt=-15.870000 dt=1.4339E-17 dt'=1.0070E-17 2/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.568E-8 12C=0.500 16O=0.500 20Ne=2.284E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=5.052E10 sumE_mass=5.048E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=7.41E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.705E-9 dt_Flux=1.290E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=4
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69294095E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46460E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459734E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.56675107E-16 logt=-15.805000 dt=1.6654E-17 dt'=1.1494E-17 3/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.306E-8 12C=0.500 16O=0.500 20Ne=2.652E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=5.868E10 sumE_mass=5.863E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=6.38E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.946E-9 dt_Flux=1.499E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=6
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69294066E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46460E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459591E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.81970086E-16 logt=-15.740000 dt=1.9343E-17 dt'=1.3226E-17 4/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.162E-8 12C=0.500 16O=0.500 20Ne=3.080E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=6.815E10 sumE_mass=6.809E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=5.50E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.239E-9 dt_Flux=1.741E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=8
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69294033E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46459E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459424E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.11348904E-16 logt=-15.675000 dt=2.2465E-17 dt'=1.5326E-17 5/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=7.157E-8 12C=0.500 16O=0.500 20Ne=3.578E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=7.916E10 sumE_mass=7.909E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=4.73E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.595E-9 dt_Flux=2.022E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=10
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293995E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46459E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459231E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.45470892E-16 logt=-15.610000 dt=2.6092E-17 dt'=1.7801E-17 6/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=8.313E-8 12C=0.500 16O=0.500 20Ne=4.155E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=9.194E10 sumE_mass=9.186E10
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=4.07E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.014E-9 dt_Flux=2.348E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=12
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293950E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46459E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46459006E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.85101827E-16 logt=-15.545000 dt=3.0305E-17 dt'=2.0675E-17 7/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=9.655E-8 12C=0.500 16O=0.500 20Ne=4.826E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.068E11 sumE_mass=1.067E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.51E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.500E-9 dt_Flux=2.727E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=14
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293898E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46459E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46458745E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.31131121E-16 logt=-15.480000 dt=3.5198E-17 dt'=2.4013E-17 8/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.121E-7 12C=0.500 16O=0.500 20Ne=5.606E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.240E11 sumE_mass=1.239E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.02E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.065E-9 dt_Flux=3.168E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=16
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293837E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46458E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46458442E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.84591782E-16 logt=-15.415000 dt=4.0880E-17 dt'=2.7889E-17 9/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.302E-7 12C=0.500 16O=0.500 20Ne=6.511E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.440E11 sumE_mass=1.439E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.60E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.722E-9 dt_Flux=3.679E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=18
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293767E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46458E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46458091E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.46683592E-16 logt=-15.350000 dt=4.7480E-17 dt'=3.2392E-17 10/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.513E-7 12C=0.500 16O=0.500 20Ne=7.562E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.673E11 sumE_mass=1.672E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.24E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.484E-9 dt_Flux=4.273E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=20
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293685E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46458E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46457682E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.18800039E-16 logt=-15.285000 dt=5.5146E-17 dt'=3.7622E-17 11/200 0.1 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.757E-7 12C=0.500 16O=0.500 20Ne=8.783E-7
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.943E11 sumE_mass=1.941E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.93E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.369E-9 dt_Flux=4.963E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=22
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293590E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46457E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46457207E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.02559586E-16 logt=-15.220000 dt=6.4049E-17 dt'=4.3696E-17 12/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.041E-7 12C=0.500 16O=0.500 20Ne=1.020E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=2.257E11 sumE_mass=2.255E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.66E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.397E-9 dt_Flux=5.764E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=24
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293480E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46457E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46456656E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.99841996E-16 logt=-15.155000 dt=7.4390E-17 dt'=5.0750E-17 13/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.370E-7 12C=0.500 16O=0.500 20Ne=1.185E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=2.621E11 sumE_mass=2.619E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.43E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=8.592E-9 dt_Flux=6.695E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=26
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293352E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46456E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46456016E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=8.12830516E-16 logt=-15.090000 dt=8.6400E-17 dt'=5.8944E-17 14/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.753E-7 12C=0.500 16O=0.500 20Ne=1.376E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=3.044E11 sumE_mass=3.042E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.23E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=9.979E-9 dt_Flux=7.776E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=28
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293203E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46455E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46455272E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=9.44060876E-16 logt=-15.025000 dt=1.0035E-16 dt'=6.8460E-17 15/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.197E-7 12C=0.500 16O=0.500 20Ne=1.598E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=3.536E11 sumE_mass=3.533E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.06E15 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.159E-8 dt_Flux=9.031E-17 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=30
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69293031E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46454E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46454409E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.09647820E-15 logt=-14.960000 dt=1.1655E-16 dt'=7.9513E-17 16/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.713E-7 12C=0.500 16O=0.500 20Ne=1.856E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=4.107E11 sumE_mass=4.103E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=9.12E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.346E-8 dt_Flux=1.049E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=32
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69292830E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46453E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46453406E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.27350308E-15 logt=-14.895000 dt=1.3537E-16 dt'=9.2350E-17 17/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.313E-7 12C=0.500 16O=0.500 20Ne=2.156E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=4.770E11 sumE_mass=4.766E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=7.85E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.563E-8 dt_Flux=1.218E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=34
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69292597E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46452E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46452241E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.47910839E-15 logt=-14.830000 dt=1.5722E-16 dt'=1.0726E-16 18/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.009E-7 12C=0.500 16O=0.500 20Ne=2.504E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=5.540E11 sumE_mass=5.535E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=6.76E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.816E-8 dt_Flux=1.415E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=36
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69292327E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46451E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46450888E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.71790839E-15 logt=-14.765000 dt=1.8261E-16 dt'=1.2458E-16 19/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.818E-7 12C=0.500 16O=0.500 20Ne=2.908E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=6.434E11 sumE_mass=6.429E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=5.82E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.109E-8 dt_Flux=1.643E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=38
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69292013E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46449E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46449316E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.99526231E-15 logt=-14.700000 dt=2.1209E-16 dt'=1.4469E-16 20/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.757E-7 12C=0.500 16O=0.500 20Ne=3.378E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=7.473E11 sumE_mass=7.467E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=5.01E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.449E-8 dt_Flux=1.909E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=40
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69291648E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46447E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46447491E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.31739465E-15 logt=-14.635000 dt=2.4633E-16 dt'=1.6805E-16 21/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=7.848E-7 12C=0.500 16O=0.500 20Ne=3.923E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=8.680E11 sumE_mass=8.672E11
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=4.32E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.845E-8 dt_Flux=2.217E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=42
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69291224E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46445E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46445371E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.69153480E-15 logt=-14.570000 dt=2.8610E-16 dt'=1.9518E-16 22/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=9.115E-7 12C=0.500 16O=0.500 20Ne=4.556E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.008E12 sumE_mass=1.007E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.72E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.304E-8 dt_Flux=2.575E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=44
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69290732E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46443E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46442909E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.12607937E-15 logt=-14.505000 dt=3.3229E-16 dt'=2.2669E-16 23/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.059E-6 12C=0.500 16O=0.500 20Ne=5.292E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.171E12 sumE_mass=1.170E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.20E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.838E-8 dt_Flux=2.991E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=46
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69290161E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46440E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46440050E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.63078055E-15 logt=-14.440000 dt=3.8594E-16 dt'=2.6329E-16 24/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.230E-6 12C=0.500 16O=0.500 20Ne=6.147E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.360E12 sumE_mass=1.359E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.75E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.457E-8 dt_Flux=3.473E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=48
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69289497E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46437E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46436728E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.21696503E-15 logt=-14.375000 dt=4.4824E-16 dt'=3.0580E-16 25/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.428E-6 12C=0.500 16O=0.500 20Ne=7.139E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.579E12 sumE_mass=1.578E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.37E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.177E-8 dt_Flux=4.034E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=50
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69288726E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46433E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46432871E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.89778819E-15 logt=-14.310000 dt=5.2061E-16 dt'=3.5517E-16 26/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.659E-6 12C=0.500 16O=0.500 20Ne=8.291E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=1.834E12 sumE_mass=1.833E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.04E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.013E-8 dt_Flux=4.686E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=52
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69287830E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46428E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46428391E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.68852931E-15 logt=-14.245000 dt=6.0467E-16 dt'=4.1251E-16 27/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.926E-6 12C=0.500 16O=0.500 20Ne=9.630E-6
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=2.131E12 sumE_mass=2.129E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.76E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.983E-8 dt_Flux=5.442E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=54
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69286790E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46423E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46423187E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.60693448E-15 logt=-14.180000 dt=7.0229E-16 dt'=4.7911E-16 28/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.237E-6 12C=0.500 16O=0.500 20Ne=1.118E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=2.475E12 sumE_mass=2.472E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.51E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=8.111E-8 dt_Flux=6.321E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=56
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69285583E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46417E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46417144E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.67361489E-15 logt=-14.115000 dt=8.1567E-16 dt'=5.5647E-16 29/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.599E-6 12C=0.500 16O=0.500 20Ne=1.299E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=2.874E12 sumE_mass=2.872E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.30E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=9.420E-8 dt_Flux=7.341E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=58
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69284180E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46410E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46410125E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=8.91250938E-15 logt=-14.050000 dt=9.4736E-16 dt'=6.4631E-16 30/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.018E-6 12C=0.500 16O=0.500 20Ne=1.509E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=3.338E12 sumE_mass=3.335E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=1.12E14 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.094E-7 dt_Flux=8.526E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=60
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69282550E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46402E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46401973E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.03514217E-14 logt=-13.985000 dt=1.1003E-15 dt'=7.5065E-16 31/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.505E-6 12C=0.500 16O=0.500 20Ne=1.752E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=3.877E12 sumE_mass=3.874E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=9.66E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.271E-7 dt_Flux=9.903E-16 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=62
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69280658E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46393E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46392504E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.20226443E-14 logt=-13.920000 dt=1.2780E-15 dt'=8.7184E-16 32/200 0.2 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.071E-6 12C=0.500 16O=0.500 20Ne=2.035E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=4.503E12 sumE_mass=4.499E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=8.32E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.476E-7 dt_Flux=1.150E-15 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=64
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69278460E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46382E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46381508E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.39636836E-14 logt=-13.855000 dt=1.4843E-15 dt'=1.0126E-15 33/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.729E-6 12C=0.500 16O=0.500 20Ne=2.364E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=5.230E12 sumE_mass=5.225E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=7.16E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.714E-7 dt_Flux=1.336E-15 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=66
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69275907E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46369E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46368736E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.62181010E-14 logt=-13.790000 dt=1.7239E-15 dt'=1.1761E-15 34/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.492E-6 12C=0.500 16O=0.500 20Ne=2.745E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=6.074E12 sumE_mass=6.069E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=6.17E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.991E-7 dt_Flux=1.552E-15 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=68
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69272942E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46354E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46353902E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.88364909E-14 logt=-13.725000 dt=2.0022E-15 dt'=1.3660E-15 35/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.379E-6 12C=0.500 16O=0.500 20Ne=3.189E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=7.055E12 sumE_mass=7.048E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=5.31E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.312E-7 dt_Flux=1.802E-15 sumX=1.0000000
+Fast=2.032E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=70
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69269499E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46337E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46336675E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.18776162E-14 logt=-13.660000 dt=2.3255E-15 dt'=1.5865E-15 36/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=7.408E-6 12C=0.500 16O=0.500 20Ne=3.703E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.742E26 sumE=8.193E12 sumE_mass=8.186E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=4.57E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.685E-7 dt_Flux=2.093E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=72
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69265500E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46317E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46316666E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.54097271E-14 logt=-13.595000 dt=2.7009E-15 dt'=1.8426E-15 37/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=8.604E-6 12C=0.500 16O=0.500 20Ne=4.301E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.741E26 sumE=9.516E12 sumE_mass=9.508E12
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.94E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.119E-7 dt_Flux=2.431E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=74
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69260855E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46293E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46293428E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.95120923E-14 logt=-13.530000 dt=3.1370E-15 dt'=2.1401E-15 38/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=9.993E-6 12C=0.500 16O=0.500 20Ne=4.996E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.745E26 dE/dt_mass=3.741E26 sumE=1.105E13 sumE_mass=1.104E13
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=3.39E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.622E-7 dt_Flux=2.823E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=76
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69255461E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46266E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46266439E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.42767787E-14 logt=-13.465000 dt=3.6435E-15 dt'=2.4856E-15 39/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.161E-5 12C=0.500 16O=0.500 20Ne=5.802E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.744E26 dE/dt_mass=3.741E26 sumE=1.284E13 sumE_mass=1.283E13
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.92E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.207E-7 dt_Flux=3.279E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=78
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69249196E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46235E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46235095E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.98107171E-14 logt=-13.400000 dt=4.2317E-15 dt'=2.8869E-15 40/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.348E-5 12C=0.500 16O=0.500 20Ne=6.739E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.744E26 dE/dt_mass=3.741E26 sumE=1.491E13 sumE_mass=1.490E13
+AbsXfer: Z=10 N=10 dn=1.161E39 dn/Tot=1.16E9 dX/X=2.51E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.886E-7 dt_Flux=3.809E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=80
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69241920E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46199E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46198692E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.62381021E-14 logt=-13.335000 dt=4.9149E-15 dt'=3.3530E-15 41/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.566E-5 12C=0.500 16O=0.500 20Ne=7.826E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.744E26 dE/dt_mass=3.741E26 sumE=1.732E13 sumE_mass=1.730E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=2.16E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.674E-7 dt_Flux=4.423E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=82
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69233470E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46156E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46156415E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.37031796E-14 logt=-13.270000 dt=5.7084E-15 dt'=3.8944E-15 42/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.818E-5 12C=0.500 16O=0.500 20Ne=9.090E-5
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.744E26 dE/dt_mass=3.741E26 sumE=2.011E13 sumE_mass=2.009E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=1.86E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.590E-7 dt_Flux=5.138E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=84
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69223656E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46107E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46107316E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.23734835E-14 logt=-13.205000 dt=6.6300E-15 dt'=4.5231E-15 43/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.112E-5 12C=0.500 16O=0.500 20Ne=1.056E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.744E26 dE/dt_mass=3.740E26 sumE=2.336E13 sumE_mass=2.334E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=1.60E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.654E-7 dt_Flux=5.967E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=86
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69212260E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.46050E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.46050295E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.24435960E-14 logt=-13.140000 dt=7.7004E-15 dt'=5.2534E-15 44/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.453E-5 12C=0.500 16O=0.500 20Ne=1.226E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.743E26 dE/dt_mass=3.740E26 sumE=2.713E13 sumE_mass=2.710E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=1.38E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=8.889E-7 dt_Flux=6.930E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=88
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69199024E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45984E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45984076E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=8.41395142E-14 logt=-13.075000 dt=8.9437E-15 dt'=6.1015E-15 45/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.848E-5 12C=0.500 16O=0.500 20Ne=1.424E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.743E26 dE/dt_mass=3.740E26 sumE=3.150E13 sumE_mass=3.148E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=1.19E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.032E-6 dt_Flux=8.049E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=90
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69183654E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45907E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45907175E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=9.77237221E-14 logt=-13.010000 dt=1.0388E-14 dt'=7.0866E-15 46/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.308E-5 12C=0.500 16O=0.500 20Ne=1.654E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.743E26 dE/dt_mass=3.739E26 sumE=3.659E13 sumE_mass=3.656E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=1.02E13 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.199E-6 dt_Flux=9.349E-15 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=92
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69165804E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45818E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45817871E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.13501082E-13 logt=-12.945000 dt=1.2065E-14 dt'=8.2307E-15 47/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.842E-5 12C=0.500 16O=0.500 20Ne=1.921E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.742E26 dE/dt_mass=3.739E26 sumE=4.249E13 sumE_mass=4.246E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=8.81E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.392E-6 dt_Flux=1.086E-14 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=94
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69145077E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45714E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45714166E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.31825674E-13 logt=-12.880000 dt=1.4012E-14 dt'=9.5596E-15 48/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.462E-5 12C=0.500 16O=0.500 20Ne=2.231E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.742E26 dE/dt_mass=3.738E26 sumE=4.935E13 sumE_mass=4.931E13
+AbsXfer: Z=10 N=10 dn=1.160E39 dn/Tot=1.16E9 dX/X=7.58E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.617E-6 dt_Flux=1.261E-14 sumX=1.0000000
+Fast=2.031E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=96
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69121007E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45594E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45593742E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.53108746E-13 logt=-12.815000 dt=1.6275E-14 dt'=1.1103E-14 49/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.182E-5 12C=0.500 16O=0.500 20Ne=2.590E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.741E26 dE/dt_mass=3.738E26 sumE=5.731E13 sumE_mass=5.726E13
+AbsXfer: Z=10 N=10 dn=1.159E39 dn/Tot=1.16E9 dX/X=6.53E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.877E-6 dt_Flux=1.465E-14 sumX=1.0000000
+Fast=2.030E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=98
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69093058E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45454E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45453906E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.77827941E-13 logt=-12.750000 dt=1.8902E-14 dt'=1.2896E-14 50/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.018E-5 12C=0.500 16O=0.500 20Ne=3.008E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.740E26 dE/dt_mass=3.737E26 sumE=6.656E13 sumE_mass=6.650E13
+AbsXfer: Z=10 N=10 dn=1.159E39 dn/Tot=1.16E9 dX/X=5.62E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.180E-6 dt_Flux=1.701E-14 sumX=1.0000000
+Fast=2.030E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=100
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69060605E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45292E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45291537E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.06538016E-13 logt=-12.685000 dt=2.1954E-14 dt'=1.4977E-14 51/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.989E-5 12C=0.500 16O=0.500 20Ne=3.494E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.739E26 dE/dt_mass=3.736E26 sumE=7.729E13 sumE_mass=7.723E13
+AbsXfer: Z=10 N=10 dn=1.159E39 dn/Tot=1.16E9 dX/X=4.84E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.532E-6 dt_Flux=1.976E-14 sumX=1.0000000
+Fast=2.030E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=102
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.69022923E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.45103E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.45103010E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.39883292E-13 logt=-12.620000 dt=2.5499E-14 dt'=1.7396E-14 52/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=8.116E-5 12C=0.499 16O=0.500 20Ne=4.057E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.738E26 dE/dt_mass=3.735E26 sumE=8.976E13 sumE_mass=8.968E13
+AbsXfer: Z=10 N=10 dn=1.159E39 dn/Tot=1.16E9 dX/X=4.16E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.939E-6 dt_Flux=2.295E-14 sumX=1.0000000
+Fast=2.030E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=104
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68979174E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.44884E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.44884123E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.78612117E-13 logt=-12.555000 dt=2.9615E-14 dt'=2.0204E-14 53/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=9.425E-5 12C=0.499 16O=0.500 20Ne=4.712E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.737E26 dE/dt_mass=3.734E26 sumE=1.042E14 sumE_mass=1.041E14
+AbsXfer: Z=10 N=10 dn=1.158E39 dn/Tot=1.16E9 dX/X=3.59E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.413E-6 dt_Flux=2.665E-14 sumX=1.0000000
+Fast=2.029E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=106
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68928382E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.44630E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.44630000E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.23593657E-13 logt=-12.490000 dt=3.4397E-14 dt'=2.3466E-14 54/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.094E-4 12C=0.499 16O=0.500 20Ne=5.471E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.736E26 dE/dt_mass=3.733E26 sumE=1.210E14 sumE_mass=1.209E14
+AbsXfer: Z=10 N=10 dn=1.158E39 dn/Tot=1.16E9 dX/X=3.09E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.963E-6 dt_Flux=3.096E-14 sumX=1.0000000
+Fast=2.029E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=108
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68869417E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.44335E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.44334989E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.75837404E-13 logt=-12.425000 dt=3.9950E-14 dt'=2.7255E-14 55/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.271E-4 12C=0.499 16O=0.500 20Ne=6.353E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.734E26 dE/dt_mass=3.731E26 sumE=1.406E14 sumE_mass=1.404E14
+AbsXfer: Z=10 N=10 dn=1.157E39 dn/Tot=1.16E9 dX/X=2.66E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.601E-6 dt_Flux=3.595E-14 sumX=1.0000000
+Fast=2.029E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=110
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68800970E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.43993E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.43992536E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.36515832E-13 logt=-12.360000 dt=4.6400E-14 dt'=3.1655E-14 56/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.476E-4 12C=0.499 16O=0.500 20Ne=7.377E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.733E26 dE/dt_mass=3.729E26 sumE=1.632E14 sumE_mass=1.631E14
+AbsXfer: Z=10 N=10 dn=1.157E39 dn/Tot=1.16E9 dX/X=2.29E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.341E-6 dt_Flux=4.176E-14 sumX=1.0000000
+Fast=2.028E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=112
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68721523E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.43595E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.43595049E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.06990708E-13 logt=-12.295000 dt=5.3891E-14 dt'=3.6765E-14 57/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.714E-4 12C=0.499 16O=0.500 20Ne=8.566E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.731E26 dE/dt_mass=3.727E26 sumE=1.895E14 sumE_mass=1.893E14
+AbsXfer: Z=10 N=10 dn=1.156E39 dn/Tot=1.16E9 dX/X=1.97E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.200E-6 dt_Flux=4.850E-14 sumX=1.0000000
+Fast=2.028E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=114
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68629318E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.43134E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.43133730E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.88843655E-13 logt=-12.230000 dt=6.2591E-14 dt'=4.2701E-14 58/200 0.3 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=1.990E-4 12C=0.499 16O=0.500 20Ne=9.946E-4
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.728E26 dE/dt_mass=3.725E26 sumE=2.200E14 sumE_mass=2.198E14
+AbsXfer: Z=10 N=10 dn=1.156E39 dn/Tot=1.16E9 dX/X=1.69E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.196E-6 dt_Flux=5.633E-14 sumX=1.0000000
+Fast=2.027E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=116
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68522319E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.42598E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.42598393E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.83911647E-13 logt=-12.165000 dt=7.2697E-14 dt'=4.9595E-14 59/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.310E-4 12C=0.499 16O=0.500 20Ne=0.001
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.725E26 dE/dt_mass=3.722E26 sumE=2.555E14 sumE_mass=2.552E14
+AbsXfer: Z=10 N=10 dn=1.155E39 dn/Tot=1.15E9 dX/X=1.46E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=8.352E-6 dt_Flux=6.543E-14 sumX=1.0000000
+Fast=2.026E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=118
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68398169E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.41977E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.41977246E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.94328235E-13 logt=-12.100000 dt=8.4434E-14 dt'=5.7602E-14 60/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=2.682E-4 12C=0.498 16O=0.500 20Ne=0.001
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.722E26 dE/dt_mass=3.719E26 sumE=2.966E14 sumE_mass=2.963E14
+AbsXfer: Z=10 N=10 dn=1.154E39 dn/Tot=1.15E9 dX/X=1.26E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=9.692E-6 dt_Flux=7.599E-14 sumX=1.0000000
+Fast=2.025E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=120
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68254141E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.41257E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.41256652E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=9.22571427E-13 logt=-12.035000 dt=9.8065E-14 dt'=6.6902E-14 61/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.113E-4 12C=0.498 16O=0.500 20Ne=0.002
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.718E26 dE/dt_mass=3.715E26 sumE=3.443E14 sumE_mass=3.440E14
+AbsXfer: Z=10 N=10 dn=1.153E39 dn/Tot=1.15E9 dX/X=1.08E12 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.125E-5 dt_Flux=8.826E-14 sumX=1.0000000
+Fast=2.024E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=122
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.68087086E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.40421E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.40420844E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.07151931E-12 logt=-11.970000 dt=1.1390E-13 dt'=7.7703E-14 62/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=3.614E-4 12C=0.498 16O=0.500 20Ne=0.002
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.714E26 dE/dt_mass=3.711E26 sumE=3.997E14 sumE_mass=3.993E14
+AbsXfer: Z=10 N=10 dn=1.151E39 dn/Tot=1.15E9 dX/X=9.29E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.305E-5 dt_Flux=1.025E-13 sumX=1.0000000
+Fast=2.023E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=124
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.67893363E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.39452E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.39451612E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.24451461E-12 logt=-11.905000 dt=1.3229E-13 dt'=9.0248E-14 63/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.194E-4 12C=0.497 16O=0.500 20Ne=0.002
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.709E26 dE/dt_mass=3.706E26 sumE=4.639E14 sumE_mass=4.635E14
+AbsXfer: Z=10 N=10 dn=1.150E39 dn/Tot=1.15E9 dX/X=8.00E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.513E-5 dt_Flux=1.191E-13 sumX=1.0000000
+Fast=2.022E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=126
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.67668771E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.38328E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.38327940E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.44543977E-12 logt=-11.840000 dt=1.5364E-13 dt'=1.0482E-13 64/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=4.868E-4 12C=0.497 16O=0.500 20Ne=0.002
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.703E26 dE/dt_mass=3.700E26 sumE=5.383E14 sumE_mass=5.379E14
+AbsXfer: Z=10 N=10 dn=1.148E39 dn/Tot=1.15E9 dX/X=6.88E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.755E-5 dt_Flux=1.383E-13 sumX=1.0000000
+Fast=2.020E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=128
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.67408468E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.37026E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.37025597E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.67880402E-12 logt=-11.775000 dt=1.7845E-13 dt'=1.2174E-13 65/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=5.649E-4 12C=0.497 16O=0.500 20Ne=0.003
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.697E26 dE/dt_mass=3.693E26 sumE=6.247E14 sumE_mass=6.241E14
+AbsXfer: Z=10 N=10 dn=1.146E39 dn/Tot=1.15E9 dX/X=5.92E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.034E-5 dt_Flux=1.606E-13 sumX=1.0000000
+Fast=2.018E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=130
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.67106877E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.35517E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.35516684E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.94984460E-12 logt=-11.710000 dt=2.0726E-13 dt'=1.4140E-13 66/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=6.554E-4 12C=0.496 16O=0.500 20Ne=0.003
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.689E26 dE/dt_mass=3.686E26 sumE=7.248E14 sumE_mass=7.241E14
+AbsXfer: Z=10 N=10 dn=1.143E39 dn/Tot=1.14E9 dX/X=5.09E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.358E-5 dt_Flux=1.865E-13 sumX=1.0000000
+Fast=2.016E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=132
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.66757586E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.33769E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.33769123E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.26464431E-12 logt=-11.645000 dt=2.4072E-13 dt'=1.6422E-13 67/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=7.603E-4 12C=0.495 16O=0.500 20Ne=0.004
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.680E26 dE/dt_mass=3.677E26 sumE=8.407E14 sumE_mass=8.400E14
+AbsXfer: Z=10 N=10 dn=1.140E39 dn/Tot=1.14E9 dX/X=4.38E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.732E-5 dt_Flux=2.166E-13 sumX=1.0000000
+Fast=2.014E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=134
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.66353235E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.31746E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.31746089E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.63026799E-12 logt=-11.580000 dt=2.7959E-13 dt'=1.9074E-13 68/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=8.818E-4 12C=0.495 16O=0.500 20Ne=0.004
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.669E26 dE/dt_mass=3.666E26 sumE=9.751E14 sumE_mass=9.742E14
+AbsXfer: Z=10 N=10 dn=1.137E39 dn/Tot=1.14E9 dX/X=3.76E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.164E-5 dt_Flux=2.516E-13 sumX=1.0000000
+Fast=2.011E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=136
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.65885391E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.29405E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.29405392E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.05492111E-12 logt=-11.515000 dt=3.2472E-13 dt'=2.2153E-13 69/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.001 12C=0.494 16O=0.500 20Ne=0.005
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.657E26 dE/dt_mass=3.654E26 sumE=1.131E15 sumE_mass=1.130E15
+AbsXfer: Z=10 N=10 dn=1.134E39 dn/Tot=1.13E9 dX/X=3.23E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.663E-5 dt_Flux=2.923E-13 sumX=1.0000000
+Fast=2.008E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=138
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.65344415E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.26699E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.26698807E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.54813389E-12 logt=-11.450000 dt=3.7715E-13 dt'=2.5730E-13 70/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.001 12C=0.493 16O=0.500 20Ne=0.006
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.643E26 dE/dt_mass=3.640E26 sumE=1.311E15 sumE_mass=1.310E15
+AbsXfer: Z=10 N=10 dn=1.129E39 dn/Tot=1.13E9 dX/X=2.78E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.238E-5 dt_Flux=3.394E-13 sumX=1.0000000
+Fast=2.004E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=140
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.64719318E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.23571E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.23571352E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.12097519E-12 logt=-11.385000 dt=4.3804E-13 dt'=2.9884E-13 71/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.001 12C=0.492 16O=0.500 20Ne=0.007
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.627E26 dE/dt_mass=3.624E26 sumE=1.519E15 sumE_mass=1.518E15
+AbsXfer: Z=10 N=10 dn=1.124E39 dn/Tot=1.12E9 dX/X=2.39E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.901E-5 dt_Flux=3.942E-13 sumX=1.0000000
+Fast=2.000E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=142
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.63997610E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.19961E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.19960542E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.78630092E-12 logt=-11.320000 dt=5.0876E-13 dt'=3.4709E-13 72/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.002 12C=0.490 16O=0.500 20Ne=0.008
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.609E26 dE/dt_mass=3.606E26 sumE=1.760E15 sumE_mass=1.758E15
+AbsXfer: Z=10 N=10 dn=1.118E39 dn/Tot=1.12E9 dX/X=2.05E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.663E-5 dt_Flux=4.579E-13 sumX=1.0000000
+Fast=1.995E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=144
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.63165148E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.15796E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.15795622E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.55904257E-12 logt=-11.255000 dt=5.9090E-13 dt'=4.0312E-13 73/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.002 12C=0.489 16O=0.500 20Ne=0.009
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.587E26 dE/dt_mass=3.584E26 sumE=2.038E15 sumE_mass=2.036E15
+AbsXfer: Z=10 N=10 dn=1.112E39 dn/Tot=1.11E9 dX/X=1.76E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.539E-5 dt_Flux=5.318E-13 sumX=1.0000000
+Fast=1.989E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=146
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.62205988E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.10997E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.10996824E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.45654229E-12 logt=-11.190000 dt=6.8630E-13 dt'=4.6821E-13 74/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.002 12C=0.487 16O=0.500 20Ne=0.011
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.563E26 dE/dt_mass=3.560E26 sumE=2.358E15 sumE_mass=2.356E15
+AbsXfer: Z=10 N=10 dn=1.104E39 dn/Tot=1.10E9 dX/X=1.51E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.543E-5 dt_Flux=6.177E-13 sumX=1.0000000
+Fast=1.982E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=148
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.61102246E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 8.05475E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 8.05474676E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.49894209E-12 logt=-11.125000 dt=7.9710E-13 dt'=5.4380E-13 75/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.002 12C=0.485 16O=0.500 20Ne=0.012
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.534E26 dE/dt_mass=3.531E26 sumE=2.728E15 sumE_mass=2.726E15
+AbsXfer: Z=10 N=10 dn=1.095E39 dn/Tot=1.10E9 dX/X=1.30E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=8.692E-5 dt_Flux=7.174E-13 sumX=1.0000000
+Fast=1.974E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=150
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.59833984E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.99129E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.99129434E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=8.70963590E-12 logt=-11.060000 dt=9.2580E-13 dt'=6.3160E-13 76/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.003 12C=0.483 16O=0.500 20Ne=0.014
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.502E26 dE/dt_mass=3.499E26 sumE=3.154E15 sumE_mass=3.152E15
+AbsXfer: Z=10 N=10 dn=1.085E39 dn/Tot=1.09E9 dX/X=1.11E11 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.000E-4 dt_Flux=8.332E-13 sumX=1.0000000
+Fast=1.965E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=152
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.58379138E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.91851E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.91850710E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.01157945E-11 logt=-10.995000 dt=1.0753E-12 dt'=7.3357E-13 77/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.003 12C=0.480 16O=0.500 20Ne=0.016
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.465E26 dE/dt_mass=3.462E26 sumE=3.644E15 sumE_mass=3.641E15
+AbsXfer: Z=10 N=10 dn=1.074E39 dn/Tot=1.07E9 dX/X=9.51E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.150E-4 dt_Flux=9.677E-13 sumX=1.0000000
+Fast=1.955E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=154
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.56713500E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.83517E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.83517408E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.17489755E-11 logt=-10.930000 dt=1.2489E-12 dt'=8.5200E-13 78/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.004 12C=0.477 16O=0.500 20Ne=0.019
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.422E26 dE/dt_mass=3.419E26 sumE=4.206E15 sumE_mass=4.203E15
+AbsXfer: Z=10 N=10 dn=1.061E39 dn/Tot=1.06E9 dX/X=8.14E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.319E-4 dt_Flux=1.124E-12 sumX=1.0000000
+Fast=1.943E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=156
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.54810796E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.73998E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.73998080E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.36458314E-11 logt=-10.865000 dt=1.4505E-12 dt'=9.8955E-13 79/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.004 12C=0.474 16O=0.500 20Ne=0.022
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.374E26 dE/dt_mass=3.371E26 sumE=4.851E15 sumE_mass=4.847E15
+AbsXfer: Z=10 N=10 dn=1.045E39 dn/Tot=1.05E9 dX/X=6.95E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.510E-4 dt_Flux=1.305E-12 sumX=1.0000000
+Fast=1.929E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=158
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.52642872E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.63152E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.63151894E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.58489319E-11 logt=-10.800000 dt=1.6847E-12 dt'=1.1493E-12 80/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.005 12C=0.470 16O=0.500 20Ne=0.025
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.319E26 dE/dt_mass=3.316E26 sumE=5.588E15 sumE_mass=5.583E15
+AbsXfer: Z=10 N=10 dn=1.028E39 dn/Tot=1.03E9 dX/X=5.94E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.726E-4 dt_Flux=1.516E-12 sumX=1.0000000
+Fast=1.913E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=160
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.50180047E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.50830E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.50830376E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.84077200E-11 logt=-10.735000 dt=1.9567E-12 dt'=1.3349E-12 81/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.006 12C=0.465 16O=0.500 20Ne=0.029
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.257E26 dE/dt_mass=3.254E26 sumE=6.429E15 sumE_mass=6.424E15
+AbsXfer: Z=10 N=10 dn=1.009E39 dn/Tot=1.01E9 dX/X=5.06E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=1.967E-4 dt_Flux=1.761E-12 sumX=1.0000000
+Fast=1.896E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=162
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.47391663E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.36880E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.36880167E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.13796209E-11 logt=-10.670000 dt=2.2726E-12 dt'=1.5504E-12 82/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.007 12C=0.460 16O=0.500 20Ne=0.033
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.186E26 dE/dt_mass=3.184E26 sumE=7.386E15 sumE_mass=7.380E15
+AbsXfer: Z=10 N=10 dn=9.873E38 dn/Tot=9.87E8 dX/X=4.31E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.236E-4 dt_Flux=2.045E-12 sumX=1.0000000
+Fast=1.875E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=164
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.44246878E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.21147E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.21147006E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.48313311E-11 logt=-10.605000 dt=2.6395E-12 dt'=1.8007E-12 83/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.008 12C=0.454 16O=0.500 20Ne=0.038
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.107E26 dE/dt_mass=3.105E26 sumE=8.472E15 sumE_mass=8.465E15
+AbsXfer: Z=10 N=10 dn=9.628E38 dn/Tot=9.63E8 dX/X=3.67E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.534E-4 dt_Flux=2.376E-12 sumX=1.0000000
+Fast=1.852E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=166
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.40715759E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7.03481E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7.03481192E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.88403150E-11 logt=-10.540000 dt=3.0656E-12 dt'=2.0914E-12 84/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.009 12C=0.447 16O=0.500 20Ne=0.044
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.019E26 dE/dt_mass=3.017E26 sumE=9.700E15 sumE_mass=9.692E15
+AbsXfer: Z=10 N=10 dn=9.355E38 dn/Tot=9.35E8 dX/X=3.11E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=2.860E-4 dt_Flux=2.759E-12 sumX=1.0000000
+Fast=1.826E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=168
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.36770704E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 6.83745E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 6.83744681E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.34965439E-11 logt=-10.475000 dt=3.5605E-12 dt'=2.4291E-12 85/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.010 12C=0.440 16O=0.500 20Ne=0.050
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.921E26 dE/dt_mass=2.919E26 sumE=1.108E16 sumE_mass=1.107E16
+AbsXfer: Z=10 N=10 dn=9.051E38 dn/Tot=9.05E8 dX/X=2.64E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.216E-4 dt_Flux=3.204E-12 sumX=1.0000000
+Fast=1.796E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=170
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.32388204E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 6.61820E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 6.61819948E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.89045145E-11 logt=-10.410000 dt=4.1354E-12 dt'=2.8212E-12 86/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.011 12C=0.431 16O=0.500 20Ne=0.057
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.813E26 dE/dt_mass=2.811E26 sumE=1.263E16 sumE_mass=1.262E16
+AbsXfer: Z=10 N=10 dn=8.715E38 dn/Tot=8.72E8 dX/X=2.23E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.599E-4 dt_Flux=3.722E-12 sumX=1.0000000
+Fast=1.763E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=172
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.27550963E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 6.37621E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 6.37620553E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.51855944E-11 logt=-10.345000 dt=4.8030E-12 dt'=3.2767E-12 87/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.013 12C=0.422 16O=0.500 20Ne=0.065
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.695E26 dE/dt_mass=2.692E26 sumE=1.436E16 sumE_mass=1.435E16
+AbsXfer: Z=10 N=10 dn=8.347E38 dn/Tot=8.35E8 dX/X=1.88E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.006E-4 dt_Flux=4.323E-12 sumX=1.0000000
+Fast=1.726E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=174
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.22250291E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 6.11103E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 6.11103140E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.24807460E-11 logt=-10.280000 dt=5.5785E-12 dt'=3.8057E-12 88/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.015 12C=0.411 16O=0.500 20Ne=0.074
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.566E26 dE/dt_mass=2.564E26 sumE=1.628E16 sumE_mass=1.627E16
+AbsXfer: Z=10 N=10 dn=7.948E38 dn/Tot=7.95E8 dX/X=1.58E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.433E-4 dt_Flux=5.021E-12 sumX=1.0000000
+Fast=1.685E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=176
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.16488678E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 5.82281E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 5.82280302E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.09536897E-11 logt=-10.215000 dt=6.4791E-12 dt'=4.4202E-12 89/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.017 12C=0.400 16O=0.500 20Ne=0.083
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.427E26 dE/dt_mass=2.425E26 sumE=1.839E16 sumE_mass=1.838E16
+AbsXfer: Z=10 N=10 dn=7.517E38 dn/Tot=7.52E8 dX/X=1.32E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.875E-4 dt_Flux=5.831E-12 sumX=1.0000000
+Fast=1.640E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=178
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.10282349E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 5.51234E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 5.51233382E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.07945784E-11 logt=-10.150000 dt=7.5251E-12 dt'=5.1338E-12 90/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.019 12C=0.387 16O=0.500 20Ne=0.094
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.279E26 dE/dt_mass=2.277E26 sumE=2.071E16 sumE_mass=2.069E16
+AbsXfer: Z=10 N=10 dn=7.057E38 dn/Tot=7.06E8 dX/X=1.10E10 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.322E-4 dt_Flux=6.773E-12 sumX=1.0000000
+Fast=1.590E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=180
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.03663549E8 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 5.18124E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 5.18123871E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=8.22242650E-11 logt=-10.085000 dt=8.7401E-12 dt'=5.9626E-12 91/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.021 12C=0.374 16O=0.500 20Ne=0.105
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.123E26 dE/dt_mass=2.121E26 sumE=2.322E16 sumE_mass=2.320E16
+AbsXfer: Z=10 N=10 dn=6.573E38 dn/Tot=6.57E8 dX/X=9.14E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.765E-4 dt_Flux=7.866E-12 sumX=1.0000000
+Fast=1.535E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=182
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 9.66822034E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 4.83202E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 4.83201745E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=9.54992586E-11 logt=-10.020000 dt=1.0151E-11 dt'=6.9253E-12 92/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.024 12C=0.359 16O=0.500 20Ne=0.117
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.960E26 dE/dt_mass=1.958E26 sumE=2.593E16 sumE_mass=2.591E16
+AbsXfer: Z=10 N=10 dn=6.067E38 dn/Tot=6.07E8 dX/X=7.55E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.192E-4 dt_Flux=9.136E-12 sumX=1.0000000
+Fast=1.476E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=184
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 8.94066078E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 4.46810E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 4.46808887E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.10917482E-10 logt=-9.955000 dt=1.1790E-11 dt'=8.0434E-12 93/200 0.4 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.026 12C=0.343 16O=0.501 20Ne=0.130
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.792E26 dE/dt_mass=1.791E26 sumE=2.882E16 sumE_mass=2.880E16
+AbsXfer: Z=10 N=10 dn=5.547E38 dn/Tot=5.55E8 dX/X=6.21E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.589E-4 dt_Flux=1.061E-11 sumX=1.0000000
+Fast=1.413E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=186
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 8.19227667E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 4.09377E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 4.09375773E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.28824955E-10 logt=-9.890000 dt=1.3694E-11 dt'=9.3420E-12 94/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.029 12C=0.326 16O=0.501 20Ne=0.144
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.622E26 dE/dt_mass=1.621E26 sumE=3.187E16 sumE_mass=3.185E16
+AbsXfer: Z=10 N=10 dn=5.019E38 dn/Tot=5.02E8 dX/X=5.08E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.944E-4 dt_Flux=1.232E-11 sumX=1.0000000
+Fast=1.346E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=188
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 7.43321223E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 3.71411E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 3.71410089E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.49623566E-10 logt=-9.825000 dt=1.5904E-11 dt'=1.0850E-11 95/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.032 12C=0.309 16O=0.501 20Ne=0.158
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.452E26 dE/dt_mass=1.451E26 sumE=3.507E16 sumE_mass=3.503E16
+AbsXfer: Z=10 N=10 dn=4.491E38 dn/Tot=4.49E8 dX/X=4.14E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.242E-4 dt_Flux=1.431E-11 sumX=1.0000000
+Fast=1.275E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=190
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 6.67475677E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 3.33478E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 3.33476782E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.73780083E-10 logt=-9.760000 dt=1.8472E-11 dt'=1.2602E-11 96/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.035 12C=0.290 16O=0.501 20Ne=0.173
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.284E26 dE/dt_mass=1.283E26 sumE=3.836E16 sumE_mass=3.833E16
+AbsXfer: Z=10 N=10 dn=3.972E38 dn/Tot=3.97E8 dX/X=3.34E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.471E-4 dt_Flux=1.662E-11 sumX=1.0000000
+Fast=1.202E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=192
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 5.92878936E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 2.96172E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 2.96170242E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.01836636E-10 logt=-9.695000 dt=2.1454E-11 dt'=1.4637E-11 97/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.038 12C=0.272 16O=0.502 20Ne=0.188
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.122E26 dE/dt_mass=1.121E26 sumE=4.173E16 sumE_mass=4.170E16
+AbsXfer: Z=10 N=10 dn=3.469E38 dn/Tot=3.47E8 dX/X=2.68E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.621E-4 dt_Flux=1.931E-11 sumX=1.0000000
+Fast=1.126E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=194
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 5.20710902E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 2.60083E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 2.60080792E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.34422882E-10 logt=-9.630000 dt=2.4918E-11 dt'=1.7000E-11 98/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.042 12C=0.253 16O=0.502 20Ne=0.204
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=9.676E25 dE/dt_mass=9.667E25 sumE=4.513E16 sumE_mass=4.509E16
+AbsXfer: Z=10 N=10 dn=2.990E38 dn/Tot=2.99E8 dX/X=2.14E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.685E-4 dt_Flux=2.243E-11 sumX=1.0000000
+Fast=1.049E9 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=196
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 4.52071884E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 2.25761E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 2.25758849E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=2.72270131E-10 logt=-9.565000 dt=2.8941E-11 dt'=1.9744E-11 99/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.045 12C=0.234 16O=0.502 20Ne=0.219
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=8.230E25 dE/dt_mass=8.223E25 sumE=4.851E16 sumE_mass=4.847E16
+AbsXfer: Z=10 N=10 dn=2.543E38 dn/Tot=2.54E8 dX/X=1.69E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.659E-4 dt_Flux=2.605E-11 sumX=1.0000000
+Fast=9.718E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=198
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 3.87914830E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1.93684E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 1.93681022E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.16227766E-10 logt=-9.500000 dt=3.3614E-11 dt'=2.2932E-11 100/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.048 12C=0.215 16O=0.503 20Ne=0.234
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=6.901E25 dE/dt_mass=6.895E25 sumE=5.183E16 sumE_mass=5.178E16
+AbsXfer: Z=10 N=10 dn=2.131E38 dn/Tot=2.13E8 dX/X=1.33E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.544E-4 dt_Flux=3.025E-11 sumX=1.0000000
+Fast=8.949E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=200
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 3.28989908E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1.64226E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 1.64222384E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=3.67282300E-10 logt=-9.435000 dt=3.9040E-11 dt'=2.6634E-11 101/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.051 12C=0.196 16O=0.504 20Ne=0.248
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=5.699E25 dE/dt_mass=5.695E25 sumE=5.503E16 sumE_mass=5.498E16
+AbsXfer: Z=10 N=10 dn=1.759E38 dn/Tot=1.76E8 dX/X=1.03E9 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.346E-4 dt_Flux=3.514E-11 sumX=1.0000000
+Fast=8.193E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=202
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 2.75808339E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1.37642E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 1.37638391E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.26579519E-10 logt=-9.370000 dt=4.5343E-11 dt'=3.0934E-11 102/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.055 12C=0.178 16O=0.505 20Ne=0.262
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=4.632E25 dE/dt_mass=4.628E25 sumE=5.808E16 sumE_mass=5.803E16
+AbsXfer: Z=10 N=10 dn=1.429E38 dn/Tot=1.43E8 dX/X=7.95E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=7.072E-4 dt_Flux=4.081E-11 sumX=1.0000000
+Fast=7.458E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=204
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 2.28629306E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1.14063E7 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 1.14058352E7 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.95450191E-10 logt=-9.305000 dt=5.2664E-11 dt'=3.5929E-11 103/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.058 12C=0.161 16O=0.506 20Ne=0.275
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.700E25 dE/dt_mass=3.697E25 sumE=6.094E16 sumE_mass=6.089E16
+AbsXfer: Z=10 N=10 dn=1.140E38 dn/Tot=1.14E8 dX/X=6.05E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.736E-4 dt_Flux=4.740E-11 sumX=1.0000000
+Fast=6.752E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=206
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.87469993E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 9349546.24194 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 9349047.01583480 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.75439937E-10 logt=-9.240000 dt=6.1167E-11 dt'=4.1729E-11 104/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.061 12C=0.145 16O=0.507 20Ne=0.287
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.898E25 dE/dt_mass=2.896E25 sumE=6.356E16 sumE_mass=6.351E16
+AbsXfer: Z=10 N=10 dn=8.926E37 dn/Tot=8.93E7 dX/X=4.54E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=6.348E-4 dt_Flux=5.505E-11 sumX=1.0000000
+Fast=6.081E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=208
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.52135210E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 7584218.80225 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 7583669.28588509 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=6.68343918E-10 logt=-9.175000 dt=7.1042E-11 dt'=4.8466E-11 105/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.064 12C=0.130 16O=0.509 20Ne=0.297
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.220E25 dE/dt_mass=2.218E25 sumE=6.593E16 sumE_mass=6.587E16
+AbsXfer: Z=10 N=10 dn=6.832E37 dn/Tot=6.83E7 dX/X=3.35E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.926E-4 dt_Flux=6.394E-11 sumX=1.0000000
+Fast=5.450E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=210
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1.22260577E7 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 6092032.91532 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 6091434.00140624 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=7.76247117E-10 logt=-9.110000 dt=8.2512E-11 dt'=5.6291E-11 106/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.066 12C=0.116 16O=0.511 20Ne=0.307
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.655E25 dE/dt_mass=1.654E25 sumE=6.801E16 sumE_mass=6.795E16
+AbsXfer: Z=10 N=10 dn=5.088E37 dn/Tot=5.09E7 dX/X=2.42E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.481E-4 dt_Flux=7.426E-11 sumX=1.0000000
+Fast=4.863E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=212
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 9736216.49042084 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 4848742.58071 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 4848095.88402118 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=9.01571138E-10 logt=-9.045000 dt=9.5833E-11 dt'=6.5379E-11 107/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.069 12C=0.103 16O=0.514 20Ne=0.315
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.191E25 dE/dt_mass=1.190E25 sumE=6.978E16 sumE_mass=6.972E16
+AbsXfer: Z=10 N=10 dn=3.657E37 dn/Tot=3.66E7 dX/X=1.70E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=5.027E-4 dt_Flux=8.625E-11 sumX=1.0000000
+Fast=4.320E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=214
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 7688593.07270500 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 3826599.47021 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 3825907.23124722 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.04712855E-9 logt=-8.980000 dt=1.1131E-10 dt'=7.5934E-11 108/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.072 12C=0.091 16O=0.516 20Ne=0.321
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=8.161E24 dE/dt_mass=8.154E24 sumE=7.123E16 sumE_mass=7.116E16
+AbsXfer: Z=10 N=10 dn=2.501E37 dn/Tot=2.50E7 dX/X=1.14E8 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.575E-4 dt_Flux=1.002E-10 sumX=1.0000000
+Fast=3.823E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=216
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 6025178.12942100 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 2996558.23255 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 2995823.20853940 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.21618600E-9 logt=-8.915000 dt=1.2928E-10 dt'=8.8194E-11 109/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.074 12C=0.080 16O=0.520 20Ne=0.326
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=5.170E24 dE/dt_mass=5.165E24 sumE=7.234E16 sumE_mass=7.228E16
+AbsXfer: Z=8 N=8 dn=1.654E37 dn/Tot=1.65E7 dX/X=3.71E7 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=4.135E-4 dt_Flux=1.163E-10 sumX=1.0000000
+Fast=3.371E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=218
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 4688908.19977389 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 2330053.27853 Y/s (c12 + c12 -> he4 + ne20)
+|Max Net RG Flux| = 2329278.63399539 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.41253754E-9 logt=-8.850000 dt=1.5015E-10 dt'=1.0243E-10 110/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.077 12C=0.070 16O=0.523 20Ne=0.329
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.824E24 dE/dt_mass=2.822E24 sumE=7.311E16 sumE_mass=7.305E16
+AbsXfer: Z=8 N=8 dn=1.645E37 dn/Tot=1.64E7 dX/X=3.67E7 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.714E-4 dt_Flux=1.351E-10 sumX=1.0000000
+Fast=2.963E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=220
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 3626239.34889751 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1815133.78804 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1799475.34108487 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.64058977E-9 logt=-8.785000 dt=1.7439E-10 dt'=1.1897E-10 111/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.079 12C=0.062 16O=0.528 20Ne=0.331
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.020E24 dE/dt_mass=1.019E24 sumE=7.354E16 sumE_mass=7.348E16
+AbsXfer: Z=8 N=8 dn=1.622E37 dn/Tot=1.62E7 dX/X=3.59E7 Xcorr=0.000
+Z_maxdY=6 N_maxdY=6 maxdY=3.318E-4 dt_Flux=1.569E-10 sumX=1.0000000
+Fast=2.597E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=222
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 2788777.68286689 Y/s (Z=6 and N=6)
+|Max Reaction Flux| = 1828054.78145 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1382197.31266231 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=1.90546072E-9 logt=-8.720000 dt=2.0254E-10 dt'=1.3818E-10 112/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.082 12C=0.054 16O=0.533 20Ne=0.332
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.364E23 dE/dt_mass=-3.361E23 sumE=7.362E16 sumE_mass=7.356E16
+AbsXfer: Z=2 N=2 dn=2.980E37 dn/Tot=2.98E7 dX/X=1.06E8 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.003E-4 dt_Flux=1.823E-10 sumX=1.0000000
+Fast=2.270E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=224
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 2173065.90292388 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1832379.64634 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1136317.73707937 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.21309471E-9 logt=-8.655000 dt=2.3524E-10 dt'=1.6049E-10 113/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.084 12C=0.047 16O=0.538 20Ne=0.330
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.323E24 dE/dt_mass=-1.321E24 sumE=7.336E16 sumE_mass=7.329E16
+AbsXfer: Z=2 N=2 dn=2.592E37 dn/Tot=2.59E7 dX/X=8.96E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.033E-4 dt_Flux=2.117E-10 sumX=1.0000000
+Fast=1.980E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=226
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1889649.51668722 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1828148.63857 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1103461.28607571 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.57039578E-9 logt=-8.590000 dt=2.7322E-10 dt'=1.8640E-10 114/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.087 12C=0.041 16O=0.545 20Ne=0.328
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.005E24 dE/dt_mass=-2.004E24 sumE=7.275E16 sumE_mass=7.269E16
+AbsXfer: Z=2 N=2 dn=2.268E37 dn/Tot=2.27E7 dX/X=7.61E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.083E-4 dt_Flux=2.459E-10 sumX=1.0000000
+Fast=1.724E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=228
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1654031.15814167 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1815496.94770 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1060568.53434433 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.98538262E-9 logt=-8.525000 dt=3.1733E-10 dt'=2.1649E-10 115/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.089 12C=0.035 16O=0.552 20Ne=0.324
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.440E24 dE/dt_mass=-2.438E24 sumE=7.183E16 sumE_mass=7.176E16
+AbsXfer: Z=2 N=2 dn=1.994E37 dn/Tot=1.99E7 dX/X=6.50E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.147E-4 dt_Flux=2.856E-10 sumX=1.0000000
+Fast=1.498E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=230
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1453757.83500690 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1794678.74153 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1007644.26904278 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=3.46736850E-9 logt=-8.460000 dt=3.6857E-10 dt'=2.5144E-10 116/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.092 12C=0.031 16O=0.559 20Ne=0.318
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.672E24 dE/dt_mass=-2.669E24 sumE=7.059E16 sumE_mass=7.053E16
+AbsXfer: Z=2 N=2 dn=1.754E37 dn/Tot=1.75E7 dX/X=5.55E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.216E-4 dt_Flux=3.317E-10 sumX=1.0000000
+Fast=1.300E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=232
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1278992.05829219 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1766101.43610 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 944922.78403330 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=4.02717034E-9 logt=-8.395000 dt=4.2807E-10 dt'=2.9204E-10 117/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.095 12C=0.027 16O=0.567 20Ne=0.311
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.739E24 dE/dt_mass=-2.737E24 sumE=6.907E16 sumE_mass=6.901E16
+AbsXfer: Z=2 N=2 dn=1.539E37 dn/Tot=1.54E7 dX/X=4.74E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.277E-4 dt_Flux=3.853E-10 sumX=1.0000000
+Fast=1.126E8 (c12+c12 -> he4+ne20) SF=0.2 massTol=1.0E-9 Steps=234
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 1122240.26021219 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1730368.00441 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 872947.25642453 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=4.67735141E-9 logt=-8.330000 dt=4.9718E-10 dt'=3.3919E-10 118/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.098 12C=0.023 16O=0.576 20Ne=0.303
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.675E24 dE/dt_mass=-2.672E24 sumE=6.730E16 sumE_mass=6.725E16
+AbsXfer: Z=2 N=2 dn=1.341E37 dn/Tot=1.34E7 dX/X=4.01E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.318E-4 dt_Flux=4.475E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=236
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 978100.41904111 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1688322.81111 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 792657.32239886 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=5.43250331E-9 logt=-8.265000 dt=5.7745E-10 dt'=3.9395E-10 119/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.100 12C=0.020 16O=0.585 20Ne=0.295
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.507E24 dE/dt_mass=-2.504E24 sumE=6.535E16 sumE_mass=6.529E16
+AbsXfer: Z=2 N=2 dn=1.156E37 dn/Tot=1.16E7 dX/X=3.36E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.321E-4 dt_Flux=5.197E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=238
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 843036.57217089 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1641093.41814 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 705473.73863367 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=6.30957344E-9 logt=-8.200000 dt=6.7068E-10 dt'=4.5755E-10 120/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.103 12C=0.017 16O=0.595 20Ne=0.285
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.261E24 dE/dt_mass=-2.259E24 sumE=6.326E16 sumE_mass=6.320E16
+AbsXfer: Z=2 N=2 dn=9.808E36 dn/Tot=9808175.06 dX/X=2.78E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.272E-4 dt_Flux=6.036E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=240
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 715171.25764829 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1590117.23603 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 613362.10483998 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=7.32824533E-9 logt=-8.135000 dt=7.7896E-10 dt'=5.3142E-10 121/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.106 12C=0.015 16O=0.604 20Ne=0.276
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.963E24 dE/dt_mass=-1.961E24 sumE=6.110E16 sumE_mass=6.105E16
+AbsXfer: Z=2 N=2 dn=8.147E36 dn/Tot=8147379.08 dX/X=2.25E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.157E-4 dt_Flux=7.011E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=242
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 594072.93479546 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1537138.46198 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 518850.21899807 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=8.51138038E-9 logt=-8.070000 dt=9.0472E-10 dt'=6.1722E-10 122/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.108 12C=0.013 16O=0.613 20Ne=0.266
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.636E24 dE/dt_mass=-1.634E24 sumE=5.898E16 sumE_mass=5.893E16
+AbsXfer: Z=2 N=2 dn=6.590E36 dn/Tot=6589871.57 dX/X=1.78E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.966E-4 dt_Flux=8.142E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=244
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 480505.97664729 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1484158.82560 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 424968.24558912 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=9.88553095E-9 logt=-8.005000 dt=1.0508E-9 dt'=7.1687E-10 123/200 0.5 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.111 12C=0.011 16O=0.621 20Ne=0.257
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.303E24 dE/dt_mass=-1.301E24 sumE=5.696E16 sumE_mass=5.692E16
+AbsXfer: Z=2 N=2 dn=5.158E36 dn/Tot=5158132.83 dX/X=1.36E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.696E-4 dt_Flux=9.457E-10 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=246
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 376109.55327725 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1433327.44087 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 335081.82156715 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.14815362E-8 logt=-7.940000 dt=1.2204E-9 dt'=8.3261E-10 124/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.113 12C=0.010 16O=0.629 20Ne=0.249
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.850E23 dE/dt_mass=-9.842E23 sumE=5.515E16 sumE_mass=5.510E16
+AbsXfer: Z=2 N=2 dn=3.881E36 dn/Tot=3880962.94 dX/X=1.01E7 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.356E-4 dt_Flux=1.098E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=248
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 282983.64668288 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1386763.20152 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 252601.11240847 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.33352143E-8 logt=-7.875000 dt=1.4175E-9 dt'=9.6703E-10 125/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.114 12C=0.008 16O=0.635 20Ne=0.242
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.011E23 dE/dt_mass=-7.005E23 sumE=5.359E16 sumE_mass=5.355E16
+AbsXfer: Z=2 N=2 dn=2.787E36 dn/Tot=2786633.39 dX/X=7104181.04 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.965E-4 dt_Flux=1.276E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=250
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 203189.69534489 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1346319.68512 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 180578.27609539 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.54881662E-8 logt=-7.810000 dt=1.6463E-9 dt'=1.1232E-9 126/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.116 12C=0.007 16O=0.641 20Ne=0.236
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-4.645E23 dE/dt_mass=-4.641E23 sumE=5.235E16 sumE_mass=5.230E16
+AbsXfer: Z=2 N=2 dn=1.896E36 dn/Tot=1895593.78 dX/X=4771744.71 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.552E-4 dt_Flux=1.482E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=252
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 138218.79998133 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1313326.74198 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 121250.98003096 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.79887092E-8 logt=-7.745000 dt=1.9121E-9 dt'=1.3045E-9 127/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.117 12C=0.006 16O=0.644 20Ne=0.232
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.821E23 dE/dt_mass=-2.819E23 sumE=5.142E16 sumE_mass=5.138E16
+AbsXfer: Z=2 N=2 dn=1.214E36 dn/Tot=1214143.19 dX/X=3027013.14 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.155E-4 dt_Flux=1.721E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=254
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 88530.26275024 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1288368.84414 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 75638.99888419 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.08929613E-8 logt=-7.680000 dt=2.2208E-9 dt'=1.5151E-9 128/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.118 12C=0.005 16O=0.647 20Ne=0.230
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.542E23 dE/dt_mass=-1.541E23 sumE=5.080E16 sumE_mass=5.075E16
+AbsXfer: Z=2 N=2 dn=7.309E35 dn/Tot=730884.29 dX/X=1809609.33 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=8.074E-5 dt_Flux=1.999E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=256
+Asymptotic:none Pot Equil:none
+Equil Imposed:none
+Percent RG equilibrated=0.0 %
+|Max Isotope Flux| = 53293.03668188 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1271175.35625 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 43330.17845585 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+   368 ADD RG 3 to equilibrium
+
+t=2.42661010E-8 logt=-7.615000 dt=2.5794E-9 dt'=1.7597E-9 129/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.118 12C=0.005 16O=0.649 20Ne=0.228
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.410E22 dE/dt_mass=-7.404E22 sumE=5.042E16 sumE_mass=5.038E16
+AbsXfer: Z=2 N=2 dn=4.175E35 dn/Tot=417499.81 dX/X=1028840.87 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=5.357E-5 dt_Flux=2.321E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=258
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:4/14
+Equil:|he4+o16<->ne20|
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 30442.34636121 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1260686.17239 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 22571.14770618 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.81838293E-8 logt=-7.550000 dt=2.9958E-9 dt'=2.0438E-9 130/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.119 12C=0.004 16O=0.650 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.082E22 dE/dt_mass=-3.080E22 sumE=5.022E16 sumE_mass=5.018E16
+AbsXfer: Z=2 N=2 dn=2.342E35 dn/Tot=234193.29 dX/X=575344.32 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.490E-5 dt_Flux=2.696E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=260
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 17076.39923097 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1255307.51171 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 10690.21012979 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=3.27340695E-8 logt=-7.485000 dt=3.4795E-9 dt'=2.3738E-9 131/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.119 12C=0.004 16O=0.650 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.182E22 dE/dt_mass=-1.182E22 sumE=5.013E16 sumE_mass=5.009E16
+AbsXfer: Z=2 N=2 dn=1.383E35 dn/Tot=138287.13 dX/X=339038.58 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.394E-5 dt_Flux=3.132E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=262
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 10083.32136104 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1253296.08372 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 4744.45489338 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=3.80189396E-8 logt=-7.420000 dt=4.0412E-9 dt'=2.7570E-9 132/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.119 12C=0.003 16O=0.651 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-6.074E21 dE/dt_mass=-6.078E21 sumE=5.008E16 sumE_mass=5.004E16
+AbsXfer: Z=2 N=2 dn=9.286E34 dn/Tot=92861.90 dX/X=227334.38 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.867E-5 dt_Flux=3.637E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=264
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 6771.10285883 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1253140.89267 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 3096.06047206 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=4.41570447E-8 logt=-7.355000 dt=4.6937E-9 dt'=3.2021E-9 133/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.119 12C=0.003 16O=0.651 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-5.907E21 dE/dt_mass=-5.912E21 sumE=5.005E16 sumE_mass=5.000E16
+AbsXfer: Z=2 N=2 dn=7.210E34 dn/Tot=72100.62 dX/X=176292.48 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.683E-5 dt_Flux=4.224E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=266
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 5257.27675888 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1253800.33850 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2401.63856184 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.12861384E-8 logt=-7.290000 dt=5.4515E-9 dt'=3.7191E-9 134/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.119 12C=0.003 16O=0.650 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.246E21 dE/dt_mass=-7.250E21 sumE=5.000E16 sumE_mass=4.996E16
+AbsXfer: Z=2 N=2 dn=6.172E34 dn/Tot=61717.30 dX/X=150729.43 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.674E-5 dt_Flux=4.906E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=268
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 4500.16824286 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1254724.50861 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1909.95786863 Y/s; RG 2 (c12 + c12 <-> he4 + ne20)
+-----------------------------------------------------------------
+
+t=5.95662144E-8 logt=-7.225000 dt=6.3316E-9 dt'=4.3196E-9 135/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.120 12C=0.003 16O=0.650 20Ne=0.227
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-8.556E21 dE/dt_mass=-8.560E21 sumE=4.993E16 sumE_mass=4.989E16
+AbsXfer: Z=2 N=2 dn=5.562E34 dn/Tot=55620.45 dX/X=135678.90 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.752E-5 dt_Flux=5.698E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=270
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 4055.61174133 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1255712.58913 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1879.61234388 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=6.91830971E-8 logt=-7.160000 dt=7.3539E-9 dt'=5.0169E-9 136/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.120 12C=0.003 16O=0.650 20Ne=0.228
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.515E21 dE/dt_mass=-9.518E21 sumE=4.985E16 sumE_mass=4.980E16
+AbsXfer: Z=2 N=2 dn=5.174E34 dn/Tot=51736.04 dX/X=126044.97 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.893E-5 dt_Flux=6.618E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=272
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3772.37625228 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1256733.16152 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1957.53599668 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=8.03526122E-8 logt=-7.095000 dt=8.5411E-9 dt'=5.8269E-9 137/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.120 12C=0.002 16O=0.650 20Ne=0.228
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.015E22 dE/dt_mass=-1.015E22 sumE=4.974E16 sumE_mass=4.969E16
+AbsXfer: Z=2 N=2 dn=4.929E34 dn/Tot=49291.51 dX/X=119924.75 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.094E-5 dt_Flux=7.687E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=274
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3594.13179896 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1257808.07647 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2007.95402143 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=9.33254301E-8 logt=-7.030000 dt=9.9201E-9 dt'=6.7677E-9 138/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.120 12C=0.002 16O=0.649 20Ne=0.228
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.053E22 dE/dt_mass=-1.053E22 sumE=4.960E16 sumE_mass=4.956E16
+AbsXfer: Z=2 N=2 dn=4.782E34 dn/Tot=47824.90 dX/X=116178.64 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.360E-5 dt_Flux=8.928E-9 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=276
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3487.19255278 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1258971.12738 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2036.88287022 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.08392691E-7 logt=-6.965000 dt=2.4089E-9 dt'=1.7756E-9 139/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.120 12C=0.002 16O=0.649 20Ne=0.228
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.071E22 dE/dt_mass=-1.072E22 sumE=4.944E16 sumE_mass=4.940E16
+AbsXfer: Z=2 N=2 dn=4.698E34 dn/Tot=46981.52 dX/X=113932.85 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=6.083E-6 dt_Flux=1.066E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=286
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3425.69665705 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1260508.42428 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2048.99957353 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.25892541E-7 logt=-6.900000 dt=4.5328E-9 dt'=3.3412E-9 140/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.121 12C=0.002 16O=0.649 20Ne=0.229
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.078E22 dE/dt_mass=-1.079E22 sumE=4.925E16 sumE_mass=4.921E16
+AbsXfer: Z=2 N=2 dn=4.654E34 dn/Tot=46539.99 dX/X=112638.67 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.134E-5 dt_Flux=1.251E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=292
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3393.50205261 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1262111.29061 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2050.95835911 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.46217717E-7 logt=-6.835000 dt=6.9086E-9 dt'=4.9202E-9 141/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.121 12C=0.002 16O=0.648 20Ne=0.229
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.080E22 dE/dt_mass=-1.080E22 sumE=4.904E16 sumE_mass=4.899E16
+AbsXfer: Z=2 N=2 dn=4.630E34 dn/Tot=46300.57 dX/X=111803.92 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.661E-5 dt_Flux=1.427E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=296
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3376.04478882 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1263621.41090 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2048.36393461 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.69824365E-7 logt=-6.770000 dt=9.4769E-9 dt'=6.6111E-9 142/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.121 12C=0.002 16O=0.647 20Ne=0.229
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.079E22 dE/dt_mass=-1.079E22 sumE=4.878E16 sumE_mass=4.874E16
+AbsXfer: Z=2 N=2 dn=4.612E34 dn/Tot=46121.16 dX/X=111078.19 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.223E-5 dt_Flux=1.624E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=299
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3362.96260472 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1265292.06726 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2043.29450640 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.97242274E-7 logt=-6.705000 dt=3.7283E-9 dt'=2.7482E-9 143/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.121 12C=0.002 16O=0.646 20Ne=0.230
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.075E22 dE/dt_mass=-1.075E22 sumE=4.849E16 sumE_mass=4.844E16
+AbsXfer: Z=2 N=2 dn=4.589E34 dn/Tot=45890.48 dX/X=110188.10 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=9.196E-6 dt_Flux=1.948E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=313
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3346.14228966 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1268021.15529 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2033.26985192 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.29086765E-7 logt=-6.640000 dt=7.0155E-9 dt'=5.1712E-9 144/200 0.6 s
+(Z+N)/nT=1.0000 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.122 12C=0.002 16O=0.646 20Ne=0.230
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.071E22 dE/dt_mass=-1.071E22 sumE=4.814E16 sumE_mass=4.810E16
+AbsXfer: Z=2 N=2 dn=4.571E34 dn/Tot=45708.13 dX/X=109367.35 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.723E-5 dt_Flux=2.231E-8 sumX=1.0000000
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=319
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3332.84635957 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1270380.19660 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2024.21299286 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.66072506E-7 logt=-6.575000 dt=2.0120E-9 dt'=1.4831E-9 145/200 0.6 s
+(Z+N)/nT=0.9999 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.122 12C=0.002 16O=0.644 20Ne=0.231
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.021E22 dE/dt_mass=-1.021E22 sumE=4.777E16 sumE_mass=4.768E16
+AbsXfer: Z=2 N=2 dn=4.412E34 dn/Tot=44122.29 dX/X=105160.94 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.771E-6 dt_Flux=2.646E-8 sumX=0.9998695
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=330
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3217.21355188 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1273472.11622 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 2010.78127026 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.09029543E-7 logt=-6.510000 dt=6.4116E-9 dt'=4.7261E-9 146/200 0.6 s
+(Z+N)/nT=0.9999 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.123 12C=0.002 16O=0.643 20Ne=0.231
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.060E22 dE/dt_mass=-1.060E22 sumE=4.731E16 sumE_mass=4.722E16
+AbsXfer: Z=2 N=2 dn=4.520E34 dn/Tot=45196.98 dX/X=107226.24 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.558E-5 dt_Flux=3.037E-8 sumX=0.9998695
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=341
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3295.57510698 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1276729.87021 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1998.32621592 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.58921935E-7 logt=-6.445000 dt=2.5224E-9 dt'=1.8593E-9 147/200 0.6 s
+(Z+N)/nT=0.9997 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.124 12C=0.002 16O=0.642 20Ne=0.232
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.037E22 dE/dt_mass=-1.037E22 sumE=4.680E16 sumE_mass=4.667E16
+AbsXfer: Z=2 N=2 dn=4.440E34 dn/Tot=44403.93 dX/X=104799.21 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=6.020E-6 dt_Flux=3.565E-8 sumX=0.9997396
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=355
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3237.74956851 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1280709.35101 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1981.44668270 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.16869383E-7 logt=-6.380000 dt=8.9310E-9 dt'=6.5832E-9 148/200 0.6 s
+(Z+N)/nT=0.9997 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.124 12C=0.002 16O=0.640 20Ne=0.233
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.044E22 dE/dt_mass=-1.045E22 sumE=4.619E16 sumE_mass=4.606E16
+AbsXfer: Z=2 N=2 dn=4.451E34 dn/Tot=44505.53 dX/X=104401.33 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.136E-5 dt_Flux=4.141E-8 sumX=0.9997396
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=367
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3245.15795490 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1285328.57873 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1963.35944606 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.84172368E-7 logt=-6.315000 dt=7.3460E-9 dt'=5.4149E-9 149/200 0.7 s
+(Z+N)/nT=0.9997 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.125 12C=0.002 16O=0.638 20Ne=0.234
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.035E22 dE/dt_mass=-1.035E22 sumE=4.550E16 sumE_mass=4.535E16
+AbsXfer: Z=2 N=2 dn=4.407E34 dn/Tot=44070.89 dX/X=102668.64 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.740E-5 dt_Flux=4.840E-8 sumX=0.9996905
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=388
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3213.46542799 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1290720.14290 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1941.53617239 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=5.62341325E-7 logt=-6.250000 dt=7.4596E-9 dt'=5.4986E-9 150/200 0.7 s
+(Z+N)/nT=0.9996 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.126 12C=0.002 16O=0.636 20Ne=0.235
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.024E22 dE/dt_mass=-1.025E22 sumE=4.471E16 sumE_mass=4.452E16
+AbsXfer: Z=2 N=2 dn=4.360E34 dn/Tot=43600.58 dX/X=100779.46 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.748E-5 dt_Flux=5.604E-8 sumX=0.9995755
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=411
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3179.17256453 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1296370.83186 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1917.94624581 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=6.53130553E-7 logt=-6.185000 dt=8.4166E-9 dt'=6.2041E-9 151/200 0.7 s
+(Z+N)/nT=0.9995 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.127 12C=0.002 16O=0.634 20Ne=0.236
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.012E22 dE/dt_mass=-1.013E22 sumE=4.380E16 sumE_mass=4.358E16
+AbsXfer: Z=2 N=2 dn=4.307E34 dn/Tot=43070.41 dX/X=98667.64 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.948E-5 dt_Flux=6.473E-8 sumX=0.9994608
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=435
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3140.51479633 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1302701.54425 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1891.45601132 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=7.58577575E-7 logt=-6.120000 dt=1.9855E-9 dt'=1.4635E-9 152/200 0.7 s
+(Z+N)/nT=0.9993 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.129 12C=0.002 16O=0.631 20Ne=0.237
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.584E21 dE/dt_mass=-9.587E21 sumE=4.277E16 sumE_mass=4.247E16
+AbsXfer: Z=2 N=2 dn=4.122E34 dn/Tot=41221.42 dX/X=93482.68 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.399E-6 dt_Flux=7.584E-8 sumX=0.9992664
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=467
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3005.69425396 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1310430.53898 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1858.07692068 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=8.81048873E-7 logt=-6.055000 dt=5.7823E-9 dt'=4.2623E-9 153/200 0.7 s
+(Z+N)/nT=0.9992 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.130 12C=0.002 16O=0.628 20Ne=0.239
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.816E21 dE/dt_mass=-9.818E21 sumE=4.157E16 sumE_mass=4.124E16
+AbsXfer: Z=2 N=2 dn=4.168E34 dn/Tot=41683.48 dX/X=93450.35 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.295E-5 dt_Flux=8.785E-8 sumX=0.9991530
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=500
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 3039.38571703 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1318867.73796 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1822.71201331 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.02329299E-6 logt=-5.990000 dt=2.0790E-9 dt'=1.5325E-9 154/200 0.7 s
+(Z+N)/nT=0.9989 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.132 12C=0.002 16O=0.624 20Ne=0.241
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.284E21 dE/dt_mass=-9.286E21 sumE=4.022E16 sumE_mass=3.981E16
+AbsXfer: Z=2 N=2 dn=3.981E34 dn/Tot=39808.20 dX/X=88104.16 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.448E-6 dt_Flux=1.022E-7 sumX=0.9989276
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=536
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2902.64805141 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1328279.01652 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1781.38197190 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.18850223E-6 logt=-5.925000 dt=2.1438E-9 dt'=1.5802E-9 155/200 0.7 s
+(Z+N)/nT=0.9987 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.134 12C=0.002 16O=0.620 20Ne=0.242
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.179E21 dE/dt_mass=-9.181E21 sumE=3.867E16 sumE_mass=3.820E16
+AbsXfer: Z=2 N=2 dn=3.918E34 dn/Tot=39180.89 dX/X=85469.55 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.515E-6 dt_Flux=1.188E-7 sumX=0.9987284
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=582
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2856.90743203 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1339044.41483 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1734.35989686 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.38038426E-6 logt=-5.860000 dt=4.1597E-9 dt'=3.0662E-9 156/200 0.7 s
+(Z+N)/nT=0.9985 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.136 12C=0.002 16O=0.616 20Ne=0.245
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-9.170E21 dE/dt_mass=-9.173E21 sumE=3.692E16 sumE_mass=3.638E16
+AbsXfer: Z=2 N=2 dn=3.881E34 dn/Tot=38814.84 dX/X=83314.08 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=8.678E-6 dt_Flux=1.376E-7 sumX=0.9985305
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=634
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2830.21623897 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1350706.33327 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1682.90597044 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.60324539E-6 logt=-5.795000 dt=8.9680E-9 dt'=6.6104E-9 157/200 0.7 s
+(Z+N)/nT=0.9983 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.138 12C=0.002 16O=0.611 20Ne=0.247
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-8.898E21 dE/dt_mass=-8.900E21 sumE=3.493E16 sumE_mass=3.432E16
+AbsXfer: Z=2 N=2 dn=3.761E34 dn/Tot=37605.15 dX/X=79282.54 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.813E-5 dt_Flux=1.597E-7 sumX=0.9983342
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=687
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2742.01095993 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1363752.10088 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1624.45178688 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.86208714E-6 logt=-5.730000 dt=9.3905E-9 dt'=6.9219E-9 158/200 0.7 s
+(Z+N)/nT=0.9981 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.141 12C=0.002 16O=0.605 20Ne=0.250
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-8.583E21 dE/dt_mass=-8.585E21 sumE=3.270E16 sumE_mass=3.201E16
+AbsXfer: Z=2 N=2 dn=3.622E34 dn/Tot=36216.87 dX/X=74864.48 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.828E-5 dt_Flux=1.856E-7 sumX=0.9980877
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=756
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2640.78338176 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1378174.96028 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1558.24694825 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.16271852E-6 logt=-5.665000 dt=4.7758E-9 dt'=3.5203E-9 159/200 0.7 s
+(Z+N)/nT=0.9978 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.144 12C=0.002 16O=0.599 20Ne=0.252
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-8.222E21 dE/dt_mass=-8.223E21 sumE=3.021E16 sumE_mass=2.943E16
+AbsXfer: Z=2 N=2 dn=3.464E34 dn/Tot=34635.08 dX/X=70067.82 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=8.890E-6 dt_Flux=2.161E-7 sumX=0.9978312
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=841
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2525.44567599 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1394108.01633 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1483.60388668 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.51188643E-6 logt=-5.600000 dt=5.6424E-9 dt'=4.1591E-9 160/200 0.7 s
+(Z+N)/nT=0.9975 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.148 12C=0.002 16O=0.592 20Ne=0.256
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.825E21 dE/dt_mass=-7.826E21 sumE=2.745E16 sumE_mass=2.657E16
+AbsXfer: Z=2 N=2 dn=3.290E34 dn/Tot=32902.43 dX/X=65028.12 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=9.978E-6 dt_Flux=2.510E-7 sumX=0.9975209
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=934
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2399.10782733 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1410882.30783 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1402.64348596 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.91742701E-6 logt=-5.535000 dt=2.3603E-9 dt'=1.7398E-9 161/200 0.7 s
+(Z+N)/nT=0.9972 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.151 12C=0.002 16O=0.585 20Ne=0.259
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.289E21 dE/dt_mass=-7.291E21 sumE=2.442E16 sumE_mass=2.341E16
+AbsXfer: Z=2 N=2 dn=3.070E34 dn/Tot=30701.05 dX/X=59179.58 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.895E-6 dt_Flux=2.916E-7 sumX=0.9971577
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1040
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2238.59246357 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1428716.09164 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1313.69986189 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.38844156E-6 logt=-5.470000 dt=5.9204E-9 dt'=4.3640E-9 162/200 0.7 s
+(Z+N)/nT=0.9968 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.155 12C=0.002 16O=0.577 20Ne=0.262
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-6.897E21 dE/dt_mass=-6.899E21 sumE=2.110E16 sumE_mass=1.998E16
+AbsXfer: Z=2 N=2 dn=2.889E34 dn/Tot=28885.60 dX/X=54221.17 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=9.192E-6 dt_Flux=3.383E-7 sumX=0.9968318
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1163
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 2106.21783943 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1447413.17524 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1218.31393770 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.93550075E-6 logt=-5.405000 dt=8.9046E-9 dt'=6.5637E-9 163/200 0.7 s
+(Z+N)/nT=0.9965 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.160 12C=0.002 16O=0.569 20Ne=0.266
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-6.364E21 dE/dt_mass=-6.365E21 sumE=1.752E16 sumE_mass=1.629E16
+AbsXfer: Z=2 N=2 dn=2.659E34 dn/Tot=26592.15 dX/X=48547.31 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.273E-5 dt_Flux=3.931E-7 sumX=0.9964816
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1304
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 1938.98882634 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1466948.48520 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1115.02017537 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.57088190E-6 logt=-5.340000 dt=2.3032E-9 dt'=1.6977E-9 164/200 0.7 s
+(Z+N)/nT=0.9961 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.164 12C=0.002 16O=0.560 20Ne=0.269
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-5.698E21 dE/dt_mass=-5.699E21 sumE=1.372E16 sumE_mass=1.235E16
+AbsXfer: Z=2 N=2 dn=2.386E34 dn/Tot=23858.67 dX/X=42324.98 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.953E-6 dt_Flux=4.570E-7 sumX=0.9960917
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1474
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 1739.67480020 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1486857.26705 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1005.28535949 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=5.30884444E-6 logt=-5.275000 dt=7.4683E-9 dt'=5.5050E-9 165/200 0.7 s
+(Z+N)/nT=0.9957 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.169 12C=0.002 16O=0.551 20Ne=0.273
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-5.180E21 dE/dt_mass=-5.181E21 sumE=9.723E15 sumE_mass=8.235E15
+AbsXfer: Z=2 N=2 dn=2.155E34 dn/Tot=21550.60 dX/X=37130.86 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=8.650E-6 dt_Flux=5.302E-7 sumX=0.9957448
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1668
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 1571.38031421 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1506632.09236 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 892.54950346 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=6.16595002E-6 logt=-5.210000 dt=7.0527E-9 dt'=5.1986E-9 166/200 0.7 s
+(Z+N)/nT=0.9954 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.174 12C=0.002 16O=0.542 20Ne=0.276
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-4.544E21 dE/dt_mass=-4.545E21 sumE=5.612E15 sumE_mass=3.999E15
+AbsXfer: Z=2 N=2 dn=1.886E34 dn/Tot=18861.83 dX/X=31566.09 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=7.150E-6 dt_Flux=6.160E-7 sumX=0.9953752
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=1896
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 1375.32618293 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1526112.07358 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 776.29002065 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=7.16143410E-6 logt=-5.145000 dt=2.3946E-9 dt'=1.7651E-9 167/200 0.7 s
+(Z+N)/nT=0.9950 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.179 12C=0.002 16O=0.534 20Ne=0.280
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.859E21 dE/dt_mass=-3.860E21 sumE=1.469E15 sumE_mass=-2.689E14
+AbsXfer: Z=2 N=2 dn=1.602E34 dn/Tot=16020.60 dX/X=26059.66 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.062E-6 dt_Flux=7.161E-7 sumX=0.9950074
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=2160
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 1168.15558102 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1544838.89820 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 659.30972547 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=8.31763771E-6 logt=-5.080000 dt=4.4557E-9 dt'=3.2844E-9 168/200 0.7 s
+(Z+N)/nT=0.9947 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.184 12C=0.002 16O=0.525 20Ne=0.283
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.249E21 dE/dt_mass=-3.250E21 sumE=-2.607E15 sumE_mass=-4.454E15
+AbsXfer: Z=2 N=2 dn=1.343E34 dn/Tot=13430.11 dX/X=21260.96 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.216E-6 dt_Flux=8.314E-7 sumX=0.9946860
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=2463
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 979.26751255 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1562234.81535 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 546.06703824 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=9.66050879E-6 logt=-5.015000 dt=9.4989E-9 dt'=7.0018E-9 169/200 0.7 s
+(Z+N)/nT=0.9944 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.189 12C=0.002 16O=0.517 20Ne=0.286
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.630E21 dE/dt_mass=-3.247E21 sumE=-6.501E15 sumE_mass=-8.452E15
+AbsXfer: Z=2 N=2 dn=1.085E34 dn/Tot=10848.08 dX/X=16746.05 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=5.538E-6 dt_Flux=9.651E-7 sumX=0.9943816
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=2813
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 790.99706003 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1578035.12330 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 438.64390441 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.12201845E-5 logt=-4.950000 dt=9.1278E-9 dt'=6.7283E-9 170/200 0.7 s
+(Z+N)/nT=0.9941 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.193 12C=0.002 16O=0.510 20Ne=0.288
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.048E21 dE/dt_mass=-2.048E21 sumE=-1.009E16 sumE_mass=-1.213E16
+AbsXfer: Z=2 N=2 dn=8.434E33 dn/Tot=8433.82 dX/X=12727.49 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.138E-6 dt_Flux=1.122E-6 sumX=0.9941326
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=3224
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 614.95891055 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1592019.86108 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 339.30745138 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.30316678E-5 logt=-4.885000 dt=8.2660E-9 dt'=6.0930E-9 171/200 0.8 s
+(Z+N)/nT=0.9939 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.197 12C=0.002 16O=0.504 20Ne=0.290
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.530E21 dE/dt_mass=-1.530E21 sumE=-1.328E16 sumE_mass=-1.539E16
+AbsXfer: Z=2 N=2 dn=6.291E33 dn/Tot=6291.27 dX/X=9309.34 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.795E-6 dt_Flux=1.303E-6 sumX=0.9939191
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=3703
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 458.73294269 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1603866.31362 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 252.00434969 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.51356125E-5 logt=-4.820000 dt=2.7753E-9 dt'=2.0457E-9 172/200 0.8 s
+(Z+N)/nT=0.9937 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.200 12C=0.002 16O=0.499 20Ne=0.292
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.084E21 dE/dt_mass=-1.084E21 sumE=-1.599E16 sumE_mass=-1.816E16
+AbsXfer: Z=2 N=2 dn=4.453E33 dn/Tot=4453.48 dX/X=6483.15 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=6.643E-7 dt_Flux=1.513E-6 sumX=0.9937345
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=4264
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 324.72904869 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1613531.04085 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 178.11376669 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=1.75792361E-5 logt=-4.755000 dt=3.1092E-9 dt'=2.2919E-9 173/200 0.8 s
+(Z+N)/nT=0.9936 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.203 12C=0.002 16O=0.495 20Ne=0.294
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-7.285E20 dE/dt_mass=-7.285E20 sumE=-1.816E16 sumE_mass=-2.038E16
+AbsXfer: Z=2 N=2 dn=2.990E33 dn/Tot=2989.79 dX/X=4296.49 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.996E-7 dt_Flux=1.758E-6 sumX=0.9935937
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=4905
+Asymptotic:none Pot Equil:1/4 |he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=25.0 %
+|Max Isotope Flux| = 218.00299005 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1621039.68937 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 119.08036548 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+   5643 ADD RG 2 to equilibrium
+
+t=2.04173794E-5 logt=-4.690000 dt=1.4571E-9 dt'=2.8141E-9 174/200 0.8 s
+(Z+N)/nT=0.9935 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.205 12C=0.002 16O=0.492 20Ne=0.295
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-4.349E20 dE/dt_mass=-4.350E20 sumE=-1.980E16 sumE_mass=-2.205E16
+AbsXfer: Z=2 N=2 dn=1.808E33 dn/Tot=1807.94 dX/X=2573.15 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.710E-7 dt_Flux=2.042E-6 sumX=0.9934895
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=5652
+Asymptotic:none Pot Equil:2/4 |c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=50.0 %
+|Max Isotope Flux| = 131.82739236 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1626572.58504 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 74.53938012 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.37137371E-5 logt=-4.625000 dt=1.3875E-9 dt'=2.6795E-9 175/200 0.8 s
+(Z+N)/nT=0.9934 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.206 12C=0.002 16O=0.489 20Ne=0.295
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.531E20 dE/dt_mass=-2.532E20 sumE=-2.096E16 sumE_mass=-2.323E16
+AbsXfer: Z=2 N=2 dn=1.051E33 dn/Tot=1051.47 dX/X=1486.46 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.054E-7 dt_Flux=2.371E-6 sumX=0.9934179
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=6520
+Asymptotic:none Pot Equil:2/4 |c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=50.0 %
+|Max Isotope Flux| = 76.66879562 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1630397.55926 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 43.25616646 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+   7373 ADD RG 1 to equilibrium
+
+t=2.75422870E-5 logt=-4.560000 dt=2.4531E-9 dt'=1.8082E-9 176/200 0.8 s
+(Z+N)/nT=0.9934 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.207 12C=0.002 16O=0.488 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.410E20 dE/dt_mass=-1.410E20 sumE=-2.171E16 sumE_mass=-2.400E16
+AbsXfer: Z=2 N=2 dn=5.783E32 dn/Tot=578.28 dX/X=813.96 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=7.624E-8 dt_Flux=2.754E-6 sumX=0.9933721
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=7531
+Asymptotic:none Pot Equil:3/4 |he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=75.0 %
+|Max Isotope Flux| = 42.16563477 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1632847.46039 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 22.99281460 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+   8226 ADD RG 0 to equilibrium
+
+t=3.19889511E-5 logt=-4.495000 dt=3.9115E-9 dt'=2.8832E-9 177/200 0.8 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.487 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-6.806E19 dE/dt_mass=-6.807E19 sumE=-2.215E16 sumE_mass=-2.445E16
+AbsXfer: Z=2 N=2 dn=2.788E32 dn/Tot=278.77 dX/X=391.38 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=5.861E-8 dt_Flux=3.199E-6 sumX=0.9933453
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=8701
+Asymptotic:none Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 20.32662010 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1634282.05378 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 11.03253998 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.71535229E-5 logt=-4.430000 dt=9.6731E-9 dt'=7.1302E-9 178/200 0.8 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.487 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.901E19 dE/dt_mass=-2.901E19 sumE=-2.239E16 sumE_mass=-2.469E16
+AbsXfer: Z=2 N=2 dn=1.188E32 dn/Tot=118.79 dX/X=166.55 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=6.176E-8 dt_Flux=3.715E-6 sumX=0.9933312
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=10058
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 8.66158334 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635038.81713 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 4.69717433 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.31519077E-5 logt=-4.365000 dt=1.6468E-9 dt'=1.2139E-9 179/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.487 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.040E19 dE/dt_mass=-1.040E19 sumE=-2.249E16 sumE_mass=-2.480E16
+AbsXfer: Z=2 N=2 dn=4.299E31 dn/Tot=42.99 dX/X=60.23 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.805E-9 dt_Flux=4.315E-6 sumX=0.9933246
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=11641
+Asymptotic:none Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 3.13442861 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635391.10576 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 1.74100671 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=5.01187234E-5 logt=-4.300000 dt=4.0979E-9 dt'=3.0206E-9 180/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.487 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.408E18 dE/dt_mass=-3.408E18 sumE=-2.254E16 sumE_mass=-2.485E16
+AbsXfer: Z=2 N=2 dn=1.396E31 dn/Tot=13.96 dX/X=19.55 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=3.074E-9 dt_Flux=5.012E-6 sumX=0.9933219
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=13478
+Asymptotic:none Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 1.01762059 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635533.18088 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.54827950 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=5.82103218E-5 logt=-4.235000 dt=4.3454E-9 dt'=3.2031E-9 181/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-8.952E17 dE/dt_mass=-8.953E17 sumE=-2.255E16 sumE_mass=-2.486E16
+AbsXfer: Z=2 N=2 dn=3.666E30 dn/Tot=3.67 dX/X=5.13 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=8.562E-10 dt_Flux=5.821E-6 sumX=0.9933210
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=15514
+Asymptotic:none Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.26730558 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635581.61260 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.14111694 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=6.76082975E-5 logt=-4.170000 dt=7.9295E-9 dt'=8.1965E-9 182/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.638E17 dE/dt_mass=-1.639E17 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=2 N=2 dn=6.991E29 dn/Tot=0.70 dX/X=0.98 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.178E-10 dt_Flux=6.761E-6 sumX=0.9933206
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=17021
+Asymptotic:none Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.05097386 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635594.95006 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.02684133 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=7.85235635E-5 logt=-4.105000 dt=1.4006E-8 dt'=1.4006E-8 183/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.001E16 dE/dt_mass=-3.002E16 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=2 N=2 dn=1.254E29 dn/Tot=0.13 dX/X=0.18 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.281E-10 dt_Flux=7.852E-6 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=18113
+Asymptotic: (10,10) 
+Asymptotic:1/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00914531 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635597.21225 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00401874 Y/s; RG 0 (he4 + he4 + he4 <-> c12)
+-----------------------------------------------------------------
+
+t=9.12010839E-5 logt=-4.040000 dt=1.4613E-7 dt'=1.4321E-7 184/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-4.393E16 dE/dt_mass=-4.777E15 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=2 N=2 dn=1.455E29 dn/Tot=0.15 dX/X=0.20 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=1.519E-9 dt_Flux=9.109E-6 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=18461
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.01060690 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635597.55231 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.00396966 Y/s; RG 0 (he4 + he4 + he4 <-> c12)
+-----------------------------------------------------------------
+
+t=1.05925373E-4 logt=-3.975000 dt=9.1882E-8 dt'=7.6078E-8 185/200 0.9 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=2.798E15 dE/dt_mass=-2.418E15 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=3.111E28 dn/Tot=0.03 dX/X=0.15 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=2.137E-10 dt_Flux=1.059E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=18639
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00280903 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.65887 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00568341 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.23026877E-4 logt=-3.910000 dt=1.1089E-7 dt'=1.0867E-7 186/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.712E16 dE/dt_mass=7.902E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=6.146E28 dn/Tot=0.06 dX/X=0.30 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=5.121E-10 dt_Flux=1.230E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=18903
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00471209 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.75693 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00819752 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.42889396E-4 logt=-3.845000 dt=1.1390E-7 dt'=9.3290E-8 187/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=7.300E15 dE/dt_mass=2.766E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=2.662E28 dn/Tot=0.03 dX/X=0.13 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=1.911E-10 dt_Flux=1.428E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=19136
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00204892 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.79011 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00577666 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.65958691E-4 logt=-3.780000 dt=1.4155E-7 dt'=1.0434E-7 188/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.382E15 dE/dt_mass=4.064E13 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=5.457E27 dn/Tot=0.01 dX/X=0.03 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=4.470E-11 dt_Flux=1.659E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=19406
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 4.28377545E-4 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.81631 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00430971 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=1.92752491E-4 logt=-3.715000 dt=1.3385E-7 dt'=9.8660E-8 189/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.330E15 dE/dt_mass=1.657E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=4.138E27 dn/Tot=0.00 dX/X=0.02 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=3.004E-11 dt_Flux=1.927E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=19720
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 3.04451619E-4 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.82976 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00424042 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=2.23872114E-4 logt=-3.650000 dt=2.6378E-7 dt'=1.9444E-7 190/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.511E15 dE/dt_mass=-1.403E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=7.967E27 dn/Tot=0.01 dX/X=0.02 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=1.130E-10 dt_Flux=2.237E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=20145
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 5.80910502E-4 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.86227 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00395465 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=2.60015956E-4 logt=-3.585000 dt=9.5534E-8 dt'=8.6363E-8 191/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.279E16 dE/dt_mass=4.384E12 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=3.803E28 dn/Tot=0.04 dX/X=0.19 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=2.449E-10 dt_Flux=2.600E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=20608
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00283520 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635597.88682 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00672926 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=3.01995172E-4 logt=-3.520000 dt=7.8889E-8 dt'=8.2801E-8 192/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-3.318E16 dE/dt_mass=-3.585E16 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=1.011E29 dn/Tot=0.10 dX/X=0.24 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=6.103E-10 dt_Flux=3.020E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=21091
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00737058 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.89209 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.00396774 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=3.50751874E-4 logt=-3.455000 dt=1.9254E-7 dt'=1.4193E-7 193/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.870E14 dE/dt_mass=-1.960E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=1.391E27 dn/Tot=0.00 dX/X=0.00 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=1.440E-11 dt_Flux=3.507E-5 sumX=0.9933202
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=21636
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 1.01453916E-4 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.89949 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00396000 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.07380278E-4 logt=-3.390000 dt=1.3083E-7 dt'=1.1615E-7 194/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.025E16 dE/dt_mass=-6.721E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=3.201E28 dn/Tot=0.03 dX/X=0.08 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=2.711E-10 dt_Flux=4.073E-5 sumX=0.9933203
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=22268
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00233407 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.92826 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00397728 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=4.73151259E-4 logt=-3.325000 dt=9.7669E-8 dt'=9.2004E-8 195/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.375E16 dE/dt_mass=-1.299E16 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=4.256E28 dn/Tot=0.04 dX/X=0.10 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=2.855E-10 dt_Flux=4.731E-5 sumX=0.9933203
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=23130
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00310327 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635597.95873 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00397557 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=5.49540874E-4 logt=-3.260000 dt=2.0250E-7 dt'=1.7978E-7 196/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.074E16 dE/dt_mass=9.773E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=3.199E28 dn/Tot=0.03 dX/X=0.16 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=4.281E-10 dt_Flux=5.495E-5 sumX=0.9933203
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=24094
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00238145 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635597.98785 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00628568 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=6.38263486E-4 logt=-3.195000 dt=2.2809E-7 dt'=1.6813E-7 197/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=1.343E15 dE/dt_mass=7.312E13 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=3.310E27 dn/Tot=0.00 dX/X=0.02 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=5.269E-11 dt_Flux=6.380E-5 sumX=0.9933203
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=25264
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 3.13390908E-4 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635598.06650 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00420025 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=7.41310241E-4 logt=-3.130000 dt=8.2815E-8 dt'=8.2815E-8 198/200 1.0 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-2.671E16 dE/dt_mass=-1.171E15 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=8.137E28 dn/Tot=0.08 dX/X=0.20 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=4.914E-10 dt_Flux=7.412E-5 sumX=0.9933203
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=26499
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00593311 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635598.12480 Y/s (ne20 -> he4 + o16)
+|Max Net RG Flux| = 0.00396233 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+t=8.60993752E-4 logt=-3.065000 dt=8.8670E-8 dt'=9.4948E-8 199/200 1.1 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=3.648E16 dE/dt_mass=1.999E15 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=10 N=10 dn=1.100E29 dn/Tot=0.11 dX/X=0.54 Xcorr=0.000
+Z_maxdY=2 N_maxdY=2 maxdY=7.645E-10 dt_Flux=8.609E-5 sumX=0.9933204
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=27950
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00805153 Y/s (Z=2 and N=2)
+|Max Reaction Flux| = 1635598.17877 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.01196858 Y/s; RG 3 (he4 + o16 <-> ne20)
+-----------------------------------------------------------------
+
+t=10.00000000E-4 logt=-3.000000 dt=9.4304E-8 dt'=8.8835E-8 200/200 1.1 s
+(Z+N)/nT=0.9933 Z/N=1.0000 T=5.00E9 rho=1.00E8 Links=12 Boxes=4(4)
+H=0.000 N=0.000 4He=0.208 12C=0.002 16O=0.486 20Ne=0.296
+24Mg=0.000 28Si=0.000 32S=0.000 36Ar=0.000 40Ca=0.000 44Ti=0.000
+48Cr=0.000 52Fe=0.000 54Fe=0.000 56Fe=0.000 56Ni=0.000
+dE/dt=-1.215E16 dE/dt_mass=-4.069E14 sumE=-2.256E16 sumE_mass=-2.487E16
+AbsXfer: Z=8 N=8 dn=3.717E28 dn/Tot=0.04 dX/X=0.09 Xcorr=0.000
+Z_maxdY=8 N_maxdY=8 maxdY=2.408E-10 dt_Flux=9.999E-5 sumX=0.9933204
+Fast=1.104E8 (ne20 -> he4+o16) SF=0.2 massTol=1.0E-9 Steps=29656
+Asymptotic: (2,2) (6,6) (8,8) (10,10) 
+Asymptotic:4/4 Pot Equil:4/4 |he4+he4+he4-->c12|he4+c12-->o16|c12+c12-->he4+ne20|he4+o16-->ne20|
+Equil Imposed:none
+Percent RG equilibrated=100.0 %
+|Max Isotope Flux| = 0.00271027 Y/s (Z=8 and N=8)
+|Max Reaction Flux| = 1635598.21263 Y/s (he4 + o16 -> ne20)
+|Max Net RG Flux| = 0.00395699 Y/s; RG 1 (he4 + c12 <-> o16)
+-----------------------------------------------------------------
+
+  --> CUDA network written in output/CUDAnet.inp
+  --> CUDA init abundances written in output/CUDAabundance.inp
+  --> CUDA reaction rate data written in output/rateLibrary.data
+
+CUDA NETWORK:
+limitByFluxes = false
+All reactions output to CUDA network.
+
+  --> Reduced network written to output/reduced.out: 4 isotopes
+  --> Hydro profile to output/hydroProfile.out (Rename to keep)
+  --> Master data to output/Y.out (Rename to keep)
+      Plot renamed file by choosing Plot Old from interface
+  --> Maple file written to output/X.out (Plot with plotter.mw)
+  --> Maple file written to output/plotfile.out (Plot with timestepPlotter.mw)
+
+-----------------------------------------------------------------
+ *** NOTE:  PARTITION FUNCTIONS OMITTED FROM CALCULATION ***
+-----------------------------------------------------------------
+
+09:37:42 Jan 29, 2022
+host=unknown000AF72B923D
+Revision: 1790
+
+Time: 1.075s  RawSteps: 29766  Steps: 29656  Steps/s: 27689.30
+Possible Isotopes: 4  Possible Couplings: 14 Total Boxes Pop=4
+Max isotopes used: 3  Max couplings used: 12  Isotopes processed: 4
+sumX=0.99332038 Xcorr=0.0000 E/A(final)=-0.0236
+
+Fastest Overall Rate: 2.0317E9 s^(-1) for c12 + c12 --> he4 + ne20
+at t = 1.0111E-20 s
+
+Largest Overall Flux: 8.4646E7 Y/s for c12 + c12 --> he4 + ne20
+at t = 1.0111E-20 s
+
+------------------------------------------
+Final Abundances and Mass Fractions:
+------------------------------------------
+0 Z=2 N=2 4He  Y=0.052058  X=0.208232
+1 Z=6 N=6 12C  Y=2.023430E-4  X=0.002428
+2 Z=8 N=8 16O  Y=0.030404  X=0.486463
+3 Z=10 N=10 20Ne  Y=0.014810  X=0.296198
+
+-----------------------------------------------------------------
+PRECEDING CALCULATED WITH INITIAL VALUES:
+Particles=1.0E30 maxLight=1000 tripleAlphaOnly=false normX=false
+noNeutronsFlag=false Zmax=53 Zmin=3 nT=1.37144425E31 T9=5.00000000
+rho=1.000E8 Ye=0.5 logtmin=-16.0 logtmax=-3.0 diagnoseI=false
+diagnoseII=false tbeg=2.2273E-6 limitByFluxes=false fluxFracThresh=1.0E-16
+E/A(init)=0.0000 Mode=Asy SF=0.2 MassTol=1.0E-9 Ymin=0.0
+T9=5.0 rho=1.0E8 Net=jin/alpha4.inp Rates=all InitY=jin/abundance_C-O.inp|noPF
+-----------------------------------------------------------------
+
