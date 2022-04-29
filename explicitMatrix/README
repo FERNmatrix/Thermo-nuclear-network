@@ -1,0 +1,55 @@
+
+  Code explicitMatrix.cpp to implement explicit algebraic integration of astrophysical 
+  thermonuclear networks. Execution assuming use of Fedora Linux and GCC compiler: Compile with
+  
+      gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+  
+  [may need to install gsl-devel development package (on Fedora this required
+  dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
+  In this compile command the -o specifies the name of the executable created in the
+  compile, the -lgsl flag links to GSL libraries, the -lgslcblas flag
+  links to GSL BLASS libraries, the -lm flag may be required in GCC Linux to get the 
+  math.h header to work for defining powf, expf, logf, ..., (see https://
+  www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
+  and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
+  the GDB debugger, add a -g flag:
+  
+      gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+  
+  Resulting compiled code can be executed with
+  
+      ./explicitMatrix | tee temp.txt
+  
+  where | tee temp.txt is unix shell script outputting to screen and also piping to a file temp.txt. 
+  If using GDB debug mode, set the -g flag as above for the compiler and execute in debug mode with
+  
+       gdb explicitMatrix | tee debug.out
+  
+  Further information about using GDB may be found in the directory DEBUGGER.
+  
+  Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
+  your machine but should be similar to above.
+   
+  ----------------------------------
+  To set up a specific calculation:
+  ----------------------------------
+  
+  1. Change values of ISOTOPES and SIZE
+  2. Change two input files for networkFile and rateLibraryFile
+  3. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
+  4. Change control parameters like stop_time, massTol, ...
+  5. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
+  6. Change values of T9_start and rho_start
+ 
+  ----------------------------------
+  
+  
+  AUTHORS:
+  ---------------
+  Nick Brey
+  Ashton DeRousse
+  Adam Cole
+  Raghav Chari
+  Mike Guidry
+  ----------------
+

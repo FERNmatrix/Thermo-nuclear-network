@@ -1,0 +1,12 @@
+ * ---------------------------------------------------------
+ * To set up a specific calculation in explicitMatrix.cpp:
+ * ---------------------------------------------------------
+ * 
+ * 1. Change values of ISOTOPES and SIZE
+ * 2. Change two input files for networkFile and rateLibraryFile
+ * 3. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
+ * 4. Change control parameters like stop_time, massTol, ...
+ * 5. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
+ * 6. Change values of T9_start and rho_start
+ *
+ * ----------------------------------
