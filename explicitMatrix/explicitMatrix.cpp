@@ -161,7 +161,7 @@ static const int showRVdetails = false;
 static const int showRGsorting = false;
 static const int showAsyTest = false;
 static const int showPlotSteps = false;
-static const bool showAddRemove = false; 
+static const bool showAddRemove = true; 
 static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
@@ -224,7 +224,7 @@ void writeFluxesReactions(void);
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;           // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -291,7 +291,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 5e-4;               // Stop time for integration
+double stop_time = 1e-7; //5e-4;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -307,7 +307,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-7; //2e-5; //2e-2; // Timestep tolerance parameter (1.0e-7)
+double massTol = 2e-2;//2e-2; //2e-5; //2e-2; // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -329,7 +329,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // On the other hand, the check should not be too costly.
 
 double equilibrateTime = 1e-10;    // Time to begin checking for PE
-double equiTol = 0.015;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.010;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
