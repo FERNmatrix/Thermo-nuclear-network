@@ -98,8 +98,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 7                    // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 28                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -141,13 +141,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_pp.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_pp.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
@@ -182,7 +182,7 @@ void setSpeciesfplus(int, double);
 void setSpeciesfminus(int, double);
 void setSpeciesdYdt(int, double);
 void assignRG(void);
-void plotOutput(void);
+//void plotOutput(void);
 void getmaxdYdt(void);
 void restoreEquilibriumProg(void);
 void evolveToEquilibrium(void);
@@ -273,8 +273,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // code in an operator-split coupling of this network to hydro. Here we hardwire
 // constant values for testing purposes.  
 
-double T9_start = 0.016;       // Initial temperature in units of 10^9 K
-double rho_start = 160;        // Initial density in g/cm^3
+double T9_start = 7;           // Initial temperature in units of 10^9 K
+double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -290,8 +290,8 @@ double rho_start = 160;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e8;         // Start time for plot output
-double stop_time = 1e22;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 5e-4;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -307,7 +307,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 2e-5; //2e-2;         // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-7; //2e-5; //2e-2; // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -687,8 +687,6 @@ class Utilities{
             FILE * pFile3;
             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
             
-            //int plotXlist[ISOTOPES];
-            
             // Following array controls which mass fractions are exported to plotting
             // file.  The entries in plotXlist[] are the species indices for the
             // isotopes in the network to be plotted. For small networks export all;
@@ -696,25 +694,30 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
-            //int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+            
+//             int plotXlist[ISOTOPES];
             
 //             for(int i=0; i<ISOTOPES; i++){
 //                 plotXlist[i] = i;
 //             }
+            
 
-            int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-            //int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+            //int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};        // alpha
+            //int plotXlist[] = {0,1,2,3};                                    // 4-alpha
+            //int plotXlist[] = {0,1, 2};                                     // 3-alpha
+            //int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+            
 //             int plotXlist[] = 
 //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
 //             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
-            //int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-            //int plotXlist[] = {0,1, 2};                                     // 3-alpha
+            
             
             // Get length LX of array plotXlist holding the species indices for
             // isotopes that we will plot mass fraction X for.
             
-            int LX = ISOTOPES;
-            //int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
+            //int LX = ISOTOPES;
+            int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
             string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
             string strflux = "\n#    t     dt   ";
@@ -4743,9 +4746,7 @@ int main() {
     //
     //     https://stackoverflow.com/questions/32118545/munmap-chunk-invalid-pointer
     //
-    // If the following "Utilities::plotOutput();" statement is commented 
-    // out, the error message goes away. May be associated with the plot output array 
-    // plotXlist[] and its length LX.
+
     
     Utilities::plotOutput();
     
