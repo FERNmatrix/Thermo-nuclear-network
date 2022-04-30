@@ -138,7 +138,12 @@ printf "\ngnu: %d %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e %5.3e",totalTimeSteps,t,Y[
 cont
 end
 
----------------------------------------------------------
+-------------------------------------------------------------------------------------
+
+Put a breakpoint at end of doIntegrationStep (after computeNextTimeStep()), with logic requiring t>1e-9
+and that dtMode = 2 (meaning that the complete timesep (full, plus two halves) has been taken).This
+latter may be redundant because of the position of the breakpoint
+
 
 b 3673 if t > 1e-9 && dtMode == 2
 commands
@@ -159,7 +164,11 @@ cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep
 Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++.out
 gdb-C++.out is now a properly formatted gnuplot input file
 
----------------------------------------------------------
+Corresponding gdb-java.out header:
+
+#  Steps    t      Y0[0]   Y0[5]  Y0[6]  Y[0]   Y[5]   Y[6]    F+[0]    F+[5]     F+[6]       F-[0]    F-[5]      F-[6]        keff[0]  keff[5]  keff[6]   flux28      flux29         flux30     flux31
+
+------------------------------------------------------------------------------------------
 
 
 
