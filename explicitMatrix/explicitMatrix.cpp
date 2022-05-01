@@ -1270,7 +1270,7 @@ class Reaction: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    public:
+    private:
         
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
@@ -2081,10 +2081,12 @@ class Reaction: public Utilities {
             } else {
                 
                 fluxChooser(numberReactants);
-                flux = 0.0;                 // Put in Reaction object flux field
+                flux = 0.0;                 // Put in present (Reaction) object flux field
                 Flux[reacIndex] = 0.0;      // Put in main flux array
 
             }
+            
+            printf("");
             
         }   // End of function computeFlux()
         
@@ -2664,7 +2666,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Static functions can be called directly from the class
     // without having to instantiate.
     
-    public:
+    private:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
