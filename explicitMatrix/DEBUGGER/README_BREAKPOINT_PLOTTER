@@ -170,33 +170,58 @@ Corresponding gdb-java.out header:
 
 ------------------------------------------------------------------------------------------
 
-b 2085 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
-commands
-silent
-printf"\nt=%5.3e reacindex=%d flux=%5.3e Fplus[%s]=%5.3e\n",
-t,reacIndex,reaction[reacIndex].getflux(),isotope[6].getLabel(),Fplus[6]
-end
-
-
-
 
 b 2089 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
 commands
 silent
-printf"\n++ t=%5.3e reacindex=%d %s flux=%5.3e F+[%s]=%5.3e F+[%s]=%5.3e F+[%s]=%5.3e",t,reacIndex,getreacChar(),flux,isotope[0].getLabel(),Fplus[0],isotope[5].getLabel(),Fplus[5],isotope[6].getLabel(),Fplus[6]
+printf"\n+++ t=%5.3e reacindex=%d %s flux=%5.3e F+[%s]=%5.3e F+[%s]=%5.3e F+[%s]=%5.3e F+sum[%s]=%5.3e",t,reacIndex,getreacChar(),flux,isotope[0].getLabel(),Fplus[0],isotope[5].getLabel(),Fplus[5],isotope[6].getLabel(),Fplus[6],isotope[6].getLabel(),FplusSum[6]
 printf" F-[%s]=%5.3e F-[%s]=%5.3e F-[%s]=%5.3e\n",isotope[0].getLabel(),Fminus[0],isotope[5].getLabel(),Fminus[5],isotope[6].getLabel(),Fminus[6]
+cont
 end
 
-
-
-
-b 2085 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+b 2232 if t>7.63e-9 && dtMode==2
 commands
 silent
-printf"t=%5.3e reacindex=%d Fplus[6]=%5.3e\n",
-t,reacIndex,Fplus[6]
+printf"\n+++ t=%5.3e",t
+printf"  F+sum(%s)=%5.3e",isotope[0].getLabel(),FplusSum[0]
+printf"  F+sum(%s)=%5.3e",isotope[5].getLabel(),FplusSum[5]
+printf"  F+sum(%s)=%5.3e",isotope[6].getLabel(),FplusSum[6]
+printf"  F-sum(%s)=%5.3e",isotope[0].getLabel(),FminusSum[0]
+printf"  F-sum(%s)=%5.3e",isotope[5].getLabel(),FminusSum[5]
+printf"  F-sum(%s)=%5.3e\n",isotope[6].getLabel(),FminusSum[6]
+cont
 end
 
+FOLLOWING WITH COLUMN HEADERS
+
+b 2089 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+commands
+silent
+printf"\n      t      Reaction       Flux      F+(%s)   F+(%s)  F+(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
+printf"  F-(%s)   F-(%s)  F-(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
+printf"\n+++ %6.3e %s %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e\n",t,getreacChar(),flux, Fplus[0],Fplus[5],Fplus[6],Fminus[0],Fminus[5],Fminus[6]
+cont
+end
+
+
+FOLLOWING WITH COLUMN HEADERS
+
+b 2089 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+commands
+silent
+printf"\n        t      F+sum(%s) F+sum(%s) F+sum(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
+printf" F-sum(%s)  F-sum(%s) F-sum(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
+printf"\n+++ %8.5e %8.5e %8.5e %8.5e %8.5e %8.5e %8.5e\n",t,FplusSum[0],FplusSum[5],FplusSum[6],FminusSum[0],FminusSum[5],FminusSum[6]
+cont
+end
+
+
+Pipe debugger output to gdb_debug.out and
+clean up with 
+
+cat gdb_debug.out | grep +++ | grep -v printf > temp.out
+
+------------------------------------------------------------------------------------------
 
 
 

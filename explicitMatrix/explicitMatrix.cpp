@@ -2086,7 +2086,7 @@ class Reaction: public Utilities {
 
             }
             
-            printf("");
+            printf("");   // Temporary debug point
             
         }   // End of function computeFlux()
         
