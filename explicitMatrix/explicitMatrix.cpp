@@ -156,7 +156,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 static const int displayInput = false;
 static const int showParsing = false;
 static const int showFparsing = false;
-static const int showFluxCalc = false;
+static const int showFluxCalc = true;
 static const int showFlux_PE = false;
 static const int showRVdetails = false;
 static const int showRGsorting = false;
@@ -2192,23 +2192,34 @@ class Reaction: public Utilities {
             double accum;
             double dydt;
             
+            if(showFluxCalc == 1 && t>7e-9) {
+                fprintf(pFileD,"\n##");
+            }
+            
             // Loop over isotopes
             
             for(int i=0; i < numberSpecies; i++){	
                 
                 // Sum F+ for each isotope
                 
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) {
+                    fprintf(pFileD,"\n## REACTIONS CHANGING %s ABUNDANCE (t=%5.3e RGequil=%d):", 
+                        isoLabel[i], t, totalEquilRG);
+                    fprintf(pFileD,"\n##");
+                }
+                
                 if(i > 0) minny = FplusMax[i-1]+1;
-                if(showFluxCalc == 1 && t>8.5e-9) fprintf(pFileD, 
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                    fprintf(pFileD, 
                     "\n\n%s +++FplusMax=%d t=%6.4e logt=%6.4f", 
                     isoLabel[i], FplusMax[i-1], t, log10(t));
                 accum = 0.0;	
                 for(int j=minny; j<=FplusMax[i]; j++){
                     accum += Fplus[j];
-                    if(showFluxCalc == 1 && t>8.5e-9) 
+                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
                         fprintf(pFileD, 
-                            "\ni=%d j=%d  MapFplus=%d %s Fplus[%s]=%g FplusSum=%g", 
-                            i, j, MapFplus[j], reacLabel[MapFplus[j]], isoLabel[i], Fplus[j], accum);
+                            "\n## Steps=%d t=%5.3e i=%d j=%d  MapFplus=%d %s Fplus[%s]=%g FplusSum=%g", 
+                            totalTimeSteps, t, i, j, MapFplus[j], reacLabel[MapFplus[j]], isoLabel[i], Fplus[j], accum);
                 }
                 
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -2217,22 +2228,25 @@ class Reaction: public Utilities {
                 
                 minny = 0;
                 if(i>0) minny = FminusMax[i-1]+1;
-                if(showFluxCalc == 1 && t>8.5e-9) fprintf(pFileD, "\n\n%s +++FminusMax=%d  t=%6.4e logt=%6.4f", 
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                    fprintf(pFileD, "\n\n%s +++FminusMax=%d  t=%6.4e logt=%6.4f", 
                     isoLabel[i], FminusMax[i-1], t, log10(t));
                 accum = 0.0;
                 for(int j=minny; j<=FminusMax[i]; j++){
                     accum += Fminus[j];
-                    if(showFluxCalc == 1 && t>8.5e-9) 
-                        fprintf(pFileD, "\ni=%d j=%d  MapFminus=%d %s Fminus[%s]=%g FminusSum=%8.4e", 
-                                i, j, MapFminus[j], reacLabel[MapFminus[j]], isoLabel[i], Fminus[j], accum);
+                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                        fprintf(pFileD, "\n## Steps=%d t=%5.3e i=%d j=%d  MapFminus=%d %s Fminus[%s]=%g FminusSum=%8.4e", 
+                            totalTimeSteps, t, i, j, MapFminus[j], reacLabel[MapFminus[j]], isoLabel[i], Fminus[j], accum);
                 }
                 
                 setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
                 
-                if(showFluxCalc == 1 && t>8.5e-9)
-                    fprintf(pFileD,"\n\nnetFlux(%s)=%6.4e", 
-                        isoLabel[i], FplusSum[i]-FminusSum[i]);
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)){
+                    fprintf(pFileD,"\n## netFlux(%s)=%6.4e RGequil=%d\n\n", 
+                        isoLabel[i], FplusSum[i]-FminusSum[i], totalEquilRG);
+                    fprintf(pFileD,"\n##");
+                }
             }
             
         }
