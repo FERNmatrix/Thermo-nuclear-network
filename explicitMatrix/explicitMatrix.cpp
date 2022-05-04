@@ -2203,7 +2203,7 @@ class Reaction: public Utilities {
                 // Sum F+ for each isotope
                 
                 if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) {
-                    fprintf(pFileD,"\n## REACTIONS CHANGING %s ABUNDANCE (t=%5.3e RGequil=%d):", 
+                    fprintf(pFileD,"\n## REACTIONS CHANGING %s ABUNDANCE (t=%5.3e logt=%5.3e RGequil=%d):", 
                         isoLabel[i], t, totalEquilRG);
                     fprintf(pFileD,"\n##");
                 }
