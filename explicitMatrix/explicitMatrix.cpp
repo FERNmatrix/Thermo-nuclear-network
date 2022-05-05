@@ -152,9 +152,6 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
-static const int showRGsorting = false;
-static const int showAsyTest = false;
-static const int showPlotSteps = false;
 static const bool showAddRemove = true; 
 static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
@@ -187,7 +184,7 @@ void updateY0(void);
 void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
-void funkyReactions(int, bool, int);
+void setReactionEquil(int, bool, int);
 
 // Diagnostic functions
 
@@ -2315,13 +2312,12 @@ class ReactionVector:  public Utilities {
                 RGindex[i] = -1;
             }
             
-            if(showRGsorting == 1) fprintf(pFileD, "\n\n\n--- SORTING REACTION GROUPS ---");
-            
             int scorekeeper;
+            
             for (int i=0; i<SIZE; i++){
                 scorekeeper = 0;
                 if(i==0) rindex ++;
-                if(showRGsorting == 1) fprintf(pFileD, "\n\nRG=%d", rindex);
+                
                 for(int j=0; j<SIZE; j++){
                     
                     if(RGindex[i] < 0) RGindex[i] = rindex;
@@ -2330,10 +2326,6 @@ class ReactionVector:  public Utilities {
                     if(ck > 0 && RGindex[j]< 0) {
                         RGindex[j] = rindex;
                         scorekeeper ++;
-                    }
-                    if(showRGsorting==1){
-                        fprintf(pFileD, "\ni=%d %s j=%d %s RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
-                            i, reacLabel[i], j, reacLabel[j], j, RGindex[j], ck, rindex, scorekeeper);
                     }
                 }
                 
@@ -2350,23 +2342,11 @@ class ReactionVector:  public Utilities {
                     
                     rindex++;
                     
-                    if(showRGsorting==1) fprintf(pFileD, "\nFound RG=%d RGnumberMembers=%d", 
-                        rindex-1, RGnumberMembers[rindex-1]);
                 }
 
             }
             
             numberRG = rindex;   // Store total number of reaction groups
-            
-            // Diagnostic showing reaction group associated with each reaction
-            
-            if(showRGsorting == 1){
-                fprintf(pFileD, "\n\n-- SUMMARY OF REACTION GROUPS:\n");
-                for(int i=0; i<SIZE; i++){
-                    fprintf(pFileD, "\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
-                        i, reacLabel[i], RGindex[i], RGMemberIndex[i]);
-                }
-            }
             
             // Write out the components of the reaction groups
             
@@ -3307,18 +3287,11 @@ class ReactionGroup:  public Utilities {
             
             totalEquilRG ++;
             
-            if (showAddRemove) {
-                fprintf(pFileD, "\n\n************************************************");
-                fprintf(pFileD, 
-                    "\nADD RG %d TO EQUIL: Steps=%d RGeq=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
-                    RGn, totalTimeSteps, totalEquilRG, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
-            }
-            
             for (int i = 0; i < niso; i++) {
                 
                 // Set isEquil field of Reaction object reaction[i]
                 
-                //funkyReactions(memberReactions[i], true, RGn);
+                setReactionEquil(memberReactions[i], true, RGn);
                 
                 if (showAddRemove) {
                     fprintf(pFileD, 
@@ -3689,10 +3662,11 @@ class Integrate: public Utilities {
                 // Determine which isotopes satisfy asymptotic condition
                 
                 int numAsy = 0;
+                
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(keff[i]);
-                    if(showAsyTest && isAsy[i]) numAsy = diagnosticOut10(numAsy, i);
                 }
+                
                 dt = dtt;
                 
                 // If Asy or Asy+PE, compute with Asy+FE algorithm (with fluxes removed
@@ -3719,10 +3693,11 @@ class Integrate: public Utilities {
         // If not, we update numerically using the forward Euler formula. 
         
         static void updateAsyEuler(){
-            if(showAsyTest) fprintf(pFileD, "\nupdateAsyEuler: dt=%10.8e", dt);
             
             sumX = 0.0;
+            
             for(int i=0; i<numberSpecies; i++){	
+                
                 if(isAsy[i]){
                     Y[i] = asymptoticUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
                 } else {
@@ -3731,30 +3706,9 @@ class Integrate: public Utilities {
                 X[i] = Y[i] * (double) AA[i];
                 sumX += X[i];
                 
-                if(showAsyTest)fprintf(pFileD, 
-                    "\n  updateAsyEuler: X[%d]=%10.8e dt=%10.8e sumX=%10.8e", 
-                    i, X[i], dt, sumX);
             }
             
             diffX = abs(sumX-sumXlast);
-            
-            if(showAsyTest)fprintf(pFileD, 
-                "\nsumX=%12.10e sumXlast=%12.10e diffX=%12.10e, massTol=%5.2e", 
-                sumX, sumXlast, diffX, massTol);  
-            
-// if(totalTimeSteps==294){
-//     
-//     printf("\n\n   *** t=%6.4e dt=%6.4e", t, dt);
-//     printf("\n       Y[0]=%6.4e Y[5]=%6.4e Y[6]=%6.4e", Y[0], Y[5], Y[6]);
-//     printf("\n       dF[2]=%6.4e dF[5]=%6.4e dF[6]=%6.4e", 
-//         FplusSum[0]-FminusSum[0], FplusSum[5]-FminusSum[5], FplusSum[6]-FminusSum[6]);
-//     printf("\n       Y0[0]=%6.4e Y0[5]=%6.4e Y0[6]=%6.4e", Y0[0], Y0[5], Y0[6]);
-//     printf("\n       FplusSum[2]=%6.4e FplusSum[5]=%6.4e FplusSum[6]=%6.4e", 
-//             FplusSum[0], FplusSum[5], FplusSum[6]);
-//     printf("\n       FminusSum[2]=%6.4e FminusSum[5]=%6.4e FminusSum[6]=%6.4e", 
-//             FminusSum[0], FminusSum[5], FminusSum[6]);
-//     printf("\n       keff[0]=%6.4e keff[5]=%6.4e keff[6]=%6.4e", keff[0], keff[5], keff[6]);
-// }
             
         }    // End function updateAsyEuler()
     
@@ -3765,13 +3719,7 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
-//         if(t>5e-9 && i==6)
-//             fprintf(pFileD, "\n  ++++%d t=%g i=%d, Y0=%g fplus(32S)=%g fminus(32S)=%g diff=%g",
-//             totalTimeSteps, t, i, y0, fplus, fminus, fplus-fminus
-//        );
-            
         double newY = y0 + (fplus-fminus)*dtt;
-        if(showAsyTest) diagnosticOut11(i, t, dtt, fminus, fplus, y0, newY);
         return newY;     // New Y for forward Euler method
         
     }
@@ -3782,7 +3730,6 @@ class Integrate: public Utilities {
     static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
-        if(showAsyTest)diagnosticOut12(i, t, dtt, asycheck, fplus, fminus, y, newY);
         return newY;
         
     }
@@ -4532,8 +4479,6 @@ int main() {
             
             if(plotCounter == 1) {totalTimeStepsZero =  totalTimeSteps;}
             
-            if(showPlotSteps){diagnosticOut5(plotCounter);} 
-            
             // Output to plot arrays for this timestep
             
             tplot[plotCounter-1] = log10(t);
@@ -4684,9 +4629,8 @@ int main() {
 
 
 // Function to set the isEquil field of reaction objects.
-// Not presently used.
 
-void funkyReactions(int index, bool b, int rgn){
+void setReactionEquil(int index, bool b, int rgn){
     
    reaction[index].setisEquil(b); 
    
