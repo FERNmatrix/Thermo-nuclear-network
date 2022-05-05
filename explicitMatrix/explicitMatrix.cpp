@@ -151,8 +151,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
-
-static const bool showAddRemove = true; 
+ 
 static const bool showRestoreEq = false;
 static const bool plotFluxes = false;
 static const bool diagnose1 = false;
@@ -184,7 +183,7 @@ void updateY0(void);
 void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
-void setReactionEquil(int, bool, int);
+//void setReactionEquil(int, bool, int);
 
 // Diagnostic functions
 
@@ -3287,29 +3286,6 @@ class ReactionGroup:  public Utilities {
             
             totalEquilRG ++;
             
-            for (int i = 0; i < niso; i++) {
-                
-                // Set isEquil field of Reaction object reaction[i]
-                
-                setReactionEquil(memberReactions[i], true, RGn);
-                
-                if (showAddRemove) {
-                    fprintf(pFileD, 
-                        "\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e eqcheck=%8.4e Rnow=%8.4e",
-                        isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i], eqcheck[i]/equiTol
-                    );
-                }
-            }
-            
-            if (showAddRemove){
-                showRGfluxes();
-                fprintf(pFileD, 
-                    "\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
-                    t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil);
-            } 
-            
-            if (showAddRemove) 
-                fprintf(pFileD, "\n************************************************\n");
         }
         
         // Set the activity array for each reaction in reaction group to true if not in 
@@ -3337,34 +3313,15 @@ class ReactionGroup:  public Utilities {
         
         totalEquilRG -- ;
         
-        if (showAddRemove) {
-            fprintf(pFileD, "\n\n************************************************");
-            fprintf(pFileD, 
-                "\nREMOVE RG %d FROM EQUIL: Steps=%d RGeq=%d t=%7.3e dt=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e", 
-                RGn, totalTimeSteps, totalEquilRG, t, dt, thisDevious, mineqcheck, maxeqcheck);
-        }
-        
         for (int i = 0; i < niso; i++) {
             isEquil = false;
-            if (showAddRemove) {
-                fprintf(pFileD, "\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.5e Rnow=%8.5e",
-                    isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
-                    abs(isoY[i] - isoYeq[i]) / isoYeq[i]
-                );
-            }
         }
         
         for (int i = 0; i < numberMemberReactions; i++) {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
-            if (showAddRemove) {
-                fprintf(pFileD, "\n Remove RG=%d %s RGflux=%7.4e flux[%d]=%7.4e", 
-                    RGn, reaclabel[i], i, netflux, flux[i]);
-            }
         }
         
-        if(showAddRemove) 
-            fprintf(pFileD, "\n************************************************\n");
     }
     
     
@@ -4629,12 +4586,13 @@ int main() {
 
 
 // Function to set the isEquil field of reaction objects.
+// Not presently used.
 
-void setReactionEquil(int index, bool b, int rgn){
-    
-   reaction[index].setisEquil(b); 
-   
-}
+// void setReactionEquil(int index, bool b, int rgn){
+//     
+//    reaction[index].setisEquil(b); 
+//    
+// }
 
 // Function showParameters() displays integration parameters.
 
