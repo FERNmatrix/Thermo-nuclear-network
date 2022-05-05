@@ -152,11 +152,6 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
-static const int showParsing = false;
-static const int showFparsing = false;
-static const int showFluxCalc = true;
-static const int showFlux_PE = false;
-static const int showRVdetails = false;
 static const int showRGsorting = false;
 static const int showAsyTest = false;
 static const int showPlotSteps = false;
@@ -1755,16 +1750,6 @@ class Reaction: public Utilities {
                 if(i == (FminusIsotopeCut[currentIso]-1)) currentIso ++;
             }
             
-            // Optional diagnostic output if showFparsing==1
-            
-            if(showFparsing == 1){
-                fprintf(pFileD, "\n\n--- MAX F+ and F- INDEX FOR EACH ISOTOPE ---\n");	
-                for(int i=0; i<numberSpecies; i++){
-                    fprintf(pFileD, "\nIsotope index = %d  %s  Max index F+ = %d  Max index F- = %d", 
-                        i, isoLabel[i], FplusIsotopeCut[i]-1, FminusIsotopeCut[i]-1);
-                }
-            }
-            
             for(int i=0; i<totalFplus; i++){
                 MapFplus[i] = tempInt1[i];
             }
@@ -1812,43 +1797,6 @@ class Reaction: public Utilities {
                         tempCountMinus ++;
                     }	
                 }
-            }
-            
-            // Optional diagnostic output
-            
-            if(showFparsing == 1){
-                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F+ SOURCE TERMS ---\n", totalFplus);
-                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
-                       isoLabel[FplusIsotopeIndex[0]], FplusIsotopeIndex[0],
-                       numFluxPlus[FplusIsotopeIndex[0]]);
-                for(int i=0; i<totalFplus; i++){
-                    fprintf(pFileD, "\n   FplusIsotopeIndex[i]=%d i=%d MapFplus[i]=%d  %s", 
-                           FplusIsotopeIndex[i], i, MapFplus[i], 
-                           reacLabel[MapFplus[i]]); 
-                    if(i == (FplusIsotopeCut[FplusIsotopeIndex[i]] - 1)  && i != totalFplus-1)
-                    {
-                        fprintf(pFileD, "\n");
-                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
-                               isoLabel[FplusIsotopeIndex[i+1]], FplusIsotopeIndex[i+1],
-                               numFluxPlus[FplusIsotopeIndex[i+1]]);
-                    }
-                }	
-                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F- SOURCE TERMS ---\n", totalFminus);
-                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
-                       isoLabel[FminusIsotopeIndex[0]], FminusIsotopeIndex[0],
-                       numFluxMinus[FminusIsotopeIndex[0]] );
-                for(int i=0; i<totalFminus; i++){
-                    fprintf(pFileD, "\n   FminusIsotopeIndex[i]=%d i=%d MapFminus[i]=%d  %s", 
-                           FminusIsotopeIndex[i], i, MapFminus[i], reacLabel[MapFminus[i]]);
-                    if(i == (FminusIsotopeCut[FminusIsotopeIndex[i]] - 1) && i != totalFminus-1 ){
-                        fprintf(pFileD, "\n");
-                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
-                               isoLabel[FminusIsotopeIndex[i+1]], FminusIsotopeIndex[i+1],
-                               numFluxMinus[FminusIsotopeIndex[i+1]]
-                        );
-                    }
-                }
-                fprintf(pFileD, "\n\n");
             }
         }
         
@@ -2107,13 +2055,7 @@ class Reaction: public Utilities {
                     flux = kfac*Y[ reactantIndex[0] ];	 // In Reaction object flux field
                     Flux[reacIndex] = flux;              // In main flux array
                     fastSlowRates(kfac);
-                    
-                    if(showFluxCalc == 1){
-                        fprintf(pFileD, 
-                            "\n%d t=%5.3e %18s reactants=%d iso0=%d Rrate=%7.3e Y1=%7.3e Flux=%7.3e",
-                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0],  
-                            Rrate, Y[ reactantIndex[0] ], flux);
-                    }
+                
                     break;
                     
                 case 2:	   // 2-body reactions
@@ -2123,12 +2065,6 @@ class Reaction: public Utilities {
                     Flux[reacIndex] = flux;               // Put in main flux array
                     fastSlowRates(kfac);
                     
-                    if(showFluxCalc == 1){
-                        fprintf(pFileD, 
-                            "\n%d t=%5.3e %18s reactants=%d iso0=%d iso1=%d Rrate=%6.3e Y1=%6.3e Y2=%6.3e Flux=%6.3e",
-                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0], 
-                            reactantIndex[1], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], flux);
-                    }
                     break;
                     
                 case 3:	   // 3-body reactions
@@ -2138,13 +2074,6 @@ class Reaction: public Utilities {
                     Flux[reacIndex] = flux;               // Put in main flux array
                     fastSlowRates(kfac);
                     
-                    if(showFluxCalc == 1){
-                        fprintf(pFileD, 
-                            "\n%d t=%5.3e %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
-                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
-                            reactantIndex[2], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
-                            Y[ reactantIndex[2] ], flux);
-                    }
                     break;
                     
             }  // End switch 
@@ -2190,34 +2119,17 @@ class Reaction: public Utilities {
             double accum;
             double dydt;
             
-            if(showFluxCalc == 1 && t>7e-9) {
-                fprintf(pFileD,"\n##");
-            }
-            
             // Loop over isotopes
             
             for(int i=0; i < numberSpecies; i++){	
                 
                 // Sum F+ for each isotope
                 
-                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) {
-                    fprintf(pFileD,"\n## REACTIONS CHANGING %s ABUNDANCE (t=%5.3e logt=%5.3e RGequil=%d):", 
-                        isoLabel[i], t, totalEquilRG);
-                    fprintf(pFileD,"\n##");
-                }
-                
                 if(i > 0) minny = FplusMax[i-1]+1;
-                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
-                    fprintf(pFileD, 
-                    "\n\n%s +++FplusMax=%d t=%6.4e logt=%6.4f", 
-                    isoLabel[i], FplusMax[i-1], t, log10(t));
-                accum = 0.0;	
+                accum = 0.0;
+                
                 for(int j=minny; j<=FplusMax[i]; j++){
                     accum += Fplus[j];
-                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
-                        fprintf(pFileD, 
-                            "\n## Steps=%d t=%5.3e i=%d j=%d  MapFplus=%d %s Fplus[%s]=%g FplusSum=%g", 
-                            totalTimeSteps, t, i, j, MapFplus[j], reacLabel[MapFplus[j]], isoLabel[i], Fplus[j], accum);
                 }
                 
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -2226,27 +2138,16 @@ class Reaction: public Utilities {
                 
                 minny = 0;
                 if(i>0) minny = FminusMax[i-1]+1;
-                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
-                    fprintf(pFileD, "\n\n%s +++FminusMax=%d  t=%6.4e logt=%6.4f", 
-                    isoLabel[i], FminusMax[i-1], t, log10(t));
                 accum = 0.0;
+                
                 for(int j=minny; j<=FminusMax[i]; j++){
                     accum += Fminus[j];
-                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
-                        fprintf(pFileD, "\n## Steps=%d t=%5.3e i=%d j=%d  MapFminus=%d %s Fminus[%s]=%g FminusSum=%8.4e", 
-                            totalTimeSteps, t, i, j, MapFminus[j], reacLabel[MapFminus[j]], isoLabel[i], Fminus[j], accum);
                 }
                 
                 setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
-                
-                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)){
-                    fprintf(pFileD,"\n## netFlux(%s)=%6.4e RGequil=%d\n\n", 
-                        isoLabel[i], FplusSum[i]-FminusSum[i], totalEquilRG);
-                    fprintf(pFileD,"\n##");
-                }
+
             }
-            
         }
                 
 };  // End class Reaction
@@ -2299,8 +2200,6 @@ class ReactionVector:  public Utilities {
             
             // Allocate an array populated with GSL vectors
             
-            if(showRVdetails == 1) printf("\nAllocating an array rv[] of GSL vectors\n");
-            
             for(int i=0; i<SIZE; i++){
                 
                 //Prototype GSL reaction vector
@@ -2315,22 +2214,16 @@ class ReactionVector:  public Utilities {
             // Fill vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices)
             
-            if(showRVdetails == 1){
-                fprintf(pFileD, "\nPopulate vector components of array rv[i]_j with reacMask[j][i]:");
-            }
-            
             for (int i = 0; i < SIZE; i++) {
-                if(showRVdetails == 1) printf("\n\nrv[%d]",i);
+ 
                 for(int j=0; j<ISOTOPES; j++){
+                    
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
                     
                     // Retrieve the vector component just stored and print it
                     
                     int temp = gsl_vector_get(rvPt+i, j);
-                    if(showRVdetails == 1){
-                        fprintf(pFileD, "\ni=%d j=%d  reacMask[%d][%d] =%3d  rv[%d]_%d =%3d", 
-                            i, j, i, j, reacMask[j][i], i, j, temp);
-                    }
+
                 }
             }
         
@@ -2509,9 +2402,6 @@ class ReactionVector:  public Utilities {
         
         static void parseF(){
             
-            if(showParsing == 1)
-                fprintf(pFileD, "\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
-            
             int incrementPlus = 0;
             int incrementMinus = 0;
             
@@ -2521,7 +2411,6 @@ class ReactionVector:  public Utilities {
                 int total = 0;
                 int numFplus = 0;
                 int numFminus = 0;
-                if(showParsing == 1) fprintf(pFileD, "\n");
                 
                 // Loop over all possible reactions for this isotope, finding those that
                 // change its population up (contributing to F+) or down (contributing to F-).
@@ -2548,19 +2437,11 @@ class ReactionVector:  public Utilities {
                         numFminus ++;
                         reacMask[i][j] = -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
-                        if(showParsing == 1)
-                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
-                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
-                                totalR, total);
                     } 
                     else if(total < 0){          // Contributes to F+ for this isotope
                         numFplus ++;
                         reacMask[i][j] = -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
-                        if(showParsing == 1)
-                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
-                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
-                                totalR, total);
                     } else {           // Does not contribute to flux for this isotope
                         reacMask[i][j] = 0;
                     }
@@ -2577,8 +2458,6 @@ class ReactionVector:  public Utilities {
                 incrementPlus += numFplus;
                 incrementMinus += numFminus;
                 
-                if(showParsing == 1)
-                fprintf(pFileD, "\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
             }
             
             // Display isotope component array
@@ -4719,15 +4598,6 @@ int main() {
             
             plotCounter ++;
             
-        }
-        
-        // Optional equilibrium diagnostics
-        
-        if(showFlux_PE && (doPE || showPE) && t > equilibrateTime){
-            showEquilibriumStuff();
-            dumpEquilibriumData();
-            writeFluxesReactions();
-            writeFluxesRG();
         }
     
     }   // End time integration while-loop
