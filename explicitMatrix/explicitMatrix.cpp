@@ -152,7 +152,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
  
-static const bool plotFluxes = false;
+static const bool plotFluxes = true;
 
 // Function signatures:
 
