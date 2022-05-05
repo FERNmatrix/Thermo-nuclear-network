@@ -55,7 +55,6 @@
  */
 
 
-
 #include <stdio.h>
 #include <iostream>
 #include <stdlib.h>
@@ -153,7 +152,6 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Control diagnostic printout of details (true=1 to print, false=0 to suppress)
 
-static const int displayInput = false;
 static const int showParsing = false;
 static const int showFparsing = false;
 static const int showFluxCalc = true;
@@ -5133,8 +5131,6 @@ void readNetwork (char *fileName) {
     int isoIndex = -1;
     int isoSubIndex = 3;
     
-    if(displayInput==1) fprintf(pFileD, "\n--- Read in network and partition function ---\n");
-    
     // Read lines until NULL encountered. Data lines can contain up to 60 characters.
     
     while(fgets(line, 60, fr) != NULL){
@@ -5149,10 +5145,6 @@ void readNetwork (char *fileName) {
             // Read 1st line
             
             sscanf (line, "%s %d %d %d %lf %lf", isoSymbol, &a, &z, &n, &y, &mass);
-            
-            if(displayInput == 1){
-                fprintf(pFileD, "\n%s %d %d %d %f %f\n", isoSymbol, a, z, n, y, mass);
-            }
             
             // Write data in 1st line to the Species object isotope[]
             
@@ -5170,11 +5162,6 @@ void readNetwork (char *fileName) {
             
             sscanf (line, "%lf %lf %lf %lf %lf %lf %lf %lf", &pf0, &pf1, &pf2, &pf3, 
                 &pf4, &pf5, &pf6, &pf7);
-            
-            if(displayInput == 1){
-                fprintf(pFileD, "%f %f %f %f %f %f %f %f\n", 
-                    pf0, pf1, pf2, pf3, pf4, pf5, pf6, pf7);
-            }
             
             // Store the 24 partition function table values in Species object isotope[]
             
@@ -5263,8 +5250,6 @@ void readLibraryParams (char *fileName) {
     int n = -1;
     int subindex = -1;
     
-    if(displayInput == 1) fprintf(pFileD, "\n--- READ IN REACTIONS DATA---");
-    
     // Read lines until NULL encountered. Lines can contain up to 120 characters.  In the
     // data file each reaction has 8 lines of entries.  The counter n holds the reaction number
     // and the counter subindex holds the line number for the current reaction.  The 
@@ -5303,32 +5288,6 @@ void readLibraryParams (char *fileName) {
                 ReactionPtr->setprefac(sf);
                 ReactionPtr->setispeforward(i7);
                 
-                if(displayInput == 1){
-                    
-                    fprintf(pFileD, "\n\nReaction %d: ",n);
-                    fprintf(pFileD, "%s reaclib=%d RG:(%s) RGclass=%d RGmemberIndex=%d",
-                        reaction[n].getreacChar(), 
-                        reaction[n].getreacIndex(),
-                        reaction[n].getreacGroupChar(),
-                        reaction[n].getreacGroupClass(), 
-                        reaction[n].getRGmemberIndex());
-                    fprintf(pFileD, 
-                    "\n--------------------------------------------------------------------------------");
-                    fprintf(pFileD, "\n%s %d %d %d %d %d %d %d %f %f", 
-                        reacLabel[n], 
-                        RGclass[n],
-                        RGMemberIndex[n],
-                        reaction[n].getreacClass(),
-                        reaction[n].getnumberReactants(),
-                        reaction[n].getnumberProducts(),
-                        reaction[n].getisEC(),
-                        reaction[n].getisReverse(),
-                        reaction[n].getprefac(),
-                        reaction[n].getQ()
-                    );
-                    
-                }
-                
                 break;
                 
             case 1:    // 2nd line
@@ -5347,16 +5306,6 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr = &reaction[n];
                 ReactionPtr->setp(tempp);
-                
-                if(displayInput == 1) fprintf(pFileD, "\n%f %f %f %f %f %f %f", 
-                    reaction[n].getp(0),
-                    reaction[n].getp(1),
-                    reaction[n].getp(2),
-                    reaction[n].getp(3),
-                    reaction[n].getp(4),
-                    reaction[n].getp(5),
-                    reaction[n].getp(6)
-                );
                 
                 break;
                 
@@ -5378,14 +5327,6 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setreactantZ(tempZN);    // setter also changes reacZ[][]
                 
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
-                        fprintf(pFileD, "\n  Reactant[%d]: Z=%d", mm, reacZ[n][mm]);
-                    }
-                    
-                }
-                
                 break;
                 
             case 3:   // 4th line (N of reactants)
@@ -5405,14 +5346,6 @@ void readLibraryParams (char *fileName) {
                 }
                 
                 ReactionPtr -> setreactantN(tempZN);   // setter also changes reacN[][]
-                
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
-                        fprintf(pFileD, "\n  Reactant[%d]: N=%d", mm, reacZ[n][mm]);
-                    }
-                    
-                }
                 
                 break;
                 
@@ -5434,14 +5367,6 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setproductZ(tempZN);    // setter also changes prodZ[][]
                 
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumProducts[n]; mm++) {
-                        fprintf(pFileD, "\n  Product[%d]: Z=%d", mm, prodZ[n][mm]);
-                    }
-                    
-                }
-                
                 break;
                 
             case 5:    // 6th line (N of products)
@@ -5461,14 +5386,6 @@ void readLibraryParams (char *fileName) {
                 }
                 
                 ReactionPtr -> setproductN(tempZN);    // setter also changes prodN[][]
-                
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumProducts[n]; mm++) {
-                        fprintf(pFileD, "\n  Product[%d]: N=%d", mm, prodN[n][mm]);
-                    }
-                    
-                }
                 
                 break;
                 
@@ -5490,14 +5407,6 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setreactantIndex(tempZN);   // setter also changes ReactantIndex[][]
                 
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
-                        fprintf(pFileD, "\n  ReactantIndex[%d]: N=%d", mm, ReactantIndex[n][mm]);
-                    }
-                    
-                }
-                
                 break;
                 
             case 7:    // 8th line (product species-vector index)
@@ -5517,14 +5426,6 @@ void readLibraryParams (char *fileName) {
                 }
 
                 ReactionPtr -> setproductIndex(tempZN);    // setter also changes ProductIndex[][]
-                
-                if(displayInput == 1){
-                    
-                    for(int mm=0; mm<NumProducts[n]; mm++) {
-                        fprintf(pFileD, "\n  ProductIndex[%d]: N=%d", mm, ProductIndex[n][mm]);
-                    }
-                    
-                }
                 
                 subindex = -1;
                 
