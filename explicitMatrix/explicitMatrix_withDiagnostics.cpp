@@ -55,6 +55,7 @@
  */
 
 
+
 #include <stdio.h>
 #include <iostream>
 #include <stdlib.h>
@@ -150,9 +151,24 @@ char networkFile[] = "data/network_alpha.inp";
 char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 
-// Control printout of flux file (true=1 to print, false=0 to suppress)
- 
-static const bool plotFluxes = true;
+// Control diagnostic printout of details (true=1 to print, false=0 to suppress)
+
+static const int displayInput = false;
+static const int showParsing = false;
+static const int showFparsing = false;
+static const int showFluxCalc = true;
+static const int showFlux_PE = false;
+static const int showRVdetails = false;
+static const int showRGsorting = false;
+static const int showAsyTest = false;
+static const int showPlotSteps = false;
+static const bool showAddRemove = true; 
+static const bool showRestoreEq = false;
+static const bool plotFluxes = false;
+static const bool diagnose1 = false;
+static const bool diagnose2 = false;
+static const bool diagnose_dt = false;
+static const bool diagnoseQSS = false;
 
 // Function signatures:
 
@@ -178,6 +194,26 @@ void updateY0(void);
 void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
+void funkyReactions(int, bool, int);
+
+// Diagnostic functions
+
+void diagnosticOut1(void);
+void diagnosticOut2(void);
+void diagnosticOut3(void);
+void diagnosticOut4(void);
+void diagnosticOut5(int);
+void diagnosticOut6(int, double, double, double, double);
+void diagnosticOut7(double, double, double, double, double, double);
+void diagnosticOut8(double, double, double);
+void diagnosticOut9(int, double, double, double, double, double, double);
+int diagnosticOut10(int, int);
+void diagnosticOut11(int, double, double, double, double, double, double);
+void diagnosticOut12(int, double, double, double, double, double, double, double);
+void showEquilibriumStuff(void);
+void dumpEquilibriumData(void);
+void writeFluxesRG(void);
+void writeFluxesReactions(void);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -1721,6 +1757,16 @@ class Reaction: public Utilities {
                 if(i == (FminusIsotopeCut[currentIso]-1)) currentIso ++;
             }
             
+            // Optional diagnostic output if showFparsing==1
+            
+            if(showFparsing == 1){
+                fprintf(pFileD, "\n\n--- MAX F+ and F- INDEX FOR EACH ISOTOPE ---\n");	
+                for(int i=0; i<numberSpecies; i++){
+                    fprintf(pFileD, "\nIsotope index = %d  %s  Max index F+ = %d  Max index F- = %d", 
+                        i, isoLabel[i], FplusIsotopeCut[i]-1, FminusIsotopeCut[i]-1);
+                }
+            }
+            
             for(int i=0; i<totalFplus; i++){
                 MapFplus[i] = tempInt1[i];
             }
@@ -1768,6 +1814,43 @@ class Reaction: public Utilities {
                         tempCountMinus ++;
                     }	
                 }
+            }
+            
+            // Optional diagnostic output
+            
+            if(showFparsing == 1){
+                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F+ SOURCE TERMS ---\n", totalFplus);
+                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
+                       isoLabel[FplusIsotopeIndex[0]], FplusIsotopeIndex[0],
+                       numFluxPlus[FplusIsotopeIndex[0]]);
+                for(int i=0; i<totalFplus; i++){
+                    fprintf(pFileD, "\n   FplusIsotopeIndex[i]=%d i=%d MapFplus[i]=%d  %s", 
+                           FplusIsotopeIndex[i], i, MapFplus[i], 
+                           reacLabel[MapFplus[i]]); 
+                    if(i == (FplusIsotopeCut[FplusIsotopeIndex[i]] - 1)  && i != totalFplus-1)
+                    {
+                        fprintf(pFileD, "\n");
+                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F+ source terms (%d):", 
+                               isoLabel[FplusIsotopeIndex[i+1]], FplusIsotopeIndex[i+1],
+                               numFluxPlus[FplusIsotopeIndex[i+1]]);
+                    }
+                }	
+                fprintf(pFileD, "\n\n\n--- %d NON-VANISHING F- SOURCE TERMS ---\n", totalFminus);
+                fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
+                       isoLabel[FminusIsotopeIndex[0]], FminusIsotopeIndex[0],
+                       numFluxMinus[FminusIsotopeIndex[0]] );
+                for(int i=0; i<totalFminus; i++){
+                    fprintf(pFileD, "\n   FminusIsotopeIndex[i]=%d i=%d MapFminus[i]=%d  %s", 
+                           FminusIsotopeIndex[i], i, MapFminus[i], reacLabel[MapFminus[i]]);
+                    if(i == (FminusIsotopeCut[FminusIsotopeIndex[i]] - 1) && i != totalFminus-1 ){
+                        fprintf(pFileD, "\n");
+                        fprintf(pFileD, "\ndY[%s]/dt = dY[%d]/dt F- source terms (%d):", 
+                               isoLabel[FminusIsotopeIndex[i+1]], FminusIsotopeIndex[i+1],
+                               numFluxMinus[FminusIsotopeIndex[i+1]]
+                        );
+                    }
+                }
+                fprintf(pFileD, "\n\n");
             }
         }
         
@@ -2026,7 +2109,13 @@ class Reaction: public Utilities {
                     flux = kfac*Y[ reactantIndex[0] ];	 // In Reaction object flux field
                     Flux[reacIndex] = flux;              // In main flux array
                     fastSlowRates(kfac);
-                
+                    
+                    if(showFluxCalc == 1){
+                        fprintf(pFileD, 
+                            "\n%d t=%5.3e %18s reactants=%d iso0=%d Rrate=%7.3e Y1=%7.3e Flux=%7.3e",
+                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0],  
+                            Rrate, Y[ reactantIndex[0] ], flux);
+                    }
                     break;
                     
                 case 2:	   // 2-body reactions
@@ -2036,6 +2125,12 @@ class Reaction: public Utilities {
                     Flux[reacIndex] = flux;               // Put in main flux array
                     fastSlowRates(kfac);
                     
+                    if(showFluxCalc == 1){
+                        fprintf(pFileD, 
+                            "\n%d t=%5.3e %18s reactants=%d iso0=%d iso1=%d Rrate=%6.3e Y1=%6.3e Y2=%6.3e Flux=%6.3e",
+                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0], 
+                            reactantIndex[1], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], flux);
+                    }
                     break;
                     
                 case 3:	   // 3-body reactions
@@ -2045,6 +2140,13 @@ class Reaction: public Utilities {
                     Flux[reacIndex] = flux;               // Put in main flux array
                     fastSlowRates(kfac);
                     
+                    if(showFluxCalc == 1){
+                        fprintf(pFileD, 
+                            "\n%d t=%5.3e %18s reactants=%d iso0=%d iso1=%d iso2=%d Rrate=%7.3e Y1=%7.3e Y2=%7.3e Y3=%7.3e Flux=%7.3e",
+                            reacIndex, t, getreacChar(), numberReactants, reactantIndex[0], reactantIndex[1], 
+                            reactantIndex[2], Rrate, Y[ reactantIndex[0] ], Y[ reactantIndex[1] ], 
+                            Y[ reactantIndex[2] ], flux);
+                    }
                     break;
                     
             }  // End switch 
@@ -2090,17 +2192,34 @@ class Reaction: public Utilities {
             double accum;
             double dydt;
             
+            if(showFluxCalc == 1 && t>7e-9) {
+                fprintf(pFileD,"\n##");
+            }
+            
             // Loop over isotopes
             
             for(int i=0; i < numberSpecies; i++){	
                 
                 // Sum F+ for each isotope
                 
-                if(i > 0) minny = FplusMax[i-1]+1;
-                accum = 0.0;
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) {
+                    fprintf(pFileD,"\n## REACTIONS CHANGING %s ABUNDANCE (t=%5.3e logt=%5.3e RGequil=%d):", 
+                        isoLabel[i], t, totalEquilRG);
+                    fprintf(pFileD,"\n##");
+                }
                 
+                if(i > 0) minny = FplusMax[i-1]+1;
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                    fprintf(pFileD, 
+                    "\n\n%s +++FplusMax=%d t=%6.4e logt=%6.4f", 
+                    isoLabel[i], FplusMax[i-1], t, log10(t));
+                accum = 0.0;	
                 for(int j=minny; j<=FplusMax[i]; j++){
                     accum += Fplus[j];
+                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                        fprintf(pFileD, 
+                            "\n## Steps=%d t=%5.3e i=%d j=%d  MapFplus=%d %s Fplus[%s]=%g FplusSum=%g", 
+                            totalTimeSteps, t, i, j, MapFplus[j], reacLabel[MapFplus[j]], isoLabel[i], Fplus[j], accum);
                 }
                 
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -2109,16 +2228,27 @@ class Reaction: public Utilities {
                 
                 minny = 0;
                 if(i>0) minny = FminusMax[i-1]+1;
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                    fprintf(pFileD, "\n\n%s +++FminusMax=%d  t=%6.4e logt=%6.4f", 
+                    isoLabel[i], FminusMax[i-1], t, log10(t));
                 accum = 0.0;
-                
                 for(int j=minny; j<=FminusMax[i]; j++){
                     accum += Fminus[j];
+                    if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)) 
+                        fprintf(pFileD, "\n## Steps=%d t=%5.3e i=%d j=%d  MapFminus=%d %s Fminus[%s]=%g FminusSum=%8.4e", 
+                            totalTimeSteps, t, i, j, MapFminus[j], reacLabel[MapFminus[j]], isoLabel[i], Fminus[j], accum);
                 }
                 
                 setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
-
+                
+                if(showFluxCalc == 1 && t>7e-9 && (i==5 || i==6 || i==7)){
+                    fprintf(pFileD,"\n## netFlux(%s)=%6.4e RGequil=%d\n\n", 
+                        isoLabel[i], FplusSum[i]-FminusSum[i], totalEquilRG);
+                    fprintf(pFileD,"\n##");
+                }
             }
+            
         }
                 
 };  // End class Reaction
@@ -2171,6 +2301,8 @@ class ReactionVector:  public Utilities {
             
             // Allocate an array populated with GSL vectors
             
+            if(showRVdetails == 1) printf("\nAllocating an array rv[] of GSL vectors\n");
+            
             for(int i=0; i<SIZE; i++){
                 
                 //Prototype GSL reaction vector
@@ -2185,16 +2317,22 @@ class ReactionVector:  public Utilities {
             // Fill vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices)
             
+            if(showRVdetails == 1){
+                fprintf(pFileD, "\nPopulate vector components of array rv[i]_j with reacMask[j][i]:");
+            }
+            
             for (int i = 0; i < SIZE; i++) {
- 
+                if(showRVdetails == 1) printf("\n\nrv[%d]",i);
                 for(int j=0; j<ISOTOPES; j++){
-                    
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
                     
                     // Retrieve the vector component just stored and print it
                     
                     int temp = gsl_vector_get(rvPt+i, j);
-
+                    if(showRVdetails == 1){
+                        fprintf(pFileD, "\ni=%d j=%d  reacMask[%d][%d] =%3d  rv[%d]_%d =%3d", 
+                            i, j, i, j, reacMask[j][i], i, j, temp);
+                    }
                 }
             }
         
@@ -2286,12 +2424,13 @@ class ReactionVector:  public Utilities {
                 RGindex[i] = -1;
             }
             
-            int scorekeeper;
+            if(showRGsorting == 1) fprintf(pFileD, "\n\n\n--- SORTING REACTION GROUPS ---");
             
+            int scorekeeper;
             for (int i=0; i<SIZE; i++){
                 scorekeeper = 0;
                 if(i==0) rindex ++;
-                
+                if(showRGsorting == 1) fprintf(pFileD, "\n\nRG=%d", rindex);
                 for(int j=0; j<SIZE; j++){
                     
                     if(RGindex[i] < 0) RGindex[i] = rindex;
@@ -2300,6 +2439,10 @@ class ReactionVector:  public Utilities {
                     if(ck > 0 && RGindex[j]< 0) {
                         RGindex[j] = rindex;
                         scorekeeper ++;
+                    }
+                    if(showRGsorting==1){
+                        fprintf(pFileD, "\ni=%d %s j=%d %s RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
+                            i, reacLabel[i], j, reacLabel[j], j, RGindex[j], ck, rindex, scorekeeper);
                     }
                 }
                 
@@ -2316,11 +2459,23 @@ class ReactionVector:  public Utilities {
                     
                     rindex++;
                     
+                    if(showRGsorting==1) fprintf(pFileD, "\nFound RG=%d RGnumberMembers=%d", 
+                        rindex-1, RGnumberMembers[rindex-1]);
                 }
 
             }
             
             numberRG = rindex;   // Store total number of reaction groups
+            
+            // Diagnostic showing reaction group associated with each reaction
+            
+            if(showRGsorting == 1){
+                fprintf(pFileD, "\n\n-- SUMMARY OF REACTION GROUPS:\n");
+                for(int i=0; i<SIZE; i++){
+                    fprintf(pFileD, "\nreaction=%d  %18s RGindex=%d RGmemberIndex=%d", 
+                        i, reacLabel[i], RGindex[i], RGMemberIndex[i]);
+                }
+            }
             
             // Write out the components of the reaction groups
             
@@ -2356,6 +2511,9 @@ class ReactionVector:  public Utilities {
         
         static void parseF(){
             
+            if(showParsing == 1)
+                fprintf(pFileD, "\n\n--- Use parseF() to find F+ and F- flux components for each species ---");
+            
             int incrementPlus = 0;
             int incrementMinus = 0;
             
@@ -2365,6 +2523,7 @@ class ReactionVector:  public Utilities {
                 int total = 0;
                 int numFplus = 0;
                 int numFminus = 0;
+                if(showParsing == 1) fprintf(pFileD, "\n");
                 
                 // Loop over all possible reactions for this isotope, finding those that
                 // change its population up (contributing to F+) or down (contributing to F-).
@@ -2391,11 +2550,19 @@ class ReactionVector:  public Utilities {
                         numFminus ++;
                         reacMask[i][j] = -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
+                        if(showParsing == 1)
+                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F-", 
+                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
+                                totalR, total);
                     } 
                     else if(total < 0){          // Contributes to F+ for this isotope
                         numFplus ++;
                         reacMask[i][j] = -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
+                        if(showParsing == 1)
+                            fprintf(pFileD, "\n%s reacIndex=%d %s nReac=%d nProd=%d totL=%d totR=%d tot=%d F+", 
+                                isoLabel[i], j, reacLabel[j], NumReactingSpecies[j], NumProducts[j], totalL, 
+                                totalR, total);
                     } else {           // Does not contribute to flux for this isotope
                         reacMask[i][j] = 0;
                     }
@@ -2412,6 +2579,8 @@ class ReactionVector:  public Utilities {
                 incrementPlus += numFplus;
                 incrementMinus += numFminus;
                 
+                if(showParsing == 1)
+                fprintf(pFileD, "\nSpecies=%d %s numF+ = %d numF- = %d", i, isoLabel[i], numFplus, numFminus);
             }
             
             // Display isotope component array
@@ -2884,13 +3053,20 @@ class ReactionGroup:  public Utilities {
     void putY0() {
         
         int ii;
+        if(diagnose2) fprintf(pFileD, "\n\nRG=%d", RGn);
         
         for (int k = 0; k < niso; k++) {
             ii = isoindex[k];
             isoY0[k] = Y0[ii];
             isoY[k] = Y[ii];   // old error: isoY[k]=isoY0[k];
+
+            if(diagnose2)
+            fprintf(pFileD, 
+                "\nputY0: t=%8.5e RG=%d niso=%d k=%d isoindex=%d isoY0[%s]=%8.5e isoY0=%8.5e ii=%d Y[ii]=%8.5e", 
+                t, RGn, niso, k, ii, isoLabel[ii],  isoY[k], isoY0[k], ii, Y[ii]);
         }
         
+        if(diagnose2) fprintf(pFileD, "\n");
     }
     
    
@@ -2921,6 +3097,14 @@ class ReactionGroup:  public Utilities {
                 crg[0] = isoY0[1] - isoY0[0];
                 crg[1] = isoY0[1] + isoY0[2];
                 
+                if(diagnose2){
+                    fprintf(pFileD, 
+                        "\ncomputeC: t=%7.4e RG=%d isoY0[0]=%7.4e isoY0[1]=%7.4e isoY0[2]=%7.4e",
+                        t, RGn, isoY0[0], isoY0[1], isoY0[2] );
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d crg[0]=%7.4e crg[1]=%7.4e",
+                        t, RGn, crg[0], crg[1] );
+                }
+                
                 break;
                 
             case 3:    // a+b+c <-> d
@@ -2928,6 +3112,14 @@ class ReactionGroup:  public Utilities {
                 crg[0] = isoY0[0] - isoY0[1];
                 crg[1] = isoY0[0] - isoY0[2];
                 crg[2] = THIRD * (isoY0[0] + isoY0[1] + isoY0[2]) + isoY0[3];
+                
+                if(diagnose2){
+                    fprintf(pFileD, 
+                        "\ncomputeC: t=%7.4e RG=%d isoY0[0]=%8.5e isoY0[1]=%8.5e isoY0[2]=%8.5e isoY0[3]=%8.5e",
+                        t, RGn, isoY0[0], isoY0[1], isoY0[2], isoY[3] );
+                    fprintf(pFileD, "\ncomputeC: t=%7.4e RG=%d crg[0]=%8.5e crg[1]=%8.5e crg[2]=%8.5e",
+                        t, RGn, crg[0], crg[1], crg[2] );
+                }
                 
                 break;
                 
@@ -2984,6 +3176,10 @@ class ReactionGroup:  public Utilities {
                 bb = -(crg[0] * rgkf + rgkr);
                 cc = rgkr * (crg[1] - crg[0]);
                 
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                    t, RGn, aa, bb, cc);
+                       
                 break;
                 
             case 3:  // a+b+c <-> d
@@ -2991,6 +3187,10 @@ class ReactionGroup:  public Utilities {
                 aa = -rgkf * isoY0[0] + rgkf * (crg[0] + crg[1]);
                 bb = -(rgkf * crg[0] * crg[1] + rgkr);
                 cc = rgkr * (crg[2] + THIRD * (crg[0] + crg[1]));
+                
+                if(diagnose2)
+                fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d aa=%7.4e bb=%7.4e cc=%7.4e",
+                    t, RGn, aa, bb, cc);
                 
                 break;
                 
@@ -3026,6 +3226,9 @@ class ReactionGroup:  public Utilities {
             }
             isoYeq[0] = computeYeq(aa, bb, rootq);
             
+            if(diagnose2)
+            fprintf(pFileD, "\ncomputeQuad: t=%7.4e RG=%d qq=%7.4e tau=%7.4e isoYeq[0]=%7.4e",
+                t, RGn, qq, tau, isoYeq[0]);
         } else {
             qq = -1.0;
             tau = 1.0 / rgkf;
@@ -3056,6 +3259,11 @@ class ReactionGroup:  public Utilities {
                 isoYeq[1] = crg[0] + isoYeq[0];
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
+                
+                if(diagnose2)
+                fprintf(pFileD, 
+                    "\ncomputeQuad: t=%6.4e RG=%d isoYeq[0]=%6.4e isoYeq[1]=%6.4e isoYeq[2]=%6.4e eqRatio=%5.3e",
+                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], equilRatio);
 
                 break;
                 
@@ -3065,6 +3273,11 @@ class ReactionGroup:  public Utilities {
                 isoYeq[2] = isoYeq[0] - crg[1];
                 isoYeq[3] = crg[2] - isoYeq[0] + THIRD * (crg[0] + crg[1]);
                 equilRatio = isoY[0] * isoY[1] * isoY[2] / isoY[3];
+                
+                if(diagnose2)
+                fprintf(pFileD, 
+                    "\ncomputeQuad: t=%5.3e RG=%d isoYeq[0]=%5.3e isoYeq[1]=%5.3e isoYeq[2]=%5.3e isoYeq[3]=%5.3e eqRatio=%5.3e",
+                    t, RGn, isoYeq[0], isoYeq[1], isoYeq[2], isoYeq[3], equilRatio);
                 
                 break;
                 
@@ -3140,6 +3353,11 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
+        if(diagnose2)
+        fprintf(pFileD, 
+            "\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
+            t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil);
+        
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. Otherwise, if
         // the RG is in equilibrium (isEquil=true) but the tolerance condition
@@ -3175,6 +3393,11 @@ class ReactionGroup:  public Utilities {
             
             eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
             
+            if(t > equilibrateTime && diagnose2) 
+            fprintf(pFileD, 
+                "\ncomputeEqRatios: iso=%d %s RG=%d t=%7.4e isoYeq=%7.4e isoY=%7.4e eqcheck=%7.4e",
+                i, isolabel[i], RGn, t, isoYeq[i], isoY[i], eqcheck[i] );
+            
             // Store some min and max values
             
             if (eqcheck[i] < mineqcheck)
@@ -3207,6 +3430,36 @@ class ReactionGroup:  public Utilities {
             
             totalEquilRG ++;
             
+            if (showAddRemove) {
+                fprintf(pFileD, "\n\n************************************************");
+                fprintf(pFileD, 
+                    "\nADD RG %d TO EQUIL: Steps=%d RGeq=%d t=%7.4e devious=%7.3e Rmin=%7.4e Rmax=%7.4e Ymin=%7.4e", 
+                    RGn, totalTimeSteps, totalEquilRG, t, thisDevious, mineqcheck, maxeqcheck, Yminner);
+            }
+            
+            for (int i = 0; i < niso; i++) {
+                
+                // Set isEquil field of Reaction object reaction[i]
+                
+                //funkyReactions(memberReactions[i], true, RGn);
+                
+                if (showAddRemove) {
+                    fprintf(pFileD, 
+                        "\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e eqcheck=%8.4e Rnow=%8.4e",
+                        isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i], eqcheck[i]/equiTol
+                    );
+                }
+            }
+            
+            if (showAddRemove){
+                showRGfluxes();
+                fprintf(pFileD, 
+                    "\ncomputeEqRatios: t=%6.4e RG=%d equilRatio=%6.4e kratio=%6.4e thisDev=%6.4e mostDev=%7.4e equil=%d",
+                    t, RGn, equilRatio, kratio, thisDevious, mostDevious, isEquil);
+            } 
+            
+            if (showAddRemove) 
+                fprintf(pFileD, "\n************************************************\n");
         }
         
         // Set the activity array for each reaction in reaction group to true if not in 
@@ -3234,15 +3487,34 @@ class ReactionGroup:  public Utilities {
         
         totalEquilRG -- ;
         
+        if (showAddRemove) {
+            fprintf(pFileD, "\n\n************************************************");
+            fprintf(pFileD, 
+                "\nREMOVE RG %d FROM EQUIL: Steps=%d RGeq=%d t=%7.3e dt=%7.3e devious=%7.3e Rmin=%8.4e Rmax=%8.4e", 
+                RGn, totalTimeSteps, totalEquilRG, t, dt, thisDevious, mineqcheck, maxeqcheck);
+        }
+        
         for (int i = 0; i < niso; i++) {
             isEquil = false;
+            if (showAddRemove) {
+                fprintf(pFileD, "\n%s Z=%d N=%d Y=%8.4e Yeq=%8.4e Rprev=%8.5e Rnow=%8.5e",
+                    isolabel[i], isoZ[i], isoN[i], isoY[i], isoYeq[i], eqcheck[i],
+                    abs(isoY[i] - isoYeq[i]) / isoYeq[i]
+                );
+            }
         }
         
         for (int i = 0; i < numberMemberReactions; i++) {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
+            if (showAddRemove) {
+                fprintf(pFileD, "\n Remove RG=%d %s RGflux=%7.4e flux[%d]=%7.4e", 
+                    RGn, reaclabel[i], i, netflux, flux[i]);
+            }
         }
         
+        if(showAddRemove) 
+            fprintf(pFileD, "\n************************************************\n");
     }
     
     
@@ -3333,6 +3605,8 @@ class Integrate: public Utilities {
             // Compute max stable forward Euler timestep
             
             dt_FE = sf/fastestCurrentRate;
+            //dt_FE = 1.0/fastestCurrentRate; // Original Eirik
+            if(diagnose_dt)diagnosticOut6(totalTimeSteps, t, dt_FE, sumXlast, dt);
             
             // Compute trial timestep for explicit asymptotic
             
@@ -3413,6 +3687,8 @@ class Integrate: public Utilities {
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
+            if(diagnose_dt) fprintf(pFileD, "\n\ndt_FE = %8.6e dt_EA = %8.6e dt=%8.6e", 
+                dt_FE, dt_EA, dt);
             
         }    // End of doIntegrationStep
         
@@ -3443,6 +3719,9 @@ class Integrate: public Utilities {
     
             double dtt = dt0;
             double dtt_0;
+            
+            if(diagnose_dt) diagnosticOut7(dt0, dtt, dt, sumX, sumXlast, diffX);
+            if(diffX > massTol && diagnose_dt) diagnosticOut8(t, dt, dtt);
 
             updatePopulations(dtt);
             
@@ -3459,6 +3738,8 @@ class Integrate: public Utilities {
                 dt = dtt;
                 updatePopulations(dtt);
                 diffX = abs(sumX-sumXlast);
+                
+                if(diagnose_dt) diagnosticOut9(iterations, t, dt, dtt, sumX, sumXlast, diffX);
                 
                 iterations ++;
                 totalIterations ++;
@@ -3498,6 +3779,8 @@ class Integrate: public Utilities {
             dtmin = min(dt_new, 2.0*dt_old);
             dt_new = max( dtmin, 0.5*dt_old );
             
+            if(diagnose_dt) fprintf(pFileD,"\ndt_new2=%8.6e", dt_new);
+            
             // Don't let dt exceed 0.1*t for accuracy reasons
             
             dt_new = min(dt_new, 0.1*t);
@@ -3529,11 +3812,10 @@ class Integrate: public Utilities {
                 // Determine which isotopes satisfy asymptotic condition
                 
                 int numAsy = 0;
-                
                 for(int i=0; i<ISOTOPES; i++){
                     isAsy[i] = checkAsy(keff[i]);
+                    if(showAsyTest && isAsy[i]) numAsy = diagnosticOut10(numAsy, i);
                 }
-                
                 dt = dtt;
                 
                 // If Asy or Asy+PE, compute with Asy+FE algorithm (with fluxes removed
@@ -3560,11 +3842,10 @@ class Integrate: public Utilities {
         // If not, we update numerically using the forward Euler formula. 
         
         static void updateAsyEuler(){
+            if(showAsyTest) fprintf(pFileD, "\nupdateAsyEuler: dt=%10.8e", dt);
             
             sumX = 0.0;
-            
             for(int i=0; i<numberSpecies; i++){	
-                
                 if(isAsy[i]){
                     Y[i] = asymptoticUpdate(i, FplusSum[i], FminusSum[i], Y0[i], dt);
                 } else {
@@ -3573,9 +3854,30 @@ class Integrate: public Utilities {
                 X[i] = Y[i] * (double) AA[i];
                 sumX += X[i];
                 
+                if(showAsyTest)fprintf(pFileD, 
+                    "\n  updateAsyEuler: X[%d]=%10.8e dt=%10.8e sumX=%10.8e", 
+                    i, X[i], dt, sumX);
             }
             
             diffX = abs(sumX-sumXlast);
+            
+            if(showAsyTest)fprintf(pFileD, 
+                "\nsumX=%12.10e sumXlast=%12.10e diffX=%12.10e, massTol=%5.2e", 
+                sumX, sumXlast, diffX, massTol);  
+            
+// if(totalTimeSteps==294){
+//     
+//     printf("\n\n   *** t=%6.4e dt=%6.4e", t, dt);
+//     printf("\n       Y[0]=%6.4e Y[5]=%6.4e Y[6]=%6.4e", Y[0], Y[5], Y[6]);
+//     printf("\n       dF[2]=%6.4e dF[5]=%6.4e dF[6]=%6.4e", 
+//         FplusSum[0]-FminusSum[0], FplusSum[5]-FminusSum[5], FplusSum[6]-FminusSum[6]);
+//     printf("\n       Y0[0]=%6.4e Y0[5]=%6.4e Y0[6]=%6.4e", Y0[0], Y0[5], Y0[6]);
+//     printf("\n       FplusSum[2]=%6.4e FplusSum[5]=%6.4e FplusSum[6]=%6.4e", 
+//             FplusSum[0], FplusSum[5], FplusSum[6]);
+//     printf("\n       FminusSum[2]=%6.4e FminusSum[5]=%6.4e FminusSum[6]=%6.4e", 
+//             FminusSum[0], FminusSum[5], FminusSum[6]);
+//     printf("\n       keff[0]=%6.4e keff[5]=%6.4e keff[6]=%6.4e", keff[0], keff[5], keff[6]);
+// }
             
         }    // End function updateAsyEuler()
     
@@ -3586,7 +3888,13 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
+//         if(t>5e-9 && i==6)
+//             fprintf(pFileD, "\n  ++++%d t=%g i=%d, Y0=%g fplus(32S)=%g fminus(32S)=%g diff=%g",
+//             totalTimeSteps, t, i, y0, fplus, fminus, fplus-fminus
+//        );
+            
         double newY = y0 + (fplus-fminus)*dtt;
+        if(showAsyTest) diagnosticOut11(i, t, dtt, fminus, fplus, y0, newY);
         return newY;     // New Y for forward Euler method
         
     }
@@ -3597,6 +3905,7 @@ class Integrate: public Utilities {
     static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
+        if(showAsyTest)diagnosticOut12(i, t, dtt, asycheck, fplus, fminus, y, newY);
         return newY;
         
     }
@@ -3641,6 +3950,8 @@ class Integrate: public Utilities {
         int nitQSS = 1;
         
         for (int i = 0; i < nitQSS; i++) {
+            
+            if(diagnoseQSS) fprintf(pFileD, "\n\nQSS_UPDATE t=%7.4e", t);
             
             ssPredictor();
             ssCorrector();
@@ -3687,6 +3998,15 @@ class Integrate: public Utilities {
                 
                 Y[i] = Y0[i] + (FplusSum[i] - FminusSum[i])*dt / deno;
                 X[i] = Y[i] * (double)AA[i];
+                
+                if(diagnoseQSS) {
+                    fprintf(pFileD, "\nSS PREDICTOR: %d t=%7.4e Fplus[i]=%7.4e",
+                            i, t, FplusSum[i]);
+                    fprintf(pFileD, " Fminus=%7.4e dt=%7.4e alph=%7.4e k=%7.4e",
+                            FminusSum[i], dt, alphaValue(kdt), keff[i]);
+                    fprintf(pFileD, "kdt=%7.4e deno=%7.4e Y=%7.4e",
+                            kdt, deno, Y[i]);
+                } 
 
         }
         
@@ -3720,6 +4040,15 @@ class Integrate: public Utilities {
                 FplusTilde = alphaBar * FplusSum[i] + (1.0 - alphaBar) * FplusZero[i];
                 Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
                 X[i] = Y[i] * (double)AA[i];
+                
+                if(diagnoseQSS) {
+                    
+                    fprintf(pFileD, "\nSS CORRECTOR: %d t=%7.4e Fplus[i]=%7.4e",
+                            i, t, FplusSum[i]);
+                    fprintf(pFileD, " Fminus=%7.4e dt=%7.4e deno=%7.4e Y=%7.4e",
+                            FminusSum[i], dt, 1 + alphaBar * kdt, Y[i]);
+                    
+                } 
                 
                 // For reference, keep track of the isotopes that would satisfy the
                 // asymptotic condition if we were using the asymptotic approximation
@@ -3925,6 +4254,102 @@ int main() {
         );
     }
 
+    if(diagnose2){
+        fprintf(pfnet, "\n\n\nReactantIndex[][] and ProductIndex[][]:\n\n");
+        for(int i=0; i<SIZE; i++){
+            
+            fprintf(pfnet, "%17s: ", reacLabel[i]);
+            
+            for(int j=0; j<reaction[i].getnumberReactants(); j++){
+                fprintf(pfnet, "ReactantIndex[%d][%d]=%d ", i, j, ReactantIndex[i][j]);
+            }
+            
+            for(int j=0; j<reaction[i].getnumberProducts(); j++){
+                fprintf(pfnet, " ProductIndex[%d][%d]=%d", i, j, ProductIndex[i][j]);
+            }
+            
+            fprintf(pfnet, "\n");
+        }
+        
+        fprintf(pfnet, "\n\nREACLIB PARAMETERS FOR %d REACTIONS:\n", SIZE);
+        fprintf(pfnet, 
+                "\n                                p0         p1         p2         p3         ");
+        fprintf(pfnet, "p4         p5         p6");
+        
+        for (int i=0; i<SIZE; i++){
+            
+            fprintf(pfnet, "\n%3d  %18s %10.4f", 
+                i, reaction[i].getreacChar(), reaction[i].getp(0));
+            
+            for(int j=1; j<7; j++){
+                fprintf(pfnet, " %10.4f", reaction[i].getp(j));
+            }
+            
+        }
+    }
+    
+    if(diagnose2){
+        fprintf(pFileD, "\n\nZ and N for reactants:\n", SIZE);
+        
+        for (int i=0; i<SIZE; i++){
+            
+            fprintf(pFileD, "\n%3d %18s ", i, reaction[i].getreacChar());
+            
+            for(int j=0; j<reaction[i].getnumberReactants(); j++){
+                fprintf(pFileD, " Z[%d]=%d", j, reaction[i].getreactantZ(j));
+            }
+            
+            fprintf(pFileD, " ");
+            
+            for(int j=0; j<reaction[i].getnumberReactants(); j++){
+                fprintf(pFileD, " N[%d]=%d", j, reaction[i].getreactantN(j));
+            }
+        }
+        
+        fprintf(pFileD, "\n\nZ and N for products:\n", SIZE);
+        
+        for (int i=0; i<SIZE; i++){
+            
+            fprintf(pFileD, "\n%3d %18s ", i, reaction[i].getreacChar());
+            
+            for(int j=0; j<reaction[i].getnumberProducts(); j++){
+                fprintf(pFileD, " Z[%d]=%d", j, reaction[i].getproductZ(j));
+            }
+            
+            fprintf(pFileD, " ");
+            
+            for(int j=0; j<reaction[i].getnumberProducts(); j++){
+                fprintf(pFileD, " N[%d]=%d", j, reaction[i].getproductN(j));
+            }
+        }
+    }
+
+    if(diagnose2){
+        fprintf(pFileD, 
+        "\n\nreactantIndex for %d reactions (index of species vector for each reactant):\n", SIZE);
+
+        for (int i=0; i<SIZE; i++){
+            
+            fprintf(pFileD, "\n%d %18s ",i,reaction[i].getreacChar());
+            
+            for(int j=0; j<reaction[i].getnumberReactants(); j++){
+                fprintf(pFileD, " reactantIndex[%d]=%d", j, reaction[i].getreactantIndex(j));
+            }
+        }
+        
+        fprintf(pFileD, 
+        "\n\nproductIndex for %d reactions (index of species vector for each product):\n", SIZE);
+        
+        for (int i=0; i<SIZE; i++){
+            
+            fprintf(pFileD, "\n%d %18s ",i,reaction[i].getreacChar());
+            
+            for(int j=0; j<reaction[i].getnumberProducts(); j++){
+                fprintf(pFileD, " productIndex[%d]=%d", j, reaction[i].getproductIndex(j));
+            }
+        }
+    }
+    
     // Find the time intervals for plot output during the integration. After this
     // function is executed the plotSteps target time intervals for output will
     // be in the array plotTimeTargets[]. In the integration the ith output step will 
@@ -4183,6 +4608,7 @@ int main() {
             }
             
             if(totalEquilRG > 0){
+                if(diagnose2){diagnosticOut3();}
                 
                 // Restore species in equilibrium to their unperturbed equilibrium values at 
                 // the end of the timestep.  See the comments for function 
@@ -4190,6 +4616,7 @@ int main() {
                 
                 restoreEquilibriumProg();
                 
+                if(diagnose2){diagnosticOut4();}
             }
         }
         
@@ -4227,6 +4654,8 @@ int main() {
             // Record int step when plotting starts
             
             if(plotCounter == 1) {totalTimeStepsZero =  totalTimeSteps;}
+            
+            if(showPlotSteps){diagnosticOut5(plotCounter);} 
             
             // Output to plot arrays for this timestep
             
@@ -4292,6 +4721,15 @@ int main() {
             
             plotCounter ++;
             
+        }
+        
+        // Optional equilibrium diagnostics
+        
+        if(showFlux_PE && (doPE || showPE) && t > equilibrateTime){
+            showEquilibriumStuff();
+            dumpEquilibriumData();
+            writeFluxesReactions();
+            writeFluxesRG();
         }
     
     }   // End time integration while-loop
@@ -4376,6 +4814,15 @@ int main() {
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
 
+
+// Function to set the isEquil field of reaction objects.
+// Not presently used.
+
+void funkyReactions(int index, bool b, int rgn){
+    
+   reaction[index].setisEquil(b); 
+   
+}
 
 // Function showParameters() displays integration parameters.
 
@@ -4686,6 +5133,8 @@ void readNetwork (char *fileName) {
     int isoIndex = -1;
     int isoSubIndex = 3;
     
+    if(displayInput==1) fprintf(pFileD, "\n--- Read in network and partition function ---\n");
+    
     // Read lines until NULL encountered. Data lines can contain up to 60 characters.
     
     while(fgets(line, 60, fr) != NULL){
@@ -4700,6 +5149,10 @@ void readNetwork (char *fileName) {
             // Read 1st line
             
             sscanf (line, "%s %d %d %d %lf %lf", isoSymbol, &a, &z, &n, &y, &mass);
+            
+            if(displayInput == 1){
+                fprintf(pFileD, "\n%s %d %d %d %f %f\n", isoSymbol, a, z, n, y, mass);
+            }
             
             // Write data in 1st line to the Species object isotope[]
             
@@ -4717,6 +5170,11 @@ void readNetwork (char *fileName) {
             
             sscanf (line, "%lf %lf %lf %lf %lf %lf %lf %lf", &pf0, &pf1, &pf2, &pf3, 
                 &pf4, &pf5, &pf6, &pf7);
+            
+            if(displayInput == 1){
+                fprintf(pFileD, "%f %f %f %f %f %f %f %f\n", 
+                    pf0, pf1, pf2, pf3, pf4, pf5, pf6, pf7);
+            }
             
             // Store the 24 partition function table values in Species object isotope[]
             
@@ -4805,6 +5263,8 @@ void readLibraryParams (char *fileName) {
     int n = -1;
     int subindex = -1;
     
+    if(displayInput == 1) fprintf(pFileD, "\n--- READ IN REACTIONS DATA---");
+    
     // Read lines until NULL encountered. Lines can contain up to 120 characters.  In the
     // data file each reaction has 8 lines of entries.  The counter n holds the reaction number
     // and the counter subindex holds the line number for the current reaction.  The 
@@ -4843,6 +5303,32 @@ void readLibraryParams (char *fileName) {
                 ReactionPtr->setprefac(sf);
                 ReactionPtr->setispeforward(i7);
                 
+                if(displayInput == 1){
+                    
+                    fprintf(pFileD, "\n\nReaction %d: ",n);
+                    fprintf(pFileD, "%s reaclib=%d RG:(%s) RGclass=%d RGmemberIndex=%d",
+                        reaction[n].getreacChar(), 
+                        reaction[n].getreacIndex(),
+                        reaction[n].getreacGroupChar(),
+                        reaction[n].getreacGroupClass(), 
+                        reaction[n].getRGmemberIndex());
+                    fprintf(pFileD, 
+                    "\n--------------------------------------------------------------------------------");
+                    fprintf(pFileD, "\n%s %d %d %d %d %d %d %d %f %f", 
+                        reacLabel[n], 
+                        RGclass[n],
+                        RGMemberIndex[n],
+                        reaction[n].getreacClass(),
+                        reaction[n].getnumberReactants(),
+                        reaction[n].getnumberProducts(),
+                        reaction[n].getisEC(),
+                        reaction[n].getisReverse(),
+                        reaction[n].getprefac(),
+                        reaction[n].getQ()
+                    );
+                    
+                }
+                
                 break;
                 
             case 1:    // 2nd line
@@ -4861,6 +5347,16 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr = &reaction[n];
                 ReactionPtr->setp(tempp);
+                
+                if(displayInput == 1) fprintf(pFileD, "\n%f %f %f %f %f %f %f", 
+                    reaction[n].getp(0),
+                    reaction[n].getp(1),
+                    reaction[n].getp(2),
+                    reaction[n].getp(3),
+                    reaction[n].getp(4),
+                    reaction[n].getp(5),
+                    reaction[n].getp(6)
+                );
                 
                 break;
                 
@@ -4882,6 +5378,14 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setreactantZ(tempZN);    // setter also changes reacZ[][]
                 
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
+                        fprintf(pFileD, "\n  Reactant[%d]: Z=%d", mm, reacZ[n][mm]);
+                    }
+                    
+                }
+                
                 break;
                 
             case 3:   // 4th line (N of reactants)
@@ -4901,6 +5405,14 @@ void readLibraryParams (char *fileName) {
                 }
                 
                 ReactionPtr -> setreactantN(tempZN);   // setter also changes reacN[][]
+                
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
+                        fprintf(pFileD, "\n  Reactant[%d]: N=%d", mm, reacZ[n][mm]);
+                    }
+                    
+                }
                 
                 break;
                 
@@ -4922,6 +5434,14 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setproductZ(tempZN);    // setter also changes prodZ[][]
                 
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumProducts[n]; mm++) {
+                        fprintf(pFileD, "\n  Product[%d]: Z=%d", mm, prodZ[n][mm]);
+                    }
+                    
+                }
+                
                 break;
                 
             case 5:    // 6th line (N of products)
@@ -4941,6 +5461,14 @@ void readLibraryParams (char *fileName) {
                 }
                 
                 ReactionPtr -> setproductN(tempZN);    // setter also changes prodN[][]
+                
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumProducts[n]; mm++) {
+                        fprintf(pFileD, "\n  Product[%d]: N=%d", mm, prodN[n][mm]);
+                    }
+                    
+                }
                 
                 break;
                 
@@ -4962,6 +5490,14 @@ void readLibraryParams (char *fileName) {
                 
                 ReactionPtr -> setreactantIndex(tempZN);   // setter also changes ReactantIndex[][]
                 
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumReactingSpecies[n]; mm++) {
+                        fprintf(pFileD, "\n  ReactantIndex[%d]: N=%d", mm, ReactantIndex[n][mm]);
+                    }
+                    
+                }
+                
                 break;
                 
             case 7:    // 8th line (product species-vector index)
@@ -4981,6 +5517,14 @@ void readLibraryParams (char *fileName) {
                 }
 
                 ReactionPtr -> setproductIndex(tempZN);    // setter also changes ProductIndex[][]
+                
+                if(displayInput == 1){
+                    
+                    for(int mm=0; mm<NumProducts[n]; mm++) {
+                        fprintf(pFileD, "\n  ProductIndex[%d]: N=%d", mm, ProductIndex[n][mm]);
+                    }
+                    
+                }
                 
                 subindex = -1;
                 
@@ -5076,10 +5620,11 @@ void  writeRates(char *label) {
 // Function setRG(int, int, int) that can be called from main or 
 // any class to set some fields in the Reaction objects reaction[].
 
-void setRG(int index, int RGclass, int RGindex) { 
-    
+void setRG(int index, int RGclass, int RGindex) {
     reaction[index].setrgindex(RGindex);
-    
+    if(diagnose2)
+    fprintf(pFileD, "\nsetRG: index=%d RGclass=%d RGindex=%d", 
+        index, reaction[index].getreacGroupClass(), reaction[index].getrgindex());
 }
 
 
@@ -5430,6 +5975,9 @@ void computeReactionFluxes(){
         RG[i].setRGfluxes();
     }
     
+    
+    if(diagnose1) diagnosticOut1();
+    
     // Call the static function Reaction::populateFplusFminus() to populate F+ and F-
     // for each isotope set up in setupFplusFminus() from master flux array computed
     // with setRGfluxes() above. We do it in this way because each flux is used in more than
@@ -5443,4 +5991,302 @@ void computeReactionFluxes(){
     
     Reaction::sumFplusFminus();
     
+    // Summarize flux information if diagnose1=true
+    
+    if(diagnose1) diagnosticOut2(); 
+    
 }
+
+
+// *********************************************
+// Following are functions implementing various
+// optional diagnostic outputs.
+// *********************************************
+
+
+void diagnosticOut1(){
+    fprintf(pFileD, "\n\n\n--------- START NEW TIMESTEP: t_i = %7.4e Step=%d",
+            t, totalTimeSteps );
+    fprintf(pFileD, " dt=%7.4e asyIsotopes=%d equilReaction=%d equilRG=%d ---------", 
+            dt, totalAsy, totalEquilReactions, totalEquilRG );
+}
+
+void diagnosticOut2(){
+    fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+    for (int i=0; i<ISOTOPES; i++){
+        fprintf(pFileD, 
+            "\n%d %s Y=%7.4e FplusSum=%7.4e FminusSum=%7.4e dF=%7.4e keff=%7.4e",
+            i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+            isotope[i].getfplus(), isotope[i].getfminus(), 
+            isotope[i].getfplus() - isotope[i].getfminus(),  
+            isotope[i].getkeff() );
+    }
+}
+
+void diagnosticOut3(){
+    fprintf(pFileD, 
+        "\n\n********* BEGIN PE RESTORE: from t_i = %7.4e to t_f=%7.4e", 
+            t-dt, t
+    );
+}
+
+void diagnosticOut4(){
+    fprintf(pFileD, "\n\nISOTOPE FLUXES:");
+    for (int i=0; i<ISOTOPES; i++){
+        fprintf(pFileD, 
+            "\n%d %s Y=%7.4e F+Sum=%7.4e F-Sum=%7.4e dF=%7.4e keff=%7.4e",
+            i, isotope[i].getLabel(), Y[i], //isotope[i].getY(), 
+            isotope[i].getfplus(), isotope[i].getfminus(), 
+            isotope[i].getfplus() - isotope[i].getfminus(),  
+            isotope[i].getkeff());
+    }
+    fprintf(pFileD, 
+        "\n\n********* END PE RESTORE: from t_i = %7.4e to t_f=%7.4e", t-dt, t);
+}
+
+void diagnosticOut5(int plotCounter){
+    fprintf(pFileD, "\n%s%s", dasher, dasher);
+    fprintf(pFileD, 
+            "\n%d/%d steps=%d T9=%4.2f rho=%4.2e t=%8.4e dt=%8.4e asy=%d/%d sumX=%6.4f", 
+            plotCounter, plotSteps, totalTimeSteps, T9, rho, t, dt, 
+            totalAsy, ISOTOPES, sumX);
+    fprintf(pFileD, "\n%s%s", dasher, dasher);
+    char tempest1[] = "\nIndex   Iso           Y           X        dY/dt";
+    char tempest2[] = "        dX/dt           dY           dX\n";
+    fprintf(pFileD, "%s%s", tempest1, tempest2);
+    for(int i=0; i<ISOTOPES; i++){
+        fprintf(pFileD, "%5d %5s  %8.4e  %8.4e  %+8.4e  %+8.4e  %+8.4e  %+8.4e\n", 
+            i, isoLabel[i], Y[i], X[i], isotope[i].getdYdt(), isotope[i].getdXdt(),
+            isotope[i].getdYdt()*dt, isotope[i].getdXdt()*dt
+        );
+    }
+    fprintf(pFileD, "%s%s\n", dasher, dasher);
+}
+
+// From Integrate::doIntegrationStep()
+
+void diagnosticOut6(int totalTimeSteps, double t, double dt_FE, double sumXlast, double dt){
+    fprintf(pFileD, "\n\n  Next trial dt: step=%d t=%8.5e log10(dt_FE)=%5.2f %s sumX=%12.10f dt=%8.5e",
+            totalTimeSteps, t, log10(dt_FE), reacLabel[fastestCurrentRateIndex], sumXlast, dt
+    );
+}
+
+// From Integrate::doIntegrationStep()
+
+void diagnosticOut7(double dt0, double dtt, double dt, double sumX, double sumXlast, double diffX){
+    fprintf(pFileD, "\ndt0=%10.5e dtt=%10.5e dt=%10.5e sumX=%10.8e sumXlast=%10.8e diffX=%10.8e", 
+            dt0, dtt, dt, sumX, sumXlast, diffX);
+}
+
+// From Integrate::doIntegrationStep()
+
+void diagnosticOut8(double t, double dt, double dtt){
+    fprintf(pFileD, "\n\nITERATE: t=%10.8e dt=%10.8e dtt=%10.8e",
+            t, dt, dtt);
+    fprintf(pFileD,"\n");
+}
+
+// From Integrate::doIntegrationStep()
+
+void diagnosticOut9(int iterations, double t, double dt, double dtt, double sum, double sumXlast, double diffX){
+    fprintf(pFileD, 
+        "\ni=%d t=%8.5e dt=%8.5e dtt=%8.5e sumX=%10.8e sumXlast=%10.8e diffX=%10.8e",
+        iterations, t, dt, dtt, sum, sumXlast, diffX, massTol);
+}
+
+// From Integrate::doIntegrationStep()
+
+int diagnosticOut10(int num, int i){
+    int numAsy = num;
+    numAsy ++;
+    if(numAsy == 1){
+        fprintf(pFileD,"\n\nAsymptotic: %2d %8s", numAsy, isoLabel[i]);
+    } else {
+        fprintf(pFileD,"\n            %2d %8s", numAsy, isoLabel[i]);
+    }
+    return numAsy;
+}
+
+// From Integrate::doIntegrationStep()
+
+void diagnosticOut11(int i, double t, double dtt, double fminusSum, double fplusSum, double y0, double newY){
+    fprintf(pFileD, 
+        "\nEuler update: %s t_i=%6.4e dt=%6.4e t_f=%6.4e k=%7.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", isoLabel[i], t, dtt, t+dtt, fminusSum/y0, fminusSum*dt/y0, fplusSum, fminusSum, fplusSum-fminusSum, y0, newY);
+}
+
+void diagnosticOut12(int i, double t, double dtt, double asycheck, double fplus, double fminus, 
+    double y, double newY){
+    fprintf(pFileD, 
+        "\nAsy update: %s t_i=%6.4e dt=%6.4e t_f=%6.4e asycheck=%7.4e F+s=%6.4e F-=%6.4e dF=%6.4e Y0=%6.4e newY=%6.4e", 
+        isoLabel[i], t, dtt, t+dtt, asycheck, fplus, fminus, fplus-fminus, y, newY);
+}
+
+
+// Function showEquilibriumStuff displays partial equilibrium information
+// if showFlux_PE is true. Call after timestep has been taken
+
+void showEquilibriumStuff(){
+    
+    fprintf(pFileD, "\n\n-------------------------------------------------------");
+    fprintf(pFileD, "----------------------------------");
+    fprintf(pFileD, "\nStep=%d t=%6.4e t_saved=%6.4e dt=%6.4e dt_saved=%6.4e",
+       totalTimeSteps, t, t_saved, dt, dt_saved );
+    fprintf(pFileD, "\n-------------------------------------------------------");
+    fprintf(pFileD, "----------------------------------");
+    
+    // Output Y0 and Yfinal for each isotope to toChar stream
+    
+    fprintf(pFileD,"\nInitial and final Y for timestep:");
+    for(int i=0; i<ISOTOPES; i++){
+        fprintf(pFileD, "\nt=%6.4e Y0(%s)=%6.4e Y(%s)=%6.4e", 
+            t, isoLabel[i], Y0[i], isoLabel[i], Y[i] );
+    }
+    
+    // Stuff computed in computeEquilibriumRates(). Put double star if
+    // in equilibrium
+    
+    for(int i=0; i<numberRG; i++){
+        string RGstring = "\n\nRG";
+        if ( RG[i].getisEquil() ) RGstring = "\n\n**RG";
+        fprintf(pFileD, Utilities::stringToChar(RGstring));
+        fprintf(pFileD, " %d members=%d kf=%6.4e kr=%6.4e netFlux=%6.4e Ref:%s", 
+            RG[i].getRGn(), RG[i].getniso(), RG[i].getrgkf(), RG[i].getrgkr(),
+            RG[i].getnetflux(), RG[i].getreacString(RG[i].getrefreac()) );
+        
+        // Stuff computed in putY0()
+        
+        for(int k=0; k<RG[i].getniso(); k++){
+            int indy = RG[i].getisoindex(k);
+            fprintf(pFileD, "\n  putY0: t=%6.4e RG=%d %s Z=%d N=%d Y0=%6.4e index=%d Y0'=%6.4e", 
+                t, RG[i].getRGn(), RG[i].getreacString(k), RG[i].getisoZ(k),
+                RG[i].getisoZ(k), RG[i].getisoN(k), RG[i].getisoY0(k)), 
+                indy, Y0[indy];
+        }
+        
+        // Stuff computed in computeC()
+        
+        fprintf(pFileD, "\n  RGclass=%d refreac=%s", 
+            RG[i].getrgclass(), RG[i].getreacString(RG[i].getrefreac()) );
+        for (int k = 0; k < RG[i].getnumberC(); k++) {
+            fprintf(pFileD, " c%d=%6.4e", k, RG[i].getcrg(k));
+        }
+                 
+        // Stuff computed in computeQuad()
+        
+        if(RG[i].getrgclass() < 5){
+            fprintf(pFileD, "\n  a=%6.4e b=%6.4e c=%6.4e", 
+                RG[i].getaa(), RG[i].getbb(),RG[i].getcc() );
+        } else {
+            fprintf(pFileD, 
+                "\n  a=%6.4e b=%6.4e c=%6.4e alpha=%6.4e beta=%6.4e gamma=%6.4e", 
+                RG[i].getaa(), RG[i].getbb(), RG[i].getcc(),
+                RG[i].getalpha(), RG[i].getbeta(), RG[i].getgamma());
+        }
+        
+        if(RG[i].getnumberMemberReactions() > 1){
+            fprintf(pFileD, "\n  q=%6.4e tau=%6.4e dt=%6.4e Y0_eq=%6.4e Y0=%6.4e",
+                RG[i].getqq(), RG[i].gettau(), dt, RG[i].getisoYeq(0), RG[i].getisoY(0));
+        }
+        
+        fprintf(pFileD, "\n ");
+        for (int k = 1; k < RG[i].getniso(); k++) {
+            fprintf(pFileD, " Y%d_eq=%6.4e Y%d=%6.4e", 
+                k, RG[i].getisoYeq(k), k, RG[i].getisoY(k) );
+        }
+        
+        fprintf(pFileD, "\n ");
+        for (int k = 1; k < RG[i].getniso(); k++) {
+            fprintf(pFileD, " R%d=%6.4e",
+                k, RG[i].geteqcheck(k) );
+        }
+        fprintf(pFileD, " (Rmax/equiTol=%6.4e)",
+            RG[i].getmaxeqcheck()/equiTol );
+        
+        fprintf(pFileD, 
+            "\n  Yratio=%6.4e kratio=%6.4e frac_diff=%6.4e dt/tau=%6.4e isEqual=",
+            RG[i].getequilRatio(), RG[i].getkratio(), 
+            abs( ( RG[i].getkratio() - RG[i].getequilRatio() ) / RG[i].getkratio() ),
+            dt/RG[i].gettau() );
+        if(RG[i].getisEqual()){
+            fprintf(pFileD, "TRUE");
+        } else {
+            fprintf(pFileD, "FALSE");
+        }
+
+    }
+}    // End function showEquilibriumStuff()
+
+
+// ---------------------------------------------------------------------------
+// Diagnostic function dumpEquilibriumData() to write data on parameters
+// needed for equilibrium calculations. Should be called after integration 
+// step but before Y[] is updated for the next timestep.
+// ---------------------------------------------------------------------------
+
+void dumpEquilibriumData() {
+    
+    // Values of initial Y (Y0) and final Y (Yfinal) for timestep
+    
+    fprintf(pFileD, "\n\nInitial (Y0) and final abundances (Y) for timestep:");
+    for(int i=0; i<ISOTOPES; i++){
+        fprintf(pFileD, "\n  %s: Y0[%d]=%6.4e Y=%6.4e",
+                isoLabel[i], i, Y0[i], Y[i]);
+    }
+    
+    // k values (Rrate)
+    
+    fprintf(pFileD, "\n\nForward and reverse rates:");
+    for(int i=0; i<SIZE; i++){
+        fprintf(pFileD, "\n  reaction[%d]: %18s  k(=Rrate)=%6.4e",
+            i, reaction[i].getreacChar(), reaction[i].getRrate() );
+    }
+}
+
+
+// ----------------------------------------------------------------------------
+// Diagnostic method writeFluxesReactions() to write out total fluxes in 
+// units of Y/second. This method sorts according species (isotopes).  See also 
+// the method writeFluxesRG(), which does the same thing but sorted 
+// according to reaction group. 
+// ----------------------------------------------------------------------------
+
+void writeFluxesReactions() {
+    
+    fprintf(pFileD, "\n\nReaction fluxes (units=Y/s): t=%6.4e dt=%6.4e:",
+        t, dt
+    );
+    
+    for(int i=0; i<SIZE; i++){
+        fprintf(pFileD, 
+                "\n  %d %18s, reaction[%d].getflux()=%6.4e reaction[%d].getflux_true()=%6.4e Flux[i]=%6.4e", 
+            i, reaction[i].getreacChar(), i, reaction[i].getflux(), i, reaction[i].getflux_true(), Flux[i]);
+    }
+}
+
+
+// ---------------------------------------------------------------------------------
+// Diagnostic method writeFluxesRG() to write out total fluxes in units of Y/second. 
+// This method sorts according to reaction group. See also writeFluxesReactions(), 
+// which does the same thing but sorted according to reactions.
+// ---------------------------------------------------------------------------------
+
+void writeFluxesRG() {
+    
+    fprintf(pFileD, 
+        "\n\nFluxes (units Y/s) at t=%6.4e, sorted by reaction group:", t);
+    
+    for(int i=0; i<numberRG; i++){
+        fprintf(pFileD, "\n  RG %d: sumF=%6.4e kf=%6.4e kr=%6.4e isEquil=%d",
+            i, RG[i].getnetflux(), RG[i].getrgkf(), RG[i].getrgkr(), 
+            RG[i].getisEquil());
+
+        for(int j=0; j<RG[i].getnumberMemberReactions(); j++){
+            int indy = RG[i].getmemberReactions(j);
+            fprintf(pFileD, "\n    %s %d rate=%6.4e s^{-1} (1/rate)=%6.4e s F=%6.4e Y/s",  
+                RG[i].getreacString(j), indy, reaction[indy].getRrate(), 
+                1.0/reaction[indy].getRrate(),
+                reaction[indy].getflux() );
+        }
+    }
+}
+

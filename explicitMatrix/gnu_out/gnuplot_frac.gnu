@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 4.8
-height = 6.0
+width = 7.5
+height = 3.5
 
 # x-axis resolution
 set samples 1000
@@ -62,7 +62,7 @@ set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top inside    # Place legend inside top
+set key top left inside    # Place legend inside top
 #unset key            # Don't show legend
 
 #set timestamp       # Date/time
@@ -78,13 +78,13 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = -3
+xup = -3.3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0.0 #-0.01
 yup = 1.0 #1.01
-ytics = 0.1      # Space between major y ticmarks
+ytics = 0.2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -94,6 +94,8 @@ set mxtics minxtics   # minor x tics per major tic
 set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
+
+set y2tics ylow, ytics, yup  # labels right axis
 
 set grid   # set x-y grid at major ticmarks
 
@@ -119,13 +121,13 @@ replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
 
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Fraction' textcolor rgb tic_color font "Arial,28"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,24"
+set ylabel 'Fraction' textcolor rgb tic_color font "Arial,24"
 
 # Plot to postscript file
 
 set out "gnuplot_frac.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 1.5 "Arial" 20
 replot               # Plot to postscript file
 
 # Plot to PNG file

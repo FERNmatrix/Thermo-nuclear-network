@@ -19,7 +19,7 @@ width = 7.5
 height = 3.5
 
 # x-axis resolution
-set samples 1000
+set samples 2000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -81,14 +81,14 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 8
-xup = 22
-xtics = 2    # Space between major x ticmarks
+xlow = -9
+xup = -7
+xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -20
+ylow = -14
 yup = 0
-ytics = 2    # Space between major y ticmarks
+ytics = 1    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -120,33 +120,33 @@ set grid   # set x-y grid at major ticmarks
 
 # pp chains
 
-plot file1 using 1:8 with lines ls 2 lw 1.5 title "1H"
-replot file1 using 1:9 with lines ls 3 lw 1.5 title "2H"
-replot file1 using 1:10 with lines ls 1 lw 1.5 title "3He"
-replot file1 using 1:11 with lines ls 10 lw 1.5 title "4He"
-replot file1 using 1:12 with lines ls 5 lw 1.5 title "7Li"
-replot file1 using 1:13 with lines ls 6 lw 1.5 title "7Be"
-replot file1 using 1:14 with lines ls 15 lw 1.5 title "8B"
+#plot file1 using 1:8 with lines ls 2 lw 1.5 title "1H"
+#replot file1 using 1:9 with lines ls 3 lw 1.5 title "2H"
+#replot file1 using 1:10 with lines ls 1 lw 1.5 title "3He"
+#replot file1 using 1:11 with lines ls 10 lw 1.5 title "4He"
+#replot file1 using 1:12 with lines ls 5 lw 1.5 title "7Li"
+#replot file1 using 1:13 with lines ls 6 lw 1.5 title "7Be"
+#replot file1 using 1:14 with lines ls 15 lw 1.5 title "8B"
 
 
 # Alpha network
 
-#plot file1 using 1:8 with lines ls 2 title "4He"
-#replot file1 using 1:9 with lines ls 3 title "12C"
-#replot file1 using 1:10 with lines ls 1 title "16O"
-#replot file1 using 1:11 with lines ls 4 title "20Ne"
-#replot file1 using 1:12 with lines ls 5 title "24Mg"
-#replot file1 using 1:13 with lines ls 6 title "28Si"
-#replot file1 using 1:14 with lines ls 7 title "32S"
-#replot file1 using 1:15 with lines ls 8 title "36Ar"
-#replot file1 using 1:16 with lines ls 9 title "40Ca"
-#replot file1 using 1:17 with lines ls 10 title "44Ti"
-#replot file1 using 1:18 with lines ls 11 title "48Cr"
-#replot file1 using 1:19 with lines ls 12 title "52Fe"
-#replot file1 using 1:20 with lines ls 13 title "56Ni"
-#replot file1 using 1:21 with lines ls 14 title "60Zn"
-#replot file1 using 1:22 with lines ls 1 title "1H"
-#replot file1 using 1:23 with lines ls 2 title "n"
+plot file1 using 1:8 with lines ls 2 lw 1.5 title "4He"
+replot file1 using 1:9 with lines ls 3 lw 1.5 title "12C"
+replot file1 using 1:10 with lines ls 1 lw 1.5 title "16O"
+replot file1 using 1:11 with lines ls 4 lw 1.5 title "20Ne"
+replot file1 using 1:12 with lines ls 5 lw 1.5 title "24Mg"
+replot file1 using 1:13 with lines ls 6 lw 1.5 title "28Si"
+replot file1 using 1:14 with lines ls 7 lw 1.5 title "32S"
+replot file1 using 1:15 with lines ls 8 lw 1.5 title "36Ar"
+replot file1 using 1:16 with lines ls 9 lw 1.5 title "40Ca"
+replot file1 using 1:17 with lines ls 10 lw 1.5 title "44Ti"
+replot file1 using 1:18 with lines ls 11 lw 1.5 title "48Cr"
+replot file1 using 1:19 with lines ls 12 lw 1.5 title "52Fe"
+replot file1 using 1:20 with lines ls 13 lw 1.5 title "56Ni"
+replot file1 using 1:21 with lines ls 14 lw 1.5 title "60Zn"
+replot file1 using 1:22 with lines ls 1 lw 1.5 title "1H"
+replot file1 using 1:23 with lines ls 2 lw 1.5 title "n"
 
 # Select from 150 network
 
