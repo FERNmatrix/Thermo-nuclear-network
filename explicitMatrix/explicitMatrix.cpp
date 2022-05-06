@@ -255,7 +255,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-9;         // Start time for plot output
+double startplot_time = 1e-9;          // Start time for plot output
 double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -272,7 +272,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 2e-3;//1e-7; //2e-2; // Timestep tolerance parameter (1.0e-7)
+double massTol = 2e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -673,9 +673,9 @@ class Utilities{
             //int plotXlist[] = {0,1, 2};                                     // 3-alpha
             //int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
             
-//             int plotXlist[] = 
-//             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
-//             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
+            //int plotXlist[] = 
+            //{4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
+            //13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
             
             
             // Get length LX of array plotXlist holding the species indices for
@@ -3801,7 +3801,7 @@ Reaction reaction [SIZE];
 // Memory for array will be allocated dynamically below to the size
 // given by numberRG (which is computed in the class ReactionVector)
 
-ReactionGroup *RG;   // Dynamically allocated 1D array for reaction groups
+ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
 
@@ -3984,8 +3984,8 @@ int main() {
     
     ReactionVector::sortReactionGroups();
     
-    // Allocate dynamically an array of ReactionGroup objects of dimension numberRG, where
-    // numberRG was determined by ReactionVector::sortReactionGroups() above.
+    // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
+    // numberRG, where numberRG was determined by ReactionVector::sortReactionGroups() above.
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup)*numberRG);
     
@@ -4008,7 +4008,7 @@ int main() {
         }
     }
     
-    // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
+    // Allocate memory for 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
     // their sums for each isotope. ReactionVector::parseF() must be run first because it determines 
     // totalFplus and totalFminus.
@@ -4020,22 +4020,24 @@ int main() {
     FplusSum = (double*) malloc(sizeof(double) * numberSpecies);
     FminusSum = (double*) malloc(sizeof(double) * numberSpecies);
     
-    // Allocate arrays that hold the index of the boundary between different isotopes in the
-    // Fplus and Fminus 1D arrays. 
+    // Allocate memory for arrays that hold the index of the boundary between different 
+    // isotopes in the Fplus and Fminus 1D arrays. 
     
     FplusMax = (int*) malloc(sizeof(int) * numberSpecies);
     FplusMin = (int*) malloc(sizeof(int) * numberSpecies);
     FminusMax = (int*) malloc(sizeof(int) * numberSpecies);
     FminusMin = (int*) malloc(sizeof(int) * numberSpecies);
 
-    // Allocate 1D arrays that will be used to map finite F+ and F- to the Flux array.
+    // Allocate memory for 1D arrays that will be used to map finite F+ and F- to 
+    // the Flux array.
     
     FplusIsotopeCut = (int*) malloc(sizeof(int) * numberSpecies);
     FminusIsotopeCut = (int*) malloc(sizeof(int) * numberSpecies);
     FplusIsotopeIndex = (int*) malloc(sizeof(int) * totalFplus);
     FminusIsotopeIndex = (int*) malloc(sizeof(int) * totalFminus);
     
-    // Allocate 1D arrays that will hold the index of the isotope for the F+ or F- term
+    // Allocate memory for 1D arrays that will hold the index of the isotope for 
+    // the F+ or F- term
     
     MapFplus = (int*) malloc(sizeof(int) * totalFplus);
     MapFminus = (int*) malloc(sizeof(int) * totalFminus);
