@@ -192,21 +192,22 @@ printf"  F-sum(%s)=%5.3e\n",isotope[6].getLabel(),FminusSum[6]
 cont
 end
 
-FOLLOWING WITH COLUMN HEADERS
 
-b 2089 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+FOLLOWING WITH COLUMN HEADERS (breakpoint at end of computeFlux())
+
+b 2007 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
 commands
 silent
-printf"\n      t      Reaction       Flux      F+(%s)   F+(%s)  F+(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
+printf"\n      t     log t    Reaction       Flux    F+(%s)   F+(%s)  F+(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
 printf"  F-(%s)   F-(%s)  F-(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
-printf"\n+++ %6.3e %s %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e\n",t,getreacChar(),flux, Fplus[0],Fplus[5],Fplus[6],Fminus[0],Fminus[5],Fminus[6]
+printf"\n+++ %6.3e %6.3f %s %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e\n",t,(double)log10(t),getreacChar(),flux, Fplus[0],Fplus[5],Fplus[6],Fminus[0],Fminus[5],Fminus[6]
 cont
 end
 
 
-FOLLOWING WITH COLUMN HEADERS
+FOLLOWING WITH COLUMN HEADERS (breakpoint at end of computeFlux())
 
-b 2089 if t>7.63e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+b 2007 if t>6.3e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
 commands
 silent
 printf"\n        t      F+sum(%s) F+sum(%s) F+sum(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
@@ -223,5 +224,22 @@ cat gdb_debug.out | grep +++ | grep -v printf > temp.out
 
 ------------------------------------------------------------------------------------------
 
+In sumFplusFminus() of Reaction class:
 
+2102    for(int j=minny; j<=FplusMax[i]; j++){
+2103        accum += Fplus[j];
+2104        printf("");        // Temporary statement for breakpoint
+2105    }
+
+
+b 5467 if t>6.3e-9 && t<3e-8 && MapFplus[j]>27 && MapFplus[j]<32 && dtMode==2
+commands
+silent
+printf"\ngnu:   %5.3e %5.3f %2d %15s",t,(double)log10(t),reaction[MapFplus[j]].getreacIndex(),reaction[MapFplus[j]].getreacChar()
+cont
+end
+
+
+/*            printf("\ngnu: %5.3e %5.3f %2d %15s",
+ t ,log10(t),reaction[MapFplus[j]].getreacIndex(),reaction[MapFplus[j]].getreacChar());*/ *
 

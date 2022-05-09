@@ -178,6 +178,7 @@ void updateY0(void);
 void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
+void sumFplusFminus(void);
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -1240,8 +1241,8 @@ class Reaction: public Utilities {
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
         int reacGroupClass;          // Reaction group class (1-5 surrogate for A-E)
-        int RGmemberIndex;           // index of reaction within its reaction group
-        int rgindex;                 // Index of RG (0, 1, ... #RG)
+        int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
+        int RGmemberIndex;           // Index of reaction within its reaction group
         
         // Using the C++ class string instead of char to handle strings 
         // won't compile on my system unless #include <iostream> is included. The
@@ -2100,7 +2101,7 @@ class Reaction: public Utilities {
                 accum = 0.0;
                 
                 for(int j=minny; j<=FplusMax[i]; j++){
-                    accum += Fplus[j];
+                    accum += Fplus[j]; 
                 }
                 
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -3542,13 +3543,6 @@ class Integrate: public Utilities {
                 
                 updateAsyEuler();
             }
-            
-            // Temporary diagnostic quantities for debugger.  Not used elsewhere.
-            
-            double dF0 = abs(FplusSum[0] -  FminusSum[0]);
-            double dF5 = abs(FplusSum[5] -  FminusSum[5]);
-            double dF6 = abs(FplusSum[6] -  FminusSum[6]);
-            double dF7 = dF0;
             
         }  // End of updatePopulations
         
@@ -5443,6 +5437,87 @@ void computeReactionFluxes(){
     
     // Sum F+ and F- for each isotope
     
-    Reaction::sumFplusFminus();
+    //Reaction::sumFplusFminus();
+    
+if(t>6.3e-9 && t<3e-8)
+printf("\n#   t       log t  i  j  iso rin      reaction        flux       sumF    F+(s32)   F-(S32)");
+    
+    sumFplusFminus();
+}
+
+
+// Function sumFplusFminus() to sum the total F+ and 
+// F- for each isotope. Moved here from static function in class 
+// Reaction to make diagnostics easier.
+
+void sumFplusFminus(){
+    
+    int minny = 0;
+    double accum;
+    double dydt;
+    
+    // Loop over isotopes and reactions and sum F+ for each species
+    
+if(t>6.3e-9 && t<3e-8){
+    printf("\ngnu: ss32");
+    printf("\ngnu: ss32 FplusSum:");
+} 
+    
+    for(int i=0; i < numberSpecies; i++){	
+        
+        // Sum F+ for each isotope
+        
+        if(i > 0) minny = FplusMax[i-1]+1;
+        accum = 0.0;
+        
+        for(int j=minny; j<=FplusMax[i]; j++){
+            accum += Fplus[j];
+                    
+if(t>6.3e-9 && t<3e-8)
+printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e %5.3e %5.3e",
+    t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFplus[j]].getreacIndex(),
+    reaction[MapFplus[j]].getreacChar(), Fplus[j], accum, isotope[5].getfplus(),
+    isotope[5].getfminus()
+);
+        }
+        
+        setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
+    }   
+        
+    // Loop over isotopes and reactions an sum F- for each species
+    
+if(t>6.3e-9 && t<3e-8){
+    printf("\ngnu: ss32");
+    printf("\ngnu: ss32 FminusSum:");
+} 
+    
+    for(int i=0; i < numberSpecies; i++){
+        
+        minny = 0;
+        if(i>0) minny = FminusMax[i-1]+1;
+        accum = 0.0;
+        
+        for(int j=minny; j<=FminusMax[i]; j++){
+            accum += Fminus[j];
+        
+if(t>6.3e-9 && t<3e-8)
+    printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e %5.3e %5.3e",
+        t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFminus[j]].getreacIndex(),
+        reaction[MapFminus[j]].getreacChar(), Fminus[j], accum, isotope[5].getfplus(),
+        isotope[5].getfminus()
+);
+        }
+    
+        setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
+        setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
+        
+    }
+    
+if(t>6.3e-9 && t<3e-8){
+    printf("\ngnu: ss32 ");
+    printf("\ngnu: t=%6.4e  Equil: RG[9]=%d RG[10]=%d sumF+(s32)=%6.4e sumF-(s32)=%6.4e dF(s32)=%6.4e",
+            t, RG[9].getisEquil(), RG[10].getisEquil(), FplusSum[5], FminusSum[5], FplusSum[5]-FminusSum[5]);
+    printf("\ngnu: ss32 ");
+}
     
 }
