@@ -83,12 +83,12 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 xlow = -8.2
 xup = -8
-xtics = 0.05   # Space between major x ticmarks
+xtics = 0.02   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 6.1
 yup = 6.2
-ytics = 0.05      # Space between major y ticmarks
+ytics = 0.01      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -143,13 +143,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_diagnosticsFlux_log.eps"    # Output file
+set out "gnuplot_diagnosticsFlux_log_blowup.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_diagnosticsFlux_log.png"
+set out "gnuplot_diagnosticsFlux_log_blowup.png"
 # Assume 72 pixels/inch and make bitmap twice as large for display resolution
 set terminal png transparent size 2*width*72, 2*height*72 lw 2
 replot

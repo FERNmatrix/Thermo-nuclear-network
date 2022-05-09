@@ -257,7 +257,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-9;          // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 3e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -639,7 +639,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static void plotOutput(){
-        
+            
             // Open files for ascii output. Assumes that the subdirectory
             // gnu_out already exists. If it doesn't, will compile but
             // may crash when executed.
@@ -682,7 +682,6 @@ class Utilities{
             // Get length LX of array plotXlist holding the species indices for
             // isotopes that we will plot mass fraction X for.
             
-            //int LX = ISOTOPES;
             int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
             string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
@@ -3338,6 +3337,8 @@ class Integrate: public Utilities {
             // Compute trial timestep for explicit asymptotic
             
             choice2 =  0;
+            dtMode = 0;
+            
             dt_EA = computeTimeStep_EA(dtLast, sumX);
             if(dt_EA < dt_FE)choice2 = 1;
             dt = min(dt_FE, dt_EA); 
@@ -3566,6 +3567,13 @@ class Integrate: public Utilities {
                 }
                 X[i] = Y[i] * (double) AA[i];
                 sumX += X[i];
+                
+//                 if(t>6e-9 && t<3e-8 && dtMode==2 && i==6){
+//                     printf("\ngnu: ss32 ");
+//                     printf("gnu: dtMode=%d t=%6.3e AsyEuler: FplusSum(s32)=%6.4e FminusSum(s32)=%6.4e delF(s32)=%6.4e",
+//                            dtMode, t, FplusSum[6], FminusSum[6], FplusSum[6]-FminusSum[6]);
+//                    // printf("\ngnu: ss32 ");
+//                 }
                 
             }
             
@@ -3804,7 +3812,7 @@ ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
 int main() { 
-    
+
     // Open file to output network info
     
     pfnet = fopen("gnu_out/network.data","w");
@@ -4049,6 +4057,13 @@ int main() {
     // *** Set up for main time integration while-loop ***
     // -----------------------------------------------------
     
+    // Check if IS0TOPES and numberSpecies not equal. Normally they should be
+    
+    if (ISOTOPES != numberSpecies){
+        printf("\n\n***** CAUTION:  ISOTOPES=%d numberSpecies=%d *****\n\n", 
+            ISOTOPES, numberSpecies);
+    }
+    
     printf("\nBEGIN TIME INTEGRATION:\n");
     fprintf(pFileD, "\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
@@ -4167,6 +4182,14 @@ int main() {
             Y[indexBe8] = 0.0; 
             X[indexBe8] = 0.0; 
         }
+        
+// if(t>6e-9 && t<3e-8){
+//     printf("\ngnu: ss32 ");
+//     printf("gnu: After int: t=%5.3e FplusSum(s32)=%5.3e FminusSum(s32)=%5.3e delF(s32)=%5.3e",
+//             t, FplusSum[6], FminusSum[6], FplusSum[6]-FminusSum[6]);
+//     printf("\ngnu: Y(s32)=%5.3e Y0(s32)=%5.3e", Y[6], Y0[6]);
+//     printf("\ngnu: ss32 ");
+// }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented (doPE = true), or not
@@ -4736,7 +4759,7 @@ void readNetwork (char *fileName) {
         // actual number of reactions read in.
         
         numberSpecies = isoIndex + 1;  
-        
+
     }
     
 //     Added static method to class Species to renorm all X to sum of one that is 
@@ -5439,8 +5462,8 @@ void computeReactionFluxes(){
     
     //Reaction::sumFplusFminus();
     
-if(t>6.3e-9 && t<3e-8)
-printf("\n#   t       log t  i  j  iso rin      reaction        flux       sumF    F+(s32)   F-(S32)");
+if(t>6e-9 && t<3e-8 && dtMode==2)
+printf("\n#   t       log t  i  j  iso rin      reaction        flux       sumF");
     
     sumFplusFminus();
 }
@@ -5458,7 +5481,7 @@ void sumFplusFminus(){
     
     // Loop over isotopes and reactions and sum F+ for each species
     
-if(t>6.3e-9 && t<3e-8){
+if(t>6e-9 && t<3e-8 && dtMode==2){
     printf("\ngnu: ss32");
     printf("\ngnu: ss32 FplusSum:");
 } 
@@ -5473,12 +5496,18 @@ if(t>6.3e-9 && t<3e-8){
         for(int j=minny; j<=FplusMax[i]; j++){
             accum += Fplus[j];
                     
-if(t>6.3e-9 && t<3e-8)
-printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e %5.3e %5.3e",
-    t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFplus[j]].getreacIndex(),
-    reaction[MapFplus[j]].getreacChar(), Fplus[j], accum, isotope[5].getfplus(),
-    isotope[5].getfminus()
-);
+if(t>6e-9 && t<3e-8 && dtMode==2 &&  i==6 &&
+    (reaction[MapFplus[j]].getreacIndex() == 28 ||
+    reaction[MapFplus[j]].getreacIndex() == 29 ||
+    reaction[MapFplus[j]].getreacIndex() == 30 ||
+    reaction[MapFplus[j]].getreacIndex() == 31)   
+)
+printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
+       t , log10(t), i, j, isotope[i].getLabel(), 
+       reaction[MapFplus[j]].getreacIndex(),
+       reaction[MapFplus[j]].getreacChar(), 
+       Fplus[j], accum );
+
         }
         
         setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -5486,7 +5515,7 @@ printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e %5.3e %5.3e",
         
     // Loop over isotopes and reactions an sum F- for each species
     
-if(t>6.3e-9 && t<3e-8){
+if(t>6e-9 && t<3e-8 && dtMode==2){
     printf("\ngnu: ss32");
     printf("\ngnu: ss32 FminusSum:");
 } 
@@ -5500,12 +5529,16 @@ if(t>6.3e-9 && t<3e-8){
         for(int j=minny; j<=FminusMax[i]; j++){
             accum += Fminus[j];
         
-if(t>6.3e-9 && t<3e-8)
-    printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e %5.3e %5.3e",
-        t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFminus[j]].getreacIndex(),
-        reaction[MapFminus[j]].getreacChar(), Fminus[j], accum, isotope[5].getfplus(),
-        isotope[5].getfminus()
-);
+if(t>6e-9 && t<3e-8 && dtMode==2 && i==6 &&
+    (reaction[MapFplus[j]].getreacIndex() == 28 ||
+    reaction[MapFplus[j]].getreacIndex() == 29 ||
+    reaction[MapFplus[j]].getreacIndex() == 30 ||
+    reaction[MapFplus[j]].getreacIndex() == 31)   
+)
+    printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
+           t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFminus[j]].getreacIndex(),
+           reaction[MapFminus[j]].getreacChar(), Fminus[j], accum);
+    
         }
     
         setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
@@ -5513,11 +5546,11 @@ if(t>6.3e-9 && t<3e-8)
         
     }
     
-if(t>6.3e-9 && t<3e-8){
+if(t>6e-9 && t<3e-8 && dtMode==2){
     printf("\ngnu: ss32 ");
-    printf("\ngnu: t=%6.4e  Equil: RG[9]=%d RG[10]=%d sumF+(s32)=%6.4e sumF-(s32)=%6.4e dF(s32)=%6.4e",
-            t, RG[9].getisEquil(), RG[10].getisEquil(), FplusSum[5], FminusSum[5], FplusSum[5]-FminusSum[5]);
-    printf("\ngnu: ss32 ");
+    printf("\ngnu: t=%5.3e  Equil: RG[9]=%d RG[10]=%d sumF+(s32)=%5.3e sumF-(s32)=%5.3e dF(s32)=%5.3e",
+        t, RG[9].getisEquil(), RG[10].getisEquil(), FplusSum[6], FminusSum[6], FplusSum[6]-FminusSum[6]);
+    printf("\ngnu: Y0(s32)=%5.3e Y(s32)=%5.3e", Y[6], Y0[6]);
 }
     
 }

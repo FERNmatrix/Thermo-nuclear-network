@@ -221,12 +221,11 @@ Pipe debugger output to gdb_debug.out and
 clean up with 
 
 cat gdb_debug.out | grep +++ | grep -v printf > temp.out
-
 ------------------------------------------------------------------------------------------
 
 In sumFplusFminus() of Reaction class:
 
-2102    for(int j=minny; j<=FplusMax[i]; j++){
+2102    for(int j=minny; j<= ; j++){
 2103        accum += Fplus[j];
 2104        printf("");        // Temporary statement for breakpoint
 2105    }
@@ -238,8 +237,4 @@ silent
 printf"\ngnu:   %5.3e %5.3f %2d %15s",t,(double)log10(t),reaction[MapFplus[j]].getreacIndex(),reaction[MapFplus[j]].getreacChar()
 cont
 end
-
-
-/*            printf("\ngnu: %5.3e %5.3f %2d %15s",
- t ,log10(t),reaction[MapFplus[j]].getreacIndex(),reaction[MapFplus[j]].getreacChar());*/ *
 
