@@ -3415,6 +3415,8 @@ class Integrate: public Utilities {
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
+            double bpd = dt;   // Dummy statement for breakpoint
+            
             
         }    // End of doIntegrationStep
         
@@ -5481,10 +5483,10 @@ void sumFplusFminus(){
     
     // Loop over isotopes and reactions and sum F+ for each species
     
-if(t>6e-9 && t<3e-8 && dtMode==2){
-    printf("\ngnu: ss32");
-    printf("\ngnu: ss32 FplusSum:");
-} 
+// if(t>6e-9 && t<3e-8 && dtMode==2){
+//     printf("\ngnu: ss32");
+//     printf("\ngnu: ss32 FplusSum:");
+// } 
     
     for(int i=0; i < numberSpecies; i++){	
         
@@ -5496,17 +5498,17 @@ if(t>6e-9 && t<3e-8 && dtMode==2){
         for(int j=minny; j<=FplusMax[i]; j++){
             accum += Fplus[j];
                     
-if(t>6e-9 && t<3e-8 && dtMode==2 &&  i==6 &&
-    (reaction[MapFplus[j]].getreacIndex() == 28 ||
-    reaction[MapFplus[j]].getreacIndex() == 29 ||
-    reaction[MapFplus[j]].getreacIndex() == 30 ||
-    reaction[MapFplus[j]].getreacIndex() == 31)   
-)
-printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
-       t , log10(t), i, j, isotope[i].getLabel(), 
-       reaction[MapFplus[j]].getreacIndex(),
-       reaction[MapFplus[j]].getreacChar(), 
-       Fplus[j], accum );
+// if(t>6e-9 && t<3e-8 && dtMode==2 &&  i==6 &&
+//     (reaction[MapFplus[j]].getreacIndex() == 28 ||
+//     reaction[MapFplus[j]].getreacIndex() == 29 ||
+//     reaction[MapFplus[j]].getreacIndex() == 30 ||
+//     reaction[MapFplus[j]].getreacIndex() == 31)   
+// )
+// printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
+//        t , log10(t), i, j, isotope[i].getLabel(), 
+//        reaction[MapFplus[j]].getreacIndex(),
+//        reaction[MapFplus[j]].getreacChar(), 
+//        Fplus[j], accum );
 
         }
         
@@ -5515,10 +5517,10 @@ printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
         
     // Loop over isotopes and reactions an sum F- for each species
     
-if(t>6e-9 && t<3e-8 && dtMode==2){
-    printf("\ngnu: ss32");
-    printf("\ngnu: ss32 FminusSum:");
-} 
+// if(t>6e-9 && t<3e-8 && dtMode==2){
+//     printf("\ngnu: ss32");
+//     printf("\ngnu: ss32 FminusSum:");
+// } 
     
     for(int i=0; i < numberSpecies; i++){
         
@@ -5529,15 +5531,15 @@ if(t>6e-9 && t<3e-8 && dtMode==2){
         for(int j=minny; j<=FminusMax[i]; j++){
             accum += Fminus[j];
         
-if(t>6e-9 && t<3e-8 && dtMode==2 && i==6 &&
-    (reaction[MapFplus[j]].getreacIndex() == 28 ||
-    reaction[MapFplus[j]].getreacIndex() == 29 ||
-    reaction[MapFplus[j]].getreacIndex() == 30 ||
-    reaction[MapFplus[j]].getreacIndex() == 31)   
-)
-    printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
-           t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFminus[j]].getreacIndex(),
-           reaction[MapFminus[j]].getreacChar(), Fminus[j], accum);
+// if(t>6e-9 && t<3e-8 && dtMode==2 && i==6 &&
+//     (reaction[MapFplus[j]].getreacIndex() == 28 ||
+//     reaction[MapFplus[j]].getreacIndex() == 29 ||
+//     reaction[MapFplus[j]].getreacIndex() == 30 ||
+//     reaction[MapFplus[j]].getreacIndex() == 31)   
+// )
+// printf("\ngnu: %5.3e %5.3f %2d %2d %4s %2d %19s %5.3e %5.3e",
+//     t , log10(t), i, j, isotope[i].getLabel(), reaction[MapFminus[j]].getreacIndex(),
+//     reaction[MapFminus[j]].getreacChar(), Fminus[j], accum);
     
         }
     
@@ -5546,11 +5548,11 @@ if(t>6e-9 && t<3e-8 && dtMode==2 && i==6 &&
         
     }
     
-if(t>6e-9 && t<3e-8 && dtMode==2){
-    printf("\ngnu: ss32 ");
-    printf("\ngnu: t=%5.3e  Equil: RG[9]=%d RG[10]=%d sumF+(s32)=%5.3e sumF-(s32)=%5.3e dF(s32)=%5.3e",
-        t, RG[9].getisEquil(), RG[10].getisEquil(), FplusSum[6], FminusSum[6], FplusSum[6]-FminusSum[6]);
-    printf("\ngnu: Y0(s32)=%5.3e Y(s32)=%5.3e", Y[6], Y0[6]);
-}
+// if(t>6e-9 && t<3e-8 && dtMode==2){
+//     printf("\ngnu: ss32 ");
+//     printf("\ngnu: t=%5.3e  Equil: RG[9]=%d RG[10]=%d sumF+(s32)=%5.3e sumF-(s32)=%5.3e dF(s32)=%5.3e",
+//         t, RG[9].getisEquil(), RG[10].getisEquil(), FplusSum[6], FminusSum[6], FplusSum[6]-FminusSum[6]);
+//     printf("\ngnu: Y0(s32)=%5.3e Y(s32)=%5.3e", Y[6], Y0[6]);
+// }
     
 }
