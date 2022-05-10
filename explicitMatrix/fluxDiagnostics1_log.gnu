@@ -143,15 +143,15 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_diagnosticsFlux_log_blowup.eps"    # Output file
+set out "fluxDiagnostics1_log.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_diagnosticsFlux_log_blowup.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_diagnosticsFlux_log_blowup.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
