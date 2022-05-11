@@ -66,6 +66,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
+#include <mcheck.h>      // Memory debugging
 
 using namespace std;
 using std::string;
@@ -98,8 +99,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                    // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 134                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -141,13 +142,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_cnoAll.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_cnoAll.data";
 
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
@@ -179,6 +180,9 @@ void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
 void sumFplusFminus(void);
+
+void mtrace(void);     // Memory debugging
+void muntrace(void);   // Memory debugging
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -239,8 +243,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // code in an operator-split coupling of this network to hydro. Here we hardwire
 // constant values for testing purposes.  
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.020;           // Initial temperature in units of 10^9 K
+double rho_start = 160;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -256,8 +260,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-9;          // Start time for plot output
-double stop_time = 1e-7;//3e-8;               // Stop time for integration
+double startplot_time = 1e-4;          // Start time for plot output
+double stop_time = 1e17; //3e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -273,7 +277,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 2e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-5;//2e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -669,10 +673,11 @@ class Utilities{
             
 
             //int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};        // alpha
+            //int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};        // alpha
             //int plotXlist[] = {0,1,2,3};                                    // 4-alpha
             //int plotXlist[] = {0,1, 2};                                     // 3-alpha
             //int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
             
             //int plotXlist[] = 
             //{4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
@@ -5137,7 +5142,7 @@ void assignRG(){
         // Write reactant symbols
         
         fprintf(pFileD, "\nRG=%d  REACTANTS: iso[0]=%s", 
-        RG[i].getRGn(), isoLabel[reaction[i].getreactantIndex(0)]);
+        i, isoLabel[reaction[i].getreactantIndex(0)]);
         
         if(nummreac > 1) fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
         if(nummreac > 2) fprintf(pFileD, " iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
@@ -5464,8 +5469,8 @@ void computeReactionFluxes(){
     
     //Reaction::sumFplusFminus();
     
-if(t>6e-9 && t<3e-8 && dtMode==2)
-printf("\n#   t       log t  i  j  iso rin      reaction        flux       sumF");
+// if(t>6e-9 && t<3e-8 && dtMode==2)
+// printf("\ngnu: #   t       log t  i  j  iso rin      reaction        flux       sumF");
     
     sumFplusFminus();
 }
