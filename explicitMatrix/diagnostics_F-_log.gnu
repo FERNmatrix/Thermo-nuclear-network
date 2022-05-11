@@ -86,8 +86,8 @@ xup = -8
 xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -3
-yup = -1
+ylow = 5.5
+yup = 7.5
 ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -113,9 +113,12 @@ file1 = "gdb-java.out"
 #plot file1 using (log10($3)):(log10($4)) with lines ls 1 lw 1.5 dashtype 1 title "java Y0(0)"
 #replot file1 using (log10($3)):(log10($5)) with lines ls 2 lw 1.5 dashtype 1 title "java Y0(5)"
 #replot file1 using (log10($3)):(log10($6)) with lines ls 3 lw 1.5  dashtype 1 title "java Y0(6)"
-plot file1 using (log10($3)):(log10($7)) with lines ls 4 lw 1.5  dashtype 1 title "java Y(0)"
-replot file1 using (log10($3)):(log10($8))  with lines ls 5 lw 1.5 dashtype 1 title "java Y(5)"
-replot file1 using (log10($3)):(log10($9)) with lines ls 6 lw 1.5 dashtype 1 title "java Y(6)"
+#plot file1 using (log10($3)):(log10($10)) with lines ls 4 lw 1.5  dashtype 1 title "java F+(0)"
+#replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 1 title "java F+(5)"
+#replot file1 using (log10($3)):(log10($12)) with lines ls 6 lw 1.5 dashtype 1 title "java F+(6)"
+plot file1 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 1 title "java F-(0)"
+replot file1 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 1 title "java F-(5)"
+replot file1 using (log10($3)):(log10($15)) with lines ls 6 lw 1.5 dashtype 1 title "java F-(6)"
 #replot file1 using (log10($3)):(log10($13)) with lines ls 7 lw 1.5  dashtype 1 title "Fminus[0]"
 #replot file1 using (log10($3)):(log10($14))  with lines ls 8 lw 1.5 dashtype 1 title "Fminus[5]"
 #replot file1 using (log10($3)):(log10(abs($15))) with lines ls 9 lw 1.5 dashtype 1 title "Fminus[6]"
@@ -131,9 +134,12 @@ file2 = "gdb-C++.out"
 #replot file1 using (log10($3)):(log10($4)) with lines ls 1 lw 1.5 dashtype 2 title "C++ Y0(0)"
 #replot file1 using (log10($3)):(log10($5)) with lines ls 2 lw 1.5 dashtype 2 title "C++ Y0(5)"
 #replot file1 using (log10($3)):(log10($6)) with lines ls 3 lw 1.5  dashtype 2 title "C++ Y0(6)"
-replot file2 using (log10($3)):(log10($7)) with lines ls 4 lw 1.5  dashtype 2 title "C++ Y(0)"
-replot file2 using (log10($3)):(log10($8))  with lines ls 5 lw 1.5 dashtype 2 title "C++ Y(5)"
-replot file2 using (log10($3)):(log10($9)) with lines ls 6 lw 1.5 dashtype 2 title "C++ Y[6]"
+#replot file2 using (log10($3)):(log10($10)) with lines ls 4 lw 1.5  dashtype 2 title "C++ F+(0)"
+#replot file2 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 2 title "C++ F+[5]"
+#replot file2 using (log10($3)):(log10($12)) with lines ls 6 lw 1.5 dashtype 2 title "C++ F+[6]"
+replot file2 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 2 title "C++ F-(0)"
+replot file2 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 2 title "C++ F-[5]"
+replot file2 using (log10($3)):(log10($15)) with lines ls 6 lw 1.5 dashtype 2 title "C++ F-[6]"
 
 #replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
 #replot file2 using (log10($3)):(log10($20)) with lines  ls 2 lw 1.5 dashtype 2 title "c++ flux29"
@@ -150,13 +156,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "diagnostics_Y_log.eps"    # Output file
+set out "diagnostics_F-_log.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "diagnostics_Y_log.png"
+#set out "diagnostics_F-_log.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot
