@@ -1541,7 +1541,7 @@ class Reaction: public Utilities {
         }
         
         // Overloaded versions of setisoIndex.  This version takes two arguments
-        // sets a value of a particular isoIndex[].
+        // and sets a value of a particular isoIndex[].
         
         void setisoIndex(int i, int j){isoIndex[i] =  j;}
         
@@ -3996,7 +3996,7 @@ int main() {
     // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
     // numberRG, where numberRG was determined by ReactionVector::sortReactionGroups() above.
     
-    RG = (ReactionGroup*) malloc(sizeof(ReactionGroup)*numberRG);
+    RG = (ReactionGroup*) malloc(sizeof(ReactionGroup) * numberRG);
     
     // Create ReactionGroup objects RG[] and assign values for various fields
     // using the function assignRG().
