@@ -1242,7 +1242,7 @@ class Reaction: public Utilities {
     
     private:
         
-        int reacIndex;               // Index of reaction in current run for each (Z,N)
+        int reacIndex;               // Index of reaction in network (0,1, ... SIZE-1)
         int reacClass;               // Reaction class for reaclib (1-8)
         int reacGroupClass;          // Reaction group class (1-5 surrogate for A-E)
         int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
@@ -1328,7 +1328,7 @@ class Reaction: public Utilities {
   
     public:
         
-        // Constructor executed when objects are instantiated
+        // Constructor executed when Reaction objects are instantiated
         
         Reaction(int i){
             
@@ -3830,6 +3830,19 @@ int main() {
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
     
+    // Allocate memory for an array of Reaction objects reaction[] of dimension 
+    // SIZE
+    
+    reaction = (Reaction*) malloc(sizeof(Reaction) * SIZE);
+    
+    // Create array of Reaction objects reaction[] using the
+    // constructor Reaction(i) of the class Reaction.
+    
+    
+    for (int i=0; i<SIZE; i++){
+        reaction[i] = Reaction(i);
+    }
+    
     // Write the time
     
     fprintf(pFileD, Utilities::showTime());
@@ -3876,13 +3889,13 @@ int main() {
     
     showParameters();
     
-    // Initialize reacIsActive[] array to true and isEquil field of reaction[]
-    // objects to false.
-    
-    for (int i=0; i<SIZE; i++){ 
-        reacIsActive[i] = true;
-        reaction[i].setisEquil(false);
-    }
+//     // Initialize reacIsActive[] array to true and isEquil field of reaction[]
+//     // objects to false.
+//     
+//     for (int i=0; i<SIZE; i++){ 
+//         reacIsActive[i] = true;
+//         reaction[i].setisEquil(false);
+//     }
     
     // Determine whether the network contains Be-8, which must be handled as
     // two alpha particles because of the rapid decay compared to network 
@@ -3994,17 +4007,6 @@ int main() {
     // equilibrium reaction groups by comparing reaction vectors.
     
     ReactionVector::sortReactionGroups();
-    
-    // Allocate dynamically memory for an array of Reaction objects of dimension 
-    // SIZE
-    
-    reaction = (Reaction*) malloc(sizeof(Reaction) * SIZE);
-    
-    // Create array of Reaction objects reaction[]
-    
-    for (int i=0; i<SIZE; i++){
-        reaction[i] = Reaction(i);
-    }
     
     // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
     // numberRG, where numberRG was determined by ReactionVector::sortReactionGroups() above.
