@@ -1330,7 +1330,9 @@ class Reaction: public Utilities {
         
         // Constructor executed when objects are instantiated
         
-        Reaction(){
+        Reaction(int i){
+            
+            reacIndex = i;
             
             // Set all reaction objects to not-equilibrated initially.
             
@@ -3796,13 +3798,13 @@ Species isotope[ISOTOPES];
 
 // Declare pointer used to access the fields and functions of class Reaction
 
-Reaction *ReactionPtr;
+Reaction *reaction;
 
 // Create an array of Reaction objects reaction[] to hold information and functions
 // for the reactions in the network. Each element of the array will be
 // a Reaction object corresponding to a different reaction of the network.
 
-Reaction reaction [SIZE];
+//Reaction reaction [SIZE];
 
 // Create pointer to an array of ReactionGroup objects RG[] to hold information and 
 // functions for reactions groups in the network. Each element of the array will be
@@ -3992,6 +3994,17 @@ int main() {
     // equilibrium reaction groups by comparing reaction vectors.
     
     ReactionVector::sortReactionGroups();
+    
+    // Allocate dynamically memory for an array of Reaction objects of dimension 
+    // SIZE
+    
+    reaction = (Reaction*) malloc(sizeof(Reaction) * SIZE);
+    
+    // Create array of Reaction objects reaction[]
+    
+    for (int i=0; i<SIZE; i++){
+        reaction[i] = Reaction(i);
+    }
     
     // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
     // numberRG, where numberRG was determined by ReactionVector::sortReactionGroups() above.
@@ -4389,6 +4402,7 @@ int main() {
     free(tempInt2);
     free(FplusIsotopeIndex);
     free(FminusIsotopeIndex);
+    free(reaction);
     free(RG);
     gsl_vector_free(abundances);
     gsl_matrix_free(fluxes);
@@ -4852,22 +4866,22 @@ void readLibraryParams (char *fileName) {
                 // Store in the Reaction class instance reaction[n]. First set a
                 // pointer to array of Reaction objects reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 // The setter functions are defined in the class Reaction
                 
-                ReactionPtr->setreacIndex(n);
-                ReactionPtr->setreacString(rlabel);   // setter also fills reacLabel[][]
-                ReactionPtr->setreacGroupClass(i0);   // setter also fills RGclass[]
-                ReactionPtr->setRGmemberIndex(i1);    // setter also fills RGMemberIndex[]
-                ReactionPtr->setreacClass(i2);
-                ReactionPtr->setnumberReactants(i3);  // setter also fills NumReactingSpecies[]
-                ReactionPtr->setnumberProducts(i4);   // setter also fills NumProducts[]
-                ReactionPtr->setisEC(i5);
-                ReactionPtr->setisReverse(i6);
-                ReactionPtr->setQ(q);
-                ReactionPtr->setprefac(sf);
-                ReactionPtr->setispeforward(i7);
+                reaction->setreacIndex(n);
+                reaction->setreacString(rlabel);   // setter also fills reacLabel[][]
+                reaction->setreacGroupClass(i0);   // setter also fills RGclass[]
+                reaction->setRGmemberIndex(i1);    // setter also fills RGMemberIndex[]
+                reaction->setreacClass(i2);
+                reaction->setnumberReactants(i3);  // setter also fills NumReactingSpecies[]
+                reaction->setnumberProducts(i4);   // setter also fills NumProducts[]
+                reaction->setisEC(i5);
+                reaction->setisReverse(i6);
+                reaction->setQ(q);
+                reaction->setprefac(sf);
+                reaction->setispeforward(i7);
                 
                 break;
                 
@@ -4885,8 +4899,8 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
-                ReactionPtr->setp(tempp);
+                reaction = &reaction[n];
+                reaction->setp(tempp);
                 
                 break;
                 
@@ -4896,17 +4910,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberReactants(); k++){
+                for(int k=0; k<reaction -> getnumberReactants(); k++){
                     tempZN[k] = ii[k];
                 }
                 
-                ReactionPtr -> setreactantZ(tempZN);    // setter also changes reacZ[][]
+                reaction -> setreactantZ(tempZN);    // setter also changes reacZ[][]
                 
                 break;
                 
@@ -4916,17 +4930,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberReactants(); k++){
+                for(int k=0; k<reaction -> getnumberReactants(); k++){
                     tempZN[k] = ii[k];
                 }
                 
-                ReactionPtr -> setreactantN(tempZN);   // setter also changes reacN[][]
+                reaction -> setreactantN(tempZN);   // setter also changes reacN[][]
                 
                 break;
                 
@@ -4936,17 +4950,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberProducts(); k++){
+                for(int k=0; k<reaction -> getnumberProducts(); k++){
                     tempZN[k] = ii[k];
                 }
                 
-                ReactionPtr -> setproductZ(tempZN);    // setter also changes prodZ[][]
+                reaction -> setproductZ(tempZN);    // setter also changes prodZ[][]
                 
                 break;
                 
@@ -4956,17 +4970,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberProducts(); k++){
+                for(int k=0; k<reaction -> getnumberProducts(); k++){
                     tempZN[k] = ii[k];
                 }
                 
-                ReactionPtr -> setproductN(tempZN);    // setter also changes prodN[][]
+                reaction -> setproductN(tempZN);    // setter also changes prodN[][]
                 
                 break;
                 
@@ -4976,17 +4990,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberReactants(); k++){
+                for(int k=0; k<reaction -> getnumberReactants(); k++){
                     tempZN[k] = ii[k];
                 }
                 
-                ReactionPtr -> setreactantIndex(tempZN);   // setter also changes ReactantIndex[][]
+                reaction -> setreactantIndex(tempZN);   // setter also changes ReactantIndex[][]
                 
                 break;
                 
@@ -4996,17 +5010,17 @@ void readLibraryParams (char *fileName) {
                 
                 // Store in the Reaction class instance reaction[]
                 
-                ReactionPtr = &reaction[n];
+                reaction = &reaction[n];
                 
                 for(int i=0; i<4; i++){
                     tempZN[i] = -1;
                 }
                 
-                for(int k=0; k<ReactionPtr -> getnumberProducts(); k++){
+                for(int k=0; k<reaction -> getnumberProducts(); k++){
                     tempZN[k] = ii[k];
                 }
 
-                ReactionPtr -> setproductIndex(tempZN);    // setter also changes ProductIndex[][]
+                reaction -> setproductIndex(tempZN);    // setter also changes ProductIndex[][]
                 
                 subindex = -1;
                 
