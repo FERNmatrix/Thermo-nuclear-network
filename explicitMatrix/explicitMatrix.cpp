@@ -1277,8 +1277,8 @@ class Reaction: public Utilities {
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
-        char* reacString;           // String describing reaction
-        string resonanceType;        // Whether resonant (r) or non-resonant (nr)
+        char* reacString;            // String describing reaction
+        char resonanceType;          // Whether resonant (r) or non-resonant (nr)
         int isEC;                    // Whether electron capture reaction (1) or not (0)
         int isReverse;               // Whether reverse reaction (1) or not (0)
         int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
@@ -1317,7 +1317,7 @@ class Reaction: public Utilities {
         double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
-        string ss;                   // Utility string
+        char* ss;                    // Utility string
   
   
     public:
@@ -1663,10 +1663,9 @@ class Reaction: public Utilities {
         
         int getreactantIndex(int k){
             if(k > numberReactants-1){
-                ss = "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d ";
-                ss += "larger than # reactants %d";
-                printf(stringToChar(ss), 
-                    k, numberReactants);
+                ss = Utilities::stringToChar(
+                    "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d larger than # reactants %d");
+                printf(stringToChar(ss), k, numberReactants);
                 return -1;
             } else {
                 return reactantIndex[k];
