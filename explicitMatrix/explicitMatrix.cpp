@@ -1272,11 +1272,7 @@ class Reaction: public Utilities {
         int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
         int RGmemberIndex;           // Index of reaction within its reaction group
         
-        // The function getreacChar() below returns the string reacString as a
-        // pointer to a character array that will work in printf. Alternatively,
-        // Utilities::stringToChar() will do same thing.
-        
-        string reacGroupClassLett;   // Letter equivalent (A-E) for reacGroupClass
+        char reacGroupClassLett;     // Letter equivalent (A-E) for reacGroupClass
         string reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
@@ -1353,27 +1349,27 @@ class Reaction: public Utilities {
             
             switch(index){
                 case 1:
-                    reacGroupClassLett = "A";
+                    reacGroupClassLett = 'A';
                     reacGroupSymbol = "a<->b";
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 2:
-                    reacGroupClassLett = "B";
+                    reacGroupClassLett = 'B';
                     reacGroupSymbol = "a+b<->c";
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 3:
-                    reacGroupClassLett = "C";
+                    reacGroupClassLett = 'C';
                     reacGroupSymbol = "a+b+c<->d";
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 4:
-                    reacGroupClassLett = "D";
+                    reacGroupClassLett = 'D';
                     reacGroupSymbol = "a+b<->c+d";
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 5:
-                    reacGroupClassLett = "E";
+                    reacGroupClassLett = 'E';
                     reacGroupSymbol = "a+b<->c+d+e";
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
@@ -1582,7 +1578,7 @@ class Reaction: public Utilities {
         
         int getrgindex(){return rgindex;}
         
-        string getreacGroupClassLett(){ return reacGroupClassLett; }
+        char getreacGroupClassLett(){ return reacGroupClassLett; }
         
         int getnumberReactants(){ return numberReactants; }
         
@@ -1593,6 +1589,10 @@ class Reaction: public Utilities {
         string getreacString(){ return reacString; }
         
         // Return reacString as char array so it will work in printf
+        
+        // The function getreacChar() returns the string reacString as a
+        // pointer to a character array that will work in printf. Alternatively,
+        // Utilities::stringToChar() will do same thing.
         
         char* getreacChar(){
             strcpy(ccs, reacString.c_str());
