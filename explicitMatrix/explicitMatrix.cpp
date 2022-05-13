@@ -1986,7 +1986,7 @@ class Reaction: public Utilities {
             // whether the reaction is 1-body, 2-body, or 3-body, and is selected by
             // the switch statement in fluxChooser(numberReactants).
             
-            string s;
+            //char s;
             double kfac;
             
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
@@ -2017,7 +2017,7 @@ class Reaction: public Utilities {
       
     void fluxChooser(int bodies){
 
-        string s;
+        //char s;
         double kfac;
             
             switch(bodies){
