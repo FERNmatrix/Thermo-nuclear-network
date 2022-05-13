@@ -1277,7 +1277,7 @@ class Reaction: public Utilities {
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
-        string reacString;           // String describing reaction
+        char* reacString;           // String describing reaction
         string resonanceType;        // Whether resonant (r) or non-resonant (nr)
         int isEC;                    // Whether electron capture reaction (1) or not (0)
         int isReverse;               // Whether reverse reaction (1) or not (0)
@@ -1406,7 +1406,7 @@ class Reaction: public Utilities {
             
         }
         
-        void setreacString(string s){ 
+        void setreacString(char* s){ 
             
             // Set field of this class
             
@@ -1414,7 +1414,7 @@ class Reaction: public Utilities {
             
             // Set corresponding character array reacLabel 
             
-            char p[s.length()];  
+            char p[20];  
             for (int i = 0; i < sizeof(p); i++) { 
                 p[i] = s[i]; 
                 reacLabel[reacIndex][i] = p[i];
@@ -1586,7 +1586,7 @@ class Reaction: public Utilities {
         
         // return reacString as string
         
-        string getreacString(){ return reacString; }
+        char* getreacString(){ return reacString; }
         
         // Return reacString as char array so it will work in printf
         
@@ -1595,7 +1595,7 @@ class Reaction: public Utilities {
         // Utilities::stringToChar() will do same thing.
         
         char* getreacChar(){
-            strcpy(ccs, reacString.c_str());
+            //strcpy(ccs, reacString.c_str());
             return ccs;
         }
         
