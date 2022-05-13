@@ -1240,7 +1240,7 @@ class Reaction: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    private:
+    public:
         
         int reacIndex;               // Index of reaction in network (0,1, ... SIZE-1)
         int reacClass;               // Reaction class for reaclib (1-8)
@@ -1278,13 +1278,13 @@ class Reaction: public Utilities {
         // pointer to a character array that will work in printf. Alternatively,
         // Utilities::stringToChar() will do same thing.
         
-        string reacGroupClassLett;   // Letter equivalent (A-E) for reacGroupClass
-        string reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
+        char reacGroupClassLett;   // Letter equivalent (A-E) for reacGroupClass
+        char reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
-        string reacString;           // String describing reaction
-        string resonanceType;        // Whether resonant (r) or non-resonant (nr)
+        char reacString;           // String describing reaction
+        char resonanceType;        // Whether resonant (r) or non-resonant (nr)
         int isEC;                    // Whether electron capture reaction (1) or not (0)
         int isReverse;               // Whether reverse reaction (1) or not (0)
         int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
@@ -1323,7 +1323,7 @@ class Reaction: public Utilities {
         double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
-        string ss;                   // Utility string
+        char ss;                   // Utility string
   
   
     public:
@@ -1357,34 +1357,34 @@ class Reaction: public Utilities {
             
             switch(index){
                 case 1:
-                    reacGroupClassLett = "A";
-                    reacGroupSymbol = "a<->b";
+                    reacGroupClassLett = 'A';
+                    reacGroupSymbol = 'a<->b';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 2:
-                    reacGroupClassLett = "B";
-                    reacGroupSymbol = "a+b<->c";
+                    reacGroupClassLett = 'B';
+                    reacGroupSymbol = 'a+b<->c';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 3:
-                    reacGroupClassLett = "C";
-                    reacGroupSymbol = "a+b+c<->d";
+                    reacGroupClassLett = 'C';
+                    reacGroupSymbol = 'a+b+c<->d';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 4:
-                    reacGroupClassLett = "D";
-                    reacGroupSymbol = "a+b<->c+d";
+                    reacGroupClassLett = 'D';
+                    reacGroupSymbol = 'a+b<->c+d';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 5:
-                    reacGroupClassLett = "E";
-                    reacGroupSymbol = "a+b<->c+d+e";
+                    reacGroupClassLett = 'E';
+                    reacGroupSymbol = 'a+b<->c+d+e';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
             }
         }
         
-        void setreacGroupSymbol(string s){reacGroupSymbol = s; }
+        void setreacGroupSymbol(char s){reacGroupSymbol = s; }
         
         void setRGmemberIndex(int i){
             
@@ -1414,19 +1414,21 @@ class Reaction: public Utilities {
             
         }
         
-        void setreacString(string s){ 
+        void setreacString(char s){ 
             
             // Set field of this class
             
             reacString = s; 
             
-            // Set corresponding character array reacLabel 
-            
-            char p[s.length()];  
-            for (int i = 0; i < sizeof(p); i++) { 
-                p[i] = s[i]; 
-                reacLabel[reacIndex][i] = p[i];
-            }
+//             // Set corresponding character array reacLabel 
+//             
+//             //char p[35] = s; 
+//             //reacLabel[reacIndex]=s;
+// 
+//             for (int i = 0; i < sizeof(p); i++) { 
+//                 //p[i] = s[i]; 
+//                 reacLabel[reacIndex] = p[i];
+//             }
         }
         
         void setisEC(int i){ isEC = i; }
@@ -1571,22 +1573,22 @@ class Reaction: public Utilities {
         
         int getreacGroupClass(){ return reacGroupClass; }
         
-        // Return reacGroupSymbol as string
+        // Return reacGroupSymbol
         
-        string getreacGroupSymbol(){ return reacGroupSymbol; }
+        char getreacGroupSymbol(){ return reacGroupSymbol; }
         
         // Return reacGroupSymbol as char array so it will work in printf
         
-        char* getreacGroupChar(){
-            strcpy(cs, reacGroupSymbol.c_str());
-            return cs;
-        }
-        
+//         char* getreacGroupChar(){
+//             strcpy(cs, reacGroupSymbol.c_str());
+//             return cs;
+//         }
+//         
         int getRGmemberIndex(){return RGmemberIndex;}
         
         int getrgindex(){return rgindex;}
         
-        string getreacGroupClassLett(){ return reacGroupClassLett; }
+        char getreacGroupClassLett(){ return reacGroupClassLett; }
         
         int getnumberReactants(){ return numberReactants; }
         
@@ -1594,14 +1596,14 @@ class Reaction: public Utilities {
         
         // return reacString as string
         
-        string getreacString(){ return reacString; }
+        char getreacString(){ return reacString; }
         
         // Return reacString as char array so it will work in printf
         
-        char* getreacChar(){
-            strcpy(ccs, reacString.c_str());
-            return ccs;
-        }
+//         char* getreacChar(){
+//             strcpy(ccs, reacString.c_str());
+//             return ccs;
+//         }
         
         int getisEC(){ return isEC; }
         
@@ -1667,10 +1669,10 @@ class Reaction: public Utilities {
         
         int getreactantIndex(int k){
             if(k > numberReactants-1){
-                ss = "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d ";
-                ss += "larger than # reactants %d";
-                printf(stringToChar(ss), 
-                    k, numberReactants);
+                ss = '\n\nERROR Reaction::getreactantIndex(k): k-1 = %d ';
+                ss += 'larger than # reactants %d';
+//                 printf(ss), 
+//                     k, numberReactants);
                 return -1;
             } else {
                 return reactantIndex[k];
@@ -1974,7 +1976,7 @@ class Reaction: public Utilities {
         
         void showRates(){
             fprintf(pFileD, "\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
-                   getreacIndex(), getreacChar(), getreacGroupClass(), getdensfac(), 
+                    getreacIndex(), getreacString(), getreacGroupClass(), getdensfac(), 
                    getrate(), getRrate()
             );
         }
@@ -2634,13 +2636,14 @@ class ReactionGroup:  public Utilities {
     
     void setrgclass(int rc){rgclass = rc;}
 
-    void setreaclabel(int k, string s){ 
+    void setreaclabel(int k, char s){ 
         
+        //reaclabel[k] = '';
         // Convert from string to char array
         
-        char p[s.length()+1];  
+        char p[20];  
         for (int i = 0; i < sizeof(p); i++) { 
-            p[i] = s[i]; 
+            p[i] = s; 
             reaclabel[k][i] = p[i];
         }
     }
@@ -3780,10 +3783,91 @@ class Integrate: public Utilities {
     
 };    // End class Integrate
 
+// Test class to check why creating Reaction objects reaction[] dumps core
+
+class Rtest: public Utilities {
+    
+    private:
+        
+        int reacIndex;               // Index of reaction in network (0,1, ... SIZE-1)
+        int reacClass;               // Reaction class for reaclib (1-8)
+        int reacGroupClass;          // Reaction group class (1-5 surrogate for A-E)
+        int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
+        int RGmemberIndex;           // Index of reaction within its reaction group
+        
+        char reacGroupClassLett;   // Letter equivalent (A-E) for reacGroupClass
+        char reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
+        int numberReactants;         // Number species on the left side of reaction
+        int numberProducts;          // Number species on the right side of reaction
+        int numberIsotopes;          // numberReactants + numberProducts in reaction
+        char reacString;           // String describing reaction
+        char resonanceType;        // Whether resonant (r) or non-resonant (nr)
+        int isEC;                    // Whether electron capture reaction (1) or not (0)
+        int isReverse;               // Whether reverse reaction (1) or not (0)
+        int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
+        bool isEquil;                // Whether in a RG satisfying PE conditions
+         
+        double Q;                    // Q-value for reaction
+        double prefac;               // The eta prefac for rates
+        double p[7];                 // ReacLib parameters
+        int reactantZ[3];            // Array holding Z of reactants
+        int reactantN[3];            // Array holding N of reactants
+        int reactantA[3];            // A = Z+N
+        int productZ[4];             // Array holding Z of products
+        int productN[4];             // Array holding N of products
+        int productA[4];             // A = Z+N
+        int reactantIndex[3];        // Index of species isotope vector for each reactant isotope
+        int productIndex[4];         // Index of species isotope vector for each product isotope
+        int isoIndex[7];             // Index of species isotope vector for all isotopes in reaction*/
+        
+        // Precomputed temperature factors for ReacLib rates.  Computed in computeTfacs(T9), where
+        // T9 is the temperature in units of 10^9 K.
+        
+        double T93;                  // T9^{1/3}
+        double t1;                   // 1/T9
+        double t2;                   // 1/T9^{1/3}
+        double t3;                   // T93
+        double t4;                   // T9
+        double t5;                   // T9^{5/3} = (T93)^5
+        double t6;                   // ln (T9)
+        
+        double Dens[3];              // Powers of density
+        double densfac;              // prefac x powers of density
+        double rate;                 // Current T-dependent part of rate for reaction
+        double Rrate;                // Current full rate (s^-1) for reaction
+        double flux;                 // Current effective net flux of reaction if PE
+        double flux_true;            // Current true net flux of reaction
+        double dErate;               // Current rate of energy release
+        char cs[20];                 // Utility character array
+        char ccs[20];                // Utility character array
+        char ss;                   // Utility string
+        
+        
+    public:
+        
+        Rtest(int i){
+            
+            reacIndex = i;
+            
+            // Set all reaction objects to not-equilibrated initially.
+            
+            isEquil = false;
+            reacIsActive[reacIndex] =  true;
+            
+        }
+        
+        
+};
+
+
+
+
 
 //----------------END CLASS DEFINITIONS ----------------
 
+// Pointer for test class Rtest array 
 
+Rtest *RA;
 
 
 // Declare pointer used to access the fields and functions of class Species
@@ -3821,6 +3905,18 @@ ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
 int main() { 
+    
+    // Allocate memory for test class
+    
+    RA = (Rtest*) malloc(sizeof(Rtest) * SIZE);
+    
+    // Create array of test class Rtest objects
+    
+    for (int i=0; i<SIZE; i++){
+        RA[i] = Rtest(i);
+    }
+    
+    int ddd = 6;    // dummy for debugging
 
     // Open file to output network info
     
@@ -3938,7 +4034,7 @@ int main() {
         fprintf(pfnet, 
                 "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
             reaction[i].getreacIndex(), 
-            reaction[i].getreacChar(),  
+            reaction[i].getreacString(),  
             reaction[i].getreacClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
@@ -4406,6 +4502,7 @@ int main() {
     free(FminusIsotopeIndex);
     free(reaction);
     free(RG);
+    free(RA);   // Test class
     gsl_vector_free(abundances);
     gsl_matrix_free(fluxes);
     
@@ -4435,6 +4532,8 @@ void showParameters(){
     printf("\nIntegration steps=%d  totalIterations=%d  IntegrationSteps_plotted=%d", 
         totalTimeSteps, totalIterations, totalTimeSteps-totalTimeStepsZero);
     Utilities::stopTimer();      // Stop timer and print integration time
+    
+    cout.flush();
 }
 
 
@@ -4873,7 +4972,7 @@ void readLibraryParams (char *fileName) {
                 // The setter functions are defined in the class Reaction
                 
                 reaction->setreacIndex(n);
-                reaction->setreacString(rlabel);   // setter also fills reacLabel[][]
+                //reaction->setreacString(rlabel);   // setter also fills reacLabel[][]
                 reaction->setreacGroupClass(i0);   // setter also fills RGclass[]
                 reaction->setRGmemberIndex(i1);    // setter also fills RGMemberIndex[]
                 reaction->setreacClass(i2);
@@ -5086,6 +5185,8 @@ void writeNetwork() {
 
     fprintf(pfnet, "\n\n");
     
+    cout.flush();
+    
 }   // End of function writeNetwork()
 
 
@@ -5101,7 +5202,7 @@ void  writeRates(char *label) {
     for (int i=0; i<numberReactions; i++){
         
         printf("%d %s rate=%6.3e Rate=%6.3e Y1=%6.3e Y2=%6.3e Y3=%6.3e Q=%5.3f Prefac=%6.3e Reactants=%d\n",
-            i, reaction[i].getreacChar(),  
+            i, reaction[i].getreacString(),  
             Rate[i]/reaction[i].getprefac(), Rate[i], 
             Y[reaction[i].getreactantIndex(0)],   
             Y[reaction[i].getreactantIndex(1)],
@@ -5144,7 +5245,7 @@ void assignRG(){
         
         fprintf(pFileD, 
             "\nreaction[%d]: %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d RG=%d",
-            i, reaction[i].getreacChar(), 
+            i, reaction[i].getreacString(), 
             reaction[i].getreacGroupClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
@@ -5329,9 +5430,8 @@ void assignRG(){
         int rn = RG[i].getrefreac();
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
         fprintf(pFileD, "\n\nRG=%d  RGclass=%d %s Species Index:", 
-            i, RG[i].getrgclass(),
-            Utilities::stringToChar( 
-            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() )
+            i, RG[i].getrgclass(), 
+            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
         );
         
         for(int jj=0; jj<upjj; jj++){

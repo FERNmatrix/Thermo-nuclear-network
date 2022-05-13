@@ -275,3 +275,10 @@ printf"\ngnu:   %5.3e %5.3f %2d %15s",t,(double)log10(t),reaction[MapFplus[j]].g
 cont
 end
 
+b 4985
+commands
+silent
+printf"\nn=%d subindex=%d reaction=%s\n", n, subindex, rlabel
+end
+
+
