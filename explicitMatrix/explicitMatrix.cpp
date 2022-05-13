@@ -984,14 +984,38 @@ class Utilities{
         
         
         // ----------------------------------------------------------------------
-        // Static function Utilities::stringToChar(s) to convert string to char 
-        // so that it will print in printf. Assumes max of 50 characters.  
+        // Using the C++ class string instead of char to handle strings 
+        // won't compile on my system unless #include <iostream> is included. The
+        // C printf command also won't work correctly because it isn't typesafe.
+        // See the discussion at
+        //
+        //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
+        //
+        // Instead, print with the cout command (which requires #include <iostream>)
+        // Example: 
+        //
+        //      string test("howdy");
+        //      string test2(" do");
+        //      cout << "Your string is " << test + test2;
+        //
+        // If instead you try
+        //
+        //      printf("\n%s", test+test2);
+        //
+        // it will likely print garbage. However, you can print a string with printf
+        // if it is first converted to a char:
+        //
+        //      string s = "Howdy World!";
+        //      char cs[s.size() + 1];
+        //      strcpy(cs, &s[0]);	// or strcpy(cs, s.c_str());
+        //      printf("\n\nstring=%s\n", strcpy(cs, &s[0]));
+        //  
         // Typically a string type can be printed with cout but a string given 
         // to printf usually displays garbage because of type issues in the 
-        // C function printf. This function converts a string to a corresponding 
-        // character array, which either printf or cout can print. Presently
-        // assumes the string has no more than 50 characters.  Change the
-        // dimension of cs[] to increase that.
+        // C function printf noted above. The function stringToChar(string) defined
+        // below converts a string to a corresponding character array, which either 
+        // printf or cout can print. Presently assumes the string has no more than 50 
+        // characters.  Change the dimension of cs[] to change that.
         // ----------------------------------------------------------------------
         
         static char* stringToChar(string s){
@@ -1233,7 +1257,7 @@ class Species: public Utilities {
 
 
 /* Class Reaction to describe all reactions in the network.  Create new instance
- * for each reaction in the network. Inherits from Utilities */
+ * of this class for each reaction in the network. Inherits from Utilities */
 
 class Reaction: public Utilities {
     
@@ -1248,32 +1272,6 @@ class Reaction: public Utilities {
         int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
         int RGmemberIndex;           // Index of reaction within its reaction group
         
-        // Using the C++ class string instead of char to handle strings 
-        // won't compile on my system unless #include <iostream> is included. The
-        // C printf command also won't work correctly because it isn't typesafe.
-        // See the discussion at
-        //
-        //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
-        //
-        // Instead, print with the cout command (which requires #include <iostream>)
-        // Example: 
-        //
-        //      string test("howdy");
-        //      string test2(" do");
-        //      cout << "Your string is " << test + test2;
-        //
-        // If instead you try
-        //
-        //      printf("\n%s", test+test2);
-        //
-        // it will likely print garbage. However, you can print a string with printf
-        // if it is first converted to a char:
-        //
-        //      string s = "Howdy World!";
-        //      char cs[s.size() + 1];
-        //      strcpy(cs, &s[0]);	// or strcpy(cs, s.c_str());
-        //      printf("\n\nstring=%s\n", strcpy(cs, &s[0]));
-        //
         // The function getreacChar() below returns the string reacString as a
         // pointer to a character array that will work in printf. Alternatively,
         // Utilities::stringToChar() will do same thing.
