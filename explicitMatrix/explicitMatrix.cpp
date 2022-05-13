@@ -1273,7 +1273,7 @@ class Reaction: public Utilities {
         int RGmemberIndex;           // Index of reaction within its reaction group
         
         char reacGroupClassLett;     // Letter equivalent (A-E) for reacGroupClass
-        string reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
+        char* reacGroupSymbol;       // Schematic equil reaction (e.g. a+b<->c)
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
@@ -1350,33 +1350,33 @@ class Reaction: public Utilities {
             switch(index){
                 case 1:
                     reacGroupClassLett = 'A';
-                    reacGroupSymbol = "a<->b";
+                    reacGroupSymbol = Utilities::stringToChar("a<->b"); //'a<->b';
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 2:
                     reacGroupClassLett = 'B';
-                    reacGroupSymbol = "a+b<->c";
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 3:
                     reacGroupClassLett = 'C';
-                    reacGroupSymbol = "a+b+c<->d";
+                    reacGroupSymbol = Utilities::stringToChar("a+b+c<->d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 4:
                     reacGroupClassLett = 'D';
-                    reacGroupSymbol = "a+b<->c+d";
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c+d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 5:
                     reacGroupClassLett = 'E';
-                    reacGroupSymbol = "a+b<->c+d+e";
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c+d+e");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
             }
         }
         
-        void setreacGroupSymbol(string s){reacGroupSymbol = s; }
+        void setreacGroupSymbol(char* s){reacGroupSymbol = s; }
         
         void setRGmemberIndex(int i){
             
@@ -1565,14 +1565,14 @@ class Reaction: public Utilities {
         
         // Return reacGroupSymbol as string
         
-        string getreacGroupSymbol(){ return reacGroupSymbol; }
+        char* getreacGroupSymbol(){ return reacGroupSymbol; }
         
-        // Return reacGroupSymbol as char array so it will work in printf
-        
-        char* getreacGroupChar(){
-            strcpy(cs, reacGroupSymbol.c_str());
-            return cs;
-        }
+//         // Return reacGroupSymbol as char array so it will work in printf
+//         
+//         char* getreacGroupChar(){
+//             //strcpy(cs, reacGroupSymbol.c_str());
+//             return cs;
+//         }
         
         int getRGmemberIndex(){return RGmemberIndex;}
         
@@ -3919,7 +3919,7 @@ int main() {
     for(int i=0; i<SIZE; i++){
         
         fprintf(pfnet, 
-                "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
+                "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
             reaction[i].getreacIndex(), 
             reaction[i].getreacChar(),  
             reaction[i].getreacClass(),
@@ -3928,7 +3928,8 @@ int main() {
             reaction[i].getisEC(),
             reaction[i].getisReverse(),
             reaction[i].getQ(),
-            reaction[i].getprefac()
+            reaction[i].getprefac(),
+            reaction[i].getreacGroupSymbol()
         );
     }
 
