@@ -99,8 +99,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 48                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 299                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -142,13 +142,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_48.inp";
+char networkFile[] = "data/network_nova134.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_48.data";
+char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
@@ -243,8 +243,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // code in an operator-split coupling of this network to hydro. Here we hardwire
 // constant values for testing purposes.  
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.25;           // Initial temperature in units of 10^9 K
+double rho_start = 100;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -260,8 +260,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-5;               // Stop time for integration
+double startplot_time = 1e-4;          // Start time for plot output
+double stop_time = 1e-6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -277,7 +277,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-9; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-5; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -665,15 +665,15 @@ class Utilities{
             // array in from a data file.
             
             
-            int plotXlist[ISOTOPES];
-            
-            for(int i=0; i<ISOTOPES; i++){
-                plotXlist[i] = i;
-            }
+//             int plotXlist[ISOTOPES];
+//             
+//             for(int i=0; i<ISOTOPES; i++){
+//                 plotXlist[i] = i;
+//             }
 //             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1, 2};                                     // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
@@ -2717,7 +2717,7 @@ class ReactionGroup:  public Utilities {
     
     int getrgclass(){return rgclass;}
     
-    char* getreacString(int k){return reaclabel[k];}
+   // char* getreacString(int k){return reaclabel[k];}
     
     double getRGfluxes(int index){return flux[index];}
     
@@ -5247,11 +5247,11 @@ void assignRG(){
                     RG[i].setisoY(k, Y[yindex]);
                 }
                 
-                fprintf(pFileD, "\n %d memberIndex=%d %s RGclass=%d isForward=%d", 
-                    RG[i].getmemberReactions(rgindex),
-                    rgindex, RG[i].getreacString(rgindex),  
-                    RG[i].getrgclass(),
-                    RG[i].getisForward(rgindex) );
+//                 fprintf(pFileD, "\n %d memberIndex=%d %s RGclass=%d isForward=%d", 
+//                     RG[i].getmemberReactions(rgindex),
+//                     rgindex, RG[i].getreacString(rgindex),  
+//                     RG[i].getrgclass(),
+//                     RG[i].getisForward(rgindex) );
             }
         }
         
@@ -5260,7 +5260,7 @@ void assignRG(){
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
         fprintf(pFileD, "\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
-               RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
+               i, RG[i].getrefreac(), RGclassRef, 
                RG[i].getniso(), RG[i].getnumberMemberReactions() );
         
         // Set values of numberC for each RG
@@ -5316,8 +5316,7 @@ void assignRG(){
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
         fprintf(pFileD, "\n\nRG=%d  RGclass=%d %s Species Index:", 
             i, RG[i].getrgclass(),
-            Utilities::stringToChar( 
-            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() )
+            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
         );
         
         for(int jj=0; jj<upjj; jj++){
