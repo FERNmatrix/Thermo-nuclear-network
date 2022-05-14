@@ -1,0 +1,922 @@
+
+Sat May 14 13:37:18 2022
+Using ASY method
+
+Integration using ASY method
+T9=7.000e+00 rho=1.000e+08 massTol=1.000e-09 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-10
+maxit=20 downbumper= 0.700 EpsA=1.00e-03 EpsR=2.00e-04
+Network: data/network_48.inp  Rates: data/rateLibrary_48.data
+Integration steps=0  totalIterations=0  IntegrationSteps_plotted=0
+Timer: 5.4130e+00 ms used
+
+
+ERROR Reaction::getreactantIndex(k): k-1 = 2 larger than # reactants 2
+
+ERROR: k-1=2 larger than number reactants 2
+
+ERROR: k-1=2 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 3 larger than # reactants 2
+
+ERROR: k-1=3 larger than number reactants 2
+
+ERROR: k-1=3 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 4 larger than # reactants 2
+
+ERROR: k-1=4 larger than number reactants 2
+
+ERROR: k-1=4 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 5 larger than # reactants 2
+
+ERROR: k-1=5 larger than number reactants 2
+
+ERROR: k-1=5 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 6 larger than # reactants 2
+
+ERROR: k-1=6 larger than number reactants 2
+
+ERROR: k-1=6 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 7 larger than # reactants 2
+
+ERROR: k-1=7 larger than number reactants 2
+
+ERROR: k-1=7 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 8 larger than # reactants 2
+
+ERROR: k-1=8 larger than number reactants 2
+
+ERROR: k-1=8 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 9 larger than # reactants 2
+
+ERROR: k-1=9 larger than number reactants 2
+
+ERROR: k-1=9 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 10 larger than # reactants 2
+
+ERROR: k-1=10 larger than number reactants 2
+
+ERROR: k-1=10 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 11 larger than # reactants 2
+
+ERROR: k-1=11 larger than number reactants 2
+
+ERROR: k-1=11 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 12 larger than # reactants 2
+
+ERROR: k-1=12 larger than number reactants 2
+
+ERROR: k-1=12 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 13 larger than # reactants 2
+
+ERROR: k-1=13 larger than number reactants 2
+
+ERROR: k-1=13 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 14 larger than # reactants 2
+
+ERROR: k-1=14 larger than number reactants 2
+
+ERROR: k-1=14 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 15 larger than # reactants 2
+
+ERROR: k-1=15 larger than number reactants 2
+
+ERROR: k-1=15 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 16 larger than # reactants 2
+
+ERROR: k-1=16 larger than number reactants 2
+
+ERROR: k-1=16 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 17 larger than # reactants 2
+
+ERROR: k-1=17 larger than number reactants 2
+
+ERROR: k-1=17 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 18 larger than # reactants 2
+
+ERROR: k-1=18 larger than number reactants 2
+
+ERROR: k-1=18 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 19 larger than # reactants 2
+
+ERROR: k-1=19 larger than number reactants 2
+
+ERROR: k-1=19 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 20 larger than # reactants 2
+
+ERROR: k-1=20 larger than number reactants 2
+
+ERROR: k-1=20 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 21 larger than # reactants 2
+
+ERROR: k-1=21 larger than number reactants 2
+
+ERROR: k-1=21 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 22 larger than # reactants 2
+
+ERROR: k-1=22 larger than number reactants 2
+
+ERROR: k-1=22 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 23 larger than # reactants 2
+
+ERROR: k-1=23 larger than number reactants 2
+
+ERROR: k-1=23 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 24 larger than # reactants 2
+
+ERROR: k-1=24 larger than number reactants 2
+
+ERROR: k-1=24 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 25 larger than # reactants 2
+
+ERROR: k-1=25 larger than number reactants 2
+
+ERROR: k-1=25 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 26 larger than # reactants 2
+
+ERROR: k-1=26 larger than number reactants 2
+
+ERROR: k-1=26 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 27 larger than # reactants 2
+
+ERROR: k-1=27 larger than number reactants 2
+
+ERROR: k-1=27 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 28 larger than # reactants 2
+
+ERROR: k-1=28 larger than number reactants 2
+
+ERROR: k-1=28 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 29 larger than # reactants 2
+
+ERROR: k-1=29 larger than number reactants 2
+
+ERROR: k-1=29 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 30 larger than # reactants 2
+
+ERROR: k-1=30 larger than number reactants 2
+
+ERROR: k-1=30 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 31 larger than # reactants 2
+
+ERROR: k-1=31 larger than number reactants 2
+
+ERROR: k-1=31 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 32 larger than # reactants 2
+
+ERROR: k-1=32 larger than number reactants 2
+
+ERROR: k-1=32 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 33 larger than # reactants 2
+
+ERROR: k-1=33 larger than number reactants 2
+
+ERROR: k-1=33 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 34 larger than # reactants 2
+
+ERROR: k-1=34 larger than number reactants 2
+
+ERROR: k-1=34 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 35 larger than # reactants 2
+
+ERROR: k-1=35 larger than number reactants 2
+
+ERROR: k-1=35 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 36 larger than # reactants 2
+
+ERROR: k-1=36 larger than number reactants 2
+
+ERROR: k-1=36 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 37 larger than # reactants 2
+
+ERROR: k-1=37 larger than number reactants 2
+
+ERROR: k-1=37 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 38 larger than # reactants 2
+
+ERROR: k-1=38 larger than number reactants 2
+
+ERROR: k-1=38 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 39 larger than # reactants 2
+
+ERROR: k-1=39 larger than number reactants 2
+
+ERROR: k-1=39 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 40 larger than # reactants 2
+
+ERROR: k-1=40 larger than number reactants 2
+
+ERROR: k-1=40 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 41 larger than # reactants 2
+
+ERROR: k-1=41 larger than number reactants 2
+
+ERROR: k-1=41 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 42 larger than # reactants 2
+
+ERROR: k-1=42 larger than number reactants 2
+
+ERROR: k-1=42 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 43 larger than # reactants 2
+
+ERROR: k-1=43 larger than number reactants 2
+
+ERROR: k-1=43 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 44 larger than # reactants 2
+
+ERROR: k-1=44 larger than number reactants 2
+
+ERROR: k-1=44 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 45 larger than # reactants 2
+
+ERROR: k-1=45 larger than number reactants 2
+
+ERROR: k-1=45 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 46 larger than # reactants 2
+
+ERROR: k-1=46 larger than number reactants 2
+
+ERROR: k-1=46 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 47 larger than # reactants 2
+
+ERROR: k-1=47 larger than number reactants 2
+
+ERROR: k-1=47 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 48 larger than # reactants 2
+
+ERROR: k-1=48 larger than number reactants 2
+
+ERROR: k-1=48 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 49 larger than # reactants 2
+
+ERROR: k-1=49 larger than number reactants 2
+
+ERROR: k-1=49 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 50 larger than # reactants 2
+
+ERROR: k-1=50 larger than number reactants 2
+
+ERROR: k-1=50 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 51 larger than # reactants 2
+
+ERROR: k-1=51 larger than number reactants 2
+
+ERROR: k-1=51 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 52 larger than # reactants 2
+
+ERROR: k-1=52 larger than number reactants 2
+
+ERROR: k-1=52 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 53 larger than # reactants 2
+
+ERROR: k-1=53 larger than number reactants 2
+
+ERROR: k-1=53 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 54 larger than # reactants 2
+
+ERROR: k-1=54 larger than number reactants 2
+
+ERROR: k-1=54 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 55 larger than # reactants 2
+
+ERROR: k-1=55 larger than number reactants 2
+
+ERROR: k-1=55 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 56 larger than # reactants 2
+
+ERROR: k-1=56 larger than number reactants 2
+
+ERROR: k-1=56 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 57 larger than # reactants 2
+
+ERROR: k-1=57 larger than number reactants 2
+
+ERROR: k-1=57 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 58 larger than # reactants 2
+
+ERROR: k-1=58 larger than number reactants 2
+
+ERROR: k-1=58 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 59 larger than # reactants 2
+
+ERROR: k-1=59 larger than number reactants 2
+
+ERROR: k-1=59 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 60 larger than # reactants 2
+
+ERROR: k-1=60 larger than number reactants 2
+
+ERROR: k-1=60 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 61 larger than # reactants 2
+
+ERROR: k-1=61 larger than number reactants 2
+
+ERROR: k-1=61 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 62 larger than # reactants 2
+
+ERROR: k-1=62 larger than number reactants 2
+
+ERROR: k-1=62 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 63 larger than # reactants 2
+
+ERROR: k-1=63 larger than number reactants 2
+
+ERROR: k-1=63 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 64 larger than # reactants 2
+
+ERROR: k-1=64 larger than number reactants 2
+
+ERROR: k-1=64 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 65 larger than # reactants 2
+
+ERROR: k-1=65 larger than number reactants 2
+
+ERROR: k-1=65 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 66 larger than # reactants 2
+
+ERROR: k-1=66 larger than number reactants 2
+
+ERROR: k-1=66 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 67 larger than # reactants 2
+
+ERROR: k-1=67 larger than number reactants 2
+
+ERROR: k-1=67 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 68 larger than # reactants 2
+
+ERROR: k-1=68 larger than number reactants 2
+
+ERROR: k-1=68 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 69 larger than # reactants 2
+
+ERROR: k-1=69 larger than number reactants 2
+
+ERROR: k-1=69 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 70 larger than # reactants 2
+
+ERROR: k-1=70 larger than number reactants 2
+
+ERROR: k-1=70 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 71 larger than # reactants 2
+
+ERROR: k-1=71 larger than number reactants 2
+
+ERROR: k-1=71 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 72 larger than # reactants 2
+
+ERROR: k-1=72 larger than number reactants 2
+
+ERROR: k-1=72 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 73 larger than # reactants 2
+
+ERROR: k-1=73 larger than number reactants 2
+
+ERROR: k-1=73 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 74 larger than # reactants 2
+
+ERROR: k-1=74 larger than number reactants 2
+
+ERROR: k-1=74 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 75 larger than # reactants 2
+
+ERROR: k-1=75 larger than number reactants 2
+
+ERROR: k-1=75 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 76 larger than # reactants 2
+
+ERROR: k-1=76 larger than number reactants 2
+
+ERROR: k-1=76 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 77 larger than # reactants 2
+
+ERROR: k-1=77 larger than number reactants 2
+
+ERROR: k-1=77 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 78 larger than # reactants 2
+
+ERROR: k-1=78 larger than number reactants 2
+
+ERROR: k-1=78 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 79 larger than # reactants 2
+
+ERROR: k-1=79 larger than number reactants 2
+
+ERROR: k-1=79 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 80 larger than # reactants 2
+
+ERROR: k-1=80 larger than number reactants 2
+
+ERROR: k-1=80 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 81 larger than # reactants 2
+
+ERROR: k-1=81 larger than number reactants 2
+
+ERROR: k-1=81 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 82 larger than # reactants 2
+
+ERROR: k-1=82 larger than number reactants 2
+
+ERROR: k-1=82 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 83 larger than # reactants 2
+
+ERROR: k-1=83 larger than number reactants 2
+
+ERROR: k-1=83 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 84 larger than # reactants 2
+
+ERROR: k-1=84 larger than number reactants 2
+
+ERROR: k-1=84 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 85 larger than # reactants 2
+
+ERROR: k-1=85 larger than number reactants 2
+
+ERROR: k-1=85 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 86 larger than # reactants 2
+
+ERROR: k-1=86 larger than number reactants 2
+
+ERROR: k-1=86 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 87 larger than # reactants 2
+
+ERROR: k-1=87 larger than number reactants 2
+
+ERROR: k-1=87 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 88 larger than # reactants 2
+
+ERROR: k-1=88 larger than number reactants 2
+
+ERROR: k-1=88 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 89 larger than # reactants 2
+
+ERROR: k-1=89 larger than number reactants 2
+
+ERROR: k-1=89 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 90 larger than # reactants 2
+
+ERROR: k-1=90 larger than number reactants 2
+
+ERROR: k-1=90 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 91 larger than # reactants 2
+
+ERROR: k-1=91 larger than number reactants 2
+
+ERROR: k-1=91 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 92 larger than # reactants 2
+
+ERROR: k-1=92 larger than number reactants 2
+
+ERROR: k-1=92 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 93 larger than # reactants 2
+
+ERROR: k-1=93 larger than number reactants 2
+
+ERROR: k-1=93 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 94 larger than # reactants 2
+
+ERROR: k-1=94 larger than number reactants 2
+
+ERROR: k-1=94 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 95 larger than # reactants 2
+
+ERROR: k-1=95 larger than number reactants 2
+
+ERROR: k-1=95 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 96 larger than # reactants 2
+
+ERROR: k-1=96 larger than number reactants 2
+
+ERROR: k-1=96 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 97 larger than # reactants 2
+
+ERROR: k-1=97 larger than number reactants 2
+
+ERROR: k-1=97 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 98 larger than # reactants 2
+
+ERROR: k-1=98 larger than number reactants 2
+
+ERROR: k-1=98 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 99 larger than # reactants 2
+
+ERROR: k-1=99 larger than number reactants 2
+
+ERROR: k-1=99 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 100 larger than # reactants 2
+
+ERROR: k-1=100 larger than number reactants 2
+
+ERROR: k-1=100 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 101 larger than # reactants 2
+
+ERROR: k-1=101 larger than number reactants 2
+
+ERROR: k-1=101 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 102 larger than # reactants 2
+
+ERROR: k-1=102 larger than number reactants 2
+
+ERROR: k-1=102 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 103 larger than # reactants 2
+
+ERROR: k-1=103 larger than number reactants 2
+
+ERROR: k-1=103 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 104 larger than # reactants 2
+
+ERROR: k-1=104 larger than number reactants 2
+
+ERROR: k-1=104 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 105 larger than # reactants 2
+
+ERROR: k-1=105 larger than number reactants 2
+
+ERROR: k-1=105 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 106 larger than # reactants 2
+
+ERROR: k-1=106 larger than number reactants 2
+
+ERROR: k-1=106 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 107 larger than # reactants 2
+
+ERROR: k-1=107 larger than number reactants 2
+
+ERROR: k-1=107 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 108 larger than # reactants 2
+
+ERROR: k-1=108 larger than number reactants 2
+
+ERROR: k-1=108 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 109 larger than # reactants 2
+
+ERROR: k-1=109 larger than number reactants 2
+
+ERROR: k-1=109 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 110 larger than # reactants 2
+
+ERROR: k-1=110 larger than number reactants 2
+
+ERROR: k-1=110 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 111 larger than # reactants 2
+
+ERROR: k-1=111 larger than number reactants 2
+
+ERROR: k-1=111 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 112 larger than # reactants 2
+
+ERROR: k-1=112 larger than number reactants 2
+
+ERROR: k-1=112 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 113 larger than # reactants 2
+
+ERROR: k-1=113 larger than number reactants 2
+
+ERROR: k-1=113 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 114 larger than # reactants 2
+
+ERROR: k-1=114 larger than number reactants 2
+
+ERROR: k-1=114 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 115 larger than # reactants 2
+
+ERROR: k-1=115 larger than number reactants 2
+
+ERROR: k-1=115 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 116 larger than # reactants 2
+
+ERROR: k-1=116 larger than number reactants 2
+
+ERROR: k-1=116 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 117 larger than # reactants 2
+
+ERROR: k-1=117 larger than number reactants 2
+
+ERROR: k-1=117 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 118 larger than # reactants 2
+
+ERROR: k-1=118 larger than number reactants 2
+
+ERROR: k-1=118 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 119 larger than # reactants 2
+
+ERROR: k-1=119 larger than number reactants 2
+
+ERROR: k-1=119 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 120 larger than # reactants 2
+
+ERROR: k-1=120 larger than number reactants 2
+
+ERROR: k-1=120 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 121 larger than # reactants 2
+
+ERROR: k-1=121 larger than number reactants 2
+
+ERROR: k-1=121 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 122 larger than # reactants 2
+
+ERROR: k-1=122 larger than number reactants 2
+
+ERROR: k-1=122 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 123 larger than # reactants 2
+
+ERROR: k-1=123 larger than number reactants 2
+
+ERROR: k-1=123 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 124 larger than # reactants 2
+
+ERROR: k-1=124 larger than number reactants 2
+
+ERROR: k-1=124 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 125 larger than # reactants 2
+
+ERROR: k-1=125 larger than number reactants 2
+
+ERROR: k-1=125 larger than number reactants 2
+
+ERROR Reaction::getreactantIndex(k): k-1 = 126 larger than # reactants 2
+
+ERROR: k-1=126 larger than number reactants 2
+
+ERROR: k-1=126 larger than number reactants 2
+BEGIN TIME INTEGRATION:
+
+1 it=0 t=1.35e-18 dt=1.35e-19 int=55 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=3.06e+10 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+2 it=0 t=1.98e-18 dt=1.98e-19 int=59 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=4.49e+10 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+3 it=0 t=2.63e-18 dt=2.63e-19 int=62 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=5.99e+10 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+4 it=0 t=3.50e-18 dt=3.50e-19 int=65 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=7.98e+10 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+5 it=0 t=4.66e-18 dt=4.66e-19 int=68 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=1.06e+11 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+6 it=0 t=6.20e-18 dt=6.20e-19 int=71 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=1.42e+11 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+7 it=0 t=8.26e-18 dt=8.26e-19 int=74 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=1.88e+11 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+8 it=0 t=1.10e-17 dt=1.10e-18 int=77 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=2.51e+11 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+9 it=0 t=1.61e-17 dt=1.61e-18 int=81 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=3.67e+11 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+10 it=0 t=2.14e-17 dt=2.14e-18 int=84 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=4.89e+11 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+11 it=0 t=2.85e-17 dt=2.85e-18 int=87 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=6.51e+11 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+12 it=0 t=3.79e-17 dt=3.79e-18 int=90 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=8.67e+11 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+13 it=0 t=5.05e-17 dt=5.05e-18 int=93 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=1.15e+12 E_R=3.33e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+14 it=0 t=6.72e-17 dt=6.72e-18 int=96 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=1.54e+12 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+15 it=0 t=8.95e-17 dt=8.95e-18 int=99 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=2.04e+12 E_R=3.33e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+16 it=0 t=1.31e-16 dt=1.31e-17 int=103 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=2.99e+12 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+17 it=0 t=1.74e-16 dt=1.74e-17 int=106 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=3.98e+12 E_R=1.11e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+18 it=0 t=2.32e-16 dt=2.32e-17 int=109 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=5.30e+12 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+19 it=0 t=3.09e-16 dt=3.09e-17 int=112 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.29e+28 E=7.06e+12 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+20 it=0 t=4.11e-16 dt=4.11e-17 int=115 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=9.39e+12 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+21 it=0 t=5.47e-16 dt=5.47e-17 int=118 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=1.25e+13 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+22 it=0 t=7.28e-16 dt=7.28e-17 int=121 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=1.66e+13 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+23 it=0 t=1.07e-15 dt=1.07e-16 int=125 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=2.44e+13 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+24 it=0 t=1.42e-15 dt=1.42e-16 int=128 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=3.24e+13 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+25 it=0 t=1.89e-15 dt=1.89e-16 int=131 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=4.31e+13 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+26 it=0 t=2.51e-15 dt=2.51e-16 int=134 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=5.74e+13 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+27 it=0 t=3.35e-15 dt=3.35e-16 int=137 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=7.64e+13 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+28 it=0 t=4.45e-15 dt=4.45e-16 int=140 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=1.02e+14 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+29 it=0 t=5.93e-15 dt=5.93e-16 int=143 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.28e+28 E=1.35e+14 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+30 it=0 t=8.68e-15 dt=8.68e-16 int=147 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.27e+28 E=1.98e+14 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+31 it=0 t=1.16e-14 dt=1.16e-15 int=150 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.27e+28 E=2.63e+14 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+32 it=0 t=1.54e-14 dt=1.54e-15 int=153 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.27e+28 E=3.50e+14 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+33 it=0 t=2.05e-14 dt=2.05e-15 int=156 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.26e+28 E=4.65e+14 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+34 it=0 t=2.72e-14 dt=2.72e-15 int=159 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.25e+28 E=6.18e+14 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+35 it=0 t=3.63e-14 dt=3.63e-15 int=162 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.24e+28 E=8.20e+14 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+36 it=0 t=4.83e-14 dt=4.83e-15 int=165 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.23e+28 E=1.09e+15 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+37 it=0 t=7.06e-14 dt=7.06e-15 int=169 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.21e+28 E=1.59e+15 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+38 it=0 t=9.40e-14 dt=9.40e-15 int=172 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.20e+28 E=2.10e+15 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+39 it=0 t=1.25e-13 dt=1.25e-14 int=175 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.18e+28 E=2.78e+15 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+40 it=0 t=1.67e-13 dt=1.67e-14 int=178 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.16e+28 E=3.68e+15 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+41 it=0 t=2.22e-13 dt=2.22e-14 int=181 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.14e+28 E=4.86e+15 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+42 it=0 t=2.95e-13 dt=2.95e-14 int=184 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.11e+28 E=6.42e+15 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+43 it=0 t=3.93e-13 dt=3.93e-14 int=187 Asy=0/48 Eq=0/110 SX=1.0000 dE=2.07e+28 E=8.45e+15 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+44 it=0 t=5.75e-13 dt=5.75e-14 int=191 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.98e+28 E=1.21e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+45 it=0 t=7.65e-13 dt=7.65e-14 int=194 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.88e+28 E=1.58e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+46 it=1 t=9.64e-13 dt=9.64e-14 int=197 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.76e+28 E=1.93e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+47 it=2 t=1.31e-12 dt=1.02e-13 int=203 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.52e+28 E=2.50e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+48 it=2 t=1.77e-12 dt=8.32e-14 int=213 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.25e+28 E=3.13e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+49 it=2 t=2.36e-12 dt=5.90e-14 int=230 Asy=0/48 Eq=0/110 SX=1.0000 dE=9.68e+27 E=3.77e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+50 it=2 t=3.19e-12 dt=4.69e-14 int=259 Asy=0/48 Eq=0/110 SX=1.0000 dE=7.05e+27 E=4.45e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+51 it=2 t=4.28e-12 dt=3.70e-14 int=306 Asy=0/48 Eq=0/110 SX=1.0000 dE=4.85e+27 E=5.09e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+52 it=3 t=5.78e-12 dt=5.08e-14 int=361 Asy=0/48 Eq=0/110 SX=1.0000 dE=3.07e+27 E=5.67e+16 E_R=4.01e-07 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+53 it=2 t=7.77e-12 dt=3.34e-14 int=470 Asy=0/48 Eq=0/110 SX=1.0000 dE=1.71e+27 E=6.13e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+54 it=2 t=1.05e-11 dt=3.27e-14 int=630 Asy=0/48 Eq=0/110 SX=1.0000 dE=7.24e+26 E=6.44e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+55 it=2 t=1.41e-11 dt=2.95e-14 int=847 Asy=0/48 Eq=0/110 SX=1.0000 dE=5.55e+25 E=6.57e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+56 it=2 t=1.91e-11 dt=3.36e-14 int=1123 Asy=0/48 Eq=0/110 SX=1.0000 dE=-3.45e+26 E=6.48e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+57 it=2 t=2.57e-11 dt=4.55e-14 int=1461 Asy=0/48 Eq=0/110 SX=1.0000 dE=-5.45e+26 E=6.18e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+58 it=2 t=3.47e-11 dt=4.32e-14 int=1852 Asy=0/48 Eq=0/110 SX=1.0000 dE=-6.17e+26 E=5.65e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+59 it=2 t=4.68e-11 dt=5.94e-14 int=2260 Asy=0/48 Eq=0/110 SX=1.0000 dE=-6.09e+26 E=4.90e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+60 it=2 t=6.31e-11 dt=1.00e-13 int=2640 Asy=0/48 Eq=0/110 SX=1.0000 dE=-5.06e+26 E=3.97e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+61 it=2 t=8.52e-11 dt=1.38e-13 int=2995 Asy=0/48 Eq=0/110 SX=1.0000 dE=-2.91e+26 E=3.09e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+62 it=2 t=1.15e-10 dt=1.01e-13 int=3487 Asy=0/48 Eq=3/110 SX=1.0000 dE=-7.47e+25 E=2.59e+16 E_R=4.44e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+63 it=2 t=1.55e-10 dt=9.07e-14 int=4234 Asy=0/48 Eq=8/110 SX=1.0000 dE=3.26e+25 E=2.54e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+0.000e+00
+64 it=2 t=2.09e-10 dt=1.00e-13 int=5306 Asy=0/48 Eq=14/110 SX=1.0000 dE=5.41e+25 E=2.82e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+1.663e-01
+65 it=2 t=2.82e-10 dt=1.03e-13 int=6770 Asy=0/48 Eq=17/110 SX=1.0000 dE=2.27e+25 E=3.11e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p29-->p+si28 Q=-2.747 dev=+2.331e-01
+66 it=2 t=3.80e-10 dt=1.08e-13 int=8745 Asy=0/48 Eq=18/110 SX=1.0000 dE=-2.15e+25 E=3.10e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.280e-01
+67 it=2 t=5.13e-10 dt=8.69e-14 int=11404 Asy=0/48 Eq=18/110 SX=1.0000 dE=-6.39e+25 E=2.52e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.098e-01
+68 it=2 t=6.92e-10 dt=9.22e-14 int=14985 Asy=0/48 Eq=17/110 SX=1.0000 dE=-9.63e+25 E=1.05e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.945e-01
+69 it=2 t=9.33e-10 dt=1.16e-13 int=19564 Asy=0/48 Eq=16/110 SX=1.0000 dE=-1.10e+26 E=-1.50e+16 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.832e-01
+70 it=2 t=1.26e-09 dt=8.69e-14 int=26287 Asy=0/48 Eq=15/110 SX=1.0000 dE=-1.03e+26 E=-5.01e+16 E_R=3.33e-13 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.759e-01
+71 it=2 t=1.70e-09 dt=9.08e-14 int=36454 Asy=0/48 Eq=15/110 SX=1.0000 dE=-8.32e+25 E=-9.11e+16 E_R=2.22e-13 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.724e-01
+72 it=2 t=2.29e-09 dt=6.96e-14 int=51562 Asy=0/48 Eq=15/110 SX=1.0000 dE=-5.94e+25 E=-1.33e+17 E_R=1.11e-13 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.711e-01
+73 it=2 t=3.09e-09 dt=7.09e-14 int=73559 Asy=0/48 Eq=17/110 SX=1.0000 dE=-3.74e+25 E=-1.71e+17 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.713e-01
+74 it=2 t=4.17e-09 dt=7.73e-14 int=104892 Asy=0/48 Eq=19/110 SX=1.0000 dE=-2.00e+25 E=-2.01e+17 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.740e-01
+75 it=2 t=5.62e-09 dt=5.82e-14 int=148637 Asy=0/48 Eq=22/110 SX=1.0000 dE=-8.68e+24 E=-2.21e+17 E_R=0.00e+00 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.817e-01
+76 it=2 t=7.59e-09 dt=1.05e-13 int=202967 Asy=0/48 Eq=25/110 SX=1.0000 dE=-2.95e+24 E=-2.31e+17 E_R=5.96e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.983e-01
+77 it=1 t=1.02e-08 dt=1.77e-13 int=245595 Asy=1/48 Eq=27/110 SX=1.0000 dE=-7.90e+23 E=-2.35e+17 E_R=3.35e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.279e-01
+78 it=2 t=1.38e-08 dt=2.05e-13 int=287006 Asy=1/48 Eq=28/110 SX=1.0000 dE=-1.84e+23 E=-2.37e+17 E_R=3.39e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.657e-01
+79 it=2 t=1.86e-08 dt=3.57e-13 int=320664 Asy=3/48 Eq=27/110 SX=1.0000 dE=-4.42e+22 E=-2.37e+17 E_R=2.77e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.954e-01
+80 it=2 t=2.51e-08 dt=6.13e-13 int=346678 Asy=4/48 Eq=27/110 SX=1.0001 dE=-1.23e+22 E=-2.37e+17 E_R=1.43e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+3.098e-01
+81 it=2 t=3.39e-08 dt=1.10e-12 int=366458 Asy=10/48 Eq=27/110 SX=1.0001 dE=-4.58e+21 E=-2.37e+17 E_R=1.14e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+3.097e-01
+82 it=2 t=4.57e-08 dt=1.70e-12 int=383014 Asy=13/48 Eq=27/110 SX=1.0001 dE=-2.67e+21 E=-2.37e+17 E_R=1.20e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.974e-01
+83 it=2 t=6.17e-08 dt=3.02e-12 int=396880 Asy=18/48 Eq=27/110 SX=1.0001 dE=-2.29e+21 E=-2.37e+17 E_R=1.17e-07 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.724e-01
+84 it=2 t=8.32e-08 dt=5.43e-12 int=408203 Asy=26/48 Eq=27/110 SX=1.0001 dE=-1.80e+21 E=-2.38e+17 E_R=5.76e-08 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.373e-01
+85 it=2 t=1.12e-07 dt=7.65e-12 int=417190 Asy=28/48 Eq=27/110 SX=1.0001 dE=-8.68e+20 E=-2.38e+17 E_R=5.16e-08 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+2.010e-01
+86 it=2 t=1.51e-07 dt=1.67e-11 int=423719 Asy=33/48 Eq=27/110 SX=1.0001 dE=7.74e+19 E=-2.38e+17 E_R=2.66e-08 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.744e-01
+87 it=2 t=2.04e-07 dt=3.31e-11 int=428187 Asy=36/48 Eq=27/110 SX=1.0001 dE=6.11e+20 E=-2.38e+17 E_R=1.78e-08 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.614e-01
+88 it=1 t=2.75e-07 dt=7.84e-11 int=431181 Asy=41/48 Eq=27/110 SX=1.0001 dE=7.82e+20 E=-2.38e+17 E_R=7.81e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.570e-01
+89 it=2 t=3.72e-07 dt=1.25e-10 int=433347 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.17e+20 E=-2.37e+17 E_R=4.22e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.558e-01
+90 it=2 t=5.01e-07 dt=1.57e-10 int=435172 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.23e+20 E=-2.37e+17 E_R=3.17e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.553e-01
+91 it=2 t=6.76e-07 dt=2.35e-10 int=436988 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.24e+20 E=-2.37e+17 E_R=8.22e-10 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.550e-01
+92 it=2 t=9.12e-07 dt=2.27e-10 int=439073 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.22e+20 E=-2.37e+17 E_R=2.03e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.548e-01
+93 it=2 t=1.23e-06 dt=2.74e-10 int=441712 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.20e+20 E=-2.37e+17 E_R=4.32e-10 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.546e-01
+94 it=2 t=1.66e-06 dt=2.77e-10 int=445207 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.16e+20 E=-2.36e+17 E_R=7.03e-10 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.544e-01
+95 it=2 t=2.24e-06 dt=2.80e-10 int=449885 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.11e+20 E=-2.36e+17 E_R=1.01e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.540e-01
+96 it=2 t=3.02e-06 dt=2.83e-10 int=456152 Asy=42/48 Eq=27/110 SX=1.0001 dE=8.05e+20 E=-2.35e+17 E_R=1.70e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.535e-01
+97 it=2 t=4.07e-06 dt=9.47e-10 int=464284 Asy=42/48 Eq=27/110 SX=1.0002 dE=8.18e+20 E=-2.34e+17 E_R=3.93e-06 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.526e-01
+98 it=2 t=5.50e-06 dt=2.40e-10 int=473815 Asy=42/48 Eq=27/110 SX=1.0002 dE=7.85e+20 E=-2.33e+17 E_R=1.58e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.527e-01
+99 it=2 t=7.41e-06 dt=2.48e-10 int=487231 Asy=42/48 Eq=27/110 SX=1.0002 dE=7.70e+20 E=-2.32e+17 E_R=1.24e-09 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.520e-01
+100 it=2 t=1.00e-05 dt=2.51e-10 int=504532 Asy=42/48 Eq=27/110 SX=1.0002 dE=7.52e+20 E=-2.30e+17 E_R=8.69e-10 ch=1 ch2=1 fast:p+o17-->he4+n14 Q=+1.191 dev=+1.514e-01
+
+Integration using ASY method
+T9=7.000e+00 rho=1.000e+08 massTol=1.000e-09 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-10
+maxit=20 downbumper= 0.700 EpsA=1.00e-03 EpsR=2.00e-04
+Network: data/network_48.inp  Rates: data/rateLibrary_48.data
+Integration steps=504532  totalIterations=980082  IntegrationSteps_plotted=504477
+Timer: 4.7940e+04 ms used
+
+FINAL ABUNDANCES Y AND MASS FRACTIONS X
+
+0 1n Y=7.4047e-05 X=7.4047e-05
+1 1H Y=2.3786e-02 X=2.3786e-02
+2 4He Y=9.5766e-02 X=3.8306e-01
+3 12C Y=1.7646e-06 X=2.1176e-05
+4 14N Y=2.1607e-08 X=3.0250e-07
+5 15O Y=1.9803e-09 X=2.9704e-08
+6 16O Y=1.0864e-06 X=1.7383e-05
+7 17O Y=8.1702e-09 X=1.3889e-07
+8 18Fl Y=2.6971e-10 X=4.8548e-09
+9 20Ne Y=2.6843e-09 X=5.3686e-08
+10 23Na Y=2.6570e-10 X=6.1111e-09
+11 23Mg Y=4.5796e-11 X=1.0533e-09
+12 24Mg Y=1.1370e-09 X=2.7288e-08
+13 25Mg Y=2.3729e-02 X=5.9322e-01
+14 26Mg Y=2.5725e-10 X=6.6884e-09
+15 27Al Y=3.0469e-10 X=8.2266e-09
+16 28Si Y=1.4252e-08 X=3.9905e-07
+17 29Si Y=3.6019e-09 X=1.0445e-07
+18 30Si Y=4.7162e-10 X=1.4149e-08
+19 29P Y=4.3735e-11 X=1.2683e-09
+20 30P Y=2.2526e-10 X=6.7579e-09
+21 31P Y=1.2774e-09 X=3.9598e-08
+22 32S Y=2.6811e-09 X=8.5795e-08
+23 33S Y=1.4568e-09 X=4.8075e-08
+24 34S Y=1.7180e-09 X=5.8412e-08
+25 35Cl Y=6.7746e-10 X=2.3711e-08
+26 36Ar Y=4.0414e-09 X=1.4549e-07
+27 37Ar Y=1.1059e-09 X=4.0918e-08
+28 38Ar Y=1.1503e-09 X=4.3712e-08
+29 39K Y=2.0118e-09 X=7.8460e-08
+30 40Ca Y=5.2347e-09 X=2.0939e-07
+31 41Ca Y=6.1873e-10 X=2.5368e-08
+32 42Ca Y=4.4178e-10 X=1.8555e-08
+33 44Ti Y=1.3297e-10 X=5.8506e-09
+34 48Cr Y=1.2917e-10 X=6.2000e-09
+35 49Cr Y=7.8806e-10 X=3.8615e-08
+36 50Cr Y=6.5349e-09 X=3.2674e-07
+37 51Mn Y=1.6485e-09 X=8.4076e-08
+38 53Mn Y=2.7842e-08 X=1.4756e-06
+39 52Fe Y=5.2866e-10 X=2.7490e-08
+40 53Fe Y=4.9431e-09 X=2.6198e-07
+41 54Fe Y=5.6597e-08 X=3.0562e-06
+42 55Fe Y=2.4396e-08 X=1.3418e-06
+43 55Co Y=1.3996e-08 X=7.6976e-07
+44 56Co Y=6.3532e-09 X=3.5578e-07
+45 56Ni Y=1.8033e-09 X=1.0098e-07
+46 57Ni Y=4.4184e-09 X=2.5185e-07
+47 58Ni Y=1.6969e-08 X=9.8423e-07
+
