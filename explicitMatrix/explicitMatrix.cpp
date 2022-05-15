@@ -101,7 +101,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 
 
 #define ISOTOPES 70                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 598                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -262,7 +262,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-9;               // Stop time for integration
+double stop_time = 3.2e-5;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -544,7 +544,6 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 
 
-
 //----------------CLASS DEFINITIONS ----------------
 
 
@@ -644,7 +643,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static void plotOutput(){
-            
+
             // Open files for ascii output. Assumes that the subdirectory
             // gnu_out already exists. If it doesn't, will compile but
             // may crash when executed.
@@ -671,7 +670,7 @@ class Utilities{
 //             for(int i=0; i<ISOTOPES; i++){
 //                 plotXlist[i] = i;
 //             }
-//             
+            
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
              int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
@@ -1620,9 +1619,10 @@ class Reaction: public Utilities {
         
         int getreactantZ(int k){
             if(k > numberReactants-1){
-                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+                printf("\n\nERROR: k=%d larger than numberReactants-1 %d; EXITING", 
                     k, numberReactants);
-                return -1;
+                exit(-1);  // Exit program since something is corrupt
+                //return -1;
             } else {
                 return reactantZ[k];
             }
