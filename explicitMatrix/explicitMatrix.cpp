@@ -88,6 +88,7 @@ pp               7       28     data/network_pp.inp         data/rateLibrary_pp.
 main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
 full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
 48              48      299     data/network_48.inp         data/rateLibrary_48.data
+70              70      598     data/network_70.inp         data/rateLibrary_70.data
 nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
@@ -99,8 +100,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1604                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 70                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -142,13 +143,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_150.inp";
+char networkFile[] = "data/network_70.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_150.data";
+char rateLibraryFile[] = "data/rateLibrary_70.data";
 
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
@@ -218,8 +219,8 @@ double netdERelease;          // Energy released in timestep
 // corrected by temperature-dependent partition functions.  However
 // partition function factors differ from 1 only at high temperature
 // so we only implement partition function corrections if T9 > pfCut9,
-// where pfCut9 is a cutoff temperature in units of T9. Typically we 
-// will choose dopf = true and pfCut9 = 1.0.
+// where pfCut9 is a cutoff temperature in units of T9. Typically in
+// realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
 bool dopf = false;
 double pfCut9 = 1.0;
@@ -261,7 +262,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-8;               // Stop time for integration
+double stop_time = 1e-9;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -277,7 +278,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-6; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-8; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -582,7 +583,7 @@ class Utilities{
             // T9 at this value of time t.  For now, we just return T9_start.
             
             double temp;            // Interpolated temperature
-            temp = T9_start;        // Temporary for testing
+            temp = T9_start;        // Temporary constant value for testing
             
             printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
                 t, temp
@@ -603,7 +604,7 @@ class Utilities{
             // rho at this value of time t.  For now, we just return rho_start.
             
             double rhonow;             // Interpolated density
-            rhonow = rho_start;        // Temporary for testing
+            rhonow = rho_start;        // Temporary constant value for testing
             
             printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
                    t, rhonow
