@@ -299,7 +299,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-10;    // Time to begin checking for PE
+double equilibrateTime = 1e-13;    // Time to begin checking for PE
 double equiTol = 0.010;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
