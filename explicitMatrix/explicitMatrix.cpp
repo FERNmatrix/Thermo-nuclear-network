@@ -599,7 +599,10 @@ public:
     
     // Constructor
     
-    SplineInterpolator() { };
+    SplineInterpolator() { 
+        
+        printf("+++++ Creating Spline object");
+    };
     
     
     /*------------------------------------------------------------------------------
@@ -614,13 +617,20 @@ public:
      *       - *------------------------------------------------------------------------------*/
     
     
-    void spline(double *xarray, double *yarray) {
+    void spline(double *xarray, double *yarray, int size1, int size2) {
         //void spline( double xarray[], double yarray)[] {
+        //int n = sizeof(xarray)/sizeof(xarray[0]);
+        //int m = sizeof(yarray)/sizeof(yarray[0]);
+        
+        printf("+++++ size1=%d size2=%d xarray[4]=%5.3f yarray[2]=%5.3f size x=%d size x[0]=%d", 
+            size1, size2, xarray[4], yarray[2], sizeof(xarray), sizeof(xarray[0]));
         //             int n = xarray.length;
-        //             if(n != yarray.length){
-        //                 printf("\nWarning: lengths of x and y(x) arrays not equal:"
-        //                 +" xarray.length="+n+" yarray.length="+yarray.length);
-        //             }
+        if(size1 != size2){
+            printf("\nWarning: lengths of x and y(x) arrays not equal:");
+            printf("\nxarray_length=%d yarray_length=%d", size1, size2);
+            printf("\nEXIT\n");
+            exit(-1);
+        }
         
         //x = xarray; //new double[n];
         //y = yarray; // double[n];
@@ -629,7 +639,7 @@ public:
         //             
         // Copy passed arrays to internal arrays
         
-        for(int i=0; i<maxpoints; i++){
+        for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
         }
@@ -3942,6 +3952,25 @@ ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
 int main() { 
+    
+    // Test of spline interpolator class
+    
+    SplineInterpolator pfSpliner = SplineInterpolator();
+    
+    double arr1[] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    double arr2[] = {6.0, 7.0, 8.0, 9.0, 10.0};
+    
+    printf("\n+++++ size arr1=%d size arr1[0]=%d length=%d\n",
+        sizeof(arr1), sizeof(arr1[0]), sizeof(arr1)/sizeof(arr1[0]));
+    
+    // Check size of arrays
+    
+    int size1 = sizeof(arr1)/sizeof(arr1[0]);
+    int size2 = sizeof(arr2)/sizeof(arr2[0]);
+    
+    // Pass the arrays to the spline function
+    
+    pfSpliner.spline(arr1, arr2, size1, size2);
 
     // Open file to output network info
     
