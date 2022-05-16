@@ -543,6 +543,16 @@ double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
 double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 
+// Following for table interpolations
+
+static const int maxpoints = 200;            // Max interpolation table entries
+
+// Arrays to hold independent and dependent variable
+// entries of table to be interpolated.
+
+double interp_independent[maxpoints];
+double interp_depend[maxpoints];
+
 
 //----------------CLASS DEFINITIONS ----------------
 
