@@ -557,6 +557,120 @@ double interp_depend[maxpoints];
 //----------------CLASS DEFINITIONS ----------------
 
 
+/*
+ C lass* to implement 1D and 2D cubic spline interpolation. Adapted 
+ from algorithms in Numerical Recipes. For 1D interpolations, use 
+ the method spline to set up an interpolation table and then use the 
+ method splint to interpolate in the independent variable. For 2D 
+ interpolations, use the method spline2 to set up the 2D interpolation 
+ table and then use the method splint2 to interpolate using that table. 
+ The class also makes available the utility function bisection, which 
+ finds the indices in a 1-D table that bracket a particular entry in 
+ the table (assuming the entries to increase monotonically). See the 
+ class SplineTester for simple examples of using SplineInterpolator.
+ 
+ REFERENCE:  
+ 
+ https://en.wikipedia.org/wiki/Spline_interpolation
+ http://fourier.eng.hmc.edu/e176/lectures/ch7/node6.html
+ http://www.foo.be/docs-free/Numerical_Recipe_In_C/c3-3.pdf
+ 
+ Class SplineInterpolator implements cubic spline interpolation in one 
+ dimension and bicubic spline interpolation in two dimensions.
+ */
+
+class SplineInterpolator{
+    
+private:
+    
+    int n;
+    int m;
+    
+    static const int maxpoints = 200;
+    double x[maxpoints];
+    //         double [] x1a;
+    //         double [] x2a;
+    //         double [][] ya;
+    double y[maxpoints];
+    //         double [] y2;
+    //         double [][] y2a;
+    //         double [] u;
+    //         int n,m;
+    //         double maxx1,minx1,maxx2,minx2;
+    
+public:
+    
+    // Constructor
+    
+    SplineInterpolator() { };
+    
+    
+    /*------------------------------------------------------------------------------
+     *   Adaptation of 1D cubic spline algorithm from Numerical Recipes.
+     *   This method processes the array to compute and store the second derivatives
+     *   that will be used to do later spline interpolation.  It assumes
+     *   the existence of an array xarray of independent variables and an array 
+     *   yarray(x) of dependent variables, with the xarray array monotonically 
+     *   increasing.  The second derivatives are stored in the array y2.  Elements of
+     *   the y2 array can be accessed for diagnostic purposes using the method 
+     *   getSplined2(index).
+     *       - *------------------------------------------------------------------------------*/
+    
+    
+    void spline(double *xarray, double *yarray) {
+        //void spline( double xarray[], double yarray)[] {
+        //             int n = xarray.length;
+        //             if(n != yarray.length){
+        //                 printf("\nWarning: lengths of x and y(x) arrays not equal:"
+        //                 +" xarray.length="+n+" yarray.length="+yarray.length);
+        //             }
+        
+        //x = xarray; //new double[n];
+        //y = yarray; // double[n];
+        //             y2 = new double[n];
+        //             u = new double[n];
+        //             
+        // Copy passed arrays to internal arrays
+        
+        for(int i=0; i<maxpoints; i++){
+            x[i] = xarray[i];
+            y[i] = yarray[i];
+        }
+        //             
+        //             // Natural spline boundary conditions
+        //             
+        //             y2[0] = 0.0;
+        //             u[0] = 0.0;
+        //             double qn = 0.0;
+        //             double un = 0.0;
+        //             
+        //             double signum;
+        //             double sigden;
+        //             double sig;
+        //             double p;
+        //             
+        //             // Decomposition loop of tridiagonal algorithm
+        //             
+        //             for (int i=1; i<= n-2; i++) {
+        //                 signum = x[i] - x[i-1];
+        //                 sigden = x[i+1] - x[i-1];
+        //                 sig = signum/sigden;
+        //                 p = sig*y2[i-1] +2.0;
+        //                 y2[i] = (sig-1.0)/p;
+        //                 u[i] = (6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/p;
+        //             }
+        //             
+        //             y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
+        //             
+        //             // Backsubstitution loop of tridiagonal algorithm
+        //             
+        //             for (int i = n-2; i >= 0; i--){
+        //                 y2[i] = y2[i]*y2[i+1] + u[i];
+        //             }
+    }
+};
+
+
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
  * objects of type Utilities.  For example, Utilities::returnNetIndexZN (Z, N).
