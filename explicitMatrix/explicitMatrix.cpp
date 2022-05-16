@@ -151,6 +151,16 @@ char networkFile[] = "data/network_70.inp";
 
 char rateLibraryFile[] = "data/rateLibrary_70.data";
 
+// Filename for input file containing a hydro profile in temperature
+// and density. Sample hydro profile files included in the data
+// subdirectory are
+//
+//    data/torch47Profile.data     // Very hot Type Ia supernova zone
+//    data/nova125DProfile.inp     // Zone in nova explosion
+//
+// Use SplineInterpolator to interpolate in table read in.
+
+char hydroFile[] = "data/torch47Profile.inp";
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
  
@@ -161,6 +171,7 @@ static const bool plotFluxes = true;
 void devcheck(int);
 void readLibraryParams(char *);
 void readNetwork(char *);
+void readhydroProfile(char *);
 void writeNetwork(void);
 void writeRates(char *);
 void writeAbundances(void);
@@ -206,8 +217,9 @@ string ts;                   // Utility string
 
 double T9;                    // Current temperature in units of 10^9 K
 double rho;                   // Current density in units of g/cm^3
-bool constant_T9 = true;      // Whether temperature constant in integration
-bool constant_rho = true;     // Whether density constant in integration
+//bool constant_T9 = true;      // Whether temperature constant in integration
+//bool constant_rho = true;     // Whether density constant in integration
+bool hydroProfile = false;    // Whether to use hydro profile of T and rho
 
 // Energy variables (from Q values)
 
@@ -262,7 +274,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 5.6e-5;              // Stop time for integration
+double stop_time = 1e-10;//5.6e-5;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -573,7 +585,7 @@ class Utilities{
         
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_T(t) to find an interpolated T9
-        // as a function of time if constant_T9 = false.
+        // as a function of time if hydroProfile = true.
         // -------------------------------------------------------------------------
         
         static double interpolate_T(double t){
@@ -594,7 +606,7 @@ class Utilities{
         
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_rho(t) to find an interpolated 
-        // density rho as a function of time if constant_rho = false.
+        // density rho as a function of time if hydroProfile is false.
         // -------------------------------------------------------------------------
         
         static double interpolate_rho(double t){
@@ -3918,6 +3930,14 @@ int main() {
     char *rateLibraryFilePtr = rateLibraryFile;
     readLibraryParams(rateLibraryFilePtr);
     
+    // If using a hydrodynamical profile, read in the file containing
+    // the hydro profile and store variables.
+    
+    if(hydroProfile){
+        char *hydroFilePtr = hydroFile;
+        readhydroProfile(hydroFilePtr);
+    }
+    
     // Print out some quantitites from the Reaction object reaction[].  
     
     for(int i=0; i<SIZE; i++){
@@ -4090,7 +4110,7 @@ int main() {
     
     Utilities::startTimer();    // Start a timer for integration
     
-    // Compute initial rates. If constant_T9 and constant_rho are true, rates won't
+    // Compute initial rates. If hydroProfile = false, rates won't
     // change in the integration and don't need to be computed again.  If either
     // T9 or rho change, the rates will be recomputed at each integration step.
     // Use functions of Reaction class to compute reaction rates. We have instantiated
@@ -4110,7 +4130,7 @@ int main() {
         reaction[i].showRates();
     }
     
-    if(constant_T9 && constant_rho){
+    if(!hydroProfile){
         fprintf(pFileD, "\n\n**** Rates won't be computed again since T and rho won't ");
         fprintf(pFileD, "change in integration ****\n");
     } else {
@@ -4136,23 +4156,23 @@ int main() {
         
         updateY0();
         
-        // Specify temperature T9 and density rho. If constant_T9 = true, a constant
+        // Specify temperature T9 and density rho. If hydroProfile = false, a constant
         // temperature is assumed for the entire network calculation, set by T9_start
-        // above.  Otherwise (constant_T9 = false) we here interpolate the temperature
+        // above.  Otherwise (hydroProfile = true) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
-        if(!constant_T9 && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
-        if(!constant_rho && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
+        if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+        if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
-        // function of Reaction on each object. If constant_T9 and constant_rho are true, 
+        // function of Reaction on each object. If hydroProfile is false, 
         // the rates only need be computed once as they won't change over this
         // integration. Otherwise they are recomputed for each integration step in
         // the following conditional.
         
-        if( (!constant_T9 || !constant_rho) && totalTimeSteps > 1){
+        if( (hydroProfile) && totalTimeSteps > 1){
             printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
@@ -4642,6 +4662,14 @@ void getmaxdYdt(){
             maxdYdt = abs(ck);
         }
     }
+}
+
+
+// Function to read in hydro profile if hydroProfile = true.
+
+void readhydroProfile(char *fileName){
+    
+    
 }
 
 
