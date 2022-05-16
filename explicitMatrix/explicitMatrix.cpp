@@ -262,7 +262,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 5.6e-5;              // Stop time for integration
+double stop_time = 1e-11;//5.6e-5;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -542,23 +542,20 @@ int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
 double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
 double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
-
-// Following for table interpolations
-
-static const int maxpoints = 200;            // Max interpolation table entries
-
 // Arrays to hold independent and dependent variable
-// entries of table to be interpolated.
+// entries of table to be interpolated by class SplineInterpolator.
 
+static const int maxpoints = 200;       // Max table entries
 double interp_independent[maxpoints];
 double interp_depend[maxpoints];
+
 
 
 //----------------CLASS DEFINITIONS ----------------
 
 
 /*
- C lass* to implement 1D and 2D cubic spline interpolation. Adapted 
+ Class to implement 1D and 2D cubic spline interpolation. Adapted 
  from algorithms in Numerical Recipes. For 1D interpolations, use 
  the method spline to set up an interpolation table and then use the 
  method splint to interpolate in the independent variable. For 2D 
