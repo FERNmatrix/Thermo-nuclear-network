@@ -82,7 +82,7 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -4.5
+xup = -3
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -99,7 +99,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-#set grid   # set x-y grid at major ticmarks
+set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
@@ -344,15 +344,15 @@ replot file1 using 1:76 with lines ls 6 lw 1 dashtype 2 title "(69)"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'Log time (s)' textcolor rgb tic_color #font "Arial,28"
-set ylabel 'Log X' textcolor rgb tic_color #font "Arial,28"
+set title ds textcolor rgb title_color font "Arial,18"
+set key top right font "Arial,14"
+set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,21"
+set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
 
 # Plot to postscript file
 
 set out "gnuplot_X.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
 replot               # Plot to postscript file
 
 # Plot to PNG file
