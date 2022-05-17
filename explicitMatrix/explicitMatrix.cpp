@@ -219,7 +219,7 @@ double T9;                    // Current temperature in units of 10^9 K
 double rho;                   // Current density in units of g/cm^3
 //bool constant_T9 = true;      // Whether temperature constant in integration
 //bool constant_rho = true;     // Whether density constant in integration
-bool hydroProfile = false;    // Whether to use hydro profile of T and rho
+bool hydroProfile = true;    // Whether to use hydro profile of T and rho
 
 // Energy variables (from Q values)
 
@@ -274,7 +274,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 5.6e-5;              // Stop time for integration
+double stop_time = 1e-10;//5.6e-5;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -411,6 +411,16 @@ gsl_vector *rvPt;      // Pointer to rv[] array
 
 int totalFplus = 0;
 int totalFminus = 0;
+
+// Arrays to hold time, temperature, and density in hydro profile
+
+//double* hydroTime;
+
+const static int maxHydroEntries = 200;
+
+double hydroTime[maxHydroEntries];
+double hydroTemp[maxHydroEntries];
+double hydroRho[maxHydroEntries];
 
 // Arrays to hold non-zero fluxes in the network. Corresponding memory will be allocated dynamically 
 // below with malloc
@@ -596,9 +606,9 @@ class Utilities{
             double temp;            // Interpolated temperature
             temp = T9_start;        // Temporary constant value for testing
             
-            printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
-                t, temp
-            );
+//             printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
+//                 t, temp
+//             );
             
             return temp;
         }
@@ -617,9 +627,9 @@ class Utilities{
             double rhonow;             // Interpolated density
             rhonow = rho_start;        // Temporary constant value for testing
             
-            printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
-                   t, rhonow
-            );
+//             printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
+//                    t, rhonow
+//             );
             
             return rhonow;
         }
@@ -4173,7 +4183,7 @@ int main() {
         // the following conditional.
         
         if( (hydroProfile) && totalTimeSteps > 1){
-            printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
+            //printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
                 reaction[i].computeRate(T9, rho);
@@ -4392,6 +4402,7 @@ int main() {
    
     // Free allocated memory
     
+    //free(hydroTime);
     free(Fplus);
     free(Fminus);
     free(FplusFac);
@@ -4669,8 +4680,145 @@ void getmaxdYdt(){
 
 void readhydroProfile(char *fileName){
     
+     char line[60];
+     int nEntries;
+     int numberEntries;
+     int dummy;
+     double Time;
+     double Temp;
+     double Rho;
+     
+//     char isoSymbol[5];
+//     int z, n, a;
+//     double y, mass;
+//     double pf0, pf1, pf2, pf3, pf4, pf5, pf6, pf7;
     
-}
+    // Open a file for reading 
+    
+    FILE *fr; 
+    fr = fopen (fileName, "r");
+    
+    // Exit if the file doesn't exist or can't be read
+    
+    if( fr == NULL ){
+        printf ("*** File Input Error: No readable file named %s\n", fileName);
+        exit(1) ;
+    }
+    
+    // Read in the file line by line
+    
+    int index = 0;
+    int subIndex = -1;
+    
+    // Read lines until NULL encountered. Data lines can contain up to 60 characters.
+    // The first line of the data file fileName contains labels and not data.
+    
+    while(fgets(line, 60, fr) != NULL){
+        
+        subIndex ++;
+        
+        if (subIndex == 1){  // Line containing number of entries
+            
+            sscanf(line, "%d", &nEntries);
+            numberEntries = nEntries;
+            
+            printf("\n+++++ entries=%d", numberEntries);
+            
+            // Allocate array to hold time of hydro profile
+            
+            //hydroTime = (double*) malloc(sizeof(double) * numberEntries);
+            
+        } else if (subIndex > 1) {  // Line containing data
+            
+            sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); // data lines
+            
+            // Store hydro profile in three arrays
+            
+            hydroTime[index] = Time;   // Time
+            hydroTemp[index] = Temp;   // Temperature(time)
+            hydroRho[index] = Rho;     // Density(time)
+            
+            printf(
+"\n+++++ index=%d subIndex=%d Time=%5.3e Temp=%5.3e Rho=%5.3e t=%5.3e T=%5.3e rho=%5.3e", 
+        index, subIndex, Time, Temp, Rho, hydroTime[index], hydroTemp[index], hydroRho[index]);
+
+            
+            index ++;
+            
+        }
+        
+        
+        
+        
+//         if(subIndex == 4){      // 1st line of data for first isotope
+//             
+//             subIndex = 0;
+//             index ++;
+//             
+//             // Read 1st line
+//             
+//             sscanf (line, "%s %d %d %d %lf %lf", isoSymbol, &a, &z, &n, &y, &mass);
+//             
+//             // Write data in 1st line to the Species object isotope[]
+//             
+//             isotope[index].setindex(index);
+//             isotope[index].setisoLabel(isoSymbol);
+//             isotope[index].setZ(z);
+//             isotope[index].setN(n);
+//             isotope[index].setA(a);
+//             isotope[index].setY(y);
+//             isotope[index].setM(mass);
+//             
+//         } else {             // line contains partition function entries
+//             
+//             // Scan and parse a partition function line
+//             
+//             sscanf (line, "%lf %lf %lf %lf %lf %lf %lf %lf", &pf0, &pf1, &pf2, &pf3, 
+//                     &pf4, &pf5, &pf6, &pf7);
+//             
+//             // Store the 24 partition function table values in Species object isotope[]
+//             
+//             int tin = subIndex-1;
+//             
+//             // Set Species pointer to address of Species object isotope[index]
+//             
+//             SpeciesPtr = &isotope[index];
+//             
+//             SpeciesPtr->setpf(8*(tin), pf0);
+//             SpeciesPtr->setpf(8*(tin)+1, pf1);
+//             SpeciesPtr->setpf(8*(tin)+2, pf2);
+//             SpeciesPtr->setpf(8*(tin)+3, pf3);
+//             SpeciesPtr->setpf(8*(tin)+4, pf4);
+//             SpeciesPtr->setpf(8*(tin)+5, pf5);
+//             SpeciesPtr->setpf(8*(tin)+6, pf6);
+//             SpeciesPtr->setpf(8*(tin)+7, pf7);
+//         }
+        
+        // Normally numberSpecies = ISOTOPES, but numberSpecies counts the 
+        // actual number of reactions read in.
+        
+        //numberSpecies = index + 1;  
+        
+    }  // End line read-in
+    
+    // Catch any inconsistency in number of data lines read in
+    
+    if (index != numberEntries){
+        printf("\n\nERROR: Inconsistency between stated number of data lines (%d) ", 
+            numberEntries);
+        printf("and number of \ndata lines actually read in (%d) from file %s. ", 
+            index, fileName);
+        printf("Change\nnumber of data entries in line 2 of %s to %d.\n\n",
+            fileName, index);
+        exit(1);
+    }
+    
+    // Close the file
+    
+    fclose(fr);
+    
+}    // End of function readhydroProfile(char *fileName)
+
 
 
 
