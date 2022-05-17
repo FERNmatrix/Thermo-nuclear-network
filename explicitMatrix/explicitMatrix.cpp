@@ -274,7 +274,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-10;//5.6e-5;              // Stop time for integration
+double stop_time = 1e-3;//5.6e-5;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -290,7 +290,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-9; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-10; //2e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -4681,17 +4681,12 @@ void getmaxdYdt(){
 void readhydroProfile(char *fileName){
     
      char line[60];
-     int nEntries;
+     //int nEntries;
      int numberEntries;
      int dummy;
      double Time;
      double Temp;
      double Rho;
-     
-//     char isoSymbol[5];
-//     int z, n, a;
-//     double y, mass;
-//     double pf0, pf1, pf2, pf3, pf4, pf5, pf6, pf7;
     
     // Open a file for reading 
     
@@ -4712,6 +4707,8 @@ void readhydroProfile(char *fileName){
     
     // Read lines until NULL encountered. Data lines can contain up to 60 characters.
     // The first line of the data file fileName contains labels and not data.
+    // The second line contains the number of data points (lines) in the file, the
+    // following lines contain the temperature and density data for each time.
     
     while(fgets(line, 60, fr) != NULL){
         
@@ -4719,18 +4716,25 @@ void readhydroProfile(char *fileName){
         
         if (subIndex == 1){  // Line containing number of entries
             
-            sscanf(line, "%d", &nEntries);
-            numberEntries = nEntries;
+            sscanf(line, "%d", &numberEntries);
+            //numberEntries = nEntries;
             
             printf("\n+++++ entries=%d", numberEntries);
             
-            // Allocate array to hold time of hydro profile
+            if(numberEntries > maxHydroEntries-1){
+                printf("\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
+                    fileName, numberEntries);
+                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
+                printf("to a value \nof at least %d and recompile.\n\n", numberEntries+1);
+                exit(1);
+            }
             
+            // Allocate array to hold time of hydro profile
             //hydroTime = (double*) malloc(sizeof(double) * numberEntries);
             
-        } else if (subIndex > 1) {  // Line containing data
+        } else if (subIndex > 1) {  // Line containing t, T, rho data
             
-            sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); // data lines
+            sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); 
             
             // Store hydro profile in three arrays
             
@@ -4801,17 +4805,17 @@ void readhydroProfile(char *fileName){
         
     }  // End line read-in
     
-    // Catch any inconsistency in number of data lines read in
-    
-    if (index != numberEntries){
-        printf("\n\nERROR: Inconsistency between stated number of data lines (%d) ", 
-            numberEntries);
-        printf("and number of \ndata lines actually read in (%d) from file %s. ", 
-            index, fileName);
-        printf("Change\nnumber of data entries in line 2 of %s to %d.\n\n",
-            fileName, index);
-        exit(1);
-    }
+//     // Catch any inconsistency in number of data lines read in
+//     
+//     if (index != numberEntries){
+//         printf("\n\nERROR: Inconsistency between stated number of data lines (%d) ", 
+//             numberEntries);
+//         printf("and number of \ndata lines actually read in (%d) from file %s. ", 
+//             index, fileName);
+//         printf("Change\nnumber of data entries in line 2 of %s to %d.\n\n",
+//             fileName, index);
+//         exit(1);
+//     }
     
     // Close the file
     
