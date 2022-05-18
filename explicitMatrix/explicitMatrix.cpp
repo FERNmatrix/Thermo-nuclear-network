@@ -139,6 +139,10 @@ clock_t startCPU, stopCPU;
 FILE *pFileD;
 FILE *pfnet;
 
+// File pointer for outputting the hydroProfile, if used.
+
+FILE *pHydroProfile;
+
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
@@ -165,6 +169,10 @@ char hydroFile[] = "data/torch47Profile.inp";
 // Control printout of flux file (true=1 to print, false=0 to suppress)
  
 static const bool plotFluxes = true;
+
+// Control printout of hydro profile (if one is used).
+
+static const bool plotHydroProfile = true;
 
 // Function signatures:
 
@@ -274,7 +282,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-3;//5.6e-5;              // Stop time for integration
+double stop_time = 1e-10;//5.6e-5;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -413,8 +421,6 @@ int totalFplus = 0;
 int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
-
-//double* hydroTime;
 
 const static int maxHydroEntries = 200;
 
@@ -3851,6 +3857,13 @@ int main() {
     // Open a file for diagnostics output
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
+    
+    // Open file for output of the hydro profile if hydroProfile = true
+    // and plotHydroProfile = true.
+    
+    if(hydroProfile == true && plotHydroProfile == true){
+        pHydroProfile = fopen("gnu.out/hydroProfile.out", "w");
+    }
     
     // Write the time
     
