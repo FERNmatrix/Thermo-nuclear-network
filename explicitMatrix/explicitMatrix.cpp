@@ -423,6 +423,7 @@ int totalFminus = 0;
 // Arrays to hold time, temperature, and density in hydro profile
 
 const static int maxHydroEntries = 200;
+int hydroLines;
 
 double hydroTime[maxHydroEntries];
 double hydroTemp[maxHydroEntries];
@@ -891,6 +892,20 @@ class Utilities{
             fclose (pFile2);
             fclose (pFile3);
             
+        }
+        
+        
+        // Static function Utilities::outputHydroprofile() to send hydro profile 
+        // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
+        // are true.
+        
+        static void plotHydroProfile(){
+            
+            fprintf(pHydroProfile, "\n   time   T    rho");
+            for (int i=0; i<hydroLines; i++){
+                fprintf(pHydroProfile, "\n%6.4e %6.4e %6.4e", 
+                    hydroTime[i], hydroTemp[i], hydroRho[i]);
+            }
         }
         
         
@@ -4401,6 +4416,10 @@ int main() {
     
     Utilities::plotOutput();
     
+    if(hydroProfile == true && plotHydroProfile == true){
+        Utilities::plotHydroProfile();
+    }
+    
     
     // **************************************************
     // To test various function calls, insert code from 
@@ -4412,6 +4431,7 @@ int main() {
     cout.flush();
     fclose (pFileD);
     fclose (pfnet);
+    fclose (pHydroProfile);
    
     // Free allocated memory
     
@@ -4763,6 +4783,8 @@ void readhydroProfile(char *fileName){
             index ++;
             
         }
+        
+        hydroLines = index;
         
         
         
