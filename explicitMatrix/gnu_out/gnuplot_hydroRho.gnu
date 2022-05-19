@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 7.5
-height = 3.5
+width = 4.5
+height = 6.5
 
 # x-axis resolution
 set samples 1000
@@ -40,7 +40,6 @@ set style line 12 lc rgb 'gray' pt 4   # open circle
 set style line 13 lc rgb 'gold' pt 4   # open circle
 set style line 14 lc rgb 'orange' pt 4   # open circle
 
-
 #set xtics rotate        # Rotates x tic numbers by 90 degrees
 #set ytics rotate        # Rotates y tic numbers by 90 degrees
 
@@ -53,8 +52,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
+set ylabel 'Log T (K)' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -62,29 +61,28 @@ set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top left inside    # Place legend inside top
+set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
 
 #set timestamp       # Date/time
 
-ds="C++ Asy T9=7 rho=1e8 (no pf; new dt)"
-ds = ds.": Fraction"
-
+ds="nova125D Hydro Profile"
+ds = ds.": Density"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile.data"
+file1 = "hydroProfile.out"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -4.25
-xtics = 1     # Space between major x ticmarks
+xlow = -8
+xup = 10
+xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0.0 #-0.01
-yup = 1.0 #1.01
-ytics = 0.2      # Space between major y ticmarks
+ylow = 0
+yup = 5
+ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -95,46 +93,34 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set y2tics ylow, ytics, yup  # labels right axis
-
 set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
 
-
-
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:5 with lines ls 2 title "Frac Asy"
-replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
-#replot file1 using 1:7 with lines ls 9 title "16O"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
-
+plot file1 using (log10($1)):(log10($3)) with lines ls 1 lw 1.0 dashtype 1 title "rho(t)"
 
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,24"
-set ylabel 'Fraction' textcolor rgb tic_color font "Arial,24"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_frac.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 1.5 "Arial" 20
+set out "gnuplot_hydroRho.eps"    # Output file
+set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_frac.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_hydroRho.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit

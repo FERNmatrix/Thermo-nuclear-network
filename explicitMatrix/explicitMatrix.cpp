@@ -35,11 +35,12 @@
  * ----------------------------------
  * 
  * 1. Change values of ISOTOPES and SIZE
- * 2. Change two input files for networkFile and rateLibraryFile
- * 3. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
- * 4. Change control parameters like stop_time, massTol, ...
- * 5. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
- * 6. Change values of T9_start and rho_start
+ * 2. Change input files for networkFile and rateLibraryFile
+ * 3. Decide on whether constant T and rho, or input from a hydro T and rho profile.
+ * 4. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
+ * 5. Change control parameters like stop_time, massTol, ...
+ * 6. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
+ * 7. Change values of T9_start and rho_start if constant T and rho.
  *
  * ----------------------------------
  * 
@@ -66,6 +67,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
+#include <mcheck.h>      // Memory debugging
 
 using namespace std;
 using std::string;
@@ -87,6 +89,7 @@ pp               7       28     data/network_pp.inp         data/rateLibrary_pp.
 main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
 full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
 48              48      299     data/network_48.inp         data/rateLibrary_48.data
+70              70      598     data/network_70.inp         data/rateLibrary_70.data
 nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
@@ -98,10 +101,10 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 598                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -115,10 +118,12 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define zerod static_cast<double>(0.0)  // Constant double equal to 0
 
 // Define some CPU timing utilities. Usage:
+//
 //     START_CPU;
 //     ... code to be timed ...
 //     STOP_CPU;
 //     PRINT_CPU
+//
 // These may be used to time CPU processes.
 
 clock_t startCPU, stopCPU;
@@ -141,24 +146,41 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_70.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_70.data";
 
+// Filename for input file containing a hydro profile in temperature
+// and density. Sample hydro profile files included in the data
+// subdirectory are
+//
+//    data/torch47Profile.data     // Very hot Type Ia supernova zone
+//    data/nova125DProfile.inp     // Zone in nova explosion
+//
+// Use SplineInterpolator to interpolate in table read in. If plotHydroProfile 
+// is true, the hydro profile used is output to the file gnu_out/hydroProfile.out
+// in format suitable for gnuplot.
 
-// Control printout of flux file (true=1 to print, false=0 to suppress)
+char hydroFile[] = "data/nova125DProfile.inp";
+
+// Control printout of flux file (true to print, false to suppress)
  
-static const bool plotFluxes = true;
+static const bool plotFluxes = false;
+
+// Control output of hydro profile (if one is used) to plot file.
+
+static const bool plotHydroProfile = true;
 
 // Function signatures:
 
 void devcheck(int);
 void readLibraryParams(char *);
 void readNetwork(char *);
+void readhydroProfile(char *);
 void writeNetwork(void);
 void writeRates(char *);
 void writeAbundances(void);
@@ -178,6 +200,10 @@ void updateY0(void);
 void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
+void sumFplusFminus(void);
+
+// void mtrace(void);     // Memory debugging
+// void muntrace(void);   // Memory debugging
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -189,7 +215,7 @@ double dE_halfstep(void);
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;           // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -198,10 +224,16 @@ string ts;                   // Utility string
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
 
-double T9;                    // Current temperature in units of 10^9 K
-double rho;                   // Current density in units of g/cm^3
-bool constant_T9 = true;      // Whether temperature constant in integration
-bool constant_rho = true;     // Whether density constant in integration
+double T9;                   // Current temperature in units of 10^9 K
+double rho;                  // Current density in units of g/cm^3
+
+// Whether to use constant T and rho (hydroProfile false), in which case a
+// constant T9 = T9_start and rho = rho_start are used, or to read
+// in a hydrodynamical profile of T and rho versus time (hydroProfile true),
+// in which case the file to be read in is specified by the character variable 
+// hydroFile[].
+
+bool hydroProfile = false; 
 
 // Energy variables (from Q values)
 
@@ -213,8 +245,8 @@ double netdERelease;          // Energy released in timestep
 // corrected by temperature-dependent partition functions.  However
 // partition function factors differ from 1 only at high temperature
 // so we only implement partition function corrections if T9 > pfCut9,
-// where pfCut9 is a cutoff temperature in units of T9. Typically we 
-// will choose dopf = true and pfCut9 = 1.0.
+// where pfCut9 is a cutoff temperature in units of T9. Typically in
+// realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
 bool dopf = false;
 double pfCut9 = 1.0;
@@ -236,7 +268,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // Set the temperature in units of 10^9 K and density in units of g/cm^3. In a
 // realistic calculation the temperature and density will be passed from the hydro 
 // code in an operator-split coupling of this network to hydro. Here we hardwire
-// constant values for testing purposes.  
+// constant values for testing purposes, or read in a temperature and denisty
+// hydro profile.
 
 double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
@@ -255,8 +288,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-9;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-11;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -272,7 +305,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 2e-3;//1e-7; //2e-2; // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-10; //2e-3;        // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -293,7 +326,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-10;    // Time to begin checking for PE
+double equilibrateTime = 1e-13;    // Time to begin checking for PE
 double equiTol = 0.010;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
@@ -394,8 +427,17 @@ gsl_vector *rvPt;      // Pointer to rv[] array
 int totalFplus = 0;
 int totalFminus = 0;
 
-// Arrays to hold non-zero fluxes in the network. Corresponding memory will be allocated dynamically 
-// below with malloc
+// Arrays to hold time, temperature, and density in hydro profile
+
+const static int maxHydroEntries = 200;
+int hydroLines;
+
+double hydroTime[maxHydroEntries];
+double hydroTemp[maxHydroEntries];
+double hydroRho[maxHydroEntries];
+
+// Arrays to hold non-zero fluxes in the network. Corresponding memory will be 
+// allocated dynamically below with malloc.
 
 double* Fplus;           // Dynamical 1D array for non-zero F+ (Dim totalFplus)
 double* Fminus;          // Dynamical 1D array for non-zero F- (Dim totalFminus)
@@ -513,7 +555,7 @@ int indexAlpha = -1;     // Species index of He4 if hasAlpha = true
 // -------------------------------------------------------------------------
 // Arrays to hold output quantities at plot timesteps. The variable
 // plotSteps is hardwired above, but eventually should be input
-// at time of execution.
+// at time of execution from data files.
 // -------------------------------------------------------------------------
 
 // Target plot times for plot steps. Computed from value of plotSteps in
@@ -541,7 +583,6 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 //----------------CLASS DEFINITIONS ----------------
 
-
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
  * objects of type Utilities.  For example, Utilities::returnNetIndexZN (Z, N).
@@ -568,7 +609,7 @@ class Utilities{
         
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_T(t) to find an interpolated T9
-        // as a function of time if constant_T9 = false.
+        // as a function of time if hydroProfile = true.
         // -------------------------------------------------------------------------
         
         static double interpolate_T(double t){
@@ -577,11 +618,11 @@ class Utilities{
             // T9 at this value of time t.  For now, we just return T9_start.
             
             double temp;            // Interpolated temperature
-            temp = T9_start;        // Temporary for testing
+            temp = T9_start;        // Temporary constant value for testing
             
-            printf("\n\n**** Temperature interpolation T9(%7.4e) = %6.4f ****",
-                t, temp
-            );
+            // **********
+            // Call to spline interpolator for temperature goes here
+            // **********
             
             return temp;
         }
@@ -589,7 +630,7 @@ class Utilities{
         
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_rho(t) to find an interpolated 
-        // density rho as a function of time if constant_rho = false.
+        // density rho as a function of time if hydroProfile is false.
         // -------------------------------------------------------------------------
         
         static double interpolate_rho(double t){
@@ -598,11 +639,11 @@ class Utilities{
             // rho at this value of time t.  For now, we just return rho_start.
             
             double rhonow;             // Interpolated density
-            rhonow = rho_start;        // Temporary for testing
+            rhonow = rho_start;        // Temporary constant value for testing
             
-            printf("\n**** Density interpolation rho(%7.4e) = %7.4e ****\n",
-                   t, rhonow
-            );
+            // **********
+            // Call to spline interpolator for density goes here
+            // **********
             
             return rhonow;
         }
@@ -638,7 +679,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static void plotOutput(){
-        
+
             // Open files for ascii output. Assumes that the subdirectory
             // gnu_out already exists. If it doesn't, will compile but
             // may crash when executed.
@@ -660,19 +701,20 @@ class Utilities{
             // array in from a data file.
             
             
-//             int plotXlist[ISOTOPES];
+            int plotXlist[ISOTOPES];
             
-//             for(int i=0; i<ISOTOPES; i++){
-//                 plotXlist[i] = i;
-//             }
+            for(int i=0; i<ISOTOPES; i++){
+                plotXlist[i] = i;
+            }
             
 
-            //int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};        // alpha
-            //int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-            //int plotXlist[] = {0,1, 2};                                     // 3-alpha
-            //int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
-            
+//             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+//             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
+//             int plotXlist[] = {0,1, 2};                                     // 3-alpha
+//             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
+//             
 //             int plotXlist[] = 
 //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
 //             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
@@ -681,7 +723,6 @@ class Utilities{
             // Get length LX of array plotXlist holding the species indices for
             // isotopes that we will plot mass fraction X for.
             
-            //int LX = ISOTOPES;
             int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
             
             string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
@@ -730,7 +771,8 @@ class Utilities{
             
             fprintf(pFile, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
             fprintf(pFile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-            if(plotFluxes) fprintf(pFile3, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+            if(plotFluxes) fprintf(pFile3, "%d integration steps ", 
+                totalTimeSteps - totalTimeStepsZero);
             fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
                 
             FPRINTF_CPU;
@@ -800,10 +842,8 @@ class Utilities{
             fprintf(pFile3, stringToChar(strflux));
             
             
-            // Write the data to the file line by line using concatenated fprintf
-            // statements.
-
-            // Loop over timesteps for plot output
+            // Loop over timesteps for plot output writing the data to the file 
+            // line by line using concatenated fprintf statements.
             
             for(int i=0; i<plotSteps; i++){
                 
@@ -846,6 +886,8 @@ class Utilities{
                         log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
                 }
                 
+                cout.flush();
+                
             }
             
             // Close output files
@@ -854,6 +896,25 @@ class Utilities{
             fclose (pFile2);
             fclose (pFile3);
             
+        }   // End plotOutput()
+        
+        
+        // Static function Utilities::plotHydroprofile() to send hydro profile 
+        // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
+        // are true.
+        
+        static void plotHydroProfile(){
+            
+            FILE * pHydro;
+            pHydro = fopen("gnu_out/hydroProfile.out","w");
+            fprintf(pHydro, "#  time          T          rho");
+            
+            for (int i=0; i<hydroLines; i++){
+                fprintf(pHydro, "\n%6.4e  %6.4e  %6.4e", 
+                    hydroTime[i], hydroTemp[i], hydroRho[i]);
+            }
+            
+            fclose (pHydro);
         }
         
         
@@ -864,6 +925,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static double sumMassFractions(void) {
+            
             double sum = 0.0;
             for(int i=0; i<ISOTOPES; i++){
                 sum += X[i];
@@ -879,6 +941,7 @@ class Utilities{
         // ------------------------------------------------------------------
         
         static double sumXEquil() {
+            
             double sum = 0;
             for(int i=0; i<ISOTOPES; i++){
                 if( isotopeInEquil[i] ){
@@ -896,6 +959,7 @@ class Utilities{
         // -----------------------------------------------------------------------
         
         static double sumXNotEquil() {
+            
             double sum = 0;
             for(int i=0; i<ISOTOPES; i++){
                 if( !isotopeInEquil[i] ){
@@ -912,6 +976,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         
         static int returnNetIndexZN(int z, int n) {
+            
             for (int i = 0; i < numberSpecies; i++) {
                 if (Z[i] == z && N[i] == n) return i;
             }
@@ -925,6 +990,7 @@ class Utilities{
         // -----------------------------------------------------------------------
         
         static int returnNetIndexSymbol(char* symbol) {
+            
             int result;
             for (int i = 0; i < numberSpecies; i++) {
                 result = strcmp(isoLabel[i], symbol);
@@ -942,6 +1008,7 @@ class Utilities{
         // ----------------------------------------------------------------------
         
         static bool isInNet(int Z, int N) {
+            
             if (returnNetIndexZN(Z, N) < 0) {
                 return false;
             } else {
@@ -979,14 +1046,38 @@ class Utilities{
         
         
         // ----------------------------------------------------------------------
-        // Static function Utilities::stringToChar(s) to convert string to char 
-        // so that it will print in printf. Assumes max of 50 characters.  
+        // Using the C++ class string instead of char to handle strings 
+        // won't compile on my system unless #include <iostream> is included. The
+        // C printf command also won't work correctly because it isn't typesafe.
+        // See the discussion at
+        //
+        //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
+        //
+        // Instead, print with the cout command (which requires #include <iostream>)
+        // Example: 
+        //
+        //      string test("howdy");
+        //      string test2(" do");
+        //      cout << "Your string is " << test + test2;
+        //
+        // If instead you try
+        //
+        //      printf("\n%s", test+test2);
+        //
+        // it will likely print garbage. However, you can print a string with printf
+        // if it is first converted to a char:
+        //
+        //      string s = "Howdy World!";
+        //      char cs[s.size() + 1];
+        //      strcpy(cs, &s[0]);	// or strcpy(cs, s.c_str());
+        //      printf("\n\nstring=%s\n", strcpy(cs, &s[0]));
+        //  
         // Typically a string type can be printed with cout but a string given 
         // to printf usually displays garbage because of type issues in the 
-        // C function printf. This function converts a string to a corresponding 
-        // character array, which either printf or cout can print. Presently
-        // assumes the string has no more than 50 characters.  Change the
-        // dimension of cs[] to increase that.
+        // C function printf noted above. The function stringToChar(string) defined
+        // below converts a string to a corresponding character array, which either 
+        // printf or cout can print. Presently assumes the string has no more than 50 
+        // characters.  Change the dimension of cs[] to change that.
         // ----------------------------------------------------------------------
         
         static char* stringToChar(string s){
@@ -1004,6 +1095,7 @@ class Utilities{
         static void startTimer(){
             START_CPU     // Start a timer for rate calculation
         }
+        
         
         // ----------------------------------------------------------------------
         // Static function Utilities::stopTimer() to stop timer started with 
@@ -1228,7 +1320,7 @@ class Species: public Utilities {
 
 
 /* Class Reaction to describe all reactions in the network.  Create new instance
- * for each reaction in the network. Inherits from Utilities */
+ * of this class for each reaction in the network. Inherits from Utilities */
 
 class Reaction: public Utilities {
     
@@ -1240,46 +1332,16 @@ class Reaction: public Utilities {
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
         int reacGroupClass;          // Reaction group class (1-5 surrogate for A-E)
-        int RGmemberIndex;           // index of reaction within its reaction group
-        int rgindex;                 // Index of RG (0, 1, ... #RG)
+        int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
+        int RGmemberIndex;           // Index of reaction within its reaction group
         
-        // Using the C++ class string instead of char to handle strings 
-        // won't compile on my system unless #include <iostream> is included. The
-        // C printf command also won't work correctly because it isn't typesafe.
-        // See the discussion at
-        //
-        //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
-        //
-        // Instead, print with the cout command (which requires #include <iostream>)
-        // Example: 
-        //
-        //      string test("howdy");
-        //      string test2(" do");
-        //      cout << "Your string is " << test + test2;
-        //
-        // If instead you try
-        //
-        //      printf("\n%s", test+test2);
-        //
-        // it will likely print garbage. However, you can print a string with printf
-        // if it is first converted to a char:
-        //
-        //      string s = "Howdy World!";
-        //      char cs[s.size() + 1];
-        //      strcpy(cs, &s[0]);	// or strcpy(cs, s.c_str());
-        //      printf("\n\nstring=%s\n", strcpy(cs, &s[0]));
-        //
-        // The function getreacChar() below returns the string reacString as a
-        // pointer to a character array that will work in printf. Alternatively,
-        // Utilities::stringToChar() will do same thing.
-        
-        string reacGroupClassLett;   // Letter equivalent (A-E) for reacGroupClass
-        string reacGroupSymbol;      // Schematic equil reaction (e.g. a+b<->c)
+        char reacGroupClassLett;     // Letter equivalent (A-E) for reacGroupClass
+        char* reacGroupSymbol;       // Schematic equil reaction (e.g. a+b<->c)
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
-        string reacString;           // String describing reaction
-        string resonanceType;        // Whether resonant (r) or non-resonant (nr)
+        char* reacString;            // String describing reaction
+        char resonanceType;          // Whether resonant (r) or non-resonant (nr)
         int isEC;                    // Whether electron capture reaction (1) or not (0)
         int isReverse;               // Whether reverse reaction (1) or not (0)
         int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
@@ -1318,7 +1380,7 @@ class Reaction: public Utilities {
         double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
-        string ss;                   // Utility string
+        char* ss;                    // Utility string
   
   
     public:
@@ -1331,7 +1393,7 @@ class Reaction: public Utilities {
             
             isEquil = false;
             reacIsActive[reacIndex] =  true;
-            
+
         }
         
         // Public Reaction setter functions to set values of private class fields
@@ -1350,44 +1412,39 @@ class Reaction: public Utilities {
             
             switch(index){
                 case 1:
-                    reacGroupClassLett = "A";
-                    reacGroupSymbol = "a<->b";
+                    reacGroupClassLett = 'A';
+                    reacGroupSymbol = Utilities::stringToChar("a<->b");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 2:
-                    reacGroupClassLett = "B";
-                    reacGroupSymbol = "a+b<->c";
+                    reacGroupClassLett = 'B';
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 3:
-                    reacGroupClassLett = "C";
-                    reacGroupSymbol = "a+b+c<->d";
+                    reacGroupClassLett = 'C';
+                    reacGroupSymbol = Utilities::stringToChar("a+b+c<->d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 4:
-                    reacGroupClassLett = "D";
-                    reacGroupSymbol = "a+b<->c+d";
+                    reacGroupClassLett = 'D';
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c+d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
                 case 5:
-                    reacGroupClassLett = "E";
-                    reacGroupSymbol = "a+b<->c+d+e";
+                    reacGroupClassLett = 'E';
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c+d+e");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
             }
         }
         
-        void setreacGroupSymbol(string s){reacGroupSymbol = s; }
+        void setreacGroupSymbol(char* s){reacGroupSymbol = s; }
         
         void setRGmemberIndex(int i){
             
-            // Set field of this class
-            
-            RGmemberIndex = i;
-            
-            // Write to corresponding array RMmemberIndex[]
-            
-            RGMemberIndex[reacIndex] = i;
+            RGmemberIndex = i;                   // Field in this class
+            RGMemberIndex[reacIndex] = i;        // Write to corresponding array 
             
         }
         
@@ -1402,12 +1459,12 @@ class Reaction: public Utilities {
         
         void setnumberProducts(int i){
             
-            numberProducts = i;              // Field in this class
-            NumProducts[reacIndex] = i;      // Array
+            numberProducts = i;                  // Field in this class
+            NumProducts[reacIndex] = i;          // Array
             
         }
         
-        void setreacString(string s){ 
+        void setreacString(char* s){ 
             
             // Set field of this class
             
@@ -1415,7 +1472,7 @@ class Reaction: public Utilities {
             
             // Set corresponding character array reacLabel 
             
-            char p[s.length()];  
+            char p[20];  
             for (int i = 0; i < sizeof(p); i++) { 
                 p[i] = s[i]; 
                 reacLabel[reacIndex][i] = p[i];
@@ -1535,8 +1592,8 @@ class Reaction: public Utilities {
             }
         }
         
-        // Overloaded versions of setisoIndex.  This version takes two arguments
-        // sets a value of a particular isoIndex[].
+        // Overloaded versions of setisoIndex.  This version takes two 
+        // arguments and sets a value of a particular isoIndex[].
         
         void setisoIndex(int i, int j){isoIndex[i] =  j;}
         
@@ -1566,20 +1623,13 @@ class Reaction: public Utilities {
         
         // Return reacGroupSymbol as string
         
-        string getreacGroupSymbol(){ return reacGroupSymbol; }
-        
-        // Return reacGroupSymbol as char array so it will work in printf
-        
-        char* getreacGroupChar(){
-            strcpy(cs, reacGroupSymbol.c_str());
-            return cs;
-        }
+        char* getreacGroupSymbol(){ return reacGroupSymbol; }
         
         int getRGmemberIndex(){return RGmemberIndex;}
         
         int getrgindex(){return rgindex;}
         
-        string getreacGroupClassLett(){ return reacGroupClassLett; }
+        char getreacGroupClassLett(){ return reacGroupClassLett; }
         
         int getnumberReactants(){ return numberReactants; }
         
@@ -1587,12 +1637,13 @@ class Reaction: public Utilities {
         
         // return reacString as string
         
-        string getreacString(){ return reacString; }
+        char* getreacString(){ return reacString; }
         
-        // Return reacString as char array so it will work in printf
+        // The function getreacChar() returns the string reacString as a
+        // pointer to a character array that will work in printf. Alternatively,
+        // Utilities::stringToChar() will do same thing.
         
         char* getreacChar(){
-            strcpy(ccs, reacString.c_str());
             return ccs;
         }
         
@@ -1611,10 +1662,11 @@ class Reaction: public Utilities {
         double getp(int k){ return p[k]; }
         
         int getreactantZ(int k){
+            
             if(k > numberReactants-1){
-                printf("\n\nERROR: k-1=%d larger than number reactants %d", 
+                printf("\n\nERROR: k=%d larger than numberReactants-1 %d; Stopping", 
                     k, numberReactants);
-                return -1;
+                exit(-1);  // Exit program since something is corrupt
             } else {
                 return reactantZ[k];
             }
@@ -1660,10 +1712,9 @@ class Reaction: public Utilities {
         
         int getreactantIndex(int k){
             if(k > numberReactants-1){
-                ss = "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d ";
-                ss += "larger than # reactants %d";
-                printf(stringToChar(ss), 
-                    k, numberReactants);
+                ss = Utilities::stringToChar(
+                    "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d larger than # reactants %d");
+                printf(stringToChar(ss), k, numberReactants);
                 return -1;
             } else {
                 return reactantIndex[k];
@@ -1788,7 +1839,6 @@ class Reaction: public Utilities {
                 int indy = MapFminus[i];
                 Fminus[i] = FminusFac[i]*Flux[indy];
             }
-
         }
         
         
@@ -1984,7 +2034,7 @@ class Reaction: public Utilities {
             // whether the reaction is 1-body, 2-body, or 3-body, and is selected by
             // the switch statement in fluxChooser(numberReactants).
             
-            string s;
+            //char s;
             double kfac;
             
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
@@ -2015,7 +2065,6 @@ class Reaction: public Utilities {
       
     void fluxChooser(int bodies){
 
-        string s;
         double kfac;
             
             switch(bodies){
@@ -2057,6 +2106,7 @@ class Reaction: public Utilities {
         // rates kfac computed in computeFlux().
         
         void fastSlowRates(double testRate){
+            
             if (testRate > fastestCurrentRate) {
                 fastestCurrentRate = testRate;
                 fastestCurrentRateIndex = getreacIndex();
@@ -2100,7 +2150,7 @@ class Reaction: public Utilities {
                 accum = 0.0;
                 
                 for(int j=minny; j<=FplusMax[i]; j++){
-                    accum += Fplus[j];
+                    accum += Fplus[j]; 
                 }
                 
                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
@@ -2115,7 +2165,7 @@ class Reaction: public Utilities {
                     accum += Fminus[j];
                 }
                 
-                setSpeciesfminus(i, accum);      // Also sets FminusSum[i] = accum and keff
+                setSpeciesfminus(i, accum);   // Also sets FminusSum[i] = accum and keff
                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
 
             }
@@ -2146,7 +2196,8 @@ class ReactionVector:  public Utilities {
             // Write out the array containing components of the reaction vectors
             
             int uppity = minimumOf(25, numberSpecies);  // limit printout width to 25 species
-            fprintf(pFileD, "\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
+            fprintf(pFileD, 
+                "\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
                 numberReactions, ISOTOPES);
             fprintf(pFileD, "\nReaction \\ Species           ");
             for(int k=0; k<uppity; k++){
@@ -2167,7 +2218,9 @@ class ReactionVector:  public Utilities {
             // may be found in the example code arrayPointers.c and matrixGSL.c
             // -----------------------------------------------------------------------
             
-            rvPt = rv;       // Set pointer to beginning address of array rv
+            // Set pointer to beginning address of array rv
+            
+            rvPt = rv;
             
             // Allocate an array populated with GSL vectors
             
@@ -2201,7 +2254,8 @@ class ReactionVector:  public Utilities {
             
             // Display reaction vectors as component list
             
-            fprintf(pFileD, "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
+            fprintf(pFileD, 
+                "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
                 SIZE, ISOTOPES);
             
             for (int i = 0; i < SIZE; i++) {
@@ -2289,6 +2343,7 @@ class ReactionVector:  public Utilities {
             int scorekeeper;
             
             for (int i=0; i<SIZE; i++){
+                
                 scorekeeper = 0;
                 if(i==0) rindex ++;
                 
@@ -2392,11 +2447,11 @@ class ReactionVector:  public Utilities {
                         reacMask[i][j] = -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
                     } 
-                    else if(total < 0){          // Contributes to F+ for this isotope
+                    else if(total < 0){  // Contributes to F+ for this isotope
                         numFplus ++;
                         reacMask[i][j] = -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
-                    } else {           // Does not contribute to flux for this isotope
+                    } else {             // Doesn't contribute to flux for this isotope
                         reacMask[i][j] = 0;
                     }
                 }
@@ -2491,7 +2546,7 @@ class MatrixUtils: public Utilities {
             return *abundances;
         }
 
-        // Free allocated matrix and vector
+        // Free allocated matrix and vector memory
         
         void freeGSL(){
             gsl_vector_free(abundances);
@@ -2574,7 +2629,7 @@ class ReactionGroup:  public Utilities {
     
     public:
     
-    // Constructor executed at instantiation of ReactionGroup objects
+    // Constructor executed when ReactionGroup objects instantiated
         
     ReactionGroup(int rgn){
         RGn = rgn;
@@ -2627,11 +2682,11 @@ class ReactionGroup:  public Utilities {
     
     void setrgclass(int rc){rgclass = rc;}
 
-    void setreaclabel(int k, string s){ 
+    void setreaclabel(int k, char *s){ 
         
         // Convert from string to char array
         
-        char p[s.length()+1];  
+        char p[20];  
         for (int i = 0; i < sizeof(p); i++) { 
             p[i] = s[i]; 
             reaclabel[k][i] = p[i];
@@ -2710,8 +2765,6 @@ class ReactionGroup:  public Utilities {
     int getRGn(){return RGn;}
     
     int getrgclass(){return rgclass;}
-    
-    char* getreacString(int k){return reaclabel[k];}
     
     double getRGfluxes(int index){return flux[index];}
     
@@ -3337,14 +3390,15 @@ class Integrate: public Utilities {
             // Compute trial timestep for explicit asymptotic
             
             choice2 =  0;
+            dtMode = 0;
+            
             dt_EA = computeTimeStep_EA(dtLast, sumX);
             if(dt_EA < dt_FE)choice2 = 1;
             dt = min(dt_FE, dt_EA); 
             
             // Estimate error by computing difference in sumX between full timestep
-            // and two half timesteps.
-            
-            // First store current Ys and t and dt for later restoration
+            // and two half timesteps. First store current Ys and t and dt for later 
+            // restoration.
             
             storeCurrentY();
             dt_saved = dt;
@@ -3413,6 +3467,8 @@ class Integrate: public Utilities {
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
+            double bpd = dt;   // Dummy statement for breakpoint
+            
             
         }    // End of doIntegrationStep
         
@@ -3477,15 +3533,13 @@ class Integrate: public Utilities {
         
         static double computeNextTimeStep(double error, double error_D, double dt_old){
             
-            //E_R = max(0.001*massTol, error)/error_D;  // max condition prevents E_R = 0
-            
             E_R = error/error_D; 
             
             if(E_R > 0.1){
                 dt_new =  0.9 * dt_old / E_R;
                 choice = 0;
             } else if(E_R < 0.5) {
-                dt_new =  0.5 * dt_old / sqrt(E_R);   // Divides by 0 if E_R = 0
+                dt_new =  0.5 * dt_old / sqrt(E_R);   // Note: Divides by 0 if E_R = 0
                 choice = 1;
             } else {
                 dt_new = dt_old;
@@ -3543,13 +3597,6 @@ class Integrate: public Utilities {
                 updateAsyEuler();
             }
             
-            // Temporary diagnostic quantities for debugger.  Not used elsewhere.
-            
-            double dF0 = abs(FplusSum[0] -  FminusSum[0]);
-            double dF5 = abs(FplusSum[5] -  FminusSum[5]);
-            double dF6 = abs(FplusSum[6] -  FminusSum[6]);
-            double dF7 = dF0;
-            
         }  // End of updatePopulations
         
         
@@ -3594,7 +3641,8 @@ class Integrate: public Utilities {
     // Function Integrate::asymptoticUpdate(int double, double, double, double) to update by 
     // the asymptotic method using Sophia He formula. Returns the updated value of Y.
     
-    static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
+    static double asymptoticUpdate(
+        int i, double fplus, double fminus, double y, double dtt){
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         return newY;
@@ -3648,9 +3696,7 @@ class Integrate: public Utilities {
             // Recompute fluxes if another predictor-corrector iteration follows
             
             if (nitQSS > 1) {
-                
                 computeReactionFluxes();
-                
             }
         }
     }
@@ -3801,7 +3847,7 @@ Reaction reaction [SIZE];
 // Memory for array will be allocated dynamically below to the size
 // given by numberRG (which is computed in the class ReactionVector)
 
-ReactionGroup *RG;   // Dynamically allocated 1D array for reaction groups
+ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
 
@@ -3810,7 +3856,7 @@ ReactionGroup *RG;   // Dynamically allocated 1D array for reaction groups
 
 
 int main() { 
-    
+
     // Open file to output network info
     
     pfnet = fopen("gnu_out/network.data","w");
@@ -3832,20 +3878,16 @@ int main() {
     if(doASY && !doPE){
         doQSS = false;
         intMethod = "ASY method";
-        cout << "Using ASY method";
         fprintf(pFileD, "Using ASY method\n");
     } else if (doQSS && !doPE) {
         intMethod = "QSS method";
-        cout << "Using QSS method";
         doASY = false;
         fprintf(pFileD, "Using QSS method\n");
     } else if (doASY && doPE){
         intMethod = "ASY+PE method";
-        cout << "Using ASY+PE method";
         fprintf(pFileD, "Using ASY+PE method\n");
     } else if (doQSS && doPE){
         intMethod = "QSS+PE method";
-        cout << "Using QSS+PE method";
         fprintf(pFileD, "Using QSS+PE method\n");
     }
 
@@ -3854,7 +3896,7 @@ int main() {
     // code in an operator-split coupling of this network to hydro. Here we hardwire
     // them for testing purposes.  These will be used to calculate the reaction
     // rates in the network. If we assume operator splitting, the temperature 
-    // and density are assumed constant for each network integration. But we allow
+    // and density are assumed constant for each network integration. We also allow
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
     
@@ -3907,12 +3949,20 @@ int main() {
     char *rateLibraryFilePtr = rateLibraryFile;
     readLibraryParams(rateLibraryFilePtr);
     
+    // If using a hydrodynamical profile, read in the file containing
+    // the hydro profile and store variables.
+    
+    if(hydroProfile){
+        char *hydroFilePtr = hydroFile;
+        readhydroProfile(hydroFilePtr);
+    }
+    
     // Print out some quantitites from the Reaction object reaction[].  
     
     for(int i=0; i<SIZE; i++){
         
         fprintf(pfnet, 
-                "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f", 
+            "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
             reaction[i].getreacIndex(), 
             reaction[i].getreacChar(),  
             reaction[i].getreacClass(),
@@ -3921,7 +3971,8 @@ int main() {
             reaction[i].getisEC(),
             reaction[i].getisReverse(),
             reaction[i].getQ(),
-            reaction[i].getprefac()
+            reaction[i].getprefac(),
+            reaction[i].getreacGroupSymbol()
         );
     }
 
@@ -3984,10 +4035,10 @@ int main() {
     
     ReactionVector::sortReactionGroups();
     
-    // Allocate dynamically an array of ReactionGroup objects of dimension numberRG, where
-    // numberRG was determined by ReactionVector::sortReactionGroups() above.
+    // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
+    // numberRG, where numberRG was determined by ReactionVector::sortReactionGroups() above.
     
-    RG = (ReactionGroup*) malloc(sizeof(ReactionGroup)*numberRG);
+    RG = (ReactionGroup*) malloc(sizeof(ReactionGroup) * numberRG);
     
     // Create ReactionGroup objects RG[] and assign values for various fields
     // using the function assignRG().
@@ -3999,6 +4050,7 @@ int main() {
     // in the corresponding reaction group and false (0) otherwise.
     
     for(int i=0; i<numberRG; i++){
+        
         for(int j=0; j<ISOTOPES; j++){
             if( RG[i].speciesIsInRG(j) ){
                 RGisoMembers[i][j] = true;
@@ -4006,9 +4058,10 @@ int main() {
                 RGisoMembers[i][j] = false;
             }
         }
+        
     }
     
-    // Allocate 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
+    // Allocate memory for 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
     // the arrays holding the species factors FplusFac and FminusFac, and also arrays to hold 
     // their sums for each isotope. ReactionVector::parseF() must be run first because it determines 
     // totalFplus and totalFminus.
@@ -4020,22 +4073,24 @@ int main() {
     FplusSum = (double*) malloc(sizeof(double) * numberSpecies);
     FminusSum = (double*) malloc(sizeof(double) * numberSpecies);
     
-    // Allocate arrays that hold the index of the boundary between different isotopes in the
-    // Fplus and Fminus 1D arrays. 
+    // Allocate memory for arrays that hold the index of the boundary between different 
+    // isotopes in the Fplus and Fminus 1D arrays. 
     
     FplusMax = (int*) malloc(sizeof(int) * numberSpecies);
     FplusMin = (int*) malloc(sizeof(int) * numberSpecies);
     FminusMax = (int*) malloc(sizeof(int) * numberSpecies);
     FminusMin = (int*) malloc(sizeof(int) * numberSpecies);
 
-    // Allocate 1D arrays that will be used to map finite F+ and F- to the Flux array.
+    // Allocate memory for 1D arrays that will be used to map finite F+ and F- to 
+    // the Flux array.
     
     FplusIsotopeCut = (int*) malloc(sizeof(int) * numberSpecies);
     FminusIsotopeCut = (int*) malloc(sizeof(int) * numberSpecies);
     FplusIsotopeIndex = (int*) malloc(sizeof(int) * totalFplus);
     FminusIsotopeIndex = (int*) malloc(sizeof(int) * totalFminus);
     
-    // Allocate 1D arrays that will hold the index of the isotope for the F+ or F- term
+    // Allocate memory for 1D arrays that will hold the index of the isotope for 
+    // the F+ or F- term
     
     MapFplus = (int*) malloc(sizeof(int) * totalFplus);
     MapFminus = (int*) malloc(sizeof(int) * totalFminus);
@@ -4053,6 +4108,13 @@ int main() {
     // *** Set up for main time integration while-loop ***
     // -----------------------------------------------------
     
+    // Check if IS0TOPES and numberSpecies not equal. Normally they should be
+    
+    if (ISOTOPES != numberSpecies){
+        printf("\n\n***** CAUTION:  ISOTOPES=%d numberSpecies=%d *****\n\n", 
+            ISOTOPES, numberSpecies);
+    }
+    
     printf("\nBEGIN TIME INTEGRATION:\n");
     fprintf(pFileD, "\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
@@ -4069,7 +4131,7 @@ int main() {
     
     Utilities::startTimer();    // Start a timer for integration
     
-    // Compute initial rates. If constant_T9 and constant_rho are true, rates won't
+    // Compute initial rates. If hydroProfile = false, rates won't
     // change in the integration and don't need to be computed again.  If either
     // T9 or rho change, the rates will be recomputed at each integration step.
     // Use functions of Reaction class to compute reaction rates. We have instantiated
@@ -4089,11 +4151,14 @@ int main() {
         reaction[i].showRates();
     }
     
-    if(constant_T9 && constant_rho){
-        fprintf(pFileD, "\n\n**** Rates won't be computed again since T and rho won't ");
-        fprintf(pFileD, "change in integration ****\n");
+    if(!hydroProfile){
+        fprintf(pFileD, 
+            "\n\n**** Rates won't be computed again since T and rho won't ");
+        fprintf(pFileD, 
+            "change in integration ****\n");
     } else {
-        fprintf(pFileD, "\n\n**** Rates will be recomputed at each timestep since T and ");
+        fprintf(pFileD, 
+            "\n\n**** Rates will be recomputed at each timestep since T and ");
         fprintf(pFileD, "rho may change ****\n");
     }
     
@@ -4115,28 +4180,29 @@ int main() {
         
         updateY0();
         
-        // Specify temperature T9 and density rho. If constant_T9 = true, a constant
+        // Specify temperature T9 and density rho. If hydroProfile = false, a constant
         // temperature is assumed for the entire network calculation, set by T9_start
-        // above.  Otherwise (constant_T9 = false) we here interpolate the temperature
+        // above.  Otherwise (hydroProfile = true) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
-        if(!constant_T9 && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
-        if(!constant_rho && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
+        if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+        if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
-        // function of Reaction on each object. If constant_T9 and constant_rho are true, 
+        // function of Reaction on each object. If hydroProfile is false, 
         // the rates only need be computed once as they won't change over this
         // integration. Otherwise they are recomputed for each integration step in
         // the following conditional.
         
-        if( (!constant_T9 || !constant_rho) && totalTimeSteps > 1){
-            printf("**** RECOMPUTED RATES, timestep=%d\n",totalTimeSteps);
+        if( (hydroProfile) && totalTimeSteps > 1){
+            
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
                 reaction[i].computeRate(T9, rho);
             }
+            
         }
         
         // Compute reaction fluxes corresponding to current rates and populations.
@@ -4270,11 +4336,12 @@ int main() {
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d/%d Eq=%d/%d SX=%5.4f ";
             ts += "dE=%6.2e E=%6.2e E_R=%6.2e ch=%d ch2=%d fast:%s Q=%+6.3f dev=%+6.3e";
             
-            printf(Utilities::stringToChar(ts), plotCounter, iterations, t, dt, totalTimeSteps, 
+            printf(Utilities::stringToChar(ts), 
+                   plotCounter, iterations, t, dt, totalTimeSteps, 
                    totalAsy, ISOTOPES, totalEquilRG, numberRG, sumX, ECON*netdERelease, 
-                   ECON*ERelease, E_R, choice, choice2, reacLabel[ fastestRateIndexPlot[plotCounter-1]],
-                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(),
-                   mostDevious
+                   ECON*ERelease, E_R, choice, choice2, 
+                   reacLabel[ fastestRateIndexPlot[plotCounter-1]],
+                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only
@@ -4316,18 +4383,17 @@ int main() {
 
     printf("\n\n");
     
+    // Flush data buffers to force immediate output
+    
     cout.flush();
     
-    // Output of data to plot files after integration.  Note that for the
-    // pp network the calculation works but at the end there is an error
-    // message "munmap_chunk(): invalid pointer", or sometimes
-    // "free(): invalid pointer" that is discussed here:
-    //
-    //     https://stackoverflow.com/questions/32118545/munmap-chunk-invalid-pointer
-    //
-
+    // Output data to plot files after integration. 
     
     Utilities::plotOutput();
+    
+    if(hydroProfile && plotHydroProfile){
+        Utilities::plotHydroProfile();
+    }
     
     
     // **************************************************
@@ -4342,7 +4408,7 @@ int main() {
     fclose (pfnet);
    
     // Free allocated memory
-    
+
     free(Fplus);
     free(Fminus);
     free(FplusFac);
@@ -4380,6 +4446,7 @@ int main() {
 // Function showParameters() displays integration parameters.
 
 void showParameters(){
+    
     printf("\n\nIntegration using ");
     printf(Utilities::stringToChar(intMethod));
     printf("\nT9=%6.3e rho=%6.3e massTol=%6.3e sf=%5.2e equiTol=%5.2e equilTime=%5.2e",
@@ -4393,6 +4460,7 @@ void showParameters(){
     printf("\nIntegration steps=%d  totalIterations=%d  IntegrationSteps_plotted=%d", 
         totalTimeSteps, totalIterations, totalTimeSteps-totalTimeStepsZero);
     Utilities::stopTimer();      // Stop timer and print integration time
+    
 }
 
 
@@ -4400,11 +4468,13 @@ void showParameters(){
 // in the integration.
 
 double dE_halfstep(){
+    
     double dE_half = 0.0;
     for(int i=0; i<SIZE; i++){
         dE_half += reaction[i].getQ() * reaction[i].getflux();
     }
     return dE_half;
+    
 }
 
 
@@ -4579,6 +4649,7 @@ void evolveToEquilibrium() {
             RG[i].computeEquilibrium();
         }
     }
+    
 }
 
 
@@ -4591,11 +4662,12 @@ void evolveToEquilibrium() {
 // --------------------------------------------------------------
 
 bool isoIsInRG(int isoindex, int rgindex) {
+    
     for (int j=0; j<RG[rgindex].getniso(); j++){
-        if( RG[rgindex].getisoindex(j) == isoindex )
-        return true;
+        if( RG[rgindex].getisoindex(j) == isoindex ) return true;
     }
     return false;
+    
 }
 
 
@@ -4603,6 +4675,7 @@ bool isoIsInRG(int isoindex, int rgindex) {
 // isotope in the network
 
 void getmaxdYdt(){
+    
     double ck;
     maxdYdt = 0.0;
     maxdYdtIndex = -1;
@@ -4613,7 +4686,80 @@ void getmaxdYdt(){
             maxdYdt = abs(ck);
         }
     }
+    
 }
+
+
+// Function to read in hydro profile from file fileName if hydroProfile 
+// is true. 
+
+void readhydroProfile(char *fileName){
+    
+     char line[60];
+     int numberEntries;
+     int dummy;
+     double Time;
+     double Temp;
+     double Rho;
+    
+    // Open a file for reading 
+    
+    FILE *fr; 
+    fr = fopen (fileName, "r");
+    
+    // Exit if the file doesn't exist or can't be read
+    
+    if( fr == NULL ){
+        printf ("*** File Input Error: No readable file named %s\n", fileName);
+        exit(1) ;
+    }
+    
+    int index = 0;
+    int subIndex = -1;
+    
+    // Read lines until NULL encountered. Data lines can contain up to 60 characters.
+    // The first line of the data file fileName contains labels and not data.
+    // The second line contains the number of data points (lines) in the file, the
+    // following lines contain the temperature and density data for each time.
+    
+    while(fgets(line, 60, fr) != NULL){
+        
+        subIndex ++;
+        
+        if (subIndex == 1){  // Line containing number of entries
+            
+            sscanf(line, "%d", &numberEntries);
+            
+            if(numberEntries > maxHydroEntries-1){
+                printf("\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
+                    fileName, numberEntries);
+                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
+                printf("to a value \nof at least %d and recompile.\n\n", numberEntries+1);
+                exit(1);
+            }
+            
+        } else if (subIndex > 1) {    // Line containing t, T, rho data
+            
+            sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); 
+            
+            // Store hydro profile in three arrays
+            
+            hydroTime[index] = Time;   // Time
+            hydroTemp[index] = Temp;   // Temperature(time)
+            hydroRho[index] = Rho;     // Density(time)
+            
+            index ++;
+        }
+        
+        hydroLines = index;            // # Data line entries read in
+    
+    }
+    
+    // Close the input file
+    
+    fclose(fr);
+    
+}    // End of function readhydroProfile(char *fileName)
 
 
 
@@ -4740,7 +4886,7 @@ void readNetwork (char *fileName) {
         // actual number of reactions read in.
         
         numberSpecies = isoIndex + 1;  
-        
+
     }
     
 //     Added static method to class Species to renorm all X to sum of one that is 
@@ -5116,7 +5262,7 @@ void assignRG(){
         // Write reactant symbols
         
         fprintf(pFileD, "\nRG=%d  REACTANTS: iso[0]=%s", 
-        RG[i].getRGn(), isoLabel[reaction[i].getreactantIndex(0)]);
+        i, isoLabel[reaction[i].getreactantIndex(0)]);
         
         if(nummreac > 1) fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
         if(nummreac > 2) fprintf(pFileD, " iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
@@ -5173,7 +5319,7 @@ void assignRG(){
                 RG[i].setrgclass(RGclass[j]);
                 RG[i].setisForward(rgindex, isPEforward[j] );
                 
-                ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of member reaction in RG[i]
+                ck1 = RG[i].getmemberReactions(rgindex);  //reacIndex of RG[i] member reaction
                 
                 RG[i].setnumberReactants(rgindex, reaction[ck1].getnumberReactants());
                 RG[i].setnumberProducts(rgindex, reaction[ck1].getnumberProducts());
@@ -5218,12 +5364,6 @@ void assignRG(){
                     int yindex = RG[i].getisoindex(k);
                     RG[i].setisoY(k, Y[yindex]);
                 }
-                
-                fprintf(pFileD, "\nreacIndex=%d memberIndex=%d %s RGclass=%d isForward=%d", 
-                    RG[i].getmemberReactions(rgindex),
-                    rgindex, RG[i].getreacString(rgindex),  
-                    RG[i].getrgclass(),
-                    RG[i].getisForward(rgindex) );
             }
         }
         
@@ -5232,7 +5372,7 @@ void assignRG(){
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
         fprintf(pFileD, "\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
-               RG[i].getRGn(), RG[i].getrefreac(), RGclassRef, 
+               i, RG[i].getrefreac(), RGclassRef, 
                RG[i].getniso(), RG[i].getnumberMemberReactions() );
         
         // Set values of numberC for each RG
@@ -5268,7 +5408,8 @@ void assignRG(){
         for(int j=0; j<numr; j++){
             
             int reacID = RG[i].getmemberReactions(j);
-            fprintf(pFileD, "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
+            fprintf(pFileD, 
+                "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
                 j, reacLabel[reacID], RG[i].getisolabel(0),
                 RG[i].getisolabel(1), RG[i].getisolabel(2),
                 RG[i].getisolabel(3)
@@ -5286,10 +5427,10 @@ void assignRG(){
         
         int rn = RG[i].getrefreac();
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
-        fprintf(pFileD, "\n\nRG=%d  RGclass=%d %s Species Index:", 
+        fprintf(pFileD, 
+            "\n\nRG=%d  RGclass=%d %s Species Index:", 
             i, RG[i].getrgclass(),
-            Utilities::stringToChar( 
-            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() )
+            reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
         );
         
         for(int jj=0; jj<upjj; jj++){
@@ -5301,12 +5442,14 @@ void assignRG(){
             fprintf(pFileD, " isolabel[%d]=%s", jj, RG[i].getisolabel(jj));
         }
         
-        fprintf(pFileD, "\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
+        fprintf(pFileD, 
+            "\n      REACTANTS: reactantIndex[0]=%d", RG[i].getreactantIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberReactants(rn); jj++){
             fprintf(pFileD, " reactantIndex[%d]=%d", jj, RG[i].getreactantIsoIndex(jj));
         }
         
-        fprintf(pFileD, "\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
+        fprintf(pFileD, 
+            "\n      PRODUCTS: productIndex[0]=%d", RG[i].getproductIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberProducts(rn); jj++){
             fprintf(pFileD, " productIndex[%d]=%d", jj, RG[i].getproductIsoIndex(jj));
         }
@@ -5441,6 +5584,51 @@ void computeReactionFluxes(){
     
     // Sum F+ and F- for each isotope
     
-    Reaction::sumFplusFminus();
+    sumFplusFminus();
+}
+
+
+// Function sumFplusFminus() to sum the total F+ and 
+// F- for each isotope. Moved here from static function in class 
+// Reaction to make diagnostics easier.
+
+void sumFplusFminus(){
+    
+    int minny = 0;
+    double accum;
+    double dydt;
+    
+    // Loop over isotopes and reactions and sum F+ for each species
+    
+    for(int i=0; i < numberSpecies; i++){	
+        
+        // Sum F+ for each isotope
+        
+        if(i > 0) minny = FplusMax[i-1]+1;
+        accum = 0.0;
+        
+        for(int j=minny; j<=FplusMax[i]; j++){
+            accum += Fplus[j];
+        }
+        
+        setSpeciesfplus(i, accum);      // Also sets FplusSum[i] = accum;
+    }   
+        
+    // Loop over isotopes and reactions an sum F- for each species
+    
+    for(int i=0; i < numberSpecies; i++){
+        
+        minny = 0;
+        if(i>0) minny = FminusMax[i-1]+1;
+        accum = 0.0;
+        
+        for(int j=minny; j<=FminusMax[i]; j++){
+            accum += Fminus[j];
+        }
+    
+        setSpeciesfminus(i, accum);    // Also sets FminusSum[i] = accum and keff
+        setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
+        
+    }
     
 }

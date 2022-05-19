@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=5 rho=1e8 (no PF; new dt)"
+ds="Asy T9=7 rho=1e8 (no PF; new dt)"
 ds = ds.": Log |E| vs t"
 set title ds textcolor rgb title_color font "Arial,22"
 
@@ -76,12 +76,12 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = 1
-xtics = 2     # Space between major x ticmarks
+xup = -4.25
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 7
-yup = 23
+ylow = 9
+yup = 18
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 

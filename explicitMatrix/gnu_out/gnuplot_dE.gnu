@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=5 rho=1e8 (no PF; new dt)"
+ds="Asy T9=7 rho=1e8 (no PF; new dt)"
 ds = ds.": dE/dt vs t"
 set title ds textcolor rgb title_color
 
@@ -76,13 +76,13 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = 1
+xup = -4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 12
-yup = 28
-ytics = 1.0      # Space between major y ticmarks
+ylow = 18
+yup = 30
+ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]

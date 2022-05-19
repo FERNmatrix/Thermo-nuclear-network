@@ -81,13 +81,13 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -9
-xup = -7
-xtics = 0.2   # Space between major x ticmarks
+xlow = -8.2
+xup = -8
+xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 4.5
-yup = 7.5
+ylow = -2.5
+yup = -2
 ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -110,13 +110,13 @@ file1 = "gdb-java.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($3)):(log10($19)) with lines ls 1 lw 1.5 dashtype 1 title "java flux28"
-replot file1 using (log10($3)):(log10($20)) with lines ls 2 lw 1.5 dashtype 1 title "java flux29"
-replot file1 using (log10($3)):(log10($21)) with lines ls 3 lw 1.5  dashtype 1 title "java flux30"
-replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.5  dashtype 1 title "java flux31"
-#replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 1 title "Fplus[5]"
-#replot file1 using (log10($3)):(log10(abs($12))) with lines ls 6 lw 1.5 dashtype 1 title "Fplus[6]"
-#replot file1 using (log10($3)):(log10($13)) with lines ls 7 lw 1.5  dashtype 1 title "Fminus[0]"
+#plot file1 using (log10($3)):(log10($4)) with lines ls 1 lw 1.5 dashtype 1 title "java Y0(0)"
+#replot file1 using (log10($3)):(log10($5)) with lines ls 2 lw 1.5 dashtype 1 title "java Y0(5)"
+#replot file1 using (log10($3)):(log10($6)) with lines ls 3 lw 1.5  dashtype 1 title "java Y0(6)"
+#plot file1 using (log10($3)):(log10($7)) with lines ls 4 lw 1.5  dashtype 1 title "java Y(0)"
+#replot file1 using (log10($3)):(log10($8))  with lines ls 5 lw 1.5 dashtype 1 title "java Y(5)"
+#plot file1 using (log10($3)):(log10($9)) with lines ls 6 lw 1.5 dashtype 1 title "java Y(6)"
+#replot file1 using (log10($3)):(log10($6)) with lines ls 7 lw 1.5  dashtype 1 title "java Y0[6]"
 #replot file1 using (log10($3)):(log10($14))  with lines ls 8 lw 1.5 dashtype 1 title "Fminus[5]"
 #replot file1 using (log10($3)):(log10(abs($15))) with lines ls 9 lw 1.5 dashtype 1 title "Fminus[6]"
 #replot file1 using (log10($3)):(log10($16)) with lines ls 10 lw 1.5  dashtype 1 title "diff F[0]"
@@ -128,10 +128,18 @@ replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.5  dashtype 1 t
 
 file2 = "gdb-C++.out"
 
-replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
-replot file2 using (log10($3)):(log10($20)) with lines  ls 2 lw 1.5 dashtype 2 title "c++ flux29"
-replot file2 using (log10($3)):(log10($21)) with lines  ls 3 lw 1.5  dashtype 2 title "c++ flux30"
-replot file2 using (log10($3)):(log10($22)) with lines  ls 4 lw 1.5  dashtype 2 title "c++ flux31"
+#replot file1 using (log10($3)):(log10($4)) with lines ls 1 lw 1.5 dashtype 2 title "C++ Y0(0)"
+#replot file1 using (log10($3)):(log10($5)) with lines ls 2 lw 1.5 dashtype 2 title "C++ Y0(5)"
+#replot file1 using (log10($3)):(log10($6)) with lines ls 3 lw 1.5  dashtype 2 title "C++ Y0(6)"
+#replot file2 using (log10($3)):(log10($7)) with lines ls 4 lw 1.5  dashtype 2 title "C++ Y(0)"
+#replot file2 using (log10($3)):(log10($8))  with lines ls 5 lw 1.5 dashtype 2 title "C++ Y(5)"
+plot file2 using (log10($3)):(log10($9)) with lines ls 6 lw 1.5 dashtype 1 title "C++ Y[6]"
+replot file2 using (log10($3)):(log10($6)) with lines ls 6 lw 1.5 dashtype 2 title "C++ Y0[6]"
+
+#replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
+#replot file2 using (log10($3)):(log10($20)) with lines  ls 2 lw 1.5 dashtype 2 title "c++ flux29"
+#replot file2 using (log10($3)):(log10($21)) with lines  ls 3 lw 1.5  dashtype 2 title "c++ flux30"
+#replot file2 using (log10($3)):(log10($22)) with lines  ls 4 lw 1.5  dashtype 2 title "c++ flux31"
 
 
 # Reset font sizes for .eps and .png output2
@@ -143,15 +151,15 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "gnuplot_diagnosticsFlux_log.eps"    # Output file
+set out "diagnostics_Y_Y0__C++_log.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_diagnosticsFlux_log.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "diagnostics_Y_Y0_C++_log.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
