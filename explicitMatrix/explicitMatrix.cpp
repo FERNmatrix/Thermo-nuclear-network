@@ -901,11 +901,16 @@ class Utilities{
         
         static void plotHydroProfile(){
             
-            fprintf(pHydroProfile, "\n   time   T    rho");
+            FILE * pHydro;
+            pHydro = fopen("gnu_out/hydroProfile.data","w");
+            
+            fprintf(pHydro, "\n   time        T      rho");
             for (int i=0; i<hydroLines; i++){
-                fprintf(pHydroProfile, "\n%6.4e %6.4e %6.4e", 
+                fprintf(pHydro, "\n%6.4e %6.4e %6.4e", 
                     hydroTime[i], hydroTemp[i], hydroRho[i]);
             }
+            
+            fclose (pHydro);
         }
         
         
@@ -3876,7 +3881,7 @@ int main() {
     // Open file for output of the hydro profile if hydroProfile = true
     // and plotHydroProfile = true.
     
-    if(hydroProfile == true && plotHydroProfile == true){
+    if(hydroProfile && plotHydroProfile){
         pHydroProfile = fopen("gnu.out/hydroProfile.out", "w");
     }
     
@@ -4416,7 +4421,7 @@ int main() {
     
     Utilities::plotOutput();
     
-    if(hydroProfile == true && plotHydroProfile == true){
+    if(hydroProfile && plotHydroProfile){
         Utilities::plotHydroProfile();
     }
     
@@ -4434,8 +4439,7 @@ int main() {
     fclose (pHydroProfile);
    
     // Free allocated memory
-    
-    //free(hydroTime);
+
     free(Fplus);
     free(Fminus);
     free(FplusFac);
