@@ -139,10 +139,6 @@ clock_t startCPU, stopCPU;
 FILE *pFileD;
 FILE *pfnet;
 
-// File pointer for outputting the hydroProfile, if used.
-
-FILE *pHydroProfile;
-
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
@@ -162,9 +158,10 @@ char rateLibraryFile[] = "data/rateLibrary_70.data";
 //    data/torch47Profile.data     // Very hot Type Ia supernova zone
 //    data/nova125DProfile.inp     // Zone in nova explosion
 //
-// Use SplineInterpolator to interpolate in table read in.
+// Use SplineInterpolator to interpolate in table read in. If plotHydroProfile 
+// is true, the hydro profile used is output to the file gnu_out/hydroProfile.out.
 
-char hydroFile[] = "data/torch47Profile.inp";
+char hydroFile[] = "data/nova125DProfile.inp";
 
 // Control printout of flux file (true=1 to print, false=0 to suppress)
  
@@ -895,18 +892,18 @@ class Utilities{
         }
         
         
-        // Static function Utilities::outputHydroprofile() to send hydro profile 
+        // Static function Utilities::plotHydroprofile() to send hydro profile 
         // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
         // are true.
         
         static void plotHydroProfile(){
             
             FILE * pHydro;
-            pHydro = fopen("gnu_out/hydroProfile.data","w");
+            pHydro = fopen("gnu_out/hydroProfile.out","w");
             
-            fprintf(pHydro, "\n   time        T      rho");
+            fprintf(pHydro, "#  time          T          rho");
             for (int i=0; i<hydroLines; i++){
-                fprintf(pHydro, "\n%6.4e %6.4e %6.4e", 
+                fprintf(pHydro, "\n%6.4e  %6.4e  %6.4e", 
                     hydroTime[i], hydroTemp[i], hydroRho[i]);
             }
             
@@ -3878,13 +3875,6 @@ int main() {
     
     pFileD = fopen("gnu_out/diagnostics.data","w");
     
-    // Open file for output of the hydro profile if hydroProfile = true
-    // and plotHydroProfile = true.
-    
-    if(hydroProfile && plotHydroProfile){
-        pHydroProfile = fopen("gnu.out/hydroProfile.out", "w");
-    }
-    
     // Write the time
     
     fprintf(pFileD, Utilities::showTime());
@@ -4408,16 +4398,11 @@ int main() {
 
     printf("\n\n");
     
+    // Flush data buffers to force all data to output immediately
+    
     cout.flush();
     
-    // Output of data to plot files after integration.  Note that for the
-    // pp network the calculation works but at the end there is an error
-    // message "munmap_chunk(): invalid pointer", or sometimes
-    // "free(): invalid pointer" that is discussed here:
-    //
-    //     https://stackoverflow.com/questions/32118545/munmap-chunk-invalid-pointer
-    //
-
+    // Output data to plot files after integration. 
     
     Utilities::plotOutput();
     
@@ -4436,7 +4421,6 @@ int main() {
     cout.flush();
     fclose (pFileD);
     fclose (pfnet);
-    fclose (pHydroProfile);
    
     // Free allocated memory
 
