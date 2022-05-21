@@ -90,6 +90,7 @@ main cno         8       22     data/network_cno.inp        data/rateLibrary_cno
 full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
 48              48      299     data/network_48.inp         data/rateLibrary_48.data
 70              70      598     data/network_70.inp         data/rateLibrary_70.data
+116            116     1135     data/network_116.inp        data/rateLibrary_116.data
 nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
@@ -101,8 +102,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 598                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 48                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 299                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -146,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_70.inp";
+char networkFile[] = "data/network_48.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_70.data";
+char rateLibraryFile[] = "data/rateLibrary_48.data";
 
 // Filename for input file containing a hydro profile in temperature
 // and density. Sample hydro profile files included in the data
@@ -289,7 +290,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-11;              // Stop time for integration
+double stop_time = 1e-4;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -305,7 +306,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-10; //2e-3;        // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-9; //2e-3;        // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -700,10 +701,10 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
+            int maxPlotIsotopes = 40;
+            int plotXlist[maxPlotIsotopes];
             
-            int plotXlist[ISOTOPES];
-            
-            for(int i=0; i<ISOTOPES; i++){
+            for(int i=0; i<maxPlotIsotopes; i++){
                 plotXlist[i] = i;
             }
             
@@ -1664,9 +1665,9 @@ class Reaction: public Utilities {
         int getreactantZ(int k){
             
             if(k > numberReactants-1){
-                printf("\n\nERROR: k=%d larger than numberReactants-1 %d; Stopping", 
+                printf("\n\nERROR: k=%d larger than numberReactants-1 %d; Stopping\n", 
                     k, numberReactants);
-                exit(-1);  // Exit program since something is corrupt
+                exit(-1);                   // Exit program since something is corrupt
             } else {
                 return reactantZ[k];
             }
@@ -1688,7 +1689,7 @@ class Reaction: public Utilities {
         
         int getproductZ(int k){
             if(k > numberProducts-1){
-                printf("\n\nERROR: k-1=%d larger than number products %d", 
+                printf("\n\nERROR: k=%d larger than number products %d", 
                     k, numberProducts);
                 return -1;
             } else {
@@ -1712,9 +1713,10 @@ class Reaction: public Utilities {
         
         int getreactantIndex(int k){
             if(k > numberReactants-1){
+                printf("\nReac=%d %s", reacIndex, reacLabel[reacIndex]);
                 ss = Utilities::stringToChar(
-                    "\n\nERROR Reaction::getreactantIndex(k): k-1 = %d larger than # reactants %d");
-                printf(stringToChar(ss), k, numberReactants);
+                    "\nERROR Reaction::getreactantIndex(k): k = %d larger than #reactants-1 = %d");
+                printf(stringToChar(ss), k, numberReactants-1);
                 return -1;
             } else {
                 return reactantIndex[k];
@@ -2352,10 +2354,12 @@ class ReactionVector:  public Utilities {
                     if(RGindex[i] < 0) RGindex[i] = rindex;
                     ck = compareGSLvectors(rvPt+i, rvPt+j);
                     
-                    if(ck > 0 && RGindex[j]< 0) {
+                    if(ck > 0 && RGindex[j] < 0 && i != j) {
                         RGindex[j] = rindex;
                         scorekeeper ++;
                     }
+                    
+                    double rindi = rindex;
                 }
                 
                 // If scorekeeper > 0, this is a reaction group with scorekeeper+1 members, all having
@@ -3963,8 +3967,9 @@ int main() {
         
         fprintf(pfnet, 
             "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
-            reaction[i].getreacIndex(), 
-            reaction[i].getreacChar(),  
+            reaction[i].getreacIndex(),
+            reacLabel[i],
+            //reaction[i].getreacChar(),  
             reaction[i].getreacClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
@@ -4433,6 +4438,7 @@ int main() {
     gsl_vector_free(abundances);
     gsl_matrix_free(fluxes);
     
+    //return 0;
     
 }  // End of main routine
 
@@ -4938,14 +4944,19 @@ void readLibraryParams (char *fileName) {
     }
     
     /* 
-     * Read in the file line by line and parse into variables.  The expected
-     * structure of each line is
+     * Read in the file line by line and parse into variables.  Each reaction corresponds
+     * to 8 lines of input:
      * 
-     *     double double double double double double double string
+     *   reacLabel RGclass  RGmember reacClass #reac #prod  isEC isReverse Q prefac isForward
+     *   p0        p1       p2       p3        p4    p5     p6   (reaction library constants)
+     *   reac1Z    reac2Z   reac3Z                               (Z of reactants, #reac entries)
+     *   reac1N    reac2N   reac3N                               (N of reactants, #reac entries) 
+     *   prod1Z    prod2Z   prod3Z   prod4Z                      (Z of products, #prod entries)
+     *   prod1N    prod2N   prod3N   prod4N                      (N of products, #prod entries)
+     *   reac1Iso  reac2Iso reac3Iso                             (iso index reactants)
+     *   prod1Iso  prod2Iso prod3Iso prod4Iso                    (iso index products)
      * 
-     * each separated by a space, with no whitespace in the string.
-     * (See http://stackoverflow.com/questions/2854488/reading-a-string-with-spaces-with-sscanf
-     * for how to read string with spaces.)
+     * with each entry separated by a space, with NO WHITESPACE IN STRING reacLabel.
      */
     
     int n = -1;
@@ -4953,8 +4964,9 @@ void readLibraryParams (char *fileName) {
     
     // Read lines until NULL encountered. Lines can contain up to 120 characters.  In the
     // data file each reaction has 8 lines of entries.  The counter n holds the reaction number
-    // and the counter subindex holds the line number for the current reaction.  The 
-    // switch(subindex) determines which line we are reading (0-7) for a given reaction labeled by n.
+    // (0 to SIZE) and the counter subindex holds the line number for the current reaction (0-7).  
+    // The switch(subindex) determines which line we are reading (0-7) for a given reaction 
+    // labeled by n.
     
     while(fgets(line, 120, fr) != NULL) {
         
@@ -4970,7 +4982,7 @@ void readLibraryParams (char *fileName) {
                     rlabel, &i0, &i1, &i2, &i3, &i4, &i5, &i6, &sf, &q, &i7);
                 
                 // Store in the Reaction class instance reaction[n]. First set a
-                // pointer to array of Reaction objects reaction[]
+                // pointer to the array of Reaction objects reaction[]
                 
                 ReactionPtr = &reaction[n];
                 
@@ -5247,13 +5259,14 @@ void assignRG(){
     for(int i=0; i<SIZE; i++){
         
         fprintf(pFileD, 
-            "\nreaction[%d]: %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d RG=%d",
+            "\nreaction[%d]: %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d RG=%d %s",
             i, reaction[i].getreacChar(), 
             reaction[i].getreacGroupClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
             reaction[i].getRGmemberIndex(), 
-            reaction[i].getrgindex()
+            reaction[i].getrgindex(),
+            reacLabel[i]
         );
         
         int nummreac = reaction[i].getnumberReactants();
@@ -5261,7 +5274,7 @@ void assignRG(){
         
         // Write reactant symbols
         
-        fprintf(pFileD, "\nRG=%d  REACTANTS: iso[0]=%s", 
+        fprintf(pFileD, "\nReaction=%d  REACTANTS: iso[0]=%s", 
         i, isoLabel[reaction[i].getreactantIndex(0)]);
         
         if(nummreac > 1) fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
