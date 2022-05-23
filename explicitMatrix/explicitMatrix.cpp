@@ -2279,153 +2279,151 @@ class ReactionVector:  public Utilities {
         }  // End function makeReactionVectors()
     
     
+    // ------------------------------------------------------------------------
+    // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
+    // of same length, with the vectors being equivalent only if they are
+    // equal component by component.  Returns 0 if they are not equivalent, 
+    // 1 if they are the same, 2 if one vector is the negative of the other. 
+    // The two arguments of the function are pointers to the two GSL vectors.
+    // ------------------------------------------------------------------------
+    
+    int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
         
-        // ------------------------------------------------------------------------
-        // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
-        // of same length.  Returns 0 if they are not equivalent, 1 if they are 
-        // the same, 2 if one vector is the negative of the other. The arguments 
-        // are pointers to the two GSL vectors.
-        // ------------------------------------------------------------------------
+        int k, kk;
         
-        int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
-            
-            int k, kk;
-            
-            // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
-            // if vectors are equal and 0 if they are not.
-            
-            k = gsl_vector_equal(rv1, rv2);
-            
-            if (k==1) return k;  // rv1 = rv2, so return with 1
-            
-            // Since rv1 and rv2 are not equal, compare rv1  and -rv2
-            
-            gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
-            gsl_vector_memcpy(rv2minus, rv2);
-            gsl_vector_scale(rv2minus, -1);
-            kk = gsl_vector_equal(rv1, rv2minus);
-            
-            if(kk==0){
-                return 0;  // rv1 not equal to rv2 and not equal to -rv2
-            } else {
-                return 2;  // rv1 equal to -rv2
-            }
-            
-        }    // End function compareGSLvectors
+        // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
+        // if vectors are equal and 0 if they are not.
+        
+        k = gsl_vector_equal(rv1, rv2);
+        
+        if (k==1) return k;  // rv1 = rv2, so return 1
+        
+        // If above statement is false, rv1 and rv2 are not equal.
+        // Now compare rv1 and -rv2 to see if the two vectors are
+        // the negative of each other.
+        
+        gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+        gsl_vector_memcpy(rv2minus, rv2);
+        gsl_vector_scale(rv2minus, -1);
+        kk = gsl_vector_equal(rv1, rv2minus);
+        
+        if(kk==0){
+            return 0;  // rv1 not equal to rv2 and not equal to -rv2
+        } else {
+            return 2;  // rv1 equal to -rv2
+        }
+        
+    }    // End function compareGSLvectors
     
     
+    
+    // ------------------------------------------------------------------------
+    // ReactionVector::sortReactionGroups() uses compareGSLvectors to sort all 
+    // reactions in the network into reaction groups labeled by a series of 
+    // integers 0, 1, ...  All reactions in a reaction group have the same 
+    // reaction vector up to a sign. The array RGindex[] of dimension SIZE 
+    // holds the integer labeling reaction group (0, 1, ... #RG) for each 
+    // reaction after this function is executed. 
+    // ------------------------------------------------------------------------
+    
+    static void sortReactionGroups(void){
         
-        // ------------------------------------------------------------------------
-        // ReactionVector::sortReactionGroups() uses compareGSLvectors to sort all 
-        // reactions in the network into reaction groups labeled by a series of 
-        // integers 0, 1, ...  All reactions in a reaction group have the same 
-        // reaction vector up to a sign. The array RGindex[] of dimension SIZE 
-        // holds the integer labeling reaction group (0, 1, ... #RG) for each 
-        // reaction after this function is executed. 
-        // ------------------------------------------------------------------------
+        // Cycle over all reaction vectors and compare them pairwise to 
+        // assign to reaction groups. The pointer rvPt points to the array
+        // rv[] of GSL reaction vectors. The integer rg labels the reaction 
+        // group.  The integer ck indicates whether a pair of vectors are 
+        // equivalent (ck = 1), are the negative of each other (ck = 2), or 
+        // are not equivalent (ck = 0).
         
-        static void sortReactionGroups(void){
+        int rg = -1;
+        int ck = -1;
+        
+        // Initialize array RGindex[] holding the reaction group number
+        // to which each reaction belongs to -1.
+        
+        for(int i=0; i<SIZE; i++){
+            RGindex[i] = -1;
+        }
+        
+        // Variable numberMembers will keep track of the number of members
+        // for the reaction group labeled by rg.
+        
+        int numberMembers;
+        
+        // Cycle over all reaction vectors (loop in i) and compare them
+        // pairwise with all reaction vectors (loop in j)
+        
+        for (int i=0; i<SIZE; i++){
             
-            // Cycle over all reaction vectors and compare them pairwise to 
-            // assign to reaction groups. The pointer rvPt points to the array
-            // rv[] of GSL reaction vectors.
+            if(numberMembers > 0) rg ++;
+            numberMembers = 0;
             
-            // The integer rg labels the reaction group.  The integer ck
-            // indicates whether a pair of vectors are equivalent (ck = 1),
-            // are the negative of each other (ck = 2), or are not equivalent
-            // (ck = 0).
+            // Loop over other reaction of pair labeled by (i,j).  Loop 
+            // only from j=i since we only have to check each pair once 
+            // membership in a reaction group labeled by rg.
             
-            int rg = -1;
-            int ck = -1;
-            
-            // Initialize array RGindex[] holding the reaction group number
-            // to which each reaction belongs to -1.
-            
-            for(int i=0; i<SIZE; i++){
-                RGindex[i] = -1;
-            }
-            
-            // Variable numberMembers will keep track of the number of members
-            // for the reaction group labeled by rg.
-            
-            int numberMembers;
-            
-            // Cycle over all reaction vectors (loop in i) and compare them
-            // pairwise with all reaction vectors (loop in j)
-            
-            for (int i=0; i<SIZE; i++){
+            for(int j=i; j<SIZE; j++){
                 
-                numberMembers = 0;
-
-                if(i==0) rg ++;
+                // Compare reaction vectors labeled by i and j.  If
+                // ck = 0 the vectors are not equivalent, if ck = 1
+                // the vectors are equivalent, and if ck = 2 the
+                // vectors the negatives of each other. Reaction vectors
+                // having ck=1 or ck=2 belong to the same reaction group.
+                // Reaction vectors having ck=0 belong to different
+                // reaction groups.
                 
-                if(RGindex[i] < 0) RGindex[i] = rg;
+                ck = compareGSLvectors(rvPt+i, rvPt+j);
                 
-                // Only loop from j=i since we only have to check each pair once
+                // Based on value of ck, assign to RG.  The condition
+                // RGindex[j] < 0 ensures that we don't assign a
+                // reaction to a RG more than once.
                 
-                for(int j=i; j<SIZE; j++){
+                if(ck > 0 && RGindex[j] < 0) {
                     
-                    // If reaction not already assigned to a reaction group
-                    // (indicated by RGindex[] = -1), assign it to the
-                    // current reaction group rg now.
-                    
-                    
-                    
-                    // Compare reaction vectors labeled by i and j.  If
-                    // ck = 0 the vectors are not equivalent, if ck = 1
-                    // the vectors are equivalent, and if ck = 2 the
-                    // vectors the negative of each other.
-                    
-                    ck = compareGSLvectors(rvPt+i, rvPt+j);
-                    
-                    if(ck > 0 && RGindex[j] < 0) {
-                        RGindex[j] = rg;
-                        numberMembers ++;
-                    }   
-                    
-                    double rindi = rg;  // Dummy statement for debugger
+                    RGindex[j] = rg;
+                    numberMembers ++;
                 }
                 
-                // If numberMembers > 0, this is a reaction group with numberMembers+1 members, 
-                // all having the same reaction vector up to a sign.
-                
-                if(numberMembers > 0){
-                    
-                    // Store the number of reactions in this reaction group for later use
-                    
-                    RGnumberMembers[rg] = numberMembers+1;
-                    
-                    // Increment the RG number for next value of i
-                    
-                    rg++;
-                    
-                }
-
-            }
+            } 
             
-            numberRG = rg;   // Store total number of reaction groups
+            // Store the number of member reactions in this reaction group 
+            // for later use
             
-            // Write out the components of the reaction groups
+            RGnumberMembers[rg] = numberMembers;
             
-            fprintf(pfnet, "\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
-            for(int i=0; i<numberRG; i++){
-                fprintf(pfnet, "\n\nReaction Group %d:", i);
-                int rgindex = -1;
-                for(int j=0; j<SIZE; j++){
-                    if(RGindex[j] == i){
-                        rgindex ++; 
-                        setRG(j, RGclass[j], RGindex[j]);
-                        fprintf(pfnet, 
+        }
+        
+        // If the last trial reaction group has no members, subtract 
+        // one from rg (which was incremented at the beginning of the trial).
+        
+        if(numberMembers == 0) rg--;
+        
+        // Store total number of reaction groups
+        
+        numberRG = rg+1;   
+        
+        // Output the components of the reaction groups pfnet ->
+        // network.out.
+        
+        fprintf(pfnet, "\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
+        for(int i=0; i<numberRG; i++){
+            fprintf(pfnet, "\n\nReaction Group %d:", i);
+            int rgindex = -1;
+            for(int j=0; j<SIZE; j++){
+                if(RGindex[j] == i){
+                    rgindex ++; 
+                    setRG(j, RGclass[j], RGindex[j]);
+                    fprintf(pfnet, 
                             "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
                             isPEforward[j], stringToChar(RGstring[j]));
-                    }
                 }
             }
-            
-            fprintf(pfnet, "\n");
-            
-        }      // End function sortReactionGroups()
+        }
+        
+        fprintf(pfnet, "\n");
+        
+    }   // End function sortReactionGroups()
         
     
     
