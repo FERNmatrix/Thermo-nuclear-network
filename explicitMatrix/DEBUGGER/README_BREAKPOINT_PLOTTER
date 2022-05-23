@@ -303,7 +303,14 @@ end
 b 2381 if i<11 && j<11
 commands
 silent
-printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d",i,j,reacLabel[i],reacLabel[j],rg,numberMembers,ck,j,RGindex[j],j,RGnumberMembers[j]
+printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d\n",i,j,reacLabel[i],reacLabel[j],rg,numberMembers,ck,j,RGindex[j],j,RGnumberMembers[j]
 cont
 end
+
+b 2378
+commands
+silent
+printf"\ni=%d j=%d ck=%d rg=%d numberMembers=%d %s %s\n",i,j,ck,rg,numberMembers,reacLabel[i],reacLabel[j]
+end
+
 

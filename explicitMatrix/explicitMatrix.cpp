@@ -2328,12 +2328,10 @@ class ReactionVector:  public Utilities {
             
             // Cycle over all reaction vectors and compare them pairwise to 
             // assign to reaction groups. The pointer rvPt points to the array
-            // rv[] of GSL reaction vectors.
-            
-            // The integer rg labels the reaction group.  The integer ck
-            // indicates whether a pair of vectors are equivalent (ck = 1),
-            // are the negative of each other (ck = 2), or are not equivalent
-            // (ck = 0).
+            // rv[] of GSL reaction vectors. The integer rg labels the reaction 
+            // group.  The integer ck indicates whether a pair of vectors are 
+            // equivalent (ck = 1), are the negative of each other (ck = 2), or 
+            // are not equivalent (ck = 0).
             
             int rg = -1;
             int ck = -1;
@@ -2354,56 +2352,40 @@ class ReactionVector:  public Utilities {
             // pairwise with all reaction vectors (loop in j)
             
             for (int i=0; i<SIZE; i++){
-                
-                numberMembers = 0;
 
-                if(i==0) rg ++;
+                if(numberMembers > 0) rg ++;
+                numberMembers = 0;
                 
-                if(RGindex[i] < 0) RGindex[i] = rg;
+                //RGindex[i] = rg;
                 
-                // Only loop from j=i since we only have to check each pair once
+                // Loop over other reaction of pair.  Loop only from j=i since 
+                // we only have to check each pair once.
                 
                 for(int j=i; j<SIZE; j++){
-                    
-                    // If reaction not already assigned to a reaction group
-                    // (indicated by RGindex[] = -1), assign it to the
-                    // current reaction group rg now.
-                    
-                    
                     
                     // Compare reaction vectors labeled by i and j.  If
                     // ck = 0 the vectors are not equivalent, if ck = 1
                     // the vectors are equivalent, and if ck = 2 the
                     // vectors the negative of each other.
-                    
+                
                     ck = compareGSLvectors(rvPt+i, rvPt+j);
                     
                     if(ck > 0 && RGindex[j] < 0) {
                         RGindex[j] = rg;
                         numberMembers ++;
-                    }   
+                    }
                     
-                    double rindi = rg;  // Dummy statement for debugger
-                }
+                    int dummy = rg;
+                    
+                }   // End j loop
+                    
+                // Store the number of reactions in this reaction group for later use
                 
-                // If numberMembers > 0, this is a reaction group with numberMembers+1 members, 
-                // all having the same reaction vector up to a sign.
-                
-                if(numberMembers > 0){
-                    
-                    // Store the number of reactions in this reaction group for later use
-                    
-                    RGnumberMembers[rg] = numberMembers+1;
-                    
-                    // Increment the RG number for next value of i
-                    
-                    rg++;
-                    
-                }
+                RGnumberMembers[rg] = numberMembers;
 
-            }
+            }  //  End i loop
             
-            numberRG = rg;   // Store total number of reaction groups
+            numberRG = rg+1;   // Store total number of reaction groups
             
             // Write out the components of the reaction groups
             
@@ -2424,6 +2406,8 @@ class ReactionVector:  public Utilities {
             }
             
             fprintf(pfnet, "\n");
+            
+            cout.flush();
             
         }      // End function sortReactionGroups()
         
