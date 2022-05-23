@@ -102,8 +102,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 48                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 299                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 7                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 28                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_48.inp";
+char networkFile[] = "data/network_pp.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_48.data";
+char rateLibraryFile[] = "data/rateLibrary_pp.data";
 
 // Filename for input file containing a hydro profile in temperature
 // and density. Sample hydro profile files included in the data
@@ -272,8 +272,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and denisty
 // hydro profile.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.016;           // Initial temperature in units of 10^9 K
+double rho_start = 160;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -289,8 +289,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-4;              // Stop time for integration
+double startplot_time = 1e4;         // Start time for plot output
+double stop_time = 1e10;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -306,7 +306,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-9; //2e-3;        // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-5; //2e-3;        // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -701,15 +701,14 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
-            int maxPlotIsotopes = 40;
-            int plotXlist[maxPlotIsotopes];
-            
-            for(int i=0; i<maxPlotIsotopes; i++){
-                plotXlist[i] = i;
-            }
+//             int maxPlotIsotopes = 20;
+//             int plotXlist[maxPlotIsotopes];
+//             for(int i=0; i<maxPlotIsotopes; i++){
+//                 plotXlist[i] = i;
+//             }
             
 
-//             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+            int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1, 2};                                     // 3-alpha
@@ -2331,55 +2330,80 @@ class ReactionVector:  public Utilities {
             // assign to reaction groups. The pointer rvPt points to the array
             // rv[] of GSL reaction vectors.
             
-            // The integer rindex labels the reaction group
+            // The integer rg labels the reaction group.  The integer ck
+            // indicates whether a pair of vectors are equivalent (ck = 1),
+            // are the negative of each other (ck = 2), or are not equivalent
+            // (ck = 0).
             
-            int rindex = -1;
+            int rg = -1;
             int ck = -1;
             
-            // Initialize
+            // Initialize array RGindex[] holding the reaction group number
+            // to which each reaction belongs to -1.
             
             for(int i=0; i<SIZE; i++){
                 RGindex[i] = -1;
             }
             
-            int scorekeeper;
+            // Variable numberMembers will keep track of the number of members
+            // for the reaction group labeled by rg.
+            
+            int numberMembers;
+            
+            // Cycle over all reaction vectors (loop in i) and compare them
+            // pairwise with all reaction vectors (loop in j)
             
             for (int i=0; i<SIZE; i++){
                 
-                scorekeeper = 0;
-                if(i==0) rindex ++;
+                numberMembers = 0;
+
+                if(i==0) rg ++;
                 
-                for(int j=0; j<SIZE; j++){
+                if(RGindex[i] < 0) RGindex[i] = rg;
+                
+                // Only loop from j=i since we only have to check each pair once
+                
+                for(int j=i; j<SIZE; j++){
                     
-                    if(RGindex[i] < 0) RGindex[i] = rindex;
+                    // If reaction not already assigned to a reaction group
+                    // (indicated by RGindex[] = -1), assign it to the
+                    // current reaction group rg now.
+                    
+                    
+                    
+                    // Compare reaction vectors labeled by i and j.  If
+                    // ck = 0 the vectors are not equivalent, if ck = 1
+                    // the vectors are equivalent, and if ck = 2 the
+                    // vectors the negative of each other.
+                    
                     ck = compareGSLvectors(rvPt+i, rvPt+j);
                     
-                    if(ck > 0 && RGindex[j] < 0 && i != j) {
-                        RGindex[j] = rindex;
-                        scorekeeper ++;
-                    }
+                    if(ck > 0 && RGindex[j] < 0) {
+                        RGindex[j] = rg;
+                        numberMembers ++;
+                    }   
                     
-                    double rindi = rindex;
+                    double rindi = rg;  // Dummy statement for debugger
                 }
                 
-                // If scorekeeper > 0, this is a reaction group with scorekeeper+1 members, all having
-                // the same reaction vector up to a sign.
+                // If numberMembers > 0, this is a reaction group with numberMembers+1 members, 
+                // all having the same reaction vector up to a sign.
                 
-                if(scorekeeper > 0){
+                if(numberMembers > 0){
                     
                     // Store the number of reactions in this reaction group for later use
                     
-                    RGnumberMembers[rindex] = scorekeeper+1;
+                    RGnumberMembers[rg] = numberMembers+1;
                     
-                    // Increment the RG number
+                    // Increment the RG number for next value of i
                     
-                    rindex++;
+                    rg++;
                     
                 }
 
             }
             
-            numberRG = rindex;   // Store total number of reaction groups
+            numberRG = rg;   // Store total number of reaction groups
             
             // Write out the components of the reaction groups
             

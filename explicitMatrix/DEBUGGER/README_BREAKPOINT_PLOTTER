@@ -286,10 +286,24 @@ end
 //reaction[i].getreacString()
 
 
-b 2362 if rindex==31
+b 2357 if rindex==31
 commands
 silent
 printf"\ni=%d j=%d rindex=%d scorekeeper=%d ck=%d RGindex[%d]=%d",i,j,rindex,scorekeeper,ck,j,RGindex[j]
+cont
+end
+
+b 2368 if rindex==3
+commands
+silent
+printf"\ni=%d j=%d rindex=%d scorekeeper=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d",i,j,rindex,scorekeeper,ck,j,RGindex[j],j,RGnumberMembers[j]
+cont
+end
+
+b 2381 if i<11 && j<11
+commands
+silent
+printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d",i,j,reacLabel[i],reacLabel[j],rg,numberMembers,ck,j,RGindex[j],j,RGnumberMembers[j]
 cont
 end
 
