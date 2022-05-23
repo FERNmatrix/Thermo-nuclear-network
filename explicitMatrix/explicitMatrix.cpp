@@ -2355,39 +2355,46 @@ class ReactionVector:  public Utilities {
 
                 if(numberMembers > 0) rg ++;
                 numberMembers = 0;
-                
-                //RGindex[i] = rg;
-                
+
                 // Loop over other reaction of pair.  Loop only from j=i since 
-                // we only have to check each pair once.
+                // we only have to check each pair once for RG membership.
                 
                 for(int j=i; j<SIZE; j++){
                     
                     // Compare reaction vectors labeled by i and j.  If
                     // ck = 0 the vectors are not equivalent, if ck = 1
                     // the vectors are equivalent, and if ck = 2 the
-                    // vectors the negative of each other.
+                    // vectors the negative of each other. Reaction vectors
+                    // having ck=1 or ck=2 belong to the same reaction group.
                 
                     ck = compareGSLvectors(rvPt+i, rvPt+j);
                     
+                    // Based on value of ck, assign to RG.  The condition
+                    // RGindex[j] < 0 ensures that we don't assign a
+                    // reaction to a RG more than once.
+                    
                     if(ck > 0 && RGindex[j] < 0) {
+                        
                         RGindex[j] = rg;
                         numberMembers ++;
                     }
                     
                     int dummy = rg;
                     
-                }   // End j loop
+                } 
                     
                 // Store the number of reactions in this reaction group for later use
                 
                 RGnumberMembers[rg] = numberMembers;
 
-            }  //  End i loop
+            }
             
-            numberRG = rg+1;   // Store total number of reaction groups
+            // Store total number of reaction groups
             
-            // Write out the components of the reaction groups
+            numberRG = rg+1;   
+            
+            // Output the components of the reaction groups pfnet ->
+            // network.out.
             
             fprintf(pfnet, "\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
             for(int i=0; i<numberRG; i++){
@@ -2407,9 +2414,7 @@ class ReactionVector:  public Utilities {
             
             fprintf(pfnet, "\n");
             
-            cout.flush();
-            
-        }      // End function sortReactionGroups()
+        }   // End function sortReactionGroups()
         
     
     
