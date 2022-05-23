@@ -275,3 +275,35 @@ printf"\ngnu:   %5.3e %5.3f %2d %15s",t,(double)log10(t),reaction[MapFplus[j]].g
 cont
 end
 
+
+b 5338
+commands
+silent
+printf"\nck1=%d RG=%d j=%d %s", ck1, i, j, reacLabel[j] 
+cont
+end
+
+//reaction[i].getreacString()
+
+
+b 2357 if rindex==31
+commands
+silent
+printf"\ni=%d j=%d rindex=%d scorekeeper=%d ck=%d RGindex[%d]=%d",i,j,rindex,scorekeeper,ck,j,RGindex[j]
+cont
+end
+
+b 2368 if rindex==3
+commands
+silent
+printf"\ni=%d j=%d rindex=%d scorekeeper=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d",i,j,rindex,scorekeeper,ck,j,RGindex[j],j,RGnumberMembers[j]
+cont
+end
+
+b 2381 if i<11 && j<11
+commands
+silent
+printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#mem[%d]=%d",i,j,reacLabel[i],reacLabel[j],rg,numberMembers,ck,j,RGindex[j],j,RGnumberMembers[j]
+cont
+end
+
