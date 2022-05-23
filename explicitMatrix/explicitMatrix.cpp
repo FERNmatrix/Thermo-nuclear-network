@@ -102,8 +102,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 7                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 28                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 48                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 299                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_pp.inp";
+char networkFile[] = "data/network_48.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_pp.data";
+char rateLibraryFile[] = "data/rateLibrary_48.data";
 
 // Filename for input file containing a hydro profile in temperature
 // and density. Sample hydro profile files included in the data
@@ -272,8 +272,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and denisty
 // hydro profile.
 
-double T9_start = 0.016;           // Initial temperature in units of 10^9 K
-double rho_start = 160;        // Initial density in g/cm^3
+double T9_start = 7;           // Initial temperature in units of 10^9 K
+double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -289,8 +289,8 @@ double rho_start = 160;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e4;         // Start time for plot output
-double stop_time = 1e10;              // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-8;              // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -306,7 +306,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-5; //2e-3;        // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-7; //2e-3;        // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -708,11 +708,11 @@ class Utilities{
 //             }
             
 
-            int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+//             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1, 2};                                     // 3-alpha
-//             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
 //             
 //             int plotXlist[] = 
@@ -2282,9 +2282,10 @@ class ReactionVector:  public Utilities {
         
         // ------------------------------------------------------------------------
         // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
-        // of same length.  Returns 0 if they are not equivalent, 1 if they are 
-        // the same, 2 if one vector is the negative of the other. The arguments 
-        // are pointers to the two GSL vectors.
+        // of same length, with the vectors being equivalent only if they are
+        // equal component by component.  Returns 0 if they are not equivalent, 
+        // 1 if they are the same, 2 if one vector is the negative of the other. 
+        // The two arguments of the function are pointers to the two GSL vectors.
         // ------------------------------------------------------------------------
         
         int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
@@ -2296,9 +2297,11 @@ class ReactionVector:  public Utilities {
             
             k = gsl_vector_equal(rv1, rv2);
             
-            if (k==1) return k;  // rv1 = rv2, so return with 1
+            if (k==1) return k;  // rv1 = rv2, so return 1
             
-            // Since rv1 and rv2 are not equal, compare rv1  and -rv2
+            // If above statement is false, rv1 and rv2 are not equal.
+            // Now compare rv1 and -rv2 to see if the two vectors are
+            // the negative of each other.
             
             gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
             gsl_vector_memcpy(rv2minus, rv2);
@@ -2356,16 +2359,19 @@ class ReactionVector:  public Utilities {
                 if(numberMembers > 0) rg ++;
                 numberMembers = 0;
 
-                // Loop over other reaction of pair.  Loop only from j=i since 
-                // we only have to check each pair once for RG membership.
+                // Loop over other reaction of pair labeled by (i,j).  Loop 
+                // only from j=i since we only have to check each pair once 
+                // membership in a reaction group labeled by rg.
                 
                 for(int j=i; j<SIZE; j++){
                     
                     // Compare reaction vectors labeled by i and j.  If
                     // ck = 0 the vectors are not equivalent, if ck = 1
                     // the vectors are equivalent, and if ck = 2 the
-                    // vectors the negative of each other. Reaction vectors
+                    // vectors the negatives of each other. Reaction vectors
                     // having ck=1 or ck=2 belong to the same reaction group.
+                    // Reaction vectors having ck=0 belong to different
+                    // reaction groups.
                 
                     ck = compareGSLvectors(rvPt+i, rvPt+j);
                     
@@ -2379,15 +2385,19 @@ class ReactionVector:  public Utilities {
                         numberMembers ++;
                     }
                     
-                    int dummy = rg;
-                    
                 } 
                     
-                // Store the number of reactions in this reaction group for later use
+                // Store the number of member reactions in this reaction group 
+                // for later use
                 
                 RGnumberMembers[rg] = numberMembers;
 
             }
+            
+            // If the last trial reaction group has no members, subtract 
+            // one from rg (which was incremented at the beginning of the trial).
+            
+            if(numberMembers == 0) rg--;
             
             // Store total number of reaction groups
             

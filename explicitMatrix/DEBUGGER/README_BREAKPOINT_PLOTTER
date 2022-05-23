@@ -307,10 +307,17 @@ printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#me
 cont
 end
 
-b 2378
+b 2382 if rg>130 
 commands
 silent
 printf"\ni=%d j=%d ck=%d rg=%d numberMembers=%d %s %s\n",i,j,ck,rg,numberMembers,reacLabel[i],reacLabel[j]
 end
+
+b 5398 
+commands
+silent
+printf "\ni=%d RGclassRef=%d reffer=%d",i,RGclassRef,reffer
+end
+
 
 
