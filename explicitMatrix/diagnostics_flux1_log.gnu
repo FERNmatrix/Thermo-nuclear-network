@@ -110,9 +110,9 @@ file1 = "gdb-java.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($3)):(log10($19)) with lines ls 1 lw 1.5 dashtype 1 title "java flux28"
-replot file1 using (log10($3)):(log10($20)) with lines ls 2 lw 1.5 dashtype 1 title "java flux29"
-replot file1 using (log10($3)):(log10($21)) with lines ls 3 lw 1.5  dashtype 1 title "java flux30"
+#plot file1 using (log10($3)):(log10($19)) with lines ls 1 lw 1.5 dashtype 1 title "java flux28"
+#replot file1 using (log10($3)):(log10($20)) with lines ls 2 lw 1.5 dashtype 1 title "java flux29"
+plot file1 using (log10($3)):(log10($21)) with lines ls 3 lw 1.5  dashtype 1 title "java flux30"
 replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.5  dashtype 1 title "java flux31"
 #replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 1 title "Fplus[5]"
 #replot file1 using (log10($3)):(log10(abs($12))) with lines ls 6 lw 1.5 dashtype 1 title "Fplus[6]"
@@ -128,8 +128,8 @@ replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.5  dashtype 1 t
 
 file2 = "gdb-C++.out"
 
-replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
-replot file2 using (log10($3)):(log10($20)) with lines  ls 2 lw 1.5 dashtype 2 title "c++ flux29"
+#replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
+#replot file2 using (log10($3)):(log10($20)) with lines  ls 2 lw 1.5 dashtype 2 title "c++ flux29"
 replot file2 using (log10($3)):(log10($21)) with lines  ls 3 lw 1.5  dashtype 2 title "c++ flux30"
 replot file2 using (log10($3)):(log10($22)) with lines  ls 4 lw 1.5  dashtype 2 title "c++ flux31"
 

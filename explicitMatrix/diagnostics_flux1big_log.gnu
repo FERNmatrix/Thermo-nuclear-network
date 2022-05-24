@@ -81,14 +81,14 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -9 #-8.2
-xup = -7 #-8
+xlow = -8.2
+xup = -7.4 #-8
 xtics = 0.2   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 4.5 #6.1
-yup = 7.5 #6.2
-ytics = 0.5      # Space between major y ticmarks
+ylow = 6.1
+yup = 6.25
+ytics = 0.05      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -110,21 +110,21 @@ file1 = "gdb-java.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($3)):(log10($19)) with lines ls 1 lw 1.5 dashtype 1 title "java flux28"
-replot file1 using (log10($3)):(log10($20)) with lines ls 2 lw 1.5 dashtype 1 title "java flux29"
-replot file1 using (log10($3)):(log10($21)) with lines ls 3 lw 1.5  dashtype 1 title "java flux30"
-replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.5  dashtype 1 title "java flux31"
-#replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 1 title "Fplus[5]"
-#replot file1 using (log10($3)):(log10(abs($12))) with lines ls 6 lw 1.5 dashtype 1 title "Fplus[6]"
-#replot file1 using (log10($3)):(log10($13)) with lines ls 7 lw 1.5  dashtype 1 title "Fminus[0]"
-#replot file1 using (log10($3)):(log10($14))  with lines ls 8 lw 1.5 dashtype 1 title "Fminus[5]"
-#replot file1 using (log10($3)):(log10(abs($15))) with lines ls 9 lw 1.5 dashtype 1 title "Fminus[6]"
-#replot file1 using (log10($3)):(log10($16)) with lines ls 10 lw 1.5  dashtype 1 title "diff F[0]"
-#replot file1 using (log10($3)):(log10($17))  with lines ls 11 lw 1.5 dashtype 1 title "diff F[5]"
-#replot file1 using (log10($3)):(log10(abs($18))) with lines ls 12 lw 1.5 dashtype 1 title "diff F[6]"
-#replot file1 using (log10($3)):(log10($19)) with lines ls 13 lw 1.5  dashtype 1 title "keff[0]"
-#replot file1 using (log10($3)):(log10($20))  with lines ls 14 lw 1.5 dashtype 1 title "keff[5]"
-#replot file1 using (log10($3)):(log10(abs($21))) with lines ls 15 lw 1.5 dashtype 1 title "keff[6]"
+plot file1 using (log10($3)):(log10($19)) with lines ls 1 lw 1.0 dashtype 1 title "java flux28"
+replot file1 using (log10($3)):(log10($20)) with lines ls 2 lw 1.0 dashtype 1 title "java flux29"
+replot file1 using (log10($3)):(log10($21)) with lines ls 3 lw 1.0  dashtype 1 title "java flux30"
+replot file1 using (log10($3)):(log10($22)) with lines ls 4 lw 1.0  dashtype 1 title "java flux31"
+#replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.0 dashtype 1 title "Fplus[5]"
+#replot file1 using (log10($3)):(log10(abs($12))) with lines ls 6 lw 1.0 dashtype 1 title "Fplus[6]"
+#replot file1 using (log10($3)):(log10($13)) with lines ls 7 lw 1.0  dashtype 1 title "Fminus[0]"
+#replot file1 using (log10($3)):(log10($14))  with lines ls 8 lw 1.0 dashtype 1 title "Fminus[5]"
+#replot file1 using (log10($3)):(log10(abs($15))) with lines ls 9 lw 1.0 dashtype 1 title "Fminus[6]"
+#replot file1 using (log10($3)):(log10($16)) with lines ls 10 lw 1.0  dashtype 1 title "diff F[0]"
+#replot file1 using (log10($3)):(log10($17))  with lines ls 11 lw 1.0 dashtype 1 title "diff F[5]"
+#replot file1 using (log10($3)):(log10(abs($18))) with lines ls 12 lw 1.0 dashtype 1 title "diff F[6]"
+#replot file1 using (log10($3)):(log10($19)) with lines ls 13 lw 1.0  dashtype 1 title "keff[0]"
+#replot file1 using (log10($3)):(log10($20))  with lines ls 14 lw 1.0 dashtype 1 title "keff[5]"
+#replot file1 using (log10($3)):(log10(abs($21))) with lines ls 15 lw 1.0 dashtype 1 title "keff[6]"
 
 file2 = "gdb-C++.out"
 

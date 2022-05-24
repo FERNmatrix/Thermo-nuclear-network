@@ -146,7 +146,7 @@ Put a breakpoint at end of doIntegrationStep (after computeNextTimeStep()), with
 and less than 1e8, and that dtMode = 2 (meaning that the complete timesep (full, plus two halves) has been taken).This
 latter condition may be redundant because of the position of the breakpoint
 
-b 3418 if t > 6e-9 && dt < 1e-8 && dtMode == 2
+b 3495 if t > 6e-9 && dt < 1e-8 && dtMode == 2
 commands
 silent
 printf "\ngnu:  #Steps      t        Y0[0]    Y0[5]      Y0[6]       Y[0]       Y[5]        Y[6]      F+[0]      F+[5]      F+[6]       F-[0]     F-[5]      F-[6]     keff[0]    keff[5]    keff[6]   flux28      flux29   flux30     flux31"
