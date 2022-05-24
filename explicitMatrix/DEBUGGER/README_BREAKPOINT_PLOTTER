@@ -307,3 +307,10 @@ printf"\ni=%2d j=%2d %17s %17s rg=%d numberMembers=%d ck=%d RGindex[%d]=%d RG#me
 cont
 end
 
+b 5602 if t>7.9e-9 && t<2e-8 && i==30
+commands
+silent
+printf"\ngnu: %d %6.4e %6.4e %6.4e %6.4e %6.4e",i,t,(double)log10(t),(double)log10(Flux[i]),(double)log10(reaction[i].getflux()),(double)log10(Y[6])
+cont
+end
+

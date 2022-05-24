@@ -2021,7 +2021,8 @@ class Reaction: public Utilities {
         
         // Function Reaction::computeFlux() to compute fluxes for reactions.  This is
         // where net flux for a reaction group is set to zero if reaction group is 
-        // in equilibrium.
+        // in equilibrium. The computed flux will be set in the flux field of the
+        // Reaction object, and also in the array Flux[].
         
         void computeFlux(){
             
@@ -5598,6 +5599,7 @@ void computeReactionFluxes(){
     
     for(int i=0; i<SIZE; i++){
         reaction[i].computeFlux();
+        int k=i;                    // Dummy statement for breakpoint
     }
     
     // Set the flux fields in the ReactionGroup objects RG[] from master flux
