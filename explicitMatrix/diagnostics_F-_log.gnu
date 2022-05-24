@@ -81,14 +81,14 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8.2
-xup = -8
-xtics = 0.05   # Space between major x ticmarks
+xlow = -9
+xup = -7
+xtics = 0.2   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 5.5
+ylow = 6
 yup = 7.5
-ytics = 0.5      # Space between major y ticmarks
+ytics = 0.2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -116,9 +116,9 @@ file1 = "gdb-java.out"
 #plot file1 using (log10($3)):(log10($10)) with lines ls 4 lw 1.5  dashtype 1 title "java F+(0)"
 #replot file1 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 1 title "java F+(5)"
 #replot file1 using (log10($3)):(log10($12)) with lines ls 6 lw 1.5 dashtype 1 title "java F+(6)"
-plot file1 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 1 title "java F-(0)"
-replot file1 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 1 title "java F-(5)"
-replot file1 using (log10($3)):(log10($15)) with lines ls 6 lw 1.5 dashtype 1 title "java F-(6)"
+#plot file1 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 1 title "java F-(0)"
+#replot file1 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 1 title "java F-(5)"
+plot file1 using (log10($3)):(log10($15)) with lines ls 6 lw 1.5 dashtype 1 title "java F-(6)"
 #replot file1 using (log10($3)):(log10($13)) with lines ls 7 lw 1.5  dashtype 1 title "Fminus[0]"
 #replot file1 using (log10($3)):(log10($14))  with lines ls 8 lw 1.5 dashtype 1 title "Fminus[5]"
 #replot file1 using (log10($3)):(log10(abs($15))) with lines ls 9 lw 1.5 dashtype 1 title "Fminus[6]"
@@ -137,8 +137,8 @@ file2 = "gdb-C++.out"
 #replot file2 using (log10($3)):(log10($10)) with lines ls 4 lw 1.5  dashtype 2 title "C++ F+(0)"
 #replot file2 using (log10($3)):(log10($11))  with lines ls 5 lw 1.5 dashtype 2 title "C++ F+[5]"
 #replot file2 using (log10($3)):(log10($12)) with lines ls 6 lw 1.5 dashtype 2 title "C++ F+[6]"
-replot file2 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 2 title "C++ F-(0)"
-replot file2 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 2 title "C++ F-[5]"
+#replot file2 using (log10($3)):(log10($13)) with lines ls 4 lw 1.5  dashtype 2 title "C++ F-(0)"
+#replot file2 using (log10($3)):(log10($14))  with lines ls 5 lw 1.5 dashtype 2 title "C++ F-[5]"
 replot file2 using (log10($3)):(log10($15)) with lines ls 6 lw 1.5 dashtype 2 title "C++ F-[6]"
 
 #replot file2 using (log10($3)):(log10($19)) with lines  ls 1 lw 1.5 dashtype 2 title "c++ flux28"
