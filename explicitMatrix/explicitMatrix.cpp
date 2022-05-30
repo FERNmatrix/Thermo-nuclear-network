@@ -288,8 +288,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-9;          // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double startplot_time = 1e-18;          // Start time for plot output
+double stop_time = 2.5e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -326,8 +326,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-13;    // Time to begin checking for PE
-double equiTol = 0.010;            // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1e-8;    // Time to begin checking for PE
+double equiTol = 0.015;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -696,15 +696,15 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
-            int maxPlotIsotopes = 16;
-            int plotXlist[maxPlotIsotopes];
-            for(int i=0; i<maxPlotIsotopes; i++){
-                plotXlist[i] = i;
-            }
+//             int maxPlotIsotopes = 16;
+//             int plotXlist[maxPlotIsotopes];
+//             for(int i=0; i<maxPlotIsotopes; i++){
+//                 plotXlist[i] = i;
+//             }
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
@@ -2031,7 +2031,6 @@ class Reaction: public Utilities {
             // whether the reaction is 1-body, 2-body, or 3-body, and is selected by
             // the switch statement in fluxChooser(numberReactants).
             
-            //char s;
             double kfac;
             
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
@@ -2045,7 +2044,7 @@ class Reaction: public Utilities {
             
             } else {
                 
-                fluxChooser(numberReactants);
+                //fluxChooser(numberReactants);
                 flux = 0.0;                 // Put in present (Reaction) object flux field
                 Flux[reacIndex] = 0.0;      // Put in main flux array
 
@@ -3413,13 +3412,15 @@ class Integrate: public Utilities {
             
             dt_FE = sf/fastestCurrentRate;
             
-            // Compute trial timestep for explicit asymptotic
+            // Compute trial timestep for explicit asymptotic.  The 
+            // diagnostic flag choice2 indicates whether dt_FE or dt_EA 
+            // is chosen as the timestep.
             
             choice2 =  0;
             dtMode = 0;
             
             dt_EA = computeTimeStep_EA(dtLast, sumX);
-            if(dt_EA < dt_FE)choice2 = 1;
+            if(dt_EA < dt_FE) choice2 = 1;
             dt = min(dt_FE, dt_EA); 
             
             // Estimate error by computing difference in sumX between full timestep
@@ -3430,14 +3431,17 @@ class Integrate: public Utilities {
             dt_saved = dt;
             t = t_saved;
             
-            // Execute a full timestep and store sumX. Note that
-            // updatePopulations(dt) updates sumX.
+            // Now execute a full timestep and store sumX. Note that
+            // updatePopulations(dt) updates sumX. The diagnostic 
+            // flag dtMode labels whether we are taking the full timestep 
+            // (dtMode=0), the first half timestep (dtMode = 1), or
+            // the second half timestep (dtMode = 2).
             
             dtMode = 0;
             updatePopulations(dt);
             sumXfull = sumX;
             
-            // Execute first half-step
+            // Now execute the first of two half-steps
             
             restoreCurrentY();
             dt_half = 0.5*dt;
@@ -3536,12 +3540,12 @@ class Integrate: public Utilities {
             diffXzero = diffX;
             
             while( diffX > massTol && iterations < maxit){
+                
                 dtt_0 = dtt;
                 dtt *= downbumper;
                 dt = dtt;
                 updatePopulations(dtt);
                 diffX = abs(sumX-sumXlast);
-                
                 iterations ++;
                 totalIterations ++;
             }

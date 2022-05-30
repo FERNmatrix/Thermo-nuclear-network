@@ -314,3 +314,26 @@ printf"\ngnu: %d %6.4e %6.4e %6.4e %6.4e %6.4e",i,t,(double)log10(t),(double)log
 cont
 end
 
+-----------------------------------
+b 2073 if t>2.5e-9 && reacIndex==29
+commands
+silent
+printf"\ngnu:  #          t    index   reaction       flux       kfac    iso    Y[6]      Y0[6]"
+printf"\ngnu:   %6.4e %d %s %6.4e %6.4e %s %6.4e %6.4e",t,reacIndex,reacLabel[reacIndex],flux,kfac,isoLabel[reactantIndex[0]],Y[6],Y0[6]
+cont
+end
+
+PROCESSING:
+gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+gdb explicitMatrix | tee gdb_debug.out
+Paste in above commnds to insert conditional breakpoint with commands. Then,
+(gdb)r
+(gdb)quit
+Change # to $ in first header in gdb_debug.out
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++.out
+Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++.out
+gdb-C++.out is now a properly formatted gnuplot input file
+------------------------------------
+
+
+
