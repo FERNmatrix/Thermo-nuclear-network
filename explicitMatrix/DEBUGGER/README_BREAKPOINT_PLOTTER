@@ -331,7 +331,29 @@ Paste in above commands to insert conditional breakpoint with commands. Then,
 (gdb)quit
 Change # to $ in first header in gdb_debug.out
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++_PE.out
-Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++_PE.out
+Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++_PE_31.out
+gdb-C++.out is now a properly formatted gnuplot input file
+------------------------------------
+
+
+-----------------------------------
+b 2082 if t>2.5e-9 && reacIndex==30
+commands
+silent
+printf"\ngnu:  #          t    index   reaction   iso0 iso1   flux       kfac        Y[0]      Y[6]"
+printf"\ngnu:   %6.4e %d %s %s %s %6.4e %6.4e %6.4e %6.4e",t,reacIndex,reacLabel[reacIndex],isoLabel[reactantIndex[0]],isoLabel[reactantIndex[1]],flux,kfac,Y[0],Y[6]
+cont
+end
+
+PROCESSING:
+gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+gdb explicitMatrix | tee gdb_debug.out
+Paste in above commands to insert conditional breakpoint with commands. Then,
+(gdb)r
+(gdb)quit
+Change # to $ in first header in gdb_debug.out
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++_PE.out
+Change "gnu:  $"  to "#" in 1st (header) line in gdb-C++_PE_30.out
 gdb-C++.out is now a properly formatted gnuplot input file
 ------------------------------------
 
