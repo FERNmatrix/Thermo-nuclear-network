@@ -86,9 +86,9 @@ xup = -7.6
 xtics = 0.1   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -3
-yup = 10
-ytics = 0.5      # Space between major y ticmarks
+ylow = -3#-4
+yup = -2.5#10
+ytics = 0.05      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -104,16 +104,16 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "gdb-C++_PE.out"
+file1 = "gdb-C++_asy_31.out"
 
 # Edit the following plot commands to correspond to data
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($2)):(log10($6)) with lines ls 1 lw 1.0 dashtype 1 title "PE-flux-29"
-replot file1 using (log10($2)):(log10($7)) with lines ls 2 lw 1.0 dashtype 1 title "PE-kfac-29"
-replot file1 using (log10($2)):(log10($8)) with lines ls 14 lw 1.0  dashtype 1 title "PE-Y[6]-29"
-#replot file1 using (log10($2)):(log10($9)) with lines ls 10 lw 1.0  dashtype 1 title "PE-Y0[6]-29"
+plot file1 using (log10($2)):(log10($6)) with lines ls 1 lw 1.0 dashtype 1 title "PE-flux-31"
+replot file1 using (log10($2)):(log10($7)) with lines ls 2 lw 1.0 dashtype 1 title "PE-kfac-31"
+replot file1 using (log10($2)):(log10($8)) with lines ls 14 lw 1.0  dashtype 1 title "PE-Y[6]-31"
+#replot file1 using (log10($2)):(log10($9)) with lines ls 10 lw 1.0  dashtype 1 title "PE-Y0[6]-31"
 #replot file1 using (log10($2)):(log10($11))  with lines ls 5 lw 1.0 dashtype 1 title "Fplus[5]"
 #replot file1 using (log10($2)):(log10(abs($12))) with lines ls 6 lw 1.0 dashtype 1 title "Fplus[6]"
 #replot file1 using (log10($2)):(log10($13)) with lines ls 7 lw 1.0  dashtype 1 title "Fminus[0]"
@@ -126,12 +126,12 @@ replot file1 using (log10($2)):(log10($8)) with lines ls 14 lw 1.0  dashtype 1 t
 #replot file1 using (log10($2)):(log10($20))  with lines ls 14 lw 1.0 dashtype 1 title "keff[5]"
 #replot file1 using (log10($2)):(log10(abs($21))) with lines ls 15 lw 1.0 dashtype 1 title "keff[6]"
 
-file2 = "gdb-C++_asy.out"
+file2 = "gdb-C++_PE_31.out"
 
-replot file2 using (log10($2)):(log10($6)) with lines  ls 1 lw 1.0 dashtype 2 title "Asy-flux-29"
-replot file2 using (log10($2)):(log10($7)) with lines  ls 2 lw 1.0 dashtype 2 title "Asy-kfac-29"
-replot file2 using (log10($2)):(log10($8)) with lines  ls 14 lw 1.0  dashtype 2 title "Asy-Y[6]-29"
-#replot file2 using (log10($2)):(log10($9)) with lines  ls 10 lw 1.0  dashtype 2 title "Asy-Y0[6]-29"
+replot file2 using (log10($2)):(log10($6)) with lines  ls 1 lw 1.0 dashtype 2 title "Asy-flux-31"
+replot file2 using (log10($2)):(log10($7)) with lines  ls 2 lw 1.0 dashtype 2 title "Asy-kfac-31"
+replot file2 using (log10($2)):(log10($8)) with lines  ls 14 lw 1.0  dashtype 2 title "Asy-Y[6]-31"
+#replot file2 using (log10($2)):(log10($9)) with lines  ls 10 lw 1.0  dashtype 2 title "Asy-Y0[6]-31"
 
 
 # Reset font sizes for .eps and .png output2

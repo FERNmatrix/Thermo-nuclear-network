@@ -104,7 +104,7 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "gdb-C++_PE.out"
+file1 = "gdb-C++_PE_29.out"
 
 # Edit the following plot commands to correspond to data
 # read in from data file and convert quantities to
@@ -126,7 +126,7 @@ replot file1 using (log10($2)):(log10($8)) with lines ls 14 lw 1.0  dashtype 1 t
 #replot file1 using (log10($2)):(log10($20))  with lines ls 14 lw 1.0 dashtype 1 title "keff[5]"
 #replot file1 using (log10($2)):(log10(abs($21))) with lines ls 15 lw 1.0 dashtype 1 title "keff[6]"
 
-file2 = "gdb-C++_asy.out"
+file2 = "gdb-C++_asy_29.out"
 
 replot file2 using (log10($2)):(log10($6)) with lines  ls 1 lw 1.0 dashtype 2 title "Asy-flux-29"
 replot file2 using (log10($2)):(log10($7)) with lines  ls 2 lw 1.0 dashtype 2 title "Asy-kfac-29"

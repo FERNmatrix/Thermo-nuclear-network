@@ -315,11 +315,11 @@ cont
 end
 
 -----------------------------------
-b 2073 if t>2.5e-9 && reacIndex==29
+b 2073 if t>2.5e-9 && reacIndex==31
 commands
 silent
-printf"\ngnu:  #          t    index   reaction    iso   flux       kfac        Y[6]      Y0[6]"
-printf"\ngnu:   %6.4e %d %s %s %6.4e %6.4e %6.4e %6.4e",t,reacIndex,reacLabel[reacIndex],isoLabel[reactantIndex[0]],flux,kfac,Y[6],Y0[6]
+printf"\ngnu:  #          t    index   reaction    iso   flux       kfac        Y[7]      Y0[7]"
+printf"\ngnu:   %6.4e %d %s %s %6.4e %6.4e %6.4e %6.4e",t,reacIndex,reacLabel[reacIndex],isoLabel[reactantIndex[0]],flux,kfac,Y[7],Y0[7]
 cont
 end
 
