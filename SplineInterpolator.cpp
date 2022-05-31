@@ -1,4 +1,3 @@
-#include <cstdio>
 /*
 Class to implement 1D and 2D cubic spline interpolation. Adapted from algorithms 
 in Numerical Recipes. For 1D interpolations, use the method spline to set up an 
@@ -53,11 +52,6 @@ class SplineInterpolator {
 			printf("\nWarning: lengths of x and y(x) arrays not equal: xarray.length= %d, yarray.length= %d", n, m);
 		}
 
-		//x[n] = {};
-		//y[n] = {};
-		//y2[n] = {};
-		//u[n] = {};
-		
 		// Copy passed arrays to internal arrays
 
 		for(int i=0; i<n; i++){
@@ -85,8 +79,7 @@ class SplineInterpolator {
 			sig = signum/sigden;
 			p = sig*y2[i-1] +2.0;
 			y2[i] = (sig-1.0)/p;
-			u[i] = (6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1])
-					/(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/p;
+			u[i] = (6.0*((y[i+1]-y[i])/ (x[i+1]-x[i])-(y[i]-y[i-1])/ (x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/ p;
 		}
 
 		y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
@@ -120,7 +113,7 @@ class SplineInterpolator {
 
 		// Call bisection method to bracket entry xvalue with indices ilow and ihigh
 
-		int ilow = bisection(x,xvalue);      
+		int ilow = bisection(x,n,xvalue);      
 		int ihigh = ilow + 1;                  
 		double h = x[ihigh]-x[ilow];
 
@@ -128,8 +121,7 @@ class SplineInterpolator {
 
 		double a = (x[ihigh]-xvalue)/h;
 		double b = (xvalue-x[ilow])/h;
-		return a*y[ilow] + b*y[ihigh] 
-		           + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
+		return a*y[ilow] + b*y[ihigh] + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
 	}
 
 
