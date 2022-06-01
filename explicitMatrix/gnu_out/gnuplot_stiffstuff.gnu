@@ -61,7 +61,7 @@ set ylabel 'Log dt (s)' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top left inside    # Place legend inside top
+set key outside    # Place legend outside top
 #unset key            # Don't show legend
 
 #set timestamp       # Date/time
@@ -101,9 +101,9 @@ set grid   # set x-y grid at major ticmarks
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using 1:5 with lines ls 4 lw 1.5 title "log 2/Rmax"
-replot file1 using 1:($7+0.301) with lines ls 2 lw 1.5 title "log 2*dt-FE"
-replot file1 using 1:2 with lines ls 1 lw 1.5 title "log dt"
+plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
+replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
+replot file1 using 1:2 with lines ls 1 lw 1.0 dashtype 1 title "log dt"
 #replot file1 using 1:3 with lines ls 9 title "1/Rmin"
 #replot file1 using 1:8 with lines ls 10 title "t"
 #replot file1 using 1:9 with lines ls 10 title "He3"

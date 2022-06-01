@@ -358,13 +358,17 @@ gdb-C++.out is now a properly formatted gnuplot input file
 ------------------------------------
 
 
-watch Y[6] if t>7e-9
+watch Y[6] if t>7e-9 && dtMode==2
 commands
 silent
-printf"\ngnu:  #   Steps t_saved      t         dt    Mode it  diffX      Y0[6]      Y[6]"
-printf"\ngnu: %3d %6.4e %6.4e %6.4e %d %d %6.4e %6.4e %6.4e",totalTimeSteps,t_saved,t,dt,dtMode,totalIterations,diffX,Y0[6],Y[6]
+printf"\ngnu:  #   Steps iter  t_saved    dt_saved      t        Y0[6]       Y[6]"
+printf"\ngnu: %4d %4d %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,totalIterations,t_saved,dt_saved,t_saved+dt_saved,Y0[6],Y[6]
 cont
 end
 
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++.out
 
+watch Y[6] if t>7e-9 && dtMode==2
+commands
+printf"\ngnu: %3d %6.4e %6.4e %6.4e %6.4e %d %6.4e %6.4e %6.4e",totalTimeSteps,t_saved,t_saved+dt_saved,dt,dt_saved,totalIterations,diffX,Y0[6],Y[6]
+end

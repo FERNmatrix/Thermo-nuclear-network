@@ -62,7 +62,7 @@ set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top left inside    # Place legend inside top
+set key outside    # Place legend outside
 #unset key            # Don't show legend
 
 #set timestamp       # Date/time
