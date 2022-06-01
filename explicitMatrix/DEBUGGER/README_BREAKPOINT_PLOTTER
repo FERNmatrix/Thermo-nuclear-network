@@ -358,7 +358,7 @@ gdb-C++.out is now a properly formatted gnuplot input file
 ------------------------------------
 
 
-watch Y[6] if t>7e-9 && dtMode==2
+watch Y[6] if t>2.5e-9 && dtMode==2
 commands
 silent
 printf"\ngnu:  #   Steps iter  t_saved    dt_saved      t        Y0[6]       Y[6]"

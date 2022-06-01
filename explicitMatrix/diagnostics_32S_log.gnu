@@ -81,14 +81,14 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8.6
-xup = -7.6
-xtics = 0.1   # Space between major x ticmarks
+xlow = -8.2
+xup = -7.8
+xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1.5#-4
-yup = -1#10
-ytics = 0.5      # Space between major y ticmarks
+ylow = -2.24
+yup = -2.14
+ytics = 0.01      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -104,34 +104,19 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "gdb-C++_asy_30.out"
+file1 = "gdb-C++_Asy_32S.out"
 
 # Edit the following plot commands to correspond to data
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($2)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy-flux-30"
-replot file1 using (log10($2)):(log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "Asy-kfac-30"
-replot file1 using (log10($2)):(log10($9)) with lines ls 14 lw 1.0  dashtype 1 title "Asy-Y[0]-30"
-replot file1 using (log10($2)):(log10($10)) with lines ls 10 lw 1.0  dashtype 1 title "Asy-Y0[6]-30"
-#replot file1 using (log10($2)):(log10($11))  with lines ls 5 lw 1.0 dashtype 1 title "Fplus[5]"
-#replot file1 using (log10($2)):(log10(abs($12))) with lines ls 6 lw 1.0 dashtype 1 title "Fplus[6]"
-#replot file1 using (log10($2)):(log10($13)) with lines ls 7 lw 1.0  dashtype 1 title "Fminus[0]"
-#replot file1 using (log10($2)):(log10($14))  with lines ls 8 lw 1.0 dashtype 1 title "Fminus[5]"
-#replot file1 using (log10($2)):(log10(abs($15))) with lines ls 9 lw 1.0 dashtype 1 title "Fminus[6]"
-#replot file1 using (log10($2)):(log10($16)) with lines ls 10 lw 1.0  dashtype 1 title "diff F[0]"
-#replot file1 using (log10($2)):(log10($17))  with lines ls 11 lw 1.0 dashtype 1 title "diff F[5]"
-#replot file1 using (log10($2)):(log10(abs($18))) with lines ls 12 lw 1.0 dashtype 1 title "diff F[6]"
-#replot file1 using (log10($2)):(log10($19)) with lines ls 13 lw 1.0  dashtype 1 title "keff[0]"
-#replot file1 using (log10($2)):(log10($20))  with lines ls 14 lw 1.0 dashtype 1 title "keff[5]"
-#replot file1 using (log10($2)):(log10(abs($21))) with lines ls 15 lw 1.0 dashtype 1 title "keff[6]"
+plot file1 using (log10($6)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy-Y0[32S]"
+replot file1 using (log10($6)):(1.02*log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "1.02*Asy-Y[32S]"
 
-file2 = "gdb-C++_PE_30.out"
+file2 = "gdb-C++_PE_32S.out"
 
-replot file2 using (log10($2)):(log10($7)) with lines  ls 1 lw 1.0 dashtype 2 title "PE-flux-30"
-replot file2 using (log10($2)):(log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "PE-kfac-30"
-replot file2 using (log10($2)):(log10($9)) with lines  ls 14 lw 1.0  dashtype 2 title "PE-Y[0]-30"
-replot file2 using (log10($2)):(log10($10)) with lines  ls 10 lw 1.0  dashtype 2 title "PE-Y[6]-30"
+replot file2 using (log10($6)):(log10($7)) with lines  ls 1 lw 1.0 dashtype 2 title "PE-Y0[32S]"
+replot file2 using (log10($6)):(1.02*log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "1.02*PE-Y[32S]"
 
 
 # Reset font sizes for .eps and .png output2
