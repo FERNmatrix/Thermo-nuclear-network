@@ -205,6 +205,10 @@ void sumFplusFminus(void);
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
 
+// Control flags for diagnostic output to file pointed to by *pFileD
+
+bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
+
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
 // (which toggles doQSS to false). To use quasi-steady-state (QSS), set 
@@ -215,7 +219,7 @@ void sumFplusFminus(void);
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -3285,6 +3289,11 @@ class ReactionGroup:  public Utilities {
             
             totalEquilRG ++;
             
+            if(showAddRemove)
+            fprintf(pFileD,
+                "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
+                RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
+            
         }
         
         // Set the activity array for each reaction in reaction group to true if not in 
@@ -3302,15 +3311,21 @@ class ReactionGroup:  public Utilities {
     
     // -----------------------------------------------------------
     // Function ReactionGroup::removeFromEquilibrium() to remove 
-    // reaction group from equilibrium
+    // reaction group from equilibrium if it was in equilibrium
+    // but no longer satisfies the equilibrium conditions.
     // -----------------------------------------------------------
     
     void removeFromEquilibrium() {
-
+return;
         isEquil = false;
         thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
         
         totalEquilRG -- ;
+        
+        if(showAddRemove)
+        fprintf(pFileD,
+            "\n*** REMOVE RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
+            RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
         
         for (int i = 0; i < niso; i++) {
             isEquil = false;
