@@ -201,6 +201,7 @@ void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
 void sumFplusFminus(void);
+void setReaction_isEquil(int, bool);
 
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
@@ -3222,22 +3223,24 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
-        // The return statements in the following if-clauses cause reaction
-        // groups already in equilibrium to stay in equilibrium. Otherwise, if
-        // the RG is in equilibrium (isEquil=true) but the tolerance condition
-        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
-        // from equilibrium.
-        
-        if (isEquil && thisDevious < deviousMax) {
-            return;
-        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
-            removeFromEquilibrium();
-            return;
-        }
+//         // The return statements in the following if-clauses cause reaction
+//         // groups already in equilibrium to stay in equilibrium. Otherwise, if
+//         // the RG is in equilibrium (isEquil=true) but the tolerance condition
+//         // thisDevious < deviousMax is no longer satisfied, the RG is removed 
+//         // from equilibrium.
+//         
+//         if (isEquil && thisDevious < deviousMax) {
+//             return;
+//         } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
+//             removeFromEquilibrium();
+//             return;
+//         }
             
         Yminner = 1000;
         maxeqcheck = 0;
         mineqcheck = 1000;
+        
+        bool previsEquil = isEquil;
 
         // Determine if reaction group RG is in equilibrium: set isEquil to default value
         // of true and then try to falsify
@@ -3275,7 +3278,9 @@ class ReactionGroup:  public Utilities {
                 
                 isEquil = false;
             
-                // break; // Note: this break won't affect results, but
+                break; 
+                
+                // Note: this break won't affect results, but
                 // would affect diagnostic values of eqcheck[]
                 // since they will all be zero after the break.
             
@@ -3285,7 +3290,7 @@ class ReactionGroup:  public Utilities {
         // Set isEquil field of network species vectors to true if isotope
         // participating in equilibrium
         
-        if (isEquil) {
+        if (isEquil && !previsEquil) {
             
             totalEquilRG ++;
             
@@ -3293,6 +3298,15 @@ class ReactionGroup:  public Utilities {
             fprintf(pFileD,
                 "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
                 RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
+            
+        } else if (!isEquil && previsEquil) {
+            
+            totalEquilRG --;
+            
+            if(showAddRemove)
+                fprintf(pFileD,
+                    "\n*** REMOVE RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
+                    RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
             
         }
         
@@ -3303,6 +3317,8 @@ class ReactionGroup:  public Utilities {
             for (int i = 0; i < numberMemberReactions; i++) {
                 int ck = memberReactions[i];
                 reacIsActive[ck] = !isEquil;
+                setReaction_isEquil(ck, isEquil);
+                //reaction[ck].setisEquil(isEquil);
             }
         }
             
@@ -5277,6 +5293,13 @@ void setRG(int index, int RGclass, int RGindex) {
     
     reaction[index].setrgindex(RGindex);
     
+}
+
+// Function setReaction_isEquil(int, bool) that can be called from main
+// or any class to set isEquil field of Reaction objects reaction[].
+
+void setReaction_isEquil(int index, bool isEq){
+   reaction[index].setisEquil(isEq); 
 }
 
 
