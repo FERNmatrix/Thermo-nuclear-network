@@ -309,7 +309,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 1e-7;//5e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 5e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -3316,7 +3316,7 @@ class ReactionGroup:  public Utilities {
     // -----------------------------------------------------------
     
     void removeFromEquilibrium() {
-return;
+        
         isEquil = false;
         thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
         
