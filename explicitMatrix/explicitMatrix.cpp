@@ -293,7 +293,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-7; //2.5e-8;               // Stop time for integration
+double stop_time = 1e-3; //2.5e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -3204,7 +3204,7 @@ class ReactionGroup:  public Utilities {
     
     // ---------------------------------------------------------------------
     // Function ReactionGroup::computeEqRatios to compute array of population 
-    // ratios used to check equilibration
+    // ratios and checks for equilibration.
     // ---------------------------------------------------------------------
     
     void computeEqRatios() {
@@ -3242,22 +3242,14 @@ class ReactionGroup:  public Utilities {
         // Determine if reaction group RG is in equilibrium: set isEquil to default value
         // of true and then try to falsify
         
-        isEquil = true;
-        
         for (int i = 0; i < niso; i++) {
             
-            // Note: something like the following probably required because
-            // otherwise we will divide by zero for isotopes early in the 
-            // calculation that have no population.
+            // Compute absolute value of deviation of abundances from 
+            // equilibrium values
             
-            if (isoYeq[i] == 0 || isoY[i] == 0) {
-                isEquil = false;
-                break;
-            }
+            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / isoYeq[i];
             
-            eqcheck[i] = abs(isoY[i] - isoYeq[i]) / isoYeq[i];
-            
-            // Store some min and max values
+            // Store some min and max values for diagnostics
             
             if (eqcheck[i] < mineqcheck)
                 mineqcheck = eqcheck[i];
@@ -3266,21 +3258,46 @@ class ReactionGroup:  public Utilities {
             if (isoYeq[i] < Yminner)
                 Yminner = isoYeq[i];
             
+        }
+        
+        isEquil = true;
+        
+        for (int i = 0; i < niso; i++) {
+            
+            // Note: something like the following probably required because
+            // otherwise we will divide by zero for isotopes early in the 
+            // calculation that have no population.
+            
+            if (isoYeq[i] < Ythresh || isoY[i] < Ythresh) {
+                isEquil = false;
+                break;
+            }
+        }
+            
+//             // Compute absolute value of deviation of abundances from 
+//             // equilibrium values
+//             
+//             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / isoYeq[i];
+//             
+//             // Store some min and max values for diagnostics
+//             
+//             if (eqcheck[i] < mineqcheck)
+//                 mineqcheck = eqcheck[i];
+//             if (eqcheck[i] > maxeqcheck)
+//                 maxeqcheck = eqcheck[i];
+//             if (isoYeq[i] < Yminner)
+//                 Yminner = isoYeq[i];
+            
             // Set equilibrium to false if any eqcheck[] greater than
             // tolerance, or if equilibrium abundance is small relative 
             // to equiTol (which can cause numerical issues in judging 
             // whether in equilibrium).
             
-            if (t < equilibrateTime || eqcheck[i] > equiTol || isoYeq[i] < Ythresh) {
-                
-                isEquil = false;
-            
-                // break; // Note: this break won't affect results, but
-                // would affect diagnostic values of eqcheck[]
-                // since they will all be zero after the break.
-            
-            }
+        if (t < equilibrateTime || maxeqcheck > equiTol) {
+            isEquil = false;
         }
+            
+        //}
         
         // Set isEquil field of network species vectors to true if isotope
         // participating in equilibrium
