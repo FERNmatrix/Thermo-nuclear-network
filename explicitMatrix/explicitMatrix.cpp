@@ -515,10 +515,6 @@ int RGindex[SIZE];
 
 bool RGisoMembers[SIZE][ISOTOPES];
 
-double Yminner;             // Current minimum Y in reaction group
-double mineqcheck;          // Current minimum value of eqcheck in reaction group
-double maxeqcheck;          // Current max value of eqcheck in reaction group
-
 bool reacIsActive[SIZE];    // False if reaction has been removed by PE
 
 int totalEquilReactions;    // Total equilibrated reactions for isotope
@@ -2631,7 +2627,11 @@ class ReactionGroup:  public Utilities {
         double equilRatio;             // Equilibrium ratio of abundances
         double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
         double eqcheck[5];             // Population ratio to check equilibrium
-        double maxeqcheck;             // Current max value of eqcheck in this reaction group
+        double Yminner;                // Current minimum Y in reaction group
+        double mineqcheck;             // Current minimum value of eqcheck in reaction group
+        double maxeqcheck;             // Current max value of eqcheck in reaction group
+        double maxRatio;               // Largest maxeqcheck/equiTol in reaction group
+        double minRatio;               // Smallest mineqcheck/equiTol in reaction group 
 
         double lambda;                 // Progress variable for reaction pair
         double lambdaEq;               // Equilibrium value of progress variable
@@ -3204,7 +3204,7 @@ class ReactionGroup:  public Utilities {
     
     // ---------------------------------------------------------------------
     // Function ReactionGroup::computeEqRatios to compute array of population 
-    // ratios and checks for equilibration.
+    // ratios and check for equilibration in each reaction group.
     // ---------------------------------------------------------------------
     
     void computeEqRatios() {
@@ -3234,18 +3234,20 @@ class ReactionGroup:  public Utilities {
             removeFromEquilibrium();
             return;
         }
+        
             
         Yminner = 1000;
         maxeqcheck = 0;
         mineqcheck = 1000;
 
-        // Determine if reaction group RG is in equilibrium: set isEquil to default value
-        // of true and then try to falsify
+        // Determine if reaction group RG is in equilibrium by computing the fractional
+        // difference of the actual and equilibrium abundances for all isotopic species
+        // in the reaction group.
         
         for (int i = 0; i < niso; i++) {
             
             // Compute absolute value of deviation of abundances from 
-            // equilibrium values
+            // equilibrium values.
             
             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
             
@@ -3260,49 +3262,25 @@ class ReactionGroup:  public Utilities {
             
         }
         
-        //isEquil = true;
+        // Ratios of deviations from equilibrium and the parameter equiTol. The RG 
+        // is in equilibrium if maxRatio is less than 1 for EVERY isotopic species 
+        // in the RG (isEquil==true), and not in equilibrium otherwise (isEquil==false).
         
-//         for (int i = 0; i < niso; i++) {
-//             
-//             // Note: something like the following probably required because
-//             // otherwise we will divide by zero for isotopes early in the 
-//             // calculation that have no population.
-//             
-//             if (isoYeq[i] < Ythresh || isoY[i] < Ythresh) {
-//                 isEquil = false;
-//                 break;
-//             }
-//         }
+        maxRatio = maxeqcheck/equiTol;
+        minRatio = mineqcheck/equiTol;
             
-//             // Compute absolute value of deviation of abundances from 
-//             // equilibrium values
-//             
-//             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / isoYeq[i];
-//             
-//             // Store some min and max values for diagnostics
-//             
-//             if (eqcheck[i] < mineqcheck)
-//                 mineqcheck = eqcheck[i];
-//             if (eqcheck[i] > maxeqcheck)
-//                 maxeqcheck = eqcheck[i];
-//             if (isoYeq[i] < Yminner)
-//                 Yminner = isoYeq[i];
-            
-            // Set equilibrium to false if any eqcheck[] greater than
-            // tolerance, or if equilibrium abundance is small relative 
-            // to equiTol (which can cause numerical issues in judging 
-            // whether in equilibrium).
+        // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
+        // time is before the time to allow equilibration equilibrateTime, and true 
+        // otherwise.
             
         if (t < equilibrateTime || maxeqcheck > equiTol) {
             isEquil = false;
         } else {
             isEquil = true;
         }
-            
-        //}
-        
-        // Set isEquil field of network species vectors to true if isotope
-        // participating in equilibrium
+
+        // Increment the number of RG in equilibrium if isEquil==true (since if we reach
+        // this point with isEquil==true the RG has just come into equilibrium.)
         
         if (isEquil) {
             
