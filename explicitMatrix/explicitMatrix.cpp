@@ -3247,9 +3247,9 @@ class ReactionGroup:  public Utilities {
             // Compute absolute value of deviation of abundances from 
             // equilibrium values
             
-            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / isoYeq[i];
+            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
             
-            // Store some min and max values for diagnostics
+            // Store some min and max values in RG
             
             if (eqcheck[i] < mineqcheck)
                 mineqcheck = eqcheck[i];
@@ -3260,19 +3260,19 @@ class ReactionGroup:  public Utilities {
             
         }
         
-        isEquil = true;
+        //isEquil = true;
         
-        for (int i = 0; i < niso; i++) {
-            
-            // Note: something like the following probably required because
-            // otherwise we will divide by zero for isotopes early in the 
-            // calculation that have no population.
-            
-            if (isoYeq[i] < Ythresh || isoY[i] < Ythresh) {
-                isEquil = false;
-                break;
-            }
-        }
+//         for (int i = 0; i < niso; i++) {
+//             
+//             // Note: something like the following probably required because
+//             // otherwise we will divide by zero for isotopes early in the 
+//             // calculation that have no population.
+//             
+//             if (isoYeq[i] < Ythresh || isoY[i] < Ythresh) {
+//                 isEquil = false;
+//                 break;
+//             }
+//         }
             
 //             // Compute absolute value of deviation of abundances from 
 //             // equilibrium values
@@ -3295,6 +3295,8 @@ class ReactionGroup:  public Utilities {
             
         if (t < equilibrateTime || maxeqcheck > equiTol) {
             isEquil = false;
+        } else {
+            isEquil = true;
         }
             
         //}
