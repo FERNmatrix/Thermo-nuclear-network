@@ -374,6 +374,18 @@ cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep
 
 watch RG[9].isEquil if dtMode==2 && t>7.5e-9
 commands
+printf"\n #"
 printf"\n%d t=%6.4e logt=%6.4e Rmax=%6.4e Rmin=%6.4e devious=%6.4e\n",totalTimeSteps,t,(double)log10(t),maxRatio,minRatio,thisDevious
 end
+
+-------------------------------------
+
+b 3276 if t>1e-12 && RGn==9
+commands
+silent
+printf"\ngnu:  #  Steps     t       check[0]   check[1]   check[2]   maxRatio"
+printf"\ngnu: %d %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,t,eqcheck[0],eqcheck[1],eqcheck[2],maxRatio
+cont
+end
+
 
