@@ -368,3 +368,12 @@ end
 
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++.out
 
+-------------------------------------
+
+// Note: must set private variables to public in ReactionGroup for following to work
+
+watch RG[9].isEquil if dtMode==2 && t>7.9e-9
+commands
+printf"\n%d t=%6.4e logt=%6.4e Rmax=%6.4e Rmin=%6.4e devious=%6.4e\n",totalTimeSteps,t,(double)log10(t),maxeqcheck,mineqcheck,thisDevious
+end
+
