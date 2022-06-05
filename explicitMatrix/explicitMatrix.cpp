@@ -292,8 +292,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-7; //2.5e-8;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -2628,10 +2628,11 @@ class ReactionGroup:  public Utilities {
         double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
         double eqcheck[5];             // Population ratio to check equilibrium
         double Yminner;                // Current minimum Y in reaction group
-        double mineqcheck;             // Current minimum value of eqcheck in reaction group
-        double maxeqcheck;             // Current max value of eqcheck in reaction group
-        double maxRatio;               // Largest maxeqcheck/equiTol in reaction group
-        double minRatio;               // Smallest mineqcheck/equiTol in reaction group 
+        //double mineqcheck;             // Current minimum value of eqcheck in reaction group
+        //double maxeqcheck;             // Current max value of eqcheck in reaction group
+        double eqRatio[5];             // Ratio eqcheck[i]/equiTol. 
+        double maxRatio;               // Largest eqcheck[]/equiTol in reaction group
+        double minRatio;               // Smallest eqcheck[]/equiTol in reaction group 
 
         double lambda;                 // Progress variable for reaction pair
         double lambdaEq;               // Equilibrium value of progress variable
@@ -2825,7 +2826,7 @@ class ReactionGroup:  public Utilities {
     
     double getequilRatio(){return equilRatio;}
     
-    double getmaxeqcheck(){return maxeqcheck;}
+    double getmaxRatio(){return maxRatio;}
     
     double getrgkf(){return rgkf;}
     
@@ -3237,8 +3238,8 @@ class ReactionGroup:  public Utilities {
         
             
         Yminner = 1000;
-        maxeqcheck = 0;
-        mineqcheck = 1000;
+        maxRatio = 0;
+        minRatio= 1000;
 
         // Determine if reaction group RG is in equilibrium by computing the fractional
         // difference of the actual and equilibrium abundances for all isotopic species
@@ -3247,18 +3248,16 @@ class ReactionGroup:  public Utilities {
         for (int i = 0; i < niso; i++) {
             
             // Compute absolute value of deviation of abundances from 
-            // equilibrium values.
+            // equilibrium values for this reaction group.
             
             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
+            eqRatio[i] = eqcheck[i]/equiTol;
             
-            // Store some min and max values in RG
+            // Store some min and max values for this RG
             
-            if (eqcheck[i] < mineqcheck)
-                mineqcheck = eqcheck[i];
-            if (eqcheck[i] > maxeqcheck)
-                maxeqcheck = eqcheck[i];
-            if (isoYeq[i] < Yminner)
-                Yminner = isoYeq[i];
+            if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
+            if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
+            if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
             
         }
         
@@ -3266,14 +3265,14 @@ class ReactionGroup:  public Utilities {
         // is in equilibrium if maxRatio is less than 1 for EVERY isotopic species 
         // in the RG (isEquil==true), and not in equilibrium otherwise (isEquil==false).
         
-        maxRatio = maxeqcheck/equiTol;
-        minRatio = mineqcheck/equiTol;
+        //maxRatio = maxeqcheck/equiTol;
+        //minRatio = mineqcheck/equiTol;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilibrateTime, and true 
         // otherwise.
             
-        if (t < equilibrateTime || maxeqcheck > equiTol) {
+        if (t < equilibrateTime || maxRatio > 1) {
             isEquil = false;
         } else {
             isEquil = true;
@@ -3289,7 +3288,7 @@ class ReactionGroup:  public Utilities {
             if(showAddRemove)
             fprintf(pFileD,
                 "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
-                RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
+                RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
             
         }
         
@@ -3309,7 +3308,8 @@ class ReactionGroup:  public Utilities {
     // -----------------------------------------------------------
     // Function ReactionGroup::removeFromEquilibrium() to remove 
     // reaction group from equilibrium if it was in equilibrium
-    // but no longer satisfies the equilibrium conditions.
+    // in last timestep but no longer satisfies the equilibrium 
+    // conditions for this timestep.
     // -----------------------------------------------------------
     
     void removeFromEquilibrium() {
@@ -3322,7 +3322,7 @@ class ReactionGroup:  public Utilities {
         if(showAddRemove)
         fprintf(pFileD,
             "\n*** REMOVE RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
-            RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, mineqcheck, maxeqcheck);
+            RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
         
         for (int i = 0; i < niso; i++) {
             isEquil = false;
