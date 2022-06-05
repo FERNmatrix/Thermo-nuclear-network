@@ -3232,7 +3232,7 @@ class ReactionGroup:  public Utilities {
         if (isEquil && thisDevious < deviousMax) {
             return;
         } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
-            removeFromEquilibrium();
+            removeFromEquilibrium(1);
             return;
         }
         
@@ -3276,10 +3276,10 @@ class ReactionGroup:  public Utilities {
             
         if (t > equilibrateTime && maxRatio < 1) {
             isEquil = true;
-            if (lastEquilState != isEquil) totalEquilRG ++;
+            if (lastEquilState != isEquil) addToEquilibrium();
         } else {
             isEquil = false;
-            if (lastEquilState != isEquil) totalEquilRG --;
+            if (lastEquilState != isEquil) removeFromEquilibrium(2);
         }
 
         // Increment the number of RG in equilibrium if isEquil==true (since if we reach
@@ -3310,13 +3310,30 @@ class ReactionGroup:  public Utilities {
     
     
     // -----------------------------------------------------------
+    // Function ReactionGroup::addToEquilibrium() to add 
+    // reaction group to equilibrium if it was not in equilibrium
+    // in last timestep but now satisfies the equilibrium 
+    // conditions for this timestep.
+    // -----------------------------------------------------------
+    
+    void addToEquilibrium(){
+        
+        totalEquilRG ++;
+        if(showAddRemove) fprintf(pFileD,
+            "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
+            RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
+
+    }
+    
+    
+    // -----------------------------------------------------------
     // Function ReactionGroup::removeFromEquilibrium() to remove 
     // reaction group from equilibrium if it was in equilibrium
     // in last timestep but no longer satisfies the equilibrium 
     // conditions for this timestep.
     // -----------------------------------------------------------
     
-    void removeFromEquilibrium() {
+    void removeFromEquilibrium(int where) {
         
         isEquil = false;
         thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
@@ -3325,12 +3342,12 @@ class ReactionGroup:  public Utilities {
         
         if(showAddRemove)
         fprintf(pFileD,
-            "\n*** REMOVE RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
-            RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
+            "\n*** REMOVE RG %d where=%d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
+            RGn, where, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
         
-        for (int i = 0; i < niso; i++) {
-            isEquil = false;
-        }
+//         for (int i = 0; i < niso; i++) {
+//             isEquil = false;
+//         }
         
         for (int i = 0; i < numberMemberReactions; i++) {
             int ck = memberReactions[i];
