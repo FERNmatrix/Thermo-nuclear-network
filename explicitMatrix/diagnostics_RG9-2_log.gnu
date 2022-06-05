@@ -81,13 +81,13 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -9 #-8.6
-xup = -8 #-7.6
-xtics = 0.2   # Space between major x ticmarks
+xlow = -12 #-8.6
+xup = -7 #-7.6
+xtics = 0.5   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -3
-yup = -0.4
+ylow = -1
+yup = 2
 ytics = 0.2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -106,18 +106,17 @@ set title ds textcolor rgb title_color
 
 file1 = "gdb-C++_PE_RG9.out"
 
-# Draw horizontal line at log y = -2
-
-set arrow from xlow,-2 to xup,-2 nohead ls 1 lw 1.5 dashtype 2
-
 # Edit the following plot commands to correspond to data
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($3)):(log10($4)) with lines ls 1 lw 1.0 dashtype 1 title "equi[4He]"
-replot file1 using (log10($3)):(log10($5)) with lines ls 2 lw 1.0 dashtype 1 title "equi[28Si]"
-replot file1 using (log10($3)):(log10($6)) with lines ls 14 lw 1.0  dashtype 1 title "equi[32S]"
-#replot file1 using (log10($3)):(log10($7)) with lines ls 10 lw 1.0  dashtype 1 title "Rmax"
+# Draw horizontal line at log y = 0
+
+set arrow from xlow,0 to xup,0 nohead ls 1 lw 1.5 dashtype 2
+
+plot file1 using (log10($3)):(log10($8)) with lines ls 3 lw 1.5 dashtype 1 title "eqRatio[4He]"
+replot file1 using (log10($3)):(log10($9)) with lines ls 15 lw 1.5 dashtype 1 title "eqRatio[28Si]"
+replot file1 using (log10($3)):(log10($10)) with lines ls 14 lw 1.5  dashtype 1 title "eqRatio[32S]"
 
 # Reset font sizes for .eps and .png output2
 
@@ -128,13 +127,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "diagnostics_RG9_log.eps"    # Output file
+set out "diagnostics_RG9-2_log.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "diagnostics_RG9_log.png"
+#set out "diagnostics_RG9-2_log.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot

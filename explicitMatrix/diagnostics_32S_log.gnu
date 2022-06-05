@@ -86,7 +86,7 @@ xup = -7.8
 xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -2.24
+ylow = -2.19
 yup = -2.14
 ytics = 0.01      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -111,12 +111,12 @@ file1 = "gdb-C++_Asy_32S.out"
 # log10 of quantities to make log-log plot
 
 plot file1 using (log10($6)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy-Y0[32S]"
-replot file1 using (log10($6)):(1.02*log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "1.02*Asy-Y[32S]"
+replot file1 using (log10($6)):(log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "Asy-Y[32S]"
 
 file2 = "gdb-C++_PE_32S.out"
 
 replot file2 using (log10($6)):(log10($7)) with lines  ls 1 lw 1.0 dashtype 2 title "PE-Y0[32S]"
-replot file2 using (log10($6)):(1.02*log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "1.02*PE-Y[32S]"
+replot file2 using (log10($6)):(log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "PE-Y[32S]"
 
 
 # Reset font sizes for .eps and .png output2

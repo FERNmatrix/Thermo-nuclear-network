@@ -142,7 +142,7 @@ end
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
 
-Put a breakpoint at end of doIntegrationStep (after computeNextTimeStep()), with logic requiring t>6.3e-9
+Put a breakpoint at end of doIntegrationStep (after computeNextTimeStep()), with logic requiring t>7.4e-9
 and less than 1e8, and that dtMode = 2 (meaning that the complete timesep (full, plus two halves) has been taken).This
 latter condition may be redundant because of the position of the breakpoint
 
@@ -237,14 +237,14 @@ commands
 silent
 printf"\n      t     log t    Reaction       Flux    F+(%s)   F+(%s)  F+(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
 printf"  F-(%s)   F-(%s)  F-(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
-printf"\n+++ %6.3e %6.3f %s %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e %6.3e\n",t,(double)log10(t),getreacChar(),flux, Fplus[0],Fplus[5],Fplus[6],Fminus[0],Fminus[5],Fminus[6]
+printf"\n+++ %7.4e %7.4f %s %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e\n",t,(double)log10(t),getreacChar(),flux, Fplus[0],Fplus[5],Fplus[6],Fminus[0],Fminus[5],Fminus[6]
 cont
 end
 
 
 FOLLOWING WITH COLUMN HEADERS (breakpoint at end of computeFlux())
 
-b 2007 if t>6.3e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
+b 2007 if t>7.4e-9 && reacIndex>27 && reacIndex<32 && dtMode==2
 commands
 silent
 printf"\n        t      F+sum(%s) F+sum(%s) F+sum(%s)",isotope[0].getLabel(),isotope[5].getLabel(),isotope[6].getLabel()
@@ -268,7 +268,7 @@ In sumFplusFminus() of Reaction class:
 2105    }
 
 
-b 5467 if t>6.3e-9 && t<3e-8 && MapFplus[j]>27 && MapFplus[j]<32 && dtMode==2
+b 5467 if t>7.4e-9 && t<3e-8 && MapFplus[j]>27 && MapFplus[j]<32 && dtMode==2
 commands
 silent
 printf"\ngnu:   %5.3e %5.3f %2d %15s",t,(double)log10(t),reaction[MapFplus[j]].getreacIndex(),reaction[MapFplus[j]].getreacChar()
@@ -380,12 +380,25 @@ end
 
 -------------------------------------
 
-b 3276 if t>1e-12 && RGn==9
+b 3277 if t>1e-12 && RGn==9
 commands
 silent
-printf"\ngnu:  #  Steps     t       check[0]   check[1]   check[2]   maxRatio"
-printf"\ngnu: %d %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,t,eqcheck[0],eqcheck[1],eqcheck[2],maxRatio,eqcheck
+printf"\ngnu:  #   Steps    t       check[0]   check[1]   check[2]   maxRatio  eqRatio[0] eqRatio[1] eqRatio[2]"
+printf"\ngnu: %d %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e",totalTimeSteps,t,eqcheck[0],eqcheck[1],eqcheck[2],maxRatio,eqRatio[0],eqRatio[1],eqRatio[2]
 cont
+end
+
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > gdb-C++_PE_RG9.out
+-----------------------------------
+
+watch Y[6] if t>8.1e-9
+commands
+printf"\ndtMode=%d logt=%7.6f Y6=%7.6f logY6=%7.6f Y06=%7.6f logY06=%7.6f equil=%d\n",dtMode,(double)log10(t),Y[6],(double)log10(Y[6]),Y0[6],(double)log10(Y0[6]),totalEquilRG
+end
+
+b 3475 if t>8.1e-9
+commands
+printf"\ndtMode=%d logt=%7.6f Y6=%7.6f logY6=%7.6f Y06=%7.6f logY06=%7.6f equil=%d\n",dtMode,(double)log10(t+dt_saved),Y[6],(double)log10(Y[6]),Y0[6],(double)log10(Y0[6]),totalEquilRG
 end
 
 
