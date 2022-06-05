@@ -293,7 +293,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -3267,30 +3267,34 @@ class ReactionGroup:  public Utilities {
         
         //maxRatio = maxeqcheck/equiTol;
         //minRatio = mineqcheck/equiTol;
+        
+        bool lastEquilState = isEquil;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilibrateTime, and true 
         // otherwise.
             
-        if (t < equilibrateTime || maxRatio > 1) {
-            isEquil = false;
-        } else {
+        if (t > equilibrateTime && maxRatio < 1) {
             isEquil = true;
+            if (lastEquilState != isEquil) totalEquilRG ++;
+        } else {
+            isEquil = false;
+            if (lastEquilState != isEquil) totalEquilRG --;
         }
 
         // Increment the number of RG in equilibrium if isEquil==true (since if we reach
         // this point with isEquil==true the RG has just come into equilibrium.)
         
-        if (isEquil) {
-            
-            totalEquilRG ++;
-            
-            if(showAddRemove)
-            fprintf(pFileD,
-                "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
-                RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
-            
-        }
+//         if (isEquil) {
+//             
+//             totalEquilRG ++;
+//             
+//             if(showAddRemove)
+//             fprintf(pFileD,
+//                 "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
+//                 RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
+//             
+//         }
         
         // Set the activity array for each reaction in reaction group to true if not in 
         // equil and false if it is, if we are imposing equilibrium.
