@@ -219,7 +219,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -309,7 +309,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol = 5e-3;                 // Timestep tolerance parameter (1.0e-7)
+double massTol = 1e-7;//5e-3;                 // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -501,12 +501,14 @@ char dasher[] = "---------------------------------------------";
 // ---------------------------------
 
 int numberRG;                 // Number of partial equilibrium reaction groups
-int RGnumberMembers[SIZE];    // # members each RG; set in class ReactionVectors
+int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
 
-// Define array to hold the reaction group index for each reaction. There are n reaction
-// groups in the network and each reaction belongs to one reaction group.  RGindex[m] is
-// the index (0, 1, ... n) of the reaction group to which reaction m belongs. 
-// This array is populated by the function ReactionVector::sortReactionGroups()
+// Define array to hold the ReactionGroup object index for each reaction. There 
+// are n reaction groups in a network and each reaction belongs to one and only
+// one reaction group.  RGindex[m] is the index (0, 1, ... n) of the reaction 
+// group to which reaction m belongs. This array is populated by the function
+// ReactionVector::sortReactionGroups(). The ReactionGroup object index is also
+// contained in the rgindex field of the Reaction objects reaction[i]. 
 
 int RGindex[SIZE];
 
@@ -1322,7 +1324,7 @@ class Reaction: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    private:
+    public:
         
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
@@ -2013,8 +2015,8 @@ class Reaction: public Utilities {
         
         void showRates(){
             fprintf(pFileD, "\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e", 
-                   getreacIndex(), getreacChar(), getreacGroupClass(), getdensfac(), 
-                   getrate(), getRrate()
+                getreacIndex(), getreacChar(), getreacGroupClass(), getdensfac(), 
+                getrate(), getRrate()
             );
         }
         
@@ -2053,7 +2055,7 @@ class Reaction: public Utilities {
             printf("");   // Temporary debug point
             
         }   // End of function computeFlux()
-        
+
   
   
     // Function Reaction::fluxChooser(int) to switch among flux formulas for
@@ -3530,7 +3532,9 @@ class Integrate: public Utilities {
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
-            double bpd = dt;   // Dummy statement for breakpoint
+            dtMode = -1;
+            
+            //double bpd = dt;   // Dummy statement for breakpoint
             
         }    // End of doIntegrationStep
         
@@ -5634,7 +5638,6 @@ void computeReactionFluxes(){
     
     for(int i=0; i<SIZE; i++){
         reaction[i].computeFlux();
-        int k=i;                    // Dummy statement for breakpoint
     }
     
     // Set the flux fields in the ReactionGroup objects RG[] from master flux

@@ -81,14 +81,14 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8.2
-xup = -7.8
-xtics = 0.05   # Space between major x ticmarks
+xlow = -8.5
+xup = -7.6
+xtics = 0.1   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -2.87
-yup = -2.7
-ytics = 0.01      # Space between major y ticmarks
+ylow = -3.0#-2.87 #5.8
+yup = -2.55#-2.7 #6.2
+ytics = 0.05      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -110,13 +110,15 @@ file1 = "gdb-C++_Asy_36Ar.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using (log10($6)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy-Y0[36Ar]"
-replot file1 using (log10($6)):(1.02*log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "1.02*Asy-Y[36Ar]"
+#plot file1 using (log10($6)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy Y0[36Ar]"
+plot file1 using (log10($6)):(1.0*log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "log10(Asy Y[36Ar])"
+replot file1 using (log10($6)):(log10($9)-8.8) with lines ls 3 lw 1.0 dashtype 1 title "log10(Asy flux[31])-8.8"
 
 file2 = "gdb-C++_PE_36Ar.out"
 
-replot file2 using (log10($6)):(log10($7)) with lines  ls 1 lw 1.0 dashtype 2 title "PE-Y0[36Ar]"
-replot file2 using (log10($6)):(1.02*log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "1.02*PE-Y[36Ar]"
+#replot file2 using (log10($6)):(log10($7)) with lines  ls 1 lw 2.0 dashtype 2 title "PE Y0[36Ar]"
+replot file2 using (log10($6)):(1.0*log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "log10(PE Y[36Ar])"
+replot file2 using (log10($6)):(log10($9)-8.8) with lines ls 3 lw 1.0 dashtype 2 title "log10(PE flux[31])-8.8"
 
 
 # Reset font sizes for .eps and .png output2

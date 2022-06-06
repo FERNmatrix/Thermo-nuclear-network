@@ -358,11 +358,11 @@ gdb-C++.out is now a properly formatted gnuplot input file
 ------------------------------------
 
 
-watch Y[4] if t>2.5e-9 && dtMode==2
+watch Y[7] if t>2.5e-9 && dtMode==-1
 commands
 silent
-printf"\ngnu:  #   Steps iter  t_saved    dt_saved      t        Y0[4]       Y[4]"
-printf"\ngnu: %4d %4d %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,totalIterations,t_saved,dt_saved,t_saved+dt_saved,Y0[4],Y[4]
+printf"\ngnu:  #   Steps iter  t_saved    dt_saved      t        Y0[7]       Y[7]   flux[31]"
+printf"\ngnu: %4d %4d %6.4e %6.4e %6.4e %6.4e %6.4e %6.4e",totalTimeSteps,totalIterations,t_saved,dt_saved,t_saved+dt_saved,Y0[7],Y[7],Flux[31]
 cont
 end
 
@@ -401,4 +401,8 @@ commands
 printf"\ndtMode=%d logt=%7.6f Y6=%7.6f logY6=%7.6f Y06=%7.6f logY06=%7.6f equil=%d\n",dtMode,(double)log10(t+dt_saved),Y[6],(double)log10(Y[6]),Y0[6],(double)log10(Y0[6]),totalEquilRG
 end
 
+b 2073 if t>7e-9 && reacIndex==31 && dtMode==-1
+commands
+printf"\ndtMode=%d logt=%7.6f Y7=%7.6f logY7=%7.6f Y07=%7.6f logY07=%7.6f equil=%d logf31=%7.6f\n",dtMode,(double)log10(t),Y[7],(double)log10(Y[7]),Y0[7],(double)log10(Y0[7]),totalEquilRG,(double)log10(flux)
+end
 
