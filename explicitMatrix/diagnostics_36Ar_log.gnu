@@ -74,7 +74,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF; RG 9)"
+ds="T9=7 rho=1e8 (no PF); 36Ar and reaction 31"
 ds = ds.""
 set title ds textcolor rgb title_color #font "Arial,22"
 
@@ -113,12 +113,14 @@ file1 = "gdb-C++_Asy_36Ar.out"
 #plot file1 using (log10($6)):(log10($7)) with lines ls 1 lw 1.0 dashtype 1 title "Asy Y0[36Ar]"
 plot file1 using (log10($6)):(1.0*log10($8)) with lines ls 2 lw 1.0 dashtype 1 title "log10(Asy Y[36Ar])"
 replot file1 using (log10($6)):(log10($9)-8.8) with lines ls 3 lw 1.0 dashtype 1 title "log10(Asy flux[31])-8.8"
+replot file1 using (log10($6)):(log10($10)-11.75) with lines ls 14 lw 1.0 dashtype 1 title "log10(Asy kfac)-11.75"
 
 file2 = "gdb-C++_PE_36Ar.out"
 
 #replot file2 using (log10($6)):(log10($7)) with lines  ls 1 lw 2.0 dashtype 2 title "PE Y0[36Ar]"
 replot file2 using (log10($6)):(1.0*log10($8)) with lines  ls 2 lw 1.0 dashtype 2 title "log10(PE Y[36Ar])"
 replot file2 using (log10($6)):(log10($9)-8.8) with lines ls 3 lw 1.0 dashtype 2 title "log10(PE flux[31])-8.8"
+replot file2 using (log10($6)):(log10($10)-11.75) with lines ls 1 lw 1.5 dashtype 2 title "log10(PE kfac)-11.75"
 
 
 # Reset font sizes for .eps and .png output2
