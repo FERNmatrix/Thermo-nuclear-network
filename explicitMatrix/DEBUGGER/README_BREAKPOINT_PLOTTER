@@ -413,4 +413,14 @@ b 2073 if t>7e-9 && reacIndex==31 && dtMode==-1
 commands
 printf"\ndtMode=%d logt=%7.6f Y7=%7.6f logY7=%7.6f Y07=%7.6f logY07=%7.6f equil=%d logf31=%7.6f\n",dtMode,(double)log10(t),Y[7],(double)log10(Y[7]),Y0[7],(double)log10(Y0[7]),totalEquilRG,(double)log10(flux)
 end
+-------------------------------------
+
+watch XcorrFac if t>5e-9
+commands
+silent
+printf"\ngnu:  #    Steps      t           XcorrFac     sumXtrue"
+printf"\ngnu:  %d  %7.6e   %7.6e   %7.6e",totalTimeSteps,t,XcorrFac,sumXtrue
+cont
+end
+
 
