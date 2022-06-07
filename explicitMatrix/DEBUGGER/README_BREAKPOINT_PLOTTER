@@ -423,4 +423,6 @@ printf"\ngnu:  %d  %7.6e   %7.6e   %7.6e",totalTimeSteps,t,XcorrFac,sumXtrue
 cont
 end
 
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > XcorrFac_C++.out
+
 

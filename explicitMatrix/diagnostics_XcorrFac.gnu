@@ -74,7 +74,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF)"
+ds="Asy+PE T9=7 rho=1e8 (no PF) massTol=EpsA=1e-5 for C++"
 ds = ds.""
 set title ds textcolor rgb title_color #font "Arial,22"
 
@@ -82,13 +82,13 @@ set title ds textcolor rgb title_color #font "Arial,22"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -8.1
-xup = -7
-xtics = 0.1   # Space between major x ticmarks
+xup = -6
+xtics = 0.2   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0.997
-yup = 1.003
-ytics = 0.0005      # Space between major y ticmarks
+ylow = 0.99#0.996
+yup = 1.01#1.001
+ytics = 0.005      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -109,12 +109,12 @@ file1 = "XcorrFac_C++.out"
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using (log10($3)):4 with lines ls 1 lw 1.0 dashtype 2 title "xCorrFac C++"
+plot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 2 title "xCorrFac C++"
 #replot file1 using (log10($3)):5 with lines ls 2 lw 1.0 dashtype 2 title "sumXtrue C++"
 
 file2 = "XcorrFac_Java.out"
 
-replot file2 using (log10($3)):4 with lines ls 1 lw 1.0 dashtype 1 title "xCorrFac Java"
+replot file2 using (log10($3)):4 with lines ls 3 lw 1.0 dashtype 1 title "xCorrFac Java"
 #replot file2 using (log10($3)):5 with lines ls 2 lw 1.0 dashtype 1 title "sumXtrue C++"
 
 
