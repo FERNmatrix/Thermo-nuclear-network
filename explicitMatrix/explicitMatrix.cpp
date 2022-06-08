@@ -310,7 +310,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 double XcorrFac;                       // Equil normalization factor for timestep
 
-double massTol = 5e-3; //5e-3;//1e-5                // Timestep tolerance parameter (1.0e-7)
+double massTol = 5e-3; //1e-5                // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -319,7 +319,7 @@ int totalIterations;                   // Total number of iterations
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-3; //5e-3;// 1e-5                 // Absolute error tolerance
+double EpsA = 5e-3;// 1e-5                 // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
