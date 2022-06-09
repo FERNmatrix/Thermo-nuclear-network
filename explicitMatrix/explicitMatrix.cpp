@@ -82,7 +82,7 @@ using std::string;
 SOME SAMPLE NETWORKS:
 
 Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
-3=alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
+3-alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
 4-alpha          4       14     data/network_4alpha.inp     data/rateLibrary_4alpha.data
 alpha           16       48     data/network_alpha.inp      data/rateLibrary_alpha.data
 pp               7       28     data/network_pp.inp         data/rateLibrary_pp.data
