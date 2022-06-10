@@ -14,21 +14,21 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from explicitMatrix...
-(gdb) break 3253 if t>5e-9 && RGn==9
-Breakpoint 1 at 0x40cf50: file explicitMatrix.cpp, line 3253.
+(gdb) break 3268 if t>5e-9 && RGn==9
+Breakpoint 1 at 0x40cfd1: file explicitMatrix.cpp, line 3268.
 (gdb) commands
 Type commands for breakpoint(s) 1, one per line.
 End with a line saying just "end".
 >silent
->printf"\ngnu:  #   Steps    t        devious   maxRatio isEquil"
->printf"\ngnu: %d %7.4e %7.4e %7.4e %d\n",totalTimeSteps,t,thisDevious,maxRatio,isEquil
+>printf"\ngnu:  #   Steps    t        devious   maxRatio RGn  isEquil"
+>printf"\ngnu: %d %7.4e %7.4e %7.4e %2d %2d\n",totalTimeSteps,t,thisDevious,maxRatio,RGn,isEquil
 >cont
 >end
 (gdb) r
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-Fri Jun 10 14:12:13 2022
+Fri Jun 10 14:42:53 2022
 
 
 Integration using ASY+PE method
@@ -36,7 +36,7 @@ T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilT
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=0  totalIterations=0  IntegrationSteps_plotted=0
-Timer: 5.8300e+00 ms used
+Timer: 6.3060e+00 ms used
 
 BEGIN TIME INTEGRATION:
 
@@ -128,235 +128,237 @@ BEGIN TIME INTEGRATION:
 86 it=0 t=3.06e-09 dt=3.06e-10 int=281 Asy=2/16 Eq=0/19 SX=1.0067 dE=3.08e+25 E=2.18e+17 E_R=6.55e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
 87 it=0 t=4.07e-09 dt=4.07e-10 int=284 Asy=2/16 Eq=0/19 SX=1.0101 dE=2.07e+25 E=2.42e+17 E_R=7.43e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
 88 it=0 t=4.92e-09 dt=4.92e-10 int=286 Asy=2/16 Eq=0/19 SX=1.0115 dE=1.56e+25 E=2.56e+17 E_R=4.08e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-gnu: $   Steps    t        devious   maxRatio isEquil
-gnu: 287 5.4130e-09 4.2306e-02 2.0897e+00 0
+gnu:  $   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 287 5.4130e-09 4.2306e-02 2.0897e+00  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 288 5.9543e-09 3.4853e-02 1.7886e+00 0
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 288 5.9543e-09 3.4853e-02 1.7886e+00  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 289 6.5497e-09 2.8388e-02 1.5080e+00 0
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 289 6.5497e-09 2.8388e-02 1.5080e+00  9  0
 
 89 it=0 t=6.55e-09 dt=6.55e-10 int=289 Asy=2/16 Eq=0/19 SX=1.0130 dE=9.71e+24 E=2.75e+17 E_R=2.05e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 290 7.2047e-09 2.2878e-02 1.2554e+00 0
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 290 7.2047e-09 2.2878e-02 1.2554e+00  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 291 7.9251e-09 1.8224e-02 1.0314e+00 0
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 291 7.9251e-09 1.8224e-02 1.0314e+00  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 292 8.7176e-09 1.4308e-02 8.3407e-01 0
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 292 8.7176e-09 1.4308e-02 8.3407e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 292 8.7176e-09 1.4308e-02 8.8257e-01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 292 8.7176e-09 1.4308e-02 8.8257e-01  9  1
 
 90 it=0 t=8.72e-09 dt=8.72e-10 int=292 Asy=3/16 Eq=1/19 SX=1.0000 dE=5.51e+24 E=2.89e+17 E_R=8.81e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.431e-02
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 293 9.5894e-09 4.1481e-02 1.9112e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 293 9.5894e-09 4.1481e-02 1.9112e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 293 9.5894e-09 4.1481e-02 2.5218e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 294 1.0548e-08 1.3230e-02 5.2196e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 294 1.0548e-08 7.7601e-02 4.0678e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 294 1.0548e-08 1.3230e-02 8.1812e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 294 1.0548e-08 7.7601e-02 4.6055e+00 1
+91 it=0 t=1.05e-08 dt=1.05e-09 int=294 Asy=5/16 Eq=1/19 SX=1.0000 dE=4.82e+24 E=2.96e+17 E_R=5.13e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.323e-02
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 295 1.1603e-08 5.0864e-02 2.6260e+00  9  1
 
-91 it=0 t=1.05e-08 dt=1.05e-09 int=294 Asy=4/16 Eq=1/19 SX=1.0000 dE=1.84e+24 E=2.93e+17 E_R=8.92e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+7.760e-02
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 295 1.1603e-08 1.1108e-01 5.9868e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 296 1.2001e-08 1.1376e-02 6.0136e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 295 1.1603e-08 1.1108e-01 6.4515e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 296 1.2001e-08 1.1376e-02 7.0260e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 296 1.2763e-08 1.4169e-01 7.6883e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 297 1.2797e-08 3.1190e-02 1.7154e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 296 1.2763e-08 1.4169e-01 8.0723e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 298 1.4077e-08 8.5707e-03 3.4383e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 297 1.4040e-08 1.6962e-01 9.1883e+00 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 298 1.4077e-08 8.5707e-03 5.3010e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 297 1.4040e-08 1.6962e-01 9.4994e+00 1
+92 it=0 t=1.41e-08 dt=1.41e-09 int=298 Asy=5/16 Eq=1/19 SX=1.0000 dE=2.84e+24 E=3.05e+17 E_R=6.32e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+8.571e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 299 1.5485e-08 3.6084e-02 1.9878e+00  9  1
 
-92 it=0 t=1.40e-08 dt=1.40e-09 int=297 Asy=4/16 Eq=1/19 SX=1.0000 dE=9.11e+23 E=2.97e+17 E_R=1.05e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.696e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 298 1.5444e-08 1.9500e-01 1.0506e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 300 1.6568e-08 5.1048e-03 2.4375e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 298 1.5444e-08 1.9500e-01 1.0755e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 300 1.6568e-08 5.1048e-03 3.1614e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 299 1.6988e-08 2.1794e-01 1.1663e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 301 1.8225e-08 2.7783e-02 1.5797e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 299 1.6988e-08 2.1794e-01 1.1858e+01 1
+93 it=0 t=1.82e-08 dt=1.82e-09 int=301 Asy=4/16 Eq=0/19 SX=1.0005 dE=4.79e+23 E=3.09e+17 E_R=2.04e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 302 2.0048e-08 6.8809e-03 2.5164e-01  9  0
 
-93 it=0 t=1.70e-08 dt=1.70e-09 int=299 Asy=4/16 Eq=1/19 SX=1.0000 dE=4.60e+23 E=2.99e+17 E_R=9.06e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.179e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 300 1.8687e-08 2.3862e-01 1.2675e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 302 2.0048e-08 6.8809e-03 4.2538e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 300 1.8687e-08 2.3862e-01 1.2827e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 303 2.2053e-08 2.3497e-02 1.3649e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 301 2.0556e-08 2.5721e-01 1.3561e+01 1
+94 it=0 t=2.21e-08 dt=2.21e-09 int=303 Asy=4/16 Eq=0/19 SX=1.0004 dE=1.56e+23 E=3.12e+17 E_R=3.30e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 304 2.4258e-08 7.9390e-03 3.3425e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 301 2.0556e-08 2.5721e-01 1.3679e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 304 2.4258e-08 7.9390e-03 4.9013e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 302 2.2611e-08 2.7391e-01 1.4338e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 305 2.6684e-08 1.4287e-02 6.9719e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 302 2.2611e-08 2.7391e-01 1.4428e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 305 2.6684e-08 1.4287e-02 8.7738e-01  9  1
 
-94 it=0 t=2.26e-08 dt=2.26e-09 int=302 Asy=5/16 Eq=1/19 SX=1.0000 dE=3.86e+22 E=3.00e+17 E_R=6.38e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.739e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 303 2.4872e-08 2.8895e-01 1.5020e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 306 2.9352e-08 3.3682e-02 2.0593e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 303 2.4872e-08 2.8895e-01 1.5089e+01 1
+95 it=0 t=2.94e-08 dt=2.94e-09 int=306 Asy=6/16 Eq=2/19 SX=1.0000 dE=2.83e+22 E=3.14e+17 E_R=3.53e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+9.085e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 307 3.0359e-08 8.4390e-04 8.2162e-02  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 304 2.7360e-08 2.9587e-01 1.5228e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 307 3.0359e-08 8.4390e-04 5.2276e-02  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 304 2.7360e-08 2.9587e-01 1.5380e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 308 3.2355e-08 1.5917e-02 1.0382e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 305 3.0096e-08 3.0185e-01 1.5498e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 309 3.4620e-08 6.3055e-03 3.6264e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 305 3.0096e-08 3.0185e-01 1.5625e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 309 3.4620e-08 6.3055e-03 3.8881e-01  9  1
 
-95 it=0 t=3.01e-08 dt=3.01e-09 int=305 Asy=4/16 Eq=3/19 SX=1.0000 dE=-3.16e+23 E=2.98e+17 E_R=2.62e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+5.776e-02
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 306 3.3105e-08 3.0818e-01 1.5755e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 310 3.7782e-08 2.1950e-02 1.3439e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 306 3.3105e-08 3.0818e-01 1.5882e+01 1
+96 it=0 t=3.78e-08 dt=3.78e-09 int=310 Asy=6/16 Eq=1/19 SX=1.0000 dE=-1.34e+23 E=3.15e+17 E_R=3.93e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+5.859e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 311 3.9634e-08 4.9385e-03 2.8265e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 307 3.6416e-08 3.1470e-01 1.6015e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 311 3.9634e-08 4.9385e-03 3.0450e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 307 3.6416e-08 3.1470e-01 1.6144e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 312 4.2202e-08 1.7325e-02 1.0977e+00  9  1
 
-96 it=0 t=3.64e-08 dt=3.64e-09 int=307 Asy=4/16 Eq=4/19 SX=1.0000 dE=-3.23e+23 E=2.96e+17 E_R=6.33e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.504e-02
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 308 4.0057e-08 3.2070e-01 1.6255e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 313 4.4270e-08 5.3685e-03 3.0760e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 308 4.0057e-08 3.2070e-01 1.6384e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 313 4.4270e-08 5.3685e-03 3.3061e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 309 4.4063e-08 3.2677e-01 1.6497e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 314 4.7056e-08 1.6277e-02 1.0219e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 309 4.4063e-08 3.2677e-01 1.6625e+01 1
+97 it=0 t=4.71e-08 dt=4.71e-09 int=314 Asy=6/16 Eq=2/19 SX=1.0000 dE=-2.01e+23 E=3.16e+17 E_R=2.58e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+9.176e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 315 5.1761e-08 2.0316e-02 1.1284e+00  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 310 4.8469e-08 3.3267e-01 1.6733e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 316 5.3186e-08 3.0771e-03 1.3079e-01  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 310 4.8469e-08 3.3267e-01 1.6857e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 316 5.3186e-08 3.0771e-03 1.8932e-01  9  1
 
-97 it=0 t=4.85e-08 dt=4.85e-09 int=310 Asy=5/16 Eq=5/19 SX=1.0000 dE=-2.54e+23 E=2.93e+17 E_R=2.67e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.156e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 311 5.3316e-08 3.3828e-01 1.6955e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 317 5.5194e-08 3.6486e-03 1.8593e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 311 5.3316e-08 3.3828e-01 1.7076e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 317 5.5194e-08 3.6486e-03 2.2431e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 312 5.8648e-08 3.4378e-01 1.7171e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 318 5.9209e-08 1.3640e-02 7.9842e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 312 5.8648e-08 3.4378e-01 1.7289e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 318 5.9209e-08 1.3640e-02 8.3291e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 313 6.4513e-08 3.4911e-01 1.7380e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 319 6.5130e-08 1.8454e-02 1.0110e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 313 6.4513e-08 3.4911e-01 1.7494e+01 1
+98 it=0 t=6.51e-08 dt=6.51e-09 int=319 Asy=8/16 Eq=1/19 SX=1.0000 dE=-3.26e+23 E=3.12e+17 E_R=4.75e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+7.418e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 320 7.1643e-08 2.7562e-02 1.5564e+00  9  0
 
-98 it=0 t=6.45e-08 dt=6.45e-09 int=313 Asy=5/16 Eq=4/19 SX=1.0000 dE=-1.76e+23 E=2.90e+17 E_R=2.02e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.929e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 314 6.5597e-08 3.3826e-01 1.7162e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 321 7.2621e-08 7.4847e-04 9.7292e-02  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 314 6.5597e-08 3.3826e-01 1.7040e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 321 7.2621e-08 7.4847e-04 4.5892e-02  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 315 6.7765e-08 3.3932e-01 1.7070e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 322 7.4576e-08 2.8146e-04 1.0301e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 315 6.7765e-08 3.3932e-01 1.7062e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 322 7.4576e-08 2.8146e-04 1.7271e-02  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 316 7.2102e-08 3.4286e-01 1.7140e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 323 7.8487e-08 9.0236e-03 5.3242e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 316 7.2102e-08 3.4286e-01 1.7186e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 323 7.8487e-08 9.0236e-03 5.5026e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 317 7.9313e-08 3.4797e-01 1.7274e+01 1
+99 it=0 t=7.85e-08 dt=7.82e-09 int=323 Asy=7/16 Eq=2/19 SX=1.0000 dE=-2.12e+23 E=3.12e+17 E_R=4.23e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.051e-03
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 324 8.6310e-08 1.4168e-02 7.3327e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 317 7.9313e-08 3.4797e-01 1.7366e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 324 8.6310e-08 1.4168e-02 8.5905e-01  9  1
 
-99 it=0 t=7.93e-08 dt=7.93e-09 int=317 Asy=6/16 Eq=4/19 SX=1.0000 dE=-3.81e+23 E=2.82e+17 E_R=2.13e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.825e-01
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 318 8.7244e-08 3.5367e-01 1.7460e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 325 9.4940e-08 2.9943e-02 1.5401e+00  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 318 8.7244e-08 3.5367e-01 1.7567e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 326 9.6057e-08 1.3338e-03 8.0695e-02  9  0
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 319 9.5968e-08 3.5993e-01 1.7666e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 326 9.6057e-08 1.3338e-03 8.1440e-02  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 319 9.5968e-08 3.5993e-01 1.7786e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 327 9.7763e-08 1.0298e-02 7.0351e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 320 1.0557e-07 3.6680e-01 1.7892e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 327 9.7763e-08 1.0298e-02 6.2493e-01  9  1
 
-gnu:  #   Steps    t        devious   maxRatio isEquil
-gnu: 320 1.0557e-07 3.6680e-01 1.8026e+01 1
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 328 1.0117e-07 1.1999e-02 6.8418e-01  9  1
 
-100 it=0 t=1.06e-07 dt=1.06e-08 int=320 Asy=6/16 Eq=4/19 SX=1.0000 dE=-3.41e+23 E=2.73e+17 E_R=7.95e-03 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.357e-01
+gnu:  #   Steps    t        devious   maxRatio RGn  isEquil
+gnu: 328 1.0117e-07 1.1999e-02 7.2668e-01  9  1
+
+100 it=0 t=1.01e-07 dt=6.53e-09 int=328 Asy=5/16 Eq=2/19 SX=1.0000 dE=-2.92e+23 E=3.09e+17 E_R=6.82e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+7.992e-03
 
 Integration using ASY+PE method
 T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-12
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
-Integration steps=320  totalIterations=5  IntegrationSteps_plotted=265
-Timer: 5.6385e+01 ms used
+Integration steps=328  totalIterations=25  IntegrationSteps_plotted=273
+Timer: 5.8998e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=6.5384e-02 X=2.6154e-01
-1 12C Y=6.2762e-05 X=7.5314e-04
-2 16O Y=1.3721e-04 X=2.1953e-03
-3 20Ne Y=3.3819e-06 X=6.7639e-05
-4 24Mg Y=1.7498e-04 X=4.1996e-03
-5 28Si Y=1.5449e-02 X=4.3258e-01
-6 32S Y=6.2127e-03 X=1.9881e-01
-7 36Ar Y=1.6880e-03 X=6.0769e-02
-8 40Ca Y=9.5149e-04 X=3.8059e-02
-9 44Ti Y=1.6806e-05 X=7.3945e-04
-10 48Cr Y=5.8971e-06 X=2.8306e-04
-11 52Fe Y=2.6763e-07 X=1.3917e-05
-12 56Ni Y=3.1975e-09 X=1.7906e-07
-13 60Zn Y=1.1824e-12 X=7.0942e-11
-14 64Ge Y=3.9129e-16 X=2.5043e-14
-15 68Se Y=1.8746e-19 X=1.2747e-17
+0 4He Y=6.2365e-02 X=2.4946e-01
+1 12C Y=6.3378e-05 X=7.6054e-04
+2 16O Y=1.3612e-04 X=2.1779e-03
+3 20Ne Y=3.2604e-06 X=6.5208e-05
+4 24Mg Y=1.6320e-04 X=3.9167e-03
+5 28Si Y=1.3804e-02 X=3.8652e-01
+6 32S Y=7.1443e-03 X=2.2862e-01
+7 36Ar Y=2.1556e-03 X=7.7603e-02
+8 40Ca Y=1.2304e-03 X=4.9218e-02
+9 44Ti Y=2.9496e-05 X=1.2978e-03
+10 48Cr Y=7.2828e-06 X=3.4957e-04
+11 52Fe Y=2.7473e-07 X=1.4286e-05
+12 56Ni Y=2.8997e-09 X=1.6238e-07
+13 60Zn Y=1.1283e-12 X=6.7697e-11
+14 64Ge Y=3.5149e-16 X=2.2495e-14
+15 68Se Y=1.8712e-19 X=1.2724e-17
 
-[Inferior 1 (process 3788) exited normally]
+[Inferior 1 (process 4379) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
-(gdb) 
-quit
+(gdb) quit

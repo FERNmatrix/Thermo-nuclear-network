@@ -3226,6 +3226,21 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
+
+        
+        // The return statements in the following if-clauses cause reaction
+        // groups already in equilibrium to stay in equilibrium. Otherwise, if
+        // the RG is in equilibrium (isEquil=true) but the tolerance condition
+        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
+        // from equilibrium.
+        
+        if (isEquil && thisDevious < deviousMax) {
+            return;
+        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
+            removeFromEquilibrium(1);
+            return;
+        }
+        
         Yminner = 1000;
         maxRatio = 0;
         minRatio= 1000;
@@ -3252,21 +3267,6 @@ class ReactionGroup:  public Utilities {
         
         maxRatio = maxRatio;  // Dummy anchor for debugger
         
-        // The return statements in the following if-clauses cause reaction
-        // groups already in equilibrium to stay in equilibrium. Otherwise, if
-        // the RG is in equilibrium (isEquil=true) but the tolerance condition
-        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
-        // from equilibrium.
-        
-        if (isEquil && thisDevious < deviousMax) {
-            return;
-        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
-            removeFromEquilibrium(1);
-            return;
-        }
-        
-            
-
         
         // Ratios of deviations from equilibrium and the parameter equiTol. The RG 
         // is in equilibrium if maxRatio is less than 1 for EVERY isotopic species 

@@ -111,7 +111,7 @@ file1 = "equilRatio_C++.out"
 
 plot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 1 title "mostDevious"
 replot file1 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 1 title "maxRatio"
-replot file1 using (log10($3)):6 with lines ls 4 lw 1.0 dashtype 1 title "isEquil"
+replot file1 using (log10($3)):7 with lines ls 4 lw 1.0 dashtype 1 title "isEquil"
 
 #file2 = "XcorrFac_Java.out"
 
