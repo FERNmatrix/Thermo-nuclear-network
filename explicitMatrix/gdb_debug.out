@@ -14,21 +14,21 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from explicitMatrix...
-(gdb) watch XcorrFac if t>5e-9
-Hardware watchpoint 1: XcorrFac
+(gdb) break 3253 if t>5e-9 && RGn==9
+Breakpoint 1 at 0x40cf50: file explicitMatrix.cpp, line 3253.
 (gdb) commands
 Type commands for breakpoint(s) 1, one per line.
 End with a line saying just "end".
 >silent
->printf"\ngnu:  #    Steps      t           XcorrFac     sumXtrue"
->printf"\ngnu:  %d  %7.6e   %7.6e   %7.6e",totalTimeSteps,t,XcorrFac,sumXtrue
+>printf"\ngnu:  #   Steps    t        devious   maxRatio isEquil"
+>printf"\ngnu: %d %7.4e %7.4e %7.4e %d\n",totalTimeSteps,t,thisDevious,maxRatio,isEquil
 >cont
 >end
 (gdb) r
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-Tue Jun  7 16:12:41 2022
+Fri Jun 10 14:12:13 2022
 
 
 Integration using ASY+PE method
@@ -36,323 +36,327 @@ T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilT
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=0  totalIterations=0  IntegrationSteps_plotted=0
-Timer: 6.0630e+00 ms used
+Timer: 5.8300e+00 ms used
 
 BEGIN TIME INTEGRATION:
 
 1 it=0 t=1.35e-18 dt=1.35e-19 int=55 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.22e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
 2 it=0 t=1.80e-18 dt=1.80e-19 int=58 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.96e+10 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-3 it=0 t=2.39e-18 dt=2.39e-19 int=61 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.94e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-4 it=0 t=3.18e-18 dt=3.18e-19 int=64 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=5.25e+10 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-5 it=0 t=4.24e-18 dt=4.24e-19 int=67 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=6.99e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-6 it=0 t=5.64e-18 dt=5.64e-19 int=70 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=9.32e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-7 it=0 t=7.51e-18 dt=7.51e-19 int=73 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.24e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-8 it=0 t=9.99e-18 dt=9.99e-19 int=76 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.65e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-9 it=0 t=1.21e-17 dt=1.21e-18 int=78 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.00e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-10 it=0 t=1.61e-17 dt=1.61e-18 int=81 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.66e+11 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-11 it=0 t=2.14e-17 dt=2.14e-18 int=84 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.54e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-12 it=0 t=2.85e-17 dt=2.85e-18 int=87 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.72e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-13 it=0 t=3.79e-17 dt=3.79e-18 int=90 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=6.28e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-14 it=0 t=5.05e-17 dt=5.05e-18 int=93 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=8.35e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-15 it=0 t=6.72e-17 dt=6.72e-18 int=96 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.11e+12 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-16 it=0 t=8.95e-17 dt=8.95e-18 int=99 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.48e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-17 it=0 t=1.19e-16 dt=1.19e-17 int=102 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.97e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-18 it=0 t=1.58e-16 dt=1.58e-17 int=105 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.62e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-19 it=0 t=1.92e-16 dt=1.92e-17 int=107 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.17e+12 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-20 it=0 t=2.55e-16 dt=2.55e-17 int=110 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.22e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-21 it=0 t=3.40e-16 dt=3.40e-17 int=113 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=5.62e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-22 it=0 t=4.52e-16 dt=4.52e-17 int=116 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=7.48e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-23 it=0 t=6.02e-16 dt=6.02e-17 int=119 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=9.96e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-24 it=0 t=8.01e-16 dt=8.01e-17 int=122 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.33e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-25 it=0 t=1.07e-15 dt=1.07e-16 int=125 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.76e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-26 it=0 t=1.42e-15 dt=1.42e-16 int=128 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.35e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-27 it=0 t=1.89e-15 dt=1.89e-16 int=131 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.12e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-28 it=0 t=2.51e-15 dt=2.51e-16 int=134 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.16e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-29 it=0 t=3.04e-15 dt=3.04e-16 int=136 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=5.03e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-30 it=0 t=4.05e-15 dt=4.05e-16 int=139 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=6.70e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-31 it=0 t=5.39e-15 dt=5.39e-16 int=142 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=8.91e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-32 it=0 t=7.17e-15 dt=7.17e-16 int=145 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.19e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-33 it=0 t=9.55e-15 dt=9.55e-16 int=148 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.58e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-34 it=0 t=1.27e-14 dt=1.27e-15 int=151 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.10e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-35 it=0 t=1.69e-14 dt=1.69e-15 int=154 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.79e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-36 it=0 t=2.25e-14 dt=2.25e-15 int=157 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.64e+28 E=3.71e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-37 it=0 t=3.00e-14 dt=3.00e-15 int=160 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.64e+28 E=4.93e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-38 it=0 t=3.99e-14 dt=3.99e-15 int=163 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.63e+28 E=6.55e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-39 it=0 t=4.83e-14 dt=4.83e-15 int=165 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.63e+28 E=7.92e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-40 it=0 t=6.42e-14 dt=6.42e-15 int=168 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.62e+28 E=1.05e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-41 it=0 t=8.55e-14 dt=8.55e-15 int=171 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.61e+28 E=1.39e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-42 it=0 t=1.14e-13 dt=1.14e-14 int=174 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.59e+28 E=1.85e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-43 it=0 t=1.51e-13 dt=1.51e-14 int=177 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.58e+28 E=2.44e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-44 it=0 t=2.02e-13 dt=2.02e-14 int=180 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.55e+28 E=3.22e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-45 it=0 t=2.68e-13 dt=2.68e-14 int=183 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.52e+28 E=4.24e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-46 it=0 t=3.57e-13 dt=3.57e-14 int=186 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.48e+28 E=5.57e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-47 it=0 t=4.75e-13 dt=4.75e-14 int=189 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.42e+28 E=7.27e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-48 it=0 t=6.33e-13 dt=6.33e-14 int=192 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.36e+28 E=9.44e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-49 it=0 t=7.65e-13 dt=7.65e-14 int=194 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.30e+28 E=1.12e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-50 it=0 t=1.02e-12 dt=1.02e-13 int=197 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.21e+28 E=1.43e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-51 it=0 t=1.36e-12 dt=1.36e-13 int=200 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.10e+28 E=1.82e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-52 it=0 t=1.80e-12 dt=1.80e-13 int=203 Asy=0/16 Eq=0/19 SX=1.0000 dE=9.74e+27 E=2.27e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-53 it=0 t=2.40e-12 dt=2.40e-13 int=206 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.36e+27 E=2.80e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-54 it=0 t=3.20e-12 dt=3.20e-13 int=209 Asy=0/16 Eq=0/19 SX=1.0000 dE=6.89e+27 E=3.38e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-55 it=0 t=4.26e-12 dt=4.26e-13 int=212 Asy=0/16 Eq=0/19 SX=1.0000 dE=5.44e+27 E=4.00e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-56 it=0 t=5.66e-12 dt=5.66e-13 int=215 Asy=0/16 Eq=0/19 SX=1.0000 dE=4.06e+27 E=4.64e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-57 it=0 t=7.54e-12 dt=7.54e-13 int=218 Asy=0/16 Eq=0/19 SX=1.0000 dE=2.84e+27 E=5.24e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-58 it=0 t=9.12e-12 dt=9.12e-13 int=220 Asy=0/16 Eq=0/19 SX=1.0000 dE=2.14e+27 E=5.60e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-59 it=0 t=1.21e-11 dt=1.21e-12 int=223 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.28e+27 E=6.06e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-60 it=0 t=1.62e-11 dt=1.62e-12 int=226 Asy=0/16 Eq=0/19 SX=1.0000 dE=6.35e+26 E=6.39e+16 E_R=8.88e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-61 it=0 t=2.15e-11 dt=2.15e-12 int=229 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.98e+26 E=6.56e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
-62 it=0 t=2.86e-11 dt=2.86e-12 int=232 Asy=0/16 Eq=0/19 SX=1.0000 dE=-6.82e+25 E=6.57e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-63 it=0 t=3.81e-11 dt=3.81e-12 int=235 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.01e+26 E=6.41e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-64 it=0 t=5.07e-11 dt=5.07e-12 int=238 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.34e+26 E=6.12e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-65 it=0 t=6.75e-11 dt=6.75e-12 int=241 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.01e+26 E=5.76e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-66 it=0 t=8.99e-11 dt=8.99e-12 int=244 Asy=0/16 Eq=0/19 SX=1.0000 dE=-1.31e+26 E=5.41e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-67 it=0 t=1.20e-10 dt=1.20e-11 int=247 Asy=0/16 Eq=0/19 SX=1.0000 dE=-5.27e+25 E=5.18e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-68 it=0 t=1.45e-10 dt=1.45e-11 int=249 Asy=0/16 Eq=0/19 SX=1.0000 dE=-5.93e+24 E=5.14e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-69 it=0 t=1.93e-10 dt=1.93e-11 int=252 Asy=0/16 Eq=0/19 SX=1.0000 dE=4.60e+25 E=5.29e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-70 it=0 t=2.56e-10 dt=2.56e-11 int=255 Asy=0/16 Eq=0/19 SX=1.0000 dE=7.41e+25 E=5.72e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-71 it=0 t=3.41e-10 dt=3.41e-11 int=258 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.48e+25 E=6.42e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-72 it=0 t=4.54e-10 dt=4.54e-11 int=261 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.70e+25 E=7.40e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-73 it=0 t=6.05e-10 dt=6.05e-11 int=264 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.56e+25 E=8.69e+16 E_R=1.21e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-74 it=0 t=8.05e-10 dt=8.05e-11 int=267 Asy=0/16 Eq=0/19 SX=1.0002 dE=8.15e+25 E=1.04e+17 E_R=1.84e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-75 it=0 t=1.07e-09 dt=1.07e-10 int=270 Asy=0/16 Eq=0/19 SX=1.0004 dE=7.44e+25 E=1.24e+17 E_R=2.41e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-76 it=0 t=1.43e-09 dt=1.43e-10 int=273 Asy=1/16 Eq=0/19 SX=1.0010 dE=6.39e+25 E=1.48e+17 E_R=1.69e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-77 it=0 t=1.90e-09 dt=1.90e-10 int=276 Asy=2/16 Eq=0/19 SX=1.0025 dE=5.15e+25 E=1.74e+17 E_R=4.59e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-78 it=0 t=2.30e-09 dt=2.30e-10 int=278 Asy=2/16 Eq=0/19 SX=1.0039 dE=4.29e+25 E=1.92e+17 E_R=5.54e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-79 it=0 t=3.06e-09 dt=3.06e-10 int=281 Asy=2/16 Eq=0/19 SX=1.0067 dE=3.08e+25 E=2.18e+17 E_R=6.55e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-80 it=0 t=4.07e-09 dt=4.07e-10 int=284 Asy=2/16 Eq=0/19 SX=1.0101 dE=2.07e+25 E=2.42e+17 E_R=7.43e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-81 it=0 t=5.41e-09 dt=5.41e-10 int=287 Asy=2/16 Eq=0/19 SX=1.0119 dE=1.35e+25 E=2.63e+17 E_R=2.66e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-82 it=0 t=7.20e-09 dt=7.20e-10 int=290 Asy=2/16 Eq=0/19 SX=1.0136 dE=8.10e+24 E=2.80e+17 E_R=1.70e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
-gnu:  $    Steps      t           XcorrFac     sumXtrue
-gnu:  292  8.717631e-09   9.851486e-01   1.015075e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  293  9.589394e-09   9.985836e-01   1.001418e+00
-83 it=0 t=9.59e-09 dt=9.59e-10 int=293 Asy=3/16 Eq=1/19 SX=1.0000 dE=2.39e+24 E=2.92e+17 E_R=1.71e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.148e-02
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  294  1.054833e-08   9.985522e-01   1.001450e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  295  1.160317e-08   9.984854e-01   1.001517e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  296  1.276348e-08   9.985862e-01   1.001416e+00
-84 it=0 t=1.28e-08 dt=1.28e-09 int=296 Asy=4/16 Eq=1/19 SX=1.0000 dE=1.20e+24 E=2.96e+17 E_R=1.09e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.417e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  297  1.403983e-08   9.987243e-01   1.001277e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  298  1.544382e-08   9.988795e-01   1.001122e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  299  1.698820e-08   9.990382e-01   1.000963e+00
-85 it=0 t=1.70e-08 dt=1.70e-09 int=299 Asy=4/16 Eq=1/19 SX=1.0000 dE=4.60e+23 E=2.99e+17 E_R=9.06e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.179e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  300  1.868702e-08   9.991943e-01   1.000806e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  301  2.055572e-08   9.993435e-01   1.000657e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  302  2.261129e-08   9.994827e-01   1.000518e+00
-86 it=0 t=2.26e-08 dt=2.26e-09 int=302 Asy=5/16 Eq=1/19 SX=1.0000 dE=3.86e+22 E=3.00e+17 E_R=6.38e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.739e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  303  2.487242e-08   9.994673e-01   1.000533e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  304  2.735966e-08   9.997323e-01   1.000268e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  305  3.009563e-08   9.999461e-01   1.000054e+00
-87 it=0 t=3.01e-08 dt=3.01e-09 int=305 Asy=4/16 Eq=3/19 SX=1.0000 dE=-3.16e+23 E=2.98e+17 E_R=2.62e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+5.776e-02
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  306  3.310519e-08   9.999298e-01   1.000070e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  307  3.641571e-08   9.995022e-01   1.000498e+00
-88 it=0 t=3.64e-08 dt=3.64e-09 int=307 Asy=4/16 Eq=4/19 SX=1.0000 dE=-3.23e+23 E=2.96e+17 E_R=6.33e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.504e-02
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  308  4.005728e-08   9.995103e-01   1.000490e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  309  4.406301e-08   9.995182e-01   1.000482e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  310  4.846931e-08   9.994045e-01   1.000596e+00
-89 it=0 t=4.85e-08 dt=4.85e-09 int=310 Asy=5/16 Eq=5/19 SX=1.0000 dE=-2.54e+23 E=2.93e+17 E_R=2.67e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.156e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  311  5.331624e-08   9.994077e-01   1.000593e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  312  5.864786e-08   9.993778e-01   1.000623e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  313  6.451265e-08   9.993559e-01   1.000645e+00
-90 it=0 t=6.45e-08 dt=6.45e-09 int=313 Asy=5/16 Eq=4/19 SX=1.0000 dE=-1.76e+23 E=2.90e+17 E_R=2.02e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.929e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  314  6.559691e-08   1.002374e+00   9.976319e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  315  6.776544e-08   1.000962e+00   9.990393e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  316  7.210250e-08   1.000131e+00   9.998689e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  317  7.931275e-08   9.998543e-01   1.000146e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  318  8.724402e-08   9.996641e-01   1.000336e+00
-91 it=0 t=8.72e-08 dt=8.72e-09 int=318 Asy=6/16 Eq=4/19 SX=1.0000 dE=-3.66e+23 E=2.79e+17 E_R=8.43e-03 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+3.279e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  319  9.596842e-08   9.995207e-01   1.000480e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  320  1.055653e-07   9.993699e-01   1.000630e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  321  1.161218e-07   9.992123e-01   1.000788e+00
-92 it=0 t=1.16e-07 dt=1.16e-08 int=321 Asy=7/16 Eq=4/19 SX=1.0000 dE=-3.29e+23 E=2.69e+17 E_R=8.95e-03 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.996e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  322  1.277340e-07   9.990463e-01   1.000955e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  323  1.287859e-07   1.002105e+00   9.978992e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  324  1.306129e-07   9.999508e-01   1.000049e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  325  1.342669e-07   9.998992e-01   1.000101e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  326  1.415749e-07   9.996431e-01   1.000357e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  327  1.557323e-07   9.988558e-01   1.001146e+00
-93 it=0 t=1.56e-07 dt=1.56e-08 int=327 Asy=7/16 Eq=4/19 SX=1.0000 dE=-2.96e+23 E=2.57e+17 E_R=5.65e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.244e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  328  1.713056e-07   9.985107e-01   1.001491e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  329  1.884361e-07   9.982883e-01   1.001715e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  330  2.072797e-07   9.980485e-01   1.001955e+00
-94 it=0 t=2.07e-07 dt=2.07e-08 int=330 Asy=7/16 Eq=4/19 SX=1.0000 dE=-2.56e+23 E=2.44e+17 E_R=4.36e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+3.697e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  331  2.280077e-07   9.977936e-01   1.002211e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  332  2.508085e-07   9.975223e-01   1.002484e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  333  2.518206e-07   1.002073e+00   9.979310e-01
-95 it=9 t=2.52e-07 dt=1.76e-09 int=333 Asy=4/16 Eq=4/19 SX=1.0000 dE=3.00e+22 E=2.33e+17 E_R=5.17e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.230e-03
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  334  2.535837e-07   9.999554e-01   1.000045e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  335  2.571099e-07   9.999142e-01   1.000086e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  336  2.641623e-07   9.997158e-01   1.000284e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  337  2.782671e-07   9.991209e-01   1.000880e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  338  3.060938e-07   9.972361e-01   1.002772e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  339  3.367032e-07   9.967543e-01   1.003256e+00
-96 it=0 t=3.37e-07 dt=3.37e-08 int=339 Asy=7/16 Eq=4/19 SX=1.0000 dE=-1.96e+23 E=2.15e+17 E_R=1.64e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+3.519e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  340  3.703735e-07   9.963670e-01   1.003646e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  341  3.707324e-07   9.999938e-01   1.000006e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  342  3.712348e-07   9.988278e-01   1.001174e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  343  3.719381e-07   9.989903e-01   1.001011e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  344  3.733448e-07   9.996487e-01   1.000351e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  345  3.749679e-07   1.001809e+00   9.981944e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  346  3.772402e-07   1.001847e+00   9.981561e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  347  3.816802e-07   1.003826e+00   9.961889e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  348  3.887509e-07   1.002978e+00   9.970305e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  349  4.028924e-07   1.003425e+00   9.965868e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  350  4.311755e-07   1.002345e+00   9.976602e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  351  4.523031e-07   1.005235e+00   9.947919e-01
-97 it=2 t=4.52e-07 dt=4.23e-08 int=351 Asy=8/16 Eq=3/19 SX=1.0000 dE=4.01e+22 E=2.53e+17 E_R=1.49e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+6.351e-03
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  352  4.534967e-07   1.002254e+00   9.977508e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  353  4.558839e-07   1.000691e+00   9.993093e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  354  4.606583e-07   1.000185e+00   9.998155e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  355  4.702072e-07   1.000099e+00   9.999015e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  356  4.893048e-07   9.995923e-01   1.000408e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  357  5.240248e-07   9.978660e-01   1.002139e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  358  5.607065e-07   9.970791e-01   1.002929e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  359  5.999559e-07   9.966986e-01   1.003312e+00
-98 it=1 t=6.00e-07 dt=6.00e-08 int=359 Asy=7/16 Eq=3/19 SX=1.0000 dE=-1.52e+23 E=2.26e+17 E_R=7.92e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+7.293e-02
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  360  6.005372e-07   1.002290e+00   9.977155e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  361  6.016547e-07   9.999874e-01   1.000013e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  362  6.038898e-07   9.999805e-01   1.000020e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  363  6.083598e-07   9.999360e-01   1.000064e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  364  6.172998e-07   9.997885e-01   1.000212e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  365  6.351800e-07   9.992810e-01   1.000719e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  366  6.709402e-07   9.976290e-01   1.002377e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  367  7.179060e-07   9.960349e-01   1.003981e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  368  7.681594e-07   9.957458e-01   1.004272e+00
-99 it=1 t=7.68e-07 dt=7.68e-08 int=368 Asy=6/16 Eq=3/19 SX=1.0000 dE=-1.21e+23 E=2.04e+17 E_R=1.74e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.803e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  369  7.686804e-07   1.002013e+00   9.979908e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  370  7.697224e-07   1.000077e+00   9.999225e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  371  7.718063e-07   9.999809e-01   1.000019e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  372  7.759742e-07   9.999418e-01   1.000058e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  373  7.843099e-07   9.998239e-01   1.000176e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  374  8.009814e-07   9.994501e-01   1.000550e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  375  8.343243e-07   9.982451e-01   1.001758e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  376  8.810044e-07   9.967379e-01   1.003273e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  377  9.426747e-07   9.951495e-01   1.004874e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  378  9.433141e-07   1.002296e+00   9.977097e-01
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  379  9.444767e-07   9.999943e-01   1.000006e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  380  9.468019e-07   9.999735e-01   1.000026e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  381  9.514522e-07   9.998864e-01   1.000114e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  382  9.607529e-07   9.996319e-01   1.000368e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  383  9.793544e-07   9.990851e-01   1.000916e+00
-gnu:  #    Steps      t           XcorrFac     sumXtrue
-gnu:  384  1.016557e-06   9.981850e-01   1.001818e+00
-100 it=0 t=1.02e-06 dt=7.44e-08 int=384 Asy=5/16 Eq=7/19 SX=1.0000 dE=-4.77e+22 E=1.81e+17 E_R=2.56e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.727e-02
+3 it=0 t=2.17e-18 dt=2.17e-19 int=60 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.58e+10 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+4 it=0 t=2.89e-18 dt=2.89e-19 int=63 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.77e+10 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+5 it=0 t=3.85e-18 dt=3.85e-19 int=66 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=6.36e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+6 it=0 t=4.66e-18 dt=4.66e-19 int=68 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=7.70e+10 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+7 it=0 t=6.20e-18 dt=6.20e-19 int=71 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.02e+11 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+8 it=0 t=8.26e-18 dt=8.26e-19 int=74 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.36e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+9 it=0 t=9.99e-18 dt=9.99e-19 int=76 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.65e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+10 it=0 t=1.33e-17 dt=1.33e-18 int=79 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.20e+11 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+11 it=0 t=1.77e-17 dt=1.77e-18 int=82 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.93e+11 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+12 it=0 t=2.14e-17 dt=2.14e-18 int=84 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.54e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+13 it=0 t=2.85e-17 dt=2.85e-18 int=87 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.72e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+14 it=0 t=3.79e-17 dt=3.79e-18 int=90 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=6.28e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+15 it=0 t=4.59e-17 dt=4.59e-18 int=92 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=7.59e+11 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+16 it=0 t=6.11e-17 dt=6.11e-18 int=95 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.01e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+17 it=0 t=8.13e-17 dt=8.13e-18 int=98 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.35e+12 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+18 it=0 t=9.84e-17 dt=9.84e-18 int=100 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.63e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+19 it=0 t=1.31e-16 dt=1.31e-17 int=103 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.17e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+20 it=0 t=1.74e-16 dt=1.74e-17 int=106 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.88e+12 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+21 it=0 t=2.11e-16 dt=2.11e-17 int=108 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.49e+12 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+22 it=0 t=2.81e-16 dt=2.81e-17 int=111 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.65e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+23 it=0 t=3.40e-16 dt=3.40e-17 int=113 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=5.62e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+24 it=0 t=4.52e-16 dt=4.52e-17 int=116 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=7.48e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+25 it=0 t=6.02e-16 dt=6.02e-17 int=119 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=9.96e+12 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+26 it=0 t=7.28e-16 dt=7.28e-17 int=121 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.20e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+27 it=0 t=9.69e-16 dt=9.69e-17 int=124 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.60e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+28 it=0 t=1.29e-15 dt=1.29e-16 int=127 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.13e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+29 it=0 t=1.56e-15 dt=1.56e-16 int=129 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.58e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+30 it=0 t=2.08e-15 dt=2.08e-16 int=132 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=3.44e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+31 it=0 t=2.77e-15 dt=2.77e-16 int=135 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=4.57e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+32 it=0 t=3.35e-15 dt=3.35e-16 int=137 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=5.53e+13 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+33 it=0 t=4.45e-15 dt=4.45e-16 int=140 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=7.36e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+34 it=0 t=5.93e-15 dt=5.93e-16 int=143 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=9.80e+13 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+35 it=0 t=7.17e-15 dt=7.17e-16 int=145 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.19e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+36 it=0 t=9.55e-15 dt=9.55e-16 int=148 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=1.58e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+37 it=0 t=1.27e-14 dt=1.27e-15 int=151 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.10e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+38 it=0 t=1.54e-14 dt=1.54e-15 int=153 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.65e+28 E=2.54e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+39 it=0 t=2.05e-14 dt=2.05e-15 int=156 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.64e+28 E=3.37e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+40 it=0 t=2.72e-14 dt=2.72e-15 int=159 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.64e+28 E=4.49e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+41 it=0 t=3.30e-14 dt=3.30e-15 int=161 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.64e+28 E=5.42e+14 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+42 it=0 t=4.39e-14 dt=4.39e-15 int=164 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.63e+28 E=7.20e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+43 it=0 t=5.84e-14 dt=5.84e-15 int=167 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.62e+28 E=9.57e+14 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+44 it=0 t=7.06e-14 dt=7.06e-15 int=169 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.62e+28 E=1.16e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+45 it=0 t=9.40e-14 dt=9.40e-15 int=172 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.60e+28 E=1.53e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+46 it=0 t=1.25e-13 dt=1.25e-14 int=175 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.59e+28 E=2.03e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+47 it=0 t=1.51e-13 dt=1.51e-14 int=177 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.58e+28 E=2.44e+15 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+48 it=0 t=2.02e-13 dt=2.02e-14 int=180 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.55e+28 E=3.22e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+49 it=0 t=2.68e-13 dt=2.68e-14 int=183 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.52e+28 E=4.24e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+50 it=0 t=3.25e-13 dt=3.25e-14 int=185 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.49e+28 E=5.09e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+51 it=0 t=4.32e-13 dt=4.32e-14 int=188 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.44e+28 E=6.65e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+52 it=0 t=5.75e-13 dt=5.75e-14 int=191 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.38e+28 E=8.66e+15 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+53 it=0 t=6.96e-13 dt=6.96e-14 int=193 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.33e+28 E=1.03e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+54 it=0 t=9.26e-13 dt=9.26e-14 int=196 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.24e+28 E=1.32e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+55 it=0 t=1.23e-12 dt=1.23e-13 int=199 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.14e+28 E=1.68e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+56 it=0 t=1.49e-12 dt=1.49e-13 int=201 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.06e+28 E=1.96e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+57 it=0 t=1.99e-12 dt=1.99e-13 int=204 Asy=0/16 Eq=0/19 SX=1.0000 dE=9.29e+27 E=2.44e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+58 it=0 t=2.40e-12 dt=2.40e-13 int=206 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.36e+27 E=2.80e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+59 it=0 t=3.20e-12 dt=3.20e-13 int=209 Asy=0/16 Eq=0/19 SX=1.0000 dE=6.89e+27 E=3.38e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+60 it=0 t=4.26e-12 dt=4.26e-13 int=212 Asy=0/16 Eq=0/19 SX=1.0000 dE=5.44e+27 E=4.00e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+61 it=0 t=5.15e-12 dt=5.15e-13 int=214 Asy=0/16 Eq=0/19 SX=1.0000 dE=4.50e+27 E=4.43e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+62 it=0 t=6.85e-12 dt=6.85e-13 int=217 Asy=0/16 Eq=0/19 SX=1.0000 dE=3.23e+27 E=5.04e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+63 it=0 t=9.12e-12 dt=9.12e-13 int=220 Asy=0/16 Eq=0/19 SX=1.0000 dE=2.14e+27 E=5.60e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+64 it=0 t=1.10e-11 dt=1.10e-12 int=222 Asy=0/16 Eq=0/19 SX=1.0000 dE=1.54e+27 E=5.92e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+65 it=0 t=1.47e-11 dt=1.47e-12 int=225 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.25e+26 E=6.30e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+66 it=0 t=1.96e-11 dt=1.96e-12 int=228 Asy=0/16 Eq=0/19 SX=1.0000 dE=3.23e+26 E=6.53e+16 E_R=4.44e-14 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+67 it=0 t=2.37e-11 dt=2.37e-12 int=230 Asy=0/16 Eq=0/19 SX=1.0000 dE=9.23e+25 E=6.58e+16 E_R=0.00e+00 ch=1 ch2=1 fast:c12+c12-->he4+ne20 Q=+4.621 dev=+0.000e+00
+68 it=0 t=3.15e-11 dt=3.15e-12 int=233 Asy=0/16 Eq=0/19 SX=1.0000 dE=-1.25e+26 E=6.53e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+69 it=0 t=4.19e-11 dt=4.19e-12 int=236 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.21e+26 E=6.32e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+70 it=0 t=5.07e-11 dt=5.07e-12 int=238 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.34e+26 E=6.12e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+71 it=0 t=6.75e-11 dt=6.75e-12 int=241 Asy=0/16 Eq=0/19 SX=1.0000 dE=-2.01e+26 E=5.76e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+72 it=0 t=8.99e-11 dt=8.99e-12 int=244 Asy=0/16 Eq=0/19 SX=1.0000 dE=-1.31e+26 E=5.41e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+73 it=0 t=1.09e-10 dt=1.09e-11 int=246 Asy=0/16 Eq=0/19 SX=1.0000 dE=-7.85e+25 E=5.24e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+74 it=0 t=1.45e-10 dt=1.45e-11 int=249 Asy=0/16 Eq=0/19 SX=1.0000 dE=-5.93e+24 E=5.14e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+75 it=0 t=1.93e-10 dt=1.93e-11 int=252 Asy=0/16 Eq=0/19 SX=1.0000 dE=4.60e+25 E=5.29e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+76 it=0 t=2.33e-10 dt=2.33e-11 int=254 Asy=0/16 Eq=0/19 SX=1.0000 dE=6.71e+25 E=5.55e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+77 it=0 t=3.10e-10 dt=3.10e-11 int=257 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.26e+25 E=6.16e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+78 it=0 t=4.13e-10 dt=4.13e-11 int=260 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.68e+25 E=7.04e+16 E_R=4.44e-14 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+79 it=0 t=5.00e-10 dt=5.00e-11 int=262 Asy=0/16 Eq=0/19 SX=1.0000 dE=8.68e+25 E=7.79e+16 E_R=0.00e+00 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+80 it=0 t=6.65e-10 dt=6.65e-11 int=265 Asy=0/16 Eq=0/19 SX=1.0001 dE=8.45e+25 E=9.20e+16 E_R=1.43e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+81 it=0 t=8.85e-10 dt=8.85e-11 int=268 Asy=0/16 Eq=0/19 SX=1.0002 dE=7.95e+25 E=1.10e+17 E_R=2.04e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+82 it=0 t=1.07e-09 dt=1.07e-10 int=270 Asy=0/16 Eq=0/19 SX=1.0004 dE=7.44e+25 E=1.24e+17 E_R=2.41e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+83 it=0 t=1.43e-09 dt=1.43e-10 int=273 Asy=1/16 Eq=0/19 SX=1.0010 dE=6.39e+25 E=1.48e+17 E_R=1.69e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+84 it=0 t=1.90e-09 dt=1.90e-10 int=276 Asy=2/16 Eq=0/19 SX=1.0025 dE=5.15e+25 E=1.74e+17 E_R=4.59e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+85 it=0 t=2.30e-09 dt=2.30e-10 int=278 Asy=2/16 Eq=0/19 SX=1.0039 dE=4.29e+25 E=1.92e+17 E_R=5.54e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+86 it=0 t=3.06e-09 dt=3.06e-10 int=281 Asy=2/16 Eq=0/19 SX=1.0067 dE=3.08e+25 E=2.18e+17 E_R=6.55e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+87 it=0 t=4.07e-09 dt=4.07e-10 int=284 Asy=2/16 Eq=0/19 SX=1.0101 dE=2.07e+25 E=2.42e+17 E_R=7.43e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+88 it=0 t=4.92e-09 dt=4.92e-10 int=286 Asy=2/16 Eq=0/19 SX=1.0115 dE=1.56e+25 E=2.56e+17 E_R=4.08e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+gnu: $   Steps    t        devious   maxRatio isEquil
+gnu: 287 5.4130e-09 4.2306e-02 2.0897e+00 0
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 288 5.9543e-09 3.4853e-02 1.7886e+00 0
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 289 6.5497e-09 2.8388e-02 1.5080e+00 0
+
+89 it=0 t=6.55e-09 dt=6.55e-10 int=289 Asy=2/16 Eq=0/19 SX=1.0130 dE=9.71e+24 E=2.75e+17 E_R=2.05e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+0.000e+00
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 290 7.2047e-09 2.2878e-02 1.2554e+00 0
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 291 7.9251e-09 1.8224e-02 1.0314e+00 0
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 292 8.7176e-09 1.4308e-02 8.3407e-01 0
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 292 8.7176e-09 1.4308e-02 8.8257e-01 1
+
+90 it=0 t=8.72e-09 dt=8.72e-10 int=292 Asy=3/16 Eq=1/19 SX=1.0000 dE=5.51e+24 E=2.89e+17 E_R=8.81e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.431e-02
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 293 9.5894e-09 4.1481e-02 1.9112e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 293 9.5894e-09 4.1481e-02 2.5218e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 294 1.0548e-08 7.7601e-02 4.0678e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 294 1.0548e-08 7.7601e-02 4.6055e+00 1
+
+91 it=0 t=1.05e-08 dt=1.05e-09 int=294 Asy=4/16 Eq=1/19 SX=1.0000 dE=1.84e+24 E=2.93e+17 E_R=8.92e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+7.760e-02
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 295 1.1603e-08 1.1108e-01 5.9868e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 295 1.1603e-08 1.1108e-01 6.4515e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 296 1.2763e-08 1.4169e-01 7.6883e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 296 1.2763e-08 1.4169e-01 8.0723e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 297 1.4040e-08 1.6962e-01 9.1883e+00 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 297 1.4040e-08 1.6962e-01 9.4994e+00 1
+
+92 it=0 t=1.40e-08 dt=1.40e-09 int=297 Asy=4/16 Eq=1/19 SX=1.0000 dE=9.11e+23 E=2.97e+17 E_R=1.05e-01 ch=0 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.696e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 298 1.5444e-08 1.9500e-01 1.0506e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 298 1.5444e-08 1.9500e-01 1.0755e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 299 1.6988e-08 2.1794e-01 1.1663e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 299 1.6988e-08 2.1794e-01 1.1858e+01 1
+
+93 it=0 t=1.70e-08 dt=1.70e-09 int=299 Asy=4/16 Eq=1/19 SX=1.0000 dE=4.60e+23 E=2.99e+17 E_R=9.06e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.179e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 300 1.8687e-08 2.3862e-01 1.2675e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 300 1.8687e-08 2.3862e-01 1.2827e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 301 2.0556e-08 2.5721e-01 1.3561e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 301 2.0556e-08 2.5721e-01 1.3679e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 302 2.2611e-08 2.7391e-01 1.4338e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 302 2.2611e-08 2.7391e-01 1.4428e+01 1
+
+94 it=0 t=2.26e-08 dt=2.26e-09 int=302 Asy=5/16 Eq=1/19 SX=1.0000 dE=3.86e+22 E=3.00e+17 E_R=6.38e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.739e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 303 2.4872e-08 2.8895e-01 1.5020e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 303 2.4872e-08 2.8895e-01 1.5089e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 304 2.7360e-08 2.9587e-01 1.5228e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 304 2.7360e-08 2.9587e-01 1.5380e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 305 3.0096e-08 3.0185e-01 1.5498e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 305 3.0096e-08 3.0185e-01 1.5625e+01 1
+
+95 it=0 t=3.01e-08 dt=3.01e-09 int=305 Asy=4/16 Eq=3/19 SX=1.0000 dE=-3.16e+23 E=2.98e+17 E_R=2.62e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+5.776e-02
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 306 3.3105e-08 3.0818e-01 1.5755e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 306 3.3105e-08 3.0818e-01 1.5882e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 307 3.6416e-08 3.1470e-01 1.6015e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 307 3.6416e-08 3.1470e-01 1.6144e+01 1
+
+96 it=0 t=3.64e-08 dt=3.64e-09 int=307 Asy=4/16 Eq=4/19 SX=1.0000 dE=-3.23e+23 E=2.96e+17 E_R=6.33e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.504e-02
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 308 4.0057e-08 3.2070e-01 1.6255e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 308 4.0057e-08 3.2070e-01 1.6384e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 309 4.4063e-08 3.2677e-01 1.6497e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 309 4.4063e-08 3.2677e-01 1.6625e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 310 4.8469e-08 3.3267e-01 1.6733e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 310 4.8469e-08 3.3267e-01 1.6857e+01 1
+
+97 it=0 t=4.85e-08 dt=4.85e-09 int=310 Asy=5/16 Eq=5/19 SX=1.0000 dE=-2.54e+23 E=2.93e+17 E_R=2.67e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.156e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 311 5.3316e-08 3.3828e-01 1.6955e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 311 5.3316e-08 3.3828e-01 1.7076e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 312 5.8648e-08 3.4378e-01 1.7171e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 312 5.8648e-08 3.4378e-01 1.7289e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 313 6.4513e-08 3.4911e-01 1.7380e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 313 6.4513e-08 3.4911e-01 1.7494e+01 1
+
+98 it=0 t=6.45e-08 dt=6.45e-09 int=313 Asy=5/16 Eq=4/19 SX=1.0000 dE=-1.76e+23 E=2.90e+17 E_R=2.02e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+1.929e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 314 6.5597e-08 3.3826e-01 1.7162e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 314 6.5597e-08 3.3826e-01 1.7040e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 315 6.7765e-08 3.3932e-01 1.7070e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 315 6.7765e-08 3.3932e-01 1.7062e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 316 7.2102e-08 3.4286e-01 1.7140e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 316 7.2102e-08 3.4286e-01 1.7186e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 317 7.9313e-08 3.4797e-01 1.7274e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 317 7.9313e-08 3.4797e-01 1.7366e+01 1
+
+99 it=0 t=7.93e-08 dt=7.93e-09 int=317 Asy=6/16 Eq=4/19 SX=1.0000 dE=-3.81e+23 E=2.82e+17 E_R=2.13e-02 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+2.825e-01
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 318 8.7244e-08 3.5367e-01 1.7460e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 318 8.7244e-08 3.5367e-01 1.7567e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 319 9.5968e-08 3.5993e-01 1.7666e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 319 9.5968e-08 3.5993e-01 1.7786e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 320 1.0557e-07 3.6680e-01 1.7892e+01 1
+
+gnu:  #   Steps    t        devious   maxRatio isEquil
+gnu: 320 1.0557e-07 3.6680e-01 1.8026e+01 1
+
+100 it=0 t=1.06e-07 dt=1.06e-08 int=320 Asy=6/16 Eq=4/19 SX=1.0000 dE=-3.41e+23 E=2.73e+17 E_R=7.95e-03 ch=1 ch2=1 fast:ne20-->he4+o16 Q=-4.734 dev=+4.357e-01
 
 Integration using ASY+PE method
 T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-12
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
-Integration steps=384  totalIterations=96  IntegrationSteps_plotted=329
-Timer: 1.1531e+01 ms used
+Integration steps=320  totalIterations=5  IntegrationSteps_plotted=265
+Timer: 5.6385e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=8.5500e-02 X=3.4200e-01
-1 12C Y=3.2387e-05 X=3.8864e-04
-2 16O Y=6.0169e-05 X=9.6270e-04
-3 20Ne Y=1.4775e-06 X=2.9550e-05
-4 24Mg Y=6.1448e-05 X=1.4747e-03
-5 28Si Y=1.0915e-02 X=3.0563e-01
-6 32S Y=6.6870e-03 X=2.1398e-01
-7 36Ar Y=2.1826e-03 X=7.8574e-02
-8 40Ca Y=1.2882e-03 X=5.1529e-02
-9 44Ti Y=3.5232e-05 X=1.5502e-03
-10 48Cr Y=4.9159e-05 X=2.3596e-03
-11 52Fe Y=2.4889e-05 X=1.2942e-03
-12 56Ni Y=4.0899e-06 X=2.2903e-04
-13 60Zn Y=1.8397e-09 X=1.1038e-07
-14 64Ge Y=9.7115e-13 X=6.2154e-11
-15 68Se Y=8.1540e-16 X=5.5447e-14
+0 4He Y=6.5384e-02 X=2.6154e-01
+1 12C Y=6.2762e-05 X=7.5314e-04
+2 16O Y=1.3721e-04 X=2.1953e-03
+3 20Ne Y=3.3819e-06 X=6.7639e-05
+4 24Mg Y=1.7498e-04 X=4.1996e-03
+5 28Si Y=1.5449e-02 X=4.3258e-01
+6 32S Y=6.2127e-03 X=1.9881e-01
+7 36Ar Y=1.6880e-03 X=6.0769e-02
+8 40Ca Y=9.5149e-04 X=3.8059e-02
+9 44Ti Y=1.6806e-05 X=7.3945e-04
+10 48Cr Y=5.8971e-06 X=2.8306e-04
+11 52Fe Y=2.6763e-07 X=1.3917e-05
+12 56Ni Y=3.1975e-09 X=1.7906e-07
+13 60Zn Y=1.1824e-12 X=7.0942e-11
+14 64Ge Y=3.9129e-16 X=2.5043e-14
+15 68Se Y=1.8746e-19 X=1.2747e-17
 
-[Inferior 1 (process 25820) exited normally]
+[Inferior 1 (process 3788) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
-(gdb) quit
+(gdb) 
+quit

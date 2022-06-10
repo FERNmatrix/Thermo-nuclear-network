@@ -293,7 +293,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -3226,24 +3226,10 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
-        // The return statements in the following if-clauses cause reaction
-        // groups already in equilibrium to stay in equilibrium. Otherwise, if
-        // the RG is in equilibrium (isEquil=true) but the tolerance condition
-        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
-        // from equilibrium.
-        
-        if (isEquil && thisDevious < deviousMax) {
-            return;
-        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
-            removeFromEquilibrium(1);
-            return;
-        }
-        
-            
         Yminner = 1000;
         maxRatio = 0;
         minRatio= 1000;
-
+        
         // Determine if reaction group RG is in equilibrium by computing the fractional
         // difference of the actual and equilibrium abundances for all isotopic species
         // in the reaction group.
@@ -3263,6 +3249,24 @@ class ReactionGroup:  public Utilities {
             if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
             
         }
+        
+        maxRatio = maxRatio;  // Dummy anchor for debugger
+        
+        // The return statements in the following if-clauses cause reaction
+        // groups already in equilibrium to stay in equilibrium. Otherwise, if
+        // the RG is in equilibrium (isEquil=true) but the tolerance condition
+        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
+        // from equilibrium.
+        
+        if (isEquil && thisDevious < deviousMax) {
+            return;
+        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
+            removeFromEquilibrium(1);
+            return;
+        }
+        
+            
+
         
         // Ratios of deviations from equilibrium and the parameter equiTol. The RG 
         // is in equilibrium if maxRatio is less than 1 for EVERY isotopic species 

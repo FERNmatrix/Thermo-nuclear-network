@@ -425,4 +425,15 @@ end
 
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > XcorrFac_C++.out
 
+---------------------------------------
+
+break 3253 if t>5e-9 && RGn==9
+commands
+silent
+printf"\ngnu:  #   Steps    t        devious   maxRatio RGn  isEquil"
+printf"\ngnu: %d %7.4e %7.4e %7.4e %2d %2d\n",totalTimeSteps,t,thisDevious,maxRatio,RGn,isEquil
+cont
+end
+
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > equilRatio_C++.out
 
