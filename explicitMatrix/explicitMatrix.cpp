@@ -293,7 +293,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -331,8 +331,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-12;    // Time to begin checking for PE
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
+double equilibrateTime = 1e-7;   // Time to begin checking for PE
+double equiTol = 0.02;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep

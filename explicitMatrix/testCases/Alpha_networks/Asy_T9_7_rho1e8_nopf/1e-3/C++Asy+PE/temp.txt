@@ -1,5 +1,5 @@
 
-Wed Jun  1 11:27:27 2022
+Sat Jun 11 09:42:42 2022
 
 
 Integration using ASY+PE method
@@ -7,7 +7,7 @@ T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilT
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=0  totalIterations=0  IntegrationSteps_plotted=0
-Timer: 5.2130e+00 ms used
+Timer: 5.2320e+00 ms used
 
 BEGIN TIME INTEGRATION:
 
@@ -117,7 +117,7 @@ T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilT
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=2459  totalIterations=4031  IntegrationSteps_plotted=2403
-Timer: 6.3120e+01 ms used
+Timer: 6.1097e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 

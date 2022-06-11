@@ -1,4 +1,4 @@
-# ASY+PE method (no partition functions): 2403 integration steps in 6.3120e-02 seconds
+# ASY+PE method (no partition functions): 2403 integration steps in 6.1097e-02 seconds
 # All double quantities are log10(x); rates in units of s^-1
 #
 #      t       dt  2/Rmin   Reaction_Rmin    1/Rmax   Reaction_Rmax     dt_FE   dt_EA   trial_dt
