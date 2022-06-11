@@ -331,7 +331,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-9;   // Time to begin checking for PE
+double equilibrateTime = 1e-12;   // Time to begin checking for PE
 double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
@@ -3225,6 +3225,32 @@ class ReactionGroup:  public Utilities {
             mostDevious = thisDevious;                
             mostDeviousIndex = RGn;
         }
+        
+Yminner = 1000;
+maxRatio = 0;
+minRatio= 1000;
+
+// Determine if reaction group RG is in equilibrium by computing the fractional
+// difference of the actual and equilibrium abundances for all isotopic species
+// in the reaction group.
+
+for (int i = 0; i < niso; i++) {
+    
+    // Compute absolute value of deviation of abundances from 
+    // equilibrium values for this reaction group.
+    
+    eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
+    eqRatio[i] = eqcheck[i]/equiTol;
+    
+    // Store some min and max values for this RG
+    
+    if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
+    if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
+    if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
+    
+}
+
+maxRatio = maxRatio;  // Dummy anchor for debugger
         
 
         

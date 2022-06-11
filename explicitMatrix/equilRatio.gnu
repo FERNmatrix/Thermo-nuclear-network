@@ -82,8 +82,8 @@ set title ds textcolor rgb title_color #font "Arial,22"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -9
-xup = -7
-xtics = 0.2   # Space between major x ticmarks
+xup = -4
+xtics = 1   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
@@ -109,14 +109,15 @@ file1 = "equilRatio_C++.out"
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 2 title "mostDevious C++"
+plot file1 using (log10($3)):4 with lines ls 2 lw 1.0 dashtype 2 title "mostDevious C++"
 replot file1 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 2 title "maxRatio C++"
-#replot file1 using (log10($3)):7 with lines ls 4 lw 1.0 dashtype 1 title "isEquil C++"
+#replot file1 using (log10($3)):7 with lines ls 4 lw 1.0 dashtype 2 title "isEquil C++"
 
 file2 = "equilRatio_Java.out"
 
-replot file2 using (log10($3)):4 with lines ls 2 lw 1.0 dashtype 1 title "mostDevious Java"
-replot file2 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 1 title "maxRatio Java"
+replot file2 using (log10($3)):4 with lines ls 6 lw 3.0 dashtype 1 title "mostDevious Java"
+replot file2 using (log10($3)):5 with lines ls 14 lw 0.5 dashtype 1 title "maxRatio Java"
+#replot file2 using (log10($3)):($7+0.02) with lines ls 8 lw 1.0 dashtype 1 title "isEquil Java +0.02"
 
 
 
