@@ -74,7 +74,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy+PE T9=7 rho=1e8 (no PF) massTol=EpsA=1e-5 for C++"
+ds="Asy+PE T9=7 rho=1e8 (no PF) RG 9"
 ds = ds.""
 set title ds textcolor rgb title_color #font "Arial,22"
 
@@ -87,7 +87,7 @@ xtics = 0.2   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
-yup = 4
+yup = 2
 ytics = 0.5      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -109,14 +109,14 @@ file1 = "equilRatio_C++.out"
 # Edit the following plot commands to correspond to data
 # read in from data file
 
-plot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 1 title "mostDevious"
-replot file1 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 1 title "maxRatio"
-replot file1 using (log10($3)):7 with lines ls 4 lw 1.0 dashtype 1 title "isEquil"
+plot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 2 title "mostDevious C++"
+replot file1 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 2 title "maxRatio C++"
+#replot file1 using (log10($3)):7 with lines ls 4 lw 1.0 dashtype 1 title "isEquil C++"
 
-#file2 = "XcorrFac_Java.out"
+file2 = "equilRatio_Java.out"
 
-#replot file2 using (log10($3)):4 with lines ls 3 lw 1.0 dashtype 1 title "xCorrFac Java"
-#replot file2 using (log10($3)):5 with lines ls 2 lw 1.0 dashtype 1 title "sumXtrue C++"
+replot file2 using (log10($3)):4 with lines ls 2 lw 1.0 dashtype 1 title "mostDevious Java"
+replot file2 using (log10($3)):5 with lines ls 3 lw 1.0 dashtype 1 title "maxRatio Java"
 
 
 
