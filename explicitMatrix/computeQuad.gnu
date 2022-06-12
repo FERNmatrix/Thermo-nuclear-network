@@ -110,16 +110,17 @@ plot file2 using (log10($3)):(log10($4)) with lines ls 2 lw 1.5 dashtype 1 title
 replot file2 using (log10($3)):(log10($5)) with lines ls 3 lw 1.5 dashtype 1 title "isoY[0] Java"
 replot file2 using (log10($3)):(log10($6)) with lines ls 4 lw 1.5 dashtype 1 title "isoY[1] Java"
 replot file2 using (log10($3)):(log10($7)) with lines ls 14 lw 1.5 dashtype 1 title "isoY[2] Java"
-replot file2 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 1 title "isoYeq[0] Java (offset)"
+replot file2 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 1 title "isoYeq[0] Java (offset-0.2)"
+replot file2 using (log10($3)):(log10($9)) with lines ls 12 lw 1.5 dashtype 1 title "isoYeq[1] Java "
 
 file1 = "computeQuad_C++.out"
 
 replot file1 using (log10($3)):(log10($4)) with lines ls 2 lw 1.5 dashtype 2 title "equilRatio C++"
 replot file1 using (log10($3)):(log10($5)) with lines ls 3 lw 1.5 dashtype 2 title "isoY[0] C++"
 replot file1 using (log10($3)):(log10($6)) with lines ls 4 lw 1.5 dashtype 2 title "isoY[1] C++"
-replot file1 using (log10($3)):(log10($7)) with lines ls 14 lw 1.5 dashtype 2 title "isoY[2] Java"
-replot file1 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 2 title "isoYeq[0] C++ (offset)"
-
+replot file1 using (log10($3)):(log10($7)) with lines ls 14 lw 1.5 dashtype 2 title "isoY[2] C++"
+replot file1 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 2 title "isoYeq[0] C++ (offset-0.2)"
+replot file1 using (log10($3)):(log10($9)) with lines ls 12 lw 1.5 dashtype 1 title "isoYeq[1] C++ "
 
 
 
