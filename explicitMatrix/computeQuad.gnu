@@ -86,8 +86,8 @@ xup = -7
 xtics = 0.2   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 0.5
+ylow = -2.5
+yup = -0.5
 ytics = 0.1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -104,21 +104,21 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file2 = "equilRatio_Java.out"
+file2 = "computeQuad_Java.out"
 
-plot file2 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 1 title "mostDevious Java"
-replot file2 using (log10($3)):5 with lines ls 3 lw 1.5 dashtype 1 title "equilRatio Java"
-replot file2 using (log10($3)):6 with lines ls 4 lw 1.5 dashtype 1 title "kratio Java"
-#replot file2 using (log10($3)):7 with lines ls 14 lw 1.5 dashtype 1 title "maxRatio Java"
-#replot file2 using (log10($3)):($9+0.02) with lines ls 8 lw 1.5 dashtype 1 title "isEquil Java +0.02"
+plot file2 using (log10($3)):(log10($4)) with lines ls 2 lw 1.5 dashtype 1 title "equilRatio Java"
+replot file2 using (log10($3)):(log10($5)) with lines ls 3 lw 1.5 dashtype 1 title "isoY[0] Java"
+replot file2 using (log10($3)):(log10($6)) with lines ls 4 lw 1.5 dashtype 1 title "isoY[1] Java"
+replot file2 using (log10($3)):(log10($7)) with lines ls 14 lw 1.5 dashtype 1 title "isoY[2] Java"
+replot file2 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 1 title "isoYeq[0] Java (offset)"
 
-file1 = "equilRatio_C++.out"
+file1 = "computeQuad_C++.out"
 
-replot file1 using (log10($3)):4 with lines ls 2 lw 1.5 dashtype 2 title "mostDevious C++"
-replot file1 using (log10($3)):5 with lines ls 3 lw 1.5 dashtype 2 title "equilRatio C++"
-replot file1 using (log10($3)):6 with lines ls 4 lw 1.5 dashtype 2 title "kratio C++"
-#replot file1 using (log10($3)):7 with lines ls 14 lw 1.5 dashtype 1 title "maxRatio Java"
-#replot file1 using (log10($3)):9 with lines ls 4 lw 1.5 dashtype 2 title "isEquil C++"
+replot file1 using (log10($3)):(log10($4)) with lines ls 2 lw 1.5 dashtype 2 title "equilRatio C++"
+replot file1 using (log10($3)):(log10($5)) with lines ls 3 lw 1.5 dashtype 2 title "isoY[0] C++"
+replot file1 using (log10($3)):(log10($6)) with lines ls 4 lw 1.5 dashtype 2 title "isoY[1] C++"
+replot file1 using (log10($3)):(log10($7)) with lines ls 14 lw 1.5 dashtype 2 title "isoY[2] Java"
+replot file1 using (log10($3)):(log10($8)-0.2) with lines ls 7 lw 1.5 dashtype 2 title "isoYeq[0] C++ (offset)"
 
 
 
@@ -133,13 +133,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "equilRatio.eps"    # Output file
+set out "computeQuad.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "equilRatio.png"
+#set out "computeQuad.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot

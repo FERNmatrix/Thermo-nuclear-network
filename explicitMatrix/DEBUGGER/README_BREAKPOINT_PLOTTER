@@ -427,13 +427,22 @@ cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep
 
 ---------------------------------------
 
-break 3253 if t>1e-9 && RGn==8
+break 3253 if t>1e-9 && RGn==9
 commands
 silent
-printf"\ngnu:  #   Steps    t        devious   maxRatio RGn  isEquil"
-printf"\ngnu: %d %7.4e %7.4e %7.4e %2d %2d\n",totalTimeSteps,t,thisDevious,maxRatio,RGn,isEquil
+printf"\ngnu:  #   Steps    t        devious   equilRatio  kratio    maxRatio  RGn isEquil"
+printf"\ngnu: %d %7.4e %7.4e %7.4e %7.4e %7.4e %2d %2d\n",totalTimeSteps,t,thisDevious,equilRatio,kratio,maxRatio,RGn,isEquil
 cont
 end
 
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > equilRatio_C++.out
+---------------------------------------
 
+b 3146 if t>1e-8 && t<1e-7 && RGn==9
+commands
+printf"\ngnu:  #   Steps      t   class mode equilRatio  isoYeq[0] isoYeq[1]  isoYeq[2]    crg[0]      crg[1]"
+printf"\ngnu: %4d %7.4e %7.4e %7.4e %7.4e %7.4e %7.4e",totalTimeSteps,t,equilRatio,isoY[0],isoY[1],isoY[2],isoYeq[0]
+cont
+end
+
+cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > computeQuad_C++.out

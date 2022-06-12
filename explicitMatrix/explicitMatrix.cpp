@@ -332,7 +332,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // On the other hand, the check should not be too costly.
 
 double equilibrateTime = 1e-12;   // Time to begin checking for PE
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -3142,6 +3142,8 @@ class ReactionGroup:  public Utilities {
                 isoYeq[1] = crg[0] + isoYeq[0];
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
+                
+                equilRatio = equilRatio;  // Dummy debug statement
 
                 break;
                 
@@ -3499,7 +3501,8 @@ class Integrate: public Utilities {
             
             // Now execute a full timestep and store sumX. Note that
             // updatePopulations(dt) updates sumX. The diagnostic 
-            // flag dtMode labels whether we are taking the full timestep 
+            // flag dtMode labels whether we are computing before the
+            // first timestep (dtMode=-1), taking the full timestep 
             // (dtMode=0), the first half timestep (dtMode = 1), or
             // the second half timestep (dtMode = 2).
             
@@ -3661,7 +3664,7 @@ class Integrate: public Utilities {
         
         
         // Function Integrate::updatePopulations(double) to do population update 
-        // with current dt
+        // with current dt and current fluxes.
         
         static void updatePopulations(double dtt){
 
