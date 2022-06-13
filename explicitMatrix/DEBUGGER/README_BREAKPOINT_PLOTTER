@@ -446,3 +446,72 @@ cont
 end
 
 cat gdb_debug.out | grep "gnu:" | grep -v "printf" | grep -v "Continuing" | grep -v "gdb" |grep -v "Missing" | grep -v "dt=" |grep -v \# |grep -v SX= > computeQuad_C++.out
+
+------------------------------------------
+
+watch RG[9].isoY[2] if t>1e-9 && t<1e-7
+commands
+printf"\n%6.4e %6.4e %6.4e %6.4e %6.4e %d",t,RG[9].isoY[0]/RG[9].isoYeq[0],RG[9].isoY[1]/RG[9].isoYeq[1],RG[9].isoY[2]/RG[9].isoYeq[2],RG[9].equilRatio,RG[9].isEquil
+end
+
+watch t if t>1e-8  && t<1e-7
+
+-------------------------------------------
+
+break 2076 if t>8.3e-9 && t<1e-7 && reacIndex==31
+commands
+silent
+printf"\nt=%7.5e logt=%7.4f kfac=%7.5e reactantIndex[0]=%d Y[reactantIndex[0]]=%7.5e flux=%7.5e\n",t,(double)log10(t),kfac,reactantIndex[0],Y[reactantIndex[0]],flux
+end
+
+break 2056 if t>8.3e-9 && t<1e-7 && reacIndex==31
+commands
+silent
+printf"\nt=%7.5e logt=%7.4f isEquil=%d EquilRG=%d reacIndex=%d numberReactants=%d flux=%7.5e\n",t,(double)log10(t),isEquil,totalEquilRG,reacIndex,numberReactants,flux
+end
+
+-----------------------------------
+
+break 3489 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT preiteration: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e iter=%d\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7],totalIterations
+cont
+end
+
+break 3500 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT set: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e iter=%d\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7],totalIterations
+cont
+end
+
+break 3513 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT Full step: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7]
+cont
+end
+
+break 3524 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT First halfstep: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7]
+cont
+end
+
+break 3541 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT Second halfstep: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7]
+cont
+end
+
+break 3570 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\nDT Integration complete: logt=%7.4f t=%7.4e dt=%7.4e equilRG=%d dtMode=%d Y0[7]=%7.4e Y[7]=%7.4e\n",(double)log10(t),t,dt,totalEquilRG,dtMode,Y0[7],Y[7]
+printf"\nDT\n"
+cont
+end
+

@@ -2034,11 +2034,11 @@ class Reaction: public Utilities {
             // whether the reaction is 1-body, 2-body, or 3-body, and is selected by
             // the switch statement in fluxChooser(numberReactants).
             
-            double kfac;
+            //double kfac;
             
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
             
-            if( reacIsActive[reacIndex] ) {
+            if( reacIsActive[reacIndex] ) {      // If not in equilibrated RG
                 
                 fluxChooser(numberReactants);
             
@@ -2963,8 +2963,9 @@ class ReactionGroup:  public Utilities {
     
     
     // -----------------------------------------------------------------------
-    // Function ReactionGroup::putY0() to put the values of Y0 at beginning of 
-    // timestep into the Y0[] array for this object
+    // Function ReactionGroup::putY0() to put the values of Y0 and Y at 
+    // beginning of timestep into the Y0[] and Y[] arrays for this 
+    // RG object.
     // -----------------------------------------------------------------------
     
     void putY0() {
@@ -3495,7 +3496,7 @@ class Integrate: public Utilities {
             // and two half timesteps. First store current Ys and t and dt for later 
             // restoration.
             
-            storeCurrentY();
+            //storeCurrentY();
             dt_saved = dt;
             t = t_saved;
             
@@ -3506,6 +3507,7 @@ class Integrate: public Utilities {
             // (dtMode=0), the first half timestep (dtMode = 1), or
             // the second half timestep (dtMode = 2).
             
+            restoreCurrentY();
             dtMode = 0;
             updatePopulations(dt);
             sumXfull = sumX;
@@ -3555,12 +3557,11 @@ class Integrate: public Utilities {
             
             Error_Observed = abs(sumXhalf - sumXfull);
             Error_Desired = EpsA;       // Neglect EpsR for now
-            //Error_Desired = EpsA + EpsR;
 
-            // Restore time and timestep to before double half-step
+            // Restore time to before double half-step
             
-            dt = dt_saved;
-            t = t_saved + dt;
+            //dt = dt_saved;
+            //t = t_saved + dt_saved;
 
             // Get new trial timestep for next integration step
 
@@ -4339,8 +4340,7 @@ int main() {
         }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
-        // for next timestep) if partial equilibrium is being implemented (doPE = true), or not
-        // being implemented but RG in equilibrium being tracked (showPE = true).
+        // for next timestep) if partial equilibrium is being implemented (doPE = true).
         
         if( (doPE && t > equilibrateTime)){
             
