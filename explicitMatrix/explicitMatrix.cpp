@@ -2638,8 +2638,8 @@ class ReactionGroup:  public Utilities {
         double maxRatio;               // Largest eqcheck[]/equiTol in reaction group
         double minRatio;               // Smallest eqcheck[]/equiTol in reaction group 
 
-        double lambda;                 // Progress variable for reaction pair
-        double lambdaEq;               // Equilibrium value of progress variable
+        double lambda;                 // Progress variable for RG (computed; not used)
+        double lambdaEq;               // Equil value progress variable (computed; not used)
         
         // Reactions of the Reaclib library have 1-3 reactants and 1-4 products, so create arrays
         // to accomodate all possibilities without having to resize arrays.
@@ -2928,7 +2928,7 @@ class ReactionGroup:  public Utilities {
         
         if (isEquil) {
             netflux = sumRGfluxes();
-            lambda = netflux * deltaTime;
+            lambda = netflux * dt;   // lambda not presently used
         }
     }
     
@@ -3181,7 +3181,7 @@ class ReactionGroup:  public Utilities {
         
         // Compute the equilibrium value of the progress variable
         
-        lambdaEq = isoY0[0] - isoYeq[0];
+        lambdaEq = isoY0[0] - isoYeq[0];  // Not presently used
         
         // Compute the population ratios used to check equilibration
         
@@ -4332,12 +4332,9 @@ int main() {
         // Convert all Be-8 to alpha particles since lifetime of Be-8 to decay
 		// to two alpha particles is short compared with typical integration steps.
         
-        if(hasBe8 && hasAlpha){restoreBe8();}
-//             Y[indexAlpha] += 2.0*Y[indexBe8];
-//             X[indexAlpha] += 2.0*X[indexBe8];
-//             Y[indexBe8] = 0.0; 
-//             X[indexBe8] = 0.0; 
-        //}
+        if(hasBe8 && hasAlpha){
+            restoreBe8();
+        }
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented (doPE = true).
@@ -4350,9 +4347,7 @@ int main() {
             
             if(totalEquilRG > 0){
                 
-                // Restore species in equilibrium to their unperturbed equilibrium values at 
-                // the end of the timestep.  See the comments for function 
-                // C() below for justification.
+                // Restore species in equilibrium to their unperturbed equilibrium values
                 
                 restoreEquilibriumProg();
                 
@@ -4593,21 +4588,19 @@ double dE_halfstep(){
 }
 
 
-/* Function restoreEquilibriumProg() to adjust populations at end of 
- * timestep when in partial equilibrium 
- * to correct for deviations from equilibrium during the timestep. Uses progress 
- * variables. This function sets the progress variable for each reaction group to 
- * its equilibrium value at the end of the numerical timestep, and then sets the 
- * corresponding equilibrium values of other isotopes in the reaction group (since 
- * they are directly related to the equilibrium value of the progress variable for 
- * the reaction group). Then, the corrected abundances Y for all isotopes participating 
- * in partial equilibrium are averaged if they participate in more than one reaction 
- * group. Finally, after Ys are updated by their average equilibrium values, all 
- * abundances are rescaled so that total nucleon number is conserved by the overall 
- * timestep. Thus this function for restoring equilibrium does not require a matrix solution 
- * or Newton-Raphson iteration. It should scale approximately linearly with the network 
- * size. Contrast with the different approach taken in the method restoreEquilibrium()
- * of the Java code. */
+/* Function restoreEquilibriumProg() to adjust populations at end of timestep when in PE
+ * to correct for deviations from equilibrium during the timestep caused by reactions
+ * not in equilibrium. This function sets the species abundances in each reaction group 
+ * to their equilibrium value at the end of the numerical timestep. Then, the corrected 
+ * abundances Y for all isotopes participating in partial equilibrium are averaged over
+ * reaction groups if they participate in more than one reaction group. Finally, after 
+ * Ys are updated by their average equilibrium values, all abundances are rescaled so 
+ * that total nucleon number is conserved by the overall timestep (by requiring the sum
+ * of the mass fractions X to equal one). Thus this function for restoring equilibrium 
+ * does not require a matrix solution or Newton-Raphson iteration. It should scale 
+ * approximately linearly with the network size for sparse networks. Contrast with the 
+ * different more complicated approach taken in the restoreEquilibrium() method of the 
+ * benchmark Java code. */
 
 
 void restoreEquilibriumProg() {
@@ -4621,8 +4614,8 @@ void restoreEquilibriumProg() {
      *  reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
      *  values of 16O and 20Ne (i.e., their values will not be the values that they 
      *  will have after this step). Add a while loop that permits iteration to try 
-     *  to fix this. Preliminary tests indicate it has essentially no effect so set 
-     * to one iteration for now. */
+     *  to fix this. Preliminary tests indicate it has small effect so set one 
+     * iteration for now. */
     
     int itcounter = 0;
     
@@ -4666,12 +4659,15 @@ void restoreEquilibriumProg() {
         
         // Loop over reaction groups in equilibrium and compute equilibrated
         // Y[] averaged over all reaction groups that are in equilibrium and
-        // contain the isotope.
+        // contain the isotope. (Generally each reaction is in only one 
+        // reaction group but an isotopic species can appear in many reaction 
+        // groups.)
         
         int numberCases;
         double Ysum;
         
-        // Loop over isotopes checking for those in equilbrium in some RG
+        // Loop over all isotopes, checking for those in equilbrium in at 
+        // least one RG
         
         for(int i=0; i<ISOTOPES; i++){
             
