@@ -201,6 +201,7 @@ void showY(void);
 void showParameters(void);
 double dE_halfstep(void);
 void sumFplusFminus(void);
+void restoreBe8(void);
 
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
@@ -2038,7 +2039,7 @@ class Reaction: public Utilities {
             
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
             
-            if( reacIsActive[reacIndex] ) {      // If not in equilibrated RG
+            if( reacIsActive[reacIndex] ) {
                 
                 fluxChooser(numberReactants);
             
@@ -3507,7 +3508,6 @@ class Integrate: public Utilities {
             // (dtMode=0), the first half timestep (dtMode = 1), or
             // the second half timestep (dtMode = 2).
             
-            restoreCurrentY();
             dtMode = 0;
             updatePopulations(dt);
             sumXfull = sumX;
@@ -4332,12 +4332,12 @@ int main() {
         // Convert all Be-8 to alpha particles since lifetime of Be-8 to decay
 		// to two alpha particles is short compared with typical integration steps.
         
-        if(hasBe8 && hasAlpha){
-            Y[indexAlpha] += 2.0*Y[indexBe8];
-            X[indexAlpha] += 2.0*X[indexBe8];
-            Y[indexBe8] = 0.0; 
-            X[indexBe8] = 0.0; 
-        }
+        if(hasBe8 && hasAlpha){restoreBe8();}
+//             Y[indexAlpha] += 2.0*Y[indexBe8];
+//             X[indexAlpha] += 2.0*X[indexBe8];
+//             Y[indexBe8] = 0.0; 
+//             X[indexBe8] = 0.0; 
+        //}
         
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented (doPE = true).
@@ -4542,6 +4542,20 @@ int main() {
 // **********************************************************
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
+
+
+// Function restoreBe9() to convert all Be-8 to alpha particles since lifetime 
+// of Be-8 to decay to two alpha particles is short compared with typical 
+// integration steps.
+
+void restoreBe8(){
+
+    Y[indexAlpha] += 2.0*Y[indexBe8];
+    X[indexAlpha] += 2.0*X[indexBe8];
+    Y[indexBe8] = 0.0; 
+    X[indexBe8] = 0.0; 
+    
+}
 
 
 // Function showParameters() displays integration parameters.
