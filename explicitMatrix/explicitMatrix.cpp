@@ -4634,7 +4634,7 @@ void restoreEquilibriumProg() {
          *	  and setting Y[i] to it (a form of operator splitting within the 
          *	  network timestep). This work is done in evolveToEquilibrium(). */
         
-        evolveToEquilibrium();
+        //evolveToEquilibrium();
         
         // Inventory reaction groups in equilibrium
         
