@@ -515,3 +515,31 @@ printf"\nDT\n"
 cont
 end
 
+-----------------------------------
+
+b 3470 if t>7.5e-9 && t<1e-8
+commands
+silent
+printf"\n3470: Step=%d t=%7.4e logt=%7.5e dt=%7.5e logY0[6]=%7.5e logY[6]=%7.5e F+sum=%7.5e F-sum=%7.5e #equil=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),FplusSum[6],FminusSum[6],totalEquilRG
+end
+
+b 3501 if t>7.5e-9 && t<1e-8
+commands
+silent
+printf"\n3501: Step=%d t=%7.4e logt=%7.5e dt=%7.5e logY0[6]=%7.5e logY[6]=%7.5e F+sum=%7.5e F-sum=%7.5e #equil=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),FplusSum[6],FminusSum[6],totalEquilRG
+end
+
+b 3570 if t>7.5e-9 && t<1e-8
+commands
+silent
+printf"\n3570: Step=%d t=%7.4e logt=%7.5e dt=%7.5e logY0[6]=%7.5e logY[6]=%7.5e F+sum=%7.5e F-sum=%7.5e #equil=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),FplusSum[6],FminusSum[6],totalEquilRG
+end
+
+b 4368 if t>7.5e-9 && t<1e-8
+commands
+silent
+printf"\n4368: Step=%d t=%7.4e logt=%7.5e dt=%7.5e logY0[6]=%7.5e logY[6]=%7.5e F+sum=%7.5e F-sum=%7.5e #equil=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),FplusSum[6],FminusSum[6],totalEquilRG
+end
+
+
+
