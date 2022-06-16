@@ -517,32 +517,33 @@ end
 
 -----------------------------------
 
-b 4368 if t>7e-9 && t<1e-7
+
+b 3480 if t>7e-9 && t<1e-7
 commands
 silent
-printf"\n4368: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
+printf"\n3480: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
 cont
 end
 
-b 3470 if t>7e-9 && t<1e-7
+b 3507 if t>7e-9 && t<1e-7
 commands
 silent
-printf"\n3470: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
+printf"\n3507: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d it=%d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG,iterations,totalIterations
 cont
 end
 
-b 3501 if t>7e-9 && t<1e-7
+b 3564 if t>7e-9 && t<1e-7
 commands
 silent
-printf"\n3501: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
-cont
-end
-
-b 3558 if t>7e-9 && t<1e-7
-commands
-silent
-printf"\n3570: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
+printf"\n3564: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
 printf"\nlogt=BREAK"
+cont
+end
+
+b 4372 if t>7e-9 && t<1e-7
+commands
+silent
+printf"\n4372: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
 cont
 end
 

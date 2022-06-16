@@ -220,7 +220,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -311,7 +311,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 double XcorrFac;                       // Equil normalization factor for timestep
 
-double massTol = 1e-7;//5e-3; //1e-5          // Timestep tolerance parameter (1.0e-7)
+double massTol = 5e-3; //1e-5          // Timestep tolerance parameter (1.0e-7)
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
@@ -3468,6 +3468,12 @@ class Integrate: public Utilities {
             double E_half1 = 0.0;
             double E_half2 = 0.0;
             double sumhalves;
+            
+            // Increment integration step counter for the timestep we are
+            // about to execute. Time at the end of this timestep will
+            // be set near the end of this funciton.
+            
+            totalTimeSteps ++; 
 
             // Store quantities from previous timestep
             
@@ -4318,10 +4324,8 @@ int main() {
         
         Integrate::doIntegrationStep();
         
-        // Increment integration step counter. Time was incremented
-        // in Integrate::doIntegrationStep()/
-        
-        totalTimeSteps ++; 
+        // t now holds the time at the end of the timestep.
+
         
         // Store true sumX before any renormalization.
         
