@@ -536,7 +536,6 @@ b 3564 if t>7e-9 && t<1e-7
 commands
 silent
 printf"\n3564: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
-printf"\nlogt=BREAK"
 cont
 end
 
@@ -544,6 +543,7 @@ b 4372 if t>7e-9 && t<1e-7
 commands
 silent
 printf"\n4372: %d t=%5.3e logt=%5.3f dt=%5.3e lgY0[6]=%5.3f lgY[6]=%5.3f lgF+=%5.3f lgF-=%5.3f eq=%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),totalEquilRG
+printf"\nlogt=BREAK"
 cont
 end
 
