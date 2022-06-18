@@ -590,9 +590,17 @@ Plot:  diagnostics_32S.gnu
 
 ---------------------------------------------
 
-b 5750 if totalTimeSteps==441 && i==6
+b 5758 if totalTimeSteps==441 && i==6
 commands
 silent
-printf"\n%d logt=%7.5e j=%d Fplus[j]=%7.5e FplusSum=%7.5e\n",totalTimeSteps,(double)log10(t),j,Fplus[j],accum
+printf"\n%d dtMode=%d logt=%6.4f j=%d Fplus[j]=%7.5e FplusSum=%7.5e logF+sum=%6.4f reacIndex=%d  %s",totalTimeSteps,dtMode,(double)log10(t),j,Fplus[j],accum,(double)log10(accum),MapFplus[j],reacLabel[MapFplus[j]]
+cont
+end
+
+b 5774 if totalTimeSteps==441 && i==6
+commands
+silent
+printf"\n%d dtMode=%d logt=%6.4f j=%d Fminus[j]=%7.5e FminusSum=%7.5e logF-sum=%6.4f reacIndex=%d  %s",totalTimeSteps,dtMode,(double)log10(t),j,Fminus[j],accum,(double)log10(accum),MapFminus[j],reacLabel[MapFminus[j]]
+cont
 end
 

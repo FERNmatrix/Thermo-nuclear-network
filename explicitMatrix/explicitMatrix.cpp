@@ -5771,6 +5771,7 @@ void sumFplusFminus(){
         
         for(int j=minny; j<=FminusMax[i]; j++){
             accum += Fminus[j];
+            int accum3 =  accum;   // Temporary debug anchor
         }
     
         setSpeciesfminus(i, accum);    // Also sets FminusSum[i] = accum and keff
