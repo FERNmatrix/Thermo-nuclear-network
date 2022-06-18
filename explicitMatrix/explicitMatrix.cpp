@@ -220,7 +220,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -2133,45 +2133,49 @@ class Reaction: public Utilities {
         }  // End of function Reaction::fastSlowRates()
         
         
-        // Function Reaction::sumFplusFminus() to sum the total F+ and 
-        // F- for each isotope.  
-        
-        static void sumFplusFminus(){
-            
-            int minny = 0;
-            double accum;
-            double dydt;
-            
-            // Loop over isotopes
-            
-            for(int i=0; i < numberSpecies; i++){	
-                
-                // Sum F+ for each isotope
-                
-                if(i > 0) minny = FplusMax[i-1]+1;
-                accum = 0.0;
-                
-                for(int j=minny; j<=FplusMax[i]; j++){
-                    accum += Fplus[j]; 
-                }
-                
-                setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
-                
-                // Sum F- for each isotope
-                
-                minny = 0;
-                if(i>0) minny = FminusMax[i-1]+1;
-                accum = 0.0;
-                
-                for(int j=minny; j<=FminusMax[i]; j++){
-                    accum += Fminus[j];
-                }
-                
-                setSpeciesfminus(i, accum);   // Also sets FminusSum[i] = accum and keff
-                setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
-
-            }
-        }
+//         // Function Reaction::sumFplusFminus() to sum the total F+ and 
+//         // F- for each isotope.  
+//         
+//         static void sumFplusFminus(){
+//             
+//             int minny = 0;
+//             double accum;
+//             double dydt;
+//             
+//             // Loop over isotopes
+//             
+//             for(int i=0; i < numberSpecies; i++){	
+//                 
+//                 // Sum F+ for each isotope
+//                 
+//                 if(i > 0) minny = FplusMax[i-1]+1;
+//                 accum = 0.0;
+//                 
+//                 for(int j=minny; j<=FplusMax[i]; j++){
+//                     accum += Fplus[j]; 
+//                     if(totalTimeSteps >439 && totalTimeSteps < 443 && i==6){
+//                         printf("\ngnu: %d logt=%6.4f %d F+=%6.4e F+sum=%6.4e",
+//                             totalTimeSteps,log10(t),j,Fplus[j],accum);
+//                     }
+//                 }
+//                 
+//                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
+//                 
+//                 // Sum F- for each isotope
+//                 
+//                 minny = 0;
+//                 if(i>0) minny = FminusMax[i-1]+1;
+//                 accum = 0.0;
+//                 
+//                 for(int j=minny; j<=FminusMax[i]; j++){
+//                     accum += Fminus[j];
+//                 }
+//                 
+//                 setSpeciesfminus(i, accum);   // Also sets FminusSum[i] = accum and keff
+//                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
+// 
+//             }
+//         }
                 
 };  // End class Reaction
 
@@ -4384,6 +4388,8 @@ int main() {
             if (isAsy[i]){totalAsy ++;}
         }
         
+        totalAsy = totalAsy;   // Temporary debug point
+        
         
         // ---------------------------------------------------------------------------------
         // Display and output to files updated quantities at plotSteps times corresponding
@@ -5741,6 +5747,7 @@ void sumFplusFminus(){
         
         for(int j=minny; j<=FplusMax[i]; j++){
             accum += Fplus[j];
+            int accum2 =  accum;   // Temporary debug anchor
         }
         
         setSpeciesfplus(i, accum);      // Also sets FplusSum[i] = accum;

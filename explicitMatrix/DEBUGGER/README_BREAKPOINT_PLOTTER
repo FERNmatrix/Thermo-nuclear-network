@@ -553,31 +553,31 @@ cat gdb_debug.out | grep logt= | grep -v printf > temp_asy.out
 
 -----------------------------------------
 
-b 3480 if t>8e-9 && t<2e-8
+b 3490 if t>6.3e-9 && t<2e-8
 commands
 silent
-printf"\n#gnu3480: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
+printf"\n#gnu3490: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
 cont
 end
 
-b 3507 if t>8e-9 && t<2e-8
+b 3517 if t>6.3e-9 && t<2e-8
 commands
 silent
-printf"\n#gnu3507: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
+printf"\n#gnu3517: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
 cont
 end
 
-b 3564 if t>8e-9 && t<2e-8
+b 3574 if t>6.3e-9 && t<2e-8
 commands
 silent
-printf"\n#gnu3564: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
+printf"\n#gnu3574: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t,(double)log10(t),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
 cont
 end
 
-b 4372 if t>8e-9 && t<2e-8
+b 4387 if t>6.3e-9 && t<2e-8
 commands
 silent
-printf"\n#gnu4372: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
+printf"\n#gnu4387: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4f %6.4f %4.2e %3d %3d  %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),sumXtrue,XcorrFac,massTol,totalAsy,totalEquilRG,iterations,totalIterations
 printf"\n#gnuBREAK"
 cont
 end
@@ -586,7 +586,13 @@ end
 
 cat gdb_debug.out | grep \#gnu | grep -v printf > temp_asyPE.out
 
+Plot:  diagnostics_32S.gnu
+
 ---------------------------------------------
 
-
+b 5750 if totalTimeSteps==441 && i==6
+commands
+silent
+printf"\n%d logt=%7.5e j=%d Fplus[j]=%7.5e FplusSum=%7.5e\n",totalTimeSteps,(double)log10(t),j,Fplus[j],accum
+end
 
