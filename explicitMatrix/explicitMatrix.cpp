@@ -1774,12 +1774,20 @@ class Reaction: public Utilities {
                 if(i == (FminusIsotopeCut[currentIso]-1)) currentIso ++;
             }
             
+            fprintf(pFileD,"\n\nMapFplus:\n");
+            
             for(int i=0; i<totalFplus; i++){
                 MapFplus[i] = tempInt1[i];
+                fprintf(pFileD, "\ni=%d MapFplus[i]=%d  %s",
+                    i, MapFplus[i], reacLabel[MapFplus[i]]);
             }
+            
+            fprintf(pFileD,"\n\nMapFminus:\n");
             
             for(int i=0; i<totalFminus; i++){
                 MapFminus[i] = tempInt2[i];
+                fprintf(pFileD, "\ni=%d MapFminus[i]=%d  %s",
+                        i, MapFminus[i], reacLabel[MapFminus[i]]);
             }
             
             // Populate the FplusMin and FplusMax arrays
