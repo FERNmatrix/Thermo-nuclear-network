@@ -311,7 +311,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 double XcorrFac;                       // Equil normalization factor for timestep
 
-double massTol_asy = 1e-6;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reaction equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -335,7 +335,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // On the other hand, the check should not be too costly.
 
 double equilibrateTime = 1e-12 ;  // Time to begin checking for PE
-double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.005;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
