@@ -294,7 +294,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -311,7 +311,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 double XcorrFac;                       // Equil normalization factor for timestep
 
-double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-6;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reaction equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -334,7 +334,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check should not be too costly.
 
-double equilibrateTime = 1e-12;   // Time to begin checking for PE
+double equilibrateTime = 1e-12 ;  // Time to begin checking for PE
 double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
@@ -3504,7 +3504,7 @@ class Integrate: public Utilities {
             sumXlast = sumX;
             t_saved = t;
             dt_saved = dt;     // Will hold final dt in this timestep.
-            storeCurrentY();
+            storeCurrentY();   // For later restoration
             
             // Compute max stable forward Euler timestep
             
@@ -3515,28 +3515,27 @@ class Integrate: public Utilities {
             // is chosen as the timestep.
             
             choice2 =  0;
-            dtMode = -1;
+            //dtMode = -1;
             
             dt_EA = computeTimeStep_EA(dtLast, sumXtrue);
             if(dt_EA < dt_FE) choice2 = 1;
             dt = min(dt_FE, dt_EA); 
             
             // Estimate error by computing difference in sumX between full timestep
-            // and two half timesteps. First store current Ys and t and dt for later 
-            // restoration.
+            // and two half timesteps. 
             
-            //storeCurrentY();
             dt_saved = dt;
             t = t_saved;
             
             // Now execute a full timestep and store sumX. Note that
             // updatePopulations(dt) updates sumX. The diagnostic 
             // flag dtMode labels whether we are computing before the
-            // first timestep (dtMode=-1), taking the full timestep 
-            // (dtMode=0), the first half timestep (dtMode = 1), or
-            // the second half timestep (dtMode = 2).
+            // first integration timestep (dtMode=-1), taking the full 
+            // timestep (dtMode=0), the first half timestep (dtMode = 1), 
+            // or the second half timestep (dtMode = 2).
             
             dtMode = 0;
+            
             updatePopulations(dt);
             sumXfull = sumX;
             
@@ -3551,20 +3550,26 @@ class Integrate: public Utilities {
             
             dE_half1 = dE_halfstep()*dt_half;
             
-            // Update time for second half-step
+            // Now update time for second half-step
             
             t = t_saved + dt_half; 
 
-            // Recompute fluxes since Ys have changed
+            // Recompute fluxes since Ys have changed in 1st half step
             
-            computeReactionFluxes(); 
+            computeReactionFluxes();
+            dtMode = 2;
             
             // Now execute second half-step.  First we
             // update Y0 array with results from first half-step
             // as new starting point for second half-step.
             
             updateY0();
-            dtMode = 2;
+            
+            // Now update populations for 2nd half step. Since
+            // two half steps should be more accurate than one
+            // full step, we will accept this population update
+            // as the final result for this integration step.
+            
             updatePopulations(dt_half);
             sumXhalf = sumX; 
             
@@ -3572,30 +3577,35 @@ class Integrate: public Utilities {
             
             dE_half2 = dE_halfstep()*dt_half;
             
-            // Compute total energy release for two half steps
+            // Compute total energy release for both half steps This 
+            // energy release will be accepted as the result for this
+            // integration step.
             
             sumhalves = dE_half1 + dE_half2;
             ERelease += sumhalves;
             netdERelease = (sumhalves/2.0) / dt_half;
             
+            // Set time to end of 2nd half step since we are
+            // updating populations corresponding to the time
+            // at the end of this integration step.
+            
             t += dt_half;
             
-            // Compute the error by comparing sumX for full timestep and
+            // Estimate the local error associated with the size of the
+            // timestep by comparing sumX for full timestep and
             // for two successive half-steps
             
             Error_Observed = abs(sumXhalf - sumXfull);
             Error_Desired = EpsA;       // Neglect EpsR for now
-
-            // Restore time to before double half-step
-            
-            //dt = dt_saved;
-            //t = t_saved + dt_saved;
-
-            // Get new trial timestep for next integration step
+        
+            // Get new trial timestep for next integration step by using
+            // the local error observed for this timestep compared with the
+            // error desired to predict a timestep having near the local
+            // error desired.
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
-            dtMode = -1;
+            dtMode = -1;    // Indicates not in the integration step
             
         }    // End of doIntegrationStep
         
@@ -3760,6 +3770,7 @@ class Integrate: public Utilities {
     static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
         double newY = y0 + (fplus-fminus)*dtt;
+        double newY1 = newY;    // Temporary debug anchor
         return newY;     // New Y for forward Euler method
         
     }

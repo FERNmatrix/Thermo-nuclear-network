@@ -590,31 +590,35 @@ Plot:  diagnostics_32S.gnu
 
 ---------------------------------------------
 
-b 5758 if totalTimeSteps>439 && totalTimeSteps<443 && i==6
+b 5758 if totalTimeSteps>438 && totalTimeSteps<444 && i==6
 commands
 silent
 printf"\n%d %d lgt=%6.4f j=%d F+=%6.4e F+Sum=%6.4e lgF+sum=%6.4f dF=%6.4e reac=%d %d %s",totalTimeSteps,dtMode,(double)log10(t),j,Fplus[j],accum,(double)log10(accum),FplusSum[i]-FminusSum[i],MapFplus[j],totalEquilRG,reacLabel[MapFplus[j]]
 cont
 end
 
-b 5761 if totalTimeSteps>439 && totalTimeSteps<443 && i==6
-commands
-silent 
-printf"\ngnu: F+sum=%6.4e",accum
-cont
-end
-
-b 5774 if totalTimeSteps>439 && totalTimeSteps<443 && i==6
+b 5774 if totalTimeSteps>438 && totalTimeSteps<444 && i==6
 commands
 silent
 printf"\n%d %d lgt=%6.4f j=%d F-=%6.4e F-Sum=%6.4e lgF-sum=%6.4f dF=%6.4e reac=%d %d %s",totalTimeSteps,dtMode,(double)log10(t),j,Fminus[j],accum,(double)log10(accum),FplusSum[i]-FminusSum[i],MapFminus[j],totalEquilRG,reacLabel[MapFminus[j]]
 cont
 end
 
-b 5778 if totalTimeSteps>439 && totalTimeSteps<443 && i==6
+b 5778 if totalTimeSteps>438 && totalTimeSteps<444 && i==6
 commands
 silent 
-printf"\ngnu: F-sum=%6.4e dF=%6.4e",accum,FplusSum[i]-FminusSum[i]
+printf"\ngnu:F+sum=%6.4e F-sum=%6.4e dF=%6.4e",FplusSum[i],FminusSum[i],FplusSum[i]-FminusSum[i]
 cont
 end
 
+b 3763 if totalTimeSteps>438 && totalTimeSteps<444 && i==6 && dtMode==2
+commands
+silent 
+printf"\ngnu:euler: fplus=%6.4e fminus=%6.4e df=%6.4e dt=%6.4e Y0=%6.4e Y=%6.4e",fplus,fminus,fplus-fminus,dtt,y0,newY
+printf"\ngnu:"
+cont
+end
+
+---------------------------------------
+
+b 3541 if totalTimeSteps > 439
