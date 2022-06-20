@@ -122,7 +122,12 @@ file3 = "temp_asyPEjava_plot.out"
 
 replot file3 using 3:6 with lines  ls 8 lw 2.0 dashtype 1 title "java PE-Y[32S]"
 replot file3 using 3:5 with lines  ls 8 lw 2.0 dashtype 2 title "java PE-Y0[32S]"
-#replot file3 using 3:7 with lines ls 8 lw 2.0 dashtype 1 title "java PE-F+[32S]"
+
+file4 = "temp_asyJava_plot.out"
+
+replot file4 using 3:6 with lines  ls 13 lw 2.0 dashtype 1 title "java PE-Y[32S]"
+replot file4 using 3:5 with lines  ls 13 lw 2.0 dashtype 2 title "java PE-Y0[32S]"
+
 
 # Reset font sizes for .eps and .png output2
 

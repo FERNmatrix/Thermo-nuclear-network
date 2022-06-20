@@ -86,7 +86,7 @@ xup = -7.8
 xtics = 0.1   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 4.8
+ylow = 4.0
 yup = 7.5
 ytics = 0.1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -106,23 +106,27 @@ set title ds textcolor rgb title_color
 
 file1 = "temp_asy_plot.out"
 
-# Edit the following plot commands to correspond to data
-# read in from data file and convert quantities to
-# log10 of quantities to make log-log plot
-
-#plot file1 using 4:7 with lines ls 2 lw 1.0 dashtype 1 title "c++ Asy-Y[32S]"
-#replot file1 using 4:6 with lines ls 2 lw 1.0 dashtype 2 title "c++ Asy-Y0[32S]"
+plot file1 using 4:8 with lines ls 2 lw 1.0 dashtype 1 title "c++ AsyF+[32S]"
+replot file1 using 4:9 with lines ls 2 lw 1.0 dashtype 2 title "c++ AsyF-[32S]"
+replot file1 using 4:(abs(log10($8) - log10($9))) with lines ls 15 lw 3.0 dashtype 1 title "c++ asy-dF[32S]"
 
 file2 = "temp_asyPE_plot.out"
 
-#replot file2 using 4:7 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PE-Y[32S]"
-#replot file2 using 4:6 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PE-Y0[32S]"
+replot file2 using 4:8 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PEF+[32S]"
+replot file2 using 4:9 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PEF-[32S]"
+replot file2 using 4:(abs(log10($8) - log10($9))) with lines ls 15 lw 3.0 dashtype 2 title "c++ PE-dF[32S]"
 
 file3 = "temp_asyPEjava_plot.out"
 
-plot file3 using 3:7 with lines ls 8 lw 2.0 dashtype 1 title "java PE-F+[32S]"
-replot file3 using 3:8 with lines ls 9 lw 2.0 dashtype 1 title "java PE-F-[32S]"
-replot file3 using 3:(abs(log10($9))) with lines ls 10 lw 2.0 dashtype 1 title "java PE-dF[32S]"
+replot file3 using 3:7 with lines ls 8 lw 1.0 dashtype 1 title "java PE-F+[32S]"
+replot file3 using 3:8 with lines ls 9 lw 1.0 dashtype 1 title "java PE-F-[32S]"
+replot file3 using 3:(abs(log10($9))) with lines ls 10 lw 1.0 dashtype 1 title "java PE-dF[32S]"
+
+file4 = "temp_asyJava_plot.out"
+
+replot file4 using 3:7 with lines ls 8 lw 1.0 dashtype 2 title "java asy-F+[32S]"
+replot file4 using 3:8 with lines ls 9 lw 1.0 dashtype 2 title "java asy-F-[32S]"
+replot file4 using 3:(abs(log10($9))) with lines ls 10 lw 1.0 dashtype 2 title "java asy-dF[32S]"
 
 # Reset font sizes for .eps and .png output2
 
