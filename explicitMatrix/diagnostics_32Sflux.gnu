@@ -86,9 +86,9 @@ xup = -7.8
 xtics = 0.1   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -2.19
-yup = -2.14
-ytics = 0.01      # Space between major y ticmarks
+ylow = 4.8
+yup = 7.5
+ytics = 0.1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -110,19 +110,19 @@ file1 = "temp_asy_plot.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using 4:7 with lines ls 2 lw 1.0 dashtype 1 title "c++ Asy-Y[32S]"
-replot file1 using 4:6 with lines ls 2 lw 1.0 dashtype 2 title "c++ Asy-Y0[32S]"
+#plot file1 using 4:7 with lines ls 2 lw 1.0 dashtype 1 title "c++ Asy-Y[32S]"
+#replot file1 using 4:6 with lines ls 2 lw 1.0 dashtype 2 title "c++ Asy-Y0[32S]"
 
 file2 = "temp_asyPE_plot.out"
 
-replot file2 using 4:7 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PE-Y[32S]"
-replot file2 using 4:6 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PE-Y0[32S]"
+#replot file2 using 4:7 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PE-Y[32S]"
+#replot file2 using 4:6 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PE-Y0[32S]"
 
 file3 = "temp_asyPEjava_plot.out"
 
-replot file3 using 3:6 with lines  ls 8 lw 2.0 dashtype 1 title "java PE-Y[32S]"
-replot file3 using 3:5 with lines  ls 8 lw 2.0 dashtype 2 title "java PE-Y0[32S]"
-#replot file3 using 3:7 with lines ls 8 lw 2.0 dashtype 1 title "java PE-F+[32S]"
+plot file3 using 3:7 with lines ls 8 lw 2.0 dashtype 1 title "java PE-F+[32S]"
+replot file3 using 3:8 with lines ls 9 lw 2.0 dashtype 1 title "java PE-F-[32S]"
+replot file3 using 3:(abs(log10($9))) with lines ls 10 lw 2.0 dashtype 1 title "java PE-dF[32S]"
 
 # Reset font sizes for .eps and .png output2
 
@@ -133,13 +133,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "diagnostics_32S.eps"    # Output file
+set out "diagnostics_32Sflux.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "diagnostics_32S.png"
+#set out "diagnostics_32Sflux.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot
