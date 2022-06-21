@@ -55,7 +55,7 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'log10 Time (s)' textcolor rgb tic_color #font "Arial,32"
+set xlabel 'log10 [Time (s)]' textcolor rgb tic_color #font "Arial,32"
 set ylabel 'log10 Value' textcolor rgb tic_color #font "Arial,32"
 
 # Uncomment following to set log or log-log plots
@@ -74,7 +74,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF; RG 9)"
+ds="Asy T9=7 rho=1e8 (no PF)"
 ds = ds.""
 set title ds textcolor rgb title_color #font "Arial,22"
 
@@ -83,12 +83,12 @@ set title ds textcolor rgb title_color #font "Arial,22"
 
 xlow = -8.2
 xup = -7.8
-xtics = 0.1   # Space between major x ticmarks
+xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -2.19
+ylow = -2.195
 yup = -2.14
-ytics = 0.01      # Space between major y ticmarks
+ytics = 0.005      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -110,30 +110,31 @@ file1 = "temp_asy_plot.out"
 # read in from data file and convert quantities to
 # log10 of quantities to make log-log plot
 
-plot file1 using 4:7 with lines ls 2 lw 1.0 dashtype 1 title "c++ Asy-Y[32S]"
-replot file1 using 4:6 with lines ls 2 lw 1.0 dashtype 2 title "c++ Asy-Y0[32S]"
+
+plot file1 using 4:7 with lines ls 3 lw 1.5 dashtype 1 title "c++ Asy-Y[32S]"
+#replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
 
 file2 = "temp_asyPE_plot.out"
 
-replot file2 using 4:7 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PE-Y[32S]"
-replot file2 using 4:6 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PE-Y0[32S]"
-
-file3 = "temp_asyPEjava_plot.out"
-
-replot file3 using 3:6 with lines  ls 8 lw 2.0 dashtype 1 title "java PE-Y[32S]"
-replot file3 using 3:5 with lines  ls 8 lw 2.0 dashtype 2 title "java PE-Y0[32S]"
+replot file2 using 4:7 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PE-Y[32S]"
+#replot file2 using 4:6 with lines  ls 8 lw 1.5 dashtype 2 title "c++ PE-Y0[32S]"
 
 file4 = "temp_asyJava_plot.out"
 
-replot file4 using 3:6 with lines  ls 13 lw 2.0 dashtype 1 title "java PE-Y[32S]"
-replot file4 using 3:5 with lines  ls 13 lw 2.0 dashtype 2 title "java PE-Y0[32S]"
+replot file4 using 3:6 with lines  ls 11 lw 1.5 dashtype 1 title "java asy-Y[32S]"
+#replot file4 using 3:5 with lines  ls 13 lw 1.5 dashtype 1 title "java PE-Y0[32S]"
+
+file3 = "temp_asyPEjava_plot.out"
+
+replot file3 using 3:6 with lines  ls 11 lw 1.5 dashtype 2 title "java PE-Y[32S]"
+#replot file3 using 3:5 with lines  ls 8 lw 1.5 dashtype 2 title "java PE-Y0[32S]"
 
 
 # Reset font sizes for .eps and .png output2
 
 set key top right font "Arial,22"
 set title ds textcolor rgb title_color font "Arial,22"
-set xlabel 'log10 Time (s)' textcolor rgb tic_color font "Arial,28"
+set xlabel 'log10 [Time (s)]' textcolor rgb tic_color font "Arial,28"
 set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
