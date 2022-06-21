@@ -6,7 +6,7 @@
  * 
  * [may need to install gsl-devel development package (on Fedora this required
  * dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
- * In this compile command the -o specifies the name of the executable created in the
+ * In this compile command the -o specifies thse name of the executable created in the
  * compile, the -lgsl flag links to GSL libraries, the -lgslcblas flag
  * links to GSL BLASS libraries, the -lm flag may be required in GCC Linux to get the 
  * math.h header to work for defining powf, expf, logf, ..., (see https://
@@ -335,7 +335,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // On the other hand, the check should not be too costly.
 
 double equilibrateTime = 1e-12 ;  // Time to begin checking for PE
-double equiTol = 0.005;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
 double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
@@ -460,6 +460,7 @@ double* FminusFac;    // Dynamically allocated 1D array for number species facto
 
 double* FplusSum;     // Sum of F+ for each isotope
 double* FminusSum;    // Sum of F- for each isotope
+double* dF;           // Net flux FplusSum-FminusSum for each isotope
 
 int* FplusMax;        // Upper index for each isotope in the Fplus array
 int* FplusMin;        // Lower index for each isotope in the Fplus array
@@ -1144,7 +1145,7 @@ class Species: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    private:
+    public:
         
         int isoindex;        // Index for species in isotope vector
         char IsoLabel[5];    // symbol for isotope
@@ -4210,6 +4211,7 @@ int main() {
     FminusFac = (double*) malloc(sizeof(double) * totalFminus);
     FplusSum = (double*) malloc(sizeof(double) * numberSpecies);
     FminusSum = (double*) malloc(sizeof(double) * numberSpecies);
+    dF =  (double*) malloc(sizeof(double) * numberSpecies);
     
     // Allocate memory for arrays that hold the index of the boundary between different 
     // isotopes in the Fplus and Fminus 1D arrays. 
@@ -4547,6 +4549,7 @@ int main() {
     free(FminusFac);
     free(FplusSum);
     free(FminusSum);
+    free(dF);
     free(FplusMin);
     free(FplusMax);
     free(FminusMin);
@@ -5787,6 +5790,10 @@ void sumFplusFminus(){
     
         setSpeciesfminus(i, accum);    // Also sets FminusSum[i] = accum and keff
         setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
+        
+        // Store net flux
+        
+        dF[i] = FplusSum[i] - Fminus[i];
         
     }
     
