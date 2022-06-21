@@ -108,13 +108,13 @@ file1 = "temp_asy_plot.out"
 
 plot file1 using 4:8 with lines ls 2 lw 1.0 dashtype 1 title "c++ AsyF+[32S]"
 replot file1 using 4:9 with lines ls 2 lw 1.0 dashtype 2 title "c++ AsyF-[32S]"
-replot file1 using 4:(abs(log10($8) - log10($9))) with lines ls 15 lw 3.0 dashtype 1 title "c++ asy-dF[32S]"
+replot file1 using 4:11 with lines ls 15 lw 1.0 dashtype 1 title "c++ asy-dF[32S]"
 
 file2 = "temp_asyPE_plot.out"
 
 replot file2 using 4:8 with lines  ls 3 lw 1.0 dashtype 1 title "c++ PEF+[32S]"
 replot file2 using 4:9 with lines  ls 3 lw 1.0 dashtype 2 title "c++ PEF-[32S]"
-replot file2 using 4:(abs(log10($8) - log10($9))) with lines ls 15 lw 3.0 dashtype 2 title "c++ PE-dF[32S]"
+replot file2 using 4:11 with lines ls 15 lw 1.0 dashtype 2 title "c++ PE-dF[32S]"
 
 file3 = "temp_asyPEjava_plot.out"
 

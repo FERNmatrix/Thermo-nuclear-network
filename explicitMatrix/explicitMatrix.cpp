@@ -5793,7 +5793,7 @@ void sumFplusFminus(){
         
         // Store net flux
         
-        dF[i] = FplusSum[i] - Fminus[i];
+        dF[i] = FplusSum[i] - FminusSum[i];
         
     }
     
