@@ -220,7 +220,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method

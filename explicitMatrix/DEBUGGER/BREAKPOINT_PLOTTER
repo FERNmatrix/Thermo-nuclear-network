@@ -572,6 +572,13 @@ printf"\n#gnu3527: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4e %6.4f %6.
 cont
 end
 
+b 3774 if t>6.3e-9 && t<2e-8 && i==6 && dtMode==2
+commands
+silent
+printf"\n#gnu3774: %4d %7.5e %6.4f %7.5e %6.4f %6.4f %6.4f %6.4f %6.4e %6.4f %6.4f %3d %3d %d/%d\n",totalTimeSteps,t+dt,(double)log10(t+dt),dt,(double)log10(Y0[6]),(double)log10(Y[6]),(double)log10(FplusSum[6]),(double)log10(FminusSum[6]),dF[6],(double)log10(abs(dF[6])),sumXtrue,totalAsy,totalEquilRG,iterations,totalIterations
+cont
+end
+
 b 3599 if t>6.3e-9 && t<2e-8
 commands
 silent
@@ -596,8 +603,7 @@ Processing output after quitting gdb:
    cat gdb_debug.out | grep \#gnu | grep -v printf > temp_asyPE.out
 Globally replace #gnu and BREAK in resulting file with blank
 To make plot file,
-   cat temp_asyPE.out | grep 4410: > temp_asy_plot.out
-Globally replace #gnu with blank
+   cat temp_asyPE.out | grep 4410: > temp_asyPE_plot.out
 insert header from above
 
 Interpretation:
@@ -605,6 +611,7 @@ Interpretation:
 3495  Begin doIntegrationStep()
 3527  After dt_full set
 3599  End of integration step, before new trial dt chosen
+3774  In eulerUpdate()
 4410  At beginning of plot data output for this step 
 
 Plot with:  diagnostics_32S.gnu and diagnostics_32Sflux.gnu
