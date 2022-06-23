@@ -220,7 +220,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -294,7 +294,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Timestep before update after last step
@@ -675,7 +675,7 @@ class Utilities{
         // -------------------------------------------------------------------------
         // Static function Utilities::plotOutput() to output data at regular 
         // intervals of the integration to a file suitable for plotting. Assumes
-        // the existence of a subdirectory gnu_out. Will crash if this directory
+        // the existence of a subdirectory gnu_out. May crash if this directory
         // does not exist. Assuming gnuplot for plotting, but the output file
         // is whitespace-delimited ascii, so any plotting program could be used
         // to read it. Lines beginning with # are comments in gnuplot.
@@ -3598,7 +3598,7 @@ class Integrate: public Utilities {
             
             Error_Observed = abs(sumXhalf - sumXfull);
             Error_Desired = EpsA;       // Neglect EpsR for now
-        
+            
             // Get new trial timestep for next integration step by using
             // the local error observed for this timestep compared with the
             // error desired to predict a timestep having near the local

@@ -114,7 +114,7 @@ file2 = "temp_asyPE2_plot.out" # In eulerUpdate()
 #file2 = "temp_asyPE_plot.out" # End of integration
 
 replot file2 using 4:7 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PE-Y[32S]"
-#replot file2 using 4:6 with lines  ls 8 lw 1.5 dashtype 2 title "c++ PE-Y0[32S]"
+replot file2 using 4:6 with lines  ls 3 lw 4.0 dashtype 6 title "c++ PE-Y0[32S]"
 
 file4 = "temp_asyJava_plot.out" # In explicitUpdate()
 
@@ -124,7 +124,7 @@ replot file4 using 3:6 with lines  ls 11 lw 1.5 dashtype 1 title "java asy-Y[32S
 file3 = "temp_asyPEjava_plot.out" # In explicitUpdate()
 
 replot file3 using 3:6 with lines  ls 11 lw 1.5 dashtype 2 title "java PE-Y[32S]"
-#replot file3 using 3:5 with lines  ls 8 lw 1.5 dashtype 2 title "java PE-Y0[32S]"
+replot file3 using 3:5 with lines  ls 11 lw 4.0 dashtype 6 title "java PE-Y0[32S]"
 
 
 # Reset font sizes for .eps and .png output2
