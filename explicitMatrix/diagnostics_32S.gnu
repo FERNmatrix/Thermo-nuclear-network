@@ -107,11 +107,6 @@ set title ds textcolor rgb title_color
 file1 = "temp_asy2_plot.out"  # In eulerUpdate()
 #file1 = "temp_asy_plot.out"  # End of integration
 
-# Edit the following plot commands to correspond to data
-# read in from data file and convert quantities to
-# log10 of quantities to make log-log plot
-
-
 plot file1 using 4:7 with lines ls 3 lw 1.5 dashtype 1 title "c++ Asy-Y[32S]"
 #replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
 

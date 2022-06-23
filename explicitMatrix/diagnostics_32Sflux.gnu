@@ -86,7 +86,7 @@ xup = -7.8
 xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 4.6
+ylow = 4.5
 yup = 7.4
 ytics = 0.1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -104,30 +104,31 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "temp_asy_plot.out"
+file1 = "temp_asy2_plot.out" # Evaluated in eulerUpdate()
+#file1 = "temp_asy_plot.out" # Evaluated at end of integration
 
 #plot file1 using 4:8 with lines ls 2 lw 1.5 dashtype 1 title "c++ AsyF+[32S]"
 #replot file1 using 4:9 with lines ls 2 lw 1.5 dashtype 1 title "c++ AsyF-[32S]"
 #replot file1 using 4:11 with lines ls 2 lw 1.5 dashtype 1 title "c++ asy-dF[32S]"
 
-file2 = "temp_asyPE_plot.out"
+file2 = "temp_asyPE2_plot.out"  # Evaluated in eulerUpdate()
+#file2 = "temp_asyPE_plot.out"   # Evaluated at end of integration
 
 plot file2 using 4:8 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PEF+[32S]"
 replot file2 using 4:9 with lines  ls 11 lw 1.5 dashtype 2 title "c++ PEF-[32S]"
 replot file2 using 4:11 with lines ls 10 lw 1.5 dashtype 2 title "c++ PE-dF[32S]"
 
-file4 = "temp_asyJava_plot.out"
+file4 = "temp_asyJava_plot.out"  # Evaluated in explicitUpdate()
 
 #replot file4 using 3:7 with lines ls 3 lw 1.5 dashtype 1 title "java asy-F+[32S]"
 #replot file4 using 3:8 with lines ls 11 lw 1.5 dashtype 1 title "java asy-F-[32S]"
 #replot file4 using 3:(abs(log10($9))) with lines ls 10 lw 1.5 dashtype 1 title "java asy-dF[32S]"
 
-file3 = "temp_asyPEjava_plot.out"
+file3 = "temp_asyPEjava_plot.out" # Evaluated in explicitUpdate()
 
 replot file3 using 3:7 with lines ls 3 lw 1.5 dashtype 1 title "java PE-F+[32S]"
 replot file3 using 3:8 with lines ls 11 lw 1.5 dashtype 1 title "java PE-F-[32S]"
 replot file3 using 3:(abs(log10($9))) with lines ls 10 lw 1.5 dashtype 1 title "java PE-dF[32S]"
-
 
 
 # Reset font sizes for .eps and .png output2
