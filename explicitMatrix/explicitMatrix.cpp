@@ -297,8 +297,9 @@ double startplot_time = 1e-18;         // Start time for plot output
 double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
-double dt_saved;                       // Timestep before update after last step
-double t_saved;                        // Start time for this timestep (stop for last)
+double dt_saved;                       // Full timestep used for this int step
+double t_saved;                        // Start time this timestep (end t for last step)
+double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
 
@@ -3511,7 +3512,7 @@ class Integrate: public Utilities {
             
             dt_FE = sf/fastestCurrentRate;
             
-            // Compute trial timestep for explicit asymptotic.  The 
+            // Compute timestep for explicit asymptotic method.  The 
             // diagnostic flag choice2 indicates whether dt_FE or dt_EA 
             // is chosen as the timestep.
             
@@ -3522,11 +3523,12 @@ class Integrate: public Utilities {
             if(dt_EA < dt_FE) choice2 = 1;
             dt = min(dt_FE, dt_EA); 
             
-            // Estimate error by computing difference in sumX between full timestep
-            // and two half timesteps. 
+            // We will estimate error by computing difference in sumX 
+            // between full timestep and two half timesteps. 
             
             dt_saved = dt;
             t = t_saved;
+            t_end = t_saved + dt;
             
             // Now execute a full timestep and store sumX. Note that
             // updatePopulations(dt) updates sumX. The diagnostic 
@@ -3770,7 +3772,9 @@ class Integrate: public Utilities {
         
     static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
-        double newY = y0 + (fplus-fminus)*dtt;
+        double dY = (fplus - fminus)*dtt;
+        dF[i] = fplus - fminus;
+        double newY = y0 + dY;
         double newY1 = newY;    // Temporary debug anchor
         return newY;     // New Y for forward Euler method
         

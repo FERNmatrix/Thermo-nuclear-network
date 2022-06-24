@@ -138,13 +138,13 @@ set ylabel 'log10 Value' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 
-set out "diagnostics_32S.eps"    # Output file
+set out "diagnostics_32S_dt.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "diagnostics_32S.png"
+#set out "diagnostics_32S_dt.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot
