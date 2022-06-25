@@ -155,26 +155,36 @@ char networkFile[] = "data/network_alpha.inp";
 
 char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
+// Whether to use constant T and rho (hydroProfile false), in which case a
+// constant T9 = T9_start and rho = rho_start are used, or to read
+// in a hydrodynamical profile of T and rho versus time (hydroProfile true),
+// in which case the file to be read in is specified by the character variable 
+// hydroFile[].
+
+bool hydroProfile = false; 
+
 // Filename for input file containing a hydro profile in temperature
-// and density. Sample hydro profile files included in the data
-// subdirectory are
+// and density that is used if hydroProfile = true. Sample hydro profile 
+// files included in the data subdirectory are
 //
 //    data/torch47Profile.data     // Very hot Type Ia supernova zone
-//    data/nova125DProfile.inp     // Zone in nova explosion
+//    data/nova125DProfile.inp     // Representative zone in nova explosion
 //
-// Use SplineInterpolator to interpolate in table read in. If plotHydroProfile 
-// is true, the hydro profile used is output to the file gnu_out/hydroProfile.out
+// Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
+// plotHydroProfile are true, the hydro profile used for the temperature and 
+// density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
 char hydroFile[] = "data/nova125DProfile.inp";
 
-// Control printout of flux file (true to print, false to suppress)
- 
-static const bool plotFluxes = false;
-
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
+
+// Control printout of flux data (true to print, false to suppress)
+ 
+static const bool plotFluxes = false;
+
 
 // Function signatures:
 
@@ -206,6 +216,7 @@ void restoreBe8(void);
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
 
+
 // Control flags for diagnostic output to file pointed to by *pFileD
 
 bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
@@ -231,14 +242,6 @@ string ts;                   // Utility string
 
 double T9;                   // Current temperature in units of 10^9 K
 double rho;                  // Current density in units of g/cm^3
-
-// Whether to use constant T and rho (hydroProfile false), in which case a
-// constant T9 = T9_start and rho = rho_start are used, or to read
-// in a hydrodynamical profile of T and rho versus time (hydroProfile true),
-// in which case the file to be read in is specified by the character variable 
-// hydroFile[].
-
-bool hydroProfile = false; 
 
 // Energy variables (from Q values)
 
@@ -4571,8 +4574,6 @@ int main() {
     free(RG);
     gsl_vector_free(abundances);
     gsl_matrix_free(fluxes);
-    
-    //return 0;
     
 }  // End of main routine
 

@@ -651,10 +651,10 @@ end
 ---------------------------------------
 
 
-b 3778 if totalTimeSteps>435 && totalTimeSteps<450 && dtMode==2 && i==6
+b 3781 if totalTimeSteps>435 && totalTimeSteps<450 && dtMode==2 && i==6
 commands
 silent
-printf"\n#gnu:3778: %d %6.4e %7.4e %7.4e %7.4f %7.4f %7.4e %7.4e %7.4e %7.4f %7.4e %d\n",totalTimeSteps,(double)log10(t_end),dtt,dt_saved,(double)log10(y0),(double)log10(newY),fplus,fminus,dF[6],(double)log10(abs(dF[6])),dY,totalEquilRG
+printf"\n#gnu:3781: %d %6.4e %7.4e %7.4e %7.4f %7.4f %7.4e %7.4e %7.4e %7.4f %7.4e %d\n",totalTimeSteps,(double)log10(t_end),dtt,dt_saved,(double)log10(y0),(double)log10(newY),fplus,fminus,dF[6],(double)log10(abs(dF[6])),dY,totalEquilRG
 cont
 end
 

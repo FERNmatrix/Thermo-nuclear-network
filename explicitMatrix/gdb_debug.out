@@ -196,4 +196,4 @@ FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
 [Inferior 1 (process 17204) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
-(gdb) 
+(gdb) quit
