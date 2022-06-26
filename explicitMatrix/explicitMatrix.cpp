@@ -297,11 +297,12 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
 double t_saved;                        // Start time this timestep (end t for last step)
+double dt_change;                      // Change in proposed dt from last timestep
 double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
@@ -3692,8 +3693,11 @@ class Integrate: public Utilities {
             // Restrict dt_new to not be larger than twice old timestep
             // and not smaller than half old timestep
             
-            dtmin = min(dt_new, 2.0*dt_old);
-            dt_new = max( dtmin, 0.5*dt_old );
+            double maxupdt = 1.75;  // 2.0
+            double maxdowndt = 0.6;  // 0.5
+            
+            dtmin = min(dt_new, maxupdt*dt_old);
+            dt_new = max( dtmin, maxdowndt*dt_old );
             
             // Don't let dt exceed 0.1*t for accuracy reasons
             
