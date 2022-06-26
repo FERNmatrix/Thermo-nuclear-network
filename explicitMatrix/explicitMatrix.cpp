@@ -3693,8 +3693,8 @@ class Integrate: public Utilities {
             // Restrict dt_new to not be larger than twice old timestep
             // and not smaller than half old timestep
             
-            double maxupdt = 1.75;  // 2.0
-            double maxdowndt = 0.6;  // 0.5
+            double maxupdt = 2.0;  // 1.1
+            double maxdowndt = 0.5;  // 0.9
             
             dtmin = min(dt_new, maxupdt*dt_old);
             dt_new = max( dtmin, maxdowndt*dt_old );
