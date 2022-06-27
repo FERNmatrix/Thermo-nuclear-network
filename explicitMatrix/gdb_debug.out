@@ -18,15 +18,15 @@ Reading symbols from explicitMatrix...
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-Mon Jun 27 14:52:32 2022
+Mon Jun 27 16:19:53 2022
 
 
 Integration using ASY+PE method
-T9=7.000e+00 rho=1.000e+08 massTol=1.000e-07 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-12
+T9=7.000e+00 rho=1.000e+08 massTol=1.000e-08 sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-12
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=0  totalIterations=0  IntegrationSteps_plotted=0
-Timer: 6.0390e+00 ms used
+Timer: 5.8630e+00 ms used
 
 BEGIN TIME INTEGRATION:
 
@@ -236,7 +236,7 @@ T9=7.000e+00 rho=1.000e+08 massTol=5.000e-03 sf=1.00e+25 equiTol=1.00e-02 equilT
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Integration steps=2036  totalIterations=3163  IntegrationSteps_plotted=1982
-Timer: 4.9665e+01 ms used
+Timer: 5.0368e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
@@ -257,6 +257,6 @@ FINAL ABUNDANCES Y AND MASS FRACTIONS X
 14 64Ge Y=2.1314e-09 X=1.3641e-07
 15 68Se Y=2.3863e-12 X=1.6227e-10
 
-[Inferior 1 (process 10550) exited normally]
+[Inferior 1 (process 11079) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
-(gdb) 
+(gdb) quit

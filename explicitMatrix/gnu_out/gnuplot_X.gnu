@@ -81,14 +81,14 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -9#-18
-xup = -7#-3
-xtics = 0.5#1    # Space between major x ticmarks
+xlow = -18
+xup = -3
+xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -4#-14
+ylow = -14
 yup = 0
-ytics = 0.5    # Space between major y ticmarks
+ytics = 1    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -164,8 +164,8 @@ replot file1 using 1:18 with lines ls 11 lw 1.0 dashtype 1 title "48Cr"
 replot file1 using 1:19 with lines ls 12 lw 1.0 dashtype 1 title "52Fe"
 replot file1 using 1:20 with lines ls 13 lw 1.0 dashtype 1 title "56Ni"
 replot file1 using 1:21 with lines ls 14 lw 1.0 dashtype 1 title "60Zn"
-#replot file1 using 1:22 with lines ls 1 lw 1.0 dashtype 1 title "1H"
-#replot file1 using 1:23 with lines ls 2 lw 1.0 dashtype 1 title "n"
+replot file1 using 1:22 with lines ls 1 lw 1.0 dashtype 1 title "64Ge"
+replot file1 using 1:23 with lines ls 2 lw 1.0 dashtype 1 title "68Se"
 
 
 # 48-isotope network
