@@ -105,7 +105,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -302,6 +302,7 @@ double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
 double t_saved;                        // Start time this timestep (end t for last step)
+double dt_half;                        // Half of full timestep
 double dt_change;                      // Change in proposed dt from last timestep
 double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
@@ -390,6 +391,7 @@ int AA[ISOTOPES];                // Array holding A values for isotopes
 double Y[ISOTOPES];              // Array holding current abundances Y for isotopes
 double Y0[ISOTOPES];             // Array holding abundances at beginning of timestep
 double Ystore[ISOTOPES];         // Array storing current abundances for later restore
+double YfullStep[ISOTOPES];      // Array holding full-step Y update
 double X[ISOTOPES];              // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
 char isoLabel[ISOTOPES][5];      // Isotope labels (max 5 characters; e.g. 238pu)
@@ -3482,7 +3484,6 @@ class Integrate: public Utilities {
             
             double sumXhalf;
             double sumXfull;
-            double dt_half;
             double dE_half1;
             double dE_half2;
             double E_half1 = 0.0;
@@ -3545,6 +3546,13 @@ class Integrate: public Utilities {
             
             updatePopulations(dt);
             sumXfull = sumX;
+            
+            // Store the values of Y for the full step for later
+            // diagnostic
+            
+            for(int i=0; i<ISOTOPES; i++){
+                YfullStep[i] = Y[i];
+            }
             
             // Now execute the first of two half-steps
             
