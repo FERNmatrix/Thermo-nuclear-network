@@ -77,7 +77,7 @@ file1 = "gnufile2.data"
 
 xlow = -18
 xup = -3
-xtics = 2     # Space between major x ticmarks
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = xlow-1
