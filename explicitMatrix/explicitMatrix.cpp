@@ -315,7 +315,6 @@ double dt_EAplot[plotSteps];           // Store at plotsteps
 double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
-double XcorrFac;                       // Equil normalization factor for timestep
 
 double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reaction equilibrated
@@ -367,6 +366,10 @@ double dtLast;                       // Last timestep
 bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
+double sumXeq;                       // Sum X species in at least 1 equilibrated RG
+double sumXNeq;                      // Sum X species not in an equilibrated RG
+double sumXtot;
+double XcorrFac;                     // Equil normalization factor for timestep
 double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - sumXlast
 double diffXzero;                    // diffX before computeTimeStep_EA (a,b) iteration 
@@ -4493,6 +4496,7 @@ int main() {
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious
+                   
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only
@@ -4767,14 +4771,17 @@ void restoreEquilibriumProg() {
     // equilibrium and those not (don't presently use the fractions
     // separately, only their sum).
     
-     double sumXeq = Utilities::sumXEquil();
-     double sumXNeq = Utilities::sumXNotEquil();
+    sumXeq = Utilities::sumXEquil();
+    sumXNeq = Utilities::sumXNotEquil();
+    sumXtot = Utilities::sumMassFractions();
     
     // Factor to enforce particle number conservation
-    
-    XcorrFac = 1.0 / (sumXeq + sumXNeq);
-    //XcorrFac = 1.0 / Utilities::sumMassFractions();
-
+    if(totalEquilRG > 0){
+        XcorrFac = 1.0 / (sumXeq + sumXNeq);
+    } else {
+        XcorrFac=1.0;
+    }
+ 
     // Loop over all isotopes and renormalize so sum X = 1
     // for this step.
     
@@ -4782,7 +4789,7 @@ void restoreEquilibriumProg() {
         
         X[i] *= XcorrFac;
         Y[i] = X[i] / (double)AA[i];
-        Y0[i] = Y[i];
+//         Y0[i] = Y[i];
 //         Y[i] *= XcorrFac;
 //         Y0[i] = Y[i];
     }
