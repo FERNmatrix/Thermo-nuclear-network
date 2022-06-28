@@ -317,7 +317,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 double XcorrFac;                       // Equil normalization factor for timestep
 
-double massTol_asy = 1e-8;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reaction equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -328,7 +328,7 @@ int totalIterations;                   // Total number of iterations
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-3;// 1e-5             // Absolute error tolerance
+double EpsA = 5e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -3701,8 +3701,8 @@ class Integrate: public Utilities {
             // Restrict dt_new to not be larger than twice old timestep
             // and not smaller than half old timestep
             
-            double maxupdt = 2.0;  // 1.1
-            double maxdowndt = 0.5;  // 0.9
+            double maxupdt = 2.0;
+            double maxdowndt = 0.5;
             
             dtmin = min(dt_new, maxupdt*dt_old);
             dt_new = max( dtmin, maxdowndt*dt_old );
@@ -4274,7 +4274,7 @@ int main() {
             ISOTOPES, numberSpecies);
     }
     
-    printf("\nBEGIN TIME INTEGRATION:\n");
+    printf("\n\nBEGIN TIME INTEGRATION:\n");
     fprintf(pFileD, "\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
     dt = dt_start;              // Integration start time
@@ -4486,12 +4486,12 @@ int main() {
             
             // Output to screen for this plot step
             
-            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d/%d Eq=%d/%d SX=%5.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e ch=%d ch2=%d fast:%s Q=%+6.3f dev=%+6.3e";
+            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d SX=%5.4f massT=%4.2e ";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c=%d c2=%d %s Q=%5.3f dev=%5.3e";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
-                   totalAsy, ISOTOPES, totalEquilRG, numberRG, sumX, ECON*netdERelease, 
+                   totalAsy, totalEquilRG, sumXtrue, massTol, ECON*netdERelease, 
                    ECON*ERelease, E_R, choice, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious
@@ -4616,18 +4616,20 @@ void showParameters(){
     
     printf("\n\nIntegration using ");
     printf(Utilities::stringToChar(intMethod));
-    printf("\nT9=%6.3e rho=%6.3e massTol=%6.3e sf=%5.2e equiTol=%5.2e equilTime=%5.2e",
-           T9, rho, massTol, sf, equiTol, equilibrateTime
+    printf("\nT9=%6.3e rho=%6.3e massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
+           T9, rho, massTol_asy, massTol_asyPE, sf, equiTol, equilibrateTime
     );
     printf("\nmaxit=%d downbumper=%6.3f EpsA=%5.2e EpsR=%5.2e",
            maxit, downbumper, EpsA, EpsR
     );
     cout << "\nNetwork: " << networkFile;
     cout << "  Rates: " << rateLibraryFile;
-    printf("\nIntegration steps=%d  totalIterations=%d  IntegrationSteps_plotted=%d", 
+    printf("\nIsotopes=%d Reactions=%d", ISOTOPES, SIZE);
+    if(numberRG > 0) printf(" ReactionGroups=%d", numberRG);
+    if(numberRG > 0)
+    printf("\nIntegration steps=%d  totalIterations=%d IntegrationSteps_plotted=%d", 
         totalTimeSteps, totalIterations, totalTimeSteps-totalTimeStepsZero);
-    Utilities::stopTimer();      // Stop timer and print integration time
-    
+    if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
 }
 
 
@@ -4767,16 +4769,18 @@ void restoreEquilibriumProg() {
     // equilibrium and those not (don't presently use the fractions
     // separately, only their sum).
     
-    double sumXeq = Utilities::sumXEquil();
-    double sumXNeq = Utilities::sumXNotEquil();
+    // double sumXeq = Utilities::sumXEquil();
+    // double sumXNeq = Utilities::sumXNotEquil();
     
     // Factor to enforce particle number conservation
     
-    XcorrFac = 1.0 / (sumXeq + sumXNeq);
+    XcorrFac = 1.0 / Utilities::sumMassFractions();
 
     // Loop over all isotopes and renormalize so sum X = 1
+    // for this step.
     
     for(int i=0; i<ISOTOPES; i++){
+        
         X[i] *= XcorrFac;
         Y[i] = X[i] / (double)AA[i];
         Y0[i] = Y[i];
@@ -4786,7 +4790,9 @@ void restoreEquilibriumProg() {
     
     // Recompute total sumX 
     
-    sumX = Utilities::sumMassFractions();
+    sumX = 1.0;
+    
+   // sumX = Utilities::sumMassFractions();
     
 } // end restoreEquilibriumProg()
 
