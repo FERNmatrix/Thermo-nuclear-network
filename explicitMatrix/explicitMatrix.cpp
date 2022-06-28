@@ -342,14 +342,11 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilibrateTime = 1e-12 ;  // Time to begin checking for PE
 double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
-
 double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
-double deviousMin = 0.1;      // Min allowed deviation from equil k ratio in timestep
-
 double thisDevious;           // Deviation of kratio from equil
 double mostDevious;           // Largest current deviation of kratio from equil
 int mostDeviousIndex;         // Index of RG with mostDevious
-int choice;                   // Diagnostic variable for new timestepper
+int choice1;                   // Diagnostic variable for new timestepper
 int choice2;                  // Diagnostic variable for new timestepper
 
 
@@ -3499,7 +3496,7 @@ class Integrate: public Utilities {
             // Choose massTol parameter
             
             if(doPE && totalEquilRG > 0){
-                massTol = massTol_asyPE;  // If equilibrated RG
+                massTol = massTol_asyPE;  // If there are equilibrated RG
             } else {
                 massTol = massTol_asy;    // If no equilibrated RG
             }
@@ -3533,7 +3530,7 @@ class Integrate: public Utilities {
             
             dt_saved = dt;
             t = t_saved;
-            t_end = t_saved + dt;
+            t_end = t_saved + dt;  // This will be end time for this step
             
             // Now execute a full timestep and store sumX. Note that
             // updatePopulations(dt) updates sumX. The diagnostic 
@@ -3548,7 +3545,7 @@ class Integrate: public Utilities {
             sumXfull = sumX;
             
             // Store the values of Y for the full step for later
-            // diagnostic
+            // diagnostics
             
             for(int i=0; i<ISOTOPES; i++){
                 YfullStep[i] = Y[i];
@@ -3689,13 +3686,13 @@ class Integrate: public Utilities {
             
             if(E_R > 0.1){
                 dt_new =  0.9 * dt_old / E_R;
-                choice = 0;
+                choice1 = 0;
             } else if(E_R < 0.5) {
                 dt_new =  0.5 * dt_old / sqrt(E_R);   // Note: Divides by 0 if E_R = 0
-                choice = 1;
+                choice1 = 1;
             } else {
                 dt_new = dt_old;
-                choice = 2;
+                choice1 = 2;
             }
             
             // Restrict dt_new to not be larger than twice old timestep
@@ -4327,6 +4324,7 @@ int main() {
     // ------------------------------------ //
     
     totalIterations = 0;
+    XcorrFac = 1.0;
     
     while(t < stop_time){ 
         
@@ -4486,13 +4484,13 @@ int main() {
             
             // Output to screen for this plot step
             
-            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d SX=%5.4f massT=%4.2e ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c=%d c2=%d %s Q=%5.3f dev=%5.3e";
+            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d Xfac=%6.4f ";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
-                   totalAsy, totalEquilRG, sumXtrue, massTol, ECON*netdERelease, 
-                   ECON*ERelease, E_R, choice, choice2, 
+                   totalAsy, totalEquilRG, XcorrFac, ECON*netdERelease, 
+                   ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious
             );
@@ -4769,12 +4767,13 @@ void restoreEquilibriumProg() {
     // equilibrium and those not (don't presently use the fractions
     // separately, only their sum).
     
-    // double sumXeq = Utilities::sumXEquil();
-    // double sumXNeq = Utilities::sumXNotEquil();
+     double sumXeq = Utilities::sumXEquil();
+     double sumXNeq = Utilities::sumXNotEquil();
     
     // Factor to enforce particle number conservation
     
-    XcorrFac = 1.0 / Utilities::sumMassFractions();
+    XcorrFac = 1.0 / (sumXeq + sumXNeq);
+    //XcorrFac = 1.0 / Utilities::sumMassFractions();
 
     // Loop over all isotopes and renormalize so sum X = 1
     // for this step.
