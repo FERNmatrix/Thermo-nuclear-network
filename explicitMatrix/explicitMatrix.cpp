@@ -2055,7 +2055,7 @@ class Reaction: public Utilities {
             
             //double kfac;
             
-            isEquil = !reacIsActive[reacIndex];  // Set isEquil in Reaction object
+            isEquil = !reacIsActive[reacIndex];  // Set isEquil in this Reaction object
             
             if( reacIsActive[reacIndex] ) {
                 
@@ -2066,7 +2066,7 @@ class Reaction: public Utilities {
             
             } else {
                 
-                //fluxChooser(numberReactants);
+                fluxChooser(numberReactants);
                 flux = 0.0;                 // Put in present (Reaction) object flux field
                 Flux[reacIndex] = 0.0;      // Put in main flux array
 

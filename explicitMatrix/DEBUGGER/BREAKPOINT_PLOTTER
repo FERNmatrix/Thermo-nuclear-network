@@ -663,6 +663,6 @@ end
 
 watch Y0[6] if totalTimeSteps>439
 commands
-printf"\n%4d %2d %2d %7.4f %7.4f %7.4f %7.4f\n",totalTimeSteps,dtMode,totalEquilRG,(double)log10(t),(double)log10(Y0[6]),(double)log10(Y[6]),XcorrFac
+printf"\nsteps=%d dtMode=%d equil=%d logt=%7.4f logY06=%7.4f logY6=%7.4f Xfac=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,(double)log10(t),(double)log10(Y0[6]),(double)log10(Y[6]),XcorrFac
 end
 
