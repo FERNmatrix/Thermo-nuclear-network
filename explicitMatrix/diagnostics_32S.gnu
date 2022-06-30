@@ -86,8 +86,8 @@ xup = -7.8
 xtics = 0.05   # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -11#-2.195
-yup = -9# -2.14
+ylow = -2.195
+yup =  -2.14
 ytics = 0.1#0.005      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -108,7 +108,7 @@ file1 = "temp_asy2_plot.out"  # In eulerUpdate()
 #file1 = "temp_asy_plot.out"  # End of integration
 
 plot file1 using 4:7 with lines ls 3 lw 1.5 dashtype 1 title "c++ Asy-Y[32S]"
-#replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
+replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
 
 file2 = "temp_asyPE2_plot.out" # In eulerUpdate()
 #file2 = "temp_asyPE_plot.out" # End of integration

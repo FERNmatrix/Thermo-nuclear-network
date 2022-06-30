@@ -3604,7 +3604,7 @@ class Integrate: public Utilities {
             // updating populations corresponding to the time
             // at the end of this integration step.
             
-            t += dt_half;
+            t = t_end; 
             
             // Estimate the local error associated with the size of the
             // timestep by comparing sumX for full timestep and
