@@ -667,32 +667,76 @@ printf"\nsteps=%d dtMode=%d equil=%d logt=%7.4f Y06=%7.4e logY06=%7.4f Y6=%7.4e 
 end
 --------------------------------
 
-break 3501 if totalTimeSteps>339
+break 3501 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu3501(begin int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
 end
 
-break 3548 if totalTimeSteps>339
+break 3548 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu3548(full): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
 end
 
-break 3570 if totalTimeSteps>339
+break 3570 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu3570(half1): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
 end
 
-break 3589 if totalTimeSteps>339
+break 3589 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu3589(half2): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
 end
 
-break 3624 if totalTimeSteps>339
+break 3624 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu3624(end int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
 end
 
-break 4433 if totalTimeSteps>339
+break 4433 if totalTimeSteps>339 && totalTimeSteps<351
 commands
 printf"#gnu4433(final): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+end
+
+------------------------------------
+
+break 3514 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu3514(begin int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
+end
+
+break 3551 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu3551(full): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
+end
+
+break 3576 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu3576(half1): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
+end
+
+break 3598 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu3598(half2): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
+end
+
+break 3636 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu3636(end int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
+end
+
+break 4448 if totalTimeSteps>438 && totalTimeSteps<451
+commands
+silent
+printf"#gnu4448(final): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6])
+cont
 end

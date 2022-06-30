@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -3513,6 +3513,9 @@ class Integrate: public Utilities {
             dt_saved = dt;     // Will hold final dt in this timestep.
             storeCurrentY();   // For later restoration
             
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu3514(begin int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
+            
             // Compute max stable forward Euler timestep
             
             dt_FE = sf/fastestCurrentRate;
@@ -3547,6 +3550,9 @@ class Integrate: public Utilities {
             updatePopulations(dt);
             sumXfull = sumX;
             
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu3551(full): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
+            
             // Store the values of Y for the full step for later
             // diagnostics
             
@@ -3568,6 +3574,9 @@ class Integrate: public Utilities {
             // Now update time for second half-step
             
             t = t_saved + dt_half; 
+            
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu3576(half1): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
 
             // Recompute fluxes since Ys have changed in 1st half step
             
@@ -3587,6 +3596,9 @@ class Integrate: public Utilities {
             
             updatePopulations(dt_half);
             sumXhalf = sumX; 
+            
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu3598(half2): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
             
             // Compute energy release in second half step
             
@@ -3621,6 +3633,10 @@ class Integrate: public Utilities {
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
             dtMode = -1;    // Indicates not in the integration step
+            int anchor = dtMode;   // dummy debug point
+            
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu3656(end int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
             
         }    // End of doIntegrationStep
         
@@ -4430,6 +4446,9 @@ int main() {
         }
         
         totalAsy = totalAsy;   // Temporary debug point
+        
+// if (totalTimeSteps>438 && totalTimeSteps<451)
+//     printf("#gnu4448(final): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
         
         
         // ---------------------------------------------------------------------------------
