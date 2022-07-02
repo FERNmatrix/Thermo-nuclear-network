@@ -105,7 +105,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -317,7 +317,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
-double massTol_asyPE = 5e-3;           // Tolerance param if some reaction equilibrated
+double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -345,7 +345,7 @@ double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in tim
 double thisDevious;           // Deviation of kratio from equil
 double mostDevious;           // Largest current deviation of kratio from equil
 int mostDeviousIndex;         // Index of RG with mostDevious
-int choice1;                   // Diagnostic variable for new timestepper
+int choice1;                  // Diagnostic variable for new timestepper
 int choice2;                  // Diagnostic variable for new timestepper
 
 
@@ -368,7 +368,7 @@ bool isValidUpdate;                  // Whether timestep accepted
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXeq;                       // Sum X species in at least 1 equilibrated RG
 double sumXNeq;                      // Sum X species not in an equilibrated RG
-double sumXtot;
+double sumXtot;                      // Sum X all species
 double XcorrFac;                     // Equil normalization factor for timestep
 double sumXlast;                     // sumX from last timestep
 double diffX;                        // sumX - sumXlast
@@ -3510,8 +3510,9 @@ class Integrate: public Utilities {
             sumX = Utilities::sumMassFractions();
             sumXlast = sumX;
             t_saved = t;
-            dt_saved = dt;     // Will hold final dt in this timestep.
-            storeCurrentY();   // For later restoration
+            dt_saved = dt;       // Will hold final dt in this timestep.
+            storeCurrentY();     // For later restoration
+            double dttt = dt;    // Temporary breakpoint anchor
             
 // if (totalTimeSteps>438 && totalTimeSteps<451)
 //     printf("#gnu3514(begin int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
@@ -3532,7 +3533,7 @@ class Integrate: public Utilities {
             dt = min(dt_FE, dt_EA); 
             
             // We will estimate error by computing difference in sumX 
-            // between full timestep and two half timesteps. 
+            // between full timestep and at end of two half timesteps. 
             
             dt_saved = dt;
             t = t_saved;
@@ -4784,40 +4785,42 @@ void restoreEquilibriumProg() {
     } // end while iteration loop
     
     
-    // Set up renormalization of all Ys so that this integration step
-    // conserves total particle number (sum of X = 1.0). Check mass 
-    // fractions separately for isotopes participating in
-    // equilibrium and those not (don't presently use the fractions
-    // separately, only their sum).
+    // If we are computing Asy+PE, set up renormalization of all Ys 
+    // and Xs so that this integration step conserves total particle 
+    // number (sum of X = 1.0). Option to heck mass fractions separately 
+    // for isotopes participating in equilibrium and those not but don't 
+    // presently use the fractions separately, only their sum.
     
-    sumXeq = Utilities::sumXEquil();
-    sumXNeq = Utilities::sumXNotEquil();
-    sumXtot = Utilities::sumMassFractions();
-    
-    // Factor to enforce particle number conservation
-    if(totalEquilRG > 0){
-        XcorrFac = 1.0 / (sumXeq + sumXNeq);
-    } else {
-        XcorrFac=1.0;
-    }
- 
-    // Loop over all isotopes and renormalize so sum X = 1
-    // for this step.
-    
-    for(int i=0; i<ISOTOPES; i++){
+    if(doPE && totalEquilRG > 0){
         
-        X[i] *= XcorrFac;
-        Y[i] = X[i] / (double)AA[i];
-//         Y0[i] = Y[i];
-//         Y[i] *= XcorrFac;
-//         Y0[i] = Y[i];
+        // sumXeq = Utilities::sumXEquil();
+        // sumXNeq = Utilities::sumXNotEquil();
+        
+        sumXtot = Utilities::sumMassFractions();
+        
+        // Factor to enforce particle number conservation
+        
+        XcorrFac = 1.0 / sumXtot;
+        
+        // Loop over all isotopes and renormalize so sum X = 1
+        // for this step.
+        
+        for(int i=0; i<ISOTOPES; i++){
+            
+            X[i] *= XcorrFac;
+            Y[i] = X[i] / (double)AA[i];
+//             Y[i] *= XcorrFac;
+//             X[i] *= XcorrFac;
+//             Y0[i] = Y[i];
+        }
+        
+        // Total sumX now renormalized to one
+        
+        sumX = 1.0;
+        
+    // sumX = Utilities::sumMassFractions();
+    
     }
-    
-    // Recompute total sumX 
-    
-    sumX = 1.0;
-    
-   // sumX = Utilities::sumMassFractions();
     
 } // end restoreEquilibriumProg()
 
