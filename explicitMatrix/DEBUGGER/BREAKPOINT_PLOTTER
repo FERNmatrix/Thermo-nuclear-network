@@ -743,52 +743,57 @@ end
 -------------------------------------------------
 
 
-break 3515 if totalTimeSteps>438 && totalTimeSteps<451
+break 3501 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu3515(beginInt):%4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu3501(beginInt):%4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
-break 3551 if totalTimeSteps>438 && totalTimeSteps<451
+break 3550 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu3551(full):    %4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu3550(full):    %4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
-break 3576 if totalTimeSteps>438 && totalTimeSteps<451
+break 3571 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu3576(half1):   %4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu3571(half1):   %4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
-break 3598 if totalTimeSteps>438 && totalTimeSteps<451
+break 3590 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu3598(half2):   %4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu3590(half2):   %4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
-break 3636 if totalTimeSteps>438 && totalTimeSteps<451
+break 3625 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu3636(endInt):  %4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu3625(endInt):  %4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
-break 4448 if totalTimeSteps>438 && totalTimeSteps<451
+break 4434 if totalTimeSteps>438 && totalTimeSteps<451
 commands
 silent
-printf"#gnu4448(final):   %4d %2d    %d  %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),dt_half
+printf"\n#gnu4434(final):   %4d %2d    %d  %d %7.4e %7.4f %7.4e %7.4e %7.4f %7.4e %7.4f %7.4e\n",totalTimeSteps,dtMode,totalEquilRG,iterations,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]),YfullStep[6]
 cont
 end
 
 
-#gnu:          step mode eq      t        logt      dt       Y0[6]     logY06     Y6       logY6   dtHalf
+cat gdb_debug.out | grep \#gnu | grep -v printf | grep -v it=> temp.out
+
+#gnu:          step mode eq  it     t        logt      dt       Y0[6]     logY06     Y6       logY6   Yfull[6]
 
 -------------------------------------------------
+
+
+
 
 break 4799 if totalTimeSteps>435
 commands
@@ -796,6 +801,8 @@ silent
 printf"\n#gnu: %d %d %7.4f %7.4f %7.4f %7.4f %7.4f",totalTimeSteps,totalEquilRG,(double)log10(t),sumXeq,sumXNeq,sumXtot,sumXeq+sumXNeq
 cont
 end
+
+#gnu  steps  eq   logt  sxeq  sxNeq  sx   sxeq+sxNeq
 
 
 

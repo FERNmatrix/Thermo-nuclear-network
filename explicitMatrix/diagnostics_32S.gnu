@@ -88,7 +88,7 @@ minxtics = 5  # Number minor x tics
 
 ylow = -2.195
 yup =  -2.14
-ytics = 0.1#0.005      # Space between major y ticmarks
+ytics = 0.005      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -104,17 +104,17 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "temp_asy2_plot.out"  # In eulerUpdate()
-#file1 = "temp_asy_plot.out"  # End of integration
+#file1 = "temp_asy2_plot.out"  # In eulerUpdate()
+file1 = "temp_asy_plot.out"  # End of integration
 
 plot file1 using 4:7 with lines ls 3 lw 1.5 dashtype 1 title "c++ Asy-Y[32S]"
 replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
 
-file2 = "temp_asyPE2_plot.out" # In eulerUpdate()
-#file2 = "temp_asyPE_plot.out" # End of integration
+#file2 = "temp_asyPE2_plot.out" # In eulerUpdate()
+file2 = "temp_asyPE_plot.out" # End of integration
 
 replot file2 using 4:7 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PE-Y[32S]"
-replot file2 using 4:6 with lines  ls 3 lw 4.0 dashtype 6 title "c++ PE-Y0[32S]"
+#replot file2 using 4:6 with lines  ls 3 lw 4.0 dashtype 6 title "c++ PE-Y0[32S]"
 replot file2 using 4:(log10($5)) with lines  ls 1 lw 2.0 dashtype 1 title "dt(c++PE)"
 
 file4 = "temp_asyJava_plot.out" # In explicitUpdate()

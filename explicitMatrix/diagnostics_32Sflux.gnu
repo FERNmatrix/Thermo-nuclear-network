@@ -109,12 +109,12 @@ file1 = "temp_asy2_plot.out" # Evaluated in eulerUpdate()
 
 #plot file1 using 4:8 with lines ls 2 lw 1.5 dashtype 1 title "c++ AsyF+[32S]"
 #replot file1 using 4:9 with lines ls 2 lw 1.5 dashtype 1 title "c++ AsyF-[32S]"
-#replot file1 using 4:11 with lines ls 2 lw 1.5 dashtype 1 title "c++ asy-dF[32S]"
+plot file1 using 4:11 with lines ls 8 lw 1.5 dashtype 1 title "c++ asy-dF[32S]"
 
 file2 = "temp_asyPE2_plot.out"  # Evaluated in eulerUpdate()
 #file2 = "temp_asyPE_plot.out"   # Evaluated at end of integration
 
-plot file2 using 4:8 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PEF+[32S]"
+replot file2 using 4:8 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PEF+[32S]"
 replot file2 using 4:9 with lines  ls 11 lw 1.5 dashtype 2 title "c++ PEF-[32S]"
 replot file2 using 4:11 with lines ls 10 lw 1.5 dashtype 2 title "c++ PE-dF[32S]"
 

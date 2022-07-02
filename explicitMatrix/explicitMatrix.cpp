@@ -322,8 +322,8 @@ double massTol = massTol_asy;          // Timestep tolerance parameter for integ
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
-int iterations;                        // iterations to conserve particles 
-int totalIterations;                   // Total number of iterations
+int iterations;                        // # iterations in step to conserve particles 
+int totalIterations;                   // Total number of iterations, all steps til now
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
@@ -3514,9 +3514,6 @@ class Integrate: public Utilities {
             storeCurrentY();     // For later restoration
             double dttt = dt;    // Temporary breakpoint anchor
             
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu3514(begin int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
-            
             // Compute max stable forward Euler timestep
             
             dt_FE = sf/fastestCurrentRate;
@@ -3535,9 +3532,10 @@ class Integrate: public Utilities {
             // We will estimate error by computing difference in sumX 
             // between full timestep and at end of two half timesteps. 
             
-            dt_saved = dt;
-            t = t_saved;
+            dt_saved = dt;         // Save full dt for this step
+            t = t_saved;           // Save initial time for this step
             t_end = t_saved + dt;  // This will be end time for this step
+            dt_half = 0.5*dt;      // Half of full timestep
             
             // Now execute a full timestep and store sumX. Note that
             // updatePopulations(dt) updates sumX. The diagnostic 
@@ -3551,9 +3549,6 @@ class Integrate: public Utilities {
             updatePopulations(dt);
             sumXfull = sumX;
             
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu3551(full): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
-            
             // Store the values of Y for the full step for later
             // diagnostics
             
@@ -3564,7 +3559,6 @@ class Integrate: public Utilities {
             // Now execute the first of two half-steps
             
             restoreCurrentY();
-            dt_half = 0.5*dt;
             dtMode = 1;
             updatePopulations(dt_half);
             
@@ -3575,9 +3569,6 @@ class Integrate: public Utilities {
             // Now update time for second half-step
             
             t = t_saved + dt_half; 
-            
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu3576(half1): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
 
             // Recompute fluxes since Ys have changed in 1st half step
             
@@ -3597,9 +3588,6 @@ class Integrate: public Utilities {
             
             updatePopulations(dt_half);
             sumXhalf = sumX; 
-            
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu3598(half2): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
             
             // Compute energy release in second half step
             
@@ -3626,6 +3614,11 @@ class Integrate: public Utilities {
             Error_Observed = abs(sumXhalf - sumXfull);
             Error_Desired = EpsA;       // Neglect EpsR for now
             
+for(int i=0; i<ISOTOPES; i++){
+    Y[i] = YfullStep[i];
+    X[i] = Y[i]*(double)AA[i];
+}
+            
             // Get new trial timestep for next integration step by using
             // the local error observed for this timestep compared with the
             // error desired to predict a timestep having near the local
@@ -3635,9 +3628,6 @@ class Integrate: public Utilities {
             
             dtMode = -1;    // Indicates not in the integration step
             int anchor = dtMode;   // dummy debug point
-            
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu3656(end int): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
             
         }    // End of doIntegrationStep
         
@@ -4448,10 +4438,6 @@ int main() {
         
         totalAsy = totalAsy;   // Temporary debug point
         
-// if (totalTimeSteps>438 && totalTimeSteps<451)
-//     printf("#gnu4448(final): step=%d dtMode=%d equil=%d t=%7.4e logt=%7.4f dt=%7.4e Y0[6]=%7.4e logY0[6]=%7.4f Y6=%7.4e logY6=%7.4f\n",totalTimeSteps,dtMode,totalEquilRG,t,(double)log10(t),dt,Y0[6],(double)log10(Y0[6]),Y[6],(double)log10(Y[6]));
-        
-        
         // ---------------------------------------------------------------------------------
         // Display and output to files updated quantities at plotSteps times corresponding
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
@@ -4787,7 +4773,7 @@ void restoreEquilibriumProg() {
     
     // If we are computing Asy+PE, set up renormalization of all Ys 
     // and Xs so that this integration step conserves total particle 
-    // number (sum of X = 1.0). Option to heck mass fractions separately 
+    // number (sum of X = 1.0). Option to check mass fractions separately 
     // for isotopes participating in equilibrium and those not but don't 
     // presently use the fractions separately, only their sum.
     
