@@ -3614,11 +3614,6 @@ class Integrate: public Utilities {
             Error_Observed = abs(sumXhalf - sumXfull);
             Error_Desired = EpsA;       // Neglect EpsR for now
             
-for(int i=0; i<ISOTOPES; i++){
-    Y[i] = YfullStep[i];
-    X[i] = Y[i]*(double)AA[i];
-}
-            
             // Get new trial timestep for next integration step by using
             // the local error observed for this timestep compared with the
             // error desired to predict a timestep having near the local
@@ -3794,11 +3789,14 @@ for(int i=0; i<ISOTOPES; i++){
         
     static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
-        double dY = (fplus - fminus)*dtt;
+        double newY;
+        double dY;
+        
         dF[i] = fplus - fminus;
-        double newY = y0 + dY;
+        dY = dF[i]*dtt;
+        newY = y0 + dY;
         double newY1 = newY;    // Temporary debug anchor
-        return newY;     // New Y for forward Euler method
+        return newY;            // New Y for forward Euler method
         
     }
     

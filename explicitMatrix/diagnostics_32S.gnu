@@ -114,7 +114,7 @@ replot file1 using 4:6 with lines ls 1 lw 1.5 dashtype 1 title "c++ Asy-Y0[32S]"
 file2 = "temp_asyPE_plot.out" # End of integration
 
 replot file2 using 4:7 with lines  ls 3 lw 1.5 dashtype 2 title "c++ PE-Y[32S]"
-#replot file2 using 4:6 with lines  ls 3 lw 4.0 dashtype 6 title "c++ PE-Y0[32S]"
+replot file2 using 4:6 with lines  ls 3 lw 4.0 dashtype 6 title "c++ PE-Y0[32S]"
 replot file2 using 4:(log10($5)) with lines  ls 1 lw 2.0 dashtype 1 title "dt(c++PE)"
 
 file4 = "temp_asyJava_plot.out" # In explicitUpdate()
