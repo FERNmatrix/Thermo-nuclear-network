@@ -18,7 +18,7 @@ Reading symbols from explicitMatrix...
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-Mon Jul  4 11:51:42 2022
+Mon Jul  4 15:54:39 2022
 
 
 Integration using ASY+PE method
@@ -238,7 +238,7 @@ maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Isotopes=16 Reactions=48 ReactionGroups=19
 Integration steps=1995  totalIterations=3098 IntegrationSteps_plotted=1941
-Timer: 5.0249e+01 ms used
+Timer: 4.9731e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
@@ -259,6 +259,6 @@ FINAL ABUNDANCES Y AND MASS FRACTIONS X
 14 64Ge Y=1.7604e-09 X=1.1266e-07
 15 68Se Y=1.8337e-12 X=1.2469e-10
 
-[Inferior 1 (process 30587) exited normally]
+[Inferior 1 (process 31401) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
 (gdb) 
