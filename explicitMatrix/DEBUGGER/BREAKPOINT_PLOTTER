@@ -807,4 +807,10 @@ end
 
 -------------------------------
 
-break 4763 if totalTimeSteps==441 && i==6
+break 4765 if totalTimeSteps>440 && i==6
+
+break 4713 if totalTimeSteps>440 && i==6
+
+break 4753 if totalTimeSteps>440 && i==6
+
+

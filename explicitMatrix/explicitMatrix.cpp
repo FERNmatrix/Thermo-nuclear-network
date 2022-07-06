@@ -4699,7 +4699,7 @@ void restoreEquilibriumProg() {
          *	  and setting Y[i] to it (a form of operator splitting within the 
          *	  network timestep). This work is done in evolveToEquilibrium(). */
         
-        evolveToEquilibrium();
+        //evolveToEquilibrium();
         
         // Inventory reaction groups in equilibrium
         
@@ -4722,6 +4722,8 @@ void restoreEquilibriumProg() {
             }
         }
         
+        int dumdum = -1;
+        
         // Loop over reaction groups in equilibrium and compute equilibrated
         // Y[] averaged over all reaction groups that are in equilibrium and
         // contain the isotope. (Generally each reaction is in only one 
@@ -4730,6 +4732,7 @@ void restoreEquilibriumProg() {
         
         int numberCases;
         double Ysum;
+        int myindex;
         
         // Loop over all isotopes, checking for those in equilbrium in at 
         // least one RG
@@ -4746,6 +4749,7 @@ void restoreEquilibriumProg() {
                 // Find all equilibrated RGs that the isotope appears in
                 
                 for(int j=0; j<countConstraints; j++){
+                    myindex = RGindy[j];
                     if( RG[j].getisEquil() ){
                         for(int k=0; k<RG[j].getniso(); k++){
                             if(i == RG[j].getisoindex(k)) {
