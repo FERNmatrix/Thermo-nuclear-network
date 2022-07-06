@@ -4679,7 +4679,7 @@ void restoreEquilibriumProg() {
      *  reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
      *  values of 16O and 20Ne (i.e., their values will not be the values that they 
      *  will have after this step). Add a while loop that permits iteration to try 
-     *  to fix this. Preliminary tests indicate it has small effect so set one 
+     *  to fix this. Preliminary tests indicate it has small effect so set to one 
      * iteration for now. */
     
     int itcounter = 0;
@@ -4725,7 +4725,7 @@ void restoreEquilibriumProg() {
         // Loop over reaction groups in equilibrium and compute equilibrated
         // Y[] averaged over all reaction groups that are in equilibrium and
         // contain the isotope. (Generally each reaction is in only one 
-        // reaction group but an isotopic species can appear in many reaction 
+        // reaction group but a given isotopic species can appear in many reaction 
         // groups.)
         
         int numberCases;
@@ -4854,6 +4854,7 @@ bool isoIsInRG(int isoindex, int rgindex) {
     for (int j=0; j<RG[rgindex].getniso(); j++){
         if( RG[rgindex].getisoindex(j) == isoindex ) return true;
     }
+
     return false;
     
 }
