@@ -8,7 +8,7 @@
  * dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
  * In this compile command the -o specifies thse name of the executable created in the
  * compile, the -lgsl flag links to GSL libraries, the -lgslcblas flag
- * links to GSL BLASS libraries, the -lm flag may be required in GCC Linux to get the 
+ * links to GSL BLAS libraries, the -lm flag may be required in GCC Linux to get the 
  * math.h header to work for defining powf, expf, logf, ..., (see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
  * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
@@ -4699,7 +4699,7 @@ void restoreEquilibriumProg() {
          *	  and setting Y[i] to it (a form of operator splitting within the 
          *	  network timestep). This work is done in evolveToEquilibrium(). */
         
-        //evolveToEquilibrium();
+        evolveToEquilibrium();
         
         // Inventory reaction groups in equilibrium
         

@@ -18,7 +18,7 @@ Reading symbols from explicitMatrix...
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-Tue Jul  5 12:15:05 2022
+Wed Jul  6 14:34:30 2022
 
 
 Integration using ASY+PE method
@@ -162,74 +162,74 @@ BEGIN TIME INTEGRATION:
 130 it=2 t=5.66e-09 dt=7.38e-11 int=379 Asy=0 Eq=0 Xfac=1.0000 dE=1.04e+25 E=2.62e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
 131 it=2 t=6.69e-09 dt=9.47e-11 int=402 Asy=0 Eq=0 Xfac=1.0000 dE=7.51e+24 E=2.71e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
 132 it=2 t=7.97e-09 dt=7.38e-11 int=432 Asy=0 Eq=0 Xfac=1.0000 dE=5.18e+24 E=2.79e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-133 it=0 t=9.70e-09 dt=9.70e-10 int=444 Asy=1 Eq=2 Xfac=0.9992 dE=2.18e+24 E=2.84e+17 E_R=5.02e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-134 it=0 t=1.17e-08 dt=1.17e-09 int=446 Asy=3 Eq=1 Xfac=0.9982 dE=1.40e+24 E=2.87e+17 E_R=1.12e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-135 it=0 t=1.42e-08 dt=1.42e-09 int=448 Asy=4 Eq=1 Xfac=0.9988 dE=8.88e+23 E=2.90e+17 E_R=9.85e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-136 it=0 t=1.72e-08 dt=1.72e-09 int=450 Asy=4 Eq=1 Xfac=0.9991 dE=4.43e+23 E=2.91e+17 E_R=8.83e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-137 it=0 t=1.89e-08 dt=1.89e-09 int=451 Asy=4 Eq=1 Xfac=0.9992 dE=2.78e+23 E=2.92e+17 E_R=7.98e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-138 it=0 t=2.29e-08 dt=2.29e-09 int=453 Asy=5 Eq=1 Xfac=0.9995 dE=3.03e+22 E=2.92e+17 E_R=6.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-139 it=0 t=2.77e-08 dt=2.77e-09 int=455 Asy=5 Eq=3 Xfac=0.9998 dE=-2.17e+23 E=2.91e+17 E_R=3.56e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-140 it=0 t=3.35e-08 dt=3.35e-09 int=457 Asy=4 Eq=5 Xfac=0.9999 dE=-2.26e+23 E=2.90e+17 E_R=3.75e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-141 it=0 t=4.05e-08 dt=4.05e-09 int=459 Asy=4 Eq=5 Xfac=0.9995 dE=-1.82e+23 E=2.89e+17 E_R=7.50e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-142 it=0 t=4.90e-08 dt=4.90e-09 int=461 Asy=5 Eq=5 Xfac=0.9997 dE=-2.74e+23 E=2.86e+17 E_R=1.45e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-143 it=0 t=5.39e-08 dt=5.39e-09 int=462 Asy=5 Eq=5 Xfac=0.9995 dE=-2.26e+23 E=2.85e+17 E_R=9.51e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-144 it=0 t=6.52e-08 dt=6.52e-09 int=464 Asy=5 Eq=4 Xfac=0.9994 dE=-1.68e+23 E=2.83e+17 E_R=1.79e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-145 it=0 t=8.02e-08 dt=8.02e-09 int=468 Asy=6 Eq=4 Xfac=0.9999 dE=-3.82e+23 E=2.75e+17 E_R=2.36e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-146 it=0 t=9.70e-08 dt=9.70e-09 int=470 Asy=6 Eq=4 Xfac=0.9995 dE=-3.53e+23 E=2.69e+17 E_R=9.17e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-147 it=0 t=1.07e-07 dt=1.07e-08 int=471 Asy=6 Eq=4 Xfac=0.9994 dE=-3.41e+23 E=2.66e+17 E_R=9.01e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-148 it=0 t=1.29e-07 dt=1.29e-08 int=473 Asy=7 Eq=3 Xfac=0.9990 dE=-3.16e+23 E=2.59e+17 E_R=1.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-149 it=0 t=1.57e-07 dt=1.57e-08 int=478 Asy=7 Eq=4 Xfac=0.9988 dE=-2.95e+23 E=2.50e+17 E_R=5.88e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-150 it=0 t=1.90e-07 dt=1.90e-08 int=480 Asy=7 Eq=4 Xfac=0.9983 dE=-2.67e+23 E=2.41e+17 E_R=3.46e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-151 it=0 t=2.30e-07 dt=2.30e-08 int=482 Asy=7 Eq=4 Xfac=0.9978 dE=-2.43e+23 E=2.31e+17 E_R=5.89e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-152 it=0 t=2.53e-07 dt=2.53e-08 int=483 Asy=7 Eq=3 Xfac=0.9975 dE=-2.31e+23 E=2.26e+17 E_R=7.67e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-153 it=0 t=3.00e-07 dt=2.18e-08 int=499 Asy=4 Eq=6 Xfac=1.0002 dE=-4.56e+22 E=2.49e+17 E_R=3.32e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-154 it=0 t=3.72e-07 dt=3.72e-08 int=505 Asy=7 Eq=4 Xfac=0.9975 dE=-1.89e+23 E=2.33e+17 E_R=1.94e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-155 it=0 t=4.27e-07 dt=1.81e-08 int=511 Asy=5 Eq=5 Xfac=0.9998 dE=-1.84e+23 E=2.23e+17 E_R=1.06e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-156 it=0 t=5.30e-07 dt=5.30e-08 int=514 Asy=7 Eq=4 Xfac=0.9952 dE=-1.45e+23 E=2.07e+17 E_R=6.22e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-157 it=0 t=6.01e-07 dt=3.51e-08 int=521 Asy=5 Eq=6 Xfac=0.9993 dE=-1.43e+23 E=1.97e+17 E_R=3.47e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-158 it=1 t=7.29e-07 dt=7.29e-08 int=524 Asy=7 Eq=3 Xfac=0.9962 dE=-1.17e+23 E=1.81e+17 E_R=2.28e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-159 it=0 t=8.41e-07 dt=8.41e-08 int=532 Asy=5 Eq=6 Xfac=0.9965 dE=-1.05e+23 E=1.69e+17 E_R=1.24e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-160 it=0 t=1.06e-06 dt=1.06e-07 int=541 Asy=5 Eq=6 Xfac=0.9968 dE=-3.71e+22 E=1.58e+17 E_R=3.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-161 it=0 t=1.19e-06 dt=1.41e-08 int=554 Asy=5 Eq=6 Xfac=1.0001 dE=-8.95e+22 E=1.62e+17 E_R=9.27e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-162 it=0 t=1.46e-06 dt=1.46e-07 int=566 Asy=6 Eq=4 Xfac=0.9968 dE=-3.36e+22 E=1.47e+17 E_R=2.90e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-163 it=0 t=1.68e-06 dt=1.37e-08 int=586 Asy=4 Eq=6 Xfac=0.9999 dE=-4.27e+22 E=1.33e+17 E_R=3.57e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-164 it=0 t=2.00e-06 dt=1.12e-07 int=598 Asy=6 Eq=5 Xfac=0.9989 dE=-1.80e+22 E=1.25e+17 E_R=7.53e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-165 it=0 t=2.39e-06 dt=2.39e-07 int=609 Asy=5 Eq=6 Xfac=0.9958 dE=-2.83e+22 E=1.10e+17 E_R=3.13e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-166 it=0 t=2.84e-06 dt=1.88e-07 int=643 Asy=5 Eq=6 Xfac=0.9969 dE=-3.36e+22 E=1.28e+17 E_R=7.94e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-167 it=0 t=3.35e-06 dt=2.56e-07 int=663 Asy=5 Eq=5 Xfac=0.9985 dE=-9.10e+21 E=1.23e+17 E_R=9.78e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
-168 it=0 t=3.98e-06 dt=3.69e-09 int=687 Asy=1 Eq=7 Xfac=1.0000 dE=-8.38e+21 E=1.13e+17 E_R=5.35e-04 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+133 it=0 t=9.70e-09 dt=9.70e-10 int=444 Asy=1 Eq=2 Xfac=0.9992 dE=2.18e+24 E=2.84e+17 E_R=5.02e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.530e-01
+134 it=0 t=1.17e-08 dt=1.17e-09 int=446 Asy=3 Eq=1 Xfac=0.9982 dE=1.40e+24 E=2.87e+17 E_R=1.12e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.523e-01
+135 it=0 t=1.42e-08 dt=1.42e-09 int=448 Asy=4 Eq=1 Xfac=0.9988 dE=8.88e+23 E=2.90e+17 E_R=9.85e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.107e-01
+136 it=0 t=1.72e-08 dt=1.72e-09 int=450 Asy=4 Eq=1 Xfac=0.9991 dE=4.43e+23 E=2.91e+17 E_R=8.83e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.590e-01
+137 it=0 t=1.89e-08 dt=1.89e-09 int=451 Asy=4 Eq=1 Xfac=0.9992 dE=2.78e+23 E=2.92e+17 E_R=7.98e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.797e-01
+138 it=0 t=2.29e-08 dt=2.29e-09 int=453 Asy=5 Eq=1 Xfac=0.9995 dE=3.03e+22 E=2.92e+17 E_R=6.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.151e-01
+139 it=0 t=2.77e-08 dt=2.77e-09 int=455 Asy=5 Eq=3 Xfac=0.9998 dE=-2.17e+23 E=2.91e+17 E_R=3.56e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.522e-02
+140 it=0 t=3.35e-08 dt=3.35e-09 int=457 Asy=4 Eq=5 Xfac=0.9999 dE=-2.26e+23 E=2.90e+17 E_R=3.75e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.974e-03
+141 it=0 t=4.05e-08 dt=4.05e-09 int=459 Asy=4 Eq=5 Xfac=0.9995 dE=-1.82e+23 E=2.89e+17 E_R=7.50e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.792e-02
+142 it=0 t=4.90e-08 dt=4.90e-09 int=461 Asy=5 Eq=5 Xfac=0.9997 dE=-2.74e+23 E=2.86e+17 E_R=1.45e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.101e-01
+143 it=0 t=5.39e-08 dt=5.39e-09 int=462 Asy=5 Eq=5 Xfac=0.9995 dE=-2.26e+23 E=2.85e+17 E_R=9.51e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.339e-01
+144 it=0 t=6.52e-08 dt=6.52e-09 int=464 Asy=5 Eq=4 Xfac=0.9994 dE=-1.68e+23 E=2.83e+17 E_R=1.79e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.878e-01
+145 it=0 t=8.02e-08 dt=8.02e-09 int=468 Asy=6 Eq=4 Xfac=0.9999 dE=-3.82e+23 E=2.75e+17 E_R=2.36e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.783e-01
+146 it=0 t=9.70e-08 dt=9.70e-09 int=470 Asy=6 Eq=4 Xfac=0.9995 dE=-3.53e+23 E=2.69e+17 E_R=9.17e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.753e-01
+147 it=0 t=1.07e-07 dt=1.07e-08 int=471 Asy=6 Eq=4 Xfac=0.9994 dE=-3.41e+23 E=2.66e+17 E_R=9.01e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.327e-01
+148 it=0 t=1.29e-07 dt=1.29e-08 int=473 Asy=7 Eq=3 Xfac=0.9990 dE=-3.16e+23 E=2.59e+17 E_R=1.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.090e-01
+149 it=0 t=1.57e-07 dt=1.57e-08 int=478 Asy=7 Eq=4 Xfac=0.9988 dE=-2.95e+23 E=2.50e+17 E_R=5.88e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.248e-01
+150 it=0 t=1.90e-07 dt=1.90e-08 int=480 Asy=7 Eq=4 Xfac=0.9983 dE=-2.67e+23 E=2.41e+17 E_R=3.46e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.797e-01
+151 it=0 t=2.30e-07 dt=2.30e-08 int=482 Asy=7 Eq=4 Xfac=0.9978 dE=-2.43e+23 E=2.31e+17 E_R=5.89e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.766e-01
+152 it=0 t=2.53e-07 dt=2.53e-08 int=483 Asy=7 Eq=3 Xfac=0.9975 dE=-2.31e+23 E=2.26e+17 E_R=7.67e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.878e-01
+153 it=0 t=3.00e-07 dt=2.18e-08 int=499 Asy=4 Eq=6 Xfac=1.0002 dE=-4.56e+22 E=2.49e+17 E_R=3.32e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.403e-02
+154 it=0 t=3.72e-07 dt=3.72e-08 int=505 Asy=7 Eq=4 Xfac=0.9975 dE=-1.89e+23 E=2.33e+17 E_R=1.94e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.202e-01
+155 it=0 t=4.27e-07 dt=1.81e-08 int=511 Asy=5 Eq=5 Xfac=0.9998 dE=-1.84e+23 E=2.23e+17 E_R=1.06e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.599e-01
+156 it=0 t=5.30e-07 dt=5.30e-08 int=514 Asy=7 Eq=4 Xfac=0.9952 dE=-1.45e+23 E=2.07e+17 E_R=6.22e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.745e-01
+157 it=0 t=6.01e-07 dt=3.51e-08 int=521 Asy=5 Eq=6 Xfac=0.9993 dE=-1.43e+23 E=1.97e+17 E_R=3.47e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.094e-02
+158 it=1 t=7.29e-07 dt=7.29e-08 int=524 Asy=7 Eq=3 Xfac=0.9962 dE=-1.17e+23 E=1.81e+17 E_R=2.28e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.835e-01
+159 it=0 t=8.41e-07 dt=8.41e-08 int=532 Asy=5 Eq=6 Xfac=0.9965 dE=-1.05e+23 E=1.69e+17 E_R=1.24e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.713e-02
+160 it=0 t=1.06e-06 dt=1.06e-07 int=541 Asy=5 Eq=6 Xfac=0.9968 dE=-3.71e+22 E=1.58e+17 E_R=3.18e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.173e-02
+161 it=0 t=1.19e-06 dt=1.41e-08 int=554 Asy=5 Eq=6 Xfac=1.0001 dE=-8.95e+22 E=1.62e+17 E_R=9.27e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.475e-03
+162 it=0 t=1.46e-06 dt=1.46e-07 int=566 Asy=6 Eq=4 Xfac=0.9968 dE=-3.36e+22 E=1.47e+17 E_R=2.90e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.732e-02
+163 it=0 t=1.68e-06 dt=1.37e-08 int=586 Asy=4 Eq=6 Xfac=0.9999 dE=-4.27e+22 E=1.33e+17 E_R=3.57e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.505e-02
+164 it=0 t=2.00e-06 dt=1.12e-07 int=598 Asy=6 Eq=5 Xfac=0.9989 dE=-1.80e+22 E=1.25e+17 E_R=7.53e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.990e-01
+165 it=0 t=2.39e-06 dt=2.39e-07 int=609 Asy=5 Eq=6 Xfac=0.9958 dE=-2.83e+22 E=1.10e+17 E_R=3.13e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.685e-02
+166 it=0 t=2.84e-06 dt=1.88e-07 int=643 Asy=5 Eq=6 Xfac=0.9969 dE=-3.36e+22 E=1.28e+17 E_R=7.94e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.161e-02
+167 it=0 t=3.35e-06 dt=2.56e-07 int=663 Asy=5 Eq=5 Xfac=0.9985 dE=-9.10e+21 E=1.23e+17 E_R=9.78e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.121e-02
+168 it=0 t=3.98e-06 dt=3.69e-09 int=687 Asy=1 Eq=7 Xfac=1.0000 dE=-8.38e+21 E=1.13e+17 E_R=5.35e-04 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.464e-02
 169 it=0 t=4.84e-06 dt=2.85e-07 int=719 Asy=4 Eq=6 Xfac=0.9988 dE=-6.12e+21 E=1.07e+17 E_R=7.11e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.679e-02
 170 it=0 t=5.67e-06 dt=2.44e-07 int=753 Asy=4 Eq=7 Xfac=0.9991 dE=-5.00e+21 E=9.79e+16 E_R=5.26e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.120e-02
 171 it=0 t=6.70e-06 dt=1.55e-07 int=810 Asy=4 Eq=8 Xfac=0.9994 dE=-5.22e+21 E=1.16e+17 E_R=4.62e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.408e-02
 172 it=0 t=7.95e-06 dt=2.36e-08 int=862 Asy=3 Eq=8 Xfac=1.0000 dE=-1.92e+21 E=1.10e+17 E_R=1.89e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.655e-03
-173 it=0 t=9.48e-06 dt=3.86e-07 int=913 Asy=4 Eq=7 Xfac=0.9989 dE=-2.67e+21 E=1.28e+17 E_R=4.31e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.507e-02
-174 it=0 t=1.12e-05 dt=3.50e-07 int=973 Asy=4 Eq=7 Xfac=0.9991 dE=-5.16e+21 E=1.21e+17 E_R=1.19e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.015e-01
-175 it=0 t=1.34e-05 dt=2.89e-07 int=1049 Asy=4 Eq=8 Xfac=0.9998 dE=-5.21e+21 E=1.42e+17 E_R=1.33e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.370e-02
-176 it=0 t=1.59e-05 dt=4.49e-08 int=1138 Asy=4 Eq=10 Xfac=0.9999 dE=-1.88e+22 E=1.34e+17 E_R=4.30e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.937e-02
-177 it=0 t=1.90e-05 dt=4.20e-07 int=1223 Asy=4 Eq=9 Xfac=0.9987 dE=-1.19e+22 E=9.67e+16 E_R=1.21e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.493e-02
-178 it=0 t=2.24e-05 dt=2.79e-07 int=1325 Asy=4 Eq=10 Xfac=0.9991 dE=-1.02e+22 E=7.63e+16 E_R=8.19e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.960e-02
-179 it=0 t=2.66e-05 dt=6.08e-09 int=1421 Asy=2 Eq=10 Xfac=1.0000 dE=-1.21e+22 E=6.71e+16 E_R=6.63e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.335e-02
-180 it=0 t=3.17e-05 dt=2.06e-07 int=1550 Asy=4 Eq=10 Xfac=0.9997 dE=-6.02e+21 E=4.84e+16 E_R=1.93e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.349e-02
-181 it=0 t=3.77e-05 dt=3.69e-07 int=1679 Asy=4 Eq=11 Xfac=0.9994 dE=-4.61e+21 E=3.33e+16 E_R=6.31e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.903e-03
-182 it=0 t=4.51e-05 dt=1.36e-06 int=1779 Asy=6 Eq=10 Xfac=0.9979 dE=-3.64e+21 E=1.69e+16 E_R=1.80e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.804e-02
-183 it=0 t=5.36e-05 dt=1.16e-06 int=1872 Asy=6 Eq=10 Xfac=0.9986 dE=-2.67e+21 E=7.30e+15 E_R=1.15e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.473e-02
-184 it=0 t=6.34e-05 dt=9.52e-07 int=1937 Asy=6 Eq=10 Xfac=0.9988 dE=-2.20e+21 E=-7.81e+15 E_R=9.99e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.955e-03
-185 it=1 t=7.62e-05 dt=5.64e-06 int=1967 Asy=3 Eq=16 Xfac=0.9954 dE=9.94e+20 E=-2.28e+15 E_R=1.35e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.392e-02
-186 it=0 t=9.68e-05 dt=9.68e-06 int=1970 Asy=3 Eq=16 Xfac=0.9988 dE=4.40e+20 E=9.63e+15 E_R=2.80e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.832e-02
-187 it=0 t=1.07e-04 dt=1.07e-05 int=1971 Asy=3 Eq=16 Xfac=1.0000 dE=3.31e+20 E=1.28e+16 E_R=8.25e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.367e-02
-188 it=0 t=1.29e-04 dt=1.29e-05 int=1973 Asy=3 Eq=16 Xfac=1.0014 dE=2.06e+20 E=1.80e+16 E_R=1.76e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.079e-02
-189 it=0 t=1.56e-04 dt=1.56e-05 int=1975 Asy=4 Eq=16 Xfac=1.0002 dE=1.42e+20 E=2.22e+16 E_R=3.23e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.519e-02
-190 it=0 t=1.89e-04 dt=1.89e-05 int=1977 Asy=4 Eq=16 Xfac=1.0011 dE=5.71e+19 E=2.45e+16 E_R=1.96e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.979e-02
-191 it=0 t=2.28e-04 dt=2.28e-05 int=1979 Asy=3 Eq=17 Xfac=1.0014 dE=3.37e+19 E=2.59e+16 E_R=3.70e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.361e-02
-192 it=0 t=2.51e-04 dt=2.51e-05 int=1980 Asy=3 Eq=17 Xfac=1.0012 dE=2.60e+19 E=2.65e+16 E_R=3.19e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.358e-02
-193 it=0 t=3.04e-04 dt=3.04e-05 int=1982 Asy=3 Eq=17 Xfac=1.0009 dE=1.75e+19 E=2.75e+16 E_R=2.46e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.363e-02
-194 it=0 t=3.68e-04 dt=3.68e-05 int=1984 Asy=2 Eq=18 Xfac=1.0005 dE=-6.99e+17 E=2.79e+16 E_R=1.47e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.887e-02
-195 it=0 t=4.45e-04 dt=4.45e-05 int=1986 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.458e-04
-196 it=0 t=5.38e-04 dt=5.38e-05 int=1988 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.854e-04
-197 it=0 t=6.52e-04 dt=6.52e-05 int=1990 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.916e-05
-198 it=0 t=7.17e-04 dt=7.17e-05 int=1991 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.283e-03
-199 it=0 t=8.67e-04 dt=8.67e-05 int=1993 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.102e-04
-200 it=0 t=1.05e-03 dt=1.05e-04 int=1995 Asy=0 Eq=19 Xfac=1.0000 dE=0.00e+00 E=2.79e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.924e-03
+173 it=0 t=9.45e-06 dt=3.39e-08 int=938 Asy=3 Eq=10 Xfac=0.9999 dE=-9.60e+21 E=8.64e+16 E_R=2.10e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.322e-02
+174 it=0 t=1.12e-05 dt=1.40e-07 int=1010 Asy=4 Eq=10 Xfac=0.9996 dE=-6.56e+21 E=7.59e+16 E_R=6.95e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.377e-02
+175 it=0 t=1.34e-05 dt=1.05e-07 int=1104 Asy=2 Eq=13 Xfac=1.0152 dE=2.50e+21 E=8.85e+16 E_R=2.08e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.454e-02
+176 it=0 t=1.59e-05 dt=1.93e-07 int=1215 Asy=1 Eq=13 Xfac=0.9995 dE=3.93e+21 E=1.04e+17 E_R=1.21e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.266e-02
+177 it=0 t=1.89e-05 dt=1.91e-07 int=1355 Asy=1 Eq=13 Xfac=0.9995 dE=4.43e+21 E=1.25e+17 E_R=8.76e-04 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.574e-02
+178 it=0 t=2.24e-05 dt=2.06e-07 int=1525 Asy=1 Eq=13 Xfac=0.9995 dE=4.89e+21 E=1.52e+17 E_R=4.85e-04 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.319e-02
+179 it=0 t=2.67e-05 dt=2.02e-07 int=1735 Asy=0 Eq=15 Xfac=0.9996 dE=4.68e+21 E=1.86e+17 E_R=2.22e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.487e-02
+180 it=0 t=3.17e-05 dt=2.34e-07 int=1975 Asy=0 Eq=16 Xfac=0.9995 dE=3.96e+21 E=2.22e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.097e-02
+181 it=0 t=3.76e-05 dt=1.20e-07 int=2254 Asy=0 Eq=17 Xfac=1.0005 dE=4.05e+21 E=2.62e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.548e-02
+182 it=0 t=4.47e-05 dt=2.21e-07 int=2575 Asy=0 Eq=16 Xfac=0.9996 dE=3.30e+21 E=3.06e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.624e-02
+183 it=2 t=5.34e-05 dt=1.42e-06 int=2753 Asy=2 Eq=17 Xfac=0.9984 dE=2.06e+21 E=3.40e+17 E_R=6.90e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.411e-01
+184 it=2 t=6.32e-05 dt=2.42e-06 int=2762 Asy=2 Eq=17 Xfac=0.9983 dE=1.26e+21 E=3.55e+17 E_R=1.59e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.031e-01
+185 it=0 t=7.72e-05 dt=3.33e-06 int=2767 Asy=2 Eq=17 Xfac=0.9979 dE=7.11e+20 E=3.67e+17 E_R=8.47e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.488e-02
+186 it=0 t=9.20e-05 dt=4.51e-06 int=2771 Asy=2 Eq=17 Xfac=0.9983 dE=4.34e+20 E=3.75e+17 E_R=8.27e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.711e-02
+187 it=0 t=1.07e-04 dt=1.07e-05 int=2774 Asy=3 Eq=17 Xfac=0.9998 dE=2.71e+20 E=3.80e+17 E_R=4.20e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.645e-02
+188 it=0 t=1.29e-04 dt=1.29e-05 int=2776 Asy=3 Eq=17 Xfac=1.0002 dE=1.92e+20 E=3.85e+17 E_R=6.02e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.067e-02
+189 it=0 t=1.57e-04 dt=1.57e-05 int=2778 Asy=3 Eq=17 Xfac=1.0003 dE=1.33e+20 E=3.89e+17 E_R=5.42e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.639e-02
+190 it=0 t=1.89e-04 dt=1.89e-05 int=2780 Asy=3 Eq=17 Xfac=1.0004 dE=8.83e+19 E=3.92e+17 E_R=4.71e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.327e-02
+191 it=0 t=2.29e-04 dt=2.29e-05 int=2782 Asy=3 Eq=17 Xfac=1.0004 dE=5.55e+19 E=3.94e+17 E_R=3.95e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.113e-02
+192 it=0 t=2.52e-04 dt=2.52e-05 int=2783 Asy=3 Eq=17 Xfac=1.0004 dE=4.28e+19 E=3.95e+17 E_R=3.57e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.039e-02
+193 it=0 t=3.05e-04 dt=3.05e-05 int=2785 Asy=3 Eq=17 Xfac=1.0003 dE=2.35e+19 E=3.97e+17 E_R=2.82e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.943e-02
+194 it=0 t=3.69e-04 dt=3.69e-05 int=2787 Asy=3 Eq=17 Xfac=1.0002 dE=1.09e+19 E=3.98e+17 E_R=2.14e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.905e-02
+195 it=0 t=4.47e-04 dt=4.47e-05 int=2789 Asy=2 Eq=19 Xfac=1.0001 dE=-3.38e+17 E=3.98e+17 E_R=5.92e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.330e-01
+196 it=0 t=5.40e-04 dt=5.40e-05 int=2791 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=3.98e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.595e-04
+197 it=0 t=6.54e-04 dt=6.54e-05 int=2793 Asy=0 Eq=19 Xfac=1.0001 dE=0.00e+00 E=3.98e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.851e-04
+198 it=0 t=7.19e-04 dt=7.19e-05 int=2794 Asy=0 Eq=19 Xfac=1.0000 dE=0.00e+00 E=3.98e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.977e-04
+199 it=0 t=8.70e-04 dt=8.70e-05 int=2796 Asy=0 Eq=19 Xfac=1.0000 dE=0.00e+00 E=3.98e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.173e-03
+200 it=0 t=1.05e-03 dt=1.05e-04 int=2798 Asy=0 Eq=19 Xfac=1.0000 dE=0.00e+00 E=3.98e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.486e-04
 
 Integration using ASY+PE method
 T9=7.000e+00 rho=1.000e+08 massTol_asy=1.00e-07 massTol_PE=5.00e-03
@@ -237,28 +237,28 @@ sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-12
 maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Isotopes=16 Reactions=48 ReactionGroups=19
-Integration steps=1995  totalIterations=3098 IntegrationSteps_plotted=1941
-Timer: 5.3986e+01 ms used
+Integration steps=2798  totalIterations=4730 IntegrationSteps_plotted=2744
+Timer: 8.6978e+01 ms used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=1.0611e-01 X=4.2443e-01
-1 12C Y=6.4664e-06 X=7.7596e-05
-2 16O Y=1.2393e-05 X=1.9829e-04
-3 20Ne Y=3.8680e-07 X=7.7361e-06
-4 24Mg Y=2.3508e-05 X=5.6419e-04
-5 28Si Y=3.4145e-03 X=9.5606e-02
-6 32S Y=3.0490e-03 X=9.7567e-02
-7 36Ar Y=1.5944e-03 X=5.7397e-02
-8 40Ca Y=1.5904e-03 X=6.3618e-02
-9 44Ti Y=6.5611e-05 X=2.8869e-03
-10 48Cr Y=1.8779e-04 X=9.0137e-03
-11 52Fe Y=7.9898e-04 X=4.1547e-02
-12 56Ni Y=3.6951e-03 X=2.0692e-01
-13 60Zn Y=2.6470e-06 X=1.5882e-04
-14 64Ge Y=1.7604e-09 X=1.1266e-07
-15 68Se Y=1.8337e-12 X=1.2469e-10
+0 4He Y=1.1568e-01 X=4.6272e-01
+1 12C Y=6.2484e-06 X=7.4981e-05
+2 16O Y=1.0533e-05 X=1.6853e-04
+3 20Ne Y=2.8972e-07 X=5.7944e-06
+4 24Mg Y=1.4624e-05 X=3.5097e-04
+5 28Si Y=2.2334e-03 X=6.2534e-02
+6 32S Y=2.1747e-03 X=6.9591e-02
+7 36Ar Y=1.2403e-03 X=4.4651e-02
+8 40Ca Y=1.3493e-03 X=5.3972e-02
+9 44Ti Y=6.0709e-05 X=2.6712e-03
+10 48Cr Y=1.8951e-04 X=9.0963e-03
+11 52Fe Y=8.7915e-04 X=4.5716e-02
+12 56Ni Y=4.4329e-03 X=2.4824e-01
+13 60Zn Y=3.4621e-06 X=2.0773e-04
+14 64Ge Y=2.5104e-09 X=1.6067e-07
+15 68Se Y=2.8520e-12 X=1.9393e-10
 
-[Inferior 1 (process 6886) exited normally]
+[Inferior 1 (process 18188) exited normally]
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
 (gdb) 
