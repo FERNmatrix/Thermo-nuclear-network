@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double stop_time = 5e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -4699,7 +4699,7 @@ void restoreEquilibriumProg() {
          *	  and setting Y[i] to it (a form of operator splitting within the 
          *	  network timestep). This work is done in evolveToEquilibrium(). */
         
-        //evolveToEquilibrium();
+        evolveToEquilibrium();
         
         // Inventory reaction groups in equilibrium
         
@@ -4732,13 +4732,18 @@ void restoreEquilibriumProg() {
         
         int numberCases;
         double Ysum;
-        int myindex;
+        int indy;
         
         // Loop over all isotopes, checking for those in equilbrium in at 
         // least one RG
         
         for(int i=0; i<ISOTOPES; i++){
             
+if(totalEquilRG > 0){
+printf("\nYsum:");
+printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d %d} Y(%d)=%7.5e",
+       totalTimeSteps,i,log10(t_end),countConstraints,isotopeInEquil[i],totalEquilRG,RGindy[0],RGindy[1],i,Y[i]);
+}           
             // If isotope is in at least one equilibrated RG
             
             if (isotopeInEquil[i]) {
@@ -4749,13 +4754,18 @@ void restoreEquilibriumProg() {
                 // Find all equilibrated RGs that the isotope appears in
                 
                 for(int j=0; j<countConstraints; j++){
-                    myindex = RGindy[j];
-                    if( RG[j].getisEquil() ){
-                        for(int k=0; k<RG[j].getniso(); k++){
-                            if(i == RG[j].getisoindex(k)) {
-                                Ysum += RG[j].getisoYeq(k);
+                    indy = RGindy[j];
+                    if( RG[indy].getisEquil() ){
+                        for(int k=0; k<RG[indy].getniso(); k++){
+                            if(i == RG[indy].getisoindex(k)) {
+                                Ysum += RG[indy].getisoYeq(k);
                                 numberCases ++;
                             }
+                            
+if(totalEquilRG > 0)                           
+printf("\n       Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
+    totalTimeSteps,i,j,k,countConstraints,numberCases,Ysum);
+
                         }
                     }
                 }
@@ -4768,7 +4778,14 @@ void restoreEquilibriumProg() {
                 Y[i] = Ysum/(double)numberCases;
                 X[i] = Y[i]*(double)AA[i];
             }
+            
+if(totalEquilRG > 0)
+printf("\nYsum:%d i=%d equil=%d cases=%d Ysum=%7.5e Y(%d)=%7.5e",
+    totalTimeSteps,i,totalEquilRG,numberCases,Ysum,i,Y[i]);
+
         }
+        
+printf("\nYsum:");
     
     } // end while iteration loop
     

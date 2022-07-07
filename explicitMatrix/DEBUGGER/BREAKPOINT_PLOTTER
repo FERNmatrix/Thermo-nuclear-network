@@ -811,6 +811,11 @@ break 4765 if totalTimeSteps>440 && i==6
 
 break 4713 if totalTimeSteps>440 && i==6
 
-break 4753 if totalTimeSteps>440 && i==6
+break 4757 if totalTimeSteps>440 && i==6
+commands
+silent
+printf"\ni=%d %d j=%d k=%d indy=%d equil=%d Yeq[k]=%7.5e cases=%d Ysum=%7.5e\n",totalTimeSteps,i,j,k,indy,totalEquilRG,RG[indy].isoYeq[k],numberCases,Ysum
+
+break 4725 if totalTimeSteps>440
 
 
