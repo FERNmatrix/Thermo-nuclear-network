@@ -276,7 +276,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // Set the temperature in units of 10^9 K and density in units of g/cm^3. In a
 // realistic calculation the temperature and density will be passed from the hydro 
 // code in an operator-split coupling of this network to hydro. Here we hardwire
-// constant values for testing purposes, or read in a temperature and denisty
+// constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
 double T9_start = 7;           // Initial temperature in units of 10^9 K
@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 5e-8;               // Stop time for integration
+double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -533,6 +533,7 @@ bool reacIsActive[SIZE];    // False if reaction has been removed by PE
 
 int totalEquilReactions;    // Total equilibrated reactions for isotope
 int totalEquilRG;           // Total equilibrated reaction groups
+bool normPEX = true;        // Whether normalize X after PE evol (usually true)
 
 gsl_matrix *fluxes;
 gsl_vector *abundances;
@@ -4672,7 +4673,7 @@ void restoreEquilibriumProg() {
     
     int countConstraints = 0;
     int countEquilIsotopes = 0;
-    int RGindy[numberRG];     // Array to hold index of RG in equilibrium
+    int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
     sumX = Utilities::sumMassFractions();
     
     /* In general when we compute the equilibrium value of say alpha in the 
@@ -4705,8 +4706,10 @@ void restoreEquilibriumProg() {
         
         for (int i = 0; i < numberRG; i++) {
             
+printf("\nYsum:%d i=%d RGisequil=%d",totalTimeSteps,i,RG[i].getisEquil());
+            
             if ( RG[i].getisEquil() ) {
-                
+
                 RGindy[countConstraints] = i;
                 countConstraints++;
                 
@@ -4718,11 +4721,17 @@ void restoreEquilibriumProg() {
                         isotopeInEquil[speciesIndy] = true;
                         countEquilIsotopes++;
                     }
+                
+
+printf("\n        Ysum1:%d i=%d j=%d sI=%d species[sI]=%d",
+    totalTimeSteps,i,j,speciesIndy,isotopeInEquil[speciesIndy]);
+
                 }
-            }
+            } 
+            
         }
         
-        int dumdum = -1;
+        int dumdum = -1;  // Dummy debug point
         
         // Loop over reaction groups in equilibrium and compute equilibrated
         // Y[] averaged over all reaction groups that are in equilibrium and
@@ -4739,11 +4748,11 @@ void restoreEquilibriumProg() {
         
         for(int i=0; i<ISOTOPES; i++){
             
-if(totalEquilRG > 0){
+
 printf("\nYsum:");
-printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d %d} Y(%d)=%7.5e",
-       totalTimeSteps,i,log10(t_end),countConstraints,isotopeInEquil[i],totalEquilRG,RGindy[0],RGindy[1],i,Y[i]);
-}           
+printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d %d %d %d %d %d} Y(%d)=%7.5e",
+    totalTimeSteps,i,log10(t_end),countConstraints,isotopeInEquil[i],totalEquilRG,RGindy[0],RGindy[1],RGindy[2],RGindy[3],RGindy[4],RGindy[5],i,Y[i]);
+           
             // If isotope is in at least one equilibrated RG
             
             if (isotopeInEquil[i]) {
@@ -4762,8 +4771,8 @@ printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d 
                                 numberCases ++;
                             }
                             
-if(totalEquilRG > 0)                           
-printf("\n       Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
+                           
+printf("\n        Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
     totalTimeSteps,i,j,k,countConstraints,numberCases,Ysum);
 
                         }
@@ -4774,12 +4783,12 @@ printf("\n       Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-            if(numberCases > 0) {
-                Y[i] = Ysum/(double)numberCases;
-                X[i] = Y[i]*(double)AA[i];
-            }
+//             if(numberCases > 0) {
+//                 Y[i] = Ysum/(double)numberCases;
+//                 X[i] = Y[i]*(double)AA[i];
+//             }
             
-if(totalEquilRG > 0)
+
 printf("\nYsum:%d i=%d equil=%d cases=%d Ysum=%7.5e Y(%d)=%7.5e",
     totalTimeSteps,i,totalEquilRG,numberCases,Ysum,i,Y[i]);
 
@@ -4794,9 +4803,12 @@ printf("\nYsum:");
     // and Xs so that this integration step conserves total particle 
     // number (sum of X = 1.0). Option to check mass fractions separately 
     // for isotopes participating in equilibrium and those not but don't 
-    // presently use the fractions separately, only their sum.
+    // presently use the fractions separately, only their sum. Whether
+    // sum X normalized to one after PE evolution controlled by flag
+    // normPEX (normally set to true).
     
-    if(doPE && totalEquilRG > 0){
+    if(normPEX){
+    //if(doPE && totalEquilRG > 0){
         
         // sumXeq = Utilities::sumXEquil();
         // sumXNeq = Utilities::sumXNotEquil();

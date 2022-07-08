@@ -818,4 +818,4 @@ printf"\ni=%d %d j=%d k=%d indy=%d equil=%d Yeq[k]=%7.5e cases=%d Ysum=%7.5e\n",
 
 break 4725 if totalTimeSteps>440
 
-
+cat gdb_debug.out | grep Ysum | grep -v printf | grep -v it=> temp.out
