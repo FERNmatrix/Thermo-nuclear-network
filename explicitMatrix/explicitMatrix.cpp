@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-7;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -4710,6 +4710,7 @@ void restoreEquilibriumProg() {
         
 printf("\nYsum:");
 printf("\nYsum:INVENTORY RG (%d logt=%7.5f):", totalTimeSteps,log10(t));
+printf("\nYsum:");
 
         int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
         
@@ -4746,7 +4747,7 @@ printf("\nYsum:RG=%d RGisequil=%d", i,RG[i].getisEquil());
                     //}
                 
 
-printf("\n     Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
+printf("\n   Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
     j,speciesIndy,isotopeInEquil[speciesIndy]);
 
                 }
@@ -4754,7 +4755,7 @@ printf("\n     Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
             
         }
         
-        printf("\nYsum:SUMMARY: %d logt=%7.5f #RGequil=%d RGequil={%d %d %d %d %d %d}",
+        printf("\nYsum:SUMMARY: %d logt=%7.5f #RGequil=%d RGequil[]={%d %d %d %d %d %d}",
             totalTimeSteps,log10(t),totalEquilRG,RGindy[0],RGindy[1],RGindy[2],RGindy[3],
                RGindy[4],RGindy[5]);
         
@@ -4768,41 +4769,45 @@ printf("\n     Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
         
         int numberCases;    // Number of equilibrated RGs an isotope is in
         double Ysum;        // Sum of Ys for isotope in all equilbrated RGs
-        int indy;
+        int indy;           
         
         // Loop over all isotopes, checking for those in equilbrium in at 
         // least one RG
         
 printf("\nYsum:");
-printf("\nYsum:CHECK ISOTOPES (%d logt=%7.5f):", totalTimeSteps,log10(t));
+printf("\nYsum:CHECK ISOTOPES (%d logt=%7.5f #equilRG=%d):", totalTimeSteps,log10(t),totalEquilRG);
+printf("\nYsum:");
         
         for(int i=0; i<ISOTOPES; i++){
+            
+            numberCases = 0;
+            Ysum = 0.0;
 
-
-printf("\nYsum:isotope=%d isoInEquilRG=%d Y(%d)=%7.5e",
-    i,isotopeInEquil[i],i,Y[i]);
+printf("\nYsum:isotope=%d Y0(%d)=%7.5e Y(%d)=%7.5e", i,i,Y0[i],i,Y[i]);
            
             // If isotope is in at least one equilibrated RG
             
             if (isotopeInEquil[i]) {
                 
-                numberCases = 0;
-                Ysum = 0.0;
+                
                 
                 // Find all equilibrated RGs that the isotope appears in
                 
                 for(int j=0; j<countEquilRG; j++){
-                    indy = RGindy[j];
+                    indy = RGindy[j];           // index of RG in equil
                     if( RG[indy].getisEquil() ){
                         for(int k=0; k<RG[indy].getniso(); k++){
-                            if(i == RG[indy].getisoindex(k)) {
-                                Ysum += RG[indy].getisoYeq(k);
+                            double addit = 0.0;
+                            int RGisoindex = RG[indy].getisoindex(k);
+                            if(i == RGisoindex) {
+                                addit = RG[indy].getisoYeq(k);
+                                Ysum += addit;
                                 numberCases ++;
                             }
                             
                            
-printf("\n        Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
-    totalTimeSteps,i,j,k,countEquilRG,numberCases,Ysum);
+printf("\n    Ysum:RGspecies=%d RGindy=%d RGisoindex=%d count=%d cases=%d Y=%7.5e Ysum=%7.5e",
+    k,indy,RGisoindex,countEquilRG,numberCases,addit,Ysum);
 
                         }
                     }
@@ -4814,15 +4819,18 @@ printf("\n        Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
             
-//             if(numberCases > 0) {
-//                 Y[i] = Ysum/(double)numberCases;
-//                 X[i] = Y[i]*(double)AA[i];
-//             }
+            if(numberCases > 0) {
+                Y[i] = Ysum/(double)numberCases;
+                X[i] = Y[i]*(double)AA[i];
+            }
 
             // ***************************************
 
-printf("\nYsum:%d i=%d equil=%d cases=%d Ysum=%7.5e Y(%d)=%7.5e",
-    totalTimeSteps,i,totalEquilRG,numberCases,Ysum,i,Y[i]);
+if(numberCases > 0){
+printf("\nYsum:cases(%d)=%d Ysum(%d)=%7.5e Avg Y(%d)=%7.5e", 
+    i,numberCases,i,Ysum,i,Ysum/(double)numberCases);
+printf("\nYsum:");
+}
 
         }
         
