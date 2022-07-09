@@ -4671,9 +4671,8 @@ double dE_halfstep(){
 
 void restoreEquilibriumProg() {
     
-    int countConstraints = 0;
+    int countEquilRG = 0;
     int countEquilIsotopes = 0;
-    int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
     sumX = Utilities::sumMassFractions();
     
     /* In general when we compute the equilibrium value of say alpha in the 
@@ -4687,8 +4686,9 @@ void restoreEquilibriumProg() {
     
     while (itcounter < 1) {
         
-        countConstraints = 0;
-        countEquilIsotopes = 0;
+        countEquilRG = 0;      // Counts RG in equilibrim at this point
+        countEquilIsotopes = 0;    // Counts isotopic species in equilibrated RGs
+        
         itcounter ++;
         
         /* Compute equilibrium value of the Ys participating in equilibrium 
@@ -4702,34 +4702,61 @@ void restoreEquilibriumProg() {
         
         evolveToEquilibrium();
         
-        // Inventory reaction groups in equilibrium
+        // Inventory reaction groups in equilibrium counting the number in the
+        // the variable countEquilRG, placing the index of each equilibrated 
+        // RG in the array RGindy[], and counting the number of different isotopes
+        // in at least one equilibrated RG in the variable countEquilIsotopes.
+        
+        
+printf("\nYsum:");
+printf("\nYsum:INVENTORY RG (%d logt=%7.5f):", totalTimeSteps,log10(t));
+
+        int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
             
-printf("\nYsum:%d i=%d RGisequil=%d",totalTimeSteps,i,RG[i].getisEquil());
+printf("\nYsum:RG=%d RGisequil=%d", i,RG[i].getisEquil());
             
-            if ( RG[i].getisEquil() ) {
+            // Process RG in equilibrium
 
-                RGindy[countConstraints] = i;
-                countConstraints++;
+            if ( RG[i].getisEquil() ) {
+                
+                // Store in RGindy[] the RG index for this equilibrated RG.
+                
+                RGindy[countEquilRG] = i;
+                countEquilRG++;
+                
+                // Loop over the RG[i].niso isotopic species in this 
+                // equilibrated RG, setting the species array entry
+                // isotopeInEquil[] to true if a species is in a
+                // RG in equilibrium.  Thus species entry in 
+                // isotopeInEquil[] will be true if it is in at
+                // least one equilibrated RG, and false if it is in
+                // no equilibrated RGs.
                 
                 for (int j = 0; j < RG[i].getniso(); j++) {
-
+                    
+                    // Get species index for this isotope
+                    
                     int speciesIndy = RG[i].getisoindex(j);
                     
-                    if (!isotopeInEquil[speciesIndy]) {
+                    //if (!isotopeInEquil[speciesIndy]) {
                         isotopeInEquil[speciesIndy] = true;
                         countEquilIsotopes++;
-                    }
+                    //}
                 
 
-printf("\n        Ysum1:%d i=%d j=%d sI=%d species[sI]=%d",
-    totalTimeSteps,i,j,speciesIndy,isotopeInEquil[speciesIndy]);
+printf("\n     Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
+    j,speciesIndy,isotopeInEquil[speciesIndy]);
 
                 }
             } 
             
         }
+        
+        printf("\nYsum:SUMMARY: %d logt=%7.5f #RGequil=%d RGequil={%d %d %d %d %d %d}",
+            totalTimeSteps,log10(t),totalEquilRG,RGindy[0],RGindy[1],RGindy[2],RGindy[3],
+               RGindy[4],RGindy[5]);
         
         int dumdum = -1;  // Dummy debug point
         
@@ -4739,19 +4766,21 @@ printf("\n        Ysum1:%d i=%d j=%d sI=%d species[sI]=%d",
         // reaction group but a given isotopic species can appear in many reaction 
         // groups.)
         
-        int numberCases;
-        double Ysum;
+        int numberCases;    // Number of equilibrated RGs an isotope is in
+        double Ysum;        // Sum of Ys for isotope in all equilbrated RGs
         int indy;
         
         // Loop over all isotopes, checking for those in equilbrium in at 
         // least one RG
         
-        for(int i=0; i<ISOTOPES; i++){
-            
-
 printf("\nYsum:");
-printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d %d %d %d %d %d} Y(%d)=%7.5e",
-    totalTimeSteps,i,log10(t_end),countConstraints,isotopeInEquil[i],totalEquilRG,RGindy[0],RGindy[1],RGindy[2],RGindy[3],RGindy[4],RGindy[5],i,Y[i]);
+printf("\nYsum:CHECK ISOTOPES (%d logt=%7.5f):", totalTimeSteps,log10(t));
+        
+        for(int i=0; i<ISOTOPES; i++){
+
+
+printf("\nYsum:isotope=%d isoInEquilRG=%d Y(%d)=%7.5e",
+    i,isotopeInEquil[i],i,Y[i]);
            
             // If isotope is in at least one equilibrated RG
             
@@ -4762,7 +4791,7 @@ printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d 
                 
                 // Find all equilibrated RGs that the isotope appears in
                 
-                for(int j=0; j<countConstraints; j++){
+                for(int j=0; j<countEquilRG; j++){
                     indy = RGindy[j];
                     if( RG[indy].getisEquil() ){
                         for(int k=0; k<RG[indy].getniso(); k++){
@@ -4773,12 +4802,14 @@ printf("\nYsum:%d i=%d logt=%7.5f constraints=%d inEquilRG=%d totalEquil=%d {%d 
                             
                            
 printf("\n        Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
-    totalTimeSteps,i,j,k,countConstraints,numberCases,Ysum);
+    totalTimeSteps,i,j,k,countEquilRG,numberCases,Ysum);
 
                         }
                     }
                 }
             }
+            
+            // ***** comment out temporarily for debugging *********
             
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
@@ -4787,7 +4818,8 @@ printf("\n        Ysum:%d i=%d j=%d k=%d count=%d cases=%d Ysum=%7.5e",
 //                 Y[i] = Ysum/(double)numberCases;
 //                 X[i] = Y[i]*(double)AA[i];
 //             }
-            
+
+            // ***************************************
 
 printf("\nYsum:%d i=%d equil=%d cases=%d Ysum=%7.5e Y(%d)=%7.5e",
     totalTimeSteps,i,totalEquilRG,numberCases,Ysum,i,Y[i]);
