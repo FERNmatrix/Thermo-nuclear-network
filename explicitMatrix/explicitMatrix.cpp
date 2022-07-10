@@ -279,7 +279,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
-double T9_start = 5;           // Initial temperature in units of 10^9 K
+double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
@@ -297,7 +297,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e1;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -316,8 +316,8 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-6;             // Tolerance param, no reactions equilibrated
-double massTol_asyPE = 1e-5;//5e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
+double massTol_asyPE = 5e-3;//1e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -327,7 +327,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-3;//5e-3;                    // Absolute error tolerance
+double EpsA = 1e-4;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -340,8 +340,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // On the other hand, the check costs almost no time.
 
 double equilibrateTime = 1e-12;    // Time to begin checking for PE
-double equiTol = 0.015;            // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;      // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.001;            // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.3;      // Max allowed deviation from equil k ratio in timestep
 double thisDevious;           // Deviation of kratio from equil
 double mostDevious;           // Largest current deviation of kratio from equil
 int mostDeviousIndex;         // Index of RG with mostDevious
@@ -3394,7 +3394,6 @@ maxRatio = maxRatio;  // Dummy anchor for debugger
     // -----------------------------------------------------------
     
     void removeFromEquilibrium(int where) {
-        
         isEquil = false;
         thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
         
