@@ -231,7 +231,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -316,8 +316,8 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-10;             // Tolerance param, no reactions equilibrated
-double massTol_asyPE = 5e-3;//1e-5;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-5;             // Tolerance param, no reactions equilibrated
+double massTol_asyPE = 1e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -327,7 +327,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                    // Absolute error tolerance
+double EpsA = 1e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -337,16 +337,16 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
 // this in a final version for stability, but it might still be useful since early in
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
-// On the other hand, the check costs almost no time.
+// On the other hand, the check is very fast.
 
-double equilibrateTime = 1e-12;    // Time to begin checking for PE
-double equiTol = 0.001;            // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.3;      // Max allowed deviation from equil k ratio in timestep
-double thisDevious;           // Deviation of kratio from equil
-double mostDevious;           // Largest current deviation of kratio from equil
-int mostDeviousIndex;         // Index of RG with mostDevious
-int choice1;                  // Diagnostic variable for new timestepper
-int choice2;                  // Diagnostic variable for new timestepper
+double equilibrateTime = 1e-12;   // Time to begin checking for PE
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
+double thisDevious;               // Deviation of kratio from equil
+double mostDevious;               // Largest current deviation of kratio from equil
+int mostDeviousIndex;             // Index of RG with mostDevious
+int choice1;                      // Diagnostic variable for new timestepper
+int choice2;                      // Diagnostic variable for new timestepper
 
 
 // Threshold abundance for imposing equil in reactions.  There may be numerical

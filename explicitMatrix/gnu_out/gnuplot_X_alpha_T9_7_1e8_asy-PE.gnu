@@ -72,14 +72,14 @@ set key right top outside    # Place legend inside top
 
 #set timestamp       # Date/time
 
-ds="C++ T9=5 rho=1e8 (no pf)"
+ds="C++ T9=7 rho=1e8 (no pf)"
 ds = ds.": mass fraction"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = 2
+xup = -3
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -106,7 +106,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference Asy calculation
 
-file1 = "gnufile_alpha_T9_5_asy.data"
+file1 = "gnufile_alpha_T9_7_1e8_asy.data"
 
 # Alpha network asymptotic reference (X)
 
@@ -157,13 +157,13 @@ set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
 
 # Plot to postscript file
 
-set out "gnuplot_X_alpha_T9_5_asy-PE.eps"    # Output file
+set out "gnuplot_X_alpha_T9_7_1e8_asy-PE.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "gnuplot_X_alpha_T9_5_asy-PE.png"
+#set out "gnuplot_X_alpha_T9_7_1e8_asy-PE.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot
