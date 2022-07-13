@@ -5310,7 +5310,6 @@ void writeNetwork() {
         fprintf(pfnet, "\n");
         fprintf(pfnet, "%-5s",isotope[i].getLabel());
         
-//         fprintf(pfnet,"");
         for(int j=0; j<24; j++){ 
             fprintf(pfnet, "%4.2f ", isotope[i].getpf(j)); 
         }
@@ -5502,8 +5501,8 @@ void assignRG(){
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
         fprintf(pFileD, "\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
-               i, RG[i].getrefreac(), RGclassRef, 
-               RG[i].getniso(), RG[i].getnumberMemberReactions() );
+            i, RG[i].getrefreac(), RGclassRef, 
+            RG[i].getniso(), RG[i].getnumberMemberReactions() );
         
         // Set values of numberC for each RG
         
@@ -5636,7 +5635,7 @@ void setSpeciesdYdt(int index, double dydt){
 }
 
 
-// Temporary diagnostic function
+// Diagnostic function.  Not presently used.
 
 void showY(){
     double sumXnow = 0.0;
@@ -5719,7 +5718,7 @@ void computeReactionFluxes(){
 
 
 // Function sumFplusFminus() to sum the total F+ and 
-// F- for each isotope. Moved here from static function in class 
+// F- for each isotope. Moved here from original static function in class 
 // Reaction to make diagnostics easier.
 
 void sumFplusFminus(){
