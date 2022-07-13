@@ -67,7 +67,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
-#include <mcheck.h>      // Memory debugging
+#include <mcheck.h>        // Memory debugging
 
 using namespace std;
 using std::string;
@@ -103,9 +103,9 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 
 
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -339,7 +339,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // a calculation typically nothing satisfies PE, so checking for it is a waste of time.
 // On the other hand, the check costs little computing time so to make the code more
 // universal it may be best to check for equilibration from the beginning of the 
-// calculation.
+// calculation. 
 
 double equilibrateTime = start_time;  // Time to begin checking for PE
 double equiTol = 0.01;               // Tolerance for checking whether Ys in RG in equil
@@ -452,8 +452,8 @@ double hydroRho[maxHydroEntries];
 // Arrays to hold non-zero fluxes in the network. Corresponding memory will be 
 // allocated dynamically below with malloc.
 
-double* Fplus;           // Dynamical 1D array for non-zero F+ (Dim totalFplus)
-double* Fminus;          // Dynamical 1D array for non-zero F- (Dim totalFminus)
+double* Fplus;               // Dynamical 1D array for non-zero F+ (Dim totalFplus)
+double* Fminus;              // Dynamical 1D array for non-zero F- (Dim totalFminus)
 
 double FplusZero[ISOTOPES];  // Used in QSS approximation
 
@@ -554,9 +554,8 @@ double slowestOverallRate = 1e30;
 int slowestOverallRateIndex;
 double timeMaxRate = 0.0;
 
-
-// Logic that will be used to convert all Be-8 to two alpha particles 
-// since lifetime for Be-8 to decay to two alpha particles is short 
+// Logic that will be used to convert all 8-Be two alpha particles 
+// since lifetime for 8-Be to decay to two alpha particles is short 
 // compared with typical integration timesteps.
 
 bool hasBe8 = false;     // Whether network contains BE8
@@ -595,6 +594,7 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 
 //----------------CLASS DEFINITIONS ----------------
+
 
 /* Class Utilities to hold utility useful utility functions.  Functions are
  * declared static so that they can be invoked without having to instantiate
@@ -721,7 +721,7 @@ class Utilities{
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-            int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
@@ -898,7 +898,7 @@ class Utilities{
                         log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
                 }
                 
-                cout.flush();
+                cout.flush();   // Force buffer dump
                 
             }
             
@@ -1094,7 +1094,7 @@ class Utilities{
         
         static char* stringToChar(string s){
             static char cs[50];
-            strcpy(cs, &s[0]);   // alternatively strcpy(cs, s.c_str());
+            strcpy(cs, &s[0]);     // alternatively strcpy(cs, s.c_str());
             return cs;
         }
         
@@ -1155,7 +1155,7 @@ class Species: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    public:
+    private:
         
         int isoindex;        // Index for species in isotope vector
         char IsoLabel[5];    // symbol for isotope
@@ -1339,7 +1339,7 @@ class Reaction: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    public:
+    private:
         
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
@@ -1852,10 +1852,12 @@ class Reaction: public Utilities {
         static void populateFplusFminus(){
             
             // Populate the F+ and F- arrays from the master Flux array
+            
             for(int i=0; i<totalFplus; i++){
                 int indy = MapFplus[i];
                 Fplus[i] = FplusFac[i]*Flux[indy];
             }
+            
             for(int i=0; i<totalFminus; i++){
                 int indy = MapFminus[i];
                 Fminus[i] = FminusFac[i]*Flux[indy];
@@ -2056,8 +2058,6 @@ class Reaction: public Utilities {
             // whether the reaction is 1-body, 2-body, or 3-body, and is selected by
             // the switch statement in fluxChooser(numberReactants).
             
-            //double kfac;
-            
             isEquil = !reacIsActive[reacIndex];  // Set isEquil in this Reaction object
             
             if( reacIsActive[reacIndex] ) {
@@ -2074,8 +2074,6 @@ class Reaction: public Utilities {
                 Flux[reacIndex] = 0.0;      // Put in main flux array
 
             }
-            
-            printf("");   // Temporary debug point
             
         }   // End of function computeFlux()
 
@@ -2149,52 +2147,7 @@ class Reaction: public Utilities {
                 slowestOverallRateIndex = getreacIndex();
             }
             
-        }  // End of function Reaction::fastSlowRates()
-        
-        
-//         // Function Reaction::sumFplusFminus() to sum the total F+ and 
-//         // F- for each isotope.  
-//         
-//         static void sumFplusFminus(){
-//             
-//             int minny = 0;
-//             double accum;
-//             double dydt;
-//             
-//             // Loop over isotopes
-//             
-//             for(int i=0; i < numberSpecies; i++){	
-//                 
-//                 // Sum F+ for each isotope
-//                 
-//                 if(i > 0) minny = FplusMax[i-1]+1;
-//                 accum = 0.0;
-//                 
-//                 for(int j=minny; j<=FplusMax[i]; j++){
-//                     accum += Fplus[j]; 
-//                     if(totalTimeSteps >439 && totalTimeSteps < 443 && i==6){
-//                         printf("\ngnu: %d logt=%6.4f %d F+=%6.4e F+sum=%6.4e",
-//                             totalTimeSteps,log10(t),j,Fplus[j],accum);
-//                     }
-//                 }
-//                 
-//                 setSpeciesfplus(i, accum);        // Also sets FplusSum[i] = accum;
-//                 
-//                 // Sum F- for each isotope
-//                 
-//                 minny = 0;
-//                 if(i>0) minny = FminusMax[i-1]+1;
-//                 accum = 0.0;
-//                 
-//                 for(int j=minny; j<=FminusMax[i]; j++){
-//                     accum += Fminus[j];
-//                 }
-//                 
-//                 setSpeciesfminus(i, accum);   // Also sets FminusSum[i] = accum and keff
-//                 setSpeciesdYdt(i, FplusSum[i] - FminusSum[i]);
-// 
-//             }
-//         }
+        }   // End of function Reaction::fastSlowRates()
                 
 };  // End class Reaction
 
@@ -2287,7 +2240,7 @@ class ReactionVector:  public Utilities {
                 fprintf(pFileD, "\nrv[%d]: [",i);
                 for(int j=0; j<ISOTOPES; j++){
                     
-                    // Define a pointer that will point to the GSL vector in array entry rv[i]
+                    // Define a pointer to the GSL vector in array entry rv[i]
                     
                     gsl_vector *vector = rvPt+i;
                     
@@ -2621,7 +2574,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Static functions can be called directly from the class
     // without having to instantiate.
     
-    public:
+    private:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
@@ -2657,8 +2610,6 @@ class ReactionGroup:  public Utilities {
         double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
         double eqcheck[5];             // Population ratio to check equilibrium
         double Yminner;                // Current minimum Y in reaction group
-        //double mineqcheck;             // Current minimum value of eqcheck in reaction group
-        //double maxeqcheck;             // Current max value of eqcheck in reaction group
         double eqRatio[5];             // Ratio eqcheck[i]/equiTol. 
         double maxRatio;               // Largest eqcheck[]/equiTol in reaction group
         double minRatio;               // Smallest eqcheck[]/equiTol in reaction group 
@@ -3169,8 +3120,6 @@ class ReactionGroup:  public Utilities {
                 isoYeq[1] = crg[0] + isoYeq[0];
                 isoYeq[2] = crg[1] - isoYeq[1];
                 equilRatio = isoY[0] * isoY[1] / isoY[2];
-                
-                equilRatio = equilRatio;  // Dummy debug statement
 
                 break;
                 
@@ -3255,33 +3204,29 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
-Yminner = 1000;
-maxRatio = 0;
-minRatio= 1000;
+        Yminner = 1000;
+        maxRatio = 0;
+        minRatio= 1000;
 
-// Determine if reaction group RG is in equilibrium by computing the fractional
-// difference of the actual and equilibrium abundances for all isotopic species
-// in the reaction group.
+        // Determine if reaction group RG is in equilibrium by computing the fractional
+        // difference of the actual and equilibrium abundances for all isotopic species
+        // in the reaction group.
 
-for (int i = 0; i < niso; i++) {
-    
-    // Compute absolute value of deviation of abundances from 
-    // equilibrium values for this reaction group.
-    
-    eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
-    eqRatio[i] = eqcheck[i]/equiTol;
-    
-    // Store some min and max values for this RG
-    
-    if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
-    if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
-    if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
-    
-}
-
-maxRatio = maxRatio;  // Dummy anchor for debugger
-        
-
+        for (int i = 0; i < niso; i++) {
+            
+            // Compute absolute value of deviation of abundances from 
+            // equilibrium values for this reaction group.
+            
+            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
+            eqRatio[i] = eqcheck[i]/equiTol;
+            
+            // Store some min and max values for this RG
+            
+            if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
+            if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
+            if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
+            
+        }
         
         // The return statements in the following if-clauses cause reaction
         // groups already in equilibrium to stay in equilibrium. Otherwise, if
@@ -3320,16 +3265,6 @@ maxRatio = maxRatio;  // Dummy anchor for debugger
             
         }
         
-        maxRatio = maxRatio;  // Dummy anchor for debugger
-        
-        
-        // Ratios of deviations from equilibrium and the parameter equiTol. The RG 
-        // is in equilibrium if maxRatio is less than 1 for EVERY isotopic species 
-        // in the RG (isEquil==true), and not in equilibrium otherwise (isEquil==false).
-        
-        //maxRatio = maxeqcheck/equiTol;
-        //minRatio = mineqcheck/equiTol;
-        
         bool lastEquilState = isEquil;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
@@ -3343,25 +3278,12 @@ maxRatio = maxRatio;  // Dummy anchor for debugger
             isEquil = false;
             if (lastEquilState != isEquil) removeFromEquilibrium(2);
         }
-
-        // Increment the number of RG in equilibrium if isEquil==true (since if we reach
-        // this point with isEquil==true the RG has just come into equilibrium.)
-        
-//         if (isEquil) {
-//             
-//             totalEquilRG ++;
-//             
-//             if(showAddRemove)
-//             fprintf(pFileD,
-//                 "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4e Rmax=%6.4e",
-//                 RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
-//             
-//         }
         
         // Set the activity array for each reaction in reaction group to true if not in 
         // equil and false if it is, if we are imposing equilibrium.
         
         if (doPE && t > equilibrateTime) {
+            
             for (int i = 0; i < numberMemberReactions; i++) {
                 int ck = memberReactions[i];
                 reacIsActive[ck] = !isEquil;
@@ -3406,10 +3328,6 @@ maxRatio = maxRatio;  // Dummy anchor for debugger
             "\n*** REMOVE RG %d where=%d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
             RGn, where, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
         
-//         for (int i = 0; i < niso; i++) {
-//             isEquil = false;
-//         }
-        
         for (int i = 0; i < numberMemberReactions; i++) {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
@@ -3453,7 +3371,7 @@ maxRatio = maxRatio;  // Dummy anchor for debugger
         
     }       // End function speciesIsInRG(int)
     
-};          // End class ReactionGroup
+};      // End class ReactionGroup
 
 
 
@@ -3514,7 +3432,6 @@ class Integrate: public Utilities {
             t_saved = t;
             dt_saved = dt;       // Will hold final dt in this timestep.
             storeCurrentY();     // For later restoration
-            double dttt = dt;    // Temporary breakpoint anchor
             
             // Compute max stable forward Euler timestep
             
@@ -3525,7 +3442,6 @@ class Integrate: public Utilities {
             // is chosen as the timestep.
             
             choice2 =  0;
-            //dtMode = -1;
             
             dt_EA = computeTimeStep_EA(dtLast, sumXtrue);
             if(dt_EA < dt_FE) choice2 = 1;
@@ -3577,7 +3493,7 @@ class Integrate: public Utilities {
             computeReactionFluxes();
             dtMode = 2;
             
-            // Now execute second half-step.  First we
+            // Execute second half-step.  First we
             // update Y0 array with results from first half-step
             // as new starting point for second half-step.
             
@@ -3624,7 +3540,6 @@ class Integrate: public Utilities {
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
             dtMode = -1;    // Indicates not in the integration step
-            int anchor = dtMode;   // dummy debug point
             
         }    // End of doIntegrationStep
         
@@ -3797,7 +3712,6 @@ class Integrate: public Utilities {
         dF[i] = fplus - fminus;
         dY = dF[i]*dtt;
         newY = y0 + dY;
-        double newY1 = newY;    // Temporary debug anchor
         return newY;            // New Y for forward Euler method
         
     }
@@ -4271,10 +4185,11 @@ int main() {
     
     
     // -----------------------------------------------------
-    // *** Set up for main time integration while-loop ***
+    // *** Set up for main time-integration while-loop ***
     // -----------------------------------------------------
     
     // Check if IS0TOPES and numberSpecies not equal. Normally they should be
+    // as present code is set up.
     
     if (ISOTOPES != numberSpecies){
         printf("\n\n***** CAUTION:  ISOTOPES=%d numberSpecies=%d *****\n\n", 
@@ -4386,7 +4301,7 @@ int main() {
         
         Integrate::doIntegrationStep();
         
-        // t now holds the time at the end of the timestep.
+        // Variable t now holds the time at the end of the timestep just executed.
 
         
         // Store true sumX before any renormalization.
@@ -4435,8 +4350,6 @@ int main() {
         for(int i=0; i<ISOTOPES; i++){
             if (isAsy[i]){totalAsy ++;}
         }
-        
-        totalAsy = totalAsy;   // Temporary debug point
         
         // ---------------------------------------------------------------------------------
         // Display and output to files updated quantities at plotSteps times corresponding
@@ -4514,7 +4427,7 @@ int main() {
             // course in production code we would not be writing significant output to the 
             // screen anyway.
             
-            cout.flush();
+            cout.flush();   // Force buffer dump
   
             // Increment the plot output counter for next graphics output
             
@@ -4604,8 +4517,8 @@ int main() {
 // **********************************************************
 
 
-// Function restoreBe9() to convert all Be-8 to alpha particles since lifetime 
-// of Be-8 to decay to two alpha particles is short compared with typical 
+// Function restoreBe9() to convert all 8-Be to alpha particles since lifetime 
+// of 8-Be to decay to two alpha particles is short compared with typical 
 // integration steps.
 
 void restoreBe8(){
@@ -4677,29 +4590,29 @@ void restoreEquilibriumProg() {
     sumX = Utilities::sumMassFractions();
     
     /* In general when we compute the equilibrium value of say alpha in the 
-     *  reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
-     *  values of 16O and 20Ne (i.e., their values will not be the values that they 
-     *  will have after this step). Add a while loop that permits iteration to try 
-     *  to fix this. Preliminary tests indicate it has small effect so set to one 
+     * reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
+     * values of 16O and 20Ne (i.e., their values will not be the values that they 
+     * will have after this step). Add a while loop that permits iteration to try 
+     * to fix this. Preliminary tests indicate it has small effect so set to one 
      * iteration for now. */
     
     int itcounter = 0;
     
     while (itcounter < 1) {
         
-        countEquilRG = 0;      // Counts RG in equilibrim at this point
+        countEquilRG = 0;          // Counts RG in equilibrim at this point
         countEquilIsotopes = 0;    // Counts isotopic species in equilibrated RGs
         
         itcounter ++;
         
         /* Compute equilibrium value of the Ys participating in equilibrium 
-         *	  starting from the value of Y at the end of the numerical timestep, 
-         *	  presently stored in Y[i]. Do so by first setting Y0[i] to the current 
-         *    value of Y[i], which is the computed value at the END of the timestep. 
-         *    Then evolve that initial value to the corresponding equilibrium value 
-         *	  algebraically by calculating the equilibrium value for that Y0[i] 
-         *	  and setting Y[i] to it (a form of operator splitting within the 
-         *	  network timestep). This work is done in evolveToEquilibrium(). */
+         * starting from the value of Y at the end of the numerical timestep, 
+         * presently stored in Y[i]. Do so by first setting Y0[i] to the current 
+         * value of Y[i], which is the computed value at the END of the timestep. 
+         * Then evolve that initial value to the corresponding equilibrium value 
+         * algebraically by calculating the equilibrium value for that Y0[i] 
+         * and setting Y[i] to it (a form of operator splitting within the 
+         * network timestep). This work is done in evolveToEquilibrium(). */
         
         evolveToEquilibrium();
         
@@ -4707,17 +4620,10 @@ void restoreEquilibriumProg() {
         // the variable countEquilRG, placing the index of each equilibrated 
         // RG in the array RGindy[], and counting the number of different isotopes
         // in at least one equilibrated RG in the variable countEquilIsotopes.
-        
-        
-// printf("\nYsum:");
-// printf("\nYsum:INVENTORY RG (%d logt=%7.5f):", totalTimeSteps,log10(t));
-// printf("\nYsum:");
 
         int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
-            
-// printf("\nYsum:RG=%d RGisequil=%d", i,RG[i].getisEquil());
             
             // Process RG in equilibrium
 
@@ -4741,26 +4647,12 @@ void restoreEquilibriumProg() {
                     // Get species index for this isotope
                     
                     int speciesIndy = RG[i].getisoindex(j);
-                    
-                    //if (!isotopeInEquil[speciesIndy]) {
-                        isotopeInEquil[speciesIndy] = true;
-                        countEquilIsotopes++;
-                    //}
-                
-
-// printf("\n   Ysum:j=%d index=%d isotopeInEquilRG[index]=%d",
-//     j,speciesIndy,isotopeInEquil[speciesIndy]);
+                    isotopeInEquil[speciesIndy] = true;
+                    countEquilIsotopes++;
 
                 }
             } 
-            
         }
-        
-// printf("\nYsum:SUMMARY: %d logt=%7.5f #RGequil=%d RGequil[]={%d %d %d %d %d %d}",
-//     totalTimeSteps,log10(t),totalEquilRG,RGindy[0],RGindy[1],RGindy[2],RGindy[3],
-//         RGindy[4],RGindy[5]);
-        
-        int dumdum = -1;  // Dummy debug point
         
         // Loop over reaction groups in equilibrium and compute equilibrated
         // Y[] averaged over all reaction groups that are in equilibrium and
@@ -4775,22 +4667,14 @@ void restoreEquilibriumProg() {
         // Loop over all isotopes, checking for those in equilbrium in at 
         // least one RG
         
-// printf("\nYsum:");
-// printf("\nYsum:CHECK ISOTOPES (%d logt=%7.5f #equilRG=%d):", totalTimeSteps,log10(t),totalEquilRG);
-// printf("\nYsum:");
-        
         for(int i=0; i<ISOTOPES; i++){
             
             numberCases = 0;
             Ysum = 0.0;
-
-// printf("\nYsum:isotope=%d Y0(%d)=%7.5e Y(%d)=%7.5e", i,i,Y0[i],i,Y[i]);
            
             // If isotope is in at least one equilibrated RG
             
             if (isotopeInEquil[i]) {
-                
-                
                 
                 // Find all equilibrated RGs that the isotope appears in
                 
@@ -4805,17 +4689,11 @@ void restoreEquilibriumProg() {
                                 Ysum += addit;
                                 numberCases ++;
                             }
-                            
-                           
-// printf("\n    Ysum:RGspecies=%d RGindy=%d RGisoindex=%d count=%d cases=%d Y=%7.5e Ysum=%7.5e",
-//     k,indy,RGisoindex,countEquilRG,numberCases,addit,Ysum);
 
                         }
                     }
                 }
             }
-            
-            // ***** comment out temporarily for debugging *********
             
             // Store Y for each isotope averaged over all reaction groups in 
             // which it participates
@@ -4825,19 +4703,9 @@ void restoreEquilibriumProg() {
                 X[i] = Y[i]*(double)AA[i];
             }
 
-            // ***************************************
-
-// if(numberCases > 0){
-// printf("\nYsum:cases(%d)=%d Ysum(%d)=%7.5e Avg Y(%d)=%7.5e", 
-//     i,numberCases,i,Ysum,i,Ysum/(double)numberCases);
-// printf("\nYsum:");
-// }
-
         }
-        
-// printf("\nYsum:");
-    
-    } // end while iteration loop
+
+    }   // end while iteration loop
     
     
     // If we are computing Asy+PE, set up renormalization of all Ys 
@@ -4849,10 +4717,6 @@ void restoreEquilibriumProg() {
     // normPEX (normally set to true).
     
     if(normPEX){
-    //if(doPE && totalEquilRG > 0){
-        
-        // sumXeq = Utilities::sumXEquil();
-        // sumXNeq = Utilities::sumXNotEquil();
         
         sumXtot = Utilities::sumMassFractions();
         
@@ -4867,20 +4731,16 @@ void restoreEquilibriumProg() {
             
             X[i] *= XcorrFac;
             Y[i] = X[i] / (double)AA[i];
-//             Y[i] *= XcorrFac;
-//             X[i] *= XcorrFac;
-//             Y0[i] = Y[i];
+            
         }
         
         // Total sumX now renormalized to one
         
         sumX = 1.0;
-        
-    // sumX = Utilities::sumMassFractions();
     
     }
     
-} // end restoreEquilibriumProg()
+}   // end restoreEquilibriumProg()
 
 
 // ------------------------------------------------------------------------
@@ -5879,7 +5739,6 @@ void sumFplusFminus(){
         
         for(int j=minny; j<=FplusMax[i]; j++){
             accum += Fplus[j];
-            int accum2 =  accum;   // Temporary debug anchor
         }
         
         setSpeciesfplus(i, accum);      // Also sets FplusSum[i] = accum;
@@ -5895,7 +5754,6 @@ void sumFplusFminus(){
         
         for(int j=minny; j<=FminusMax[i]; j++){
             accum += Fminus[j];
-            int accum3 =  accum;   // Temporary debug anchor
         }
     
         setSpeciesfminus(i, accum);    // Also sets FminusSum[i] = accum and keff
