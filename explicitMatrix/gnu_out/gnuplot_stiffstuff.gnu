@@ -127,9 +127,9 @@ replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_stiffstuff.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_stiffstuff.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
