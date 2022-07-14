@@ -316,7 +316,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-12;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-9;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -342,7 +342,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilibrateTime = start_time;  // Time to begin checking for PE
-double equiTol = 0.01;               // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;                // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.5;              // Max allowed deviation from equil k ratio in timestep
 double thisDevious;                   // Deviation of kratio from equil
 double mostDevious;                   // Largest current deviation of kratio from equil
