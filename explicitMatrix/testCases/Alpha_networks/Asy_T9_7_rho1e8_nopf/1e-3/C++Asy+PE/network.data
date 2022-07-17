@@ -1,0 +1,182 @@
+
+16 ISOTOPES IN NETWORK:
+
+Index  Isotope   A   Z   N  Abundance Y  MassFrac X  MassXS(MeV)
+    0      4He   4   2   2  0.00000e+00    0.000000      2.42500
+    1      12C  12   6   6  4.16666e-02    0.500000      0.00000
+    2      16O  16   8   8  3.12500e-02    0.500000     -4.73700
+    3     20Ne  20  10  10  0.00000e+00    0.000000     -7.04200
+    4     24Mg  24  12  12  0.00000e+00    0.000000    -13.93300
+    5     28Si  28  14  14  0.00000e+00    0.000000    -21.49300
+    6      32S  32  16  16  0.00000e+00    0.000000    -26.01600
+    7     36Ar  36  18  18  0.00000e+00    0.000000    -30.23000
+    8     40Ca  40  20  20  0.00000e+00    0.000000    -34.84600
+    9     44Ti  44  22  22  0.00000e+00    0.000000    -37.54800
+   10     48Cr  48  24  24  0.00000e+00    0.000000    -42.81500
+   11     52Fe  52  26  26  0.00000e+00    0.000000    -48.32900
+   12     56Ni  56  28  28  0.00000e+00    0.000000    -53.90000
+   13     60Zn  60  30  30  0.00000e+00    0.000000    -54.18300
+   14     64Ge  64  32  32  0.00000e+00    0.000000    -54.42500
+   15     68Se  68  34  34  0.00000e+00    0.000000    -53.55300
+
+
+PARTITION FUNCTION TABLE from Species object isotope[]:
+
+T9:  0.10 0.15 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00 1.50 2.00 2.50 3.00 3.50 4.00 4.50 5.00 6.00 7.00 8.00 9.00 10.00 
+4He  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+12C  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+16O  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 
+20Ne 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.04 1.07 1.11 1.22 1.34 1.49 1.66 1.85 
+24Mg 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.05 1.09 1.15 1.21 1.36 1.53 1.73 1.94 2.17 
+28Si 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.01 1.03 1.05 1.08 1.16 1.27 1.39 1.54 1.70 
+32S  1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.03 1.07 1.14 1.24 1.39 1.59 
+36Ar 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.02 1.03 1.05 1.12 1.22 1.37 1.57 1.86 
+40Ca 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.04 1.09 1.20 1.38 
+44Ti 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.08 1.14 1.23 1.35 1.49 1.85 2.35 3.01 3.86 4.94 
+48Cr 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.06 1.15 1.28 1.43 1.61 1.80 2.00 2.46 3.00 3.63 4.44 5.54 
+52Fe 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.04 1.10 1.19 1.30 1.44 1.58 1.74 2.10 2.51 3.00 3.65 4.57 
+56Ni 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.01 1.03 1.08 1.18 1.35 1.67 
+60Zn 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.05 1.10 1.19 1.29 1.41 1.55 1.91 2.41 3.16 4.40 6.56 
+64Ge 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.03 1.08 1.17 1.29 1.44 1.63 1.84 2.34 2.98 3.93 5.68 9.48 
+68Se 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.01 1.03 1.09 1.19 1.36 1.59 1.90 2.31 3.47 5.36 8.55 14.30 25.44 
+
+
+SUMMARY: 48 REACTIONS
+
+0 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667 RGchar=a+b<->c
+1 he4+he4+he4-->c12 reacClass=8 reactants=3 products=1 isEC=0 isReverse=0 Q=7.2750 prefac=0.1667 RGchar=a+b<->c
+2 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000 RGchar=a+b<->c
+3 c12-->he4+he4+he4 reacClass=3 reactants=1 products=3 isEC=0 isReverse=0 Q=-7.2750 prefac=1.0000 RGchar=a+b<->c
+4 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000 RGchar=a+b<->c
+5 he4+c12-->o16 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.1620 prefac=1.0000 RGchar=a+b<->c
+6 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000 RGchar=a+b<->c
+7 o16-->he4+c12 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.1620 prefac=1.0000 RGchar=a+b<->c
+8 c12+c12-->he4+ne20 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=4.6210 prefac=0.5000 RGchar=a+b<->c
+9 he4+ne20-->c12+c12 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-4.6210 prefac=1.0000 RGchar=a+b<->c
+10 he4+o16-->ne20 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=4.7340 prefac=1.0000 RGchar=a+b<->c
+11 he4+o16-->ne20 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=4.7340 prefac=1.0000 RGchar=a+b<->c
+12 ne20-->he4+o16 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-4.7340 prefac=1.0000 RGchar=a+b<->c
+13 ne20-->he4+o16 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-4.7340 prefac=1.0000 RGchar=a+b<->c
+14 c12+o16-->he4+mg24 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=6.7710 prefac=1.0000 RGchar=a+b<->c
+15 he4+mg24-->c12+o16 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-6.7710 prefac=1.0000 RGchar=a+b<->c
+16 o16+o16-->he4+si28 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=9.5930 prefac=0.5000 RGchar=a+b<->c
+17 he4+si28-->o16+o16 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-9.5930 prefac=1.0000 RGchar=a+b<->c
+18 he4+ne20-->mg24 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.3120 prefac=1.0000 RGchar=a+b<->c
+19 he4+ne20-->mg24 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.3120 prefac=1.0000 RGchar=a+b<->c
+20 mg24-->he4+ne20 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.3120 prefac=1.0000 RGchar=a+b<->c
+21 mg24-->he4+ne20 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.3120 prefac=1.0000 RGchar=a+b<->c
+22 c12+ne20-->he4+si28 reacClass=5 reactants=2 products=2 isEC=0 isReverse=0 Q=12.0211 prefac=1.0000 RGchar=a+b<->c
+23 he4+si28-->c12+ne20 reacClass=5 reactants=2 products=2 isEC=0 isReverse=1 Q=-12.0211 prefac=1.0000 RGchar=a+b<->c
+24 he4+mg24-->si28 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.9840 prefac=1.0000 RGchar=a+b<->c
+25 he4+mg24-->si28 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=9.9840 prefac=1.0000 RGchar=a+b<->c
+26 si28-->he4+mg24 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.9840 prefac=1.0000 RGchar=a+b<->c
+27 si28-->he4+mg24 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-9.9840 prefac=1.0000 RGchar=a+b<->c
+28 he4+si28-->s32 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=6.9480 prefac=1.0000 RGchar=a+b<->c
+29 s32-->he4+si28 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-6.9480 prefac=1.0000 RGchar=a+b<->c
+30 he4+s32-->ar36 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=6.6390 prefac=1.0000 RGchar=a+b<->c
+31 ar36-->he4+s32 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-6.6390 prefac=1.0000 RGchar=a+b<->c
+32 he4+ar36-->ca40 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.0400 prefac=1.0000 RGchar=a+b<->c
+33 ca40-->he4+ar36 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.0400 prefac=1.0000 RGchar=a+b<->c
+34 he4+ca40-->ti44 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=5.1270 prefac=1.0000 RGchar=a+b<->c
+35 ti44-->he4+ca40 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-5.1270 prefac=1.0000 RGchar=a+b<->c
+36 he4+ti44-->cr48 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.6920 prefac=1.0000 RGchar=a+b<->c
+37 cr48-->he4+ti44 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.6920 prefac=1.0000 RGchar=a+b<->c
+38 he4+cr48-->fe52 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.9390 prefac=1.0000 RGchar=a+b<->c
+39 fe52-->he4+cr48 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.9390 prefac=1.0000 RGchar=a+b<->c
+40 he4+fe52-->ni56 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=7.9950 prefac=1.0000 RGchar=a+b<->c
+41 ni56-->he4+fe52 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-7.9950 prefac=1.0000 RGchar=a+b<->c
+42 he4+ni56-->zn60 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.7080 prefac=1.0000 RGchar=a+b<->c
+43 zn60-->he4+ni56 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.7080 prefac=1.0000 RGchar=a+b<->c
+44 he4+zn60-->ge64 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.6670 prefac=1.0000 RGchar=a+b<->c
+45 ge64-->he4+zn60 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.6670 prefac=1.0000 RGchar=a+b<->c
+46 he4+ge64-->se68 reacClass=4 reactants=2 products=1 isEC=0 isReverse=0 Q=2.9420 prefac=1.0000 RGchar=a+b<->c
+47 se68-->he4+ge64 reacClass=2 reactants=1 products=2 isEC=0 isReverse=1 Q=-2.9420 prefac=1.0000 RGchar=a+b<->c
+
+
+PARTIAL EQUILIBRIUM REACTION GROUPS
+
+Reaction Group 0:
+he4+he4+he4-->c12 reacIndex=0 RGindex=0 RG=3 RGreacIndex=0 isForward=1 RG: a+b+c<->d
+he4+he4+he4-->c12 reacIndex=1 RGindex=1 RG=3 RGreacIndex=1 isForward=1 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=2 RGindex=2 RG=3 RGreacIndex=2 isForward=0 RG: a+b+c<->d
+c12-->he4+he4+he4 reacIndex=3 RGindex=3 RG=3 RGreacIndex=3 isForward=0 RG: a+b+c<->d
+
+Reaction Group 1:
+he4+c12-->o16 reacIndex=4 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+c12-->o16 reacIndex=5 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+o16-->he4+c12 reacIndex=6 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+o16-->he4+c12 reacIndex=7 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 2:
+c12+c12-->he4+ne20 reacIndex=8 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+ne20-->c12+c12 reacIndex=9 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 3:
+he4+o16-->ne20 reacIndex=10 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+o16-->ne20 reacIndex=11 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+ne20-->he4+o16 reacIndex=12 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+ne20-->he4+o16 reacIndex=13 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 4:
+c12+o16-->he4+mg24 reacIndex=14 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+mg24-->c12+o16 reacIndex=15 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 5:
+o16+o16-->he4+si28 reacIndex=16 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+si28-->o16+o16 reacIndex=17 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 6:
+he4+ne20-->mg24 reacIndex=18 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+ne20-->mg24 reacIndex=19 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+mg24-->he4+ne20 reacIndex=20 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+mg24-->he4+ne20 reacIndex=21 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 7:
+c12+ne20-->he4+si28 reacIndex=22 RGindex=0 RG=4 RGreacIndex=0 isForward=1 RG: a+b<->c+d
+he4+si28-->c12+ne20 reacIndex=23 RGindex=1 RG=4 RGreacIndex=1 isForward=0 RG: a+b<->c+d
+
+Reaction Group 8:
+he4+mg24-->si28 reacIndex=24 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+he4+mg24-->si28 reacIndex=25 RGindex=1 RG=2 RGreacIndex=1 isForward=1 RG: a+b<->c
+si28-->he4+mg24 reacIndex=26 RGindex=2 RG=2 RGreacIndex=2 isForward=0 RG: a+b<->c
+si28-->he4+mg24 reacIndex=27 RGindex=3 RG=2 RGreacIndex=3 isForward=0 RG: a+b<->c
+
+Reaction Group 9:
+he4+si28-->s32 reacIndex=28 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+s32-->he4+si28 reacIndex=29 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 10:
+he4+s32-->ar36 reacIndex=30 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ar36-->he4+s32 reacIndex=31 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 11:
+he4+ar36-->ca40 reacIndex=32 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ca40-->he4+ar36 reacIndex=33 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 12:
+he4+ca40-->ti44 reacIndex=34 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ti44-->he4+ca40 reacIndex=35 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 13:
+he4+ti44-->cr48 reacIndex=36 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+cr48-->he4+ti44 reacIndex=37 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 14:
+he4+cr48-->fe52 reacIndex=38 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+fe52-->he4+cr48 reacIndex=39 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 15:
+he4+fe52-->ni56 reacIndex=40 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ni56-->he4+fe52 reacIndex=41 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 16:
+he4+ni56-->zn60 reacIndex=42 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+zn60-->he4+ni56 reacIndex=43 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 17:
+he4+zn60-->ge64 reacIndex=44 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+ge64-->he4+zn60 reacIndex=45 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c
+
+Reaction Group 18:
+he4+ge64-->se68 reacIndex=46 RGindex=0 RG=2 RGreacIndex=0 isForward=1 RG: a+b<->c
+se68-->he4+ge64 reacIndex=47 RGindex=1 RG=2 RGreacIndex=1 isForward=0 RG: a+b<->c

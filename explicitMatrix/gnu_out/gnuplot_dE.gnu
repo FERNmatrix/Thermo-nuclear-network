@@ -66,24 +66,21 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF; new dt)"
-ds = ds.": dE/dt vs t"
+ds="Asy T9=7 rho=1e8 (no PF)"
+ds = ds.": |dE/dt| vs t"
 set title ds textcolor rgb title_color
-
-file1 = "gnufile.data"
-
 
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -4
+xup = 0
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 18
-yup = 30
+ylow = 14
+yup = 29
 ytics = 1      # Space between major y ticmarks
-minytics = 5  # Number minor y tics
+minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
 set xtics  xlow, xtics, xup
@@ -96,18 +93,13 @@ set mytics minytics   # minor y tics per major tic
 set grid   # set x-y grid at major ticmarks
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+file1 = "gnufile_alpha_T9_7_1e8_asy.data"
 
-plot file1 using 1:4 with lines ls 1 title "dE/dt"
-#replot file1 using 1:6 with lines ls 4 title "12C"
-#replot file1 using 1:7 with lines ls 9 title "16O"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
+plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
 
+file2 = "gnufile.data"
+
+replot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 2 title "Asy-PE log |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
@@ -124,9 +116,9 @@ replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_dE.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_dE.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
