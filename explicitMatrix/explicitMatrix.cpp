@@ -175,8 +175,8 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/torch47Profile.inp";
-//char hydroFile[] = "data/nova125DProfile.inp";
+//char hydroFile[] = "data/torch47Profile.inp";
+char hydroFile[] = "data/nova125DProfile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -625,12 +625,14 @@ private:
     int n;
     int m;
     
-    static const int maxpoints = 200;
-    double x[maxpoints];
-    //         double [] x1a;
-    //         double [] x2a;
-    //         double [][] ya;
-    double y[maxpoints];
+    char* interpLabel; 
+    
+    //static const int maxpoints = 200;
+    double x[maxHydroEntries];
+            //double x1a [];
+            //double x2a [];
+            //double ya [][];
+    double y[maxHydroEntries];
     //         double [] y2;
     //         double [][] y2a;
     //         double [] u;
@@ -644,7 +646,9 @@ public:
     SplineInterpolator(int points, double *xarray, double *yarray) { 
         
         //int size = (int) sizeof(xarray)/sizeof(double);
-        printf("\n+++++ Creating Spline object with arrays %d", points);
+        printf("\n+++++ Creating Spline object with %d points", points);
+        
+        
         
         spline(xarray, yarray, points, points);
     };
@@ -659,17 +663,15 @@ public:
      *   increasing.  The second derivatives are stored in the array y2.  Elements of
      *   the y2 array can be accessed for diagnostic purposes using the method 
      *   getSplined2(index).
-     *       - *------------------------------------------------------------------------------*/
+     * ------------------------------------------------------------------------------*/
     
     
     void spline(double *xarray, double *yarray, int size1, int size2) {
         //void spline( double xarray[], double yarray)[] {
-        //int n = sizeof(xarray)/sizeof(xarray[0]);
-        //int m = sizeof(yarray)/sizeof(yarray[0]);
         
-        printf("\n+++++ size1=%d size2=%d xarray[4]=%5.3f yarray[2]=%5.3f size x=%d size x[0]=%d", 
-               size1, size2, xarray[4], yarray[2], sizeof(xarray), sizeof(xarray[0]));
-        //             int n = xarray.length;
+        int n = size1; //sizeof(xarray)/sizeof(xarray[0]);
+        int m = size2; //sizeof(yarray)/sizeof(yarray[0]);
+
         if(size1 != size2){
             printf("\nWarning: lengths of x and y(x) arrays not equal:");
             printf("\nxarray_length=%d yarray_length=%d", size1, size2);
@@ -681,45 +683,52 @@ public:
         //y = yarray; // double[n];
         //             y2 = new double[n];
         //             u = new double[n];
+        
+        double y2[n];
+        double u[n];
+        
         //             
         // Copy passed arrays to internal arrays
         
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
-            printf("\n+++++ i=%d x[i]=%7.4e y[i]=%7.4e",i,hydroTime[i],hydroTemp[i]);
+            printf("\n+++++ i=%d x[i]=%7.4e %7.4e y[i]=%7.4e %7.4e",
+                i,x[i],xarray[i],y[i],yarray[i]);
         }
+        
         //             
         //             // Natural spline boundary conditions
         //             
-        //             y2[0] = 0.0;
-        //             u[0] = 0.0;
-        //             double qn = 0.0;
-        //             double un = 0.0;
+                    y2[0] = 0.0;
+                    u[0] = 0.0;
+                    double qn = 0.0;
+                    double un = 0.0;
         //             
-        //             double signum;
-        //             double sigden;
-        //             double sig;
-        //             double p;
-        //             
-        //             // Decomposition loop of tridiagonal algorithm
-        //             
-        //             for (int i=1; i<= n-2; i++) {
-        //                 signum = x[i] - x[i-1];
-        //                 sigden = x[i+1] - x[i-1];
-        //                 sig = signum/sigden;
-        //                 p = sig*y2[i-1] +2.0;
-        //                 y2[i] = (sig-1.0)/p;
-        //                 u[i] = (6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/p;
-        //             }
-        //             
-        //             y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
-        //             
-        //             // Backsubstitution loop of tridiagonal algorithm
-        //             
-        //             for (int i = n-2; i >= 0; i--){
-        //                 y2[i] = y2[i]*y2[i+1] + u[i];
-        //             }
+                    double signum;
+                    double sigden;
+                    double sig;
+                    double p;
+                    
+                    // Decomposition loop of tridiagonal algorithm
+                    
+                    for (int i=1; i<= n-2; i++) {
+                        signum = x[i] - x[i-1];
+                        sigden = x[i+1] - x[i-1];
+                        sig = signum/sigden;
+                        p = sig*y2[i-1] +2.0;
+                        y2[i] = (sig-1.0)/p;
+                        u[i] = (6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/p;
+                    }
+                    
+                    y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
+                    
+                    // Backsubstitution loop of tridiagonal algorithm
+                    
+                    for (int i = n-2; i >= 0; i--){
+                        y2[i] = y2[i]*y2[i+1] + u[i];
+                        printf("\n   +++++ %d y2=%7.4e", i, y2[i]);
+                    }
     }
 };
 
@@ -4373,10 +4382,12 @@ int main() {
     }
     
     
-    // Set up hydro temperature interpolator
+    // If using hydro profile, create hydro temperature interpolator object
     
-    if (hydroProfile)
-    SplineInterpolator interpolateT (hydroLines, hydroTime, hydroTemp);
+    if (hydroProfile){
+        SplineInterpolator interpolateT (hydroLines, hydroTime, hydroTemp); 
+    }
+    
     
 
     // ------------------------------------ //
