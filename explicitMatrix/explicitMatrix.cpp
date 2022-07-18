@@ -161,7 +161,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = true; 
+bool hydroProfile = false; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -175,8 +175,8 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-//char hydroFile[] = "data/torch47Profile.inp";
-char hydroFile[] = "data/nova125DProfile.inp";
+char hydroFile[] = "data/torch47Profile.inp";
+//char hydroFile[] = "data/nova125DProfile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -298,7 +298,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e0;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -625,6 +625,8 @@ private:
     int n;
     int m;
     
+    int numberPoints;
+    
     char* interpLabel; 
     
     //static const int maxpoints = 200;
@@ -639,16 +641,25 @@ private:
     //         int n,m;
     //         double maxx1,minx1,maxx2,minx2;
     
+    double y2[maxHydroEntries];
+    double u[maxHydroEntries];
+    
 public:
     
-    // Constructor
+    // Constructors
+    
+    //SplineInterpolator(){}
     
     SplineInterpolator(int points, double *xarray, double *yarray) { 
         
         //int size = (int) sizeof(xarray)/sizeof(double);
         printf("\n+++++ Creating Spline object with %d points", points);
         
-        
+        numberPoints = points;
+       
+        for(int i=0; i<points; i++){
+            printf("\n   +++++ %d x=%7.4e y=%7.4e",i,xarray[i], yarray[i]);
+        }
         
         spline(xarray, yarray, points, points);
     };
@@ -684,17 +695,16 @@ public:
         //             y2 = new double[n];
         //             u = new double[n];
         
-        double y2[n];
-        double u[n];
-        
         //             
         // Copy passed arrays to internal arrays
+        
+        printf("\n+++++size1=%d size2=%d",size1,size2);
         
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
-            printf("\n+++++ i=%d x[i]=%7.4e %7.4e y[i]=%7.4e %7.4e",
-                i,x[i],xarray[i],y[i],yarray[i]);
+            printf("\n+++++ i=%d x[i]=%7.4e y[i]=%7.4e",
+                i,xarray[i],yarray[i]);
         }
         
         //             
@@ -727,9 +737,99 @@ public:
                     
                     for (int i = n-2; i >= 0; i--){
                         y2[i] = y2[i]*y2[i+1] + u[i];
-                        printf("\n   +++++ %d y2=%7.4e", i, y2[i]);
+                        printf("\n   +++++ %d y2=%7.4e u=%7.4e", i, y2[i], u[i]);
                     }
+                    printf("\n");
+                    cout.flush();
     }
+    
+    /*-------------------------------------------------------------------------
+     * Method splint calculates the 1D cubic spline polynomial for an arbitrary
+     * argument xvalue once the second derivative table has been constructed
+     * using the method spline.  This method returns the interpolated value 
+     * y = f(xvalue) and may be called any number of times once the second
+     * derivative table has been created.
+     * ---------------------------------------------------------------------------*/
+    
+    double splint(double xvalue) {
+        
+        int n = numberPoints;
+        
+        printf("\n+++++ Splint (%7.4e)",xvalue);
+        
+        // Return -1 with error message if argument out of table bounds
+        
+        if (xvalue < x[0] || xvalue > x[n-1]) {
+            printf("Argument ( %7.4e ) Out of Table Bounds %7.4e to %7.4e",
+                xvalue, x[0], x[n-1]);
+            return -1;
+        }
+        
+        // Call bisection method to bracket entry xvalue with indices ilow and ihigh
+        
+        int ilow = bisection(x, xvalue);      
+        int ihigh = ilow + 1;                  
+        double h = x[ihigh]-x[ilow];
+        
+        // Evaluate cubic spline polynomial and return interpolated value
+        
+        double a = (x[ihigh]-xvalue)/h;
+        double b = (xvalue-x[ilow])/h;
+        return a*y[ilow] + b*y[ihigh] 
+        + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
+    }
+    
+    
+    /*-----------------------------------------------------------------------------
+     * For an array xarray[] and argument xvalue, public method bisection finds 
+     * the indices ilow and ihigh=ilow+1 that bracket the position of xvalue 
+     * in the array.  (Method returns the value of ilow, from which 
+     * ihigh = ilow+1).  The array is assumed to be monotonically increasing
+     * in value. Sample method call:
+     * 
+     *	double [] x = {10,12,14,16,18};
+     *	double xvalue = 12.2;
+     *	int ilow = instance.bisection(x,xvalue);
+     *	int ihigh= ilow + 1;
+     * 
+     *	 In this case, the method returns ilow = 1 and therefore ihigh = 2.  The method
+     * checks first that xvalue is within the bounds of the table and returns -1 if
+     * this condition is not satisfied.
+     - *------------------------------------------------------------------------------*/
+    
+    
+   int bisection(double *xarray, double xvalue){
+        
+        int n = numberPoints;
+        
+        // Check that xvalue is within bounds of the table.  If not, quit
+        // with error message and return -1
+        
+        double minx = xarray[0];
+        double maxx = xarray[n-1];
+        if(xvalue > maxx || xvalue < minx){
+            printf("Abort bisection: argument (%7.4e) Out of Bounds",xvalue);
+            return -1;
+        }
+        
+        int ilow = 0;
+        int ihigh = n-1;
+        int i;
+        
+        while( (ihigh-ilow > 1) ){
+            i = (ihigh+ilow)/2;
+            if(xarray[i] > xvalue){
+                ihigh=i;
+            } else {
+                ilow=i;
+            }
+        }
+        
+        // ilow and ilow+1 now bracket xvalue
+        
+        return ilow;
+    }
+    
 };
 
 
@@ -4067,6 +4167,9 @@ Reaction reaction [SIZE];
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
+//SplineInterpolator interpolateT;   // Temperature interpolator object
+
+
 
 // ------- Main CPU routine --------
 
@@ -4168,10 +4271,10 @@ int main() {
     // If using a hydrodynamical profile, read in the file containing
     // the hydro profile and store variables.
     
-    if(hydroProfile){
+    //if(hydroProfile){
         char *hydroFilePtr = hydroFile;
         readhydroProfile(hydroFilePtr);
-    }
+    //}
     
     // Print out some quantitites from the Reaction object reaction[].  
     
@@ -4382,11 +4485,15 @@ int main() {
     }
     
     
-    // If using hydro profile, create hydro temperature interpolator object
+for(int i=0; i<hydroLines; i++){
+    printf("\n+++++ i=%d/%d  x=%7.4e y=%7.4e", i, hydroLines, hydroTime[i], hydroTemp[i]);
+}
     
-    if (hydroProfile){
-        SplineInterpolator interpolateT (hydroLines, hydroTime, hydroTemp); 
-    }
+    // Instantiate hydro temperature interpolator object
+    
+    //if (hydroProfile){
+     SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp); 
+    //}
     
     
 
@@ -4413,7 +4520,13 @@ int main() {
         // above.  Otherwise (hydroProfile = true) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
-        if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+double interT = interpolateT.splint(t);
+printf("\n+++++  t=%7.4e  interT=%7.4e",t, interT);
+        
+        if(hydroProfile && totalTimeSteps > 1) T9 = interpolateT.splint(t);
+        
+        //if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+        
         if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
@@ -4611,9 +4724,9 @@ int main() {
     
     Utilities::plotOutput();
     
-    if(hydroProfile && plotHydroProfile){
+    //if(hydroProfile && plotHydroProfile){
         Utilities::plotHydroProfile();
-    }
+    //}
     
     
     // **************************************************
