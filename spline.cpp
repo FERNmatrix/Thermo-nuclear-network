@@ -1,11 +1,3 @@
-/* Class Utilities to hold utility useful utility functions.  Functions are
- * declared static so that they can be invoked without having to instantiate
- * objects of type Utilities.  For example, Utilities::returnNetIndexZN (Z, N).
- * We will often have other classes inherit from Utilities so that they can
- * access its static functions.  This class definition must precede definitions of 
- * classes that inherit from it.
- */
-
 class SplineInterpolator{
 
     private:
@@ -25,26 +17,6 @@ class SplineInterpolator{
     double tempY;   // Temporary holder for interpolated Y-value
 
 
-    void SplineInterpolation(double xvalues[], double yvalues[], double timeX){
-    
-        int n = sizeof(xvalues)/sizeof(xvalues[0]);
-        int m = sizeof(yvalues)/sizeof(yvalues[0]);
-
-        double F = timeX;
-
-        if(n != m){
-            printf("\n Warning: lengths of x and y(x) arrays not equal: xarray length= %d, yarray length= %d", n, m);
-        }
-
-        // Copy passed arrays to internal arrays
-
-        spline(xvalues,yvalues,n);
-
-        tempY = splint(F);
-
-        //return tempY;
-    }
-
     /*------------------------------------------------------------------------------
      Adaptation of 1D cubic spline algorithm from Numerical Recipes in Fortran.
      This method processes the array to compute and store the second derivatives
@@ -56,10 +28,16 @@ class SplineInterpolator{
      getSplined2(index).
     -------------------------------------------------------------------------------*/
     
-     void spline(double xarray[], double yarray[], int arrsize) {
+     void spline(double xarray[], double yarray[]) {
 
-        int n = arrsize;
+        int n = sizeof(xarray)/sizeof(xarray[0]);
+        int m = sizeof(yarray)/sizeof(yarray[0]);
 
+        if(n != m){
+            printf("\n Warning: lengths of x and y(x) arrays not equal: xarray length= %d, yarray length= %d", n, m);
+        }
+
+        // Copy passed arrays to internal arrays
         for(int i=0; i < n; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
@@ -82,7 +60,7 @@ class SplineInterpolator{
         for (int i=1; i<= n-2; i++) {
 
             sig = (x[i] - x[i-1]) / (x[i+1] - x[i-1]);
-            p = sig*d2Y[i-1] + 2.0;
+            p = sig* d2Y[i-1] + 2.0;
 
             d2Y[i] = (sig-1.0)/p;
 
@@ -186,121 +164,6 @@ class SplineInterpolator{
         // ilow and ilow+1 now bracket xvalue
 
         return ilow;
-    }
-
-
-    
-    /*-----------------------------------------------------------------------------
-     Method to set up spline 2nd deriv table for a 2D spline interpolation.
-     x1array and x2array are 1D arrays holding the independent (x1,x2) variables. 
-     yarray is a 2D array holding y=f(x1,x2), however 2D arrays of undefined size
-     cannot be directly passed and so we will use a double pointer that holds the
-     address of the beginning of the 2D array. The calling function will also need 
-     to utilize double pointers to call this function. Note that the independent variable 
-     arrays are assumed to both be in ascending order.  The second derivatives are 
-     stored in the array d2Ya.  Elements of the d2Ya array can be accessed for 
-     diagnostic purposes using the method getSpline2d2(row,column).
-    ------------------------------------------------------------------------------*/
-
-    void spline2( double x1array[], int x1Len, double x2array[], int x2Len, double **yarray) {
-
-        n = sizeof(x1array)/sizeof(x1array[0]);
-        m = sizeof(x2array)/sizeof(x2array[0]);
-
-        //  Store min and max for later checks
-
-        maxx1 = x1array[n-1];  
-        minx1 = x1array[0];
-        maxx2 = x2array[m-1];
-        minx2 = x2array[0];
-
-        // Set up temporary 1D array required for 2D interpolations.
-        
-        double ytemp[m]= {};
-        
-        double x1a[n] = {};     // 2D independent variable x1
-        double x2a[m] = {};     // 2D independent variable x2
-
-        // Set up the 2d array YofX[i][j] that will hold the dependent 
-        // variable y(x1,x2)
-
-        YofX = new double*[n];
-        for(int i=0; i<n; i++){
-            YofX[i] = new double[m];
-        }
-
-        // Set up the 2d array d2Ya[i][j] that will hold the second derivatives
-
-        d2Ya = new double*[n];
-        for(int i=0; i < n; i++){
-            d2Ya[i] = new double[m];
-        }
-
-        // Fill the local arrays x1a, x2a, and YofX with the supplied dependent 
-        // and independent variable data from arrays on the timeline containing this clip
-
-        for (int i=0; i < n; i++) { x1a[i] = x1array[i]; }  // x1a
-        for (int j=0; j < m; j++) { x2a[j] = x2array[j];}   // x2a
-
-        for (int i=0; i < n; i++) {
-            for(int j=0; j < m; j++){ 
-             YofX[i][j] = yarray[i][j];
-             }  // y(x1,x2)
-        }
-
-        // Compute the 2nd derivative array required for 2D interpolation
-
-        for (int i=0; i < m; i++) {
-            for (int j=0; j < n; j++) {
-                ytemp[j] = YofX[i][j];
-            }
-
-            // Call 1D spline; returns 2nd derivs in d2Y
-            spline(x2a, ytemp, n);  
-
-            //  Fill 2nd derivative array
-            for (int k=0; k < n; k++) {
-                d2Ya[i][k] = d2Y[k];  // 2D-array of d^2 Y/dx^2      
-            }
-        }   
-    }
-    
-
-    /*------------------------------------------------------------------------
-     Method splint2 calculates the 2D cubic spline polynomial for a arbitrary
-     arguments (x1,x2) once the second derivative table has been constructed
-     using the method spline2.  This function returns the interpolated value 
-     y = f(x1,x2) and may be called any number of times once the second
-     derivative table has been created.
-    -------------------------------------------------------------------------*/
-
-    double splint2 (double x1, double x2) { 
-
-        //  Check that the arguments lie within the range of the table.  If not,
-        //  terminate with error message and return -1.
-
-        if (x1 < minx1 || x1 > maxx1){
-            printf("*** Error: (x1=%f out of table range; return -1) ***",x1);
-            return -1; 
-        }
-        if (x2 < minx2 || x2 > maxx2){
-            printf("*** Error: (x2=%f out of table range; return -1) ***",x2);
-            return -1; 
-        }
-        
-        // Set up temporary 1D array that will be required in 2D interpolations. 
-        
-        double yytemp[m] = {}; // may need to define an array of size m, and require a value to be passed to this function
-
-        for (int i=0; i < m; i++){
-            for (int j=0; j < n; j++) {
-                y[j] = YofX[i][j];
-                d2Y[j] = d2Ya[i][j];
-            }
-            yytemp[i] = splint(x2);
-        }
-        spline(x1a, yytemp, n);
-        return splint(x1);
     }
 
 
