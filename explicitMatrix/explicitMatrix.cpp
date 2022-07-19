@@ -179,8 +179,8 @@ double Tnow;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-//char hydroFile[] = "data/torch47Profile.inp";
-char hydroFile[] = "data/nova125DProfile.inp";
+char hydroFile[] = "data/torch47Profile.inp";
+//char hydroFile[] = "data/nova125DProfile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -301,8 +301,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-3;         // Start time for plot output
-double stop_time = 1e9;               // Stop time for integration
+double startplot_time = 1e-7;         // Start time for plot output
+double stop_time = 1e-5;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step

@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log T (K)' textcolor rgb tic_color font "Arial,32"
+set ylabel ' T (K)' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -73,14 +73,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 8
+xlow = -7
+xup = -5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 7
-yup = 9
-ytics = 0.1     # Space between major y ticmarks
+ylow = 1e8
+yup = 1e10
+ytics = 2e9     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -99,7 +99,8 @@ set grid   # set x-y grid at major ticmarks
 #file1 = "hydroProfile.out"
 file1 = "gnufile2.data"
 
-plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
+#plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
+plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
 #file2 = "../data/nova125DProfile.inp"
@@ -107,7 +108,8 @@ file2 = "hydroProfile.out"  # The input hydro profile
 
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
-replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 1 title "T input (t)"
+#replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
+replot file2 using 1:(10**$2) with points ls 11 lw 0.5 dashtype 2 title "T input (t)"
 
 
 
@@ -115,7 +117,7 @@ replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 1 title "T input (t)"
 
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
+set xlabel 'T (K)' textcolor rgb tic_color font "Arial,28"
 set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
