@@ -161,18 +161,20 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = true; 
+bool hydroProfile = false; 
 
 double interpT[plotSteps];  // Interpolated value of T if hydro profile
 
-double Tnow;
+
+double logTnow;    // Log10 of current temp if interpolating from hydro profile
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
 // files included in the data subdirectory are
 //
-//    data/torch47Profile.data     // Very hot Type Ia supernova zone
-//    data/nova125DProfile.inp     // Representative zone in nova explosion
+//    data/torch47Profile.data         // Very hot Type Ia supernova zone
+//    data/nova125DProfile.inp         // Representative zone in nova explosion
+//    data/tidalSupernovaRosswog.inp   // Zone in tidal supernova explosion
 //
 // Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
 // plotHydroProfile are true, the hydro profile used for the temperature and 
@@ -665,51 +667,44 @@ public:
             exit(-1);
         }
                     
-        // Copy passed arrays to internal arrays for later use.
-        
-        printf("\n+++++size1=%d size2=%d",size1,size2);
+        // Copy arrays passed in constructor to internal arrays for later use.
         
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
-            printf("\n+++++ i=%d x[i]=%7.4e y[i]=%7.4e",
-                i,xarray[i],yarray[i]);
         }
         
-        //             
-        //             // Natural spline boundary conditions
-        //             
-                    y2[0] = 0.0;
-                    u[0] = 0.0;
-                    double qn = 0.0;
-                    double un = 0.0;
-        //             
-                    double signum;
-                    double sigden;
-                    double sig;
-                    double p;
                     
-                    // Decomposition loop of tridiagonal algorithm
-                    
-                    for (int i=1; i<= n-2; i++) {
-                        signum = x[i] - x[i-1];
-                        sigden = x[i+1] - x[i-1];
-                        sig = signum/sigden;
-                        p = sig*y2[i-1] +2.0;
-                        y2[i] = (sig-1.0)/p;
-                        u[i] = (6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1])/p;
-                    }
-                    
-                    y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
-                    
-                    // Backsubstitution loop of tridiagonal algorithm
-                    
-                    for (int i = n-2; i >= 0; i--){
-                        y2[i] = y2[i]*y2[i+1] + u[i];
-                        printf("\n   +++++ %d y2=%7.4e u=%7.4e", i, y2[i], u[i]);
-                    }
-                    //printf("\n");
-                    cout.flush();
+        // Natural spline boundary conditions
+            
+        y2[0] = 0.0;
+        u[0] = 0.0;
+        double qn = 0.0;
+        double un = 0.0;
+        double signum;
+        double sigden;
+        double sig;
+        double p;
+        
+        // Decomposition loop of tridiagonal algorithm
+        
+        for (int i=1; i<= n-2; i++) {
+            signum = x[i] - x[i-1];
+            sigden = x[i+1] - x[i-1];
+            sig = signum/sigden;
+            p = sig*y2[i-1] +2.0;
+            y2[i] = (sig-1.0)/p;
+            u[i] = ( 6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) 
+                /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1] )/p;
+        }
+        
+        y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
+        
+        // Backsubstitution loop of tridiagonal algorithm
+        
+        for (int i = n-2; i >= 0; i--){
+            y2[i] = y2[i]*y2[i+1] + u[i];
+        }
     }
     
     /*-------------------------------------------------------------------------
@@ -723,8 +718,6 @@ public:
     double splint(double xvalue) {
         
         int n = numberPoints;
-        
-        //printf("\n+++++ Splint (%7.4e)",xvalue);
         
         // Return -1 with error message if argument out of table bounds
         
@@ -746,6 +739,7 @@ public:
         double b = (xvalue-x[ilow])/h;
         return a*y[ilow] + b*y[ihigh] 
         + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
+        
     }
     
     
@@ -761,10 +755,10 @@ public:
      *	int ilow = instance.bisection(x,xvalue);
      *	int ihigh= ilow + 1;
      * 
-     *	 In this case, the method returns ilow = 1 and therefore ihigh = 2.  The method
+     * In this case, the method returns ilow = 1 and therefore ihigh = 2.  The method
      * checks first that xvalue is within the bounds of the table and returns -1 if
      * this condition is not satisfied.
-     - *------------------------------------------------------------------------------*/
+     *------------------------------------------------------------------------------*/
     
     
    int bisection(double *xarray, double xvalue){
@@ -777,7 +771,7 @@ public:
         double minx = xarray[0];
         double maxx = xarray[n-1];
         if(xvalue > maxx || xvalue < minx){
-            printf("Abort bisection: argument (%7.4e) Out of Bounds",xvalue);
+            printf("Abort bisection: argument (%7.4e) Out of Bounds", xvalue);
             return -1;
         }
         
@@ -1004,8 +998,8 @@ class Utilities{
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
             
-            string str2 = "# t       dt  2/Rmin   Reaction_Rmin    1/Rmax   Reaction_Rmax";
-            str2 += ("     dt_FE   dt_EA   trial_dt  interpT9\n");
+            string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
+            str2 += ("  dt_FE  dt_EA  trial_dt  interpT\n");
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
             fprintf(pFile2, stringToChar(str2));
             
@@ -4139,10 +4133,6 @@ Reaction reaction [SIZE];
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
-//SplineInterpolator interpolateT;   // Temperature interpolator object
-
-
-
 // ------- Main CPU routine --------
 
 
@@ -4456,11 +4446,6 @@ int main() {
         fprintf(pFileD, "rho may change ****\n");
     }
     
-    
-for(int i=0; i<hydroLines; i++){
-    printf("\n+++++ i=%d/%d  x=%7.4e y=%7.4e", i, hydroLines, hydroTime[i], hydroTemp[i]);
-}
-    
     // Instantiate hydro temperature interpolator object
     
     //if (hydroProfile){
@@ -4524,10 +4509,10 @@ for(int i=0; i<hydroLines; i++){
         
         getmaxdYdt();
         
+        // Since the arrays holding the hydro profile have entries in terms of log10,
+        // interpolate in log10(t)
         
-        
-        Tnow = interpolateT.splint(log10(t));
-        printf("\n+++++  t=%7.4e  interpT=%7.4e",t, Tnow);
+        logTnow = interpolateT.splint(log10(t));
         
         // Perform an integration step using the static method doIntegrationStep() of
         // the class Integrate.
@@ -4640,7 +4625,7 @@ for(int i=0; i<hydroLines; i++){
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d sumX=%6.4f Xfac=%6.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e T9=%5.3f";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e logT9=%5.3f";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
@@ -4648,11 +4633,11 @@ for(int i=0; i<hydroLines; i++){
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
-                   Tnow/1e9
+                   logTnow
                    
             );
             
-            interpT[plotCounter-1] = Tnow; 
+            interpT[plotCounter-1] = logTnow; 
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
@@ -5101,14 +5086,13 @@ void readhydroProfile(char *fileName){
             
             sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); 
             
-            // Store hydro profile in three arrays
+            // Store hydro profile in three arrays. We will interpolate in log10
+            // values, so store the time, temperature, and density from the
+            // hydro values as log10 of their value.
             
             hydroTime[index] = log10(Time);   // Time
             hydroTemp[index] = log10(Temp);   // Temperature(time)
             hydroRho[index] = log10(Rho);     // Density(time)
-            
-            printf("\nREADHYDRO++++++ i=%d hydroTime=%7.4e hydroT=%7.4e hydroRho=%7.4e",
-                index,hydroTime[index],hydroTemp[index],hydroRho[index]);
             
             index ++;
         }
