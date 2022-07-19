@@ -80,7 +80,7 @@ minxtics = 5  # Number minor x tics
 
 ylow = 0
 yup = 0.35
-ytics = 0.1     # Space between major y ticmarks
+ytics = 0.05     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -102,9 +102,12 @@ file1 = "gnufile2.data"
 plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
-file2 = "../data/nova125DProfile.inp"
+#file2 = "../data/nova125DProfile.inp"
+file2 = "hydroProfile.out"  # The input hydro profile
 
-replot file2 using (log10($2)):($3/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
+#replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
+replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
+
 
 
 # Reset font sizes for .eps and .png output2
