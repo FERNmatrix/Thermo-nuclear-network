@@ -601,16 +601,13 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 //----------------CLASS DEFINITIONS ----------------
 
 /*
- Class to implement 1D and 2D cubic spline interpolation. Adapted 
- from algorithms in Numerical Recipes. For 1D interpolations, use 
+ Class SplineInterpolator to implement 1D cubic spline interpolation. 
+ Adapted from algorithms in Numerical Recipes. For 1D interpolations, use 
  the method spline to set up an interpolation table and then use the 
- method splint to interpolate in the independent variable. For 2D 
- interpolations, use the method spline2 to set up the 2D interpolation 
- table and then use the method splint2 to interpolate using that table. 
+ method splint to interpolate in the independent variable.
  The class also makes available the utility function bisection, which 
  finds the indices in a 1-D table that bracket a particular entry in 
- the table (assuming the entries to increase monotonically). See the 
- class SplineTester for simple examples of using SplineInterpolator.
+ the table (assuming the entries to increase monotonically). 
  
  REFERENCE:  
  
@@ -618,52 +615,29 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
  http://fourier.eng.hmc.edu/e176/lectures/ch7/node6.html
  http://www.foo.be/docs-free/Numerical_Recipe_In_C/c3-3.pdf
  
- Class SplineInterpolator implements cubic spline interpolation in one 
- dimension and bicubic spline interpolation in two dimensions.
  */
+
 
 class SplineInterpolator{
     
 private:
     
-    int n;
-    int m;
-    
-    int numberPoints;
-    
-    char* interpLabel; 
-    
-    //static const int maxpoints = 200;
+    int numberPoints; 
     double x[maxHydroEntries];
-            //double x1a [];
-            //double x2a [];
-            //double ya [][];
     double y[maxHydroEntries];
-    //         double [] y2;
-    //         double [][] y2a;
-    //         double [] u;
-    //         int n,m;
-    //         double maxx1,minx1,maxx2,minx2;
-    
     double y2[maxHydroEntries];
     double u[maxHydroEntries];
     
 public:
     
-    // Constructors
-    
-    //SplineInterpolator(){}
+    // Constructor creates a SplineInterpolator object for the arrays
+    // xarray and yarray passed using the pointers *xarray and *yarray.
     
     SplineInterpolator(int points, double *xarray, double *yarray) { 
-        
-        //int size = (int) sizeof(xarray)/sizeof(double);
-        printf("\n+++++ Creating Spline object with %d points", points);
-        
+
         numberPoints = points;
-       
-        for(int i=0; i<points; i++){
-            printf("\n   +++++ %d x=%7.4e y=%7.4e",i,xarray[i], yarray[i]);
-        }
+        
+        // Set up the spline coefficients required for interpolation
         
         spline(xarray, yarray, points, points);
     };
@@ -675,17 +649,14 @@ public:
      *   that will be used to do later spline interpolation.  It assumes
      *   the existence of an array xarray of independent variables and an array 
      *   yarray(x) of dependent variables, with the xarray array monotonically 
-     *   increasing.  The second derivatives are stored in the array y2.  Elements of
-     *   the y2 array can be accessed for diagnostic purposes using the method 
-     *   getSplined2(index).
+     *   increasing.  The second derivatives are stored in the array y2.  
      * ------------------------------------------------------------------------------*/
     
     
     void spline(double *xarray, double *yarray, int size1, int size2) {
-        //void spline( double xarray[], double yarray)[] {
         
-        int n = size1; //sizeof(xarray)/sizeof(xarray[0]);
-        int m = size2; //sizeof(yarray)/sizeof(yarray[0]);
+        int n = size1;  
+        int m = size2; 
 
         if(size1 != size2){
             printf("\nWarning: lengths of x and y(x) arrays not equal:");
@@ -693,14 +664,8 @@ public:
             printf("\nEXIT\n");
             exit(-1);
         }
-        
-        //x = xarray; //new double[n];
-        //y = yarray; // double[n];
-        //             y2 = new double[n];
-        //             u = new double[n];
-        
-        //             
-        // Copy passed arrays to internal arrays
+                    
+        // Copy passed arrays to internal arrays for later use.
         
         printf("\n+++++size1=%d size2=%d",size1,size2);
         
