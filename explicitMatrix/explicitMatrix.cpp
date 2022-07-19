@@ -161,7 +161,11 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
+
+double interpT[plotSteps];  // Interpolated value of T if hydro profile
+
+double Tnow;
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -443,7 +447,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 200;
+const static int maxHydroEntries = 100;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -739,7 +743,7 @@ public:
                         y2[i] = y2[i]*y2[i+1] + u[i];
                         printf("\n   +++++ %d y2=%7.4e u=%7.4e", i, y2[i], u[i]);
                     }
-                    printf("\n");
+                    //printf("\n");
                     cout.flush();
     }
     
@@ -755,7 +759,7 @@ public:
         
         int n = numberPoints;
         
-        printf("\n+++++ Splint (%7.4e)",xvalue);
+        //printf("\n+++++ Splint (%7.4e)",xvalue);
         
         // Return -1 with error message if argument out of table bounds
         
@@ -1036,18 +1040,19 @@ class Utilities{
             fprintf(pFile, "#\n");
             
             string str2 = "#      t       dt  2/Rmin   Reaction_Rmin    1/Rmax   Reaction_Rmax";
-            str2 += ("     dt_FE   dt_EA   trial_dt\n");
+            str2 += ("     dt_FE   dt_EA   trial_dt  interpT9\n");
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
             fprintf(pFile2, stringToChar(str2));
             
             for(int i=0; i<plotSteps; i++){
                 
-                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f\n", 
+                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e\n", 
                     tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
                     reacLabel[ slowestRateIndexPlot[i]],
                     log10(2.0/fastestRatePlot[i]),
                     reacLabel[ fastestRateIndexPlot[i]],
-                    log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i])
+                    log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i]),
+                    interpT[i]
                 );
             }
             
@@ -4520,12 +4525,9 @@ for(int i=0; i<hydroLines; i++){
         // above.  Otherwise (hydroProfile = true) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
         
-double interT = interpolateT.splint(t);
-printf("\n+++++  t=%7.4e  interT=%7.4e",t, interT);
+        //if(hydroProfile && totalTimeSteps > 1) T9 = interpolateT.splint(t);
         
-        if(hydroProfile && totalTimeSteps > 1) T9 = interpolateT.splint(t);
-        
-        //if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+        if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
         
         if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
     
@@ -4554,6 +4556,11 @@ printf("\n+++++  t=%7.4e  interT=%7.4e",t, interT);
         // value of data for the timestep. Presently for information only.
         
         getmaxdYdt();
+        
+        
+        
+        Tnow = interpolateT.splint(t);
+        printf("\n+++++  t=%7.4e  interpT=%7.4e",t, Tnow);
         
         // Perform an integration step using the static method doIntegrationStep() of
         // the class Integrate.
@@ -4666,16 +4673,19 @@ printf("\n+++++  t=%7.4e  interT=%7.4e",t, interT);
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d sumX=%6.4f Xfac=%6.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e T9=%5.3f";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
                    totalAsy, totalEquilRG, sumX, XcorrFac, ECON*netdERelease, 
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
-                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious
+                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
+                   Tnow/1e9
                    
             );
+            
+            interpT[plotCounter-1] = Tnow/1e9;  // Units of 10^9 K
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
