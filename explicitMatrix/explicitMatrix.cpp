@@ -301,8 +301,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e0;         // Start time for plot output
-double stop_time = 1e8;               // Stop time for integration
+double startplot_time = 1e-3;         // Start time for plot output
+double stop_time = 1e9;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -4561,7 +4561,7 @@ for(int i=0; i<hydroLines; i++){
         
         
         
-        Tnow = interpolateT.splint(t);
+        Tnow = interpolateT.splint(log10(t));
         printf("\n+++++  t=%7.4e  interpT=%7.4e",t, Tnow);
         
         // Perform an integration step using the static method doIntegrationStep() of
@@ -4687,7 +4687,7 @@ for(int i=0; i<hydroLines; i++){
                    
             );
             
-            interpT[plotCounter-1] = Tnow/1e9;  // Units of 10^9 K
+            interpT[plotCounter-1] = Tnow; 
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
@@ -5138,9 +5138,9 @@ void readhydroProfile(char *fileName){
             
             // Store hydro profile in three arrays
             
-            hydroTime[index] = Time;   // Time
-            hydroTemp[index] = Temp;   // Temperature(time)
-            hydroRho[index] = Rho;     // Density(time)
+            hydroTime[index] = log10(Time);   // Time
+            hydroTemp[index] = log10(Temp);   // Temperature(time)
+            hydroRho[index] = log10(Rho);     // Density(time)
             
             printf("\nREADHYDRO++++++ i=%d hydroTime=%7.4e hydroT=%7.4e hydroRho=%7.4e",
                 index,hydroTime[index],hydroTemp[index],hydroRho[index]);
