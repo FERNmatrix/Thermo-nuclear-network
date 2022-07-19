@@ -73,14 +73,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -7
-xup = -5
+xlow = 0
+xup = 8
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow =0
-yup = 10
-ytics = 0.5     # Space between major y ticmarks
+ylow = 0
+yup = 0.35
+ytics = 0.1     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -99,11 +99,12 @@ set grid   # set x-y grid at major ticmarks
 #file1 = "hydroProfile.out"
 file1 = "gnufile2.data"
 
-plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T input (t)"
+plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 
-file2 = "../data/torch47Profile.inp"
+#file2 = "../data/torch47Profile.inp"
+file2 = "../data/nova125DProfile.inp"
 
-replot file2 using (log10($2)):($3/1e9) with points ls 11 lw 0.5 dashtype 1 title "T interp (t)"
+replot file2 using (log10($2)):($3/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 
 
 # Reset font sizes for .eps and .png output2

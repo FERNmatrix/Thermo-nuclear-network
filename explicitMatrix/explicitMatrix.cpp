@@ -163,7 +163,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 bool hydroProfile = true; 
 
-double interpT[100];  // Interpolated value of T if hydro profile
+double interpT[plotSteps];  // Interpolated value of T if hydro profile
 
 double Tnow;
 
@@ -179,8 +179,8 @@ double Tnow;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/torch47Profile.inp";
-//char hydroFile[] = "data/nova125DProfile.inp";
+//char hydroFile[] = "data/torch47Profile.inp";
+char hydroFile[] = "data/nova125DProfile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -301,8 +301,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-7;         // Start time for plot output
-double stop_time = 1e-5;               // Stop time for integration
+double startplot_time = 1e0;         // Start time for plot output
+double stop_time = 1e8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -1039,7 +1039,7 @@ class Utilities{
             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
             fprintf(pFile, "#\n");
             
-            string str2 = "#      t       dt  2/Rmin   Reaction_Rmin    1/Rmax   Reaction_Rmax";
+            string str2 = "# t       dt  2/Rmin   Reaction_Rmin    1/Rmax   Reaction_Rmax";
             str2 += ("     dt_FE   dt_EA   trial_dt  interpT9\n");
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
             fprintf(pFile2, stringToChar(str2));
