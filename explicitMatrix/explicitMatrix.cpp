@@ -105,7 +105,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -163,7 +163,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 bool hydroProfile = true; 
 
-double interpT[plotSteps];  // Interpolated value of T if hydro profile
+double interpT[100];  // Interpolated value of T if hydro profile
 
 double Tnow;
 
@@ -301,8 +301,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double startplot_time = 1e-7;         // Start time for plot output
+double stop_time = 1e-5;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -1055,6 +1055,8 @@ class Utilities{
                     interpT[i]
                 );
             }
+            
+            cout.flush();
             
             // Write header for file pointed to by pFile
             

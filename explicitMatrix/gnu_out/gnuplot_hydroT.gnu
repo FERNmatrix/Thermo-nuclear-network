@@ -70,19 +70,17 @@ ds="nova125D profile"
 ds = ds.": Temperature"
 set title ds textcolor rgb title_color
 
-file1 = "hydroProfile.out"
-
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = 10
-xtics = 2     # Space between major x ticmarks
+xlow = -7
+xup = -5
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 7
-yup = 9
-ytics = 0.2      # Space between major y ticmarks
+ylow =0
+yup = 10
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -98,10 +96,15 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+#file1 = "hydroProfile.out"
+file1 = "gnufile2.data"
 
-plot file1 using (log10($1)):(log10($2)) with lines ls 1 lw 1.0 dashtype 1 title "T(t)"
+plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T input (t)"
+
+file2 = "../data/torch47Profile.inp"
+
+replot file2 using (log10($2)):($3/1e9) with points ls 11 lw 0.5 dashtype 1 title "T interp (t)"
+
 
 # Reset font sizes for .eps and .png output2
 
