@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log T (K)' textcolor rgb tic_color font "Arial,32"
+set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -66,23 +66,21 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="nova125D Hydro Profile"
+ds="nova125D profile"
 ds = ds.": Density"
 set title ds textcolor rgb title_color
-
-file1 = "hydroProfile.out"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = 10
-xtics = 2     # Space between major x ticmarks
+xlow = -5
+xup = 8
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 5
-ytics = 0.5      # Space between major y ticmarks
+ylow = 0.5
+yup = 4.5
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -98,22 +96,33 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+file1 = "gnufile2.data"
 
-plot file1 using (log10($1)):(log10($3)) with lines ls 1 lw 1.0 dashtype 1 title "rho(t)"
+#plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
+plot file1 using 1:(10**$11) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
+plot file1 using 1:11 with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
+
+file2 = "hydroProfile.out"  # The input hydro profile
+
+#replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
+#replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
+#replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
+#replot file2 using 1:(10**$3) with points ls 11 lw 0.5 dashtype 2 title "Rho input (t)"
+replot file2 using 1:3 with points ls 11 lw 0.5 dashtype 2 title "Rho input (t)"
+
+
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
+set title ds textcolor rgb title_color font "Arial,16"
+set key top right font "Arial,16"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,18"
+set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,18"
 
 # Plot to postscript file
 
 set out "gnuplot_hydroRho.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 #"Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file
