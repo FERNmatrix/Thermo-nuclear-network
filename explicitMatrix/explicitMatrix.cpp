@@ -442,7 +442,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 200;
+const static int maxHydroEntries = 100;
 int hydroLines;
 
 double hydroTime[maxHydroEntries];
@@ -629,10 +629,10 @@ class SplineInterpolator{
      getSplined2(index).
     -------------------------------------------------------------------------------*/
     
-     void spline(double xarray[],double yarray[]) {
+     void spline(double *xarray,double *yarray, int sx, int sy) {
 
-        int n = sizeof(xarray)/sizeof(xarray[0]);
-        int m = sizeof(yarray)/sizeof(yarray[0]);
+        int n = sx;
+        int m = sy;
 
         if(n != m){
             printf("\n Warning: lengths of x and y(x) arrays not equal: xarray length= %d, yarray length= %d", n, m);
@@ -816,13 +816,19 @@ class Utilities{
             // Will call spline interpolator in hydro profile table to return 
             // T9 at this value of time t.  For now, we just return T9_start.
             double temp;            // Interpolated temperature
-            //double timeX = t;       // Current Time
+            
+            int sx = sizeof(hydroTime)/sizeof(hydroTime[0]);
+            int sy = sizeof(hydroTemp)/sizeof(hydroTemp[0]);
+
+            if(sx != sy){
+                printf("\n Warning: lengths of x and y(x) arrays not equal: xarray length= %d, yarray length= %d", sx, sy);
+            }
 
             //Call SplineInterpolator::SplineInterpolation to pass the time/temp arrays and the current time
             //Spline will fill the 2nd derivative arrays given the Time and Temp arrays
             //Splint will calculate the temp for the given time     
 
-            Interpolate.spline(hydroTime, hydroTemp);
+            Interpolate.spline(hydroTime, hydroTemp, sx, sy);
             //SplineInterpolator::SplineInterpolation(hydroTime,hydroTemp,timeX);
 
             // Access tempY which is the interpolated value for temperature
@@ -844,12 +850,18 @@ class Utilities{
             // Will call spline interpolator in hydro profile table to return 
             // rho at this value of time t.  For now, we just return rho_start.            
             double rhonow;             // Interpolated density    
-            //double timeX = t;          // Current time
 
+            
+            int sx = sizeof(hydroTime)/sizeof(hydroTime[0]);
+            int sy = sizeof(hydroRho)/sizeof(hydroRho[0]);
+
+            if(sx != sy){
+                printf("\n Warning: lengths of x and y(x) arrays not equal: xarray length= %d, yarray length= %d", sx, sy);
+            }
             //Call SplineInterpolator::SplineInterpolation to pass the time/rho arrays and the current time
             //Spline will fill the 2nd derivative arrays given the Time and Rho arrays
             //Splint will calculate the density for the given time         
-            Interpolate.spline(hydroTime,hydroRho);
+            Interpolate.spline(hydroTime,hydroRho, sx, sy);
 
             //Access tempY which is the interpolated value for density
             rhonow = Interpolate.splint(t);
