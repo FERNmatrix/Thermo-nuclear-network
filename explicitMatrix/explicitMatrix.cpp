@@ -611,8 +611,8 @@ class SplineInterpolator{
 
     double x[maxHydroEntries];      // x values
     double y[maxHydroEntries];      // y values
-    double *d2Y;    // array containing second derivative for the spline function
-    double *u;      // unknown
+    double d2Y[maxHydroEntries];    // array containing second derivative for the spline function
+    double u[maxHydroEntries];      // unknown
     int n,m;        // n is the x-array size and m is the y-array size
     double maxx1,minx1,maxx2,minx2; // min and max values (subindices of i+1(max) / i-1 or i(min))
 
