@@ -39,7 +39,7 @@
  * 3. Decide on whether constant T and rho, or input from a hydro T and rho profile.
  * 4. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
  * 5. Change control parameters like stop_time, massTol, ...
- * 6. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
+ * 6. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()   ~Line 920s
  * 7. Change values of T9_start and rho_start if constant T and rho.
  *
  * ----------------------------------
@@ -609,17 +609,13 @@ class SplineInterpolator{
 
     public:
 
-    double *x[200];      // x values
-    double *x1a;    // x1 array
-    double *x2a;    // x2 array
-    double **YofX;  // 2-dimensional array of Y(X1,X2)
-    double *y[200];      // y values
+    double x[maxHydroEntries];      // x values
+    double y[maxHydroEntries];      // y values
     double *d2Y;    // array containing second derivative for the spline function
-    double **d2Ya;  // array containing second derivative for the spline2 function
     double *u;      // unknown
     int n,m;        // n is the x-array size and m is the y-array size
     double maxx1,minx1,maxx2,minx2; // min and max values (subindices of i+1(max) / i-1 or i(min))
-    double tempY;   // Temporary holder for interpolated Y-value
+
 
 
     /*------------------------------------------------------------------------------
@@ -633,7 +629,7 @@ class SplineInterpolator{
      getSplined2(index).
     -------------------------------------------------------------------------------*/
     
-     void spline(double xarray[], double yarray[]) {
+     void spline(double xarray[],double yarray[]) {
 
         int n = sizeof(xarray)/sizeof(xarray[0]);
         int m = sizeof(yarray)/sizeof(yarray[0]);
@@ -644,8 +640,8 @@ class SplineInterpolator{
 
         // Copy passed arrays to internal arrays
         for(int i=0; i < n; i++){
-            *x[i] = xarray[i];
-            *y[i] = yarray[i];
+            x[i] = xarray[i];
+            y[i] = yarray[i];
         }
 
         // Natural spline boundary conditions
@@ -694,29 +690,29 @@ class SplineInterpolator{
 
     double splint(double xvalue) {
 
-        int n = sizeof(x)/sizeof(x[0]);;
+        int n = sizeof(x)/sizeof(x[0]);
 
         // Return -1 with error message if argument out of table bounds
 
-        if (xvalue < *x[0] || xvalue > *x[n-1]) {
+        if (xvalue < x[0] || xvalue > x[n-1]) {
             printf("Argument (%f) Out of Table Bounds %f - %f", x[0], x[n-1], xvalue);
             return -1;
         }
 
         // Call bisection method to bracket entry xvalue with indices ilow and ihigh
 
-        int ilow = bisection(*x,n,xvalue);      
+        int ilow = bisection(x,n,xvalue);      
         int ihigh = ilow + 1;                  
         double h = x[ihigh]-x[ilow];
 
         // Evaluate cubic spline polynomial and return interpolated value
 
-        double A = (*x[ihigh]-xvalue)/(x[ihigh]-x[ilow]);
-        double B = (xvalue-(*x[ilow]))/(x[ihigh]-x[ilow]);
+        double A = (x[ihigh]-xvalue)/(x[ihigh]-x[ilow]);
+        double B = (xvalue-x[ilow])/(x[ihigh]-x[ilow]);
         double C = (((A*A*A)-A)*(h*h))/6;
         double D = (((B*B*B)-B)*(h*h))/6;
 
-        double valueS1 = A*(*y[ilow]) + B*(*y[ihigh]) + C*d2Y[ilow] + D*d2Y[ihigh];
+        double valueS1 = A*y[ilow] + B*y[ihigh] + C*d2Y[ilow] + D*d2Y[ihigh];
 
         return valueS1;
     }
@@ -779,13 +775,6 @@ class SplineInterpolator{
         return d2Y[index];
     }
 
-
-    // Public method to return element of spline 2nd derivative array for 2D
-    // interpolation.  Mostly useful for diagnostics.
-
-    double getSpline2d2(int row, int column){
-        return d2Ya[row][column];
-    }
 }; // End class SplineInterpolator
 
 
@@ -928,7 +917,8 @@ class Utilities{
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+//               int plotXlist[] = {0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48}; //48 ISO network
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
