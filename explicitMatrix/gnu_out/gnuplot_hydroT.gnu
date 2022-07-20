@@ -73,14 +73,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -7
-xup = -5
+xlow = -3
+xup = 8
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 1e8
-yup = 1e10
-ytics = 2e9     # Space between major y ticmarks
+ylow = 1e7
+yup = 4e8
+ytics = 1e8     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -115,15 +115,15 @@ replot file2 using 1:(10**$2) with points ls 11 lw 0.5 dashtype 2 title "T input
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'T (K)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
+set title ds textcolor rgb title_color font "Arial,16"
+set key top right font "Arial,16"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,18"
+set ylabel 'T(K)' textcolor rgb tic_color font "Arial,18"
 
 # Plot to postscript file
 
 set out "gnuplot_hydroT.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 #"Arial" 24
 replot               # Plot to postscript file
 
 # Plot to PNG file

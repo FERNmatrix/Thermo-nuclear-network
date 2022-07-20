@@ -105,7 +105,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -161,12 +161,12 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
-
-double interpT[plotSteps];  // Interpolated value of T if hydro profile
-
+bool hydroProfile = true; 
 
 double logTnow;    // Log10 of current temp if interpolating from hydro profile
+double logRhoNow;  // Log10 of current rho if interpolating from hydro profile
+double interpT[plotSteps];    // Interpolated value of T if hydro profile
+double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -181,8 +181,7 @@ double logTnow;    // Log10 of current temp if interpolating from hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/torch47Profile.inp";
-//char hydroFile[] = "data/nova125DProfile.inp";
+char hydroFile[] = "data/nova125DProfile.inp";   // "data/torch47Profile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -303,8 +302,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-7;         // Start time for plot output
-double stop_time = 1e-5;               // Stop time for integration
+double startplot_time = 1e-3;         // Start time for plot output
+double stop_time = 1e8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -999,19 +998,19 @@ class Utilities{
             fprintf(pFile, "#\n");
             
             string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
-            str2 += ("  dt_FE  dt_EA  trial_dt  interpT\n");
+            str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
             fprintf(pFile2, stringToChar(str2));
             
             for(int i=0; i<plotSteps; i++){
                 
-                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e\n", 
+                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
                     tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
                     reacLabel[ slowestRateIndexPlot[i]],
                     log10(2.0/fastestRatePlot[i]),
                     reacLabel[ fastestRateIndexPlot[i]],
                     log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i]),
-                    interpT[i]
+                    interpT[i], interpRho[i]
                 );
             }
             
@@ -4448,8 +4447,11 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-    //if (hydroProfile){
-     SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp); 
+    //if (hydroProfile){ 
+    
+     SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp);
+     SplineInterpolator interpolateRho = SplineInterpolator (hydroLines, hydroTime, hydroRho);
+     
     //}
     
     
@@ -4513,6 +4515,7 @@ int main() {
         // interpolate in log10(t)
         
         logTnow = interpolateT.splint(log10(t));
+        logRhoNow = interpolateRho.splint(log10(t));
         
         // Perform an integration step using the static method doIntegrationStep() of
         // the class Integrate.
@@ -4625,7 +4628,7 @@ int main() {
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d sumX=%6.4f Xfac=%6.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e logT9=%5.3f";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e logT9=%5.3f logRho=%5.3f";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
@@ -4633,11 +4636,12 @@ int main() {
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
-                   logTnow
+                   logTnow, logRhoNow
                    
             );
             
-            interpT[plotCounter-1] = logTnow; 
+            interpT[plotCounter-1] = logTnow;
+            interpRho[plotCounter-1] = logRhoNow;
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
