@@ -102,10 +102,10 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 50                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_nova134.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -231,7 +231,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -279,8 +279,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.25;           // Initial temperature in units of 10^9 K
+double rho_start = 1e4;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -296,8 +296,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-2;               // Stop time for integration
+double startplot_time = 1e-5;         // Start time for plot output
+double stop_time = 1e6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -316,7 +316,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-9;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -2574,7 +2574,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Static functions can be called directly from the class
     // without having to instantiate.
     
-    private:
+    public:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
@@ -2679,7 +2679,7 @@ class ReactionGroup:  public Utilities {
         
         if (refreac == -1) {
             refreac = 0;
-            fprintf(pFileD, "\n*** Reaction group %d has no forward reactions ***", 
+            fprintf(pFileD, "\nRG: *** Reaction group %d has no forward reactions ***", 
                 RGn);
         }
         
@@ -5410,7 +5410,7 @@ void assignRG(){
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    fprintf(pFileD, "\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
+    fprintf(pFileD, "\n\nRG: CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){
         
@@ -5500,7 +5500,7 @@ void assignRG(){
         
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
-        fprintf(pFileD, "\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
+        fprintf(pFileD, "\nRG: RG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
             i, RG[i].getrefreac(), RGclassRef, 
             RG[i].getniso(), RG[i].getnumberMemberReactions() );
         
@@ -5531,14 +5531,14 @@ void assignRG(){
     
     for(int i=0; i<numberRG; i++){
         
-        fprintf(pFileD, "\n\nSummary: RG=%d", RG[i].getRGn());
         int numr = RG[i].getnumberMemberReactions();
+        fprintf(pFileD, "\n\nRG: Summary: RG=%d members=%d niso=%d", RG[i].getRGn()), numr, RG[i].niso;
         
         for(int j=0; j<numr; j++){
             
             int reacID = RG[i].getmemberReactions(j);
             fprintf(pFileD, 
-                "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
+                "\nRG: %d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
                 j, reacLabel[reacID], RG[i].getisolabel(0),
                 RG[i].getisolabel(1), RG[i].getisolabel(2),
                 RG[i].getisolabel(3)
@@ -5666,9 +5666,11 @@ void updateY0(){
     // Set Y0 in ReactionGroup objects RG[i]
     
     for(int i=0; i<numberRG; i++){
-        for(int j=0; j<RG[i].getniso(); j++){
+        int jup = RG[i].getniso();
+        for(int j=0; j<jup; j++){
             int jj = RG[i].getisoindex(j);
             RG[i].setisoY0(j, Y[jj]);
+            int segf = jj;    // Dummy debug
         }
     }
     
