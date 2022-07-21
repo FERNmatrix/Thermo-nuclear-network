@@ -102,10 +102,10 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 116                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1135                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 400              // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_116.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_116.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -165,8 +165,8 @@ bool hydroProfile = true;
 
 double logTnow;    // Log10 of current temp if interpolating from hydro profile
 double logRhoNow;  // Log10 of current rho if interpolating from hydro profile
-double interpT[plotSteps];    // Interpolated value of T if hydro profile
-double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
+//double interpT[plotSteps];    // Interpolated value of T if hydro profile
+//double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -237,7 +237,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -302,8 +302,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-5;         // Start time for plot output
-double stop_time = 1e8;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-8;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -322,7 +322,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-9;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -446,10 +446,12 @@ gsl_vector *rvPt;      // Pointer to rv[] array
 int totalFplus = 0;
 int totalFminus = 0;
 
-// Arrays to hold time, temperature, and density in hydro profile
+const static int maxHydroEntries = 41;
+int hydroLines;                         // # hydro profile lines read in
 
-const static int maxHydroEntries = 100;
-int hydroLines;  // Number of hydro profile lines read in
+// Arrays holding hydro profile data read in.  Data are stored as
+// log10 of the quantity for the time, temperature, and density
+// of the hydro profile.
 
 double hydroTime[maxHydroEntries];
 double hydroTemp[maxHydroEntries];
@@ -601,14 +603,17 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 //----------------CLASS DEFINITIONS ----------------
 
+
 /*
  Class SplineInterpolator to implement 1D cubic spline interpolation. 
  Adapted from algorithms in Numerical Recipes. For 1D interpolations, use 
- the method spline to set up an interpolation table and then use the 
- method splint to interpolate in the independent variable.
- The class also makes available the utility function bisection, which 
- finds the indices in a 1-D table that bracket a particular entry in 
- the table (assuming the entries to increase monotonically). 
+ the method spline() (which is invoked in the constructor) to set up an 
+ interpolation table and then use the method splint() to interpolate in 
+ the independent variable. The class also makes available the utility 
+ function bisection, which finds the indices in a 1-D table that bracket 
+ a particular entry in the table (assuming the entries to increase 
+ monotonically). By default we assume that the entries in the tables are 
+ doubles and thus the returned interpolant is a double.
  
  REFERENCE:  
  
@@ -618,21 +623,39 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
  
  */
 
-
 class SplineInterpolator{
     
 private:
     
-    int numberPoints; 
-    double x[maxHydroEntries];
-    double y[maxHydroEntries];
-    double y2[maxHydroEntries];
-    double u[maxHydroEntries];
+    int numberPoints;              // number points in interpolation arrays
+    double x[maxHydroEntries];     // internal array holding independent variable
+    double y[maxHydroEntries];     // internal array holding independent variable
+    double y2[maxHydroEntries];    // array of 2nd derivatives used in spline
+    double u[maxHydroEntries];     // utility array used in spline
     
 public:
     
     // Constructor creates a SplineInterpolator object for the arrays
-    // xarray and yarray passed using the pointers *xarray and *yarray.
+    // xarray (independent variable) and yarray (dependent variable), 
+    // passed using the pointers *xarray and *yarray to the arrays.
+    // A SplineInterpolator object can be instantiated by invoking the
+    // constructor:
+    //
+    //   SplineInterpolator myInterpolator = SplineInterpolator(n, x, y);
+    //
+    // where x is an array of independent variables, y is an array of
+    // independent variables, and n is the number of entries in each arrays.
+    // Thus by changing the arguments n, x, and y in the contructor different
+    // SplineInterpolator objects can be constructed that interpolate in
+    // different tables. Since the constructor executes the spline() function to
+    // set up the arrays needed to do the spline interpolation, once an object
+    // is created it is ready to interpolate using the splint() function. For 
+    // example, once myInterpolator is instantiated as above,
+    //
+    //     myInterpolator.splint(xvalue);
+    // 
+    // will return the value of y interpolated at the value x = xvalue.
+    
     
     SplineInterpolator(int points, double *xarray, double *yarray) { 
 
@@ -645,12 +668,12 @@ public:
     
     
     /*------------------------------------------------------------------------------
-     *   Adaptation of 1D cubic spline algorithm from Numerical Recipes.
-     *   This method processes the array to compute and store the second derivatives
-     *   that will be used to do later spline interpolation.  It assumes
-     *   the existence of an array xarray of independent variables and an array 
-     *   yarray(x) of dependent variables, with the xarray array monotonically 
-     *   increasing.  The second derivatives are stored in the array y2.  
+     *   The method SplineInterpolator::spline(double, double, int, int) processes the 
+     *   arrays to compute and store the second derivatives that will be used to do 
+     *   later spline interpolation.  It assumes the existence of an array xarray 
+     *   of independent variables and an array yarray(x) of dependent variables, with 
+     *   the xarray array assumed to increase monotonically.  The second  derivatives 
+     *   are stored in the array y2.  
      * ------------------------------------------------------------------------------*/
     
     
@@ -672,7 +695,6 @@ public:
             x[i] = xarray[i];
             y[i] = yarray[i];
         }
-        
                     
         // Natural spline boundary conditions
             
@@ -688,6 +710,7 @@ public:
         // Decomposition loop of tridiagonal algorithm
         
         for (int i=1; i<= n-2; i++) {
+            
             signum = x[i] - x[i-1];
             sigden = x[i+1] - x[i-1];
             sig = signum/sigden;
@@ -695,6 +718,7 @@ public:
             y2[i] = (sig-1.0)/p;
             u[i] = ( 6.0*((y[i+1]-y[i])/(x[i+1]-x[i])-(y[i]-y[i-1]) 
                 /(x[i]-x[i-1]))/(x[i+1]-x[i-1])-sig*u[i-1] )/p;
+                
         }
         
         y2[n-1] = (un-qn*u[n-2])/(qn*y2[n-2]+1.0);
@@ -706,12 +730,14 @@ public:
         }
     }
     
+    
     /*-------------------------------------------------------------------------
-     * Method splint calculates the 1D cubic spline polynomial for an arbitrary
-     * argument xvalue once the second derivative table has been constructed
-     * using the method spline.  This method returns the interpolated value 
-     * y = f(xvalue) and may be called any number of times once the second
-     * derivative table has been created.
+     * Method SplineInterpolator::splint() calculates the 1D cubic spline 
+     * polynomial for an arbitrary argument xvalue once the second derivative 
+     * table y2 has been constructed using the method spline.  This method 
+     * returns the interpolated value y = f(xvalue), and may be called any 
+     * number of times once the second derivative table has been created using
+     * the spline method.
      * ---------------------------------------------------------------------------*/
     
     double splint(double xvalue) {
@@ -737,17 +763,16 @@ public:
         double a = (x[ihigh]-xvalue)/h;
         double b = (xvalue-x[ilow])/h;
         return a*y[ilow] + b*y[ihigh] 
-        + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
+            + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
         
     }
     
     
     /*-----------------------------------------------------------------------------
-     * For an array xarray[] and argument xvalue, public method bisection finds 
-     * the indices ilow and ihigh=ilow+1 that bracket the position of xvalue 
-     * in the array.  (Method returns the value of ilow, from which 
-     * ihigh = ilow+1).  The array is assumed to be monotonically increasing
-     * in value. Sample method call:
+     * For array xarray[] and argument xvalue, SplineInterpolator::bisection(x,double) 
+     * finds the indices ilow and ihigh=ilow+1 that bracket the position of xvalue 
+     * in the array.  (Method returns the value of ilow, from which ihigh = ilow+1).  
+     * The array is assumed to increase monotonically in value. Sample method call:
      * 
      *	double [] x = {10,12,14,16,18};
      *	double xvalue = 12.2;
@@ -1004,13 +1029,12 @@ class Utilities{
             
             for(int i=0; i<plotSteps; i++){
                 
-                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
+                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f\n", 
                     tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
                     reacLabel[ slowestRateIndexPlot[i]],
                     log10(2.0/fastestRatePlot[i]),
                     reacLabel[ fastestRateIndexPlot[i]],
-                    log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i]),
-                    interpT[i], interpRho[i]
+                    log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i])
                 );
             }
             
@@ -4232,10 +4256,10 @@ int main() {
     // If using a hydrodynamical profile, read in the file containing
     // the hydro profile and store variables.
     
-    //if(hydroProfile){
+    if(hydroProfile){
         char *hydroFilePtr = hydroFile;
         readhydroProfile(hydroFilePtr);
-    //}
+    }
     
     // Print out some quantitites from the Reaction object reaction[].  
     
@@ -4640,8 +4664,8 @@ int main() {
                    
             );
             
-            interpT[plotCounter-1] = logTnow;
-            interpRho[plotCounter-1] = logRhoNow;
+            //interpT[plotCounter-1] = logTnow;
+            //interpRho[plotCounter-1] = logRhoNow;
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
