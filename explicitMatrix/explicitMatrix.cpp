@@ -102,10 +102,10 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 116                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1135                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_116.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_116.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -161,7 +161,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = true; 
+bool hydroProfile = false; 
 
 double logTnow;    // Log10 of current temp if interpolating from hydro profile
 double logRhoNow;  // Log10 of current rho if interpolating from hydro profile
@@ -185,7 +185,7 @@ char hydroFile[] = "data/nova125DProfile.inp";   // "data/torch47Profile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = true;
+static const bool plotHydroProfile = false;
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -237,7 +237,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -302,8 +302,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-5;         // Start time for plot output
-double stop_time = 1e8;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -322,7 +322,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-9;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -4514,8 +4514,10 @@ int main() {
         // Since the arrays holding the hydro profile have entries in terms of log10,
         // interpolate in log10(t)
         
-        logTnow = interpolateT.splint(log10(t));
-        logRhoNow = interpolateRho.splint(log10(t));
+        if(hydroProfile){
+            logTnow = interpolateT.splint(log10(t));
+            logRhoNow = interpolateRho.splint(log10(t));
+        }
         
         // Perform an integration step using the static method doIntegrationStep() of
         // the class Integrate.
