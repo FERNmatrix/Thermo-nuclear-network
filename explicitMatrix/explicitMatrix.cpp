@@ -103,7 +103,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 
 
 #define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1466                       // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -153,7 +153,7 @@ char networkFile[] = "data/network_nova134.inp";
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_nova134.data-old";
+char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -2601,7 +2601,7 @@ class ReactionVector:  public Utilities {
                     fprintf(pfnet, 
                             "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
-                            isPEforward[j], stringToChar(RGstring[j]));
+                            isPEforward[j], Utilities::stringToChar(RGstring[j]));
                 }
             }
         }
