@@ -149,4 +149,9 @@ Program received signal SIGSEGV, Segmentation fault.
 0x0000000000406f4b in updateY0 () at explicitMatrix.cpp:5672
 5672	            RG[i].setisoY0(j, Y[jj]);
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
-(gdb) 
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 728] will be killed.
+
+Quit anyway? (y or n) y

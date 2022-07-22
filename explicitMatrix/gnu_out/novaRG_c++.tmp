@@ -1,0 +1,3565 @@
+CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS
+*** Reaction group 0 has no forward reactions ***
+RG[0]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 1 has no forward reactions ***
+RG[1]: refreac=0 RGclassRef=2 niso=3 Reactions=3
+*** Reaction group 2 has no forward reactions ***
+RG[2]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 3 has no forward reactions ***
+RG[3]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 4 has no forward reactions ***
+RG[4]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 5 has no forward reactions ***
+RG[5]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 6 has no forward reactions ***
+RG[6]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 7 has no forward reactions ***
+RG[7]: refreac=0 RGclassRef=2 niso=3 Reactions=1
+*** Reaction group 8 has no forward reactions ***
+RG[8]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 9 has no forward reactions ***
+RG[9]: refreac=0 RGclassRef=5 niso=5 Reactions=2
+*** Reaction group 10 has no forward reactions ***
+RG[10]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 11 has no forward reactions ***
+RG[11]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 12 has no forward reactions ***
+RG[12]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 13 has no forward reactions ***
+RG[13]: refreac=0 RGclassRef=5 niso=5 Reactions=2
+*** Reaction group 14 has no forward reactions ***
+RG[14]: refreac=0 RGclassRef=5 niso=5 Reactions=2
+*** Reaction group 15 has no forward reactions ***
+RG[15]: refreac=0 RGclassRef=5 niso=5 Reactions=2
+*** Reaction group 16 has no forward reactions ***
+RG[16]: refreac=0 RGclassRef=5 niso=5 Reactions=4
+*** Reaction group 17 has no forward reactions ***
+RG[17]: refreac=0 RGclassRef=5 niso=5 Reactions=6
+*** Reaction group 18 has no forward reactions ***
+RG[18]: refreac=0 RGclassRef=3 niso=4 Reactions=4
+*** Reaction group 19 has no forward reactions ***
+RG[19]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 20 has no forward reactions ***
+RG[20]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 21 has no forward reactions ***
+RG[21]: refreac=0 RGclassRef=-1 niso=134 Reactions=1
+*** Reaction group 22 has no forward reactions ***
+RG[22]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 23 has no forward reactions ***
+RG[23]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 24 has no forward reactions ***
+RG[24]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 25 has no forward reactions ***
+RG[25]: refreac=0 RGclassRef=-1 niso=134 Reactions=1
+*** Reaction group 26 has no forward reactions ***
+RG[26]: refreac=0 RGclassRef=2 niso=3 Reactions=1
+*** Reaction group 27 has no forward reactions ***
+RG[27]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 28 has no forward reactions ***
+RG[28]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 29 has no forward reactions ***
+RG[29]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 30 has no forward reactions ***
+RG[30]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 31 has no forward reactions ***
+RG[31]: refreac=0 RGclassRef=4 niso=4 Reactions=10
+*** Reaction group 32 has no forward reactions ***
+RG[32]: refreac=0 RGclassRef=4 niso=4 Reactions=10
+*** Reaction group 33 has no forward reactions ***
+RG[33]: refreac=0 RGclassRef=3 niso=4 Reactions=1
+*** Reaction group 34 has no forward reactions ***
+RG[34]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 35 has no forward reactions ***
+RG[35]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 36 has no forward reactions ***
+RG[36]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 37 has no forward reactions ***
+RG[37]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 38 has no forward reactions ***
+RG[38]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 39 has no forward reactions ***
+RG[39]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 40 has no forward reactions ***
+RG[40]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 41 has no forward reactions ***
+RG[41]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 42 has no forward reactions ***
+RG[42]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 43 has no forward reactions ***
+RG[43]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 44 has no forward reactions ***
+RG[44]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 45 has no forward reactions ***
+RG[45]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 46 has no forward reactions ***
+RG[46]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 47 has no forward reactions ***
+RG[47]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 48 has no forward reactions ***
+RG[48]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 49 has no forward reactions ***
+RG[49]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 50 has no forward reactions ***
+RG[50]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 51 has no forward reactions ***
+RG[51]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 52 has no forward reactions ***
+RG[52]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 53 has no forward reactions ***
+RG[53]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 54 has no forward reactions ***
+RG[54]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 55 has no forward reactions ***
+RG[55]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 56 has no forward reactions ***
+RG[56]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 57 has no forward reactions ***
+RG[57]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 58 has no forward reactions ***
+RG[58]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 59 has no forward reactions ***
+RG[59]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 60 has no forward reactions ***
+RG[60]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 61 has no forward reactions ***
+RG[61]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 62 has no forward reactions ***
+RG[62]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 63 has no forward reactions ***
+RG[63]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 64 has no forward reactions ***
+RG[64]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 65 has no forward reactions ***
+RG[65]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 66 has no forward reactions ***
+RG[66]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 67 has no forward reactions ***
+RG[67]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 68 has no forward reactions ***
+RG[68]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 69 has no forward reactions ***
+RG[69]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 70 has no forward reactions ***
+RG[70]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 71 has no forward reactions ***
+RG[71]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 72 has no forward reactions ***
+RG[72]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 73 has no forward reactions ***
+RG[73]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 74 has no forward reactions ***
+RG[74]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 75 has no forward reactions ***
+RG[75]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 76 has no forward reactions ***
+RG[76]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 77 has no forward reactions ***
+RG[77]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 78 has no forward reactions ***
+RG[78]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 79 has no forward reactions ***
+RG[79]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 80 has no forward reactions ***
+RG[80]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 81 has no forward reactions ***
+RG[81]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 82 has no forward reactions ***
+RG[82]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 83 has no forward reactions ***
+RG[83]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 84 has no forward reactions ***
+RG[84]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 85 has no forward reactions ***
+RG[85]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 86 has no forward reactions ***
+RG[86]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 87 has no forward reactions ***
+RG[87]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 88 has no forward reactions ***
+RG[88]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 89 has no forward reactions ***
+RG[89]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 90 has no forward reactions ***
+RG[90]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 91 has no forward reactions ***
+RG[91]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 92 has no forward reactions ***
+RG[92]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 93 has no forward reactions ***
+RG[93]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 94 has no forward reactions ***
+RG[94]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 95 has no forward reactions ***
+RG[95]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 96 has no forward reactions ***
+RG[96]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 97 has no forward reactions ***
+RG[97]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 98 has no forward reactions ***
+RG[98]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 99 has no forward reactions ***
+RG[99]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 100 has no forward reactions ***
+RG[100]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 101 has no forward reactions ***
+RG[101]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 102 has no forward reactions ***
+RG[102]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 103 has no forward reactions ***
+RG[103]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 104 has no forward reactions ***
+RG[104]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 105 has no forward reactions ***
+RG[105]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 106 has no forward reactions ***
+RG[106]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 107 has no forward reactions ***
+RG[107]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 108 has no forward reactions ***
+RG[108]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 109 has no forward reactions ***
+RG[109]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 110 has no forward reactions ***
+RG[110]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 111 has no forward reactions ***
+RG[111]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 112 has no forward reactions ***
+RG[112]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 113 has no forward reactions ***
+RG[113]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 114 has no forward reactions ***
+RG[114]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 115 has no forward reactions ***
+RG[115]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 116 has no forward reactions ***
+RG[116]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 117 has no forward reactions ***
+RG[117]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 118 has no forward reactions ***
+RG[118]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 119 has no forward reactions ***
+RG[119]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 120 has no forward reactions ***
+RG[120]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 121 has no forward reactions ***
+RG[121]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 122 has no forward reactions ***
+RG[122]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 123 has no forward reactions ***
+RG[123]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 124 has no forward reactions ***
+RG[124]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 125 has no forward reactions ***
+RG[125]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 126 has no forward reactions ***
+RG[126]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 127 has no forward reactions ***
+RG[127]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 128 has no forward reactions ***
+RG[128]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 129 has no forward reactions ***
+RG[129]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 130 has no forward reactions ***
+RG[130]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 131 has no forward reactions ***
+RG[131]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 132 has no forward reactions ***
+RG[132]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 133 has no forward reactions ***
+RG[133]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 134 has no forward reactions ***
+RG[134]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 135 has no forward reactions ***
+RG[135]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 136 has no forward reactions ***
+RG[136]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 137 has no forward reactions ***
+RG[137]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 138 has no forward reactions ***
+RG[138]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 139 has no forward reactions ***
+RG[139]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 140 has no forward reactions ***
+RG[140]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 141 has no forward reactions ***
+RG[141]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 142 has no forward reactions ***
+RG[142]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 143 has no forward reactions ***
+RG[143]: refreac=0 RGclassRef=4 niso=4 Reactions=6
+*** Reaction group 144 has no forward reactions ***
+RG[144]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 145 has no forward reactions ***
+RG[145]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 146 has no forward reactions ***
+RG[146]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 147 has no forward reactions ***
+RG[147]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 148 has no forward reactions ***
+RG[148]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 149 has no forward reactions ***
+RG[149]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 150 has no forward reactions ***
+RG[150]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 151 has no forward reactions ***
+RG[151]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 152 has no forward reactions ***
+RG[152]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 153 has no forward reactions ***
+RG[153]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 154 has no forward reactions ***
+RG[154]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 155 has no forward reactions ***
+RG[155]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 156 has no forward reactions ***
+RG[156]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 157 has no forward reactions ***
+RG[157]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 158 has no forward reactions ***
+RG[158]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 159 has no forward reactions ***
+RG[159]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 160 has no forward reactions ***
+RG[160]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 161 has no forward reactions ***
+RG[161]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 162 has no forward reactions ***
+RG[162]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 163 has no forward reactions ***
+RG[163]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 164 has no forward reactions ***
+RG[164]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 165 has no forward reactions ***
+RG[165]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 166 has no forward reactions ***
+RG[166]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 167 has no forward reactions ***
+RG[167]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 168 has no forward reactions ***
+RG[168]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 169 has no forward reactions ***
+RG[169]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 170 has no forward reactions ***
+RG[170]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 171 has no forward reactions ***
+RG[171]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 172 has no forward reactions ***
+RG[172]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 173 has no forward reactions ***
+RG[173]: refreac=0 RGclassRef=2 niso=3 Reactions=8
+*** Reaction group 174 has no forward reactions ***
+RG[174]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 175 has no forward reactions ***
+RG[175]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 176 has no forward reactions ***
+RG[176]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 177 has no forward reactions ***
+RG[177]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 178 has no forward reactions ***
+RG[178]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 179 has no forward reactions ***
+RG[179]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 180 has no forward reactions ***
+RG[180]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 181 has no forward reactions ***
+RG[181]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 182 has no forward reactions ***
+RG[182]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 183 has no forward reactions ***
+RG[183]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 184 has no forward reactions ***
+RG[184]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 185 has no forward reactions ***
+RG[185]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 186 has no forward reactions ***
+RG[186]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 187 has no forward reactions ***
+RG[187]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 188 has no forward reactions ***
+RG[188]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 189 has no forward reactions ***
+RG[189]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 190 has no forward reactions ***
+RG[190]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 191 has no forward reactions ***
+RG[191]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 192 has no forward reactions ***
+RG[192]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 193 has no forward reactions ***
+RG[193]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 194 has no forward reactions ***
+RG[194]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 195 has no forward reactions ***
+RG[195]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 196 has no forward reactions ***
+RG[196]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 197 has no forward reactions ***
+RG[197]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 198 has no forward reactions ***
+RG[198]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 199 has no forward reactions ***
+RG[199]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 200 has no forward reactions ***
+RG[200]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 201 has no forward reactions ***
+RG[201]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 202 has no forward reactions ***
+RG[202]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 203 has no forward reactions ***
+RG[203]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 204 has no forward reactions ***
+RG[204]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 205 has no forward reactions ***
+RG[205]: refreac=0 RGclassRef=4 niso=4 Reactions=1
+*** Reaction group 206 has no forward reactions ***
+RG[206]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 207 has no forward reactions ***
+RG[207]: refreac=0 RGclassRef=2 niso=3 Reactions=1
+*** Reaction group 208 has no forward reactions ***
+RG[208]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 209 has no forward reactions ***
+RG[209]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 210 has no forward reactions ***
+RG[210]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 211 has no forward reactions ***
+RG[211]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 212 has no forward reactions ***
+RG[212]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 213 has no forward reactions ***
+RG[213]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 214 has no forward reactions ***
+RG[214]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 215 has no forward reactions ***
+RG[215]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 216 has no forward reactions ***
+RG[216]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 217 has no forward reactions ***
+RG[217]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 218 has no forward reactions ***
+RG[218]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 219 has no forward reactions ***
+RG[219]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 220 has no forward reactions ***
+RG[220]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 221 has no forward reactions ***
+RG[221]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 222 has no forward reactions ***
+RG[222]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 223 has no forward reactions ***
+RG[223]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 224 has no forward reactions ***
+RG[224]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 225 has no forward reactions ***
+RG[225]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 226 has no forward reactions ***
+RG[226]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 227 has no forward reactions ***
+RG[227]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 228 has no forward reactions ***
+RG[228]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 229 has no forward reactions ***
+RG[229]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 230 has no forward reactions ***
+RG[230]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 231 has no forward reactions ***
+RG[231]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 232 has no forward reactions ***
+RG[232]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 233 has no forward reactions ***
+RG[233]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 234 has no forward reactions ***
+RG[234]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 235 has no forward reactions ***
+RG[235]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 236 has no forward reactions ***
+RG[236]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 237 has no forward reactions ***
+RG[237]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 238 has no forward reactions ***
+RG[238]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 239 has no forward reactions ***
+RG[239]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 240 has no forward reactions ***
+RG[240]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 241 has no forward reactions ***
+RG[241]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 242 has no forward reactions ***
+RG[242]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 243 has no forward reactions ***
+RG[243]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 244 has no forward reactions ***
+RG[244]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 245 has no forward reactions ***
+RG[245]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 246 has no forward reactions ***
+RG[246]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 247 has no forward reactions ***
+RG[247]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 248 has no forward reactions ***
+RG[248]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 249 has no forward reactions ***
+RG[249]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 250 has no forward reactions ***
+RG[250]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 251 has no forward reactions ***
+RG[251]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 252 has no forward reactions ***
+RG[252]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 253 has no forward reactions ***
+RG[253]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 254 has no forward reactions ***
+RG[254]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 255 has no forward reactions ***
+RG[255]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 256 has no forward reactions ***
+RG[256]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 257 has no forward reactions ***
+RG[257]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 258 has no forward reactions ***
+RG[258]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 259 has no forward reactions ***
+RG[259]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 260 has no forward reactions ***
+RG[260]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 261 has no forward reactions ***
+RG[261]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 262 has no forward reactions ***
+RG[262]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 263 has no forward reactions ***
+RG[263]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 264 has no forward reactions ***
+RG[264]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 265 has no forward reactions ***
+RG[265]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 266 has no forward reactions ***
+RG[266]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 267 has no forward reactions ***
+RG[267]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 268 has no forward reactions ***
+RG[268]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 269 has no forward reactions ***
+RG[269]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 270 has no forward reactions ***
+RG[270]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 271 has no forward reactions ***
+RG[271]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 272 has no forward reactions ***
+RG[272]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 273 has no forward reactions ***
+RG[273]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 274 has no forward reactions ***
+RG[274]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 275 has no forward reactions ***
+RG[275]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 276 has no forward reactions ***
+RG[276]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 277 has no forward reactions ***
+RG[277]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 278 has no forward reactions ***
+RG[278]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 279 has no forward reactions ***
+RG[279]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 280 has no forward reactions ***
+RG[280]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 281 has no forward reactions ***
+RG[281]: refreac=0 RGclassRef=4 niso=4 Reactions=4
+*** Reaction group 282 has no forward reactions ***
+RG[282]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 283 has no forward reactions ***
+RG[283]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 284 has no forward reactions ***
+RG[284]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 285 has no forward reactions ***
+RG[285]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 286 has no forward reactions ***
+RG[286]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 287 has no forward reactions ***
+RG[287]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 288 has no forward reactions ***
+RG[288]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 289 has no forward reactions ***
+RG[289]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 290 has no forward reactions ***
+RG[290]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 291 has no forward reactions ***
+RG[291]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 292 has no forward reactions ***
+RG[292]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 293 has no forward reactions ***
+RG[293]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 294 has no forward reactions ***
+RG[294]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 295 has no forward reactions ***
+RG[295]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 296 has no forward reactions ***
+RG[296]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 297 has no forward reactions ***
+RG[297]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 298 has no forward reactions ***
+RG[298]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 299 has no forward reactions ***
+RG[299]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 300 has no forward reactions ***
+RG[300]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 301 has no forward reactions ***
+RG[301]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 302 has no forward reactions ***
+RG[302]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 303 has no forward reactions ***
+RG[303]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 304 has no forward reactions ***
+RG[304]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 305 has no forward reactions ***
+RG[305]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 306 has no forward reactions ***
+RG[306]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 307 has no forward reactions ***
+RG[307]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 308 has no forward reactions ***
+RG[308]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 309 has no forward reactions ***
+RG[309]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 310 has no forward reactions ***
+RG[310]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 311 has no forward reactions ***
+RG[311]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 312 has no forward reactions ***
+RG[312]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 313 has no forward reactions ***
+RG[313]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 314 has no forward reactions ***
+RG[314]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 315 has no forward reactions ***
+RG[315]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 316 has no forward reactions ***
+RG[316]: refreac=2 RGclassRef=4 niso=4 Reactions=12
+*** Reaction group 317 has no forward reactions ***
+RG[317]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 318 has no forward reactions ***
+RG[318]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 319 has no forward reactions ***
+RG[319]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 320 has no forward reactions ***
+RG[320]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 321 has no forward reactions ***
+RG[321]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 322 has no forward reactions ***
+RG[322]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 323 has no forward reactions ***
+RG[323]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 324 has no forward reactions ***
+RG[324]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 325 has no forward reactions ***
+RG[325]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 326 has no forward reactions ***
+RG[326]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 327 has no forward reactions ***
+RG[327]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 328 has no forward reactions ***
+RG[328]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 329 has no forward reactions ***
+RG[329]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 330 has no forward reactions ***
+RG[330]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 331 has no forward reactions ***
+RG[331]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 332 has no forward reactions ***
+RG[332]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 333 has no forward reactions ***
+RG[333]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 334 has no forward reactions ***
+RG[334]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 335 has no forward reactions ***
+RG[335]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 336 has no forward reactions ***
+RG[336]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 337 has no forward reactions ***
+RG[337]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 338 has no forward reactions ***
+RG[338]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 339 has no forward reactions ***
+RG[339]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 340 has no forward reactions ***
+RG[340]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 341 has no forward reactions ***
+RG[341]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 342 has no forward reactions ***
+RG[342]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 343 has no forward reactions ***
+RG[343]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 344 has no forward reactions ***
+RG[344]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 345 has no forward reactions ***
+RG[345]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 346 has no forward reactions ***
+RG[346]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 347 has no forward reactions ***
+RG[347]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 348 has no forward reactions ***
+RG[348]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 349 has no forward reactions ***
+RG[349]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 350 has no forward reactions ***
+RG[350]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 351 has no forward reactions ***
+RG[351]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 352 has no forward reactions ***
+RG[352]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 353 has no forward reactions ***
+RG[353]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 354 has no forward reactions ***
+RG[354]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 355 has no forward reactions ***
+RG[355]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 356 has no forward reactions ***
+RG[356]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 357 has no forward reactions ***
+RG[357]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 358 has no forward reactions ***
+RG[358]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 359 has no forward reactions ***
+RG[359]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 360 has no forward reactions ***
+RG[360]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 361 has no forward reactions ***
+RG[361]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 362 has no forward reactions ***
+RG[362]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 363 has no forward reactions ***
+RG[363]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 364 has no forward reactions ***
+RG[364]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 365 has no forward reactions ***
+RG[365]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 366 has no forward reactions ***
+RG[366]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 367 has no forward reactions ***
+RG[367]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 368 has no forward reactions ***
+RG[368]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 369 has no forward reactions ***
+RG[369]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 370 has no forward reactions ***
+RG[370]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 371 has no forward reactions ***
+RG[371]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 372 has no forward reactions ***
+RG[372]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 373 has no forward reactions ***
+RG[373]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 374 has no forward reactions ***
+RG[374]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 375 has no forward reactions ***
+RG[375]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 376 has no forward reactions ***
+RG[376]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 377 has no forward reactions ***
+RG[377]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 378 has no forward reactions ***
+RG[378]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 379 has no forward reactions ***
+RG[379]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 380 has no forward reactions ***
+RG[380]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 381 has no forward reactions ***
+RG[381]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 382 has no forward reactions ***
+RG[382]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 383 has no forward reactions ***
+RG[383]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 384 has no forward reactions ***
+RG[384]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 385 has no forward reactions ***
+RG[385]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 386 has no forward reactions ***
+RG[386]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 387 has no forward reactions ***
+RG[387]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 388 has no forward reactions ***
+RG[388]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 389 has no forward reactions ***
+RG[389]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 390 has no forward reactions ***
+RG[390]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 391 has no forward reactions ***
+RG[391]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 392 has no forward reactions ***
+RG[392]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 393 has no forward reactions ***
+RG[393]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 394 has no forward reactions ***
+RG[394]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 395 has no forward reactions ***
+RG[395]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 396 has no forward reactions ***
+RG[396]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 397 has no forward reactions ***
+RG[397]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 398 has no forward reactions ***
+RG[398]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 399 has no forward reactions ***
+RG[399]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 400 has no forward reactions ***
+RG[400]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 401 has no forward reactions ***
+RG[401]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 402 has no forward reactions ***
+RG[402]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 403 has no forward reactions ***
+RG[403]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 404 has no forward reactions ***
+RG[404]: refreac=0 RGclassRef=2 niso=3 Reactions=8
+*** Reaction group 405 has no forward reactions ***
+RG[405]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 406 has no forward reactions ***
+RG[406]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 407 has no forward reactions ***
+RG[407]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 408 has no forward reactions ***
+RG[408]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 409 has no forward reactions ***
+RG[409]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 410 has no forward reactions ***
+RG[410]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 411 has no forward reactions ***
+RG[411]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 412 has no forward reactions ***
+RG[412]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 413 has no forward reactions ***
+RG[413]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 414 has no forward reactions ***
+RG[414]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 415 has no forward reactions ***
+RG[415]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 416 has no forward reactions ***
+RG[416]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 417 has no forward reactions ***
+RG[417]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 418 has no forward reactions ***
+RG[418]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 419 has no forward reactions ***
+RG[419]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 420 has no forward reactions ***
+RG[420]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 421 has no forward reactions ***
+RG[421]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 422 has no forward reactions ***
+RG[422]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 423 has no forward reactions ***
+RG[423]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 424 has no forward reactions ***
+RG[424]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 425 has no forward reactions ***
+RG[425]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 426 has no forward reactions ***
+RG[426]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 427 has no forward reactions ***
+RG[427]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 428 has no forward reactions ***
+RG[428]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 429 has no forward reactions ***
+RG[429]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 430 has no forward reactions ***
+RG[430]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 431 has no forward reactions ***
+RG[431]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 432 has no forward reactions ***
+RG[432]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 433 has no forward reactions ***
+RG[433]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 434 has no forward reactions ***
+RG[434]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 435 has no forward reactions ***
+RG[435]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 436 has no forward reactions ***
+RG[436]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 437 has no forward reactions ***
+RG[437]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 438 has no forward reactions ***
+RG[438]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 439 has no forward reactions ***
+RG[439]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 440 has no forward reactions ***
+RG[440]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 441 has no forward reactions ***
+RG[441]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 442 has no forward reactions ***
+RG[442]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 443 has no forward reactions ***
+RG[443]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 444 has no forward reactions ***
+RG[444]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 445 has no forward reactions ***
+RG[445]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 446 has no forward reactions ***
+RG[446]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 447 has no forward reactions ***
+RG[447]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 448 has no forward reactions ***
+RG[448]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 449 has no forward reactions ***
+RG[449]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 450 has no forward reactions ***
+RG[450]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 451 has no forward reactions ***
+RG[451]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 452 has no forward reactions ***
+RG[452]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 453 has no forward reactions ***
+RG[453]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 454 has no forward reactions ***
+RG[454]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 455 has no forward reactions ***
+RG[455]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 456 has no forward reactions ***
+RG[456]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 457 has no forward reactions ***
+RG[457]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 458 has no forward reactions ***
+RG[458]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 459 has no forward reactions ***
+RG[459]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 460 has no forward reactions ***
+RG[460]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 461 has no forward reactions ***
+RG[461]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 462 has no forward reactions ***
+RG[462]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 463 has no forward reactions ***
+RG[463]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 464 has no forward reactions ***
+RG[464]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 465 has no forward reactions ***
+RG[465]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 466 has no forward reactions ***
+RG[466]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 467 has no forward reactions ***
+RG[467]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 468 has no forward reactions ***
+RG[468]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 469 has no forward reactions ***
+RG[469]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 470 has no forward reactions ***
+RG[470]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 471 has no forward reactions ***
+RG[471]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 472 has no forward reactions ***
+RG[472]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 473 has no forward reactions ***
+RG[473]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 474 has no forward reactions ***
+RG[474]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 475 has no forward reactions ***
+RG[475]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 476 has no forward reactions ***
+RG[476]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 477 has no forward reactions ***
+RG[477]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 478 has no forward reactions ***
+RG[478]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 479 has no forward reactions ***
+RG[479]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 480 has no forward reactions ***
+RG[480]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 481 has no forward reactions ***
+RG[481]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 482 has no forward reactions ***
+RG[482]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 483 has no forward reactions ***
+RG[483]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 484 has no forward reactions ***
+RG[484]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 485 has no forward reactions ***
+RG[485]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 486 has no forward reactions ***
+RG[486]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 487 has no forward reactions ***
+RG[487]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 488 has no forward reactions ***
+RG[488]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 489 has no forward reactions ***
+RG[489]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 490 has no forward reactions ***
+RG[490]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 491 has no forward reactions ***
+RG[491]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 492 has no forward reactions ***
+RG[492]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 493 has no forward reactions ***
+RG[493]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 494 has no forward reactions ***
+RG[494]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 495 has no forward reactions ***
+RG[495]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 496 has no forward reactions ***
+RG[496]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 497 has no forward reactions ***
+RG[497]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 498 has no forward reactions ***
+RG[498]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 499 has no forward reactions ***
+RG[499]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 500 has no forward reactions ***
+RG[500]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 501 has no forward reactions ***
+RG[501]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 502 has no forward reactions ***
+RG[502]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 503 has no forward reactions ***
+RG[503]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 504 has no forward reactions ***
+RG[504]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 505 has no forward reactions ***
+RG[505]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 506 has no forward reactions ***
+RG[506]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 507 has no forward reactions ***
+RG[507]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 508 has no forward reactions ***
+RG[508]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 509 has no forward reactions ***
+RG[509]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 510 has no forward reactions ***
+RG[510]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 511 has no forward reactions ***
+RG[511]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 512 has no forward reactions ***
+RG[512]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 513 has no forward reactions ***
+RG[513]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 514 has no forward reactions ***
+RG[514]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 515 has no forward reactions ***
+RG[515]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 516 has no forward reactions ***
+RG[516]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 517 has no forward reactions ***
+RG[517]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 518 has no forward reactions ***
+RG[518]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 519 has no forward reactions ***
+RG[519]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 520 has no forward reactions ***
+RG[520]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 521 has no forward reactions ***
+RG[521]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 522 has no forward reactions ***
+RG[522]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 523 has no forward reactions ***
+RG[523]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 524 has no forward reactions ***
+RG[524]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 525 has no forward reactions ***
+RG[525]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 526 has no forward reactions ***
+RG[526]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 527 has no forward reactions ***
+RG[527]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 528 has no forward reactions ***
+RG[528]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 529 has no forward reactions ***
+RG[529]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 530 has no forward reactions ***
+RG[530]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 531 has no forward reactions ***
+RG[531]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 532 has no forward reactions ***
+RG[532]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 533 has no forward reactions ***
+RG[533]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 534 has no forward reactions ***
+RG[534]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 535 has no forward reactions ***
+RG[535]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 536 has no forward reactions ***
+RG[536]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 537 has no forward reactions ***
+RG[537]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 538 has no forward reactions ***
+RG[538]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 539 has no forward reactions ***
+RG[539]: refreac=0 RGclassRef=2 niso=3 Reactions=10
+*** Reaction group 540 has no forward reactions ***
+RG[540]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 541 has no forward reactions ***
+RG[541]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 542 has no forward reactions ***
+RG[542]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 543 has no forward reactions ***
+RG[543]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 544 has no forward reactions ***
+RG[544]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 545 has no forward reactions ***
+RG[545]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 546 has no forward reactions ***
+RG[546]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 547 has no forward reactions ***
+RG[547]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 548 has no forward reactions ***
+RG[548]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 549 has no forward reactions ***
+RG[549]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 550 has no forward reactions ***
+RG[550]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 551 has no forward reactions ***
+RG[551]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 552 has no forward reactions ***
+RG[552]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 553 has no forward reactions ***
+RG[553]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 554 has no forward reactions ***
+RG[554]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 555 has no forward reactions ***
+RG[555]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 556 has no forward reactions ***
+RG[556]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 557 has no forward reactions ***
+RG[557]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 558 has no forward reactions ***
+RG[558]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 559 has no forward reactions ***
+RG[559]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 560 has no forward reactions ***
+RG[560]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 561 has no forward reactions ***
+RG[561]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 562 has no forward reactions ***
+RG[562]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 563 has no forward reactions ***
+RG[563]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 564 has no forward reactions ***
+RG[564]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 565 has no forward reactions ***
+RG[565]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 566 has no forward reactions ***
+RG[566]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 567 has no forward reactions ***
+RG[567]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 568 has no forward reactions ***
+RG[568]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 569 has no forward reactions ***
+RG[569]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 570 has no forward reactions ***
+RG[570]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 571 has no forward reactions ***
+RG[571]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 572 has no forward reactions ***
+RG[572]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 573 has no forward reactions ***
+RG[573]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 574 has no forward reactions ***
+RG[574]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 575 has no forward reactions ***
+RG[575]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 576 has no forward reactions ***
+RG[576]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 577 has no forward reactions ***
+RG[577]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 578 has no forward reactions ***
+RG[578]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 579 has no forward reactions ***
+RG[579]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 580 has no forward reactions ***
+RG[580]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 581 has no forward reactions ***
+RG[581]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 582 has no forward reactions ***
+RG[582]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 583 has no forward reactions ***
+RG[583]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 584 has no forward reactions ***
+RG[584]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 585 has no forward reactions ***
+RG[585]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 586 has no forward reactions ***
+RG[586]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 587 has no forward reactions ***
+RG[587]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 588 has no forward reactions ***
+RG[588]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 589 has no forward reactions ***
+RG[589]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 590 has no forward reactions ***
+RG[590]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 591 has no forward reactions ***
+RG[591]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 592 has no forward reactions ***
+RG[592]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 593 has no forward reactions ***
+RG[593]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 594 has no forward reactions ***
+RG[594]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 595 has no forward reactions ***
+RG[595]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 596 has no forward reactions ***
+RG[596]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 597 has no forward reactions ***
+RG[597]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 598 has no forward reactions ***
+RG[598]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 599 has no forward reactions ***
+RG[599]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 600 has no forward reactions ***
+RG[600]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 601 has no forward reactions ***
+RG[601]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 602 has no forward reactions ***
+RG[602]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 603 has no forward reactions ***
+RG[603]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 604 has no forward reactions ***
+RG[604]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 605 has no forward reactions ***
+RG[605]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 606 has no forward reactions ***
+RG[606]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 607 has no forward reactions ***
+RG[607]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 608 has no forward reactions ***
+RG[608]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 609 has no forward reactions ***
+RG[609]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 610 has no forward reactions ***
+RG[610]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 611 has no forward reactions ***
+RG[611]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 612 has no forward reactions ***
+RG[612]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 613 has no forward reactions ***
+RG[613]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 614 has no forward reactions ***
+RG[614]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 615 has no forward reactions ***
+RG[615]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 616 has no forward reactions ***
+RG[616]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 617 has no forward reactions ***
+RG[617]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 618 has no forward reactions ***
+RG[618]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 619 has no forward reactions ***
+RG[619]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 620 has no forward reactions ***
+RG[620]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 621 has no forward reactions ***
+RG[621]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 622 has no forward reactions ***
+RG[622]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 623 has no forward reactions ***
+RG[623]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 624 has no forward reactions ***
+RG[624]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 625 has no forward reactions ***
+RG[625]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 626 has no forward reactions ***
+RG[626]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 627 has no forward reactions ***
+RG[627]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 628 has no forward reactions ***
+RG[628]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 629 has no forward reactions ***
+RG[629]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 630 has no forward reactions ***
+RG[630]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 631 has no forward reactions ***
+RG[631]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 632 has no forward reactions ***
+RG[632]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 633 has no forward reactions ***
+RG[633]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 634 has no forward reactions ***
+RG[634]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 635 has no forward reactions ***
+RG[635]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 636 has no forward reactions ***
+RG[636]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 637 has no forward reactions ***
+RG[637]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 638 has no forward reactions ***
+RG[638]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 639 has no forward reactions ***
+RG[639]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 640 has no forward reactions ***
+RG[640]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 641 has no forward reactions ***
+RG[641]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 642 has no forward reactions ***
+RG[642]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 643 has no forward reactions ***
+RG[643]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 644 has no forward reactions ***
+RG[644]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 645 has no forward reactions ***
+RG[645]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 646 has no forward reactions ***
+RG[646]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 647 has no forward reactions ***
+RG[647]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 648 has no forward reactions ***
+RG[648]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 649 has no forward reactions ***
+RG[649]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 650 has no forward reactions ***
+RG[650]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 651 has no forward reactions ***
+RG[651]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 652 has no forward reactions ***
+RG[652]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 653 has no forward reactions ***
+RG[653]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 654 has no forward reactions ***
+RG[654]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 655 has no forward reactions ***
+RG[655]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 656 has no forward reactions ***
+RG[656]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 657 has no forward reactions ***
+RG[657]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 658 has no forward reactions ***
+RG[658]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 659 has no forward reactions ***
+RG[659]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 660 has no forward reactions ***
+RG[660]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 661 has no forward reactions ***
+RG[661]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 662 has no forward reactions ***
+RG[662]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 663 has no forward reactions ***
+RG[663]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 664 has no forward reactions ***
+RG[664]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 665 has no forward reactions ***
+RG[665]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 666 has no forward reactions ***
+RG[666]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 667 has no forward reactions ***
+RG[667]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 668 has no forward reactions ***
+RG[668]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 669 has no forward reactions ***
+RG[669]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 670 has no forward reactions ***
+RG[670]: refreac=0 RGclassRef=2 niso=3 Reactions=4
+*** Reaction group 671 has no forward reactions ***
+RG[671]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 672 has no forward reactions ***
+RG[672]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 673 has no forward reactions ***
+RG[673]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 674 has no forward reactions ***
+RG[674]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 675 has no forward reactions ***
+RG[675]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 676 has no forward reactions ***
+RG[676]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 677 has no forward reactions ***
+RG[677]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 678 has no forward reactions ***
+RG[678]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 679 has no forward reactions ***
+RG[679]: refreac=0 RGclassRef=2 niso=3 Reactions=6
+*** Reaction group 680 has no forward reactions ***
+RG[680]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 681 has no forward reactions ***
+RG[681]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 682 has no forward reactions ***
+RG[682]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 683 has no forward reactions ***
+RG[683]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 684 has no forward reactions ***
+RG[684]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 685 has no forward reactions ***
+RG[685]: refreac=0 RGclassRef=4 niso=4 Reactions=2
+*** Reaction group 686 has no forward reactions ***
+RG[686]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 687 has no forward reactions ***
+RG[687]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 688 has no forward reactions ***
+RG[688]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 689 has no forward reactions ***
+RG[689]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 690 has no forward reactions ***
+RG[690]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+*** Reaction group 691 has no forward reactions ***
+RG[691]: refreac=0 RGclassRef=2 niso=3 Reactions=2
+*** Reaction group 692 has no forward reactions ***
+RG[692]: refreac=0 RGclassRef=1 niso=2 Reactions=1
+
+
+Summary: RG=0 members=0 niso=0
+Summary: RG=1 members=0 niso=0
+0 n+p-->d iso[0]=1n iso[1]=1H iso[2]=2H iso[3]=
+1 d-->n+p iso[0]=1n iso[1]=1H iso[2]=2H iso[3]=
+2 p+d-->n+p+p iso[0]=1n iso[1]=1H iso[2]=2H iso[3]=
+Summary: RG=2 members=0 niso=0
+0 p+p+e-->d+nu iso[0]=1H iso[1]=1H iso[2]=2H iso[3]=
+1 p+p-->d+e++nu iso[0]=1H iso[1]=1H iso[2]=2H iso[3]=
+Summary: RG=3 members=0 niso=0
+0 p+d-->he3 iso[0]=1H iso[1]=2H iso[2]=3He iso[3]=
+1 he3-->p+d iso[0]=1H iso[1]=2H iso[2]=3He iso[3]=
+Summary: RG=4 members=0 niso=0
+0 d+d-->he4 iso[0]=2H iso[1]=2H iso[2]=4He iso[3]=
+1 he4-->d+d iso[0]=2H iso[1]=2H iso[2]=4He iso[3]=
+Summary: RG=5 members=0 niso=0
+0 d+d-->n+he3 iso[0]=2H iso[1]=2H iso[2]=1n iso[3]=3He
+1 n+he3-->d+d iso[0]=2H iso[1]=2H iso[2]=1n iso[3]=3He
+Summary: RG=6 members=0 niso=-1
+0 n+he3-->he4 iso[0]=1n iso[1]=3He iso[2]=4He iso[3]=
+1 he4-->n+he3 iso[0]=1n iso[1]=3He iso[2]=4He iso[3]=
+Summary: RG=7 members=0 niso=0
+0 p+he3-->he4+e++nu iso[0]=1H iso[1]=3He iso[2]=4He iso[3]=
+Summary: RG=8 members=0 niso=0
+0 d+he3-->p+he4 iso[0]=2H iso[1]=3He iso[2]=1H iso[3]=4He
+1 d+he3-->p+he4 iso[0]=2H iso[1]=3He iso[2]=1H iso[3]=4He
+2 p+he4-->d+he3 iso[0]=2H iso[1]=3He iso[2]=1H iso[3]=4He
+3 p+he4-->d+he3 iso[0]=2H iso[1]=3He iso[2]=1H iso[3]=4He
+Summary: RG=9 members=0 niso=-1
+0 he3+he3-->p+p+he4 iso[0]=3He iso[1]=3He iso[2]=1H iso[3]=1H
+1 p+p+he4-->he3+he3 iso[0]=3He iso[1]=3He iso[2]=1H iso[3]=1H
+Summary: RG=10 members=0 niso=-1
+0 he3+he4-->be7 iso[0]=3He iso[1]=4He iso[2]=7Be iso[3]=
+1 be7-->he3+he4 iso[0]=3He iso[1]=4He iso[2]=7Be iso[3]=
+Summary: RG=11 members=0 niso=0
+0 he4+he4-->n+be7 iso[0]=4He iso[1]=4He iso[2]=1n iso[3]=7Be
+1 n+be7-->he4+he4 iso[0]=4He iso[1]=4He iso[2]=1n iso[3]=7Be
+Summary: RG=12 members=0 niso=-1
+0 he4+he4-->p+li7 iso[0]=4He iso[1]=4He iso[2]=1H iso[3]=7Li
+1 he4+he4-->p+li7 iso[0]=4He iso[1]=4He iso[2]=1H iso[3]=7Li
+2 p+li7-->he4+he4 iso[0]=4He iso[1]=4He iso[2]=1H iso[3]=7Li
+3 p+li7-->he4+he4 iso[0]=4He iso[1]=4He iso[2]=1H iso[3]=7Li
+Summary: RG=13 members=0 niso=-1
+0 n+he4+he4-->d+li7 iso[0]=1n iso[1]=4He iso[2]=4He iso[3]=2H
+1 d+li7-->n+he4+he4 iso[0]=1n iso[1]=4He iso[2]=4He iso[3]=2H
+Summary: RG=14 members=0 niso=-1
+0 p+he4+he4-->d+be7 iso[0]=1H iso[1]=4He iso[2]=4He iso[3]=2H
+1 d+be7-->p+he4+he4 iso[0]=1H iso[1]=4He iso[2]=4He iso[3]=2H
+Summary: RG=15 members=0 niso=-1
+0 p+he4+he4-->n+b8 iso[0]=1H iso[1]=4He iso[2]=4He iso[3]=1n
+1 n+b8-->p+he4+he4 iso[0]=1H iso[1]=4He iso[2]=4He iso[3]=1n
+Summary: RG=16 members=0 niso=-1
+0 he4+he4+he4-->n+c11 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1n
+1 he4+he4+he4-->n+c11 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1n
+2 n+c11-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1n
+3 n+c11-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1n
+Summary: RG=17 members=0 niso=-1
+0 he4+he4+he4-->p+b11 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+1 he4+he4+he4-->p+b11 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+2 he4+he4+he4-->p+b11 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+3 p+b11-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+4 p+b11-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+5 p+b11-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=1H
+Summary: RG=18 members=0 niso=-1
+0 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+1 he4+he4+he4-->c12 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+2 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+3 c12-->he4+he4+he4 iso[0]=4He iso[1]=4He iso[2]=4He iso[3]=12C
+Summary: RG=19 members=0 niso=-1
+0 he4+li7-->b11 iso[0]=4He iso[1]=7Li iso[2]=11B iso[3]=
+1 he4+li7-->b11 iso[0]=4He iso[1]=7Li iso[2]=11B iso[3]=
+2 b11-->he4+li7 iso[0]=4He iso[1]=7Li iso[2]=11B iso[3]=
+3 b11-->he4+li7 iso[0]=4He iso[1]=7Li iso[2]=11B iso[3]=
+Summary: RG=20 members=0 niso=0
+0 p+li7-->n+be7 iso[0]=1H iso[1]=7Li iso[2]=1n iso[3]=7Be
+1 p+li7-->n+be7 iso[0]=1H iso[1]=7Li iso[2]=1n iso[3]=7Be
+2 n+be7-->p+li7 iso[0]=1H iso[1]=7Li iso[2]=1n iso[3]=7Be
+3 n+be7-->p+li7 iso[0]=1H iso[1]=7Li iso[2]=1n iso[3]=7Be
+Summary: RG=21 members=0 niso=-1
+0 he3+li7-->n+p+he4+he iso[0]= iso[1]=7Li iso[2]=1n iso[3]=1H
+Summary: RG=22 members=0 niso=-1
+Summary: RG=23 members=0 niso=0
+0 p+be7-->b8 iso[0]=1H iso[1]=7Be iso[2]=8B iso[3]=
+1 p+be7-->b8 iso[0]=1H iso[1]=7Be iso[2]=8B iso[3]=
+2 b8-->p+be7 iso[0]=1H iso[1]=7Be iso[2]=8B iso[3]=
+3 b8-->p+be7 iso[0]=1H iso[1]=7Be iso[2]=8B iso[3]=
+Summary: RG=24 members=0 niso=0
+0 he4+be7-->c11 iso[0]=4He iso[1]=7Be iso[2]=11C iso[3]=
+1 he4+be7-->c11 iso[0]=4He iso[1]=7Be iso[2]=11C iso[3]=
+2 c11-->he4+be7 iso[0]=4He iso[1]=7Be iso[2]=11C iso[3]=
+3 c11-->he4+be7 iso[0]=4He iso[1]=7Be iso[2]=11C iso[3]=
+Summary: RG=25 members=0 niso=0
+0 he3+be7-->p+p+he4+he iso[0]= iso[1]=7Be iso[2]=1H iso[3]=1H
+Summary: RG=26 members=0 niso=-1
+0 b8-->he4+he4+e++nu iso[0]=8B iso[1]=4He iso[2]=4He iso[3]=
+Summary: RG=27 members=0 niso=0
+0 p+b8-->c9 iso[0]=1H iso[1]=8B iso[2]=9C iso[3]=
+1 p+b8-->c9 iso[0]=1H iso[1]=8B iso[2]=9C iso[3]=
+2 c9-->p+b8 iso[0]=1H iso[1]=8B iso[2]=9C iso[3]=
+3 c9-->p+b8 iso[0]=1H iso[1]=8B iso[2]=9C iso[3]=
+Summary: RG=28 members=0 niso=0
+0 he4+b8-->p+c11 iso[0]=4He iso[1]=8B iso[2]=1H iso[3]=11C
+1 he4+b8-->p+c11 iso[0]=4He iso[1]=8B iso[2]=1H iso[3]=11C
+2 p+c11-->he4+b8 iso[0]=4He iso[1]=8B iso[2]=1H iso[3]=11C
+3 p+c11-->he4+b8 iso[0]=4He iso[1]=8B iso[2]=1H iso[3]=11C
+Summary: RG=29 members=0 niso=-1
+0 p+b11-->c12 iso[0]=1H iso[1]=11B iso[2]=12C iso[3]=
+1 p+b11-->c12 iso[0]=1H iso[1]=11B iso[2]=12C iso[3]=
+2 c12-->p+b11 iso[0]=1H iso[1]=11B iso[2]=12C iso[3]=
+3 c12-->p+b11 iso[0]=1H iso[1]=11B iso[2]=12C iso[3]=
+Summary: RG=30 members=0 niso=0
+0 p+b11-->n+c11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+1 p+b11-->n+c11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+2 p+b11-->n+c11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+3 n+c11-->p+b11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+4 n+c11-->p+b11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+5 n+c11-->p+b11 iso[0]=1H iso[1]=11B iso[2]=1n iso[3]=11C
+Summary: RG=31 members=0 niso=-1
+0 he4+b11-->n+n14 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+1 he4+b11-->n+n14 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+2 he4+b11-->n+n14 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+3 he4+b11-->n+n14 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+4 he4+b11-->n+n14 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+5 n+n14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+6 n+n14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+7 n+n14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+8 n+n14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+9 n+n14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1n iso[3]=14N
+Summary: RG=32 members=0 niso=-1
+0 he4+b11-->p+c14 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+1 he4+b11-->p+c14 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+2 he4+b11-->p+c14 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+3 he4+b11-->p+c14 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+4 he4+b11-->p+c14 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+5 p+c14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+6 p+c14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+7 p+c14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+8 p+c14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+9 p+c14-->he4+b11 iso[0]=4He iso[1]=11B iso[2]=1H iso[3]=14C
+Summary: RG=33 members=0 niso=-1
+0 c9-->p+he4+he4+e++nu iso[0]=9C iso[1]=1H iso[2]=4He iso[3]=4He
+Summary: RG=34 members=0 niso=-1
+0 he4+c9-->p+n12 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+1 he4+c9-->p+n12 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+2 he4+c9-->p+n12 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+3 p+n12-->he4+c9 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+4 p+n12-->he4+c9 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+5 p+n12-->he4+c9 iso[0]=4He iso[1]=9C iso[2]=1H iso[3]=12N
+Summary: RG=35 members=0 niso=-1
+Summary: RG=36 members=0 niso=0
+0 n+c11-->c12 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+1 n+c11-->c12 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+2 n+c11-->c12 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+3 c12-->n+c11 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+4 c12-->n+c11 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+5 c12-->n+c11 iso[0]=1n iso[1]=11C iso[2]=12C iso[3]=
+Summary: RG=37 members=0 niso=0
+0 p+c11-->n12 iso[0]=1H iso[1]=11C iso[2]=12N iso[3]=
+1 p+c11-->n12 iso[0]=1H iso[1]=11C iso[2]=12N iso[3]=
+2 n12-->p+c11 iso[0]=1H iso[1]=11C iso[2]=12N iso[3]=
+3 n12-->p+c11 iso[0]=1H iso[1]=11C iso[2]=12N iso[3]=
+Summary: RG=38 members=0 niso=0
+0 he4+c11-->p+n14 iso[0]=4He iso[1]=11C iso[2]=1H iso[3]=14N
+1 p+n14-->he4+c11 iso[0]=4He iso[1]=11C iso[2]=1H iso[3]=14N
+Summary: RG=39 members=0 niso=29464
+0 n+c12-->c13 iso[0]=1n iso[1]=12C iso[2]=13C iso[3]=
+1 c13-->n+c12 iso[0]=1n iso[1]=12C iso[2]=13C iso[3]=
+Summary: RG=40 members=0 niso=0
+0 p+c12-->n13 iso[0]=1H iso[1]=12C iso[2]=13N iso[3]=
+1 p+c12-->n13 iso[0]=1H iso[1]=12C iso[2]=13N iso[3]=
+2 n13-->p+c12 iso[0]=1H iso[1]=12C iso[2]=13N iso[3]=
+3 n13-->p+c12 iso[0]=1H iso[1]=12C iso[2]=13N iso[3]=
+Summary: RG=41 members=0 niso=0
+0 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+1 he4+c12-->o16 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+2 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+3 o16-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=16O iso[3]=
+Summary: RG=42 members=0 niso=0
+0 he4+c12-->n+o15 iso[0]=4He iso[1]=12C iso[2]=1n iso[3]=15O
+1 n+o15-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=1n iso[3]=15O
+Summary: RG=43 members=0 niso=-1
+0 he4+c12-->p+n15 iso[0]=4He iso[1]=12C iso[2]=1H iso[3]=15N
+1 he4+c12-->p+n15 iso[0]=4He iso[1]=12C iso[2]=1H iso[3]=15N
+2 p+n15-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=1H iso[3]=15N
+3 p+n15-->he4+c12 iso[0]=4He iso[1]=12C iso[2]=1H iso[3]=15N
+Summary: RG=44 members=0 niso=-1
+0 c12+c12-->n+mg23 iso[0]=12C iso[1]=12C iso[2]=1n iso[3]=23Mg
+Summary: RG=45 members=0 niso=-1
+0 c12+c12-->p+na23 iso[0]=12C iso[1]=12C iso[2]=1H iso[3]=23Na
+Summary: RG=46 members=0 niso=-1
+0 c12+c12-->he4+ne20 iso[0]=12C iso[1]=12C iso[2]=4He iso[3]=20Ne
+1 he4+ne20-->c12+c12 iso[0]=12C iso[1]=12C iso[2]=4He iso[3]=20Ne
+Summary: RG=47 members=0 niso=-1
+0 n+c13-->c14 iso[0]=1n iso[1]=13C iso[2]=14C iso[3]=
+1 n+c13-->c14 iso[0]=1n iso[1]=13C iso[2]=14C iso[3]=
+2 c14-->n+c13 iso[0]=1n iso[1]=13C iso[2]=14C iso[3]=
+3 c14-->n+c13 iso[0]=1n iso[1]=13C iso[2]=14C iso[3]=
+Summary: RG=48 members=0 niso=0
+0 p+c13-->n14 iso[0]=1H iso[1]=13C iso[2]=14N iso[3]=
+1 p+c13-->n14 iso[0]=1H iso[1]=13C iso[2]=14N iso[3]=
+2 n14-->p+c13 iso[0]=1H iso[1]=13C iso[2]=14N iso[3]=
+3 n14-->p+c13 iso[0]=1H iso[1]=13C iso[2]=14N iso[3]=
+Summary: RG=49 members=0 niso=0
+0 p+c13-->n+n13 iso[0]=1H iso[1]=13C iso[2]=1n iso[3]=13N
+1 n+n13-->p+c13 iso[0]=1H iso[1]=13C iso[2]=1n iso[3]=13N
+Summary: RG=50 members=0 niso=-1
+0 d+c13-->n+n14 iso[0]=2H iso[1]=13C iso[2]=1n iso[3]=14N
+1 n+n14-->d+c13 iso[0]=2H iso[1]=13C iso[2]=1n iso[3]=14N
+Summary: RG=51 members=0 niso=-1
+0 he4+c13-->n+o16 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+1 he4+c13-->n+o16 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+2 he4+c13-->n+o16 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+3 n+o16-->he4+c13 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+4 n+o16-->he4+c13 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+5 n+o16-->he4+c13 iso[0]=4He iso[1]=13C iso[2]=1n iso[3]=16O
+Summary: RG=52 members=0 niso=-1
+0 he4+c13-->p+n16 iso[0]=4He iso[1]=13C iso[2]=1H iso[3]=16N
+1 p+n16-->he4+c13 iso[0]=4He iso[1]=13C iso[2]=1H iso[3]=16N
+Summary: RG=53 members=0 niso=-1
+Summary: RG=54 members=0 niso=0
+0 p+c14-->n15 iso[0]=1H iso[1]=14C iso[2]=15N iso[3]=
+1 p+c14-->n15 iso[0]=1H iso[1]=14C iso[2]=15N iso[3]=
+2 n15-->p+c14 iso[0]=1H iso[1]=14C iso[2]=15N iso[3]=
+3 n15-->p+c14 iso[0]=1H iso[1]=14C iso[2]=15N iso[3]=
+Summary: RG=55 members=0 niso=0
+0 he4+c14-->o18 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+1 he4+c14-->o18 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+2 he4+c14-->o18 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+3 o18-->he4+c14 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+4 o18-->he4+c14 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+5 o18-->he4+c14 iso[0]=4He iso[1]=14C iso[2]=18O iso[3]=
+Summary: RG=56 members=0 niso=0
+0 p+c14-->n+n14 iso[0]=1H iso[1]=14C iso[2]=1n iso[3]=14N
+1 p+c14-->n+n14 iso[0]=1H iso[1]=14C iso[2]=1n iso[3]=14N
+2 n+n14-->p+c14 iso[0]=1H iso[1]=14C iso[2]=1n iso[3]=14N
+3 n+n14-->p+c14 iso[0]=1H iso[1]=14C iso[2]=1n iso[3]=14N
+Summary: RG=57 members=0 niso=-1
+0 d+c14-->n+n15 iso[0]=2H iso[1]=14C iso[2]=1n iso[3]=15N
+1 n+n15-->d+c14 iso[0]=2H iso[1]=14C iso[2]=1n iso[3]=15N
+Summary: RG=58 members=0 niso=-1
+Summary: RG=59 members=0 niso=0
+Summary: RG=60 members=0 niso=0
+0 n+n13-->n14 iso[0]=1n iso[1]=13N iso[2]=14N iso[3]=
+1 n+n13-->n14 iso[0]=1n iso[1]=13N iso[2]=14N iso[3]=
+2 n14-->n+n13 iso[0]=1n iso[1]=13N iso[2]=14N iso[3]=
+3 n14-->n+n13 iso[0]=1n iso[1]=13N iso[2]=14N iso[3]=
+Summary: RG=61 members=0 niso=0
+0 p+n13-->o14 iso[0]=1H iso[1]=13N iso[2]=14O iso[3]=
+1 p+n13-->o14 iso[0]=1H iso[1]=13N iso[2]=14O iso[3]=
+2 o14-->p+n13 iso[0]=1H iso[1]=13N iso[2]=14O iso[3]=
+3 o14-->p+n13 iso[0]=1H iso[1]=13N iso[2]=14O iso[3]=
+Summary: RG=62 members=0 niso=0
+0 he4+n13-->p+o16 iso[0]=4He iso[1]=13N iso[2]=1H iso[3]=16O
+1 p+o16-->he4+n13 iso[0]=4He iso[1]=13N iso[2]=1H iso[3]=16O
+Summary: RG=63 members=0 niso=-1
+0 n+n14-->n15 iso[0]=1n iso[1]=14N iso[2]=15N iso[3]=
+1 n15-->n+n14 iso[0]=1n iso[1]=14N iso[2]=15N iso[3]=
+Summary: RG=64 members=0 niso=0
+0 p+n14-->o15 iso[0]=1H iso[1]=14N iso[2]=15O iso[3]=
+1 p+n14-->o15 iso[0]=1H iso[1]=14N iso[2]=15O iso[3]=
+2 o15-->p+n14 iso[0]=1H iso[1]=14N iso[2]=15O iso[3]=
+3 o15-->p+n14 iso[0]=1H iso[1]=14N iso[2]=15O iso[3]=
+Summary: RG=65 members=0 niso=0
+0 he4+n14-->f18 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+1 he4+n14-->f18 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+2 he4+n14-->f18 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+3 f18-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+4 f18-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+5 f18-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=18Fl iso[3]=
+Summary: RG=66 members=0 niso=0
+0 p+n14-->n+o14 iso[0]=1H iso[1]=14N iso[2]=1n iso[3]=14O
+1 n+o14-->p+n14 iso[0]=1H iso[1]=14N iso[2]=1n iso[3]=14O
+Summary: RG=67 members=0 niso=-1
+0 he4+n14-->n+f17 iso[0]=4He iso[1]=14N iso[2]=1n iso[3]=17Fl
+1 he4+n14-->n+f17 iso[0]=4He iso[1]=14N iso[2]=1n iso[3]=17Fl
+2 n+f17-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=1n iso[3]=17Fl
+3 n+f17-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=1n iso[3]=17Fl
+Summary: RG=68 members=0 niso=-1
+0 he4+n14-->p+o17 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+1 he4+n14-->p+o17 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+2 he4+n14-->p+o17 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+3 p+o17-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+4 p+o17-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+5 p+o17-->he4+n14 iso[0]=4He iso[1]=14N iso[2]=1H iso[3]=17O
+Summary: RG=69 members=0 niso=-1
+0 n+n15-->n16 iso[0]=1n iso[1]=15N iso[2]=16N iso[3]=
+1 n16-->n+n15 iso[0]=1n iso[1]=15N iso[2]=16N iso[3]=
+Summary: RG=70 members=0 niso=0
+0 p+n15-->o16 iso[0]=1H iso[1]=15N iso[2]=16O iso[3]=
+1 p+n15-->o16 iso[0]=1H iso[1]=15N iso[2]=16O iso[3]=
+2 o16-->p+n15 iso[0]=1H iso[1]=15N iso[2]=16O iso[3]=
+3 o16-->p+n15 iso[0]=1H iso[1]=15N iso[2]=16O iso[3]=
+Summary: RG=71 members=0 niso=0
+0 he4+n15-->f19 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+1 he4+n15-->f19 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+2 he4+n15-->f19 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+3 f19-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+4 f19-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+5 f19-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=19Fl iso[3]=
+Summary: RG=72 members=0 niso=0
+0 p+n15-->n+o15 iso[0]=1H iso[1]=15N iso[2]=1n iso[3]=15O
+1 n+o15-->p+n15 iso[0]=1H iso[1]=15N iso[2]=1n iso[3]=15O
+Summary: RG=73 members=0 niso=-1
+0 he4+n15-->n+f18 iso[0]=4He iso[1]=15N iso[2]=1n iso[3]=18Fl
+1 n+f18-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=1n iso[3]=18Fl
+Summary: RG=74 members=0 niso=-1
+0 he4+n15-->p+o18 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+1 he4+n15-->p+o18 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+2 he4+n15-->p+o18 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+3 p+o18-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+4 p+o18-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+5 p+o18-->he4+n15 iso[0]=4He iso[1]=15N iso[2]=1H iso[3]=18O
+Summary: RG=75 members=0 niso=-1
+Summary: RG=76 members=0 niso=0
+0 p+n16-->n+o16 iso[0]=1H iso[1]=16N iso[2]=1n iso[3]=16O
+1 n+o16-->p+n16 iso[0]=1H iso[1]=16N iso[2]=1n iso[3]=16O
+Summary: RG=77 members=0 niso=-1
+0 he4+n16-->n+f19 iso[0]=4He iso[1]=16N iso[2]=1n iso[3]=19Fl
+1 n+f19-->he4+n16 iso[0]=4He iso[1]=16N iso[2]=1n iso[3]=19Fl
+Summary: RG=78 members=0 niso=-1
+Summary: RG=79 members=0 niso=0
+0 he4+o14-->ne18 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+1 he4+o14-->ne18 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+2 he4+o14-->ne18 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+3 ne18-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+4 ne18-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+5 ne18-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=18Ne iso[3]=
+Summary: RG=80 members=0 niso=0
+0 he4+o14-->p+f17 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+1 he4+o14-->p+f17 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+2 he4+o14-->p+f17 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+3 p+f17-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+4 p+f17-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+5 p+f17-->he4+o14 iso[0]=4He iso[1]=14O iso[2]=1H iso[3]=17Fl
+Summary: RG=81 members=0 niso=-1
+Summary: RG=82 members=0 niso=0
+0 he4+o15-->ne19 iso[0]=4He iso[1]=15O iso[2]=19Ne iso[3]=
+1 he4+o15-->ne19 iso[0]=4He iso[1]=15O iso[2]=19Ne iso[3]=
+2 ne19-->he4+o15 iso[0]=4He iso[1]=15O iso[2]=19Ne iso[3]=
+3 ne19-->he4+o15 iso[0]=4He iso[1]=15O iso[2]=19Ne iso[3]=
+Summary: RG=83 members=0 niso=0
+0 p+o15-->he4+n12 iso[0]=1H iso[1]=15O iso[2]=4He iso[3]=12N
+Summary: RG=84 members=0 niso=-1
+0 he4+o15-->n+ne18 iso[0]=4He iso[1]=15O iso[2]=1n iso[3]=18Ne
+1 n+ne18-->he4+o15 iso[0]=4He iso[1]=15O iso[2]=1n iso[3]=18Ne
+Summary: RG=85 members=0 niso=-1
+0 he4+o15-->p+f18 iso[0]=4He iso[1]=15O iso[2]=1H iso[3]=18Fl
+1 he4+o15-->p+f18 iso[0]=4He iso[1]=15O iso[2]=1H iso[3]=18Fl
+2 p+f18-->he4+o15 iso[0]=4He iso[1]=15O iso[2]=1H iso[3]=18Fl
+3 p+f18-->he4+o15 iso[0]=4He iso[1]=15O iso[2]=1H iso[3]=18Fl
+Summary: RG=86 members=0 niso=-1
+0 n+o16-->o17 iso[0]=1n iso[1]=16O iso[2]=17O iso[3]=
+1 o17-->n+o16 iso[0]=1n iso[1]=16O iso[2]=17O iso[3]=
+Summary: RG=87 members=0 niso=0
+0 p+o16-->f17 iso[0]=1H iso[1]=16O iso[2]=17Fl iso[3]=
+1 f17-->p+o16 iso[0]=1H iso[1]=16O iso[2]=17Fl iso[3]=
+Summary: RG=88 members=0 niso=0
+0 he4+o16-->ne20 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+1 he4+o16-->ne20 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+2 ne20-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+3 ne20-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=20Ne iso[3]=
+Summary: RG=89 members=0 niso=0
+0 he4+o16-->n+ne19 iso[0]=4He iso[1]=16O iso[2]=1n iso[3]=19Ne
+1 n+ne19-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=1n iso[3]=19Ne
+Summary: RG=90 members=0 niso=-1
+0 he4+o16-->p+f19 iso[0]=4He iso[1]=16O iso[2]=1H iso[3]=19Fl
+1 he4+o16-->p+f19 iso[0]=4He iso[1]=16O iso[2]=1H iso[3]=19Fl
+2 p+f19-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=1H iso[3]=19Fl
+3 p+f19-->he4+o16 iso[0]=4He iso[1]=16O iso[2]=1H iso[3]=19Fl
+Summary: RG=91 members=0 niso=-1
+0 c12+o16-->n+si27 iso[0]=12C iso[1]=16O iso[2]=1n iso[3]=27Si
+Summary: RG=92 members=0 niso=-1
+0 c12+o16-->p+al27 iso[0]=12C iso[1]=16O iso[2]=1H iso[3]=27Al
+Summary: RG=93 members=0 niso=-1
+0 c12+o16-->he4+mg24 iso[0]=12C iso[1]=16O iso[2]=4He iso[3]=24Mg
+1 he4+mg24-->c12+o16 iso[0]=12C iso[1]=16O iso[2]=4He iso[3]=24Mg
+Summary: RG=94 members=0 niso=-1
+0 o16+o16-->n+s31 iso[0]=16O iso[1]=16O iso[2]=1n iso[3]=31S
+Summary: RG=95 members=0 niso=-1
+0 o16+o16-->p+p31 iso[0]=16O iso[1]=16O iso[2]=1H iso[3]=31P
+Summary: RG=96 members=0 niso=-1
+0 o16+o16-->he4+si28 iso[0]=16O iso[1]=16O iso[2]=4He iso[3]=28Si
+1 he4+si28-->o16+o16 iso[0]=16O iso[1]=16O iso[2]=4He iso[3]=28Si
+Summary: RG=97 members=0 niso=-1
+0 n+o17-->o18 iso[0]=1n iso[1]=17O iso[2]=18O iso[3]=
+1 n+o17-->o18 iso[0]=1n iso[1]=17O iso[2]=18O iso[3]=
+2 o18-->n+o17 iso[0]=1n iso[1]=17O iso[2]=18O iso[3]=
+3 o18-->n+o17 iso[0]=1n iso[1]=17O iso[2]=18O iso[3]=
+Summary: RG=98 members=0 niso=0
+0 p+o17-->f18 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+1 p+o17-->f18 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+2 p+o17-->f18 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+3 f18-->p+o17 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+4 f18-->p+o17 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+5 f18-->p+o17 iso[0]=1H iso[1]=17O iso[2]=18Fl iso[3]=
+Summary: RG=99 members=0 niso=0
+0 he4+o17-->ne21 iso[0]=4He iso[1]=17O iso[2]=21Ne iso[3]=
+1 ne21-->he4+o17 iso[0]=4He iso[1]=17O iso[2]=21Ne iso[3]=
+Summary: RG=100 members=0 niso=0
+0 p+o17-->n+f17 iso[0]=1H iso[1]=17O iso[2]=1n iso[3]=17Fl
+1 n+f17-->p+o17 iso[0]=1H iso[1]=17O iso[2]=1n iso[3]=17Fl
+Summary: RG=101 members=0 niso=-1
+0 he4+o17-->n+ne20 iso[0]=4He iso[1]=17O iso[2]=1n iso[3]=20Ne
+1 n+ne20-->he4+o17 iso[0]=4He iso[1]=17O iso[2]=1n iso[3]=20Ne
+Summary: RG=102 members=0 niso=-1
+0 he4+o17-->p+f20 iso[0]=4He iso[1]=17O iso[2]=1H iso[3]=20Fl
+1 p+f20-->he4+o17 iso[0]=4He iso[1]=17O iso[2]=1H iso[3]=20Fl
+Summary: RG=103 members=0 niso=-1
+0 p+o18-->f19 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+1 p+o18-->f19 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+2 p+o18-->f19 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+3 f19-->p+o18 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+4 f19-->p+o18 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+5 f19-->p+o18 iso[0]=1H iso[1]=18O iso[2]=19Fl iso[3]=
+Summary: RG=104 members=0 niso=0
+0 he4+o18-->ne22 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+1 he4+o18-->ne22 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+2 he4+o18-->ne22 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+3 ne22-->he4+o18 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+4 ne22-->he4+o18 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+5 ne22-->he4+o18 iso[0]=4He iso[1]=18O iso[2]=22Ne iso[3]=
+Summary: RG=105 members=0 niso=0
+0 p+o18-->n+f18 iso[0]=1H iso[1]=18O iso[2]=1n iso[3]=18Fl
+1 n+f18-->p+o18 iso[0]=1H iso[1]=18O iso[2]=1n iso[3]=18Fl
+Summary: RG=106 members=0 niso=-1
+0 he4+o18-->n+ne21 iso[0]=4He iso[1]=18O iso[2]=1n iso[3]=21Ne
+1 n+ne21-->he4+o18 iso[0]=4He iso[1]=18O iso[2]=1n iso[3]=21Ne
+Summary: RG=107 members=0 niso=-1
+0 p+f16-->n+ne16 iso[0]=1H iso[1]=16Fl iso[2]=1n iso[3]=16Ne
+1 n+ne16-->p+f16 iso[0]=1H iso[1]=16Fl iso[2]=1n iso[3]=16Ne
+Summary: RG=108 members=0 niso=-1
+0 he4+f16-->n+na19 iso[0]=4He iso[1]=16Fl iso[2]=1n iso[3]=19Na
+1 n+na19-->he4+f16 iso[0]=4He iso[1]=16Fl iso[2]=1n iso[3]=19Na
+Summary: RG=109 members=0 niso=-1
+Summary: RG=110 members=0 niso=0
+0 n+f17-->f18 iso[0]=1n iso[1]=17Fl iso[2]=18Fl iso[3]=
+1 f18-->n+f17 iso[0]=1n iso[1]=17Fl iso[2]=18Fl iso[3]=
+Summary: RG=111 members=0 niso=0
+0 p+f17-->ne18 iso[0]=1H iso[1]=17Fl iso[2]=18Ne iso[3]=
+1 p+f17-->ne18 iso[0]=1H iso[1]=17Fl iso[2]=18Ne iso[3]=
+2 ne18-->p+f17 iso[0]=1H iso[1]=17Fl iso[2]=18Ne iso[3]=
+3 ne18-->p+f17 iso[0]=1H iso[1]=17Fl iso[2]=18Ne iso[3]=
+Summary: RG=112 members=0 niso=0
+0 he4+f17-->n+na20 iso[0]=4He iso[1]=17Fl iso[2]=1n iso[3]=20Na
+1 n+na20-->he4+f17 iso[0]=4He iso[1]=17Fl iso[2]=1n iso[3]=20Na
+Summary: RG=113 members=0 niso=-1
+0 he4+f17-->p+ne20 iso[0]=4He iso[1]=17Fl iso[2]=1H iso[3]=20Ne
+1 p+ne20-->he4+f17 iso[0]=4He iso[1]=17Fl iso[2]=1H iso[3]=20Ne
+Summary: RG=114 members=0 niso=-1
+Summary: RG=115 members=0 niso=0
+0 n+f18-->f19 iso[0]=1n iso[1]=18Fl iso[2]=19Fl iso[3]=
+1 f19-->n+f18 iso[0]=1n iso[1]=18Fl iso[2]=19Fl iso[3]=
+Summary: RG=116 members=0 niso=0
+0 p+f18-->ne19 iso[0]=1H iso[1]=18Fl iso[2]=19Ne iso[3]=
+1 p+f18-->ne19 iso[0]=1H iso[1]=18Fl iso[2]=19Ne iso[3]=
+2 ne19-->p+f18 iso[0]=1H iso[1]=18Fl iso[2]=19Ne iso[3]=
+3 ne19-->p+f18 iso[0]=1H iso[1]=18Fl iso[2]=19Ne iso[3]=
+Summary: RG=117 members=0 niso=0
+0 p+f18-->n+ne18 iso[0]=1H iso[1]=18Fl iso[2]=1n iso[3]=18Ne
+1 n+ne18-->p+f18 iso[0]=1H iso[1]=18Fl iso[2]=1n iso[3]=18Ne
+Summary: RG=118 members=0 niso=-1
+0 he4+f18-->n+na21 iso[0]=4He iso[1]=18Fl iso[2]=1n iso[3]=21Na
+1 n+na21-->he4+f18 iso[0]=4He iso[1]=18Fl iso[2]=1n iso[3]=21Na
+Summary: RG=119 members=0 niso=-1
+0 n+f19-->f20 iso[0]=1n iso[1]=19Fl iso[2]=20Fl iso[3]=
+1 f20-->n+f19 iso[0]=1n iso[1]=19Fl iso[2]=20Fl iso[3]=
+Summary: RG=120 members=0 niso=0
+0 p+f19-->ne20 iso[0]=1H iso[1]=19Fl iso[2]=20Ne iso[3]=
+1 p+f19-->ne20 iso[0]=1H iso[1]=19Fl iso[2]=20Ne iso[3]=
+2 ne20-->p+f19 iso[0]=1H iso[1]=19Fl iso[2]=20Ne iso[3]=
+3 ne20-->p+f19 iso[0]=1H iso[1]=19Fl iso[2]=20Ne iso[3]=
+Summary: RG=121 members=0 niso=0
+0 p+f19-->n+ne19 iso[0]=1H iso[1]=19Fl iso[2]=1n iso[3]=19Ne
+1 n+ne19-->p+f19 iso[0]=1H iso[1]=19Fl iso[2]=1n iso[3]=19Ne
+Summary: RG=122 members=0 niso=-1
+0 he4+f19-->n+na22 iso[0]=4He iso[1]=19Fl iso[2]=1n iso[3]=22Na
+1 n+na22-->he4+f19 iso[0]=4He iso[1]=19Fl iso[2]=1n iso[3]=22Na
+Summary: RG=123 members=0 niso=-1
+0 he4+f19-->p+ne22 iso[0]=4He iso[1]=19Fl iso[2]=1H iso[3]=22Ne
+1 he4+f19-->p+ne22 iso[0]=4He iso[1]=19Fl iso[2]=1H iso[3]=22Ne
+2 p+ne22-->he4+f19 iso[0]=4He iso[1]=19Fl iso[2]=1H iso[3]=22Ne
+3 p+ne22-->he4+f19 iso[0]=4He iso[1]=19Fl iso[2]=1H iso[3]=22Ne
+Summary: RG=124 members=0 niso=-1
+Summary: RG=125 members=0 niso=0
+Summary: RG=126 members=0 niso=0
+0 n+ne18-->ne19 iso[0]=1n iso[1]=18Ne iso[2]=19Ne iso[3]=
+1 ne19-->n+ne18 iso[0]=1n iso[1]=18Ne iso[2]=19Ne iso[3]=
+Summary: RG=127 members=0 niso=0
+0 p+ne18-->na19 iso[0]=1H iso[1]=18Ne iso[2]=19Na iso[3]=
+1 na19-->p+ne18 iso[0]=1H iso[1]=18Ne iso[2]=19Na iso[3]=
+Summary: RG=128 members=0 niso=0
+0 he4+ne18-->mg22 iso[0]=4He iso[1]=18Ne iso[2]=22Mg iso[3]=
+1 mg22-->he4+ne18 iso[0]=4He iso[1]=18Ne iso[2]=22Mg iso[3]=
+Summary: RG=129 members=0 niso=0
+0 he4+ne18-->n+mg21 iso[0]=4He iso[1]=18Ne iso[2]=1n iso[3]=21Mg
+1 n+mg21-->he4+ne18 iso[0]=4He iso[1]=18Ne iso[2]=1n iso[3]=21Mg
+Summary: RG=130 members=0 niso=-1
+0 he4+ne18-->p+na21 iso[0]=4He iso[1]=18Ne iso[2]=1H iso[3]=21Na
+1 p+na21-->he4+ne18 iso[0]=4He iso[1]=18Ne iso[2]=1H iso[3]=21Na
+Summary: RG=131 members=0 niso=-1
+Summary: RG=132 members=0 niso=0
+0 n+ne19-->ne20 iso[0]=1n iso[1]=19Ne iso[2]=20Ne iso[3]=
+1 ne20-->n+ne19 iso[0]=1n iso[1]=19Ne iso[2]=20Ne iso[3]=
+Summary: RG=133 members=0 niso=0
+0 p+ne19-->na20 iso[0]=1H iso[1]=19Ne iso[2]=20Na iso[3]=
+1 p+ne19-->na20 iso[0]=1H iso[1]=19Ne iso[2]=20Na iso[3]=
+2 na20-->p+ne19 iso[0]=1H iso[1]=19Ne iso[2]=20Na iso[3]=
+3 na20-->p+ne19 iso[0]=1H iso[1]=19Ne iso[2]=20Na iso[3]=
+Summary: RG=134 members=0 niso=0
+0 he4+ne19-->mg23 iso[0]=4He iso[1]=19Ne iso[2]=23Mg iso[3]=
+1 mg23-->he4+ne19 iso[0]=4He iso[1]=19Ne iso[2]=23Mg iso[3]=
+Summary: RG=135 members=0 niso=0
+0 p+ne19-->n+na19 iso[0]=1H iso[1]=19Ne iso[2]=1n iso[3]=19Na
+1 n+na19-->p+ne19 iso[0]=1H iso[1]=19Ne iso[2]=1n iso[3]=19Na
+Summary: RG=136 members=0 niso=-1
+0 he4+ne19-->n+mg22 iso[0]=4He iso[1]=19Ne iso[2]=1n iso[3]=22Mg
+1 n+mg22-->he4+ne19 iso[0]=4He iso[1]=19Ne iso[2]=1n iso[3]=22Mg
+Summary: RG=137 members=0 niso=-1
+0 he4+ne19-->p+na22 iso[0]=4He iso[1]=19Ne iso[2]=1H iso[3]=22Na
+1 p+na22-->he4+ne19 iso[0]=4He iso[1]=19Ne iso[2]=1H iso[3]=22Na
+Summary: RG=138 members=0 niso=-1
+0 n+ne20-->ne21 iso[0]=1n iso[1]=20Ne iso[2]=21Ne iso[3]=
+1 ne21-->n+ne20 iso[0]=1n iso[1]=20Ne iso[2]=21Ne iso[3]=
+Summary: RG=139 members=0 niso=0
+0 p+ne20-->na21 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+1 p+ne20-->na21 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+2 p+ne20-->na21 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+3 na21-->p+ne20 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+4 na21-->p+ne20 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+5 na21-->p+ne20 iso[0]=1H iso[1]=20Ne iso[2]=21Na iso[3]=
+Summary: RG=140 members=0 niso=0
+0 he4+ne20-->mg24 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+1 he4+ne20-->mg24 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+2 mg24-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+3 mg24-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=24Mg iso[3]=
+Summary: RG=141 members=0 niso=0
+0 p+ne20-->n+na20 iso[0]=1H iso[1]=20Ne iso[2]=1n iso[3]=20Na
+1 n+na20-->p+ne20 iso[0]=1H iso[1]=20Ne iso[2]=1n iso[3]=20Na
+Summary: RG=142 members=0 niso=-1
+0 he4+ne20-->n+mg23 iso[0]=4He iso[1]=20Ne iso[2]=1n iso[3]=23Mg
+1 n+mg23-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=1n iso[3]=23Mg
+Summary: RG=143 members=0 niso=-1
+0 he4+ne20-->p+na23 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+1 he4+ne20-->p+na23 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+2 he4+ne20-->p+na23 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+3 p+na23-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+4 p+na23-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+5 p+na23-->he4+ne20 iso[0]=4He iso[1]=20Ne iso[2]=1H iso[3]=23Na
+Summary: RG=144 members=0 niso=-1
+0 c12+ne20-->n+s31 iso[0]=12C iso[1]=20Ne iso[2]=1n iso[3]=31S
+1 n+s31-->c12+ne20 iso[0]=12C iso[1]=20Ne iso[2]=1n iso[3]=31S
+Summary: RG=145 members=0 niso=-1
+0 c12+ne20-->p+p31 iso[0]=12C iso[1]=20Ne iso[2]=1H iso[3]=31P
+1 p+p31-->c12+ne20 iso[0]=12C iso[1]=20Ne iso[2]=1H iso[3]=31P
+Summary: RG=146 members=0 niso=-1
+0 c12+ne20-->he4+si28 iso[0]=12C iso[1]=20Ne iso[2]=4He iso[3]=28Si
+1 he4+si28-->c12+ne20 iso[0]=12C iso[1]=20Ne iso[2]=4He iso[3]=28Si
+Summary: RG=147 members=0 niso=-1
+0 n+ne21-->ne22 iso[0]=1n iso[1]=21Ne iso[2]=22Ne iso[3]=
+1 ne22-->n+ne21 iso[0]=1n iso[1]=21Ne iso[2]=22Ne iso[3]=
+Summary: RG=148 members=0 niso=0
+0 p+ne21-->na22 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+1 p+ne21-->na22 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+2 p+ne21-->na22 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+3 na22-->p+ne21 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+4 na22-->p+ne21 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+5 na22-->p+ne21 iso[0]=1H iso[1]=21Ne iso[2]=22Na iso[3]=
+Summary: RG=149 members=0 niso=0
+0 he4+ne21-->mg25 iso[0]=4He iso[1]=21Ne iso[2]=25Mg iso[3]=
+1 he4+ne21-->mg25 iso[0]=4He iso[1]=21Ne iso[2]=25Mg iso[3]=
+2 mg25-->he4+ne21 iso[0]=4He iso[1]=21Ne iso[2]=25Mg iso[3]=
+3 mg25-->he4+ne21 iso[0]=4He iso[1]=21Ne iso[2]=25Mg iso[3]=
+Summary: RG=150 members=0 niso=0
+0 p+ne21-->n+na21 iso[0]=1H iso[1]=21Ne iso[2]=1n iso[3]=21Na
+1 n+na21-->p+ne21 iso[0]=1H iso[1]=21Ne iso[2]=1n iso[3]=21Na
+Summary: RG=151 members=0 niso=-1
+0 he4+ne21-->n+mg24 iso[0]=4He iso[1]=21Ne iso[2]=1n iso[3]=24Mg
+1 he4+ne21-->n+mg24 iso[0]=4He iso[1]=21Ne iso[2]=1n iso[3]=24Mg
+2 n+mg24-->he4+ne21 iso[0]=4He iso[1]=21Ne iso[2]=1n iso[3]=24Mg
+3 n+mg24-->he4+ne21 iso[0]=4He iso[1]=21Ne iso[2]=1n iso[3]=24Mg
+Summary: RG=152 members=0 niso=6398
+0 he4+ne21-->p+na24 iso[0]=4He iso[1]=21Ne iso[2]=1H iso[3]=24Na
+1 p+na24-->he4+ne21 iso[0]=4He iso[1]=21Ne iso[2]=1H iso[3]=24Na
+Summary: RG=153 members=0 niso=-1
+0 n+ne22-->ne23 iso[0]=1n iso[1]=22Ne iso[2]=23Ne iso[3]=
+1 n+ne22-->ne23 iso[0]=1n iso[1]=22Ne iso[2]=23Ne iso[3]=
+2 ne23-->n+ne22 iso[0]=1n iso[1]=22Ne iso[2]=23Ne iso[3]=
+3 ne23-->n+ne22 iso[0]=1n iso[1]=22Ne iso[2]=23Ne iso[3]=
+Summary: RG=154 members=0 niso=0
+0 p+ne22-->na23 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+1 p+ne22-->na23 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+2 p+ne22-->na23 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+3 na23-->p+ne22 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+4 na23-->p+ne22 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+5 na23-->p+ne22 iso[0]=1H iso[1]=22Ne iso[2]=23Na iso[3]=
+Summary: RG=155 members=0 niso=0
+0 he4+ne22-->mg26 iso[0]=4He iso[1]=22Ne iso[2]=26Mg iso[3]=
+1 mg26-->he4+ne22 iso[0]=4He iso[1]=22Ne iso[2]=26Mg iso[3]=
+Summary: RG=156 members=0 niso=0
+0 p+ne22-->n+na22 iso[0]=1H iso[1]=22Ne iso[2]=1n iso[3]=22Na
+1 n+na22-->p+ne22 iso[0]=1H iso[1]=22Ne iso[2]=1n iso[3]=22Na
+Summary: RG=157 members=0 niso=-1
+0 he4+ne22-->n+mg25 iso[0]=4He iso[1]=22Ne iso[2]=1n iso[3]=25Mg
+1 n+mg25-->he4+ne22 iso[0]=4He iso[1]=22Ne iso[2]=1n iso[3]=25Mg
+Summary: RG=158 members=0 niso=-1
+Summary: RG=159 members=0 niso=0
+0 p+ne23-->na24 iso[0]=1H iso[1]=23Ne iso[2]=24Na iso[3]=
+1 na24-->p+ne23 iso[0]=1H iso[1]=23Ne iso[2]=24Na iso[3]=
+Summary: RG=160 members=0 niso=0
+0 he4+ne23-->mg27 iso[0]=4He iso[1]=23Ne iso[2]=27Mg iso[3]=
+1 mg27-->he4+ne23 iso[0]=4He iso[1]=23Ne iso[2]=27Mg iso[3]=
+Summary: RG=161 members=0 niso=0
+0 p+ne23-->n+na23 iso[0]=1H iso[1]=23Ne iso[2]=1n iso[3]=23Na
+1 n+na23-->p+ne23 iso[0]=1H iso[1]=23Ne iso[2]=1n iso[3]=23Na
+Summary: RG=162 members=0 niso=-1
+0 he4+ne23-->n+mg26 iso[0]=4He iso[1]=23Ne iso[2]=1n iso[3]=26Mg
+1 n+mg26-->he4+ne23 iso[0]=4He iso[1]=23Ne iso[2]=1n iso[3]=26Mg
+Summary: RG=163 members=0 niso=-1
+0 n+na18-->na19 iso[0]=1n iso[1]=18Na iso[2]=19Na iso[3]=
+1 na19-->n+na18 iso[0]=1n iso[1]=18Na iso[2]=19Na iso[3]=
+Summary: RG=164 members=0 niso=0
+0 n+na18-->p+ne18 iso[0]=1n iso[1]=18Na iso[2]=1H iso[3]=18Ne
+Summary: RG=165 members=0 niso=-1
+0 he4+na18-->p+mg21 iso[0]=4He iso[1]=18Na iso[2]=1H iso[3]=21Mg
+1 p+mg21-->he4+na18 iso[0]=4He iso[1]=18Na iso[2]=1H iso[3]=21Mg
+Summary: RG=166 members=0 niso=-1
+0 n+na19-->na20 iso[0]=1n iso[1]=19Na iso[2]=20Na iso[3]=
+1 na20-->n+na19 iso[0]=1n iso[1]=19Na iso[2]=20Na iso[3]=
+Summary: RG=167 members=0 niso=0
+0 p+na19-->mg20 iso[0]=1H iso[1]=19Na iso[2]=20Mg iso[3]=
+1 mg20-->p+na19 iso[0]=1H iso[1]=19Na iso[2]=20Mg iso[3]=
+Summary: RG=168 members=0 niso=0
+0 he4+na19-->al23 iso[0]=4He iso[1]=19Na iso[2]=23Al iso[3]=
+1 al23-->he4+na19 iso[0]=4He iso[1]=19Na iso[2]=23Al iso[3]=
+Summary: RG=169 members=0 niso=0
+0 p+na19-->n+mg19 iso[0]=1H iso[1]=19Na iso[2]=1n iso[3]=19Mg
+1 n+mg19-->p+na19 iso[0]=1H iso[1]=19Na iso[2]=1n iso[3]=19Mg
+Summary: RG=170 members=0 niso=-1
+0 he4+na19-->p+mg22 iso[0]=4He iso[1]=19Na iso[2]=1H iso[3]=22Mg
+1 p+mg22-->he4+na19 iso[0]=4He iso[1]=19Na iso[2]=1H iso[3]=22Mg
+Summary: RG=171 members=0 niso=-1
+Summary: RG=172 members=0 niso=0
+0 n+na20-->na21 iso[0]=1n iso[1]=20Na iso[2]=21Na iso[3]=
+1 na21-->n+na20 iso[0]=1n iso[1]=20Na iso[2]=21Na iso[3]=
+Summary: RG=173 members=0 niso=0
+0 p+na20-->mg21 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+1 p+na20-->mg21 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+2 p+na20-->mg21 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+3 p+na20-->mg21 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+4 mg21-->p+na20 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+5 mg21-->p+na20 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+6 mg21-->p+na20 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+7 mg21-->p+na20 iso[0]=1H iso[1]=20Na iso[2]=21Mg iso[3]=
+Summary: RG=174 members=0 niso=0
+0 he4+na20-->al24 iso[0]=4He iso[1]=20Na iso[2]=24Al iso[3]=
+1 al24-->he4+na20 iso[0]=4He iso[1]=20Na iso[2]=24Al iso[3]=
+Summary: RG=175 members=0 niso=0
+0 p+na20-->n+mg20 iso[0]=1H iso[1]=20Na iso[2]=1n iso[3]=20Mg
+1 n+mg20-->p+na20 iso[0]=1H iso[1]=20Na iso[2]=1n iso[3]=20Mg
+Summary: RG=176 members=0 niso=-1
+0 he4+na20-->n+al23 iso[0]=4He iso[1]=20Na iso[2]=1n iso[3]=23Al
+1 n+al23-->he4+na20 iso[0]=4He iso[1]=20Na iso[2]=1n iso[3]=23Al
+Summary: RG=177 members=0 niso=-1
+0 he4+na20-->p+mg23 iso[0]=4He iso[1]=20Na iso[2]=1H iso[3]=23Mg
+1 p+mg23-->he4+na20 iso[0]=4He iso[1]=20Na iso[2]=1H iso[3]=23Mg
+Summary: RG=178 members=0 niso=-1
+Summary: RG=179 members=0 niso=0
+0 n+na21-->na22 iso[0]=1n iso[1]=21Na iso[2]=22Na iso[3]=
+1 na22-->n+na21 iso[0]=1n iso[1]=21Na iso[2]=22Na iso[3]=
+Summary: RG=180 members=0 niso=0
+0 p+na21-->mg22 iso[0]=1H iso[1]=21Na iso[2]=22Mg iso[3]=
+1 p+na21-->mg22 iso[0]=1H iso[1]=21Na iso[2]=22Mg iso[3]=
+2 mg22-->p+na21 iso[0]=1H iso[1]=21Na iso[2]=22Mg iso[3]=
+3 mg22-->p+na21 iso[0]=1H iso[1]=21Na iso[2]=22Mg iso[3]=
+Summary: RG=181 members=0 niso=0
+0 he4+na21-->al25 iso[0]=4He iso[1]=21Na iso[2]=25Al iso[3]=
+1 al25-->he4+na21 iso[0]=4He iso[1]=21Na iso[2]=25Al iso[3]=
+Summary: RG=182 members=0 niso=0
+0 p+na21-->n+mg21 iso[0]=1H iso[1]=21Na iso[2]=1n iso[3]=21Mg
+1 n+mg21-->p+na21 iso[0]=1H iso[1]=21Na iso[2]=1n iso[3]=21Mg
+Summary: RG=183 members=0 niso=-1
+0 he4+na21-->n+al24 iso[0]=4He iso[1]=21Na iso[2]=1n iso[3]=24Al
+1 n+al24-->he4+na21 iso[0]=4He iso[1]=21Na iso[2]=1n iso[3]=24Al
+Summary: RG=184 members=0 niso=-1
+0 he4+na21-->p+mg24 iso[0]=4He iso[1]=21Na iso[2]=1H iso[3]=24Mg
+1 p+mg24-->he4+na21 iso[0]=4He iso[1]=21Na iso[2]=1H iso[3]=24Mg
+Summary: RG=185 members=0 niso=-1
+Summary: RG=186 members=0 niso=0
+0 n+na22-->na23 iso[0]=1n iso[1]=22Na iso[2]=23Na iso[3]=
+1 na23-->n+na22 iso[0]=1n iso[1]=22Na iso[2]=23Na iso[3]=
+Summary: RG=187 members=0 niso=0
+0 p+na22-->mg23 iso[0]=1H iso[1]=22Na iso[2]=23Mg iso[3]=
+1 mg23-->p+na22 iso[0]=1H iso[1]=22Na iso[2]=23Mg iso[3]=
+Summary: RG=188 members=0 niso=0
+0 he4+na22-->al26 iso[0]=4He iso[1]=22Na iso[2]=26Al iso[3]=
+1 al26-->he4+na22 iso[0]=4He iso[1]=22Na iso[2]=26Al iso[3]=
+Summary: RG=189 members=0 niso=0
+0 p+na22-->n+mg22 iso[0]=1H iso[1]=22Na iso[2]=1n iso[3]=22Mg
+1 n+mg22-->p+na22 iso[0]=1H iso[1]=22Na iso[2]=1n iso[3]=22Mg
+Summary: RG=190 members=0 niso=-1
+0 he4+na22-->n+al25 iso[0]=4He iso[1]=22Na iso[2]=1n iso[3]=25Al
+1 n+al25-->he4+na22 iso[0]=4He iso[1]=22Na iso[2]=1n iso[3]=25Al
+Summary: RG=191 members=0 niso=-1
+0 he4+na22-->p+mg25 iso[0]=4He iso[1]=22Na iso[2]=1H iso[3]=25Mg
+1 p+mg25-->he4+na22 iso[0]=4He iso[1]=22Na iso[2]=1H iso[3]=25Mg
+Summary: RG=192 members=0 niso=-1
+0 n+na23-->na24 iso[0]=1n iso[1]=23Na iso[2]=24Na iso[3]=
+1 na24-->n+na23 iso[0]=1n iso[1]=23Na iso[2]=24Na iso[3]=
+Summary: RG=193 members=0 niso=0
+0 p+na23-->mg24 iso[0]=1H iso[1]=23Na iso[2]=24Mg iso[3]=
+1 p+na23-->mg24 iso[0]=1H iso[1]=23Na iso[2]=24Mg iso[3]=
+2 mg24-->p+na23 iso[0]=1H iso[1]=23Na iso[2]=24Mg iso[3]=
+3 mg24-->p+na23 iso[0]=1H iso[1]=23Na iso[2]=24Mg iso[3]=
+Summary: RG=194 members=0 niso=0
+0 he4+na23-->al27 iso[0]=4He iso[1]=23Na iso[2]=27Al iso[3]=
+1 al27-->he4+na23 iso[0]=4He iso[1]=23Na iso[2]=27Al iso[3]=
+Summary: RG=195 members=0 niso=0
+0 p+na23-->n+mg23 iso[0]=1H iso[1]=23Na iso[2]=1n iso[3]=23Mg
+1 n+mg23-->p+na23 iso[0]=1H iso[1]=23Na iso[2]=1n iso[3]=23Mg
+Summary: RG=196 members=0 niso=-1
+0 he4+na23-->n+al26 iso[0]=4He iso[1]=23Na iso[2]=1n iso[3]=26Al
+1 n+al26-->he4+na23 iso[0]=4He iso[1]=23Na iso[2]=1n iso[3]=26Al
+Summary: RG=197 members=0 niso=-1
+0 he4+na23-->p+mg26 iso[0]=4He iso[1]=23Na iso[2]=1H iso[3]=26Mg
+1 p+mg26-->he4+na23 iso[0]=4He iso[1]=23Na iso[2]=1H iso[3]=26Mg
+Summary: RG=198 members=0 niso=-1
+Summary: RG=199 members=0 niso=0
+0 p+na24-->mg25 iso[0]=1H iso[1]=24Na iso[2]=25Mg iso[3]=
+1 mg25-->p+na24 iso[0]=1H iso[1]=24Na iso[2]=25Mg iso[3]=
+Summary: RG=200 members=0 niso=0
+0 he4+na24-->al28 iso[0]=4He iso[1]=24Na iso[2]=28Al iso[3]=
+1 al28-->he4+na24 iso[0]=4He iso[1]=24Na iso[2]=28Al iso[3]=
+Summary: RG=201 members=0 niso=0
+0 p+na24-->n+mg24 iso[0]=1H iso[1]=24Na iso[2]=1n iso[3]=24Mg
+1 n+mg24-->p+na24 iso[0]=1H iso[1]=24Na iso[2]=1n iso[3]=24Mg
+Summary: RG=202 members=0 niso=-1
+0 he4+na24-->n+al27 iso[0]=4He iso[1]=24Na iso[2]=1n iso[3]=27Al
+1 n+al27-->he4+na24 iso[0]=4He iso[1]=24Na iso[2]=1n iso[3]=27Al
+Summary: RG=203 members=0 niso=-1
+0 he4+na24-->p+mg27 iso[0]=4He iso[1]=24Na iso[2]=1H iso[3]=27Mg
+1 p+mg27-->he4+na24 iso[0]=4He iso[1]=24Na iso[2]=1H iso[3]=27Mg
+Summary: RG=204 members=0 niso=-1
+0 n+mg19-->mg20 iso[0]=1n iso[1]=19Mg iso[2]=20Mg iso[3]=
+1 mg20-->n+mg19 iso[0]=1n iso[1]=19Mg iso[2]=20Mg iso[3]=
+Summary: RG=205 members=0 niso=0
+0 n+mg19-->he4+ne16 iso[0]=1n iso[1]=19Mg iso[2]=4He iso[3]=16Ne
+Summary: RG=206 members=0 niso=-1
+Summary: RG=207 members=0 niso=0
+0 mg20-->he4+ne16 iso[0]=20Mg iso[1]=4He iso[2]=16Ne iso[3]=
+Summary: RG=208 members=0 niso=0
+0 n+mg20-->mg21 iso[0]=1n iso[1]=20Mg iso[2]=21Mg iso[3]=
+1 mg21-->n+mg20 iso[0]=1n iso[1]=20Mg iso[2]=21Mg iso[3]=
+Summary: RG=209 members=0 niso=0
+0 he4+mg20-->si24 iso[0]=4He iso[1]=20Mg iso[2]=24Si iso[3]=
+1 si24-->he4+mg20 iso[0]=4He iso[1]=20Mg iso[2]=24Si iso[3]=
+Summary: RG=210 members=0 niso=0
+0 he4+mg20-->p+al23 iso[0]=4He iso[1]=20Mg iso[2]=1H iso[3]=23Al
+1 p+al23-->he4+mg20 iso[0]=4He iso[1]=20Mg iso[2]=1H iso[3]=23Al
+Summary: RG=211 members=0 niso=-1
+Summary: RG=212 members=0 niso=0
+0 n+mg21-->mg22 iso[0]=1n iso[1]=21Mg iso[2]=22Mg iso[3]=
+1 mg22-->n+mg21 iso[0]=1n iso[1]=21Mg iso[2]=22Mg iso[3]=
+Summary: RG=213 members=0 niso=0
+0 he4+mg21-->si25 iso[0]=4He iso[1]=21Mg iso[2]=25Si iso[3]=
+1 si25-->he4+mg21 iso[0]=4He iso[1]=21Mg iso[2]=25Si iso[3]=
+Summary: RG=214 members=0 niso=0
+0 he4+mg21-->n+si24 iso[0]=4He iso[1]=21Mg iso[2]=1n iso[3]=24Si
+1 n+si24-->he4+mg21 iso[0]=4He iso[1]=21Mg iso[2]=1n iso[3]=24Si
+Summary: RG=215 members=0 niso=-1
+0 he4+mg21-->p+al24 iso[0]=4He iso[1]=21Mg iso[2]=1H iso[3]=24Al
+1 p+al24-->he4+mg21 iso[0]=4He iso[1]=21Mg iso[2]=1H iso[3]=24Al
+Summary: RG=216 members=0 niso=-1
+Summary: RG=217 members=0 niso=0
+0 n+mg22-->mg23 iso[0]=1n iso[1]=22Mg iso[2]=23Mg iso[3]=
+1 mg23-->n+mg22 iso[0]=1n iso[1]=22Mg iso[2]=23Mg iso[3]=
+Summary: RG=218 members=0 niso=0
+0 p+mg22-->al23 iso[0]=1H iso[1]=22Mg iso[2]=23Al iso[3]=
+1 p+mg22-->al23 iso[0]=1H iso[1]=22Mg iso[2]=23Al iso[3]=
+2 al23-->p+mg22 iso[0]=1H iso[1]=22Mg iso[2]=23Al iso[3]=
+3 al23-->p+mg22 iso[0]=1H iso[1]=22Mg iso[2]=23Al iso[3]=
+Summary: RG=219 members=0 niso=0
+0 he4+mg22-->si26 iso[0]=4He iso[1]=22Mg iso[2]=26Si iso[3]=
+1 si26-->he4+mg22 iso[0]=4He iso[1]=22Mg iso[2]=26Si iso[3]=
+Summary: RG=220 members=0 niso=0
+0 he4+mg22-->n+si25 iso[0]=4He iso[1]=22Mg iso[2]=1n iso[3]=25Si
+1 n+si25-->he4+mg22 iso[0]=4He iso[1]=22Mg iso[2]=1n iso[3]=25Si
+Summary: RG=221 members=0 niso=-1
+0 he4+mg22-->p+al25 iso[0]=4He iso[1]=22Mg iso[2]=1H iso[3]=25Al
+1 p+al25-->he4+mg22 iso[0]=4He iso[1]=22Mg iso[2]=1H iso[3]=25Al
+Summary: RG=222 members=0 niso=-1
+Summary: RG=223 members=0 niso=0
+0 n+mg23-->mg24 iso[0]=1n iso[1]=23Mg iso[2]=24Mg iso[3]=
+1 mg24-->n+mg23 iso[0]=1n iso[1]=23Mg iso[2]=24Mg iso[3]=
+Summary: RG=224 members=0 niso=0
+0 p+mg23-->al24 iso[0]=1H iso[1]=23Mg iso[2]=24Al iso[3]=
+1 p+mg23-->al24 iso[0]=1H iso[1]=23Mg iso[2]=24Al iso[3]=
+2 al24-->p+mg23 iso[0]=1H iso[1]=23Mg iso[2]=24Al iso[3]=
+3 al24-->p+mg23 iso[0]=1H iso[1]=23Mg iso[2]=24Al iso[3]=
+Summary: RG=225 members=0 niso=0
+0 he4+mg23-->si27 iso[0]=4He iso[1]=23Mg iso[2]=27Si iso[3]=
+1 si27-->he4+mg23 iso[0]=4He iso[1]=23Mg iso[2]=27Si iso[3]=
+Summary: RG=226 members=0 niso=0
+0 p+mg23-->n+al23 iso[0]=1H iso[1]=23Mg iso[2]=1n iso[3]=23Al
+1 n+al23-->p+mg23 iso[0]=1H iso[1]=23Mg iso[2]=1n iso[3]=23Al
+Summary: RG=227 members=0 niso=-1
+0 he4+mg23-->n+si26 iso[0]=4He iso[1]=23Mg iso[2]=1n iso[3]=26Si
+1 n+si26-->he4+mg23 iso[0]=4He iso[1]=23Mg iso[2]=1n iso[3]=26Si
+Summary: RG=228 members=0 niso=-1
+0 he4+mg23-->p+al26 iso[0]=4He iso[1]=23Mg iso[2]=1H iso[3]=26Al
+1 p+al26-->he4+mg23 iso[0]=4He iso[1]=23Mg iso[2]=1H iso[3]=26Al
+Summary: RG=229 members=0 niso=-1
+0 n+mg24-->mg25 iso[0]=1n iso[1]=24Mg iso[2]=25Mg iso[3]=
+1 mg25-->n+mg24 iso[0]=1n iso[1]=24Mg iso[2]=25Mg iso[3]=
+Summary: RG=230 members=0 niso=0
+0 p+mg24-->al25 iso[0]=1H iso[1]=24Mg iso[2]=25Al iso[3]=
+1 p+mg24-->al25 iso[0]=1H iso[1]=24Mg iso[2]=25Al iso[3]=
+2 al25-->p+mg24 iso[0]=1H iso[1]=24Mg iso[2]=25Al iso[3]=
+3 al25-->p+mg24 iso[0]=1H iso[1]=24Mg iso[2]=25Al iso[3]=
+Summary: RG=231 members=0 niso=0
+0 he4+mg24-->si28 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+1 he4+mg24-->si28 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+2 si28-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+3 si28-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=28Si iso[3]=
+Summary: RG=232 members=0 niso=0
+0 p+mg24-->n+al24 iso[0]=1H iso[1]=24Mg iso[2]=1n iso[3]=24Al
+1 n+al24-->p+mg24 iso[0]=1H iso[1]=24Mg iso[2]=1n iso[3]=24Al
+Summary: RG=233 members=0 niso=-1
+0 he4+mg24-->n+si27 iso[0]=4He iso[1]=24Mg iso[2]=1n iso[3]=27Si
+1 n+si27-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=1n iso[3]=27Si
+Summary: RG=234 members=0 niso=-1
+0 he4+mg24-->p+al27 iso[0]=4He iso[1]=24Mg iso[2]=1H iso[3]=27Al
+1 he4+mg24-->p+al27 iso[0]=4He iso[1]=24Mg iso[2]=1H iso[3]=27Al
+2 p+al27-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=1H iso[3]=27Al
+3 p+al27-->he4+mg24 iso[0]=4He iso[1]=24Mg iso[2]=1H iso[3]=27Al
+Summary: RG=235 members=0 niso=-1
+0 n+mg25-->mg26 iso[0]=1n iso[1]=25Mg iso[2]=26Mg iso[3]=
+1 mg26-->n+mg25 iso[0]=1n iso[1]=25Mg iso[2]=26Mg iso[3]=
+Summary: RG=236 members=0 niso=0
+0 p+mg25-->al26 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+1 p+mg25-->al26 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+2 p+mg25-->al26 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+3 al26-->p+mg25 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+4 al26-->p+mg25 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+5 al26-->p+mg25 iso[0]=1H iso[1]=25Mg iso[2]=26Al iso[3]=
+Summary: RG=237 members=0 niso=0
+0 he4+mg25-->si29 iso[0]=4He iso[1]=25Mg iso[2]=29Si iso[3]=
+1 si29-->he4+mg25 iso[0]=4He iso[1]=25Mg iso[2]=29Si iso[3]=
+Summary: RG=238 members=0 niso=0
+0 p+mg25-->n+al25 iso[0]=1H iso[1]=25Mg iso[2]=1n iso[3]=25Al
+1 n+al25-->p+mg25 iso[0]=1H iso[1]=25Mg iso[2]=1n iso[3]=25Al
+Summary: RG=239 members=0 niso=-1
+0 he4+mg25-->n+si28 iso[0]=4He iso[1]=25Mg iso[2]=1n iso[3]=28Si
+1 n+si28-->he4+mg25 iso[0]=4He iso[1]=25Mg iso[2]=1n iso[3]=28Si
+Summary: RG=240 members=0 niso=-1
+0 he4+mg25-->p+al28 iso[0]=4He iso[1]=25Mg iso[2]=1H iso[3]=28Al
+1 p+al28-->he4+mg25 iso[0]=4He iso[1]=25Mg iso[2]=1H iso[3]=28Al
+Summary: RG=241 members=0 niso=-1
+0 n+mg26-->mg27 iso[0]=1n iso[1]=26Mg iso[2]=27Mg iso[3]=
+1 mg27-->n+mg26 iso[0]=1n iso[1]=26Mg iso[2]=27Mg iso[3]=
+Summary: RG=242 members=0 niso=0
+0 p+mg26-->al27 iso[0]=1H iso[1]=26Mg iso[2]=27Al iso[3]=
+1 p+mg26-->al27 iso[0]=1H iso[1]=26Mg iso[2]=27Al iso[3]=
+2 al27-->p+mg26 iso[0]=1H iso[1]=26Mg iso[2]=27Al iso[3]=
+3 al27-->p+mg26 iso[0]=1H iso[1]=26Mg iso[2]=27Al iso[3]=
+Summary: RG=243 members=0 niso=0
+0 he4+mg26-->si30 iso[0]=4He iso[1]=26Mg iso[2]=30Si iso[3]=
+1 si30-->he4+mg26 iso[0]=4He iso[1]=26Mg iso[2]=30Si iso[3]=
+Summary: RG=244 members=0 niso=0
+0 p+mg26-->n+al26 iso[0]=1H iso[1]=26Mg iso[2]=1n iso[3]=26Al
+1 n+al26-->p+mg26 iso[0]=1H iso[1]=26Mg iso[2]=1n iso[3]=26Al
+Summary: RG=245 members=0 niso=-1
+0 he4+mg26-->n+si29 iso[0]=4He iso[1]=26Mg iso[2]=1n iso[3]=29Si
+1 n+si29-->he4+mg26 iso[0]=4He iso[1]=26Mg iso[2]=1n iso[3]=29Si
+Summary: RG=246 members=0 niso=-1
+Summary: RG=247 members=0 niso=0
+0 p+mg27-->al28 iso[0]=1H iso[1]=27Mg iso[2]=28Al iso[3]=
+1 al28-->p+mg27 iso[0]=1H iso[1]=27Mg iso[2]=28Al iso[3]=
+Summary: RG=248 members=0 niso=0
+0 he4+mg27-->si31 iso[0]=4He iso[1]=27Mg iso[2]=31Si iso[3]=
+1 si31-->he4+mg27 iso[0]=4He iso[1]=27Mg iso[2]=31Si iso[3]=
+Summary: RG=249 members=0 niso=0
+0 p+mg27-->n+al27 iso[0]=1H iso[1]=27Mg iso[2]=1n iso[3]=27Al
+1 n+al27-->p+mg27 iso[0]=1H iso[1]=27Mg iso[2]=1n iso[3]=27Al
+Summary: RG=250 members=0 niso=-1
+0 he4+mg27-->n+si30 iso[0]=4He iso[1]=27Mg iso[2]=1n iso[3]=30Si
+1 n+si30-->he4+mg27 iso[0]=4He iso[1]=27Mg iso[2]=1n iso[3]=30Si
+Summary: RG=251 members=0 niso=-1
+Summary: RG=252 members=0 niso=0
+0 n+al23-->al24 iso[0]=1n iso[1]=23Al iso[2]=24Al iso[3]=
+1 al24-->n+al23 iso[0]=1n iso[1]=23Al iso[2]=24Al iso[3]=
+Summary: RG=253 members=0 niso=0
+0 p+al23-->si24 iso[0]=1H iso[1]=23Al iso[2]=24Si iso[3]=
+1 p+al23-->si24 iso[0]=1H iso[1]=23Al iso[2]=24Si iso[3]=
+2 si24-->p+al23 iso[0]=1H iso[1]=23Al iso[2]=24Si iso[3]=
+3 si24-->p+al23 iso[0]=1H iso[1]=23Al iso[2]=24Si iso[3]=
+Summary: RG=254 members=0 niso=0
+0 he4+al23-->p27 iso[0]=4He iso[1]=23Al iso[2]=27P iso[3]=
+1 p27-->he4+al23 iso[0]=4He iso[1]=23Al iso[2]=27P iso[3]=
+Summary: RG=255 members=0 niso=0
+0 he4+al23-->p+si26 iso[0]=4He iso[1]=23Al iso[2]=1H iso[3]=26Si
+1 p+si26-->he4+al23 iso[0]=4He iso[1]=23Al iso[2]=1H iso[3]=26Si
+Summary: RG=256 members=0 niso=-1
+Summary: RG=257 members=0 niso=0
+0 n+al24-->al25 iso[0]=1n iso[1]=24Al iso[2]=25Al iso[3]=
+1 al25-->n+al24 iso[0]=1n iso[1]=24Al iso[2]=25Al iso[3]=
+Summary: RG=258 members=0 niso=0
+0 p+al24-->si25 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+1 p+al24-->si25 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+2 p+al24-->si25 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+3 si25-->p+al24 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+4 si25-->p+al24 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+5 si25-->p+al24 iso[0]=1H iso[1]=24Al iso[2]=25Si iso[3]=
+Summary: RG=259 members=0 niso=0
+0 he4+al24-->p28 iso[0]=4He iso[1]=24Al iso[2]=28P iso[3]=
+1 p28-->he4+al24 iso[0]=4He iso[1]=24Al iso[2]=28P iso[3]=
+Summary: RG=260 members=0 niso=0
+0 p+al24-->n+si24 iso[0]=1H iso[1]=24Al iso[2]=1n iso[3]=24Si
+1 n+si24-->p+al24 iso[0]=1H iso[1]=24Al iso[2]=1n iso[3]=24Si
+Summary: RG=261 members=0 niso=-1
+0 he4+al24-->n+p27 iso[0]=4He iso[1]=24Al iso[2]=1n iso[3]=27P
+1 n+p27-->he4+al24 iso[0]=4He iso[1]=24Al iso[2]=1n iso[3]=27P
+Summary: RG=262 members=0 niso=-1
+0 he4+al24-->p+si27 iso[0]=4He iso[1]=24Al iso[2]=1H iso[3]=27Si
+1 p+si27-->he4+al24 iso[0]=4He iso[1]=24Al iso[2]=1H iso[3]=27Si
+Summary: RG=263 members=0 niso=-1
+Summary: RG=264 members=0 niso=0
+0 n+al25-->al26 iso[0]=1n iso[1]=25Al iso[2]=26Al iso[3]=
+1 al26-->n+al25 iso[0]=1n iso[1]=25Al iso[2]=26Al iso[3]=
+Summary: RG=265 members=0 niso=0
+0 p+al25-->si26 iso[0]=1H iso[1]=25Al iso[2]=26Si iso[3]=
+1 p+al25-->si26 iso[0]=1H iso[1]=25Al iso[2]=26Si iso[3]=
+2 si26-->p+al25 iso[0]=1H iso[1]=25Al iso[2]=26Si iso[3]=
+3 si26-->p+al25 iso[0]=1H iso[1]=25Al iso[2]=26Si iso[3]=
+Summary: RG=266 members=0 niso=0
+0 he4+al25-->p29 iso[0]=4He iso[1]=25Al iso[2]=29P iso[3]=
+1 p29-->he4+al25 iso[0]=4He iso[1]=25Al iso[2]=29P iso[3]=
+Summary: RG=267 members=0 niso=0
+0 p+al25-->n+si25 iso[0]=1H iso[1]=25Al iso[2]=1n iso[3]=25Si
+1 n+si25-->p+al25 iso[0]=1H iso[1]=25Al iso[2]=1n iso[3]=25Si
+Summary: RG=268 members=0 niso=-1
+0 he4+al25-->n+p28 iso[0]=4He iso[1]=25Al iso[2]=1n iso[3]=28P
+1 n+p28-->he4+al25 iso[0]=4He iso[1]=25Al iso[2]=1n iso[3]=28P
+Summary: RG=269 members=0 niso=-1
+0 he4+al25-->p+si28 iso[0]=4He iso[1]=25Al iso[2]=1H iso[3]=28Si
+1 p+si28-->he4+al25 iso[0]=4He iso[1]=25Al iso[2]=1H iso[3]=28Si
+Summary: RG=270 members=0 niso=-1
+Summary: RG=271 members=0 niso=0
+0 n+al26-->al27 iso[0]=1n iso[1]=26Al iso[2]=27Al iso[3]=
+1 al27-->n+al26 iso[0]=1n iso[1]=26Al iso[2]=27Al iso[3]=
+Summary: RG=272 members=0 niso=0
+0 p+al26-->si27 iso[0]=1H iso[1]=26Al iso[2]=27Si iso[3]=
+1 p+al26-->si27 iso[0]=1H iso[1]=26Al iso[2]=27Si iso[3]=
+2 si27-->p+al26 iso[0]=1H iso[1]=26Al iso[2]=27Si iso[3]=
+3 si27-->p+al26 iso[0]=1H iso[1]=26Al iso[2]=27Si iso[3]=
+Summary: RG=273 members=0 niso=0
+0 he4+al26-->p30 iso[0]=4He iso[1]=26Al iso[2]=30P iso[3]=
+1 p30-->he4+al26 iso[0]=4He iso[1]=26Al iso[2]=30P iso[3]=
+Summary: RG=274 members=0 niso=0
+0 p+al26-->n+si26 iso[0]=1H iso[1]=26Al iso[2]=1n iso[3]=26Si
+1 n+si26-->p+al26 iso[0]=1H iso[1]=26Al iso[2]=1n iso[3]=26Si
+Summary: RG=275 members=0 niso=-1
+0 he4+al26-->n+p29 iso[0]=4He iso[1]=26Al iso[2]=1n iso[3]=29P
+1 n+p29-->he4+al26 iso[0]=4He iso[1]=26Al iso[2]=1n iso[3]=29P
+Summary: RG=276 members=0 niso=-1
+0 he4+al26-->p+si29 iso[0]=4He iso[1]=26Al iso[2]=1H iso[3]=29Si
+1 p+si29-->he4+al26 iso[0]=4He iso[1]=26Al iso[2]=1H iso[3]=29Si
+Summary: RG=277 members=0 niso=-1
+0 n+al27-->al28 iso[0]=1n iso[1]=27Al iso[2]=28Al iso[3]=
+1 al28-->n+al27 iso[0]=1n iso[1]=27Al iso[2]=28Al iso[3]=
+Summary: RG=278 members=0 niso=0
+0 p+al27-->si28 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+1 p+al27-->si28 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+2 p+al27-->si28 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+3 si28-->p+al27 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+4 si28-->p+al27 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+5 si28-->p+al27 iso[0]=1H iso[1]=27Al iso[2]=28Si iso[3]=
+Summary: RG=279 members=0 niso=0
+0 he4+al27-->p31 iso[0]=4He iso[1]=27Al iso[2]=31P iso[3]=
+1 p31-->he4+al27 iso[0]=4He iso[1]=27Al iso[2]=31P iso[3]=
+Summary: RG=280 members=0 niso=0
+0 p+al27-->n+si27 iso[0]=1H iso[1]=27Al iso[2]=1n iso[3]=27Si
+1 n+si27-->p+al27 iso[0]=1H iso[1]=27Al iso[2]=1n iso[3]=27Si
+Summary: RG=281 members=0 niso=-1
+0 he4+al27-->n+p30 iso[0]=4He iso[1]=27Al iso[2]=1n iso[3]=30P
+1 he4+al27-->n+p30 iso[0]=4He iso[1]=27Al iso[2]=1n iso[3]=30P
+2 n+p30-->he4+al27 iso[0]=4He iso[1]=27Al iso[2]=1n iso[3]=30P
+3 n+p30-->he4+al27 iso[0]=4He iso[1]=27Al iso[2]=1n iso[3]=30P
+Summary: RG=282 members=0 niso=-1
+0 he4+al27-->p+si30 iso[0]=4He iso[1]=27Al iso[2]=1H iso[3]=30Si
+1 p+si30-->he4+al27 iso[0]=4He iso[1]=27Al iso[2]=1H iso[3]=30Si
+Summary: RG=283 members=0 niso=-1
+Summary: RG=284 members=0 niso=0
+0 p+al28-->si29 iso[0]=1H iso[1]=28Al iso[2]=29Si iso[3]=
+1 si29-->p+al28 iso[0]=1H iso[1]=28Al iso[2]=29Si iso[3]=
+Summary: RG=285 members=0 niso=0
+0 he4+al28-->p32 iso[0]=4He iso[1]=28Al iso[2]=32P iso[3]=
+1 p32-->he4+al28 iso[0]=4He iso[1]=28Al iso[2]=32P iso[3]=
+Summary: RG=286 members=0 niso=0
+0 p+al28-->n+si28 iso[0]=1H iso[1]=28Al iso[2]=1n iso[3]=28Si
+1 n+si28-->p+al28 iso[0]=1H iso[1]=28Al iso[2]=1n iso[3]=28Si
+Summary: RG=287 members=0 niso=-1
+0 he4+al28-->n+p31 iso[0]=4He iso[1]=28Al iso[2]=1n iso[3]=31P
+1 n+p31-->he4+al28 iso[0]=4He iso[1]=28Al iso[2]=1n iso[3]=31P
+Summary: RG=288 members=0 niso=-1
+0 he4+al28-->p+si31 iso[0]=4He iso[1]=28Al iso[2]=1H iso[3]=31Si
+1 p+si31-->he4+al28 iso[0]=4He iso[1]=28Al iso[2]=1H iso[3]=31Si
+Summary: RG=289 members=0 niso=-1
+Summary: RG=290 members=0 niso=0
+0 n+si24-->si25 iso[0]=1n iso[1]=24Si iso[2]=25Si iso[3]=
+1 si25-->n+si24 iso[0]=1n iso[1]=24Si iso[2]=25Si iso[3]=
+Summary: RG=291 members=0 niso=0
+0 he4+si24-->s28 iso[0]=4He iso[1]=24Si iso[2]=28S iso[3]=
+1 s28-->he4+si24 iso[0]=4He iso[1]=24Si iso[2]=28S iso[3]=
+Summary: RG=292 members=0 niso=0
+0 he4+si24-->p+p27 iso[0]=4He iso[1]=24Si iso[2]=1H iso[3]=27P
+1 p+p27-->he4+si24 iso[0]=4He iso[1]=24Si iso[2]=1H iso[3]=27P
+Summary: RG=293 members=0 niso=-1
+Summary: RG=294 members=0 niso=0
+0 n+si25-->si26 iso[0]=1n iso[1]=25Si iso[2]=26Si iso[3]=
+1 si26-->n+si25 iso[0]=1n iso[1]=25Si iso[2]=26Si iso[3]=
+Summary: RG=295 members=0 niso=0
+0 he4+si25-->s29 iso[0]=4He iso[1]=25Si iso[2]=29S iso[3]=
+1 s29-->he4+si25 iso[0]=4He iso[1]=25Si iso[2]=29S iso[3]=
+Summary: RG=296 members=0 niso=0
+0 he4+si25-->n+s28 iso[0]=4He iso[1]=25Si iso[2]=1n iso[3]=28S
+1 n+s28-->he4+si25 iso[0]=4He iso[1]=25Si iso[2]=1n iso[3]=28S
+Summary: RG=297 members=0 niso=-1
+0 he4+si25-->p+p28 iso[0]=4He iso[1]=25Si iso[2]=1H iso[3]=28P
+1 p+p28-->he4+si25 iso[0]=4He iso[1]=25Si iso[2]=1H iso[3]=28P
+Summary: RG=298 members=0 niso=-1
+Summary: RG=299 members=0 niso=0
+0 n+si26-->si27 iso[0]=1n iso[1]=26Si iso[2]=27Si iso[3]=
+1 si27-->n+si26 iso[0]=1n iso[1]=26Si iso[2]=27Si iso[3]=
+Summary: RG=300 members=0 niso=0
+0 p+si26-->p27 iso[0]=1H iso[1]=26Si iso[2]=27P iso[3]=
+1 p+si26-->p27 iso[0]=1H iso[1]=26Si iso[2]=27P iso[3]=
+2 p27-->p+si26 iso[0]=1H iso[1]=26Si iso[2]=27P iso[3]=
+3 p27-->p+si26 iso[0]=1H iso[1]=26Si iso[2]=27P iso[3]=
+Summary: RG=301 members=0 niso=0
+0 he4+si26-->s30 iso[0]=4He iso[1]=26Si iso[2]=30S iso[3]=
+1 s30-->he4+si26 iso[0]=4He iso[1]=26Si iso[2]=30S iso[3]=
+Summary: RG=302 members=0 niso=0
+0 he4+si26-->n+s29 iso[0]=4He iso[1]=26Si iso[2]=1n iso[3]=29S
+1 n+s29-->he4+si26 iso[0]=4He iso[1]=26Si iso[2]=1n iso[3]=29S
+Summary: RG=303 members=0 niso=-1
+0 he4+si26-->p+p29 iso[0]=4He iso[1]=26Si iso[2]=1H iso[3]=29P
+1 p+p29-->he4+si26 iso[0]=4He iso[1]=26Si iso[2]=1H iso[3]=29P
+Summary: RG=304 members=0 niso=-1
+Summary: RG=305 members=0 niso=0
+0 n+si27-->si28 iso[0]=1n iso[1]=27Si iso[2]=28Si iso[3]=
+1 si28-->n+si27 iso[0]=1n iso[1]=27Si iso[2]=28Si iso[3]=
+Summary: RG=306 members=0 niso=0
+0 p+si27-->p28 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+1 p+si27-->p28 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+2 p+si27-->p28 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+3 p28-->p+si27 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+4 p28-->p+si27 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+5 p28-->p+si27 iso[0]=1H iso[1]=27Si iso[2]=28P iso[3]=
+Summary: RG=307 members=0 niso=0
+0 he4+si27-->s31 iso[0]=4He iso[1]=27Si iso[2]=31S iso[3]=
+1 s31-->he4+si27 iso[0]=4He iso[1]=27Si iso[2]=31S iso[3]=
+Summary: RG=308 members=0 niso=0
+0 p+si27-->n+p27 iso[0]=1H iso[1]=27Si iso[2]=1n iso[3]=27P
+1 n+p27-->p+si27 iso[0]=1H iso[1]=27Si iso[2]=1n iso[3]=27P
+Summary: RG=309 members=0 niso=-1
+0 he4+si27-->n+s30 iso[0]=4He iso[1]=27Si iso[2]=1n iso[3]=30S
+1 n+s30-->he4+si27 iso[0]=4He iso[1]=27Si iso[2]=1n iso[3]=30S
+Summary: RG=310 members=0 niso=-1
+0 he4+si27-->p+p30 iso[0]=4He iso[1]=27Si iso[2]=1H iso[3]=30P
+1 p+p30-->he4+si27 iso[0]=4He iso[1]=27Si iso[2]=1H iso[3]=30P
+Summary: RG=311 members=0 niso=-1
+0 n+si28-->si29 iso[0]=1n iso[1]=28Si iso[2]=29Si iso[3]=
+1 si29-->n+si28 iso[0]=1n iso[1]=28Si iso[2]=29Si iso[3]=
+Summary: RG=312 members=0 niso=0
+0 p+si28-->p29 iso[0]=1H iso[1]=28Si iso[2]=29P iso[3]=
+1 p+si28-->p29 iso[0]=1H iso[1]=28Si iso[2]=29P iso[3]=
+2 p29-->p+si28 iso[0]=1H iso[1]=28Si iso[2]=29P iso[3]=
+3 p29-->p+si28 iso[0]=1H iso[1]=28Si iso[2]=29P iso[3]=
+Summary: RG=313 members=0 niso=0
+0 he4+si28-->s32 iso[0]=4He iso[1]=28Si iso[2]=32S iso[3]=
+1 s32-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=32S iso[3]=
+Summary: RG=314 members=0 niso=0
+0 p+si28-->n+p28 iso[0]=1H iso[1]=28Si iso[2]=1n iso[3]=28P
+1 n+p28-->p+si28 iso[0]=1H iso[1]=28Si iso[2]=1n iso[3]=28P
+Summary: RG=315 members=0 niso=-1
+0 he4+si28-->n+s31 iso[0]=4He iso[1]=28Si iso[2]=1n iso[3]=31S
+1 n+s31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1n iso[3]=31S
+Summary: RG=316 members=0 niso=-1
+0 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+1 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+2 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+3 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+4 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+5 he4+si28-->p+p31 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+6 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+7 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+8 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+9 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+10 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+11 p+p31-->he4+si28 iso[0]=4He iso[1]=28Si iso[2]=1H iso[3]=31P
+Summary: RG=317 members=0 niso=-1
+0 n+si29-->si30 iso[0]=1n iso[1]=29Si iso[2]=30Si iso[3]=
+1 si30-->n+si29 iso[0]=1n iso[1]=29Si iso[2]=30Si iso[3]=
+Summary: RG=318 members=0 niso=0
+0 p+si29-->p30 iso[0]=1H iso[1]=29Si iso[2]=30P iso[3]=
+1 p+si29-->p30 iso[0]=1H iso[1]=29Si iso[2]=30P iso[3]=
+2 p30-->p+si29 iso[0]=1H iso[1]=29Si iso[2]=30P iso[3]=
+3 p30-->p+si29 iso[0]=1H iso[1]=29Si iso[2]=30P iso[3]=
+Summary: RG=319 members=0 niso=0
+0 he4+si29-->s33 iso[0]=4He iso[1]=29Si iso[2]=33S iso[3]=
+1 s33-->he4+si29 iso[0]=4He iso[1]=29Si iso[2]=33S iso[3]=
+Summary: RG=320 members=0 niso=0
+0 p+si29-->n+p29 iso[0]=1H iso[1]=29Si iso[2]=1n iso[3]=29P
+1 n+p29-->p+si29 iso[0]=1H iso[1]=29Si iso[2]=1n iso[3]=29P
+Summary: RG=321 members=0 niso=-1
+0 he4+si29-->n+s32 iso[0]=4He iso[1]=29Si iso[2]=1n iso[3]=32S
+1 n+s32-->he4+si29 iso[0]=4He iso[1]=29Si iso[2]=1n iso[3]=32S
+Summary: RG=322 members=0 niso=-1
+0 he4+si29-->p+p32 iso[0]=4He iso[1]=29Si iso[2]=1H iso[3]=32P
+1 p+p32-->he4+si29 iso[0]=4He iso[1]=29Si iso[2]=1H iso[3]=32P
+Summary: RG=323 members=0 niso=-1
+0 n+si30-->si31 iso[0]=1n iso[1]=30Si iso[2]=31Si iso[3]=
+1 si31-->n+si30 iso[0]=1n iso[1]=30Si iso[2]=31Si iso[3]=
+Summary: RG=324 members=0 niso=0
+0 p+si30-->p31 iso[0]=1H iso[1]=30Si iso[2]=31P iso[3]=
+1 p+si30-->p31 iso[0]=1H iso[1]=30Si iso[2]=31P iso[3]=
+2 p31-->p+si30 iso[0]=1H iso[1]=30Si iso[2]=31P iso[3]=
+3 p31-->p+si30 iso[0]=1H iso[1]=30Si iso[2]=31P iso[3]=
+Summary: RG=325 members=0 niso=0
+0 he4+si30-->s34 iso[0]=4He iso[1]=30Si iso[2]=34S iso[3]=
+1 s34-->he4+si30 iso[0]=4He iso[1]=30Si iso[2]=34S iso[3]=
+Summary: RG=326 members=0 niso=0
+0 p+si30-->n+p30 iso[0]=1H iso[1]=30Si iso[2]=1n iso[3]=30P
+1 n+p30-->p+si30 iso[0]=1H iso[1]=30Si iso[2]=1n iso[3]=30P
+Summary: RG=327 members=0 niso=-1
+0 he4+si30-->n+s33 iso[0]=4He iso[1]=30Si iso[2]=1n iso[3]=33S
+1 n+s33-->he4+si30 iso[0]=4He iso[1]=30Si iso[2]=1n iso[3]=33S
+Summary: RG=328 members=0 niso=-1
+0 he4+si30-->p+p33 iso[0]=4He iso[1]=30Si iso[2]=1H iso[3]=33P
+1 p+p33-->he4+si30 iso[0]=4He iso[1]=30Si iso[2]=1H iso[3]=33P
+Summary: RG=329 members=0 niso=-1
+Summary: RG=330 members=0 niso=0
+0 p+si31-->p32 iso[0]=1H iso[1]=31Si iso[2]=32P iso[3]=
+1 p32-->p+si31 iso[0]=1H iso[1]=31Si iso[2]=32P iso[3]=
+Summary: RG=331 members=0 niso=0
+0 he4+si31-->s35 iso[0]=4He iso[1]=31Si iso[2]=35S iso[3]=
+1 s35-->he4+si31 iso[0]=4He iso[1]=31Si iso[2]=35S iso[3]=
+Summary: RG=332 members=0 niso=0
+0 p+si31-->n+p31 iso[0]=1H iso[1]=31Si iso[2]=1n iso[3]=31P
+1 n+p31-->p+si31 iso[0]=1H iso[1]=31Si iso[2]=1n iso[3]=31P
+Summary: RG=333 members=0 niso=-1
+0 he4+si31-->n+s34 iso[0]=4He iso[1]=31Si iso[2]=1n iso[3]=34S
+1 n+s34-->he4+si31 iso[0]=4He iso[1]=31Si iso[2]=1n iso[3]=34S
+Summary: RG=334 members=0 niso=-1
+Summary: RG=335 members=0 niso=0
+0 n+p27-->p28 iso[0]=1n iso[1]=27P iso[2]=28P iso[3]=
+1 p28-->n+p27 iso[0]=1n iso[1]=27P iso[2]=28P iso[3]=
+Summary: RG=336 members=0 niso=0
+0 p+p27-->s28 iso[0]=1H iso[1]=27P iso[2]=28S iso[3]=
+1 p+p27-->s28 iso[0]=1H iso[1]=27P iso[2]=28S iso[3]=
+2 s28-->p+p27 iso[0]=1H iso[1]=27P iso[2]=28S iso[3]=
+3 s28-->p+p27 iso[0]=1H iso[1]=27P iso[2]=28S iso[3]=
+Summary: RG=337 members=0 niso=0
+0 he4+p27-->cl31 iso[0]=4He iso[1]=27P iso[2]=31Cl iso[3]=
+1 cl31-->he4+p27 iso[0]=4He iso[1]=27P iso[2]=31Cl iso[3]=
+Summary: RG=338 members=0 niso=0
+0 he4+p27-->n+cl30 iso[0]=4He iso[1]=27P iso[2]=1n iso[3]=30Cl
+1 n+cl30-->he4+p27 iso[0]=4He iso[1]=27P iso[2]=1n iso[3]=30Cl
+Summary: RG=339 members=0 niso=-1
+0 he4+p27-->p+s30 iso[0]=4He iso[1]=27P iso[2]=1H iso[3]=30S
+1 p+s30-->he4+p27 iso[0]=4He iso[1]=27P iso[2]=1H iso[3]=30S
+Summary: RG=340 members=0 niso=-1
+Summary: RG=341 members=0 niso=0
+0 n+p28-->p29 iso[0]=1n iso[1]=28P iso[2]=29P iso[3]=
+1 p29-->n+p28 iso[0]=1n iso[1]=28P iso[2]=29P iso[3]=
+Summary: RG=342 members=0 niso=0
+0 p+p28-->s29 iso[0]=1H iso[1]=28P iso[2]=29S iso[3]=
+1 s29-->p+p28 iso[0]=1H iso[1]=28P iso[2]=29S iso[3]=
+Summary: RG=343 members=0 niso=0
+0 he4+p28-->cl32 iso[0]=4He iso[1]=28P iso[2]=32Cl iso[3]=
+1 cl32-->he4+p28 iso[0]=4He iso[1]=28P iso[2]=32Cl iso[3]=
+Summary: RG=344 members=0 niso=0
+0 p+p28-->n+s28 iso[0]=1H iso[1]=28P iso[2]=1n iso[3]=28S
+1 n+s28-->p+p28 iso[0]=1H iso[1]=28P iso[2]=1n iso[3]=28S
+Summary: RG=345 members=0 niso=-1
+0 he4+p28-->n+cl31 iso[0]=4He iso[1]=28P iso[2]=1n iso[3]=31Cl
+1 n+cl31-->he4+p28 iso[0]=4He iso[1]=28P iso[2]=1n iso[3]=31Cl
+Summary: RG=346 members=0 niso=-1
+0 he4+p28-->p+s31 iso[0]=4He iso[1]=28P iso[2]=1H iso[3]=31S
+1 p+s31-->he4+p28 iso[0]=4He iso[1]=28P iso[2]=1H iso[3]=31S
+Summary: RG=347 members=0 niso=-1
+Summary: RG=348 members=0 niso=0
+0 n+p29-->p30 iso[0]=1n iso[1]=29P iso[2]=30P iso[3]=
+1 p30-->n+p29 iso[0]=1n iso[1]=29P iso[2]=30P iso[3]=
+Summary: RG=349 members=0 niso=0
+0 p+p29-->s30 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+1 p+p29-->s30 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+2 p+p29-->s30 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+3 s30-->p+p29 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+4 s30-->p+p29 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+5 s30-->p+p29 iso[0]=1H iso[1]=29P iso[2]=30S iso[3]=
+Summary: RG=350 members=0 niso=0
+0 he4+p29-->cl33 iso[0]=4He iso[1]=29P iso[2]=33Cl iso[3]=
+1 cl33-->he4+p29 iso[0]=4He iso[1]=29P iso[2]=33Cl iso[3]=
+Summary: RG=351 members=0 niso=0
+0 p+p29-->n+s29 iso[0]=1H iso[1]=29P iso[2]=1n iso[3]=29S
+1 n+s29-->p+p29 iso[0]=1H iso[1]=29P iso[2]=1n iso[3]=29S
+Summary: RG=352 members=0 niso=-1
+0 he4+p29-->n+cl32 iso[0]=4He iso[1]=29P iso[2]=1n iso[3]=32Cl
+1 n+cl32-->he4+p29 iso[0]=4He iso[1]=29P iso[2]=1n iso[3]=32Cl
+Summary: RG=353 members=0 niso=-1
+0 he4+p29-->p+s32 iso[0]=4He iso[1]=29P iso[2]=1H iso[3]=32S
+1 p+s32-->he4+p29 iso[0]=4He iso[1]=29P iso[2]=1H iso[3]=32S
+Summary: RG=354 members=0 niso=-1
+Summary: RG=355 members=0 niso=0
+0 n+p30-->p31 iso[0]=1n iso[1]=30P iso[2]=31P iso[3]=
+1 p31-->n+p30 iso[0]=1n iso[1]=30P iso[2]=31P iso[3]=
+Summary: RG=356 members=0 niso=0
+0 p+p30-->s31 iso[0]=1H iso[1]=30P iso[2]=31S iso[3]=
+1 s31-->p+p30 iso[0]=1H iso[1]=30P iso[2]=31S iso[3]=
+Summary: RG=357 members=0 niso=0
+0 he4+p30-->cl34 iso[0]=4He iso[1]=30P iso[2]=34Cl iso[3]=
+1 cl34-->he4+p30 iso[0]=4He iso[1]=30P iso[2]=34Cl iso[3]=
+Summary: RG=358 members=0 niso=0
+0 p+p30-->n+s30 iso[0]=1H iso[1]=30P iso[2]=1n iso[3]=30S
+1 n+s30-->p+p30 iso[0]=1H iso[1]=30P iso[2]=1n iso[3]=30S
+Summary: RG=359 members=0 niso=-1
+0 he4+p30-->n+cl33 iso[0]=4He iso[1]=30P iso[2]=1n iso[3]=33Cl
+1 n+cl33-->he4+p30 iso[0]=4He iso[1]=30P iso[2]=1n iso[3]=33Cl
+Summary: RG=360 members=0 niso=-1
+0 he4+p30-->p+s33 iso[0]=4He iso[1]=30P iso[2]=1H iso[3]=33S
+1 p+s33-->he4+p30 iso[0]=4He iso[1]=30P iso[2]=1H iso[3]=33S
+Summary: RG=361 members=0 niso=-1
+0 n+p31-->p32 iso[0]=1n iso[1]=31P iso[2]=32P iso[3]=
+1 p32-->n+p31 iso[0]=1n iso[1]=31P iso[2]=32P iso[3]=
+Summary: RG=362 members=0 niso=0
+0 p+p31-->s32 iso[0]=1H iso[1]=31P iso[2]=32S iso[3]=
+1 s32-->p+p31 iso[0]=1H iso[1]=31P iso[2]=32S iso[3]=
+Summary: RG=363 members=0 niso=0
+0 he4+p31-->cl35 iso[0]=4He iso[1]=31P iso[2]=35Cl iso[3]=
+1 cl35-->he4+p31 iso[0]=4He iso[1]=31P iso[2]=35Cl iso[3]=
+Summary: RG=364 members=0 niso=0
+0 p+p31-->n+s31 iso[0]=1H iso[1]=31P iso[2]=1n iso[3]=31S
+1 n+s31-->p+p31 iso[0]=1H iso[1]=31P iso[2]=1n iso[3]=31S
+Summary: RG=365 members=0 niso=-1
+0 he4+p31-->n+cl34 iso[0]=4He iso[1]=31P iso[2]=1n iso[3]=34Cl
+1 n+cl34-->he4+p31 iso[0]=4He iso[1]=31P iso[2]=1n iso[3]=34Cl
+Summary: RG=366 members=0 niso=-1
+0 he4+p31-->p+s34 iso[0]=4He iso[1]=31P iso[2]=1H iso[3]=34S
+1 p+s34-->he4+p31 iso[0]=4He iso[1]=31P iso[2]=1H iso[3]=34S
+Summary: RG=367 members=0 niso=-1
+Summary: RG=368 members=0 niso=0
+0 n+p32-->p33 iso[0]=1n iso[1]=32P iso[2]=33P iso[3]=
+1 p33-->n+p32 iso[0]=1n iso[1]=32P iso[2]=33P iso[3]=
+Summary: RG=369 members=0 niso=0
+0 p+p32-->s33 iso[0]=1H iso[1]=32P iso[2]=33S iso[3]=
+1 s33-->p+p32 iso[0]=1H iso[1]=32P iso[2]=33S iso[3]=
+Summary: RG=370 members=0 niso=0
+0 he4+p32-->cl36 iso[0]=4He iso[1]=32P iso[2]=36Cl iso[3]=
+1 cl36-->he4+p32 iso[0]=4He iso[1]=32P iso[2]=36Cl iso[3]=
+Summary: RG=371 members=0 niso=0
+0 p+p32-->n+s32 iso[0]=1H iso[1]=32P iso[2]=1n iso[3]=32S
+1 n+s32-->p+p32 iso[0]=1H iso[1]=32P iso[2]=1n iso[3]=32S
+Summary: RG=372 members=0 niso=-1
+0 he4+p32-->n+cl35 iso[0]=4He iso[1]=32P iso[2]=1n iso[3]=35Cl
+1 n+cl35-->he4+p32 iso[0]=4He iso[1]=32P iso[2]=1n iso[3]=35Cl
+Summary: RG=373 members=0 niso=-1
+0 he4+p32-->p+s35 iso[0]=4He iso[1]=32P iso[2]=1H iso[3]=35S
+1 p+s35-->he4+p32 iso[0]=4He iso[1]=32P iso[2]=1H iso[3]=35S
+Summary: RG=374 members=0 niso=-1
+Summary: RG=375 members=0 niso=0
+0 p+p33-->s34 iso[0]=1H iso[1]=33P iso[2]=34S iso[3]=
+1 s34-->p+p33 iso[0]=1H iso[1]=33P iso[2]=34S iso[3]=
+Summary: RG=376 members=0 niso=0
+0 he4+p33-->cl37 iso[0]=4He iso[1]=33P iso[2]=37Cl iso[3]=
+1 cl37-->he4+p33 iso[0]=4He iso[1]=33P iso[2]=37Cl iso[3]=
+Summary: RG=377 members=0 niso=0
+0 p+p33-->n+s33 iso[0]=1H iso[1]=33P iso[2]=1n iso[3]=33S
+1 n+s33-->p+p33 iso[0]=1H iso[1]=33P iso[2]=1n iso[3]=33S
+Summary: RG=378 members=0 niso=-1
+0 he4+p33-->n+cl36 iso[0]=4He iso[1]=33P iso[2]=1n iso[3]=36Cl
+1 n+cl36-->he4+p33 iso[0]=4He iso[1]=33P iso[2]=1n iso[3]=36Cl
+Summary: RG=379 members=0 niso=-1
+Summary: RG=380 members=0 niso=0
+0 n+s28-->s29 iso[0]=1n iso[1]=28S iso[2]=29S iso[3]=
+1 s29-->n+s28 iso[0]=1n iso[1]=28S iso[2]=29S iso[3]=
+Summary: RG=381 members=0 niso=0
+0 he4+s28-->ar32 iso[0]=4He iso[1]=28S iso[2]=32Ar iso[3]=
+1 ar32-->he4+s28 iso[0]=4He iso[1]=28S iso[2]=32Ar iso[3]=
+Summary: RG=382 members=0 niso=0
+0 he4+s28-->n+ar31 iso[0]=4He iso[1]=28S iso[2]=1n iso[3]=31Ar
+1 n+ar31-->he4+s28 iso[0]=4He iso[1]=28S iso[2]=1n iso[3]=31Ar
+Summary: RG=383 members=0 niso=-1
+0 he4+s28-->p+cl31 iso[0]=4He iso[1]=28S iso[2]=1H iso[3]=31Cl
+1 p+cl31-->he4+s28 iso[0]=4He iso[1]=28S iso[2]=1H iso[3]=31Cl
+Summary: RG=384 members=0 niso=-1
+Summary: RG=385 members=0 niso=0
+0 n+s29-->s30 iso[0]=1n iso[1]=29S iso[2]=30S iso[3]=
+1 s30-->n+s29 iso[0]=1n iso[1]=29S iso[2]=30S iso[3]=
+Summary: RG=386 members=0 niso=0
+0 p+s29-->cl30 iso[0]=1H iso[1]=29S iso[2]=30Cl iso[3]=
+1 cl30-->p+s29 iso[0]=1H iso[1]=29S iso[2]=30Cl iso[3]=
+Summary: RG=387 members=0 niso=0
+0 he4+s29-->ar33 iso[0]=4He iso[1]=29S iso[2]=33Ar iso[3]=
+1 ar33-->he4+s29 iso[0]=4He iso[1]=29S iso[2]=33Ar iso[3]=
+Summary: RG=388 members=0 niso=0
+0 he4+s29-->n+ar32 iso[0]=4He iso[1]=29S iso[2]=1n iso[3]=32Ar
+1 n+ar32-->he4+s29 iso[0]=4He iso[1]=29S iso[2]=1n iso[3]=32Ar
+Summary: RG=389 members=0 niso=-1
+0 he4+s29-->p+cl32 iso[0]=4He iso[1]=29S iso[2]=1H iso[3]=32Cl
+1 p+cl32-->he4+s29 iso[0]=4He iso[1]=29S iso[2]=1H iso[3]=32Cl
+Summary: RG=390 members=0 niso=-1
+Summary: RG=391 members=0 niso=0
+0 n+s30-->s31 iso[0]=1n iso[1]=30S iso[2]=31S iso[3]=
+1 s31-->n+s30 iso[0]=1n iso[1]=30S iso[2]=31S iso[3]=
+Summary: RG=392 members=0 niso=0
+0 he4+s30-->ar34 iso[0]=4He iso[1]=30S iso[2]=34Ar iso[3]=
+1 ar34-->he4+s30 iso[0]=4He iso[1]=30S iso[2]=34Ar iso[3]=
+Summary: RG=393 members=0 niso=0
+0 p+s30-->n+cl30 iso[0]=1H iso[1]=30S iso[2]=1n iso[3]=30Cl
+1 n+cl30-->p+s30 iso[0]=1H iso[1]=30S iso[2]=1n iso[3]=30Cl
+Summary: RG=394 members=0 niso=-1
+0 he4+s30-->n+ar33 iso[0]=4He iso[1]=30S iso[2]=1n iso[3]=33Ar
+1 n+ar33-->he4+s30 iso[0]=4He iso[1]=30S iso[2]=1n iso[3]=33Ar
+Summary: RG=395 members=0 niso=-1
+0 he4+s30-->p+cl33 iso[0]=4He iso[1]=30S iso[2]=1H iso[3]=33Cl
+1 p+cl33-->he4+s30 iso[0]=4He iso[1]=30S iso[2]=1H iso[3]=33Cl
+Summary: RG=396 members=0 niso=-1
+Summary: RG=397 members=0 niso=0
+0 n+s31-->s32 iso[0]=1n iso[1]=31S iso[2]=32S iso[3]=
+1 s32-->n+s31 iso[0]=1n iso[1]=31S iso[2]=32S iso[3]=
+Summary: RG=398 members=0 niso=0
+0 p+s31-->cl32 iso[0]=1H iso[1]=31S iso[2]=32Cl iso[3]=
+1 p+s31-->cl32 iso[0]=1H iso[1]=31S iso[2]=32Cl iso[3]=
+2 cl32-->p+s31 iso[0]=1H iso[1]=31S iso[2]=32Cl iso[3]=
+3 cl32-->p+s31 iso[0]=1H iso[1]=31S iso[2]=32Cl iso[3]=
+Summary: RG=399 members=0 niso=0
+0 he4+s31-->ar35 iso[0]=4He iso[1]=31S iso[2]=35Ar iso[3]=
+1 ar35-->he4+s31 iso[0]=4He iso[1]=31S iso[2]=35Ar iso[3]=
+Summary: RG=400 members=0 niso=0
+0 p+s31-->n+cl31 iso[0]=1H iso[1]=31S iso[2]=1n iso[3]=31Cl
+1 n+cl31-->p+s31 iso[0]=1H iso[1]=31S iso[2]=1n iso[3]=31Cl
+Summary: RG=401 members=0 niso=-1
+0 he4+s31-->n+ar34 iso[0]=4He iso[1]=31S iso[2]=1n iso[3]=34Ar
+1 n+ar34-->he4+s31 iso[0]=4He iso[1]=31S iso[2]=1n iso[3]=34Ar
+Summary: RG=402 members=0 niso=-1
+0 he4+s31-->p+cl34 iso[0]=4He iso[1]=31S iso[2]=1H iso[3]=34Cl
+1 p+cl34-->he4+s31 iso[0]=4He iso[1]=31S iso[2]=1H iso[3]=34Cl
+Summary: RG=403 members=0 niso=-1
+0 n+s32-->s33 iso[0]=1n iso[1]=32S iso[2]=33S iso[3]=
+1 s33-->n+s32 iso[0]=1n iso[1]=32S iso[2]=33S iso[3]=
+Summary: RG=404 members=0 niso=0
+0 p+s32-->cl33 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+1 p+s32-->cl33 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+2 p+s32-->cl33 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+3 p+s32-->cl33 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+4 cl33-->p+s32 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+5 cl33-->p+s32 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+6 cl33-->p+s32 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+7 cl33-->p+s32 iso[0]=1H iso[1]=32S iso[2]=33Cl iso[3]=
+Summary: RG=405 members=0 niso=0
+0 he4+s32-->ar36 iso[0]=4He iso[1]=32S iso[2]=36Ar iso[3]=
+1 ar36-->he4+s32 iso[0]=4He iso[1]=32S iso[2]=36Ar iso[3]=
+Summary: RG=406 members=0 niso=0
+0 p+s32-->n+cl32 iso[0]=1H iso[1]=32S iso[2]=1n iso[3]=32Cl
+1 n+cl32-->p+s32 iso[0]=1H iso[1]=32S iso[2]=1n iso[3]=32Cl
+Summary: RG=407 members=0 niso=-1
+0 he4+s32-->n+ar35 iso[0]=4He iso[1]=32S iso[2]=1n iso[3]=35Ar
+1 n+ar35-->he4+s32 iso[0]=4He iso[1]=32S iso[2]=1n iso[3]=35Ar
+Summary: RG=408 members=0 niso=-1
+0 he4+s32-->p+cl35 iso[0]=4He iso[1]=32S iso[2]=1H iso[3]=35Cl
+1 p+cl35-->he4+s32 iso[0]=4He iso[1]=32S iso[2]=1H iso[3]=35Cl
+Summary: RG=409 members=0 niso=-1
+0 n+s33-->s34 iso[0]=1n iso[1]=33S iso[2]=34S iso[3]=
+1 s34-->n+s33 iso[0]=1n iso[1]=33S iso[2]=34S iso[3]=
+Summary: RG=410 members=0 niso=0
+0 p+s33-->cl34 iso[0]=1H iso[1]=33S iso[2]=34Cl iso[3]=
+1 cl34-->p+s33 iso[0]=1H iso[1]=33S iso[2]=34Cl iso[3]=
+Summary: RG=411 members=0 niso=0
+0 he4+s33-->ar37 iso[0]=4He iso[1]=33S iso[2]=37Ar iso[3]=
+1 ar37-->he4+s33 iso[0]=4He iso[1]=33S iso[2]=37Ar iso[3]=
+Summary: RG=412 members=0 niso=0
+0 p+s33-->n+cl33 iso[0]=1H iso[1]=33S iso[2]=1n iso[3]=33Cl
+1 n+cl33-->p+s33 iso[0]=1H iso[1]=33S iso[2]=1n iso[3]=33Cl
+Summary: RG=413 members=0 niso=-1
+0 he4+s33-->n+ar36 iso[0]=4He iso[1]=33S iso[2]=1n iso[3]=36Ar
+1 n+ar36-->he4+s33 iso[0]=4He iso[1]=33S iso[2]=1n iso[3]=36Ar
+Summary: RG=414 members=0 niso=-1
+0 he4+s33-->p+cl36 iso[0]=4He iso[1]=33S iso[2]=1H iso[3]=36Cl
+1 p+cl36-->he4+s33 iso[0]=4He iso[1]=33S iso[2]=1H iso[3]=36Cl
+Summary: RG=415 members=0 niso=-1
+0 n+s34-->s35 iso[0]=1n iso[1]=34S iso[2]=35S iso[3]=
+1 s35-->n+s34 iso[0]=1n iso[1]=34S iso[2]=35S iso[3]=
+Summary: RG=416 members=0 niso=0
+0 p+s34-->cl35 iso[0]=1H iso[1]=34S iso[2]=35Cl iso[3]=
+1 cl35-->p+s34 iso[0]=1H iso[1]=34S iso[2]=35Cl iso[3]=
+Summary: RG=417 members=0 niso=0
+0 he4+s34-->ar38 iso[0]=4He iso[1]=34S iso[2]=38Ar iso[3]=
+1 ar38-->he4+s34 iso[0]=4He iso[1]=34S iso[2]=38Ar iso[3]=
+Summary: RG=418 members=0 niso=0
+0 p+s34-->n+cl34 iso[0]=1H iso[1]=34S iso[2]=1n iso[3]=34Cl
+1 n+cl34-->p+s34 iso[0]=1H iso[1]=34S iso[2]=1n iso[3]=34Cl
+Summary: RG=419 members=0 niso=-1
+0 he4+s34-->n+ar37 iso[0]=4He iso[1]=34S iso[2]=1n iso[3]=37Ar
+1 n+ar37-->he4+s34 iso[0]=4He iso[1]=34S iso[2]=1n iso[3]=37Ar
+Summary: RG=420 members=0 niso=-1
+0 he4+s34-->p+cl37 iso[0]=4He iso[1]=34S iso[2]=1H iso[3]=37Cl
+1 p+cl37-->he4+s34 iso[0]=4He iso[1]=34S iso[2]=1H iso[3]=37Cl
+Summary: RG=421 members=0 niso=-1
+Summary: RG=422 members=0 niso=0
+0 p+s35-->cl36 iso[0]=1H iso[1]=35S iso[2]=36Cl iso[3]=
+1 cl36-->p+s35 iso[0]=1H iso[1]=35S iso[2]=36Cl iso[3]=
+Summary: RG=423 members=0 niso=0
+0 he4+s35-->ar39 iso[0]=4He iso[1]=35S iso[2]=39Ar iso[3]=
+1 ar39-->he4+s35 iso[0]=4He iso[1]=35S iso[2]=39Ar iso[3]=
+Summary: RG=424 members=0 niso=0
+0 p+s35-->n+cl35 iso[0]=1H iso[1]=35S iso[2]=1n iso[3]=35Cl
+1 n+cl35-->p+s35 iso[0]=1H iso[1]=35S iso[2]=1n iso[3]=35Cl
+Summary: RG=425 members=0 niso=-1
+0 he4+s35-->n+ar38 iso[0]=4He iso[1]=35S iso[2]=1n iso[3]=38Ar
+1 n+ar38-->he4+s35 iso[0]=4He iso[1]=35S iso[2]=1n iso[3]=38Ar
+Summary: RG=426 members=0 niso=-1
+0 he4+s35-->p+cl38 iso[0]=4He iso[1]=35S iso[2]=1H iso[3]=38Cl
+1 p+cl38-->he4+s35 iso[0]=4He iso[1]=35S iso[2]=1H iso[3]=38Cl
+Summary: RG=427 members=0 niso=-1
+0 n+cl30-->cl31 iso[0]=1n iso[1]=30Cl iso[2]=31Cl iso[3]=
+1 cl31-->n+cl30 iso[0]=1n iso[1]=30Cl iso[2]=31Cl iso[3]=
+Summary: RG=428 members=0 niso=0
+0 p+cl30-->ar31 iso[0]=1H iso[1]=30Cl iso[2]=31Ar iso[3]=
+1 ar31-->p+cl30 iso[0]=1H iso[1]=30Cl iso[2]=31Ar iso[3]=
+Summary: RG=429 members=0 niso=0
+0 he4+cl30-->k34 iso[0]=4He iso[1]=30Cl iso[2]=34K iso[3]=
+1 k34-->he4+cl30 iso[0]=4He iso[1]=30Cl iso[2]=34K iso[3]=
+Summary: RG=430 members=0 niso=0
+0 he4+cl30-->p+ar33 iso[0]=4He iso[1]=30Cl iso[2]=1H iso[3]=33Ar
+1 p+ar33-->he4+cl30 iso[0]=4He iso[1]=30Cl iso[2]=1H iso[3]=33Ar
+Summary: RG=431 members=0 niso=-1
+Summary: RG=432 members=0 niso=0
+0 n+cl31-->cl32 iso[0]=1n iso[1]=31Cl iso[2]=32Cl iso[3]=
+1 cl32-->n+cl31 iso[0]=1n iso[1]=31Cl iso[2]=32Cl iso[3]=
+Summary: RG=433 members=0 niso=0
+0 p+cl31-->ar32 iso[0]=1H iso[1]=31Cl iso[2]=32Ar iso[3]=
+1 p+cl31-->ar32 iso[0]=1H iso[1]=31Cl iso[2]=32Ar iso[3]=
+2 ar32-->p+cl31 iso[0]=1H iso[1]=31Cl iso[2]=32Ar iso[3]=
+3 ar32-->p+cl31 iso[0]=1H iso[1]=31Cl iso[2]=32Ar iso[3]=
+Summary: RG=434 members=0 niso=0
+0 he4+cl31-->k35 iso[0]=4He iso[1]=31Cl iso[2]=35K iso[3]=
+1 k35-->he4+cl31 iso[0]=4He iso[1]=31Cl iso[2]=35K iso[3]=
+Summary: RG=435 members=0 niso=0
+0 p+cl31-->n+ar31 iso[0]=1H iso[1]=31Cl iso[2]=1n iso[3]=31Ar
+1 n+ar31-->p+cl31 iso[0]=1H iso[1]=31Cl iso[2]=1n iso[3]=31Ar
+Summary: RG=436 members=0 niso=-1
+0 he4+cl31-->n+k34 iso[0]=4He iso[1]=31Cl iso[2]=1n iso[3]=34K
+1 n+k34-->he4+cl31 iso[0]=4He iso[1]=31Cl iso[2]=1n iso[3]=34K
+Summary: RG=437 members=0 niso=-1
+0 he4+cl31-->p+ar34 iso[0]=4He iso[1]=31Cl iso[2]=1H iso[3]=34Ar
+1 p+ar34-->he4+cl31 iso[0]=4He iso[1]=31Cl iso[2]=1H iso[3]=34Ar
+Summary: RG=438 members=0 niso=2162
+Summary: RG=439 members=0 niso=0
+0 n+cl32-->cl33 iso[0]=1n iso[1]=32Cl iso[2]=33Cl iso[3]=
+1 cl33-->n+cl32 iso[0]=1n iso[1]=32Cl iso[2]=33Cl iso[3]=
+Summary: RG=440 members=0 niso=0
+0 p+cl32-->ar33 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+1 p+cl32-->ar33 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+2 p+cl32-->ar33 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+3 ar33-->p+cl32 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+4 ar33-->p+cl32 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+5 ar33-->p+cl32 iso[0]=1H iso[1]=32Cl iso[2]=33Ar iso[3]=
+Summary: RG=441 members=0 niso=0
+0 he4+cl32-->k36 iso[0]=4He iso[1]=32Cl iso[2]=36K iso[3]=
+1 k36-->he4+cl32 iso[0]=4He iso[1]=32Cl iso[2]=36K iso[3]=
+Summary: RG=442 members=0 niso=0
+0 p+cl32-->n+ar32 iso[0]=1H iso[1]=32Cl iso[2]=1n iso[3]=32Ar
+1 n+ar32-->p+cl32 iso[0]=1H iso[1]=32Cl iso[2]=1n iso[3]=32Ar
+Summary: RG=443 members=0 niso=-1
+0 he4+cl32-->n+k35 iso[0]=4He iso[1]=32Cl iso[2]=1n iso[3]=35K
+1 n+k35-->he4+cl32 iso[0]=4He iso[1]=32Cl iso[2]=1n iso[3]=35K
+Summary: RG=444 members=0 niso=-1
+0 he4+cl32-->p+ar35 iso[0]=4He iso[1]=32Cl iso[2]=1H iso[3]=35Ar
+1 p+ar35-->he4+cl32 iso[0]=4He iso[1]=32Cl iso[2]=1H iso[3]=35Ar
+Summary: RG=445 members=0 niso=-1
+Summary: RG=446 members=0 niso=0
+0 n+cl33-->cl34 iso[0]=1n iso[1]=33Cl iso[2]=34Cl iso[3]=
+1 cl34-->n+cl33 iso[0]=1n iso[1]=33Cl iso[2]=34Cl iso[3]=
+Summary: RG=447 members=0 niso=0
+0 p+cl33-->ar34 iso[0]=1H iso[1]=33Cl iso[2]=34Ar iso[3]=
+1 ar34-->p+cl33 iso[0]=1H iso[1]=33Cl iso[2]=34Ar iso[3]=
+Summary: RG=448 members=0 niso=0
+0 he4+cl33-->k37 iso[0]=4He iso[1]=33Cl iso[2]=37K iso[3]=
+1 k37-->he4+cl33 iso[0]=4He iso[1]=33Cl iso[2]=37K iso[3]=
+Summary: RG=449 members=0 niso=0
+0 p+cl33-->n+ar33 iso[0]=1H iso[1]=33Cl iso[2]=1n iso[3]=33Ar
+1 n+ar33-->p+cl33 iso[0]=1H iso[1]=33Cl iso[2]=1n iso[3]=33Ar
+Summary: RG=450 members=0 niso=-1
+0 he4+cl33-->n+k36 iso[0]=4He iso[1]=33Cl iso[2]=1n iso[3]=36K
+1 n+k36-->he4+cl33 iso[0]=4He iso[1]=33Cl iso[2]=1n iso[3]=36K
+Summary: RG=451 members=0 niso=-1
+0 he4+cl33-->p+ar36 iso[0]=4He iso[1]=33Cl iso[2]=1H iso[3]=36Ar
+1 p+ar36-->he4+cl33 iso[0]=4He iso[1]=33Cl iso[2]=1H iso[3]=36Ar
+Summary: RG=452 members=0 niso=-1
+Summary: RG=453 members=0 niso=0
+0 n+cl34-->cl35 iso[0]=1n iso[1]=34Cl iso[2]=35Cl iso[3]=
+1 cl35-->n+cl34 iso[0]=1n iso[1]=34Cl iso[2]=35Cl iso[3]=
+Summary: RG=454 members=0 niso=0
+0 p+cl34-->ar35 iso[0]=1H iso[1]=34Cl iso[2]=35Ar iso[3]=
+1 ar35-->p+cl34 iso[0]=1H iso[1]=34Cl iso[2]=35Ar iso[3]=
+Summary: RG=455 members=0 niso=0
+0 he4+cl34-->k38 iso[0]=4He iso[1]=34Cl iso[2]=38K iso[3]=
+1 k38-->he4+cl34 iso[0]=4He iso[1]=34Cl iso[2]=38K iso[3]=
+Summary: RG=456 members=0 niso=0
+0 p+cl34-->n+ar34 iso[0]=1H iso[1]=34Cl iso[2]=1n iso[3]=34Ar
+1 n+ar34-->p+cl34 iso[0]=1H iso[1]=34Cl iso[2]=1n iso[3]=34Ar
+Summary: RG=457 members=0 niso=-1
+0 he4+cl34-->n+k37 iso[0]=4He iso[1]=34Cl iso[2]=1n iso[3]=37K
+1 n+k37-->he4+cl34 iso[0]=4He iso[1]=34Cl iso[2]=1n iso[3]=37K
+Summary: RG=458 members=0 niso=-1
+0 he4+cl34-->p+ar37 iso[0]=4He iso[1]=34Cl iso[2]=1H iso[3]=37Ar
+1 p+ar37-->he4+cl34 iso[0]=4He iso[1]=34Cl iso[2]=1H iso[3]=37Ar
+Summary: RG=459 members=0 niso=-1
+0 n+cl35-->cl36 iso[0]=1n iso[1]=35Cl iso[2]=36Cl iso[3]=
+1 cl36-->n+cl35 iso[0]=1n iso[1]=35Cl iso[2]=36Cl iso[3]=
+Summary: RG=460 members=0 niso=0
+0 p+cl35-->ar36 iso[0]=1H iso[1]=35Cl iso[2]=36Ar iso[3]=
+1 ar36-->p+cl35 iso[0]=1H iso[1]=35Cl iso[2]=36Ar iso[3]=
+Summary: RG=461 members=0 niso=0
+0 he4+cl35-->k39 iso[0]=4He iso[1]=35Cl iso[2]=39K iso[3]=
+1 k39-->he4+cl35 iso[0]=4He iso[1]=35Cl iso[2]=39K iso[3]=
+Summary: RG=462 members=0 niso=0
+0 p+cl35-->n+ar35 iso[0]=1H iso[1]=35Cl iso[2]=1n iso[3]=35Ar
+1 n+ar35-->p+cl35 iso[0]=1H iso[1]=35Cl iso[2]=1n iso[3]=35Ar
+Summary: RG=463 members=0 niso=-1
+0 he4+cl35-->n+k38 iso[0]=4He iso[1]=35Cl iso[2]=1n iso[3]=38K
+1 n+k38-->he4+cl35 iso[0]=4He iso[1]=35Cl iso[2]=1n iso[3]=38K
+Summary: RG=464 members=0 niso=-1
+0 he4+cl35-->p+ar38 iso[0]=4He iso[1]=35Cl iso[2]=1H iso[3]=38Ar
+1 p+ar38-->he4+cl35 iso[0]=4He iso[1]=35Cl iso[2]=1H iso[3]=38Ar
+Summary: RG=465 members=0 niso=-1
+Summary: RG=466 members=0 niso=0
+0 n+cl36-->cl37 iso[0]=1n iso[1]=36Cl iso[2]=37Cl iso[3]=
+1 cl37-->n+cl36 iso[0]=1n iso[1]=36Cl iso[2]=37Cl iso[3]=
+Summary: RG=467 members=0 niso=0
+0 p+cl36-->ar37 iso[0]=1H iso[1]=36Cl iso[2]=37Ar iso[3]=
+1 ar37-->p+cl36 iso[0]=1H iso[1]=36Cl iso[2]=37Ar iso[3]=
+Summary: RG=468 members=0 niso=0
+0 he4+cl36-->k40 iso[0]=4He iso[1]=36Cl iso[2]=40K iso[3]=
+1 k40-->he4+cl36 iso[0]=4He iso[1]=36Cl iso[2]=40K iso[3]=
+Summary: RG=469 members=0 niso=0
+0 p+cl36-->n+ar36 iso[0]=1H iso[1]=36Cl iso[2]=1n iso[3]=36Ar
+1 n+ar36-->p+cl36 iso[0]=1H iso[1]=36Cl iso[2]=1n iso[3]=36Ar
+Summary: RG=470 members=0 niso=-1
+0 he4+cl36-->n+k39 iso[0]=4He iso[1]=36Cl iso[2]=1n iso[3]=39K
+1 n+k39-->he4+cl36 iso[0]=4He iso[1]=36Cl iso[2]=1n iso[3]=39K
+Summary: RG=471 members=0 niso=-1
+0 he4+cl36-->p+ar39 iso[0]=4He iso[1]=36Cl iso[2]=1H iso[3]=39Ar
+1 p+ar39-->he4+cl36 iso[0]=4He iso[1]=36Cl iso[2]=1H iso[3]=39Ar
+Summary: RG=472 members=0 niso=-1
+0 n+cl37-->cl38 iso[0]=1n iso[1]=37Cl iso[2]=38Cl iso[3]=
+1 cl38-->n+cl37 iso[0]=1n iso[1]=37Cl iso[2]=38Cl iso[3]=
+Summary: RG=473 members=0 niso=0
+0 p+cl37-->ar38 iso[0]=1H iso[1]=37Cl iso[2]=38Ar iso[3]=
+1 ar38-->p+cl37 iso[0]=1H iso[1]=37Cl iso[2]=38Ar iso[3]=
+Summary: RG=474 members=0 niso=0
+0 he4+cl37-->k41 iso[0]=4He iso[1]=37Cl iso[2]=41K iso[3]=
+1 k41-->he4+cl37 iso[0]=4He iso[1]=37Cl iso[2]=41K iso[3]=
+Summary: RG=475 members=0 niso=0
+0 p+cl37-->n+ar37 iso[0]=1H iso[1]=37Cl iso[2]=1n iso[3]=37Ar
+1 n+ar37-->p+cl37 iso[0]=1H iso[1]=37Cl iso[2]=1n iso[3]=37Ar
+Summary: RG=476 members=0 niso=-1
+0 he4+cl37-->n+k40 iso[0]=4He iso[1]=37Cl iso[2]=1n iso[3]=40K
+1 n+k40-->he4+cl37 iso[0]=4He iso[1]=37Cl iso[2]=1n iso[3]=40K
+Summary: RG=477 members=0 niso=-1
+Summary: RG=478 members=0 niso=0
+0 p+cl38-->ar39 iso[0]=1H iso[1]=38Cl iso[2]=39Ar iso[3]=
+1 ar39-->p+cl38 iso[0]=1H iso[1]=38Cl iso[2]=39Ar iso[3]=
+Summary: RG=479 members=0 niso=0
+0 p+cl38-->n+ar38 iso[0]=1H iso[1]=38Cl iso[2]=1n iso[3]=38Ar
+1 n+ar38-->p+cl38 iso[0]=1H iso[1]=38Cl iso[2]=1n iso[3]=38Ar
+Summary: RG=480 members=0 niso=-1
+0 he4+cl38-->n+k41 iso[0]=4He iso[1]=38Cl iso[2]=1n iso[3]=41K
+1 n+k41-->he4+cl38 iso[0]=4He iso[1]=38Cl iso[2]=1n iso[3]=41K
+Summary: RG=481 members=0 niso=-1
+Summary: RG=482 members=0 niso=0
+0 n+ar31-->ar32 iso[0]=1n iso[1]=31Ar iso[2]=32Ar iso[3]=
+1 ar32-->n+ar31 iso[0]=1n iso[1]=31Ar iso[2]=32Ar iso[3]=
+Summary: RG=483 members=0 niso=0
+0 he4+ar31-->ca35 iso[0]=4He iso[1]=31Ar iso[2]=35Ca iso[3]=
+1 ca35-->he4+ar31 iso[0]=4He iso[1]=31Ar iso[2]=35Ca iso[3]=
+Summary: RG=484 members=0 niso=0
+0 he4+ar31-->p+k34 iso[0]=4He iso[1]=31Ar iso[2]=1H iso[3]=34K
+1 p+k34-->he4+ar31 iso[0]=4He iso[1]=31Ar iso[2]=1H iso[3]=34K
+Summary: RG=485 members=0 niso=-1
+Summary: RG=486 members=0 niso=0
+0 n+ar32-->ar33 iso[0]=1n iso[1]=32Ar iso[2]=33Ar iso[3]=
+1 ar33-->n+ar32 iso[0]=1n iso[1]=32Ar iso[2]=33Ar iso[3]=
+Summary: RG=487 members=0 niso=0
+0 he4+ar32-->ca36 iso[0]=4He iso[1]=32Ar iso[2]=36Ca iso[3]=
+1 ca36-->he4+ar32 iso[0]=4He iso[1]=32Ar iso[2]=36Ca iso[3]=
+Summary: RG=488 members=0 niso=0
+0 he4+ar32-->n+ca35 iso[0]=4He iso[1]=32Ar iso[2]=1n iso[3]=35Ca
+1 n+ca35-->he4+ar32 iso[0]=4He iso[1]=32Ar iso[2]=1n iso[3]=35Ca
+Summary: RG=489 members=0 niso=-1
+0 he4+ar32-->p+k35 iso[0]=4He iso[1]=32Ar iso[2]=1H iso[3]=35K
+1 p+k35-->he4+ar32 iso[0]=4He iso[1]=32Ar iso[2]=1H iso[3]=35K
+Summary: RG=490 members=0 niso=-1
+Summary: RG=491 members=0 niso=0
+0 n+ar33-->ar34 iso[0]=1n iso[1]=33Ar iso[2]=34Ar iso[3]=
+1 ar34-->n+ar33 iso[0]=1n iso[1]=33Ar iso[2]=34Ar iso[3]=
+Summary: RG=492 members=0 niso=0
+0 p+ar33-->k34 iso[0]=1H iso[1]=33Ar iso[2]=34K iso[3]=
+1 k34-->p+ar33 iso[0]=1H iso[1]=33Ar iso[2]=34K iso[3]=
+Summary: RG=493 members=0 niso=0
+0 he4+ar33-->ca37 iso[0]=4He iso[1]=33Ar iso[2]=37Ca iso[3]=
+1 ca37-->he4+ar33 iso[0]=4He iso[1]=33Ar iso[2]=37Ca iso[3]=
+Summary: RG=494 members=0 niso=0
+0 he4+ar33-->n+ca36 iso[0]=4He iso[1]=33Ar iso[2]=1n iso[3]=36Ca
+1 n+ca36-->he4+ar33 iso[0]=4He iso[1]=33Ar iso[2]=1n iso[3]=36Ca
+Summary: RG=495 members=0 niso=-1
+0 he4+ar33-->p+k36 iso[0]=4He iso[1]=33Ar iso[2]=1H iso[3]=36K
+1 p+k36-->he4+ar33 iso[0]=4He iso[1]=33Ar iso[2]=1H iso[3]=36K
+Summary: RG=496 members=0 niso=-1
+Summary: RG=497 members=0 niso=0
+0 n+ar34-->ar35 iso[0]=1n iso[1]=34Ar iso[2]=35Ar iso[3]=
+1 ar35-->n+ar34 iso[0]=1n iso[1]=34Ar iso[2]=35Ar iso[3]=
+Summary: RG=498 members=0 niso=0
+0 p+ar34-->k35 iso[0]=1H iso[1]=34Ar iso[2]=35K iso[3]=
+1 p+ar34-->k35 iso[0]=1H iso[1]=34Ar iso[2]=35K iso[3]=
+2 k35-->p+ar34 iso[0]=1H iso[1]=34Ar iso[2]=35K iso[3]=
+3 k35-->p+ar34 iso[0]=1H iso[1]=34Ar iso[2]=35K iso[3]=
+Summary: RG=499 members=0 niso=0
+0 he4+ar34-->ca38 iso[0]=4He iso[1]=34Ar iso[2]=38Ca iso[3]=
+1 ca38-->he4+ar34 iso[0]=4He iso[1]=34Ar iso[2]=38Ca iso[3]=
+Summary: RG=500 members=0 niso=0
+0 p+ar34-->n+k34 iso[0]=1H iso[1]=34Ar iso[2]=1n iso[3]=34K
+1 n+k34-->p+ar34 iso[0]=1H iso[1]=34Ar iso[2]=1n iso[3]=34K
+Summary: RG=501 members=0 niso=-1
+0 he4+ar34-->n+ca37 iso[0]=4He iso[1]=34Ar iso[2]=1n iso[3]=37Ca
+1 n+ca37-->he4+ar34 iso[0]=4He iso[1]=34Ar iso[2]=1n iso[3]=37Ca
+Summary: RG=502 members=0 niso=-1
+0 he4+ar34-->p+k37 iso[0]=4He iso[1]=34Ar iso[2]=1H iso[3]=37K
+1 p+k37-->he4+ar34 iso[0]=4He iso[1]=34Ar iso[2]=1H iso[3]=37K
+Summary: RG=503 members=0 niso=-1
+Summary: RG=504 members=0 niso=0
+0 n+ar35-->ar36 iso[0]=1n iso[1]=35Ar iso[2]=36Ar iso[3]=
+1 ar36-->n+ar35 iso[0]=1n iso[1]=35Ar iso[2]=36Ar iso[3]=
+Summary: RG=505 members=0 niso=0
+0 p+ar35-->k36 iso[0]=1H iso[1]=35Ar iso[2]=36K iso[3]=
+1 p+ar35-->k36 iso[0]=1H iso[1]=35Ar iso[2]=36K iso[3]=
+2 k36-->p+ar35 iso[0]=1H iso[1]=35Ar iso[2]=36K iso[3]=
+3 k36-->p+ar35 iso[0]=1H iso[1]=35Ar iso[2]=36K iso[3]=
+Summary: RG=506 members=0 niso=0
+0 he4+ar35-->ca39 iso[0]=4He iso[1]=35Ar iso[2]=39Ca iso[3]=
+1 ca39-->he4+ar35 iso[0]=4He iso[1]=35Ar iso[2]=39Ca iso[3]=
+Summary: RG=507 members=0 niso=0
+0 p+ar35-->n+k35 iso[0]=1H iso[1]=35Ar iso[2]=1n iso[3]=35K
+1 n+k35-->p+ar35 iso[0]=1H iso[1]=35Ar iso[2]=1n iso[3]=35K
+Summary: RG=508 members=0 niso=-1
+0 he4+ar35-->n+ca38 iso[0]=4He iso[1]=35Ar iso[2]=1n iso[3]=38Ca
+1 n+ca38-->he4+ar35 iso[0]=4He iso[1]=35Ar iso[2]=1n iso[3]=38Ca
+Summary: RG=509 members=0 niso=-1
+0 he4+ar35-->p+k38 iso[0]=4He iso[1]=35Ar iso[2]=1H iso[3]=38K
+1 p+k38-->he4+ar35 iso[0]=4He iso[1]=35Ar iso[2]=1H iso[3]=38K
+Summary: RG=510 members=0 niso=-1
+0 n+ar36-->ar37 iso[0]=1n iso[1]=36Ar iso[2]=37Ar iso[3]=
+1 ar37-->n+ar36 iso[0]=1n iso[1]=36Ar iso[2]=37Ar iso[3]=
+Summary: RG=511 members=0 niso=0
+0 p+ar36-->k37 iso[0]=1H iso[1]=36Ar iso[2]=37K iso[3]=
+1 k37-->p+ar36 iso[0]=1H iso[1]=36Ar iso[2]=37K iso[3]=
+Summary: RG=512 members=0 niso=0
+0 he4+ar36-->ca40 iso[0]=4He iso[1]=36Ar iso[2]=40Ca iso[3]=
+1 ca40-->he4+ar36 iso[0]=4He iso[1]=36Ar iso[2]=40Ca iso[3]=
+Summary: RG=513 members=0 niso=0
+0 p+ar36-->n+k36 iso[0]=1H iso[1]=36Ar iso[2]=1n iso[3]=36K
+1 n+k36-->p+ar36 iso[0]=1H iso[1]=36Ar iso[2]=1n iso[3]=36K
+Summary: RG=514 members=0 niso=-1
+0 he4+ar36-->n+ca39 iso[0]=4He iso[1]=36Ar iso[2]=1n iso[3]=39Ca
+1 n+ca39-->he4+ar36 iso[0]=4He iso[1]=36Ar iso[2]=1n iso[3]=39Ca
+Summary: RG=515 members=0 niso=-1
+0 he4+ar36-->p+k39 iso[0]=4He iso[1]=36Ar iso[2]=1H iso[3]=39K
+1 p+k39-->he4+ar36 iso[0]=4He iso[1]=36Ar iso[2]=1H iso[3]=39K
+Summary: RG=516 members=0 niso=-1
+Summary: RG=517 members=0 niso=0
+0 n+ar37-->ar38 iso[0]=1n iso[1]=37Ar iso[2]=38Ar iso[3]=
+1 ar38-->n+ar37 iso[0]=1n iso[1]=37Ar iso[2]=38Ar iso[3]=
+Summary: RG=518 members=0 niso=0
+0 p+ar37-->k38 iso[0]=1H iso[1]=37Ar iso[2]=38K iso[3]=
+1 k38-->p+ar37 iso[0]=1H iso[1]=37Ar iso[2]=38K iso[3]=
+Summary: RG=519 members=0 niso=0
+0 he4+ar37-->ca41 iso[0]=4He iso[1]=37Ar iso[2]=41Ca iso[3]=
+1 ca41-->he4+ar37 iso[0]=4He iso[1]=37Ar iso[2]=41Ca iso[3]=
+Summary: RG=520 members=0 niso=0
+0 p+ar37-->n+k37 iso[0]=1H iso[1]=37Ar iso[2]=1n iso[3]=37K
+1 n+k37-->p+ar37 iso[0]=1H iso[1]=37Ar iso[2]=1n iso[3]=37K
+Summary: RG=521 members=0 niso=-1
+0 he4+ar37-->n+ca40 iso[0]=4He iso[1]=37Ar iso[2]=1n iso[3]=40Ca
+1 n+ca40-->he4+ar37 iso[0]=4He iso[1]=37Ar iso[2]=1n iso[3]=40Ca
+Summary: RG=522 members=0 niso=-1
+0 he4+ar37-->p+k40 iso[0]=4He iso[1]=37Ar iso[2]=1H iso[3]=40K
+1 p+k40-->he4+ar37 iso[0]=4He iso[1]=37Ar iso[2]=1H iso[3]=40K
+Summary: RG=523 members=0 niso=-1
+0 n+ar38-->ar39 iso[0]=1n iso[1]=38Ar iso[2]=39Ar iso[3]=
+1 ar39-->n+ar38 iso[0]=1n iso[1]=38Ar iso[2]=39Ar iso[3]=
+Summary: RG=524 members=0 niso=0
+0 p+ar38-->k39 iso[0]=1H iso[1]=38Ar iso[2]=39K iso[3]=
+1 k39-->p+ar38 iso[0]=1H iso[1]=38Ar iso[2]=39K iso[3]=
+Summary: RG=525 members=0 niso=0
+0 he4+ar38-->ca42 iso[0]=4He iso[1]=38Ar iso[2]=42Ca iso[3]=
+1 ca42-->he4+ar38 iso[0]=4He iso[1]=38Ar iso[2]=42Ca iso[3]=
+Summary: RG=526 members=0 niso=0
+0 p+ar38-->n+k38 iso[0]=1H iso[1]=38Ar iso[2]=1n iso[3]=38K
+1 n+k38-->p+ar38 iso[0]=1H iso[1]=38Ar iso[2]=1n iso[3]=38K
+Summary: RG=527 members=0 niso=-1
+0 he4+ar38-->n+ca41 iso[0]=4He iso[1]=38Ar iso[2]=1n iso[3]=41Ca
+1 n+ca41-->he4+ar38 iso[0]=4He iso[1]=38Ar iso[2]=1n iso[3]=41Ca
+Summary: RG=528 members=0 niso=-1
+0 he4+ar38-->p+k41 iso[0]=4He iso[1]=38Ar iso[2]=1H iso[3]=41K
+1 p+k41-->he4+ar38 iso[0]=4He iso[1]=38Ar iso[2]=1H iso[3]=41K
+Summary: RG=529 members=0 niso=-1
+Summary: RG=530 members=0 niso=0
+0 p+ar39-->k40 iso[0]=1H iso[1]=39Ar iso[2]=40K iso[3]=
+1 k40-->p+ar39 iso[0]=1H iso[1]=39Ar iso[2]=40K iso[3]=
+Summary: RG=531 members=0 niso=0
+0 he4+ar39-->ca43 iso[0]=4He iso[1]=39Ar iso[2]=43Ca iso[3]=
+1 ca43-->he4+ar39 iso[0]=4He iso[1]=39Ar iso[2]=43Ca iso[3]=
+Summary: RG=532 members=0 niso=0
+0 p+ar39-->n+k39 iso[0]=1H iso[1]=39Ar iso[2]=1n iso[3]=39K
+1 n+k39-->p+ar39 iso[0]=1H iso[1]=39Ar iso[2]=1n iso[3]=39K
+Summary: RG=533 members=0 niso=-1
+0 he4+ar39-->n+ca42 iso[0]=4He iso[1]=39Ar iso[2]=1n iso[3]=42Ca
+1 n+ca42-->he4+ar39 iso[0]=4He iso[1]=39Ar iso[2]=1n iso[3]=42Ca
+Summary: RG=534 members=0 niso=-1
+0 n+k34-->k35 iso[0]=1n iso[1]=34K iso[2]=35K iso[3]=
+1 k35-->n+k34 iso[0]=1n iso[1]=34K iso[2]=35K iso[3]=
+Summary: RG=535 members=0 niso=0
+0 p+k34-->ca35 iso[0]=1H iso[1]=34K iso[2]=35Ca iso[3]=
+1 ca35-->p+k34 iso[0]=1H iso[1]=34K iso[2]=35Ca iso[3]=
+Summary: RG=536 members=0 niso=0
+0 he4+k34-->p+ca37 iso[0]=4He iso[1]=34K iso[2]=1H iso[3]=37Ca
+1 p+ca37-->he4+k34 iso[0]=4He iso[1]=34K iso[2]=1H iso[3]=37Ca
+Summary: RG=537 members=0 niso=-1
+Summary: RG=538 members=0 niso=0
+0 n+k35-->k36 iso[0]=1n iso[1]=35K iso[2]=36K iso[3]=
+1 k36-->n+k35 iso[0]=1n iso[1]=35K iso[2]=36K iso[3]=
+Summary: RG=539 members=0 niso=0
+0 p+k35-->ca36 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+1 p+k35-->ca36 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+2 p+k35-->ca36 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+3 p+k35-->ca36 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+4 p+k35-->ca36 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+5 ca36-->p+k35 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+6 ca36-->p+k35 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+7 ca36-->p+k35 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+8 ca36-->p+k35 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+9 ca36-->p+k35 iso[0]=1H iso[1]=35K iso[2]=36Ca iso[3]=
+Summary: RG=540 members=0 niso=0
+0 he4+k35-->sc39 iso[0]=4He iso[1]=35K iso[2]=39Sc iso[3]=
+1 sc39-->he4+k35 iso[0]=4He iso[1]=35K iso[2]=39Sc iso[3]=
+Summary: RG=541 members=0 niso=0
+0 p+k35-->n+ca35 iso[0]=1H iso[1]=35K iso[2]=1n iso[3]=35Ca
+1 n+ca35-->p+k35 iso[0]=1H iso[1]=35K iso[2]=1n iso[3]=35Ca
+Summary: RG=542 members=0 niso=-1
+0 he4+k35-->p+ca38 iso[0]=4He iso[1]=35K iso[2]=1H iso[3]=38Ca
+1 p+ca38-->he4+k35 iso[0]=4He iso[1]=35K iso[2]=1H iso[3]=38Ca
+Summary: RG=543 members=0 niso=-1
+Summary: RG=544 members=0 niso=0
+0 n+k36-->k37 iso[0]=1n iso[1]=36K iso[2]=37K iso[3]=
+1 k37-->n+k36 iso[0]=1n iso[1]=36K iso[2]=37K iso[3]=
+Summary: RG=545 members=0 niso=0
+0 p+k36-->ca37 iso[0]=1H iso[1]=36K iso[2]=37Ca iso[3]=
+1 p+k36-->ca37 iso[0]=1H iso[1]=36K iso[2]=37Ca iso[3]=
+2 ca37-->p+k36 iso[0]=1H iso[1]=36K iso[2]=37Ca iso[3]=
+3 ca37-->p+k36 iso[0]=1H iso[1]=36K iso[2]=37Ca iso[3]=
+Summary: RG=546 members=0 niso=0
+0 he4+k36-->sc40 iso[0]=4He iso[1]=36K iso[2]=40Sc iso[3]=
+1 sc40-->he4+k36 iso[0]=4He iso[1]=36K iso[2]=40Sc iso[3]=
+Summary: RG=547 members=0 niso=0
+0 p+k36-->n+ca36 iso[0]=1H iso[1]=36K iso[2]=1n iso[3]=36Ca
+1 n+ca36-->p+k36 iso[0]=1H iso[1]=36K iso[2]=1n iso[3]=36Ca
+Summary: RG=548 members=0 niso=-1
+0 he4+k36-->n+sc39 iso[0]=4He iso[1]=36K iso[2]=1n iso[3]=39Sc
+1 n+sc39-->he4+k36 iso[0]=4He iso[1]=36K iso[2]=1n iso[3]=39Sc
+Summary: RG=549 members=0 niso=-1
+0 he4+k36-->p+ca39 iso[0]=4He iso[1]=36K iso[2]=1H iso[3]=39Ca
+1 p+ca39-->he4+k36 iso[0]=4He iso[1]=36K iso[2]=1H iso[3]=39Ca
+Summary: RG=550 members=0 niso=-1
+Summary: RG=551 members=0 niso=0
+0 n+k37-->k38 iso[0]=1n iso[1]=37K iso[2]=38K iso[3]=
+1 k38-->n+k37 iso[0]=1n iso[1]=37K iso[2]=38K iso[3]=
+Summary: RG=552 members=0 niso=0
+0 p+k37-->ca38 iso[0]=1H iso[1]=37K iso[2]=38Ca iso[3]=
+1 ca38-->p+k37 iso[0]=1H iso[1]=37K iso[2]=38Ca iso[3]=
+Summary: RG=553 members=0 niso=0
+0 he4+k37-->sc41 iso[0]=4He iso[1]=37K iso[2]=41Sc iso[3]=
+1 sc41-->he4+k37 iso[0]=4He iso[1]=37K iso[2]=41Sc iso[3]=
+Summary: RG=554 members=0 niso=0
+0 p+k37-->n+ca37 iso[0]=1H iso[1]=37K iso[2]=1n iso[3]=37Ca
+1 n+ca37-->p+k37 iso[0]=1H iso[1]=37K iso[2]=1n iso[3]=37Ca
+Summary: RG=555 members=0 niso=-1
+0 he4+k37-->n+sc40 iso[0]=4He iso[1]=37K iso[2]=1n iso[3]=40Sc
+1 n+sc40-->he4+k37 iso[0]=4He iso[1]=37K iso[2]=1n iso[3]=40Sc
+Summary: RG=556 members=0 niso=-1
+0 he4+k37-->p+ca40 iso[0]=4He iso[1]=37K iso[2]=1H iso[3]=40Ca
+1 p+ca40-->he4+k37 iso[0]=4He iso[1]=37K iso[2]=1H iso[3]=40Ca
+Summary: RG=557 members=0 niso=-1
+Summary: RG=558 members=0 niso=0
+0 n+k38-->k39 iso[0]=1n iso[1]=38K iso[2]=39K iso[3]=
+1 k39-->n+k38 iso[0]=1n iso[1]=38K iso[2]=39K iso[3]=
+Summary: RG=559 members=0 niso=0
+0 p+k38-->ca39 iso[0]=1H iso[1]=38K iso[2]=39Ca iso[3]=
+1 ca39-->p+k38 iso[0]=1H iso[1]=38K iso[2]=39Ca iso[3]=
+Summary: RG=560 members=0 niso=0
+0 he4+k38-->sc42 iso[0]=4He iso[1]=38K iso[2]=42Sc iso[3]=
+1 sc42-->he4+k38 iso[0]=4He iso[1]=38K iso[2]=42Sc iso[3]=
+Summary: RG=561 members=0 niso=0
+0 p+k38-->n+ca38 iso[0]=1H iso[1]=38K iso[2]=1n iso[3]=38Ca
+1 n+ca38-->p+k38 iso[0]=1H iso[1]=38K iso[2]=1n iso[3]=38Ca
+Summary: RG=562 members=0 niso=-1
+0 he4+k38-->n+sc41 iso[0]=4He iso[1]=38K iso[2]=1n iso[3]=41Sc
+1 n+sc41-->he4+k38 iso[0]=4He iso[1]=38K iso[2]=1n iso[3]=41Sc
+Summary: RG=563 members=0 niso=-1
+0 he4+k38-->p+ca41 iso[0]=4He iso[1]=38K iso[2]=1H iso[3]=41Ca
+1 p+ca41-->he4+k38 iso[0]=4He iso[1]=38K iso[2]=1H iso[3]=41Ca
+Summary: RG=564 members=0 niso=-1
+0 n+k39-->k40 iso[0]=1n iso[1]=39K iso[2]=40K iso[3]=
+1 k40-->n+k39 iso[0]=1n iso[1]=39K iso[2]=40K iso[3]=
+Summary: RG=565 members=0 niso=0
+0 p+k39-->ca40 iso[0]=1H iso[1]=39K iso[2]=40Ca iso[3]=
+1 ca40-->p+k39 iso[0]=1H iso[1]=39K iso[2]=40Ca iso[3]=
+Summary: RG=566 members=0 niso=0
+0 he4+k39-->sc43 iso[0]=4He iso[1]=39K iso[2]=43Sc iso[3]=
+1 sc43-->he4+k39 iso[0]=4He iso[1]=39K iso[2]=43Sc iso[3]=
+Summary: RG=567 members=0 niso=0
+0 p+k39-->n+ca39 iso[0]=1H iso[1]=39K iso[2]=1n iso[3]=39Ca
+1 n+ca39-->p+k39 iso[0]=1H iso[1]=39K iso[2]=1n iso[3]=39Ca
+Summary: RG=568 members=0 niso=-1
+0 he4+k39-->n+sc42 iso[0]=4He iso[1]=39K iso[2]=1n iso[3]=42Sc
+1 n+sc42-->he4+k39 iso[0]=4He iso[1]=39K iso[2]=1n iso[3]=42Sc
+Summary: RG=569 members=0 niso=-1
+0 he4+k39-->p+ca42 iso[0]=4He iso[1]=39K iso[2]=1H iso[3]=42Ca
+1 p+ca42-->he4+k39 iso[0]=4He iso[1]=39K iso[2]=1H iso[3]=42Ca
+Summary: RG=570 members=0 niso=-1
+Summary: RG=571 members=0 niso=0
+0 n+k40-->k41 iso[0]=1n iso[1]=40K iso[2]=41K iso[3]=
+1 k41-->n+k40 iso[0]=1n iso[1]=40K iso[2]=41K iso[3]=
+Summary: RG=572 members=0 niso=0
+0 p+k40-->ca41 iso[0]=1H iso[1]=40K iso[2]=41Ca iso[3]=
+1 ca41-->p+k40 iso[0]=1H iso[1]=40K iso[2]=41Ca iso[3]=
+Summary: RG=573 members=0 niso=0
+0 he4+k40-->sc44 iso[0]=4He iso[1]=40K iso[2]=44Sc iso[3]=
+1 sc44-->he4+k40 iso[0]=4He iso[1]=40K iso[2]=44Sc iso[3]=
+Summary: RG=574 members=0 niso=0
+0 p+k40-->n+ca40 iso[0]=1H iso[1]=40K iso[2]=1n iso[3]=40Ca
+1 n+ca40-->p+k40 iso[0]=1H iso[1]=40K iso[2]=1n iso[3]=40Ca
+Summary: RG=575 members=0 niso=-1
+0 he4+k40-->n+sc43 iso[0]=4He iso[1]=40K iso[2]=1n iso[3]=43Sc
+1 n+sc43-->he4+k40 iso[0]=4He iso[1]=40K iso[2]=1n iso[3]=43Sc
+Summary: RG=576 members=0 niso=-1
+0 he4+k40-->p+ca43 iso[0]=4He iso[1]=40K iso[2]=1H iso[3]=43Ca
+1 p+ca43-->he4+k40 iso[0]=4He iso[1]=40K iso[2]=1H iso[3]=43Ca
+Summary: RG=577 members=0 niso=-1
+0 p+k41-->ca42 iso[0]=1H iso[1]=41K iso[2]=42Ca iso[3]=
+1 ca42-->p+k41 iso[0]=1H iso[1]=41K iso[2]=42Ca iso[3]=
+Summary: RG=578 members=0 niso=0
+0 he4+k41-->sc45 iso[0]=4He iso[1]=41K iso[2]=45Sc iso[3]=
+1 sc45-->he4+k41 iso[0]=4He iso[1]=41K iso[2]=45Sc iso[3]=
+Summary: RG=579 members=0 niso=0
+0 p+k41-->n+ca41 iso[0]=1H iso[1]=41K iso[2]=1n iso[3]=41Ca
+1 n+ca41-->p+k41 iso[0]=1H iso[1]=41K iso[2]=1n iso[3]=41Ca
+Summary: RG=580 members=0 niso=-1
+0 he4+k41-->n+sc44 iso[0]=4He iso[1]=41K iso[2]=1n iso[3]=44Sc
+1 n+sc44-->he4+k41 iso[0]=4He iso[1]=41K iso[2]=1n iso[3]=44Sc
+Summary: RG=581 members=0 niso=-1
+0 he4+k41-->p+ca44 iso[0]=4He iso[1]=41K iso[2]=1H iso[3]=44Ca
+1 p+ca44-->he4+k41 iso[0]=4He iso[1]=41K iso[2]=1H iso[3]=44Ca
+Summary: RG=582 members=0 niso=-1
+Summary: RG=583 members=0 niso=0
+0 n+ca35-->ca36 iso[0]=1n iso[1]=35Ca iso[2]=36Ca iso[3]=
+1 ca36-->n+ca35 iso[0]=1n iso[1]=35Ca iso[2]=36Ca iso[3]=
+Summary: RG=584 members=0 niso=0
+Summary: RG=585 members=0 niso=0
+0 n+ca36-->ca37 iso[0]=1n iso[1]=36Ca iso[2]=37Ca iso[3]=
+1 ca37-->n+ca36 iso[0]=1n iso[1]=36Ca iso[2]=37Ca iso[3]=
+Summary: RG=586 members=0 niso=0
+0 he4+ca36-->p+sc39 iso[0]=4He iso[1]=36Ca iso[2]=1H iso[3]=39Sc
+1 p+sc39-->he4+ca36 iso[0]=4He iso[1]=36Ca iso[2]=1H iso[3]=39Sc
+Summary: RG=587 members=0 niso=-1
+Summary: RG=588 members=0 niso=0
+0 n+ca37-->ca38 iso[0]=1n iso[1]=37Ca iso[2]=38Ca iso[3]=
+1 ca38-->n+ca37 iso[0]=1n iso[1]=37Ca iso[2]=38Ca iso[3]=
+Summary: RG=589 members=0 niso=0
+0 he4+ca37-->ti41 iso[0]=4He iso[1]=37Ca iso[2]=41Ti iso[3]=
+1 ti41-->he4+ca37 iso[0]=4He iso[1]=37Ca iso[2]=41Ti iso[3]=
+Summary: RG=590 members=0 niso=0
+0 he4+ca37-->p+sc40 iso[0]=4He iso[1]=37Ca iso[2]=1H iso[3]=40Sc
+1 p+sc40-->he4+ca37 iso[0]=4He iso[1]=37Ca iso[2]=1H iso[3]=40Sc
+Summary: RG=591 members=0 niso=-1
+Summary: RG=592 members=0 niso=0
+0 n+ca38-->ca39 iso[0]=1n iso[1]=38Ca iso[2]=39Ca iso[3]=
+1 ca39-->n+ca38 iso[0]=1n iso[1]=38Ca iso[2]=39Ca iso[3]=
+Summary: RG=593 members=0 niso=0
+0 p+ca38-->sc39 iso[0]=1H iso[1]=38Ca iso[2]=39Sc iso[3]=
+1 sc39-->p+ca38 iso[0]=1H iso[1]=38Ca iso[2]=39Sc iso[3]=
+Summary: RG=594 members=0 niso=0
+0 he4+ca38-->ti42 iso[0]=4He iso[1]=38Ca iso[2]=42Ti iso[3]=
+1 ti42-->he4+ca38 iso[0]=4He iso[1]=38Ca iso[2]=42Ti iso[3]=
+Summary: RG=595 members=0 niso=0
+0 he4+ca38-->n+ti41 iso[0]=4He iso[1]=38Ca iso[2]=1n iso[3]=41Ti
+1 n+ti41-->he4+ca38 iso[0]=4He iso[1]=38Ca iso[2]=1n iso[3]=41Ti
+Summary: RG=596 members=0 niso=-1
+0 he4+ca38-->p+sc41 iso[0]=4He iso[1]=38Ca iso[2]=1H iso[3]=41Sc
+1 p+sc41-->he4+ca38 iso[0]=4He iso[1]=38Ca iso[2]=1H iso[3]=41Sc
+Summary: RG=597 members=0 niso=-1
+Summary: RG=598 members=0 niso=0
+0 n+ca39-->ca40 iso[0]=1n iso[1]=39Ca iso[2]=40Ca iso[3]=
+1 ca40-->n+ca39 iso[0]=1n iso[1]=39Ca iso[2]=40Ca iso[3]=
+Summary: RG=599 members=0 niso=0
+0 p+ca39-->sc40 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+1 p+ca39-->sc40 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+2 p+ca39-->sc40 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+3 sc40-->p+ca39 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+4 sc40-->p+ca39 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+5 sc40-->p+ca39 iso[0]=1H iso[1]=39Ca iso[2]=40Sc iso[3]=
+Summary: RG=600 members=0 niso=0
+0 he4+ca39-->ti43 iso[0]=4He iso[1]=39Ca iso[2]=43Ti iso[3]=
+1 ti43-->he4+ca39 iso[0]=4He iso[1]=39Ca iso[2]=43Ti iso[3]=
+Summary: RG=601 members=0 niso=0
+0 p+ca39-->n+sc39 iso[0]=1H iso[1]=39Ca iso[2]=1n iso[3]=39Sc
+1 n+sc39-->p+ca39 iso[0]=1H iso[1]=39Ca iso[2]=1n iso[3]=39Sc
+Summary: RG=602 members=0 niso=-1
+0 he4+ca39-->n+ti42 iso[0]=4He iso[1]=39Ca iso[2]=1n iso[3]=42Ti
+1 n+ti42-->he4+ca39 iso[0]=4He iso[1]=39Ca iso[2]=1n iso[3]=42Ti
+Summary: RG=603 members=0 niso=-1
+0 he4+ca39-->p+sc42 iso[0]=4He iso[1]=39Ca iso[2]=1H iso[3]=42Sc
+1 p+sc42-->he4+ca39 iso[0]=4He iso[1]=39Ca iso[2]=1H iso[3]=42Sc
+Summary: RG=604 members=0 niso=-1
+0 n+ca40-->ca41 iso[0]=1n iso[1]=40Ca iso[2]=41Ca iso[3]=
+1 ca41-->n+ca40 iso[0]=1n iso[1]=40Ca iso[2]=41Ca iso[3]=
+Summary: RG=605 members=0 niso=0
+0 p+ca40-->sc41 iso[0]=1H iso[1]=40Ca iso[2]=41Sc iso[3]=
+1 p+ca40-->sc41 iso[0]=1H iso[1]=40Ca iso[2]=41Sc iso[3]=
+2 sc41-->p+ca40 iso[0]=1H iso[1]=40Ca iso[2]=41Sc iso[3]=
+3 sc41-->p+ca40 iso[0]=1H iso[1]=40Ca iso[2]=41Sc iso[3]=
+Summary: RG=606 members=0 niso=0
+0 he4+ca40-->ti44 iso[0]=4He iso[1]=40Ca iso[2]=44Ti iso[3]=
+1 ti44-->he4+ca40 iso[0]=4He iso[1]=40Ca iso[2]=44Ti iso[3]=
+Summary: RG=607 members=0 niso=0
+0 p+ca40-->n+sc40 iso[0]=1H iso[1]=40Ca iso[2]=1n iso[3]=40Sc
+1 n+sc40-->p+ca40 iso[0]=1H iso[1]=40Ca iso[2]=1n iso[3]=40Sc
+Summary: RG=608 members=0 niso=-1
+0 he4+ca40-->n+ti43 iso[0]=4He iso[1]=40Ca iso[2]=1n iso[3]=43Ti
+1 n+ti43-->he4+ca40 iso[0]=4He iso[1]=40Ca iso[2]=1n iso[3]=43Ti
+Summary: RG=609 members=0 niso=-1
+0 he4+ca40-->p+sc43 iso[0]=4He iso[1]=40Ca iso[2]=1H iso[3]=43Sc
+1 p+sc43-->he4+ca40 iso[0]=4He iso[1]=40Ca iso[2]=1H iso[3]=43Sc
+Summary: RG=610 members=0 niso=-1
+Summary: RG=611 members=0 niso=0
+0 n+ca41-->ca42 iso[0]=1n iso[1]=41Ca iso[2]=42Ca iso[3]=
+1 ca42-->n+ca41 iso[0]=1n iso[1]=41Ca iso[2]=42Ca iso[3]=
+Summary: RG=612 members=0 niso=0
+0 p+ca41-->sc42 iso[0]=1H iso[1]=41Ca iso[2]=42Sc iso[3]=
+1 sc42-->p+ca41 iso[0]=1H iso[1]=41Ca iso[2]=42Sc iso[3]=
+Summary: RG=613 members=0 niso=0
+0 he4+ca41-->ti45 iso[0]=4He iso[1]=41Ca iso[2]=45Ti iso[3]=
+1 ti45-->he4+ca41 iso[0]=4He iso[1]=41Ca iso[2]=45Ti iso[3]=
+Summary: RG=614 members=0 niso=0
+0 p+ca41-->n+sc41 iso[0]=1H iso[1]=41Ca iso[2]=1n iso[3]=41Sc
+1 n+sc41-->p+ca41 iso[0]=1H iso[1]=41Ca iso[2]=1n iso[3]=41Sc
+Summary: RG=615 members=0 niso=-1
+0 he4+ca41-->n+ti44 iso[0]=4He iso[1]=41Ca iso[2]=1n iso[3]=44Ti
+1 n+ti44-->he4+ca41 iso[0]=4He iso[1]=41Ca iso[2]=1n iso[3]=44Ti
+Summary: RG=616 members=0 niso=-1
+0 he4+ca41-->p+sc44 iso[0]=4He iso[1]=41Ca iso[2]=1H iso[3]=44Sc
+1 p+sc44-->he4+ca41 iso[0]=4He iso[1]=41Ca iso[2]=1H iso[3]=44Sc
+Summary: RG=617 members=0 niso=-1
+0 n+ca42-->ca43 iso[0]=1n iso[1]=42Ca iso[2]=43Ca iso[3]=
+1 ca43-->n+ca42 iso[0]=1n iso[1]=42Ca iso[2]=43Ca iso[3]=
+Summary: RG=618 members=0 niso=0
+0 p+ca42-->sc43 iso[0]=1H iso[1]=42Ca iso[2]=43Sc iso[3]=
+1 sc43-->p+ca42 iso[0]=1H iso[1]=42Ca iso[2]=43Sc iso[3]=
+Summary: RG=619 members=0 niso=0
+0 he4+ca42-->ti46 iso[0]=4He iso[1]=42Ca iso[2]=46Ti iso[3]=
+1 ti46-->he4+ca42 iso[0]=4He iso[1]=42Ca iso[2]=46Ti iso[3]=
+Summary: RG=620 members=0 niso=0
+0 p+ca42-->n+sc42 iso[0]=1H iso[1]=42Ca iso[2]=1n iso[3]=42Sc
+1 n+sc42-->p+ca42 iso[0]=1H iso[1]=42Ca iso[2]=1n iso[3]=42Sc
+Summary: RG=621 members=0 niso=-1
+0 he4+ca42-->n+ti45 iso[0]=4He iso[1]=42Ca iso[2]=1n iso[3]=45Ti
+1 n+ti45-->he4+ca42 iso[0]=4He iso[1]=42Ca iso[2]=1n iso[3]=45Ti
+Summary: RG=622 members=0 niso=-1
+0 he4+ca42-->p+sc45 iso[0]=4He iso[1]=42Ca iso[2]=1H iso[3]=45Sc
+1 p+sc45-->he4+ca42 iso[0]=4He iso[1]=42Ca iso[2]=1H iso[3]=45Sc
+Summary: RG=623 members=0 niso=-1
+0 n+ca43-->ca44 iso[0]=1n iso[1]=43Ca iso[2]=44Ca iso[3]=
+1 ca44-->n+ca43 iso[0]=1n iso[1]=43Ca iso[2]=44Ca iso[3]=
+Summary: RG=624 members=0 niso=0
+0 p+ca43-->sc44 iso[0]=1H iso[1]=43Ca iso[2]=44Sc iso[3]=
+1 sc44-->p+ca43 iso[0]=1H iso[1]=43Ca iso[2]=44Sc iso[3]=
+Summary: RG=625 members=0 niso=0
+0 p+ca43-->n+sc43 iso[0]=1H iso[1]=43Ca iso[2]=1n iso[3]=43Sc
+1 n+sc43-->p+ca43 iso[0]=1H iso[1]=43Ca iso[2]=1n iso[3]=43Sc
+Summary: RG=626 members=0 niso=-1
+0 he4+ca43-->n+ti46 iso[0]=4He iso[1]=43Ca iso[2]=1n iso[3]=46Ti
+1 n+ti46-->he4+ca43 iso[0]=4He iso[1]=43Ca iso[2]=1n iso[3]=46Ti
+Summary: RG=627 members=0 niso=-1
+0 p+ca44-->sc45 iso[0]=1H iso[1]=44Ca iso[2]=45Sc iso[3]=
+1 sc45-->p+ca44 iso[0]=1H iso[1]=44Ca iso[2]=45Sc iso[3]=
+Summary: RG=628 members=0 niso=0
+0 p+ca44-->n+sc44 iso[0]=1H iso[1]=44Ca iso[2]=1n iso[3]=44Sc
+1 n+sc44-->p+ca44 iso[0]=1H iso[1]=44Ca iso[2]=1n iso[3]=44Sc
+Summary: RG=629 members=0 niso=-1
+Summary: RG=630 members=0 niso=0
+0 n+sc39-->sc40 iso[0]=1n iso[1]=39Sc iso[2]=40Sc iso[3]=
+1 sc40-->n+sc39 iso[0]=1n iso[1]=39Sc iso[2]=40Sc iso[3]=
+Summary: RG=631 members=0 niso=0
+0 he4+sc39-->v43 iso[0]=4He iso[1]=39Sc iso[2]=43V iso[3]=
+1 v43-->he4+sc39 iso[0]=4He iso[1]=39Sc iso[2]=43V iso[3]=
+Summary: RG=632 members=0 niso=0
+0 he4+sc39-->p+ti42 iso[0]=4He iso[1]=39Sc iso[2]=1H iso[3]=42Ti
+1 p+ti42-->he4+sc39 iso[0]=4He iso[1]=39Sc iso[2]=1H iso[3]=42Ti
+Summary: RG=633 members=0 niso=-1
+Summary: RG=634 members=0 niso=0
+0 n+sc40-->sc41 iso[0]=1n iso[1]=40Sc iso[2]=41Sc iso[3]=
+1 sc41-->n+sc40 iso[0]=1n iso[1]=40Sc iso[2]=41Sc iso[3]=
+Summary: RG=635 members=0 niso=0
+0 p+sc40-->ti41 iso[0]=1H iso[1]=40Sc iso[2]=41Ti iso[3]=
+1 ti41-->p+sc40 iso[0]=1H iso[1]=40Sc iso[2]=41Ti iso[3]=
+Summary: RG=636 members=0 niso=0
+0 he4+sc40-->v44 iso[0]=4He iso[1]=40Sc iso[2]=44V iso[3]=
+1 v44-->he4+sc40 iso[0]=4He iso[1]=40Sc iso[2]=44V iso[3]=
+Summary: RG=637 members=0 niso=0
+0 he4+sc40-->n+v43 iso[0]=4He iso[1]=40Sc iso[2]=1n iso[3]=43V
+1 n+v43-->he4+sc40 iso[0]=4He iso[1]=40Sc iso[2]=1n iso[3]=43V
+Summary: RG=638 members=0 niso=-1
+0 he4+sc40-->p+ti43 iso[0]=4He iso[1]=40Sc iso[2]=1H iso[3]=43Ti
+1 p+ti43-->he4+sc40 iso[0]=4He iso[1]=40Sc iso[2]=1H iso[3]=43Ti
+Summary: RG=639 members=0 niso=-1
+Summary: RG=640 members=0 niso=0
+0 n+sc41-->sc42 iso[0]=1n iso[1]=41Sc iso[2]=42Sc iso[3]=
+1 sc42-->n+sc41 iso[0]=1n iso[1]=41Sc iso[2]=42Sc iso[3]=
+Summary: RG=641 members=0 niso=0
+0 p+sc41-->ti42 iso[0]=1H iso[1]=41Sc iso[2]=42Ti iso[3]=
+1 ti42-->p+sc41 iso[0]=1H iso[1]=41Sc iso[2]=42Ti iso[3]=
+Summary: RG=642 members=0 niso=0
+0 he4+sc41-->v45 iso[0]=4He iso[1]=41Sc iso[2]=45V iso[3]=
+1 v45-->he4+sc41 iso[0]=4He iso[1]=41Sc iso[2]=45V iso[3]=
+Summary: RG=643 members=0 niso=0
+0 p+sc41-->n+ti41 iso[0]=1H iso[1]=41Sc iso[2]=1n iso[3]=41Ti
+1 n+ti41-->p+sc41 iso[0]=1H iso[1]=41Sc iso[2]=1n iso[3]=41Ti
+Summary: RG=644 members=0 niso=-1
+0 he4+sc41-->n+v44 iso[0]=4He iso[1]=41Sc iso[2]=1n iso[3]=44V
+1 n+v44-->he4+sc41 iso[0]=4He iso[1]=41Sc iso[2]=1n iso[3]=44V
+Summary: RG=645 members=0 niso=-1
+0 he4+sc41-->p+ti44 iso[0]=4He iso[1]=41Sc iso[2]=1H iso[3]=44Ti
+1 p+ti44-->he4+sc41 iso[0]=4He iso[1]=41Sc iso[2]=1H iso[3]=44Ti
+Summary: RG=646 members=0 niso=-1
+Summary: RG=647 members=0 niso=0
+0 n+sc42-->sc43 iso[0]=1n iso[1]=42Sc iso[2]=43Sc iso[3]=
+1 sc43-->n+sc42 iso[0]=1n iso[1]=42Sc iso[2]=43Sc iso[3]=
+Summary: RG=648 members=0 niso=0
+0 p+sc42-->ti43 iso[0]=1H iso[1]=42Sc iso[2]=43Ti iso[3]=
+1 ti43-->p+sc42 iso[0]=1H iso[1]=42Sc iso[2]=43Ti iso[3]=
+Summary: RG=649 members=0 niso=0
+0 he4+sc42-->v46 iso[0]=4He iso[1]=42Sc iso[2]=46V iso[3]=
+1 v46-->he4+sc42 iso[0]=4He iso[1]=42Sc iso[2]=46V iso[3]=
+Summary: RG=650 members=0 niso=0
+0 p+sc42-->n+ti42 iso[0]=1H iso[1]=42Sc iso[2]=1n iso[3]=42Ti
+1 n+ti42-->p+sc42 iso[0]=1H iso[1]=42Sc iso[2]=1n iso[3]=42Ti
+Summary: RG=651 members=0 niso=-1
+0 he4+sc42-->n+v45 iso[0]=4He iso[1]=42Sc iso[2]=1n iso[3]=45V
+1 n+v45-->he4+sc42 iso[0]=4He iso[1]=42Sc iso[2]=1n iso[3]=45V
+Summary: RG=652 members=0 niso=-1
+0 he4+sc42-->p+ti45 iso[0]=4He iso[1]=42Sc iso[2]=1H iso[3]=45Ti
+1 p+ti45-->he4+sc42 iso[0]=4He iso[1]=42Sc iso[2]=1H iso[3]=45Ti
+Summary: RG=653 members=0 niso=-1
+Summary: RG=654 members=0 niso=0
+0 n+sc43-->sc44 iso[0]=1n iso[1]=43Sc iso[2]=44Sc iso[3]=
+1 sc44-->n+sc43 iso[0]=1n iso[1]=43Sc iso[2]=44Sc iso[3]=
+Summary: RG=655 members=0 niso=0
+0 p+sc43-->ti44 iso[0]=1H iso[1]=43Sc iso[2]=44Ti iso[3]=
+1 ti44-->p+sc43 iso[0]=1H iso[1]=43Sc iso[2]=44Ti iso[3]=
+Summary: RG=656 members=0 niso=0
+0 p+sc43-->n+ti43 iso[0]=1H iso[1]=43Sc iso[2]=1n iso[3]=43Ti
+1 n+ti43-->p+sc43 iso[0]=1H iso[1]=43Sc iso[2]=1n iso[3]=43Ti
+Summary: RG=657 members=0 niso=-1
+0 he4+sc43-->n+v46 iso[0]=4He iso[1]=43Sc iso[2]=1n iso[3]=46V
+1 n+v46-->he4+sc43 iso[0]=4He iso[1]=43Sc iso[2]=1n iso[3]=46V
+Summary: RG=658 members=0 niso=-1
+0 he4+sc43-->p+ti46 iso[0]=4He iso[1]=43Sc iso[2]=1H iso[3]=46Ti
+1 p+ti46-->he4+sc43 iso[0]=4He iso[1]=43Sc iso[2]=1H iso[3]=46Ti
+Summary: RG=659 members=0 niso=-1
+Summary: RG=660 members=0 niso=0
+0 n+sc44-->sc45 iso[0]=1n iso[1]=44Sc iso[2]=45Sc iso[3]=
+1 sc45-->n+sc44 iso[0]=1n iso[1]=44Sc iso[2]=45Sc iso[3]=
+Summary: RG=661 members=0 niso=0
+0 p+sc44-->ti45 iso[0]=1H iso[1]=44Sc iso[2]=45Ti iso[3]=
+1 ti45-->p+sc44 iso[0]=1H iso[1]=44Sc iso[2]=45Ti iso[3]=
+Summary: RG=662 members=0 niso=0
+0 p+sc44-->n+ti44 iso[0]=1H iso[1]=44Sc iso[2]=1n iso[3]=44Ti
+1 n+ti44-->p+sc44 iso[0]=1H iso[1]=44Sc iso[2]=1n iso[3]=44Ti
+Summary: RG=663 members=0 niso=-1
+0 p+sc45-->ti46 iso[0]=1H iso[1]=45Sc iso[2]=46Ti iso[3]=
+1 ti46-->p+sc45 iso[0]=1H iso[1]=45Sc iso[2]=46Ti iso[3]=
+Summary: RG=664 members=0 niso=0
+0 p+sc45-->n+ti45 iso[0]=1H iso[1]=45Sc iso[2]=1n iso[3]=45Ti
+1 n+ti45-->p+sc45 iso[0]=1H iso[1]=45Sc iso[2]=1n iso[3]=45Ti
+Summary: RG=665 members=0 niso=-1
+Summary: RG=666 members=0 niso=0
+0 n+ti41-->ti42 iso[0]=1n iso[1]=41Ti iso[2]=42Ti iso[3]=
+1 ti42-->n+ti41 iso[0]=1n iso[1]=41Ti iso[2]=42Ti iso[3]=
+Summary: RG=667 members=0 niso=0
+0 he4+ti41-->p+v44 iso[0]=4He iso[1]=41Ti iso[2]=1H iso[3]=44V
+1 p+v44-->he4+ti41 iso[0]=4He iso[1]=41Ti iso[2]=1H iso[3]=44V
+Summary: RG=668 members=0 niso=-1
+Summary: RG=669 members=0 niso=0
+0 n+ti42-->ti43 iso[0]=1n iso[1]=42Ti iso[2]=43Ti iso[3]=
+1 ti43-->n+ti42 iso[0]=1n iso[1]=42Ti iso[2]=43Ti iso[3]=
+Summary: RG=670 members=0 niso=0
+0 p+ti42-->v43 iso[0]=1H iso[1]=42Ti iso[2]=43V iso[3]=
+1 p+ti42-->v43 iso[0]=1H iso[1]=42Ti iso[2]=43V iso[3]=
+2 v43-->p+ti42 iso[0]=1H iso[1]=42Ti iso[2]=43V iso[3]=
+3 v43-->p+ti42 iso[0]=1H iso[1]=42Ti iso[2]=43V iso[3]=
+Summary: RG=671 members=0 niso=0
+0 he4+ti42-->p+v45 iso[0]=4He iso[1]=42Ti iso[2]=1H iso[3]=45V
+1 p+v45-->he4+ti42 iso[0]=4He iso[1]=42Ti iso[2]=1H iso[3]=45V
+Summary: RG=672 members=0 niso=-1
+Summary: RG=673 members=0 niso=0
+0 n+ti43-->ti44 iso[0]=1n iso[1]=43Ti iso[2]=44Ti iso[3]=
+1 ti44-->n+ti43 iso[0]=1n iso[1]=43Ti iso[2]=44Ti iso[3]=
+Summary: RG=674 members=0 niso=0
+0 p+ti43-->v44 iso[0]=1H iso[1]=43Ti iso[2]=44V iso[3]=
+1 v44-->p+ti43 iso[0]=1H iso[1]=43Ti iso[2]=44V iso[3]=
+Summary: RG=675 members=0 niso=0
+0 p+ti43-->n+v43 iso[0]=1H iso[1]=43Ti iso[2]=1n iso[3]=43V
+1 n+v43-->p+ti43 iso[0]=1H iso[1]=43Ti iso[2]=1n iso[3]=43V
+Summary: RG=676 members=0 niso=-1
+0 he4+ti43-->p+v46 iso[0]=4He iso[1]=43Ti iso[2]=1H iso[3]=46V
+1 p+v46-->he4+ti43 iso[0]=4He iso[1]=43Ti iso[2]=1H iso[3]=46V
+Summary: RG=677 members=0 niso=-1
+Summary: RG=678 members=0 niso=0
+0 n+ti44-->ti45 iso[0]=1n iso[1]=44Ti iso[2]=45Ti iso[3]=
+1 ti45-->n+ti44 iso[0]=1n iso[1]=44Ti iso[2]=45Ti iso[3]=
+Summary: RG=679 members=0 niso=0
+0 p+ti44-->v45 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+1 p+ti44-->v45 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+2 p+ti44-->v45 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+3 v45-->p+ti44 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+4 v45-->p+ti44 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+5 v45-->p+ti44 iso[0]=1H iso[1]=44Ti iso[2]=45V iso[3]=
+Summary: RG=680 members=0 niso=0
+0 p+ti44-->n+v44 iso[0]=1H iso[1]=44Ti iso[2]=1n iso[3]=44V
+1 n+v44-->p+ti44 iso[0]=1H iso[1]=44Ti iso[2]=1n iso[3]=44V
+Summary: RG=681 members=0 niso=-1
+Summary: RG=682 members=0 niso=0
+0 n+ti45-->ti46 iso[0]=1n iso[1]=45Ti iso[2]=46Ti iso[3]=
+1 ti46-->n+ti45 iso[0]=1n iso[1]=45Ti iso[2]=46Ti iso[3]=
+Summary: RG=683 members=0 niso=0
+0 p+ti45-->v46 iso[0]=1H iso[1]=45Ti iso[2]=46V iso[3]=
+1 v46-->p+ti45 iso[0]=1H iso[1]=45Ti iso[2]=46V iso[3]=
+Summary: RG=684 members=0 niso=0
+0 p+ti45-->n+v45 iso[0]=1H iso[1]=45Ti iso[2]=1n iso[3]=45V
+1 n+v45-->p+ti45 iso[0]=1H iso[1]=45Ti iso[2]=1n iso[3]=45V
+Summary: RG=685 members=0 niso=-1
+0 p+ti46-->n+v46 iso[0]=1H iso[1]=46Ti iso[2]=1n iso[3]=46V
+1 n+v46-->p+ti46 iso[0]=1H iso[1]=46Ti iso[2]=1n iso[3]=46V
+Summary: RG=686 members=0 niso=-1
+Summary: RG=687 members=0 niso=0
+0 n+v43-->v44 iso[0]=1n iso[1]=43V iso[2]=44V iso[3]=
+1 v44-->n+v43 iso[0]=1n iso[1]=43V iso[2]=44V iso[3]=
+Summary: RG=688 members=0 niso=0
+Summary: RG=689 members=0 niso=0
+0 n+v44-->v45 iso[0]=1n iso[1]=44V iso[2]=45V iso[3]=
+1 v45-->n+v44 iso[0]=1n iso[1]=44V iso[2]=45V iso[3]=
+Summary: RG=690 members=0 niso=0
+Summary: RG=691 members=0 niso=0
+0 n+v45-->v46 iso[0]=1n iso[1]=45V iso[2]=46V iso[3]=
+1 v46-->n+v45 iso[0]=1n iso[1]=45V iso[2]=46V iso[3]=
+Summary: RG=692 members=0 niso=0
+Binary file (standard input) matches
