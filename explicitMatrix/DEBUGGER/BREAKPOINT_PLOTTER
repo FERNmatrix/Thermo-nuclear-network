@@ -836,3 +836,7 @@ printf"\ni=%d j=%d jj=%d jup=%d niso=%d %s",i,j,jj,jup,RG[i].niso,RG[i].isolabel
 cont
 end
 
+---------------------------------
+
+break 5506 if i==21
+

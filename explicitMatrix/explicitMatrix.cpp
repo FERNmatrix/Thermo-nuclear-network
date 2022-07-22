@@ -515,7 +515,7 @@ char dasher[] = "---------------------------------------------";
 // ---------------------------------
 
 int numberRG;                 // Number of partial equilibrium reaction groups
-int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
+int RGnumberMembers[SIZE];    // # RG members; found in class ReactionVectors
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -526,8 +526,8 @@ int RGnumberMembers[SIZE];    // # members each RG; determined in class Reaction
 
 int RGindex[SIZE];
 
-// Could save a little memory by assigning dynamically to size [numberRG][ISOTOPES] 
-// once numberRG determined
+// Could save a little memory by assigning dynamically to size 
+// [numberRG][ISOTOPES] once numberRG determined
 
 bool RGisoMembers[SIZE][ISOTOPES];
 
@@ -1484,7 +1484,7 @@ class Reaction: public Utilities {
             
             // Set corresponding character array reacLabel 
             
-            char p[20];  
+            char p[LABELSIZE];  
             for (int i = 0; i < sizeof(p); i++) { 
                 p[i] = s[i]; 
                 reacLabel[reacIndex][i] = p[i];
@@ -2153,8 +2153,9 @@ class Reaction: public Utilities {
 
 
 
-// Class ReactionVector with  functions that create reaction vectors. Inherits from 
-// class Utilities. Uses GSL to define vectors and GSL_BLAS API to manipulate them.
+// Class ReactionVector with  functions that create reaction vectors. Inherits 
+// from class Utilities. Uses GSL API to define vectors and GSL_BLAS API to 
+// manipulate them.
 
 class ReactionVector:  public Utilities {
     
@@ -2165,15 +2166,15 @@ class ReactionVector:  public Utilities {
         
     public:
         
-        /* Use the information constructed in parseF (in particular reacMask[j][k]) to create the 
-        reaction vectors for the network using the static function 
+        /* Use the information constructed in parseF (in particular reacMask[j][k]) 
+        to create the reaction vectors for the network using the static function 
         ReactionVector::makeReactionVectors(). */
         
         static void makeReactionVectors(){
             
             // Write out the array containing components of the reaction vectors
             
-            int uppity = minimumOf(25, numberSpecies);  // limit printout width to 25 species
+            int uppity = minimumOf(25, numberSpecies);  // limit print width to 25 species
             fprintf(pFileD, 
                 "\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n", 
                 numberReactions, ISOTOPES);
@@ -2193,7 +2194,8 @@ class ReactionVector:  public Utilities {
             // -----------------------------------------------------------------------
             // Now implement reaction vectors as GSL vectors so that we can use the
             // GSL and GSL_BLAS API to manipulate them.  The prototypes for doing this
-            // may be found in the example code arrayPointers.c and matrixGSL.c
+            // may be found in the example code arrayPointers.c and matrixGSL.c in the
+            // tutorials subdirectory of the GitHub repository.
             // -----------------------------------------------------------------------
             
             // Set pointer to beginning address of array rv
@@ -2221,10 +2223,6 @@ class ReactionVector:  public Utilities {
                 for(int j=0; j<ISOTOPES; j++){
                     
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
-                    
-                    // Retrieve the vector component just stored and print it
-                    
-                    int temp = gsl_vector_get(rvPt+i, j);
 
                 }
             }
@@ -2383,8 +2381,8 @@ class ReactionVector:  public Utilities {
         
         numberRG = rg+1;   
         
-        // Output the components of the reaction groups pfnet ->
-        // network.out.
+        // Output the components of the reaction groups to stream pfnet,
+        // which maps to file network.out.
         
         fprintf(pfnet, "\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
         for(int i=0; i<numberRG; i++){
@@ -2395,9 +2393,9 @@ class ReactionVector:  public Utilities {
                     rgindex ++; 
                     setRG(j, RGclass[j], RGindex[j]);
                     fprintf(pfnet, 
-                            "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
-                            reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
-                            isPEforward[j], stringToChar(RGstring[j]));
+                        "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
+                        reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
+                        isPEforward[j], stringToChar(RGstring[j]));
                 }
             }
         }
@@ -2413,7 +2411,7 @@ class ReactionVector:  public Utilities {
         * isotope. This is executed only once at the beginning of the entire calculation to determine 
         * the structure of the network. Since executed only once, make it static so it can
         * be called directly from the class using ReactionVector::parseF(), without having
-        * to instantiate.
+        * to instantiate a specific object.
         */
         
         static void parseF(){
@@ -2463,7 +2461,8 @@ class ReactionVector:  public Utilities {
                     }
                 }
                 
-                // Keep track of the total number of F+ and F- terms in the network for all isotopes
+                // Keep track of the total number of F+ and F- terms in the network 
+                // for all isotopes
                 
                 totalFplus += numFplus;
                 totalFminus += numFminus;
@@ -2679,8 +2678,8 @@ class ReactionGroup:  public Utilities {
         
         if (refreac == -1) {
             refreac = 0;
-            fprintf(pFileD, "\nRG: *** Reaction group %d has no forward reactions ***", 
-                RGn);
+            fprintf(pFileD, 
+                "\nRG: *** Reaction group %d has no forward reactions ***", RGn);
         }
         
         return refreac;
@@ -2703,7 +2702,7 @@ class ReactionGroup:  public Utilities {
         }
     }
        
-    // ReactionGroup::setRGfluxes() to set all fluxes in RG from the array Flux[],
+    // ReactionGroup::setRGfluxes() to set all fluxes in RG from the array Flux[]
     // and compute the net flux for the RG.
     
     void setRGfluxes(){
@@ -5393,8 +5392,10 @@ void assignRG(){
         fprintf(pFileD, "\nReaction=%d  REACTANTS: iso[0]=%s", 
         i, isoLabel[reaction[i].getreactantIndex(0)]);
         
-        if(nummreac > 1) fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
-        if(nummreac > 2) fprintf(pFileD, " iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
+        if(nummreac > 1) 
+            fprintf(pFileD, " iso[1]=%s", isoLabel[reaction[i].getreactantIndex(1)]);
+        if(nummreac > 2) 
+            fprintf(pFileD, " iso[2]=%s", isoLabel[reaction[i].getreactantIndex(2)]);
         
         // Write product Symbols
         
@@ -5410,22 +5411,23 @@ void assignRG(){
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    fprintf(pFileD, "\n\nRG: CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
+    fprintf(pFileD, 
+        "\n\nRG: CREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){
         
-        // Create array RG[i] of ReactionGroup objects. ReactionGroup(i) is the constructor
-        // of the class ReactionGroup.
+        // Create array RG[i] of ReactionGroup objects. ReactionGroup(i) is the
+        // constructor of the class ReactionGroup.
         
         RG[i] = ReactionGroup(i);
         RG[i].setnumberMemberReactions(RGnumberMembers[i]);
         
-        // Set the reference reaction for the RG to be the first reaction in the RG
-        // that has ifPEforward = true. This reference reaction will define the assumed
-        // order of isotopes in the RG to be consistent with original Java code.
+        // Set the reference reaction for the RG to be the first reaction in the
+        // RG that has ifPEforward = true. This reference reaction will define the
+        // assumed order of isotopes in the RG to be consistent with original Java 
+        // code.
         
         int reffer = RG[i].setrefreac();
-
         int rgindex = -1;
         int upper1;
         int upper2;
@@ -5471,7 +5473,7 @@ void assignRG(){
                     RG[i].setisolabel(k, isoLabel[qqq]);
                 }
                 
-                // Loop over product isotopes
+                // Loop over product isotopes within this reaction
                 
                 int nrn2 = RG[i].getnumberProducts(rn);
                 upper2 = reaction[ck1].getnumberProducts();
@@ -5493,6 +5495,7 @@ void assignRG(){
                     int yindex = RG[i].getisoindex(k);
                     RG[i].setisoY(k, Y[yindex]);
                 }
+                
             }
         }
         
@@ -5501,8 +5504,8 @@ void assignRG(){
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
         fprintf(pFileD, "\nRG: RG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n", 
-            i, RG[i].getrefreac(), RGclassRef, 
-            RG[i].getniso(), RG[i].getnumberMemberReactions() );
+            i, RG[i].getrefreac(), RGclassRef, RG[i].getniso(), 
+            RG[i].getnumberMemberReactions() );
         
         // Set values of numberC for each RG
         
@@ -5540,8 +5543,7 @@ void assignRG(){
             fprintf(pFileD, 
                 "\nRG: %d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s", 
                 j, reacLabel[reacID], RG[i].getisolabel(0),
-                RG[i].getisolabel(1), RG[i].getisolabel(2),
-                RG[i].getisolabel(3)
+                RG[i].getisolabel(1), RG[i].getisolabel(2), RG[i].getisolabel(3)
             );
         }
     }
@@ -5666,7 +5668,14 @@ void updateY0(){
     // Set Y0 in ReactionGroup objects RG[i]
     
     for(int i=0; i<numberRG; i++){
+        
         int jup = RG[i].getniso();
+        
+        if(jup < 0 || jup > 6){
+            printf("\n*** ERROR: Invalid value niso=%d in updateY0() for RG=%d\n\n",jup, i);
+            exit(-1);          // Exit program since something is corrupt
+        }
+        
         for(int j=0; j<jup; j++){
             int jj = RG[i].getisoindex(j);
             RG[i].setisoY0(j, Y[jj]);

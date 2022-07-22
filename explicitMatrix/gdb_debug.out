@@ -14,144 +14,16 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from explicitMatrix...
-(gdb) b 5669
-Breakpoint 1 at 0x406ed9: file explicitMatrix.cpp, line 5669.
-(gdb) commands
-Type commands for breakpoint(s) 1, one per line.
-End with a line saying just "end".
->silent
->printf"\n"
->cont
->end
-(gdb) 
-(gdb) b 5673
-Breakpoint 2 at 0x406f65: file explicitMatrix.cpp, line 5673.
-(gdb) commands
-Type commands for breakpoint(s) 2, one per line.
-End with a line saying just "end".
->silent
->printf"\ni=%d j=%d jj=%d jup=%d niso=%d %s",i,j,jj,jup,RG[i].niso,RG[i].isolabel[j]
->cont
->end
 (gdb) r
 Starting program: /home/guidry/mwg/research/FERN_C++/Thermo-nuclear-network/explicitMatrix/explicitMatrix 
 Missing separate debuginfos, use: dnf debuginfo-install glibc-2.29-28.fc30.x86_64
 
-
-i=0 j=0 jj=0 jup=2 niso=2 1n
-i=0 j=1 jj=1 jup=2 niso=2 1H
-
-i=1 j=0 jj=0 jup=3 niso=3 1n
-i=1 j=1 jj=1 jup=3 niso=3 1H
-i=1 j=2 jj=2 jup=3 niso=3 2H
-
-i=2 j=0 jj=1 jup=3 niso=3 1H
-i=2 j=1 jj=1 jup=3 niso=3 1H
-i=2 j=2 jj=2 jup=3 niso=3 2H
-
-i=3 j=0 jj=1 jup=3 niso=3 1H
-i=3 j=1 jj=2 jup=3 niso=3 2H
-i=3 j=2 jj=3 jup=3 niso=3 3He
-
-i=4 j=0 jj=2 jup=3 niso=3 2H
-i=4 j=1 jj=2 jup=3 niso=3 2H
-i=4 j=2 jj=4 jup=3 niso=3 4He
-
-i=5 j=0 jj=2 jup=4 niso=4 2H
-i=5 j=1 jj=2 jup=4 niso=4 2H
-i=5 j=2 jj=0 jup=4 niso=4 1n
-i=5 j=3 jj=3 jup=4 niso=4 3He
-
-i=6 j=0 jj=0 jup=3 niso=3 1n
-i=6 j=1 jj=3 jup=3 niso=3 3He
-i=6 j=2 jj=4 jup=3 niso=3 4He
-
-i=7 j=0 jj=1 jup=3 niso=3 1H
-i=7 j=1 jj=3 jup=3 niso=3 3He
-i=7 j=2 jj=4 jup=3 niso=3 4He
-
-i=8 j=0 jj=2 jup=4 niso=4 2H
-i=8 j=1 jj=3 jup=4 niso=4 3He
-i=8 j=2 jj=1 jup=4 niso=4 1H
-i=8 j=3 jj=4 jup=4 niso=4 4He
-
-i=9 j=0 jj=3 jup=5 niso=5 3He
-i=9 j=1 jj=3 jup=5 niso=5 3He
-i=9 j=2 jj=1 jup=5 niso=5 1H
-i=9 j=3 jj=1 jup=5 niso=5 1H
-i=9 j=4 jj=4 jup=5 niso=5 4He
-
-i=10 j=0 jj=3 jup=3 niso=3 3He
-i=10 j=1 jj=4 jup=3 niso=3 4He
-i=10 j=2 jj=6 jup=3 niso=3 7Be
-
-i=11 j=0 jj=4 jup=4 niso=4 4He
-i=11 j=1 jj=4 jup=4 niso=4 4He
-i=11 j=2 jj=0 jup=4 niso=4 1n
-i=11 j=3 jj=6 jup=4 niso=4 7Be
-
-i=12 j=0 jj=4 jup=4 niso=4 4He
-i=12 j=1 jj=4 jup=4 niso=4 4He
-i=12 j=2 jj=1 jup=4 niso=4 1H
-i=12 j=3 jj=5 jup=4 niso=4 7Li
-
-i=13 j=0 jj=0 jup=5 niso=5 1n
-i=13 j=1 jj=4 jup=5 niso=5 4He
-i=13 j=2 jj=4 jup=5 niso=5 4He
-i=13 j=3 jj=2 jup=5 niso=5 2H
-i=13 j=4 jj=5 jup=5 niso=5 7Li
-
-i=14 j=0 jj=1 jup=5 niso=5 1H
-i=14 j=1 jj=4 jup=5 niso=5 4He
-i=14 j=2 jj=4 jup=5 niso=5 4He
-i=14 j=3 jj=2 jup=5 niso=5 2H
-i=14 j=4 jj=6 jup=5 niso=5 7Be
-
-i=15 j=0 jj=1 jup=5 niso=5 1H
-i=15 j=1 jj=4 jup=5 niso=5 4He
-i=15 j=2 jj=4 jup=5 niso=5 4He
-i=15 j=3 jj=0 jup=5 niso=5 1n
-i=15 j=4 jj=7 jup=5 niso=5 8B
-
-i=16 j=0 jj=4 jup=5 niso=5 4He
-i=16 j=1 jj=4 jup=5 niso=5 4He
-i=16 j=2 jj=4 jup=5 niso=5 4He
-i=16 j=3 jj=0 jup=5 niso=5 1n
-i=16 j=4 jj=10 jup=5 niso=5 11C
-
-i=17 j=0 jj=4 jup=5 niso=5 4He
-i=17 j=1 jj=4 jup=5 niso=5 4He
-i=17 j=2 jj=4 jup=5 niso=5 4He
-i=17 j=3 jj=1 jup=5 niso=5 1H
-i=17 j=4 jj=8 jup=5 niso=5 11B
-
-i=18 j=0 jj=4 jup=4 niso=4 4He
-i=18 j=1 jj=4 jup=4 niso=4 4He
-i=18 j=2 jj=4 jup=4 niso=4 4He
-i=18 j=3 jj=11 jup=4 niso=4 12C
-
-i=19 j=0 jj=4 jup=3 niso=3 4He
-i=19 j=1 jj=5 jup=3 niso=3 7Li
-i=19 j=2 jj=8 jup=3 niso=3 11B
-
-i=20 j=0 jj=1 jup=4 niso=4 1H
-i=20 j=1 jj=5 jup=4 niso=4 7Li
-i=20 j=2 jj=0 jup=4 niso=4 1n
-i=20 j=3 jj=6 jup=4 niso=4 7Be
-
-i=21 j=0 jj=3 jup=134 niso=134 
-i=21 j=1 jj=5 jup=134 niso=134 7Li
-i=21 j=2 jj=0 jup=134 niso=134 1n
-i=21 j=3 jj=1 jup=134 niso=134 1H
-i=21 j=4 jj=4 jup=134 niso=134 4He
-i=21 j=5 jj=4 jup=134 niso=134 4He
 Program received signal SIGSEGV, Segmentation fault.
-0x0000000000406f4b in updateY0 () at explicitMatrix.cpp:5672
-5672	            RG[i].setisoY0(j, Y[jj]);
+0x00007ffff78662ba in __strlen_sse2 () from /lib64/libc.so.6
 Missing separate debuginfos, use: dnf debuginfo-install libgcc-9.2.1-1.fc30.x86_64 libstdc++-9.2.1-1.fc30.x86_64
 (gdb) quit
 A debugging session is active.
 
-	Inferior 1 [process 728] will be killed.
+	Inferior 1 [process 8463] will be killed.
 
 Quit anyway? (y or n) y
