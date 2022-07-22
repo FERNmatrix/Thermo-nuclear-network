@@ -285,8 +285,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.3;           // Initial temperature in units of 10^9 K
+double rho_start = 1e3;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -302,8 +302,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-8;               // Stop time for integration
+double startplot_time = 1e-3;         // Start time for plot output
+double stop_time = 1e9;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -446,7 +446,7 @@ gsl_vector *rvPt;      // Pointer to rv[] array
 int totalFplus = 0;
 int totalFminus = 0;
 
-const static int maxHydroEntries = 41;
+const static int maxHydroEntries = 101;
 int hydroLines;                         // # hydro profile lines read in
 
 // Arrays holding hydro profile data read in.  Data are stored as
@@ -5909,6 +5909,22 @@ void updateY0(){
     
     // Set Y0 in main array Y0[i] and in Species objects isotope[i]
     
+//     for(int i=0; i<ISOTOPES; i++){
+//         Y0[i] = Y[i];
+//         isotope[i].setY0(Y[i]);
+//     }
+//     
+//     // Set Y0 in ReactionGroup objects RG[i]
+//     
+//     for(int i=0; i<numberRG; i++){
+//         for(int j=0; j<RG[i].getniso(); j++){
+//             int jj = RG[i].getisoindex(j);
+//             RG[i].setisoY0(j, Y[jj]);
+//         }
+//     }
+//     
+//    
+   
     for(int i=0; i<ISOTOPES; i++){
         Y0[i] = Y[i];
         isotope[i].setY0(Y[i]);
@@ -5917,7 +5933,15 @@ void updateY0(){
     // Set Y0 in ReactionGroup objects RG[i]
     
     for(int i=0; i<numberRG; i++){
-        for(int j=0; j<RG[i].getniso(); j++){
+        
+        int jup = RG[i].getniso();
+        
+        if(jup < 0 || jup > 6){
+            printf("\n*** ERROR: Invalid value niso=%d in updateY0() for RG=%d\n\n",jup, i);
+            exit(-1);          // Exit program since something is corrupt
+        }
+        
+        for(int j=0; j<jup; j++){
             int jj = RG[i].getisoindex(j);
             RG[i].setisoY0(j, Y[jj]);
         }
