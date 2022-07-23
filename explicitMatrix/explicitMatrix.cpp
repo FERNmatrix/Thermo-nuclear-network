@@ -1547,7 +1547,7 @@ class Reaction: public Utilities {
         
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
-        int reacGroupClass;          // Reaction group class (1-5 surrogate for A-E)
+        int reacGroupClass;          // Reaction group class (1-6 surrogate for A-F)
         int rgindex;                 // Index of RG containing reaction (0, 1, ... #RG)
         int RGmemberIndex;           // Index of reaction within its reaction group
         
@@ -1609,6 +1609,7 @@ class Reaction: public Utilities {
             
             isEquil = false;
             reacIsActive[reacIndex] =  true;
+            
 
         }
         
@@ -1664,6 +1665,7 @@ class Reaction: public Utilities {
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
             }
+            
         }
         
         void setreacGroupSymbol(char* s){reacGroupSymbol = s; }
@@ -2610,7 +2612,7 @@ class ReactionVector:  public Utilities {
                     rgindex ++; 
                     setRG(j, RGclass[j], RGindex[j]);
                     fprintf(pfnet, 
-                            "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG: %s", 
+                            "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG:%s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
                             isPEforward[j], Utilities::stringToChar(RGstring[j]));
                 }
@@ -4143,7 +4145,9 @@ Reaction reaction [SIZE];
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
 
+// ---------------------------------
 // ------- Main CPU routine --------
+// ---------------------------------
 
 
 int main() { 
@@ -4204,6 +4208,8 @@ int main() {
     for (int i=0; i<SIZE; i++){ 
         reacIsActive[i] = true;
         reaction[i].setisEquil(false);
+        
+        //reaction[i].setreacGroupSymbol(Utilities::stringToChar(RGstring[i]));
     }
     
     // Determine whether the network contains Be-8, which must be handled as
@@ -4253,7 +4259,7 @@ int main() {
     for(int i=0; i<SIZE; i++){
         
         fprintf(pfnet, 
-            "\n%d %s reacClass=%d react=%d prod=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
+            "\n%d %s reacClass=%d react=%d prod=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGsymb:%s", 
             reaction[i].getreacIndex(),
             reacLabel[i],  
             reaction[i].getreacClass(),
@@ -4263,7 +4269,8 @@ int main() {
             reaction[i].getisReverse(),
             reaction[i].getQ(),
             reaction[i].getprefac(),
-            reaction[i].getreacGroupSymbol()
+            Utilities::stringToChar(RGstring[i])
+            //reaction[i].getreacGroupSymbol()   // Always returns a<->b
         );
     }
 
