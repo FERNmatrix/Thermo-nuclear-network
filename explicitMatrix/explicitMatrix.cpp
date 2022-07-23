@@ -102,10 +102,10 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 268                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 3175                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1604                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 50                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_268.inp";
+char networkFile[] = "data/network_150.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_268.data";
+char rateLibraryFile[] = "data/rateLibrary_150.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -4707,7 +4707,7 @@ int main() {
     
     // Output data to plot files after integration. 
     
-    //Utilities::plotOutput();
+    Utilities::plotOutput();
     
     if(hydroProfile && plotHydroProfile){
         Utilities::plotHydroProfile();
