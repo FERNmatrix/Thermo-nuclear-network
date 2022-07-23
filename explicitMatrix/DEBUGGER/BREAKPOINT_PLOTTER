@@ -819,3 +819,17 @@ printf"\ni=%d %d j=%d k=%d indy=%d equil=%d Yeq[k]=%7.5e cases=%d Ysum=%7.5e\n",
 break 4725 if totalTimeSteps>440
 
 cat gdb_debug.out | grep Ysum | grep -v printf | grep -v it=> temp.out
+
+---------------------------------
+
+break 5367 if n>1603
+commands
+silent
+printf"\n5367: n=%d %s i0=%d i1=%d i2=%d",n,rlabel,newi0,i1,i2
+end
+
+break 1641 if reacIndex>1603
+commands
+silent
+printf"\n1641: index=%d reacIndex=%d %s",index,reacIndex,reacGroupSymbol
+end
