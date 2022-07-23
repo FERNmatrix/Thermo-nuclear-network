@@ -105,7 +105,7 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 #define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -303,7 +303,7 @@ double rho_start = 1e4;        // Initial density in g/cm^3
 double start_time = 1.0e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-3;         // Start time for plot output
-double stop_time = 1e8;               // Stop time for integration
+double stop_time = 1e4;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -1627,29 +1627,40 @@ class Reaction: public Utilities {
             // and symbols in reacGroupSymbol
             
             switch(index){
+                
                 case 1:
                     reacGroupClassLett = 'A';
                     reacGroupSymbol = Utilities::stringToChar("a<->b");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
+                    
                 case 2:
                     reacGroupClassLett = 'B';
                     reacGroupSymbol = Utilities::stringToChar("a+b<->c");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
+                    
                 case 3:
                     reacGroupClassLett = 'C';
                     reacGroupSymbol = Utilities::stringToChar("a+b+c<->d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
+                    
                 case 4:
                     reacGroupClassLett = 'D';
                     reacGroupSymbol = Utilities::stringToChar("a+b<->c+d");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
+                    
                 case 5:
                     reacGroupClassLett = 'E';
                     reacGroupSymbol = Utilities::stringToChar("a+b<->c+d+e");
+                    RGstring[reacIndex] = reacGroupSymbol;
+                    break;
+                    
+                case 6:
+                    reacGroupClassLett = 'F';
+                    reacGroupSymbol = Utilities::stringToChar("a+b<->c+d+e+f");
                     RGstring[reacIndex] = reacGroupSymbol;
                     break;
             }
@@ -2599,7 +2610,7 @@ class ReactionVector:  public Utilities {
                     rgindex ++; 
                     setRG(j, RGclass[j], RGindex[j]);
                     fprintf(pfnet, 
-                            "\n%s reacIndex=%d RGindex=%d RG=%d RGreacIndex=%d isForward=%d RG: %s", 
+                            "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG: %s", 
                             reacLabel[j], j, rgindex, RGclass[j], RGMemberIndex[j],
                             isPEforward[j], Utilities::stringToChar(RGstring[j]));
                 }
@@ -2781,7 +2792,7 @@ class ReactionGroup:  public Utilities {
     private:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
-        int nspecies[5] = { 2, 3, 4, 4, 5 };   // Number isotopic species in 5 RG classes
+        int nspecies[6] = {2,3,4,4,5,6};       // Number isotopic species in 6 RG classes
         int niso;                              // Number isotopic species in this RG object
         int RGn;                               // Index this object in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
@@ -4242,10 +4253,9 @@ int main() {
     for(int i=0; i<SIZE; i++){
         
         fprintf(pfnet, 
-            "\n%d %s reacClass=%d reactants=%d products=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
+            "\n%d %s reacClass=%d react=%d prod=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGchar=%s", 
             reaction[i].getreacIndex(),
-            reacLabel[i],
-            //reaction[i].getreacChar(),  
+            reacLabel[i],  
             reaction[i].getreacClass(),
             reaction[i].getnumberReactants(),
             reaction[i].getnumberProducts(),
@@ -5308,6 +5318,8 @@ void readLibraryParams (char *fileName) {
     int n = -1;
     int subindex = -1;
     
+    int newi0;
+    
     // Read lines until NULL encountered. Lines can contain up to 120 characters.  In the
     // data file each reaction has 8 lines of entries.  The counter n holds the reaction number
     // (0 to SIZE) and the counter subindex holds the line number for the current reaction (0-7).  
@@ -5327,20 +5339,29 @@ void readLibraryParams (char *fileName) {
                 sscanf (line, "%s %d %d %d %d %d %d %d %lf %lf %d", 
                     rlabel, &i0, &i1, &i2, &i3, &i4, &i5, &i6, &sf, &q, &i7);
                 
+                // Following converts any RGclass i0 = -1 produced by the Java code
+                // to RG class 6 (which has only one reaction of the form 
+                // a+b->c+d+e+f corresponding to ReacLib reaction class 7.)
+                // Otherwise the -1 will be used as an index, causing a segfault.
+                
+                newi0 = i0;
+                if(newi0 == -1) newi0 = 6;
+                
                 // Store in the Reaction class instance reaction[n]. First set a
                 // pointer to the array of Reaction objects reaction[]
                 
                 ReactionPtr = &reaction[n];
                 
-                // The setter functions are defined in the class Reaction
+                // Now point to various setter functions in the class Reaction and
+                // use them to store the line of data just read in.
                 
                 ReactionPtr->setreacIndex(n);
-                ReactionPtr->setreacString(rlabel);   // setter also fills reacLabel[][]
-                ReactionPtr->setreacGroupClass(i0);   // setter also fills RGclass[]
-                ReactionPtr->setRGmemberIndex(i1);    // setter also fills RGMemberIndex[]
+                ReactionPtr->setreacString(rlabel);      // setter also fills reacLabel[][]
+                ReactionPtr->setreacGroupClass(newi0);   // setter also fills RGclass[]
+                ReactionPtr->setRGmemberIndex(i1);       // setter also fills RGMemberIndex[]
                 ReactionPtr->setreacClass(i2);
-                ReactionPtr->setnumberReactants(i3);  // setter also fills NumReactingSpecies[]
-                ReactionPtr->setnumberProducts(i4);   // setter also fills NumProducts[]
+                ReactionPtr->setnumberReactants(i3);     // setter also fills NumReactingSpecies[]
+                ReactionPtr->setnumberProducts(i4);      // setter also fills NumProducts[]
                 ReactionPtr->setisEC(i5);
                 ReactionPtr->setisReverse(i6);
                 ReactionPtr->setQ(q);
@@ -5349,7 +5370,7 @@ void readLibraryParams (char *fileName) {
                 
                 break;
                 
-            case 1:    // 2nd line
+            case 1:    // 2nd line (ReacLib rate coefficients)
                 
                 sscanf (line, "%lf %lf %lf %lf %lf %lf %lf", &p0, &p1, &p2, &p3, &p4, &p5, &p6);
                 
@@ -5738,19 +5759,39 @@ void assignRG(){
         switch ( RG[i].getrgclass() ){
             
             case 1:
+                
                 RG[i].setnumberC(1);
                 break;
+                
             case 2:
+                
                 RG[i].setnumberC(2);
                 break;
+                
             case 3:
+                
                 RG[i].setnumberC(3);
                 break;
+                
             case 4:
+                
                 RG[i].setnumberC(3);
                 break;
+                
             case 5:
+                
                 RG[i].setnumberC(4);
+                break;
+                
+            // Bookkeeping. rgclass = 6 (F) can only contain one reaction from ReacLib class
+            // 7 (a+b -> c + d + e + f), since there are no 4-body reactions in ReacLib
+            // to serve as the inverse reaction.  But we will assume that all reactions
+            // belong to a unique reaction group for bookkeeping, even if there is only one 
+            // reaction in the reaction group so it can never equilibrate.
+                
+            case 6: 
+                
+                RG[i].setnumberC(0);
                 break;
                 
         }
