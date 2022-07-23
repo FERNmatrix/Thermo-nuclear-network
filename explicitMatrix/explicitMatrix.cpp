@@ -102,8 +102,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1604                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 268                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 3175                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 50                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_150.inp";
+char networkFile[] = "data/network_268.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_150.data";
+char rateLibraryFile[] = "data/rateLibrary_268.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -448,7 +448,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 100;
+const static int maxHydroEntries = 50;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -4466,8 +4466,8 @@ int main() {
     
     //if (hydroProfile){ 
     
-     SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp);
-     SplineInterpolator interpolateRho = SplineInterpolator (hydroLines, hydroTime, hydroRho);
+    SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
+    SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
      
     //}
     
@@ -4707,11 +4707,11 @@ int main() {
     
     // Output data to plot files after integration. 
     
-    Utilities::plotOutput();
+    //Utilities::plotOutput();
     
-    //if(hydroProfile && plotHydroProfile){
+    if(hydroProfile && plotHydroProfile){
         Utilities::plotHydroProfile();
-    //}
+    }
     
     
     // **************************************************
