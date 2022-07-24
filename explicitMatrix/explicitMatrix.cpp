@@ -844,7 +844,7 @@ class Utilities{
         
         // -------------------------------------------------------------------------
         // Static function Utilities::interpolate_rho(t) to find an interpolated 
-        // density rho as a function of time if hydroProfile is false.
+        // density rho as a function of time if hydroProfile is true.
         // -------------------------------------------------------------------------
         
         static double interpolate_rho(double t){
@@ -1543,7 +1543,7 @@ class Reaction: public Utilities {
     // Make data fields private, with external access to them through public setter 
     // and getter functions
     
-    public:
+    private:
         
         int reacIndex;               // Index of reaction in current run for each (Z,N)
         int reacClass;               // Reaction class for reaclib (1-8)
@@ -4534,6 +4534,9 @@ int main() {
         if(hydroProfile){
             logTnow = interpolateT.splint(log10(t));
             logRhoNow = interpolateRho.splint(log10(t));
+        } else {
+            logTnow = log10(T9_start*1e9);
+            logRhoNow = log10(rho_start);
         }
         
         // Perform an integration step using the static method doIntegrationStep() of
@@ -4646,12 +4649,14 @@ int main() {
             
             // Output to screen for this plot step
             
-            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%d Eq=%d sumX=%6.4f Xfac=%6.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e logT9=%5.3f logRho=%5.3f";
+            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT9=%4.3f lgRho=%4.2f";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
-                   totalAsy, totalEquilRG, sumX, XcorrFac, ECON*netdERelease, 
+                   100*(double)totalAsy/(double)ISOTOPES, 
+                   100*(double)totalEquilRG/(double)SIZE, 
+                   sumX, XcorrFac, ECON*netdERelease, 
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
