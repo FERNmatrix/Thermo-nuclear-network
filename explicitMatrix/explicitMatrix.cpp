@@ -735,7 +735,7 @@ class SplineInterpolator{
     -------------------------------------------------------------------------------*/
 
 
-    int bisection(double xarray[], int arrLen, double xvalue){
+    int bisection(double *xarray, int arrLen, double xvalue){
 
         int n = arrLen;
 
@@ -5057,20 +5057,9 @@ void readhydroProfile(char *fileName){
     while(fgets(line, 60, fr) != NULL){
         
         subIndex ++;
-        
-        if (subIndex == 1){  // Line containing number of entries
+    
             
-            sscanf(line, "%d", &numberEntries);
-            
-            if(numberEntries > maxHydroEntries-1){
-                printf("\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
-                    fileName, numberEntries);
-                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
-                printf("to a value \nof at least %d and recompile.\n\n", numberEntries+1);
-                exit(1);
-            }
-            
-        } else if (subIndex > 1) {    // Line containing t, T, rho data
+        if (subIndex > 0) {    // Line containing t, T, rho data
             
             sscanf(line, "%d %lf %lf %lf", &dummy, &Time, &Temp, &Rho); 
             
