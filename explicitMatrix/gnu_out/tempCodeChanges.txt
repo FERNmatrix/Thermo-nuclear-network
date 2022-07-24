@@ -1,0 +1,86 @@
+2781
+  private:
+        
+        static const int maxreac = 10;         // Max possible reactions in this RG instance
+        int nspecies[6] = {2,3,4,4,5,6};       // Number isotopic species in 6 RG classes
+        int niso;                              // Number isotopic species in this RG object
+        
+5307
+int n = -1;
+int subindex = -1;
+
+int newi0;
+
+// Read lines until NULL encountered. Lines can contain up to 120 characters.  In the
+// data file each reaction has 8 lines of entries.  The counter n holds the reaction number
+// (0 to SIZE) and the counter subindex holds the line number for the current reaction (0-7).  
+// The switch(subindex) determines which line we are reading (0-7) for a given reaction 
+// labeled by n.
+
+while(fgets(line, 120, fr) != NULL) {
+    
+    subindex ++;
+    
+    switch(subindex) {
+        
+        case 0:   // 1st line
+            
+            n++;
+            
+            sscanf (line, "%s %d %d %d %d %d %d %d %lf %lf %d", 
+                    rlabel, &i0, &i1, &i2, &i3, &i4, &i5, &i6, &sf, &q, &i7);
+            
+            // Store in the Reaction class instance reaction[n]. First set a
+            // pointer to the array of Reaction objects reaction[]
+            
+            ReactionPtr = &reaction[n];
+            
+            // Now point to various setter functions in the class Reaction and
+            // use them to store the line of data just read in.
+            
+            newi0 = i0;
+            if(newi0 == -1) newi0 = 6;
+            
+            ReactionPtr->setreacIndex(n);
+            ReactionPtr->setreacString(rlabel);   // setter also fills reacLabel[][]
+            ReactionPtr->setreacGroupClass(newi0);   // setter also fills RGclass[]
+            
+5670
+
+        case 6:
+            RG[i].setnumberC(0);
+            break;
+            
+5770
+// Bookkeeping. rgclass = 6 (F) can only contain one reaction from ReacLib class
+// 7 (a+b -> c + d + e + f), since there are no 4-body reactions in ReacLib
+// to serve as the inverse reaction.  But we will assume that all reactions
+// belong to a unique reaction group for bookkeeping, even if there is only one 
+// reaction in the reaction group so it can never equilibrate.
+
+        case 6: 
+            
+            RG[i].setnumberC(0);
+            break;
+            
+5331
+        
+        // Following converts any RGclass i0 = -1 produced by the Java code
+        // to RG class 6 (which has only one reaction of the form 
+        // a+b->c+d+e+f corresponding to ReacLib reaction class 7.)
+        // Otherwise the -1 will be used as an index, causing a segfault.
+        
+        newi0 = i0;
+        if(newi0 == -1) newi0 = 6;
+        
+        // Store in the Reaction class instance reaction[n]. First set a
+        // pointer to the array of Reaction objects reaction[]
+        
+        ReactionPtr = &reaction[n];
+        
+        // Now point to various setter functions in the class Reaction and
+        // use them to store the line of data just read in.
+        
+        ReactionPtr->setreacIndex(n);
+        ReactionPtr->setreacString(rlabel);      // setter also fills reacLabel[][]
+        ReactionPtr->setreacGroupClass(newi0);   // setter also fills RGclass[]
