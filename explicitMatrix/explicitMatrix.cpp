@@ -102,8 +102,8 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 */
 
 
-#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1604                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_150.inp";
+char networkFile[] = "data/network_nova134.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_150.data";
+char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -161,10 +161,10 @@ char rateLibraryFile[] = "data/rateLibrary_150.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
 
-double logTnow;    // Log10 of current temp if interpolating from hydro profile
-double logRhoNow;  // Log10 of current rho if interpolating from hydro profile
+double logTnow;               // Log10 of current temp
+double logRhoNow;             // Log10 of current rho
 double interpT[plotSteps];    // Interpolated value of T if hydro profile
 double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 
@@ -185,7 +185,7 @@ char hydroFile[] = "data/nova125DProfile.inp";   // "data/torch47Profile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = false;
+static const bool plotHydroProfile = true;
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -285,8 +285,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
-double rho_start = 1e8;        // Initial density in g/cm^3
+double T9_start = 0.35;           // Initial temperature in units of 10^9 K
+double rho_start = 1e4;        // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -300,10 +300,10 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1.0e-20;           // Start time for integration
+double start_time = 1.0e-4;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-8;               // Stop time for integration
+double startplot_time = 1e-3;         // Start time for plot output
+double stop_time = 1e0;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -448,7 +448,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 50;
+const static int maxHydroEntries = 101;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -621,6 +621,7 @@ double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 class SplineInterpolator{
     
+    
 private:
     
     int numberPoints; 
@@ -633,6 +634,8 @@ public:
     
     // Constructor creates a SplineInterpolator object for the arrays
     // xarray and yarray passed using the pointers *xarray and *yarray.
+    
+    SplineInterpolator(){};     // Default constructor
     
     SplineInterpolator(int points, double *xarray, double *yarray) { 
 
@@ -721,7 +724,7 @@ public:
         // Return -1 with error message if argument out of table bounds
         
         if (xvalue < x[0] || xvalue > x[n-1]) {
-            printf("Argument ( %7.4e ) Out of Table Bounds %7.4e to %7.4e",
+            printf("\nArgument ( %7.4e ) Out of Table Bounds %7.4e to %7.4e",
                 xvalue, x[0], x[n-1]);
             return -1;
         }
@@ -4144,6 +4147,9 @@ Reaction reaction [SIZE];
 
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
+SplineInterpolator interpolateT = SplineInterpolator();
+SplineInterpolator interpolateRho = SplineInterpolator();
+
 
 // ---------------------------------
 // ------- Main CPU routine --------
@@ -4464,12 +4470,15 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-    //if (hydroProfile){ 
+    if (hydroProfile){ 
     
-    SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
-    SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
+        interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
+        interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
+    
+    //SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
+    //SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
      
-    //}
+    }
     
     
 
@@ -4650,7 +4659,7 @@ int main() {
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
-            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT9=%4.3f lgRho=%4.2f";
+            ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT=%4.3f lgRho=%4.2f";
             
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
