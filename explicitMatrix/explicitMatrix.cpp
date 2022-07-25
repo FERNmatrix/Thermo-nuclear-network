@@ -5113,21 +5113,21 @@ void readhydroProfile(char *fileName){
             
             sscanf(line, "%d", &numberEntries);
             
-            if(numberEntries > maxHydroEntries-1){
+            if(numberEntries != maxHydroEntries){
                 printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
                     fileName, numberEntries);
-                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
-                printf("to a value \nof %d and recompile.\n\n", numberEntries+1);
+                printf("\ninconsistent with spline arrays. Change the static constant maxHydroEntries ");
+                printf("to a value \nof %d and recompile.\n\n", numberEntries);
                 exit(1);
             }
             
-            if(numberEntries > maxHydroEntries-1){
-                printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
-                       fileName, numberEntries);
-                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
-                printf("to a value \nof %d and recompile.\n\n", numberEntries+1);
-                exit(1);
-            }
+//             if(numberEntries > maxHydroEntries-1){
+//                 printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
+//                        fileName, numberEntries);
+//                 printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
+//                 printf("to a value \nof %d and recompile.\n\n", numberEntries+1);
+//                 exit(1);
+//             }
             
         } else if (subIndex > 1) {    // Line containing t, T, rho data
             
