@@ -448,7 +448,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 102;
+const static int maxHydroEntries = 202;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -5114,10 +5114,18 @@ void readhydroProfile(char *fileName){
             sscanf(line, "%d", &numberEntries);
             
             if(numberEntries > maxHydroEntries-1){
-                printf("\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
+                printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
                     fileName, numberEntries);
                 printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
-                printf("to a value \nof at least %d and recompile.\n\n", numberEntries+1);
+                printf("to a value \nof %d and recompile.\n\n", numberEntries+1);
+                exit(1);
+            }
+            
+            if(numberEntries > maxHydroEntries-1){
+                printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
+                       fileName, numberEntries);
+                printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
+                printf("to a value \nof %d and recompile.\n\n", numberEntries+1);
                 exit(1);
             }
             
