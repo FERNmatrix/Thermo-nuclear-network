@@ -285,8 +285,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile.
 
-double T9_start = 0.35;           // Initial temperature in units of 10^9 K
-double rho_start = 1e4;        // Initial density in g/cm^3
+double T9_start = 0.3;           // Initial temperature in units of 10^9 K
+double rho_start = 1e4;           // Initial density in g/cm^3
 
 // Integration time data.  The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -300,10 +300,10 @@ double rho_start = 1e4;        // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1.0e-4;           // Start time for integration
+double start_time = 1.0e-16;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-3;         // Start time for plot output
-double stop_time = 1e0;               // Stop time for integration
+double startplot_time = 1e-4;         // Start time for plot output
+double stop_time = 1e4;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -333,7 +333,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-3;                    // Absolute error tolerance
+double EpsA = 1e-7;//5e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -448,7 +448,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 101;
+const static int maxHydroEntries = 102;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -635,7 +635,7 @@ public:
     // Constructor creates a SplineInterpolator object for the arrays
     // xarray and yarray passed using the pointers *xarray and *yarray.
     
-    SplineInterpolator(){};     // Default constructor
+    //SplineInterpolator(){};     // Default constructor
     
     SplineInterpolator(int points, double *xarray, double *yarray) { 
 
@@ -674,6 +674,7 @@ public:
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
+            printf("\n    +++++ x[%d]=%7.4e y[%d]=%7.4e",i,x[i],i,y[i]);
         }
         
                     
@@ -4147,8 +4148,8 @@ Reaction reaction [SIZE];
 
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
-SplineInterpolator interpolateT = SplineInterpolator();
-SplineInterpolator interpolateRho = SplineInterpolator();
+// SplineInterpolator interpolateT = SplineInterpolator();
+// SplineInterpolator interpolateRho = SplineInterpolator();
 
 
 // ---------------------------------
@@ -4470,15 +4471,15 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-    if (hydroProfile){ 
+    //if (hydroProfile){ 
     
-        interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
-        interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
+        //interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
+        //interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
     
-    //SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
-    //SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
+    SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
+    SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
      
-    }
+    //}
     
     
 
@@ -4510,6 +4511,18 @@ int main() {
         if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
         
         if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
+        
+        
+        // Since the arrays holding the hydro profile have entries in terms of log10,
+        // interpolate in log10(t)
+        
+        if(hydroProfile){
+            logTnow = interpolateT.splint(log10(t));
+            logRhoNow = interpolateRho.splint(log10(t));
+        } else {
+            logTnow = log10(T9_start*1e9);
+            logRhoNow = log10(rho_start);
+        }
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
@@ -4536,17 +4549,6 @@ int main() {
         // value of data for the timestep. Presently for information only.
         
         getmaxdYdt();
-        
-        // Since the arrays holding the hydro profile have entries in terms of log10,
-        // interpolate in log10(t)
-        
-        if(hydroProfile){
-            logTnow = interpolateT.splint(log10(t));
-            logRhoNow = interpolateRho.splint(log10(t));
-        } else {
-            logTnow = log10(T9_start*1e9);
-            logRhoNow = log10(rho_start);
-        }
         
         // Perform an integration step using the static method doIntegrationStep() of
         // the class Integrate.

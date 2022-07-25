@@ -30,7 +30,7 @@ set style line 2 lc rgb myred pt 7   # circle
 set style line 3 lc rgb 'blue' pt 9   # triangle
 set style line 4 lc rgb mygreen pt 7   # circle
 set style line 5 lc rgb mypurple pt 7   # circle
-set style line 6 lc rgb myviolet  pt 7   # circle
+set style line 6 lc rgb 'red'  pt 6   # circle
 set style line 7 lc rgb mybrown  pt 7   # circle
 set style line 8 lc rgb myorange  pt 7   # circle
 set style line 9 lc rgb myblue pt 7   # circle
@@ -73,13 +73,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 8
+xlow = -4
+xup = 4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 1e7
-yup = 4e8
+yup = 3.2e8
 ytics = 1e8     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -109,7 +109,7 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$2) with points ls 11 lw 0.5 dashtype 2 title "T input (t)"
+replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
 
 
 
