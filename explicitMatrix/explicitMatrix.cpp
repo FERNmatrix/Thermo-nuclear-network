@@ -448,7 +448,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 202;
+const static int maxHydroEntries = 203;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -932,8 +932,10 @@ class Utilities{
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
 //             
-               int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,23,26,27,32,40,
-               41,48,49,55,56,62,63,64,70,77,78,86,95,104,112};               // nova134 selection
+               int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
+               23,26,27,32,33,40,41,48,49,55,
+               56,62,63,64,70,77,78,86,95,104,
+               112,34};                                              // 31 nova134 selection
 
 //             int plotXlist[] = 
 //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
@@ -4511,9 +4513,9 @@ int main() {
         
         //if(hydroProfile && totalTimeSteps > 1) T9 = interpolateT.splint(t);
         
-        if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
+        //if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
         
-        if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
+        //if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
         
         
         // Since the arrays holding the hydro profile have entries in terms of log10,
@@ -4526,6 +4528,9 @@ int main() {
             logTnow = log10(T9_start*1e9);
             logRhoNow = log10(rho_start);
         }
+        
+        T9 = pow(10,logTnow)/1e9;
+        rho = pow(10,logRhoNow);
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
