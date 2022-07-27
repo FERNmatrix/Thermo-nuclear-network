@@ -643,7 +643,7 @@ public:
         
         // Set up the spline coefficients required for interpolation
         
-        spline(xarray, yarray, points, points);
+        //spline(xarray, yarray, points, points);
     };
     
     
@@ -4261,10 +4261,10 @@ int main() {
     // If using a hydrodynamical profile, read in the file containing
     // the hydro profile and store variables.
     
-    //if(hydroProfile){
+    if(hydroProfile){
         char *hydroFilePtr = hydroFile;
         readhydroProfile(hydroFilePtr);
-    //}
+    }
     
     // Print out some quantitites from the Reaction object reaction[].  
     
@@ -4476,16 +4476,19 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-    //if (hydroProfile){ 
-    
         //interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
         //interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
     
-    SplineInterpolator interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
-    SplineInterpolator interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
-     
-    //}
+    SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp);
+    SplineInterpolator interpolateRho = SplineInterpolator (hydroLines, hydroTime, hydroRho);
     
+    // Initialize interpolator objects if using a hydro profile
+    
+    if(hydroProfile){
+        interpolateT.spline(hydroTime, hydroTemp, hydroLines, hydroLines);
+        interpolateRho.spline(hydroTime, hydroRho, hydroLines, hydroLines);
+    }
+
     
 
     // ------------------------------------ //
@@ -4519,7 +4522,7 @@ int main() {
         
         
         // Since the arrays holding the hydro profile have entries in terms of log10,
-        // interpolate in log10(t)
+        // interpolate in log10(t) if hydroProfile = true.
         
         if(hydroProfile){
             logTnow = interpolateT.splint(log10(t));
@@ -5124,7 +5127,7 @@ void readhydroProfile(char *fileName){
             
             sscanf(line, "%d", &numberEntries);
             
-            if(numberEntries != maxHydroEntries){
+            if(numberEntries > maxHydroEntries){
                 printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
                     fileName, numberEntries);
                 printf("\ninconsistent with spline arrays. Change the static constant maxHydroEntries ");
