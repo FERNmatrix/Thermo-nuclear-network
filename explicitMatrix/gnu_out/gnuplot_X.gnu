@@ -72,8 +72,8 @@ set key right top outside    # Place legend inside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy nova134 with nova125D hydro profile (no pf)"
-ds = ds.": Curves labeled by network species index"
+ds="C++ Asy nova134 with nova125D profile (no pf)"
+ds = ds.": 32 sample curves labeled by network species index"
 set title ds textcolor rgb title_color
 
 file1 = "gnufile.data"

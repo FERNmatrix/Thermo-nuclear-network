@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log dE/dt (erg/g/s)' textcolor rgb tic_color font "Arial,32"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF)"
+ds="C++ Asy nova134 with nova125D hydro profile (no pf)"
 ds = ds.": |dE/dt| vs t"
 set title ds textcolor rgb title_color
 
@@ -77,8 +77,8 @@ xup = 4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 4
-yup = 19
+ylow = 10
+yup = 18
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -93,20 +93,20 @@ set mytics minytics   # minor y tics per major tic
 set grid   # set x-y grid at major ticmarks
 
 
-file1 = "gnufile_alpha_T9_7_1e8_asy.data"
+#file1 = "gnufile_alpha_T9_7_1e8_asy.data"
 
-plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
+#plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
 
 file2 = "gnufile.data"
 
-replot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 2 title "Asy-PE log |dE/dt|"
+plot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 1 title " log10 |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dE/dt (erg/g/s)' textcolor rgb tic_color font "Arial,28"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 

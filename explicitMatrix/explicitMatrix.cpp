@@ -322,7 +322,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 4e-5;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 5e-5;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -4528,6 +4528,9 @@ int main() {
             logTnow = log10(T9_start*1e9);
             logRhoNow = log10(rho_start);
         }
+        
+        // But then convert to temperature in units of 10^9K and density in units
+        // of g/cm^3 for the calculation
         
         T9 = pow(10,logTnow)/1e9;
         rho = pow(10,logRhoNow);

@@ -75,7 +75,7 @@ file1 = "gnufile2.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -4
+xlow = -7
 xup = 4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -102,7 +102,7 @@ set grid   # set x-y grid at major ticmarks
 # read in from data file
 
 plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
-replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
+#replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
 replot file1 using 1:2 with lines ls 1 lw 1.0 dashtype 1 title "log dt"
 #replot file1 using 1:3 with lines ls 9 title "1/Rmin"
 #replot file1 using 1:8 with lines ls 10 title "t"
