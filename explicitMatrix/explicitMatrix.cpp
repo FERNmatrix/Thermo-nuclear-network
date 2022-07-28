@@ -98,14 +98,15 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 268            268     3175     network_268.inp             data/rateLibrary_268.data
 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
 365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
+tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary_alpha.data
 ------------------------------------------------------------------------------------------
 */
 
 
-#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -147,13 +148,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_nova134.inp";
+char networkFile[] = "data/network_tidalSN_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_nova134.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -181,7 +182,7 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile.inp";   // "data/torch47Profile.inp";
+char hydroFile[] = "data/tidalSNProfile_100.inp"; //"data/nova125DProfile.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -300,10 +301,10 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1.0e-16;           // Start time for integration
+double start_time = 6.95;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-8;         // Start time for plot output
-double stop_time = 1e4;               // Stop time for integration
+double startplot_time = 7.0;         // Start time for plot output
+double stop_time = 8.32;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -322,7 +323,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 5e-5;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 0.01;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -448,7 +449,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 203;
+const static int maxHydroEntries = 101;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -926,16 +927,16 @@ class Utilities{
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
 //             
-               int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
+/*               int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
                23,26,27,32,33,40,41,48,49,55,
                56,62,63,64,70,77,78,86,95,104,
-               112,34};                                              // 31 nova134 selection
+               112,34};   */                                           // 31 nova134 selection
 
 //             int plotXlist[] = 
 //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
@@ -1128,10 +1129,15 @@ class Utilities{
         // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
         // are true.
         
-        static void plotHydroProfile(){
+        static void outputHydroProfile(){
             
             FILE * pHydro;
             pHydro = fopen("gnu_out/hydroProfile.out","w");
+            if( pHydro == NULL ) {
+                fprintf(stderr, "Couldn't open file: %s\n", strerror(errno));
+                exit(1);
+            }
+            
             fprintf(pHydro, "#  time          T          rho");
             
             for (int i=0; i<hydroLines; i++){
@@ -4711,6 +4717,15 @@ int main() {
     
     }   // End time integration while-loop
     
+    
+    // Output data to plot files after integration. 
+    
+    Utilities::plotOutput();
+    
+    if(hydroProfile && plotHydroProfile){
+        Utilities::outputHydroProfile();
+    }
+    
     // Write parameters at end of integration
     
     showParameters();
@@ -4735,13 +4750,7 @@ int main() {
     
     cout.flush();
     
-    // Output data to plot files after integration. 
     
-    Utilities::plotOutput();
-    
-    if(hydroProfile && plotHydroProfile){
-        Utilities::plotHydroProfile();
-    }
     
     
     // **************************************************
@@ -6096,3 +6105,5 @@ void sumFplusFminus(){
     }
     
 }
+
+
