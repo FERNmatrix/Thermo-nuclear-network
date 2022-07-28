@@ -694,10 +694,10 @@ class SplineInterpolator{
 
         // Return -1 with error message if argument out of table bounds
 
-        if (xvalue < x[0] || xvalue > x[n-1]) {
-            printf("Argument (%f) Out of Table Bounds %f - %f", x[0], x[n-1], xvalue);
-            return -1;
-        }
+      //  if (xvalue < x[0] || xvalue > x[n-1]) {
+      //      printf("Argument (%f) Out of Table Bounds %f - %f", x[0], x[n-1], xvalue);
+      //      return -1;
+      //  }
 
         // Call bisection method to bracket entry xvalue with indices ilow and ihigh
 
@@ -713,6 +713,8 @@ class SplineInterpolator{
         double D = (((B*B*B)-B)*(h*h))/6;
 
         double valueS1 = A*y[ilow] + B*y[ihigh] + C*d2Y[ilow] + D*d2Y[ihigh];
+
+        printf("/n A = %d  B=%d C=%d D=%D and INTERPOLATED Value = %d\n", A, B, C, D, valueS1);
 
         return valueS1;
     }
@@ -744,10 +746,10 @@ class SplineInterpolator{
 
         double minx = xarray[0];
         double maxx = xarray[n-1];
-        if(xvalue > maxx || xvalue < minx){
-            printf("Abort bisection: argument (%f) Out of Bounds", xvalue);
-            return -1;
-        }
+     ///   if(xvalue > maxx || xvalue < minx){
+     ///       printf("Abort bisection: argument (%f) Out of Bounds", xvalue);
+     ///       return -1;
+      //  }
 
         int ilow = 0;
         int ihigh = n-1;
