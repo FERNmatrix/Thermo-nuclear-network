@@ -301,10 +301,10 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 6.95;           // Start time for integration
+double start_time = 6.7;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 7.0;         // Start time for plot output
-double stop_time = 8.32;               // Stop time for integration
+double startplot_time = 6.8;         // Start time for plot output
+double stop_time = 9;//8.32;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -449,7 +449,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 101;
+const static int maxHydroEntries = 102;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -580,7 +580,9 @@ int indexAlpha = -1;     // Species index of He4 if hasAlpha = true
 // Target plot times for plot steps. Computed from value of plotSteps in
 // Utilities::log10Spacing().
 
-double plotTimeTargets[plotSteps];
+double plotTimeTargets[plotSteps];           // Target plot times
+double nextPlotTime;                         // Next plot output time
+double maxUp;                                // nextPlotTime - present time 
 
 double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
@@ -884,6 +886,7 @@ class Utilities{
             for(int i=0; i<num; i++){
                 tempsum += expofac;
                 v[i] = pow(10, tempsum);
+                printf("\n***** %d t=%7.4e %7.4e", i, v[i], plotTimeTargets[i] );
             }
         }
         
@@ -927,7 +930,9 @@ class Utilities{
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+            
                int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+               
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
@@ -3805,6 +3810,22 @@ class Integrate: public Utilities {
 
             updatePopulations(dtt);
             
+            // If timestep would cause t+dt to be much larger than the next
+            // plot output step, reduce trial dt to be slightly more than the
+            // next plot output step.
+            
+            maxUp = 1.01*(nextPlotTime - t_saved);
+            //dtt = min(maxUp, dtt);
+            
+            if(dtt > maxUp){
+                printf("\n3822: %d t0=%7.5e trial_dt = %7.5e chosen_dt=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+                       totalTimeSteps, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+                dtt = maxUp;
+                printf("\n3822: Chosen dt = %7.5e", dtt);
+            } else {
+                printf("\n3826: Chosen dt = %7.5e", dtt);
+            }
+            
             // Iterate timestep downward if necessary to satisfy the
             // particle number conservation condition
             
@@ -4301,8 +4322,7 @@ int main() {
     // startplot_time allows the plotting interval output in to be a subset of
     // the full integration interval.
     
-    Utilities::log10Spacing(max(start_time, startplot_time), stop_time,
-        plotSteps, plotTimeTargets);
+    Utilities::log10Spacing(max(start_time, startplot_time), stop_time, plotSteps, plotTimeTargets);
     
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
@@ -4506,6 +4526,14 @@ int main() {
     
     while(t < stop_time){ 
         
+        
+        // Next target plot output time.  Use to keep chosen dt from being
+        // much larger than the time to next plot output, which can occur
+        // if the number of plot steps plotSteps is large (especially at
+        // early times in the integration).
+        
+        nextPlotTime = plotTimeTargets[plotCounter-1];
+        
         // Initialize fastest and slowest rates for this timestep
         
         fastestCurrentRate = 0.0;
@@ -4531,9 +4559,12 @@ int main() {
         // interpolate in log10(t) if hydroProfile = true.
         
         if(hydroProfile){
+            
             logTnow = interpolateT.splint(log10(t));
             logRhoNow = interpolateRho.splint(log10(t));
+            
         } else {
+            
             logTnow = log10(T9_start*1e9);
             logRhoNow = log10(rho_start);
         }
@@ -4635,6 +4666,9 @@ int main() {
         // target, output times.
         // ---------------------------------------------------------------------------------
         
+// printf("\n**** step=%d t=%7.5e dt=%7.5e t+dt=%7.5e target=%7.5e", 
+//     plotCounter-1, t, dt, t+dt, plotTimeTargets[plotCounter-1]);
+        
         if(t >= plotTimeTargets[plotCounter-1]){
             
             // Record int step when plotting starts
@@ -4683,17 +4717,16 @@ int main() {
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
             ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT=%4.3f lgRho=%4.2f";
             
-            printf(Utilities::stringToChar(ts), 
-                   plotCounter, iterations, t, dt, totalTimeSteps, 
-                   100*(double)totalAsy/(double)ISOTOPES, 
-                   100*(double)totalEquilRG/(double)SIZE, 
-                   sumX, XcorrFac, ECON*netdERelease, 
-                   ECON*ERelease, E_R, choice1, choice2, 
-                   reacLabel[ fastestRateIndexPlot[plotCounter-1]],
-                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
-                   logTnow, logRhoNow
-                   
-            );
+//             printf(Utilities::stringToChar(ts), 
+//                    plotCounter, iterations, t, dt, totalTimeSteps, 
+//                    100*(double)totalAsy/(double)ISOTOPES, 
+//                    100*(double)totalEquilRG/(double)SIZE, 
+//                    sumX, XcorrFac, ECON*netdERelease, 
+//                    ECON*ERelease, E_R, choice1, choice2, 
+//                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
+//                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
+//                    logTnow, logRhoNow
+//             );
             
             interpT[plotCounter-1] = logTnow;
             interpRho[plotCounter-1] = logRhoNow;
