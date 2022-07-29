@@ -66,7 +66,7 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="nova125D profile"
+ds="tidal supernova profile"
 ds = ds.": Density"
 set title ds textcolor rgb title_color
 

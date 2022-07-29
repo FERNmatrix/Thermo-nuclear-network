@@ -66,7 +66,7 @@ set key outside    # Place legend outside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy T9=7 rho=1e8 (no pf; new dt)"
+ds="C++ Asy tidal supernova (no pf)"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
@@ -92,25 +92,25 @@ set mxtics minxtics   # minor x tics per major tic
 set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
-
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+# Plot data
 
-plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
+plot file1 using 1:5 with lines ls 2 lw 1.5 dashtype 2 title "log 2/Rmax"
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
-replot file1 using 1:2 with lines ls 1 lw 1.0 dashtype 1 title "log dt"
-#replot file1 using 1:3 with lines ls 9 title "1/Rmin"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
+replot file1 using 1:2 with lines ls 3 lw 1.5 dashtype 1 title "log dt"
 
+
+# Plot dt contours
+
+replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.1t"
+replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.01t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.001t"
+replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.0001t"
+replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.00001t"
 
 # Reset font sizes for .eps and .png output2
 

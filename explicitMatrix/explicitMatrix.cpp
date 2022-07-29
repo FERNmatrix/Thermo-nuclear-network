@@ -3815,7 +3815,7 @@ class Integrate: public Utilities {
             // next plot output step.
             
             //maxUp = nextPlotTime - t_saved;
-            maxUp = 1.0001*(nextPlotTime - t_saved);
+            maxUp = 1.00001*(nextPlotTime - t_saved);
             //dtt = min(maxUp, dtt);
             
             if(dtt > maxUp){
