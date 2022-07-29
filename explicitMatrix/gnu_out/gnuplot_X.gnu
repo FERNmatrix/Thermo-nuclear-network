@@ -72,8 +72,8 @@ set key right top outside    # Place legend inside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy nova134 with nova125D profile (no pf)"
-ds = ds.": 32 sample curves labeled by network species index"
+ds="C++ Asy tidal supernova (no pf)"
+ds = ds.""
 set title ds textcolor rgb title_color
 
 file1 = "gnufile.data"
@@ -81,9 +81,9 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
+xlow = 0.855
 xup = 0.92
-xtics = 1    # Space between major x ticmarks
+xtics = 0.02    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14

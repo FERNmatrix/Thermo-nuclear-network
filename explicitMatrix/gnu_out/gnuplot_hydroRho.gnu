@@ -73,13 +73,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.85
-xup = 0.9
-xtics = 0.01     # Space between major x ticmarks
+xlow = 0.84
+xup = 1.0
+xtics = 0.02     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 1e4
-yup = 4.1e5
+ylow = 0
+yup = 8e5
 ytics = 1e5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -107,7 +107,7 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$3) with points ls 11 lw 0.5 dashtype 2 title "Rho input (t)"
+replot file2 using 1:(10**$3) with points ls 6 lw 0.5 dashtype 2 title "Rho input (t)"
 #replot file2 using 1:3 with points ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
 
 

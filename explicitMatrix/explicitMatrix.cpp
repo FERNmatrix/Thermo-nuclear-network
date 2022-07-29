@@ -304,7 +304,7 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 double start_time = 6.7;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 6.8;         // Start time for plot output
-double stop_time = 9;//8.32;               // Stop time for integration
+double stop_time = 10;//8.32;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -323,7 +323,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 0.01;             // Tolerance param, no reactions equilibrated
+double massTol_asy = 0.0001;             // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -334,7 +334,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-5;                   // Absolute error tolerance
+double EpsA = 1e-4;                   // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -3814,7 +3814,8 @@ class Integrate: public Utilities {
             // plot output step, reduce trial dt to be slightly more than the
             // next plot output step.
             
-            maxUp = 1.01*(nextPlotTime - t_saved);
+            //maxUp = nextPlotTime - t_saved;
+            maxUp = 1.0001*(nextPlotTime - t_saved);
             //dtt = min(maxUp, dtt);
             
             if(dtt > maxUp){
@@ -4717,16 +4718,16 @@ int main() {
             ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
             ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT=%4.3f lgRho=%4.2f";
             
-//             printf(Utilities::stringToChar(ts), 
-//                    plotCounter, iterations, t, dt, totalTimeSteps, 
-//                    100*(double)totalAsy/(double)ISOTOPES, 
-//                    100*(double)totalEquilRG/(double)SIZE, 
-//                    sumX, XcorrFac, ECON*netdERelease, 
-//                    ECON*ERelease, E_R, choice1, choice2, 
-//                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],
-//                    reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
-//                    logTnow, logRhoNow
-//             );
+            printf(Utilities::stringToChar(ts), 
+                   plotCounter, iterations, t, dt, totalTimeSteps, 
+                   100*(double)totalAsy/(double)ISOTOPES, 
+                   100*(double)totalEquilRG/(double)SIZE, 
+                   sumX, XcorrFac, ECON*netdERelease, 
+                   ECON*ERelease, E_R, choice1, choice2, 
+                   reacLabel[ fastestRateIndexPlot[plotCounter-1]],
+                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
+                   logTnow, logRhoNow
+            );
             
             interpT[plotCounter-1] = logTnow;
             interpRho[plotCounter-1] = logRhoNow;
