@@ -66,21 +66,21 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="tidal supernova profile"
+ds="nova134 nova125D profile"
 ds = ds.": Density"
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1.0
-xtics = 0.02     # Space between major x ticmarks
+xlow = -4
+xup = 4
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 8e5
-ytics = 1e5     # Space between major y ticmarks
+ylow = 0.5
+yup = 4.5
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -99,16 +99,16 @@ set grid   # set x-y grid at major ticmarks
 file1 = "gnufile2.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$11) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
-#plot file1 using 1:11 with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
+#plot file1 using 1:(10**$11) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
+plot file1 using 1:11 with lines ls 1 lw 1.0 dashtype 1 title "log Rho interp (t)"
 
 file2 = "hydroProfile.out"  # The input hydro profile
 
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$3) with points ls 6 lw 0.5 dashtype 2 title "Rho input (t)"
-#replot file2 using 1:3 with points ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
+#replot file2 using 1:(10**$3) with points ls 6 lw 0.5 dashtype 2 title "Rho input (t)"
+replot file2 using 1:3 with points ls 6 lw 1.0 dashtype 2 title "log Rho input (t)"
 
 
 

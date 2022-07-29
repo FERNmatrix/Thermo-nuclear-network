@@ -66,22 +66,21 @@ set key outside    # Place legend outside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy tidal supernova (no pf)"
+ds="C++ Asy nova134 nova125Dprofile)"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile2.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1.0
-xtics = 0.01     # Space between major x ticmarks
+xlow = -4
+xup = 4
+xtics = 0.5     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -7
-yup = 1
+ylow = -10 #0.1*xlow
+yup = 3 #0.1*xup
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -96,6 +95,7 @@ set mytics minytics   # minor y tics per major tic
 
 # -------- Axis ranges and ticmarks -----------
 
+file1 = "gnufile2.data"
 
 # Plot data
 
