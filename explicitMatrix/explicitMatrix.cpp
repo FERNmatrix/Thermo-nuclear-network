@@ -1040,7 +1040,7 @@ class Utilities{
                 9,
                 87,
                 80
-            };                                              // 31 nova134 selection
+            };                                              // 101 nova134 isotopes
                 
                 
 //                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
