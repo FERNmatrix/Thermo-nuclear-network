@@ -182,7 +182,7 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile.inp"; //"data/tidalSNProfile_100.inp";
+char hydroFile[] = "data/nova125DProfile_100.inp"; //"data/tidalSNProfile_100.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -303,8 +303,8 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 
 double start_time = 1e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-4;         // Start time for plot output
-double stop_time = 1e4;               // Stop time for integration
+double startplot_time = 5e-6;         // Start time for plot output
+double stop_time = 1e6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -323,7 +323,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-6;           // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-4;           // Tolerance param, no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -334,7 +334,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-6;                   // Absolute error tolerance
+double EpsA = 1e-4;                   // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -449,7 +449,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 203;
+const static int maxHydroEntries = 102;
 int hydroLines;  // Number of hydro profile lines read in
 
 double hydroTime[maxHydroEntries];
@@ -3815,17 +3815,17 @@ class Integrate: public Utilities {
             // next plot output step.
             
             //maxUp = nextPlotTime - t_saved;
-            maxUp = 1.00001*(nextPlotTime - t_saved);
+            maxUp = 1.0000*(nextPlotTime - t_saved);
             //dtt = min(maxUp, dtt);
             
-            if(dtt > maxUp){
-//                 printf("\n3822: %d t0=%7.5e trial_dt = %7.5e chosen_dt=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-//                        totalTimeSteps, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-                dtt = maxUp;
-                //printf("\n3822: Chosen dt = %7.5e", dtt);
-            } else {
-                //printf("\n3826: Chosen dt = %7.5e", dtt);
-            }
+//             if(dtt > maxUp){
+// //                 printf("\n3822: %d t0=%7.5e trial_dt = %7.5e chosen_dt=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+// //                        totalTimeSteps, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+//                 dtt = maxUp;
+//                 //printf("\n3822: Chosen dt = %7.5e", dtt);
+//             } else {
+//                 //printf("\n3826: Chosen dt = %7.5e", dtt);
+//             }
             
             // Iterate timestep downward if necessary to satisfy the
             // particle number conservation condition
@@ -4721,7 +4721,7 @@ int main() {
             printf(Utilities::stringToChar(ts), 
                    plotCounter, iterations, t, dt, totalTimeSteps, 
                    100*(double)totalAsy/(double)ISOTOPES, 
-                   100*(double)totalEquilRG/(double)SIZE, 
+                   100*(double)totalEquilRG/(double)numberRG, 
                    sumX, XcorrFac, ECON*netdERelease, 
                    ECON*ERelease, E_R, choice1, choice2, 
                    reacLabel[ fastestRateIndexPlot[plotCounter-1]],

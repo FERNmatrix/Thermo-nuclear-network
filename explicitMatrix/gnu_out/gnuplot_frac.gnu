@@ -67,7 +67,7 @@ set key outside    # Place legend outside
 
 #set timestamp       # Date/time
 
-ds="C++ Asy T9=7 rho=1e8 (no pf; new dt)"
+ds="C++ Asy nova134 nova125D profile (no pf)"
 ds = ds.": Fraction"
 
 set title ds textcolor rgb title_color
@@ -77,9 +77,9 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1
-xtics = 0.02     # Space between major x ticmarks
+xlow = -5
+xup = 6
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0.0 #-0.01
