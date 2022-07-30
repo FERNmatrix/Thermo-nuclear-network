@@ -73,25 +73,6 @@ using namespace std;
 using std::string;
 
 
-//  SIZE defines the number of reactions to be calculated. ISOTOPES defines the number 
-//  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
-//  to read them in and assign them dynamically.
-
-#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
-
-#define plotSteps 100                 // Number of plot output steps
-#define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
-#define PF 24                         // Number entries partition function table for isotopes
-#define THIRD 0.333333333333333
-#define TWOTHIRD 0.66666666666667
-#define ECON 9.5768e17                // Convert MeV/nucleon/s to erg/g/s
-#define LOG10 0.434294481903251       // Conversion natural log to log10
-#define MEV 931.494                   // Conversion of amu to MeV
-#define GZ 1.0e-24                    // Constant to ensure 1/max(num, GZ) never divides by 0
-
-#define unitd static_cast<double>(1.0)  // Constant double equal to 1
-#define zerod static_cast<double>(0.0)  // Constant double equal to 0
 
 // Define some CPU timing utilities. Usage:
 //
@@ -168,6 +149,26 @@ void restoreBe8(void);
  */
 
 
+//  SIZE defines the number of reactions to be calculated. ISOTOPES defines the number 
+//  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
+//  to read them in and assign them dynamically.
+
+#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
+
+#define plotSteps 100                 // Number of plot output steps
+#define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
+#define PF 24                         // Number entries partition function table for isotopes
+#define THIRD 0.333333333333333
+#define TWOTHIRD 0.66666666666667
+#define ECON 9.5768e17                // Convert MeV/nucleon/s to erg/g/s
+#define LOG10 0.434294481903251       // Conversion natural log to log10
+#define MEV 931.494                   // Conversion of amu to MeV
+#define GZ 1.0e-24                    // Constant to ensure 1/max(num, GZ) never divides by 0
+
+#define unitd static_cast<double>(1.0)  // Constant double equal to 1
+#define zerod static_cast<double>(0.0)  // Constant double equal to 0
+
 // File pointers for diagnostics output. Corresponding filenames declared 
 // at top of main.
 
@@ -236,7 +237,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = false;           // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
