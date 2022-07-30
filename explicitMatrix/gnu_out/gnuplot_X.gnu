@@ -167,7 +167,8 @@ set mytics minytics   # minor y tics per major tic
 #replot file1 using 1:22 with lines ls 1 lw 1.0 dashtype 1 title "64Ge"
 #replot file1 using 1:23 with lines ls 2 lw 1.0 dashtype 1 title "68Se"
 
-# Select 32 from nova134
+# 101 isotopes from nova134 with nova125DProfile
+# Numbers in parentheses is the species (isotope) index from network
 
 plot file1 using 1:8 with lines ls 2 lw 3 dashtype 1 title "(1)"
 replot file1 using 1:9 with lines ls 3 lw 1 dashtype 1 title "(3)"
@@ -267,6 +268,19 @@ replot file1 using 1:94 with lines ls 7 lw 1 dashtype 1 title "(108)"
 replot file1 using 1:95 with lines ls 8 lw 1 dashtype 1 title "(37)"
 replot file1 using 1:96 with lines ls 9 lw 1 dashtype 1 title "(124)"
 replot file1 using 1:97 with lines ls 10 lw 1 dashtype 1 title "(126)"
+
+replot file1 using 1:98 with lines ls 2 lw 3 dashtype 1 title "(71)"
+replot file1 using 1:99 with lines ls 3 lw 1 dashtype 1 title "(10)"
+replot file1 using 1:100 with lines ls 1 lw 1 dashtype 1 title "(7)"
+replot file1 using 1:101 with lines ls 4 lw 1 dashtype 1 title "(57)"
+replot file1 using 1:102 with lines ls 5 lw 1 dashtype 1 title "(127)"
+replot file1 using 1:103 with lines ls 6 lw 1 dashtype 1 title "(65)"
+replot file1 using 1:104 with lines ls 7 lw 1 dashtype 1 title "(73)"
+replot file1 using 1:105 with lines ls 8 lw 1 dashtype 1 title "(106)"
+replot file1 using 1:106 with lines ls 9 lw 1 dashtype 1 title "(9)"
+replot file1 using 1:107 with lines ls 10 lw 1 dashtype 1 title "(87)"
+
+replot file1 using 1:107 with lines ls 10 lw 1 dashtype 1 title "(80)"
 
 
 # 48-isotope network
