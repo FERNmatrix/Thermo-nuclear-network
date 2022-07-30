@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5 
-height = 4.5
+width = 6.5 #8.5 
+height = 8.5 #4.5
 
 # x-axis resolution
 set samples 1000
@@ -204,6 +204,14 @@ replot file1 using 1:37 with lines ls 12 lw 1 dashtype 1 title "(104)"
 
 replot file1 using 1:38 with lines ls 13 lw 1 dashtype 1 title "(112)"
 replot file1 using 1:39 with lines ls 14 lw 1 dashtype 1 title "(34)"
+replot file1 using 1:40 with lines ls 13 lw 1 dashtype 1 title "(20)"
+replot file1 using 1:41 with lines ls 14 lw 1 dashtype 1 title "(46)"
+replot file1 using 1:42 with lines ls 3 lw 1 dashtype 1 title "(42)"
+replot file1 using 1:43 with lines ls 4 lw 1 dashtype 1 title "(30)"
+replot file1 using 1:44 with lines ls 15 lw 1 dashtype 1 title "(75)"
+replot file1 using 1:45 with lines ls 16 lw 1 dashtype 1 title "(76)"
+replot file1 using 1:46 with lines ls 17 lw 1 dashtype 1 title "(54)"
+replot file1 using 1:47 with lines ls 18 lw 1 dashtype 1 title "(69)"
 
 
 # 48-isotope network

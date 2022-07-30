@@ -103,10 +103,10 @@ tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary
 */
 
 
-#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -937,11 +937,55 @@ class Utilities{
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
-//             
-               int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
-               23,26,27,32,33,40,41,48,49,55,
-               56,62,63,64,70,77,78,86,95,104,
-               112,34};                                              // 31 nova134 selection
+//   
+            int plotXlist[] = {
+                1,
+                3,
+                4,
+                11,
+                12,
+                15,
+                16,
+                17,
+                21,
+                22,
+                23,
+                26,
+                27,
+                32,
+                33,
+                40,
+                41,
+                48,
+                49,
+                55,
+                56,
+                62,
+                63,
+                64,
+                70,
+                77,
+                78,
+                86,
+                95,
+                104,
+                112,
+                34,
+                20,
+                46,
+                42,
+                30,
+                75,
+                76,
+                54,
+                69
+            };                                              // 31 nova134 selection
+                
+                
+//                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
+//                23,26,27,32,33,40,41,48,49,55,
+//                56,62,63,64,70,77,78,86,95,104,
+//                112,34};                                              // 31 nova134 selection
 
 //             int plotXlist[] = 
 //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
