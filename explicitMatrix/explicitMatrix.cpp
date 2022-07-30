@@ -106,7 +106,7 @@ tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary
 #define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -978,7 +978,37 @@ class Utilities{
                 75,
                 76,
                 54,
-                69
+                69,
+                60,
+                19,
+                61,
+                68,
+                25,
+                67,
+                53,
+                59,
+                74,
+                79,
+                84,
+                39,
+                83,
+                31,
+                96,
+                85,
+                88,
+                50,
+                93,
+                97,
+                96,
+                94,
+                66,
+                102,
+                92,
+                52,
+                111,
+                110,
+                99,
+                38
             };                                              // 31 nova134 selection
                 
                 
