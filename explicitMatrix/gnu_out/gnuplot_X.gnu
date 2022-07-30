@@ -246,6 +246,28 @@ replot file1 using 1:75 with lines ls 10 lw 1 dashtype 1 title "(110)"
 replot file1 using 1:76 with lines ls 11 lw 1 dashtype 1 title "(99)"
 replot file1 using 1:77 with lines ls 12 lw 1 dashtype 1 title "(38)"
 
+replot file1 using 1:78 with lines ls 19 lw 1 dashtype 1 title "(101)"
+replot file1 using 1:79 with lines ls 20 lw 1 dashtype 1 title "(45)"
+replot file1 using 1:80 with lines ls 5 lw 1 dashtype 1 title "(113)"
+replot file1 using 1:81 with lines ls 6 lw 1 dashtype 1 title "(43)"
+replot file1 using 1:82 with lines ls 7 lw 1 dashtype 1 title "(119)"
+replot file1 using 1:83 with lines ls 8 lw 1 dashtype 1 title "(114)"
+replot file1 using 1:84 with lines ls 9 lw 1 dashtype 1 title "(118)"
+replot file1 using 1:85 with lines ls 10 lw 1 dashtype 1 title "(100)"
+replot file1 using 1:86 with lines ls 11 lw 1 dashtype 1 title "(120)"
+replot file1 using 1:87 with lines ls 12 lw 1 dashtype 1 title "(6)"
+
+replot file1 using 1:88 with lines ls 2 lw 3 dashtype 1 title "(107)"
+replot file1 using 1:89 with lines ls 3 lw 1 dashtype 1 title "(109)"
+replot file1 using 1:90 with lines ls 1 lw 1 dashtype 1 title "(115)"
+replot file1 using 1:91 with lines ls 4 lw 1 dashtype 1 title "(121)"
+replot file1 using 1:92 with lines ls 5 lw 1 dashtype 1 title "(3)"
+replot file1 using 1:93 with lines ls 6 lw 1 dashtype 1 title "(125)"
+replot file1 using 1:94 with lines ls 7 lw 1 dashtype 1 title "(108)"
+replot file1 using 1:95 with lines ls 8 lw 1 dashtype 1 title "(37)"
+replot file1 using 1:96 with lines ls 9 lw 1 dashtype 1 title "(124)"
+replot file1 using 1:97 with lines ls 10 lw 1 dashtype 1 title "(126)"
+
 
 # 48-isotope network
 
