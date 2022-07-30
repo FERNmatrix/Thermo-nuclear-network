@@ -77,32 +77,6 @@ using std::string;
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-/*
-------------------------------------------------------------------------------------------
-SOME SAMPLE NETWORKS:
-
-Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
-3=alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
-4-alpha          4       14     data/network_4alpha.inp     data/rateLibrary_4alpha.data
-alpha           16       48     data/network_alpha.inp      data/rateLibrary_alpha.data
-pp               7       28     data/network_pp.inp         data/rateLibrary_pp.data
-main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
-full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
-48              48      299     data/network_48.inp         data/rateLibrary_48.data
-70              70      598     data/network_70.inp         data/rateLibrary_70.data
-116            116     1135     data/network_116.inp        data/rateLibrary_116.data
-nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
-150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
-150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
-194            194     2232     network_194.inp             data/rateLibrary_194.data
-268            268     3175     network_268.inp             data/rateLibrary_268.data
-365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
-365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
-tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary_alpha.data
-------------------------------------------------------------------------------------------
-*/
-
-
 #define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
 
@@ -136,6 +110,62 @@ clock_t startCPU, stopCPU;
 #define FPRINTF_CPU2 (fprintf(pFile2, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPUD (fprintf(pFileD, "in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));  
+
+// Function signatures:
+
+void devcheck(int);
+void readLibraryParams(char *);
+void readNetwork(char *);
+void readhydroProfile(char *);
+void writeNetwork(void);
+void writeRates(char *);
+void writeAbundances(void);
+void setRG(int, int, int);
+void setSpeciesfplus(int, double);
+void setSpeciesfminus(int, double);
+void setSpeciesdYdt(int, double);
+void assignRG(void);
+void getmaxdYdt(void);
+void restoreEquilibriumProg(void);
+void evolveToEquilibrium(void);
+bool isoIsInRG(int, int);
+void computeReactionFluxes();
+void updateTheFluxes();
+void updateY0(void);
+void showY(void);
+void showParameters(void);
+double dE_halfstep(void);
+void sumFplusFminus(void);
+void restoreBe8(void);
+
+// void mtrace(void);     // Memory debugging
+// void muntrace(void);   // Memory debugging
+
+
+/*
+ * ------------------------------------------------------------------------------------------
+ * SOME SAMPLE NETWORKS:
+ * 
+ * Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
+ * 3=alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
+ * 4-alpha          4       14     data/network_4alpha.inp     data/rateLibrary_4alpha.data
+ * alpha           16       48     data/network_alpha.inp      data/rateLibrary_alpha.data
+ * pp               7       28     data/network_pp.inp         data/rateLibrary_pp.data
+ * main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
+ * full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
+ * 48              48      299     data/network_48.inp         data/rateLibrary_48.data
+ * 70              70      598     data/network_70.inp         data/rateLibrary_70.data
+ * 116            116     1135     data/network_116.inp        data/rateLibrary_116.data
+ * nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
+ * 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
+ * 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
+ * 194            194     2232     network_194.inp             data/rateLibrary_194.data
+ * 268            268     3175     network_268.inp             data/rateLibrary_268.data
+ * 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
+ * 365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
+ * tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary_alpha.data
+ * ------------------------------------------------------------------------------------------
+ */
 
 
 // File pointers for diagnostics output. Corresponding filenames declared 
@@ -191,38 +221,6 @@ static const bool plotHydroProfile = true;
 // Control printout of flux data (true to print, false to suppress)
  
 static const bool plotFluxes = false;
-
-
-// Function signatures:
-
-void devcheck(int);
-void readLibraryParams(char *);
-void readNetwork(char *);
-void readhydroProfile(char *);
-void writeNetwork(void);
-void writeRates(char *);
-void writeAbundances(void);
-void setRG(int, int, int);
-void setSpeciesfplus(int, double);
-void setSpeciesfminus(int, double);
-void setSpeciesdYdt(int, double);
-void assignRG(void);
-void getmaxdYdt(void);
-void restoreEquilibriumProg(void);
-void evolveToEquilibrium(void);
-bool isoIsInRG(int, int);
-void computeReactionFluxes();
-void updateTheFluxes();
-void updateY0(void);
-void showY(void);
-void showParameters(void);
-double dE_halfstep(void);
-void sumFplusFminus(void);
-void restoreBe8(void);
-
-// void mtrace(void);     // Memory debugging
-// void muntrace(void);   // Memory debugging
-
 
 // Control flags for diagnostic output to file pointed to by *pFileD
 
