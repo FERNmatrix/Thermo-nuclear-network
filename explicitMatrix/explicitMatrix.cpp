@@ -153,8 +153,8 @@ void restoreBe8(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -179,13 +179,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_nova134.inp";
+char networkFile[] = "data/network_tidalSN_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_nova134.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -213,7 +213,7 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_100.inp"; //"data/tidalSNProfile_100.inp";
+char hydroFile[] = "data/tidalSNProfile_100.inp"; //"data/tidalSNProfile_100.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -303,10 +303,10 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1e-20;           // Start time for integration
+double start_time = 6.7;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 8e-6;         // Start time for plot output
-double stop_time = 1e6;               // Stop time for integration
+double startplot_time = 6.8;         // Start time for plot output
+double stop_time = 10;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -931,116 +931,116 @@ class Utilities{
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
             
-//               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
                
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
 //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
 //   
-            int plotXlist[] = {
-                1,
-                3,
-                4,
-                11,
-                12,
-                15,
-                16,
-                17,
-                21,
-                22,
-                23,
-                26,
-                27,
-                32,
-                33,
-                40,
-                41,
-                48,
-                49,
-                55,
-                56,
-                62,
-                63,
-                64,
-                70,
-                77,
-                78,
-                86,
-                95,
-                104,
-                112,
-                34,
-                20,
-                46,
-                42,
-                30,
-                75,
-                76,
-                54,
-                69,
-                60,
-                19,
-                61,
-                68,
-                25,
-                67,
-                53,
-                59,
-                74,
-                79,
-                84,
-                39,
-                83,
-                31,
-                96,
-                85,
-                88,
-                50,
-                93,
-                97,
-                96,
-                94,
-                66,
-                102,
-                92,
-                52,
-                111,
-                110,
-                99,
-                38,
-                101,
-                45,
-                113,
-                43,
-                119,
-                114,
-                118,
-                100,
-                120,
-                6,
-                107,
-                109,
-                115,
-                121,
-                3,
-                125,
-                108,
-                37,
-                124,
-                126,
-                71,
-                10,
-                7,
-                57,
-                127,
-                65,
-                73,
-                106,
-                9,
-                87,
-                80
-            };                                              // 101 nova134 isotopes
+//             int plotXlist[] = {
+//                 1,
+//                 3,
+//                 4,
+//                 11,
+//                 12,
+//                 15,
+//                 16,
+//                 17,
+//                 21,
+//                 22,
+//                 23,
+//                 26,
+//                 27,
+//                 32,
+//                 33,
+//                 40,
+//                 41,
+//                 48,
+//                 49,
+//                 55,
+//                 56,
+//                 62,
+//                 63,
+//                 64,
+//                 70,
+//                 77,
+//                 78,
+//                 86,
+//                 95,
+//                 104,
+//                 112,
+//                 34,
+//                 20,
+//                 46,
+//                 42,
+//                 30,
+//                 75,
+//                 76,
+//                 54,
+//                 69,
+//                 60,
+//                 19,
+//                 61,
+//                 68,
+//                 25,
+//                 67,
+//                 53,
+//                 59,
+//                 74,
+//                 79,
+//                 84,
+//                 39,
+//                 83,
+//                 31,
+//                 96,
+//                 85,
+//                 88,
+//                 50,
+//                 93,
+//                 97,
+//                 96,
+//                 94,
+//                 66,
+//                 102,
+//                 92,
+//                 52,
+//                 111,
+//                 110,
+//                 99,
+//                 38,
+//                 101,
+//                 45,
+//                 113,
+//                 43,
+//                 119,
+//                 114,
+//                 118,
+//                 100,
+//                 120,
+//                 6,
+//                 107,
+//                 109,
+//                 115,
+//                 121,
+//                 3,
+//                 125,
+//                 108,
+//                 37,
+//                 124,
+//                 126,
+//                 71,
+//                 10,
+//                 7,
+//                 57,
+//                 127,
+//                 65,
+//                 73,
+//                 106,
+//                 9,
+//                 87,
+//                 80
+//             };                                              // 101 nova134 isotopes
                 
                 
 //                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
@@ -3916,7 +3916,7 @@ class Integrate: public Utilities {
             updatePopulations(dtt);
             
             // If timestep would cause t+dt to be much larger than the next
-            // plot output step, reduce trial dt to be slightly more than the
+            // plot output step, reduce trial dt to be equal to the
             // next plot output step.
             
             //maxUp = nextPlotTime - t_saved;
