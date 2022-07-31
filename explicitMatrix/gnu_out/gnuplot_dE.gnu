@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 8.5
-height = 4.5
+height = 3.0
 
 # x-axis resolution
 set samples 2000
