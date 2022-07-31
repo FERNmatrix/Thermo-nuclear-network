@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -370,6 +370,7 @@ double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 int totalTimeStepsZero;              // Timestep when plotting starts
+int plotCounter;                 // Plot output counter
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
 
@@ -3919,18 +3920,17 @@ class Integrate: public Utilities {
             // plot output step, reduce trial dt to be equal to the
             // next plot output step.
             
-            //maxUp = nextPlotTime - t_saved;
             maxUp = 1.0000*(nextPlotTime - t_saved);
-            //dtt = min(maxUp, dtt);
             
-//             if(dtt > maxUp){
-// //                 printf("\n3822: %d t0=%7.5e trial_dt = %7.5e chosen_dt=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-// //                        totalTimeSteps, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-//                 dtt = maxUp;
-//                 //printf("\n3822: Chosen dt = %7.5e", dtt);
-//             } else {
-//                 //printf("\n3826: Chosen dt = %7.5e", dtt);
-//             }
+            if(dtt > maxUp){
+                printf("\n\n3825 ***SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+                       totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+                dtt = maxUp;
+                printf("\n3825: Chosen dt = %7.5e", dtt);
+            } else {
+                printf("\n3830: Chosen dt = %7.5e", dtt);
+            }
+            printf("\n");
             
             // Iterate timestep downward if necessary to satisfy the
             // particle number conservation condition
@@ -4569,7 +4569,7 @@ int main() {
     totalEquilReactions = 0;    // Number equilibrated reactions
     totalAsy = 0;               // Number asymptotic species
     ERelease = 0.0;             // Total E released from Q values
-    int plotCounter = 1;        // Plot output counter
+    plotCounter = 1;        // Plot output counter
     fastestOverallRate = 0.0;   // Initialize fastest overall rate
     timeMaxRate = 0.0;          // Initialize slowest overall rate
     
