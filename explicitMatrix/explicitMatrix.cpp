@@ -219,6 +219,8 @@ char hydroFile[] = "data/nova125DProfile_100.inp"; //"data/tidalSNProfile_100.in
 
 static const bool plotHydroProfile = true;
 
+const static int maxHydroEntries = 102;  // Max entries if reading hydro profile
+
 // Control printout of flux data (true to print, false to suppress)
  
 static const bool plotFluxes = false;
@@ -233,7 +235,8 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS. The boolean showPE allows display of the number
 // of reaction groups (RG) that would be in equilibrium if PE approximation were
-// being implemented.
+// being implemented. It is true only if Asy or QSS, but PE not being
+// implemented.
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
@@ -283,7 +286,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // realistic calculation the temperature and density will be passed from the hydro 
 // code in an operator-split coupling of this network to hydro. Here we hardwire
 // constant values for testing purposes, or read in a temperature and density
-// hydro profile.
+// hydro profile if hydroProfile is true.
 
 double T9_start = 0.3;           // Initial temperature in units of 10^9 K
 double rho_start = 1e4;           // Initial density in g/cm^3
@@ -302,7 +305,7 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 
 double start_time = 1e-20;           // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 5e-6;         // Start time for plot output
+double startplot_time = 8e-6;         // Start time for plot output
 double stop_time = 1e6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -322,7 +325,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;           // Tolerance param, no reactions equilibrated
+double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -448,9 +451,7 @@ int totalFminus = 0;
 
 // Arrays to hold time, temperature, and density in hydro profile
 
-const static int maxHydroEntries = 102;
 int hydroLines;  // Number of hydro profile lines read in
-
 double hydroTime[maxHydroEntries];
 double hydroTemp[maxHydroEntries];
 double hydroRho[maxHydroEntries];
