@@ -213,7 +213,8 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/tidalSupernovaRosswog.inp"; //"data/tidalSNProfile_100.inp"; //"data/tidalSNProfile_100.inp";
+char hydroFile[] = "data/tidalSNProfile_400.inp";
+//char hydroFile[] = "data/tidalSNProfile_100.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -325,7 +326,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-3;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
