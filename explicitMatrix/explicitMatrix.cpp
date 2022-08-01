@@ -153,10 +153,10 @@ void restoreBe8(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 198                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -213,13 +213,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/tidalSNProfile_100.inp"; //"data/tidalSNProfile_100.inp";
+char hydroFile[] = "data/tidalSupernovaRosswog.inp"; //"data/tidalSNProfile_100.inp"; //"data/tidalSNProfile_100.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 102;  // Max entries if reading hydro profile
+const static int maxHydroEntries = 412;//103;  // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -303,9 +303,9 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 6.7;           // Start time for integration
+double start_time = 6.5;                // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 6.8;         // Start time for plot output
+double startplot_time = 6.6;         // Start time for plot output
 double stop_time = 10;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -325,7 +325,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-3;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -336,7 +336,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                   // Absolute error tolerance
+double EpsA = 1e-5;                   // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -887,7 +887,12 @@ class Utilities{
             for(int i=0; i<num; i++){
                 tempsum += expofac;
                 v[i] = pow(10, tempsum);
-                printf("\n***** %d t=%7.4e %7.4e", i, v[i], plotTimeTargets[i] );
+                
+double diffstep = 0.0; 
+if(i>0) diffstep = (v[i]) - (v[i-1]);
+printf("\nPlotstep:%3d t=%7.5f 0.01*t=%7.5f delta(t)=%7.5f log_target=%7.5f", 
+    i, v[i], 0.01*v[i], diffstep, log10(v[i]) );
+
             }
         }
         
@@ -1143,7 +1148,7 @@ class Utilities{
                 iso = isoLabel[plotXlist[i]];
                 app.append(Xstring);
                 app.append(iso);
-                app.append(")     ");
+                app.append(")    ");
             }
             
             str1.append(app);
@@ -3916,22 +3921,6 @@ class Integrate: public Utilities {
 
             updatePopulations(dtt);
             
-            // If timestep would cause t+dt to be much larger than the next
-            // plot output step, reduce trial dt to be equal to the
-            // next plot output step.
-            
-            maxUp = 1.0000*(nextPlotTime - t_saved);
-            
-            if(dtt > maxUp){
-                printf("\n\n3825 ***SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-                       totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-                dtt = maxUp;
-                printf("\n3825: Chosen dt = %7.5e", dtt);
-            } else {
-                printf("\n3830: Chosen dt = %7.5e", dtt);
-            }
-            printf("\n");
-            
             // Iterate timestep downward if necessary to satisfy the
             // particle number conservation condition
             
@@ -3951,6 +3940,27 @@ class Integrate: public Utilities {
             }
             
             diffXfinal = diffX;
+            
+            // If timestep would cause t+dt to be much larger than the next
+            // plot output step, reduce trial dt to be equal to the
+            // next plot output step.
+            
+            maxUp = 1.0000*(nextPlotTime - t_saved);
+            
+            if(dtt > maxUp){
+//                 printf("\n\nSHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxUp=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+                dtt = maxUp;
+                updatePopulations(dtt);
+//                 printf("\nChosen short dt = %7.5e t=%7.5f", dtt, t_saved+maxUp);
+            } else {
+//                 printf("\n\nNo SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+//                 printf("\n3825: Chosen no-short dt = %7.5e t=%7.5e", dtt, t_saved+dtt);
+            }
+//             printf("\n");
+            
+            
             
             return dtt;
             

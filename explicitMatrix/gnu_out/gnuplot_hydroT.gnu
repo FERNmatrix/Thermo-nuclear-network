@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel ' T (K)' textcolor rgb tic_color font "Arial,32"
+set ylabel ' T9' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0.84
-xup = 1
+xup = 0.92
 xtics = 0.01     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 1e7
-yup = 3e9
-ytics = 1e9     # Space between major y ticmarks
+ylow = 0 #1e7
+yup = 3 #3e9
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -100,7 +100,8 @@ set mytics minytics   # minor y tics per major tic
 file1 = "gnufile2.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
+#plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
+plot file1 using 1:(10**$10/1e9) with lines ls 1 lw 1.0 dashtype 1 title "T9 interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
 #file2 = "../data/nova125DProfile.inp"
@@ -109,7 +110,8 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
+#replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
+replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T9 input (t)"
 
 
 
@@ -118,7 +120,7 @@ replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input 
 set title ds textcolor rgb title_color font "Arial,16"
 set key top right font "Arial,16"
 set xlabel 'log time' textcolor rgb tic_color font "Arial,18"
-set ylabel 'T(K)' textcolor rgb tic_color font "Arial,18"
+set ylabel 'T9' textcolor rgb tic_color font "Arial,18"
 
 # Plot to postscript file
 
