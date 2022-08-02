@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 198                 // Number of plot output steps
+#define plotSteps 50                  // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -213,14 +213,14 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/tidalSNProfile_400.inp";
+char hydroFile[] = "data/tidalSNProfile_100.inp";
 //char hydroFile[] = "data/tidalSNProfile_100.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 412;//103;  // Max entries if reading hydro profile
+const static int maxHydroEntries = 103;  // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -585,6 +585,7 @@ int indexAlpha = -1;     // Species index of He4 if hasAlpha = true
 double plotTimeTargets[plotSteps];           // Target plot times
 double nextPlotTime;                         // Next plot output time
 double maxUp;                                // nextPlotTime - present time 
+bool dtShortened;                            // If dt restricted by plot output time
 
 double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
@@ -679,9 +680,8 @@ public:
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
-            printf("\n    +++++ x[%d]=%7.4e y[%d]=%7.4e",i,x[i],i,y[i]);
+printf("\n    +++++ x[%d]=%7.4e y[%d]=%7.4e",i,x[i],i,y[i]);
         }
-        
                     
         // Natural spline boundary conditions
             
@@ -884,15 +884,52 @@ class Utilities{
             double logtmax = log10(stop);
             double tempsum = logtmin;
             double expofac = (logtmax - logtmin) / (double) num;
-            v[0] = pow(10, logtmin);
+            double runsum1 = start;
+            double runsum2 = start + pow(10, expofac);
+            double adder;
+            double differ;
+            bool shorter;
+            
+            v[0] = start + pow(10, expofac);
+            
             for(int i=0; i<num; i++){
-                tempsum += expofac;
-                v[i] = pow(10, tempsum);
                 
-double diffstep = 0.0; 
-if(i>0) diffstep = (v[i]) - (v[i-1]);
-printf("\nPlotstep:%3d t=%7.5f 0.01*t=%7.5f delta(t)=%7.5f log_target=%7.5f", 
-    i, v[i], 0.01*v[i], diffstep, log10(v[i]) );
+                //runsum2 = pow(10, v[i-1] + expofac);
+                
+                if(i>0){
+                    runsum1 = v[i-1]; //pow(10, v[i-1]);
+                    runsum2 = pow(10, (log10(v[i-1]) + expofac));
+                    differ = 0.1 * v[i-1];
+                    //differ = log10(runsum2) - log10(runsum1);
+                } else {
+                    differ = 0.1 * start;
+                }   
+                
+                shorter = false;
+                
+                adder = expofac;
+                
+                if(differ > expofac){
+                    v[i] = v[i-1] + differ;
+                    //adder = log10(differ);
+                    shorter = true;
+                } else {
+                    v[i] = pow(10, tempsum += expofac);
+                }
+                
+//                 tempsum += adder;
+//                 
+//                 if(i>0){
+//                     v[i] = pow(10, tempsum); 
+//                 }
+                
+                
+printf("\nPlotstep:%3d differ=%7.5f expofac=%7.5f adder=%7.5f v[i]=%7.5f log_target=%7.5f short=%d", 
+        i, differ, expofac, adder, v[i], log10(v[i]), shorter );
+                 
+//if(i>0) diffstep = (v[i]) - (v[i-1]);
+// printf("\nPlotstep:%3d tstep=%7.5e runsum1=%7.5e runsum2=%7.5e differ=%7.5f expofac=%7.5f v[i]=%7.5f log_target=%7.5f short=%d", 
+//     i, v[i], runsum1, runsum2, differ, expofac, v[i], log10(v[i]), shorter );
 
             }
         }
@@ -3942,24 +3979,27 @@ class Integrate: public Utilities {
             
             diffXfinal = diffX;
             
-            // If timestep would cause t+dt to be much larger than the next
-            // plot output step, reduce trial dt to be equal to the
-            // next plot output step.
-            
-            maxUp = 1.0000*(nextPlotTime - t_saved);
-            
-            if(dtt > maxUp){
-//                 printf("\n\nSHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxUp=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-                dtt = maxUp;
-                updatePopulations(dtt);
-//                 printf("\nChosen short dt = %7.5e t=%7.5f", dtt, t_saved+maxUp);
-            } else {
-//                 printf("\n\nNo SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-//                 printf("\n3825: Chosen no-short dt = %7.5e t=%7.5e", dtt, t_saved+dtt);
-            }
-//             printf("\n");
+//             // If timestep would cause t+dt to be much larger than the next
+//             // plot output step, reduce trial dt to be equal to the
+//             // next plot output step.
+//             
+//             maxUp = nextPlotTime - t_saved;
+//             
+//             if(dtt > maxUp){
+//                 
+// //                 printf("\n\nSHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxUp=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+// //                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+//                 dtt = maxUp;
+//                 updatePopulations(dtt);
+//                 dtShortened = true;
+// //                 printf("\nChosen short dt = %7.5e t=%7.5f", dtt, t_saved+maxUp);
+//             } else {
+// //                 printf("\n\nNo SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
+// //                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
+// //                 printf("\n3825: Chosen no-short dt = %7.5e t=%7.5e", dtt, t_saved+dtt);
+//                 dtShortened = false;
+//             }
+// //             printf("\n");
             
             
             
