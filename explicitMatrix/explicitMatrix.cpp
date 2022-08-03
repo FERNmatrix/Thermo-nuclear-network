@@ -337,7 +337,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-5;                   // Absolute error tolerance
+double EpsA = 1e-5;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -371,7 +371,9 @@ double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 int totalTimeStepsZero;              // Timestep when plotting starts
-int plotCounter;                 // Plot output counter
+int plotCounter;                     // Plot output counter
+double logTimeSpacing;               // Constant spacing of plot points in log time
+double logSpacing[plotSteps];
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
 
@@ -883,10 +885,10 @@ class Utilities{
             double logtmin = log10(start);
             double logtmax = log10(stop);
             double tempsum = logtmin;
-            double expofac = (logtmax - logtmin) / (double) num;
+            logTimeSpacing = (logtmax - logtmin) / (double) num;
             v[0] = pow(10, logtmin);
             for(int i=0; i<num; i++){
-                tempsum += expofac;
+                tempsum += logTimeSpacing;
                 v[i] = pow(10, tempsum);
                 
 double diffstep = 0.0; 
@@ -895,6 +897,20 @@ printf("\nPlotstep:%3d t=%7.5f 0.01*t=%7.5f delta(t)=%7.5f log_target=%7.5f",
     i, v[i], 0.01*v[i], diffstep, log10(v[i]) );
 
             }
+        }
+        
+        
+        
+        static double returnPlotlog10Spacing(){
+            
+            double t1 = plotTimeTargets[plotCounter - 2];
+            double t2 = pow(10, log10(t1) + logTimeSpacing);
+            double spacing = t2 - t1;
+            
+            printf("\n  spacing: plotCounter=%d t1=%7.4e t2=%7.4e spacing=%7.4e", plotCounter, t1, t2, spacing);
+            
+            return spacing;
+            
         }
         
         
@@ -3942,6 +3958,12 @@ class Integrate: public Utilities {
             
             diffXfinal = diffX;
             
+            // Ensure timestep not above 10% of time for accuracy
+            
+           // if(dtt > 0.1*t) dtt = 0.1*t;
+            
+            
+            
             // If timestep would cause t+dt to be much larger than the next
             // plot output step, reduce trial dt to be equal to the
             // next plot output step.
@@ -4441,6 +4463,14 @@ int main() {
     
     Utilities::log10Spacing(max(start_time, startplot_time), stop_time, plotSteps, plotTimeTargets);
     
+    double summer = 0;
+    for (int i=1; i<plotSteps; i++){
+        logSpacing[i-1] = Utilities::returnPlotlog10Spacing(); 
+        summer+= logSpacing[i-1];
+        printf("\n%d spacing=%7.4f log t=%7.4f sum=%7.4f",i-1,
+               logSpacing[i-1],log10(plotTimeTargets[i-1]));
+    }
+    
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
     // that the network species and reactions remain the same for the entire calculation).
@@ -4756,7 +4786,7 @@ int main() {
         }
         
         // If showPE == true (so doPE == false), count RG that would be in equilibrium 
-        // if doPE were true in current Asy or QSS calculations w/0 PE.
+        // if doPE were true in current Asy or QSS calculations w/o PE.
         
         if(showPE){
             int totalPseudoEquilRG = 0;
