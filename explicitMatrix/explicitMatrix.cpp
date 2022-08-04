@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 198                 // Number of plot output steps
+#define plotSteps 150               // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -220,7 +220,7 @@ char hydroFile[] = "data/tidalSNProfile_400.inp";
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 412;//103;  // Max entries if reading hydro profile
+const static int maxHydroEntries = 413; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -317,6 +317,7 @@ double dt_change;                      // Change in proposed dt from last timest
 double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
+double dt_desired;                     // dt desired but prevented by plot timestep
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
@@ -586,7 +587,6 @@ int indexAlpha = -1;     // Species index of He4 if hasAlpha = true
 
 double plotTimeTargets[plotSteps];           // Target plot times
 double nextPlotTime;                         // Next plot output time
-double maxUp;                                // nextPlotTime - present time 
 
 double tplot[plotSteps];                     // Actual time for plot step
 double dtplot[plotSteps];                    // dt for plot step
@@ -887,31 +887,40 @@ class Utilities{
             double tempsum = logtmin;
             logTimeSpacing = (logtmax - logtmin) / (double) num;
             v[0] = pow(10, logtmin);
+            
+            double tlow = 0;
+            double tup = 0;
+            double dtmax = 0;
+            
             for(int i=0; i<num; i++){
+
                 tempsum += logTimeSpacing;
-                v[i] = pow(10, tempsum);
+                v[i] = pow(10, tempsum);       // v[i] mapped to plotTimeTarget[]
                 
-double diffstep = 0.0; 
-if(i>0) diffstep = (v[i]) - (v[i-1]);
-printf("\nPlotstep:%3d t=%7.5f 0.01*t=%7.5f delta(t)=%7.5f log_target=%7.5f", 
-    i, v[i], 0.01*v[i], diffstep, log10(v[i]) );
+if(i>0){
+    tup = v[i];
+    tlow = v[i-1];
+    dtmax = tup - tlow;
+    printf("\nPlotstep:%3d tlow=%7.5f tup=%7.5f dtmax=%7.5f 0.01*t=%7.5f log_tlow=%7.5f logtup=%7.5f", 
+            i, v[i-1], v[i], dtmax, 0.01*tlow, log10(tlow), log10(tup));
+                }
 
             }
         }
         
         
         
-        static double returnPlotlog10Spacing(){
-            
-            double t1 = plotTimeTargets[plotCounter - 2];
-            double t2 = pow(10, log10(t1) + logTimeSpacing);
-            double spacing = t2 - t1;
-            
-            printf("\n  spacing: plotCounter=%d t1=%7.4e t2=%7.4e spacing=%7.4e", plotCounter, t1, t2, spacing);
-            
-            return spacing;
-            
-        }
+//         static double returnPlotlog10Spacing(int pcount){
+//             
+//             double t1 = plotTimeTargets[pcount - 2];
+//             double t2 = pow(10, log10(t1) + logTimeSpacing);
+//             double spacing = t2 - t1;
+//             
+//             //printf("\n  spacing: plotCounter=%d t1=%7.4e t2=%7.4e spacing=%7.4e", pcount, t1, t2, spacing);
+//             
+//             return spacing;
+//             
+//         }
         
         
         // -------------------------------------------------------------------------
@@ -3958,32 +3967,20 @@ class Integrate: public Utilities {
             
             diffXfinal = diffX;
             
-            // Ensure timestep not above 10% of time for accuracy
+            // Ensure timestep not above 10% of time, for accuracy
             
-           // if(dtt > 0.1*t) dtt = 0.1*t;
+            if(dtt > 0.1*t) dtt = 0.1*t;
             
             
             
-            // If timestep would cause t+dt to be much larger than the next
+            // If timestep would cause t+dt to be larger than the next
             // plot output step, reduce trial dt to be equal to the
             // next plot output step.
             
-            maxUp = 1.0000*(nextPlotTime - t_saved);
-            
-            if(dtt > maxUp){
-//                 printf("\n\nSHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxUp=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-                dtt = maxUp;
-                updatePopulations(dtt);
-//                 printf("\nChosen short dt = %7.5e t=%7.5f", dtt, t_saved+maxUp);
-            } else {
-//                 printf("\n\nNo SHORTEN dt: intstep=%d plotCounter=%d t0=%7.5e trial_dt = %7.5e maxup=%7.5e chosen_t=%7.5e nextPlotTime=%7.5e", 
-//                        totalTimeSteps, plotCounter, t_saved, dtt, maxUp, t_saved+maxUp, nextPlotTime);
-//                 printf("\n3825: Chosen no-short dt = %7.5e t=%7.5e", dtt, t_saved+dtt);
+            if(dtt > nextPlotTime - t_saved){
+                dt_desired = dtt;
+                dtt = nextPlotTime - t_saved;
             }
-//             printf("\n");
-            
-            
             
             return dtt;
             
@@ -4463,13 +4460,13 @@ int main() {
     
     Utilities::log10Spacing(max(start_time, startplot_time), stop_time, plotSteps, plotTimeTargets);
     
-    double summer = 0;
-    for (int i=1; i<plotSteps; i++){
-        logSpacing[i-1] = Utilities::returnPlotlog10Spacing(); 
-        summer+= logSpacing[i-1];
-        printf("\n%d spacing=%7.4f log t=%7.4f sum=%7.4f",i-1,
-               logSpacing[i-1],log10(plotTimeTargets[i-1]));
-    }
+//     double summer = 0;
+//     for (int i=1; i<plotSteps; i++){
+//         logSpacing[i-1] = Utilities::returnPlotlog10Spacing(i); 
+//         summer+= logSpacing[i-1];
+//         printf("\n%d spacing=%7.4f log t=%7.4f sum=%7.4f",i-1,
+//                logSpacing[i-1],log10(plotTimeTargets[i-1]), summer);
+//     }
     
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
@@ -4861,11 +4858,11 @@ int main() {
             
             // Output to screen for this plot step
             
-            ts = "\n%d it=%d t=%6.2e dt=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
+            ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d Asy=%-3.1f%% Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f ";
             ts += "dE=%6.2e E=%6.2e E_R=%6.2e c1=%d c2=%d %s Q=%5.3f dev=%5.3e lgT=%4.3f lgRho=%4.2f";
             
             printf(Utilities::stringToChar(ts), 
-                   plotCounter, iterations, t, dt, totalTimeSteps, 
+                   plotCounter, iterations, t, dt, dt_desired, totalTimeSteps, 
                    100*(double)totalAsy/(double)ISOTOPES, 
                    100*(double)totalEquilRG/(double)numberRG, 
                    sumX, XcorrFac, ECON*netdERelease, 
