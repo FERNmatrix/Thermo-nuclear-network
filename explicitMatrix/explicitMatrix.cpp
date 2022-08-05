@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 150               // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -213,8 +213,8 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/tidalSNProfile_400.inp";
-//char hydroFile[] = "data/tidalSNProfile_100.inp"; 
+//char hydroFile[] = "data/tidalSNProfile_400.inp";
+char hydroFile[] = "data/tidalSNProfile_400.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
@@ -318,6 +318,7 @@ double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
 double dt_desired;                     // dt desired but prevented by plot timestep
+//double dt_desired[plotSteps];        // dt desired but prevented by plot timestep
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
@@ -903,11 +904,11 @@ if(i>0){
     dtmax = tup - tlow;
     printf("\nPlotstep:%3d tlow=%7.5f tup=%7.5f dtmax=%7.5f 0.01*t=%7.5f log_tlow=%7.5f logtup=%7.5f", 
             i, v[i-1], v[i], dtmax, 0.01*tlow, log10(tlow), log10(tup));
-                }
+    
+}
 
             }
         }
-        
         
         
 //         static double returnPlotlog10Spacing(int pcount){
@@ -2500,6 +2501,13 @@ class Reaction: public Utilities {
         
         void fastSlowRates(double testRate){
             
+            if (isinf(testRate)){
+                printf("\n\n***STOP: fastSlowRates() arg infinite for t=%6.4e rindex=%d\n\n",
+                    t, reacIndex
+                );
+                exit(1);
+            }
+            
             if (testRate > fastestCurrentRate) {
                 fastestCurrentRate = testRate;
                 fastestCurrentRateIndex = getreacIndex();
@@ -3809,7 +3817,12 @@ class Integrate: public Utilities {
             
             // Compute max stable forward Euler timestep
             
-            dt_FE = sf/fastestCurrentRate;
+            if(fastestCurrentRate > 0){
+                dt_FE = sf/fastestCurrentRate;
+            } else {
+                dt_FE = 0.00001*t;
+            }
+                
             
             // Compute timestep for explicit asymptotic method.  The 
             // diagnostic flag choice2 indicates whether dt_FE or dt_EA 
@@ -3817,9 +3830,15 @@ class Integrate: public Utilities {
             
             choice2 =  0;
             
-            dt_EA = computeTimeStep_EA(dtLast, sumXtrue);
+            dt_EA = computeTimeStep_EA(dtLast);
             if(dt_EA < dt_FE) choice2 = 1;
             dt = min(dt_FE, dt_EA); 
+            
+            if(dt == 0){
+                printf ("\n\n*** STOPPING: dt=0 in doIntegrationStep() for step=%d, t=%7.5e ***\n\n", 
+                    totalTimeSteps, t);
+                exit(1);
+            }
             
             // We will estimate error by computing difference in sumX 
             // between full timestep and at end of two half timesteps. 
@@ -3940,7 +3959,7 @@ class Integrate: public Utilities {
         // Function Integrate::computeTimeStep_EA (double, double)
         // to update explicit asymptotic timestep
 
-        static double computeTimeStep_EA(double dt0, double sumXX){
+        static double computeTimeStep_EA(double dt0){
     
             double dtt = dt0;
             double dtt_0;
@@ -3977,8 +3996,11 @@ class Integrate: public Utilities {
             // plot output step, reduce trial dt to be equal to the
             // next plot output step.
             
+            dt_desired = dtt;
+            
             if(dtt > nextPlotTime - t_saved){
-                dt_desired = dtt;
+                
+                //dt_desired[plotCounter-1] = dtt;
                 dtt = nextPlotTime - t_saved;
             }
             
@@ -5294,7 +5316,7 @@ void readhydroProfile(char *fileName){
     
     if( fr == NULL ){
         printf ("*** File Input Error: No readable file named %s\n", fileName);
-        exit(1) ;
+        exit(1);
     }
     
     int index = 0;

@@ -833,3 +833,14 @@ commands
 silent
 printf"\n1641: index=%d reacIndex=%d %s",index,reacIndex,reacGroupSymbol
 end
+
+---------------------------------
+
+break 3989 
+commands
+silent
+printf"\ndt: steps=%d t=%7.4f t_saved=%7.4f dtt=%7.4f dt_desired=%7.4f nextPlot=%7.4f diff=%6.4f\n",totalTimeSteps,t,t_saved,dtt,dt_desired,nextPlotTime,nextPlotTime-t_saved
+end
+
+printf"\n3805: %d t=%6.4f dtLast=%6.4f\n",totalTimeSteps,t,dtLast
+
