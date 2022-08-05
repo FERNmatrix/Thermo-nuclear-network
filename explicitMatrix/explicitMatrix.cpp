@@ -4486,14 +4486,6 @@ int main() {
     
     Utilities::log10Spacing(max(start_time, startplot_time), stop_time, plotSteps, plotTimeTargets);
     
-//     double summer = 0;
-//     for (int i=1; i<plotSteps; i++){
-//         logSpacing[i-1] = Utilities::returnPlotlog10Spacing(i); 
-//         summer+= logSpacing[i-1];
-//         printf("\n%d spacing=%7.4f log t=%7.4f sum=%7.4f",i-1,
-//                logSpacing[i-1],log10(plotTimeTargets[i-1]), summer);
-//     }
-    
     // Find for each isotope all reactions that change its population.  This analysis of
     // the network is required only once at the very beginning of the calculation (provided
     // that the network species and reactions remain the same for the entire calculation).
@@ -4672,9 +4664,6 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-        //interpolateT = SplineInterpolator (maxHydroEntries, hydroTime, hydroTemp);
-        //interpolateRho = SplineInterpolator (maxHydroEntries, hydroTime, hydroRho);
-    
     SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp);
     SplineInterpolator interpolateRho = SplineInterpolator (hydroLines, hydroTime, hydroRho);
     
@@ -4739,7 +4728,7 @@ int main() {
             logRhoNow = log10(rho_start);
         }
         
-        // But then convert to temperature in units of 10^9K and density in units
+        // But then convert also to temperature in units of 10^9K and density in units
         // of g/cm^3 for the calculation
         
         T9 = pow(10,logTnow)/1e9;
