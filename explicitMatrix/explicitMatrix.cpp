@@ -214,13 +214,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/tidalSNProfile_400.inp"; 
+char hydroFile[] = "data/tidalSNProfile_100.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 413; // Max entries if reading hydro profile
+const static int maxHydroEntries = 103;//413; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -2477,6 +2477,9 @@ class Reaction: public Utilities {
                     kfac = Rrate * Y[ reactantIndex[0] ];
                     flux = kfac * Y[ reactantIndex[1] ];  // Put in Reaction object flux field
                     Flux[reacIndex] = flux;               // Put in main flux array
+                    
+                    if(reacIndex>33) printf("\n*** reacIndex=%d: Rrate=%6.4e Y=%6.4e",reacIndex,Rrate, Y[reactantIndex[0]]);
+                    
                     fastSlowRates(kfac);
                     
                     break;
@@ -2500,11 +2503,12 @@ class Reaction: public Utilities {
         // rates kfac computed in computeFlux().
         
         void fastSlowRates(double testRate){
+
+            printf("\nSLOWFAST: t=%6.4e index=%d rate=%6.4e Flux=%6.4e", t, reacIndex, testRate, Flux[reacIndex]);
             
             if (isinf(testRate)){
                 printf("\n\n***STOP: fastSlowRates() arg infinite for t=%6.4e rindex=%d\n\n",
-                    t, reacIndex
-                );
+                    t, reacIndex);
                 exit(1);
             }
             
@@ -5019,18 +5023,25 @@ void showParameters(){
     
     printf("\n\nIntegration using ");
     printf(Utilities::stringToChar(intMethod));
-    printf("\nT9=%6.3e rho=%6.3e massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
-           T9, rho, massTol_asy, massTol_asyPE, sf, equiTol, equilibrateTime
-    );
+    
+    if(hydroProfile){
+        printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
+               massTol_asy, massTol_asyPE, sf, equiTol, equilibrateTime);
+    } else {
+        printf("\nT9=%6.3e rho=%6.3e massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
+               T9, rho, massTol_asy, massTol_asyPE, sf, equiTol, equilibrateTime);
+    }
+    
     printf("\nmaxit=%d downbumper=%6.3f EpsA=%5.2e EpsR=%5.2e",
            maxit, downbumper, EpsA, EpsR
     );
     cout << "\nNetwork: " << networkFile;
     cout << "  Rates: " << rateLibraryFile;
+    if(hydroProfile) cout << "\nHydro profile: " << hydroFile;
     printf("\nIsotopes=%d Reactions=%d", ISOTOPES, SIZE);
     if(numberRG > 0) printf(" ReactionGroups=%d", numberRG);
     if(numberRG > 0)
-    printf("\nIntegration steps=%d  totalIterations=%d IntegrationSteps_plotted=%d", 
+    printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d", 
         totalTimeSteps, totalIterations, totalTimeSteps-totalTimeStepsZero);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
 }
