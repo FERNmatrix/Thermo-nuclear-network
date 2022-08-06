@@ -2301,12 +2301,13 @@ class Reaction: public Utilities {
                 
                 double expo = e0 + e1 + e2 + e3 + e4 + e5 + e6;
                 //double expo = p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6];
+                //rate = exp( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] ); 
                 
                 rate = exp(expo);
             }
             
             
-            //rate = exp( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
+            
             
             // Correct rate by multiplying by partition functions if the
             // temperature is high enough
