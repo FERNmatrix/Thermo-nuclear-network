@@ -214,13 +214,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/tidalSNProfile_50.inp"; 
+char hydroFile[] = "data/tidalSNProfile_100.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 53; // Max entries if reading hydro profile
+const static int maxHydroEntries = 103; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -2261,34 +2261,6 @@ class Reaction: public Utilities {
             
         }
         
-//         // Function Reaction::computeTfacs(double) to set temperature factors in ReacLib
-//         // rate formula.  Reset each time T9 changes but
-//         // stays constant as long as T9 doesn't change.
-//         
-//         void computeTfacs(double T9){
-//             T93 = powf(T9, THIRD); 
-//             t1 = 1/T9;
-//             t2 = 1/T93;
-//             t3 = T93;
-//             t4 = T9;
-//             t5 = T93*T93*T93*T93*T93;
-//             t6 = logf(T9);
-//         }
-        
-        // Reaction::computeDensityFactors(double) to multiply the statistical prefactor by 
-        // the appropriate density factors (1 for 1-body, rho for 2-body, and rho^2 for 3-body. 
-        // This is required at the beginning of each network integration of the hydro timestep, 
-        // since the density will generally change over a hydro timestep in each zone.
-        
-//         void computeDensityFactors(double rho){
-//             
-//             Dens[0] = 1.0f;
-//             Dens[1] = rho;
-//             Dens[2] = rho*rho;
-//             densfac = prefac * Dens[numberReactants - 1];
-//             setdensfac(densfac);
-//         }
-        
         // Reaction::computeRate(double, double) to compute rates at T and rho. 
         // The quantity rate is the temperature-dependent part, including a possible 
         // partition-function correction.  The quantity Rrrate is rate multiplied by
@@ -2310,13 +2282,10 @@ class Reaction: public Utilities {
             // Full rate factor in units of time^-1 (rate from above multiplied 
             // by density factors)
             
-            Rrate = getdensfac() * rate;  // Field of this (Reaction) object
-            //setRrate(Rrate);
-            
-            Rate[getreacIndex()] = Rrate;  // Master rate array
+            Rrate = densfac*rate;            // Field of this (Reaction) object
+            Rate[getreacIndex()] = Rrate;    // Master rate array
             
         }
-        
         
         // Function Reaction::pfUpdate() to correct the rates using partition 
         // function factors if appropriate.
