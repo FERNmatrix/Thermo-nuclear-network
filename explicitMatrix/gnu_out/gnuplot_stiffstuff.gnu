@@ -66,7 +66,7 @@ set key outside    # Place legend outside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy nova134 nova125Dprofile)"
+ds="C++ Asy tidal supernova"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
@@ -74,7 +74,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.813
+xlow = 0.830
 xup = 1.0
 xtics = 0.02     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics

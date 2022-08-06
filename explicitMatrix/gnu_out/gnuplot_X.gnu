@@ -72,8 +72,8 @@ set key right top outside    # Place legend inside top
 
 #set timestamp       # Date/time
 
-ds="C++ nova134 with nova125D hydro profile."
-ds = ds."101 most populated of 134 isotopes"
+ds="C++ Asy tidal supernova."
+ds = ds.""
 set title ds textcolor rgb title_color
 
 file1 = "gnufile.data"
@@ -81,7 +81,7 @@ file1 = "gnufile.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.83 #0.852
+xlow = 0.84 #0.852
 xup = 1.0
 xtics = 0.01    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics

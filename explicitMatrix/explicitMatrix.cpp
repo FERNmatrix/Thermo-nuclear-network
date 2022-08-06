@@ -397,6 +397,9 @@ double maxdYdt;                      // Maximum current dY/dt in network
 int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
 
 double Rate[SIZE];                   // Reaction rate from Reactions::computeRate()
+bool reacLibWarn;                    // Warning flag for T out of ReacLib bounds
+double warnTime;                     // Time for 1st violation associated with reacLibWarn
+double warnT;                        // Temperature at warnTime
 double Flux[SIZE];                   // Flux from Reactions::computeFlux()
 
 
@@ -2283,9 +2286,16 @@ class Reaction: public Utilities {
                 exit(1);
             }
             
-            // If T < 1e7 K, set rate = 0. Otherwise compute rate using ReacLib.
+            // If T < 1e7 K, set rate = 0 and set a flag to display a warning message. 
+            // Otherwise compute rate using ReacLib.
             
             if(T9 < 0.01){  
+                
+                if(!reacLibWarn){
+                    reacLibWarn = true;
+                    warnTime = t;
+                    warnT = T9;
+                }
                 
                 rate = 0.0;
                 
@@ -4680,9 +4690,10 @@ int main() {
     
     totalIterations = 0;
     XcorrFac = 1.0;
+    reacLibWarn = false;
+    
     
     while(t < stop_time){ 
-        
         
         // Next target plot output time.  Use to keep chosen dt from being
         // much larger than the time to next plot output, which can occur
@@ -5032,6 +5043,15 @@ void showParameters(){
     printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d", 
         totalTimeSteps, totalIterations, totalTimeSteps-totalTimeStepsZero);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
+    
+    if(reacLibWarn){
+        cout << "\n\n*******************************************************************";
+        cout << "\n*** WARNING: Some temperatures were below library validity bound. *";
+        printf("\n*** First occurrence for T=%5.3e K at t=%6.4e s.         *", 
+            warnT*1e9, warnTime);
+        printf("\n*** Reaction rates were approximated by zero when T < 1e7 K.      *");
+        cout << "\n*******************************************************************\n\n";
+    }
 }
 
 
