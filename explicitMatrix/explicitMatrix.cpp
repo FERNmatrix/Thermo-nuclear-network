@@ -214,13 +214,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/tidalSNProfile_100.inp"; 
+char hydroFile[] = "data/tidalSNProfile_400.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 103; // Max entries if reading hydro profile
+const static int maxHydroEntries = 413; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -2241,13 +2241,13 @@ class Reaction: public Utilities {
 
             // Temperature factors in ReacLib rate formula.
 
-            T93 = powf(T9, THIRD); 
+            T93 = pow(T9, THIRD); 
             t1 = 1/T9;
             t2 = 1/T93;
             t3 = T93;
             t4 = T9;
             t5 = T93*T93*T93*T93*T93;
-            t6 = logf(T9);
+            t6 = log(T9);
             
             // Multiply the statistical prefactor by the appropriate 
             // density factors (1 for 1-body, rho for 2-body, and rho^2 
@@ -2271,19 +2271,53 @@ class Reaction: public Utilities {
             
             // Temperature-dependent rate from parameters in ReacLib library
             
-            rate = expf( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
+            // The ReacLib library in use has parameters that have been fitted
+            // over a range T=1e7 K to T=1e10 K. Thus, it is unreliable to use it
+            // for temperatures outside that range. For T < 1e7 K, we will give a
+            // warning, set the corresponding rates equal to zero, and continue.
+            // For T > 1e10 K we will warn that the temperature is out of the
+            // reliable bounds and exit the program.
             
-            // Correct rate by multiplying by partition functions and store
-            // in rate field of this Reaction object.
+            if(T9 > 10){
+                printf("\n\n*** STOP: Extrapolation of rates for T > 1e10K unreliable.\n\n");
+                exit(1);
+            }
             
-            pfUpdate();
-            setrate(rate);
+            // If T < 1e7 K, set rate = 0. Otherwise compute rate using ReacLib.
+            
+            if(T9 < 0.01){  
+                
+                rate = 0.0;
+                
+            } else {
+                
+                double e0 = p[0];
+                double e1 = t1*p[1];
+                double e2 = t2*p[2];
+                double e3 = t3*p[3];
+                double e4 = t4*p[4];
+                double e5 = t5*p[5];
+                double e6 = t6*p[6];
+                
+                double expo = e0 + e1 + e2 + e3 + e4 + e5 + e6;
+                //double expo = p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6];
+                
+                rate = exp(expo);
+            }
+            
+            
+            //rate = exp( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
+            
+            // Correct rate by multiplying by partition functions if the
+            // temperature is high enough
+            
+            if(T9 > pfCut9) pfUpdate();
 
             // Full rate factor in units of time^-1 (rate from above multiplied 
             // by density factors)
             
             Rrate = densfac*rate;            // Field of this (Reaction) object
-            Rate[getreacIndex()] = Rrate;    // Master rate array
+            Rate[reacIndex] = Rrate;         // Master rate array
             
         }
         
@@ -2325,7 +2359,6 @@ class Reaction: public Utilities {
                 }
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
-                
             }
         }
         

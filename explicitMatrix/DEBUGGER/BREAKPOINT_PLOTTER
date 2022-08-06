@@ -846,9 +846,11 @@ printf"\n3805: %d t=%6.4f dtLast=%6.4f\n",totalTimeSteps,t,dtLast
 
 ---------------------------------
 
-break 2316 if reacIndex==34
+break 2298 if reacIndex>=25
 commands
 silent
-printf"\nsteps=%d index=%d t=%7.4e dt=%7.4e T9=%7.4e rho=%7.4e rate=%7.4e\n",totalTimeSteps,reacIndex,t,dt,T9,rho,rate
+printf"\ncomputeRate: steps=%d index=%d t=%7.4e dt=%7.4e T9=%7.4e rho=%7.4e rate=%7.4e expo=%7.4e",totalTimeSteps,reacIndex,t,dt,T9,rho,rate,expo
+printf"\n e0=%7.4e e1=%7.4e e2=%7.4e e3=%7.4e e4=%7.4e e5=%7.4e e6=%7.4e\n",e0,e1,e2,e3,e4,e5,e6
 end
+
 
