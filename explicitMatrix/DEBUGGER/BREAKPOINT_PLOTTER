@@ -844,3 +844,11 @@ end
 
 printf"\n3805: %d t=%6.4f dtLast=%6.4f\n",totalTimeSteps,t,dtLast
 
+---------------------------------
+
+break 2316 if reacIndex==34
+commands
+silent
+printf"\nsteps=%d index=%d t=%7.4e dt=%7.4e T9=%7.4e rho=%7.4e rate=%7.4e\n",totalTimeSteps,reacIndex,t,dt,T9,rho,rate
+end
+

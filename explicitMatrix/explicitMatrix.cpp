@@ -214,13 +214,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/tidalSNProfile_100.inp"; 
+char hydroFile[] = "data/tidalSNProfile_50.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 103;//413; // Max entries if reading hydro profile
+const static int maxHydroEntries = 53; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -910,18 +910,6 @@ if(i>0){
             }
         }
         
-        
-//         static double returnPlotlog10Spacing(int pcount){
-//             
-//             double t1 = plotTimeTargets[pcount - 2];
-//             double t2 = pow(10, log10(t1) + logTimeSpacing);
-//             double spacing = t2 - t1;
-//             
-//             //printf("\n  spacing: plotCounter=%d t1=%7.4e t2=%7.4e spacing=%7.4e", pcount, t1, t2, spacing);
-//             
-//             return spacing;
-//             
-//         }
         
         
         // -------------------------------------------------------------------------
@@ -1734,8 +1722,9 @@ class Reaction: public Utilities {
         int productIndex[4];         // Index of species isotope vector for each product isotope
         int isoIndex[7];             // Index of species isotope vector for all isotopes in reaction
         
-        // Precomputed temperature factors for ReacLib rates.  Computed in computeTfacs(T9), where
-        // T9 is the temperature in units of 10^9 K.
+        // Precomputed temperature factors for ReacLib rates.  Computed in 
+        // computeConstantFacs(T9, rho), where T9 is the temperature in units of 
+        // 10^9 K and rho is the density in g/cm^3.
         
         double T93;                  // T9^{1/3}
         double t1;                   // 1/T9
@@ -2272,33 +2261,33 @@ class Reaction: public Utilities {
             
         }
         
-        // Function Reaction::computeTfacs(double) to set temperature factors in ReacLib
-        // rate formula.  Reset each time T9 changes but
-        // stays constant as long as T9 doesn't change.
-        
-        void computeTfacs(double T9){
-            T93 = powf(T9, THIRD); 
-            t1 = 1/T9;
-            t2 = 1/T93;
-            t3 = T93;
-            t4 = T9;
-            t5 = T93*T93*T93*T93*T93;
-            t6 = logf(T9);
-        }
+//         // Function Reaction::computeTfacs(double) to set temperature factors in ReacLib
+//         // rate formula.  Reset each time T9 changes but
+//         // stays constant as long as T9 doesn't change.
+//         
+//         void computeTfacs(double T9){
+//             T93 = powf(T9, THIRD); 
+//             t1 = 1/T9;
+//             t2 = 1/T93;
+//             t3 = T93;
+//             t4 = T9;
+//             t5 = T93*T93*T93*T93*T93;
+//             t6 = logf(T9);
+//         }
         
         // Reaction::computeDensityFactors(double) to multiply the statistical prefactor by 
         // the appropriate density factors (1 for 1-body, rho for 2-body, and rho^2 for 3-body. 
         // This is required at the beginning of each network integration of the hydro timestep, 
         // since the density will generally change over a hydro timestep in each zone.
         
-        void computeDensityFactors(double rho){
-            
-            Dens[0] = 1.0f;
-            Dens[1] = rho;
-            Dens[2] = rho*rho;
-            densfac = prefac * Dens[numberReactants - 1];
-            setdensfac(densfac);
-        }
+//         void computeDensityFactors(double rho){
+//             
+//             Dens[0] = 1.0f;
+//             Dens[1] = rho;
+//             Dens[2] = rho*rho;
+//             densfac = prefac * Dens[numberReactants - 1];
+//             setdensfac(densfac);
+//         }
         
         // Reaction::computeRate(double, double) to compute rates at T and rho. 
         // The quantity rate is the temperature-dependent part, including a possible 
@@ -2308,23 +2297,23 @@ class Reaction: public Utilities {
         
         void computeRate(double T9, double rho){
             
-            // Temperature-dependent rate from ReacLib library
+            // Temperature-dependent rate from parameters in ReacLib library
             
             rate = expf( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] );
             
             // Correct rate by multiplying by partition functions and store
+            // in rate field of this Reaction object.
             
             pfUpdate();
             setrate(rate);
 
-            // Full rate factor in s^-1 (rate above multiplied by density factors)
+            // Full rate factor in units of time^-1 (rate from above multiplied 
+            // by density factors)
             
-            Rrate = getdensfac() * rate;
-            setRrate(Rrate);
+            Rrate = getdensfac() * rate;  // Field of this (Reaction) object
+            //setRrate(Rrate);
             
-            // Write to rate array
-            
-            Rate[getreacIndex()] = Rrate;
+            Rate[getreacIndex()] = Rrate;  // Master rate array
             
         }
         
@@ -2478,7 +2467,7 @@ class Reaction: public Utilities {
                     flux = kfac * Y[ reactantIndex[1] ];  // Put in Reaction object flux field
                     Flux[reacIndex] = flux;               // Put in main flux array
                     
-                    if(reacIndex>33) printf("\n*** reacIndex=%d: Rrate=%6.4e Y=%6.4e",reacIndex,Rrate, Y[reactantIndex[0]]);
+//                     if(reacIndex>33) printf("\n*** reacIndex=%d: Rrate=%6.4e Y=%6.4e",reacIndex,Rrate, Y[reactantIndex[0]]);
                     
                     fastSlowRates(kfac);
                     
@@ -2504,7 +2493,7 @@ class Reaction: public Utilities {
         
         void fastSlowRates(double testRate){
 
-            printf("\nSLOWFAST: t=%6.4e index=%d rate=%6.4e Flux=%6.4e", t, reacIndex, testRate, Flux[reacIndex]);
+//printf("\nSLOWFAST: t=%6.4e index=%d rate=%6.4e Flux=%6.4e", t, reacIndex, testRate, Flux[reacIndex]);
             
             if (isinf(testRate)){
                 printf("\n\n***STOP: fastSlowRates() arg infinite for t=%6.4e rindex=%d\n\n",
@@ -3990,7 +3979,7 @@ class Integrate: public Utilities {
             
             diffXfinal = diffX;
             
-            // Ensure timestep not above 10% of time, for accuracy
+            // Ensure timestep not larger than 10% of time, for accuracy
             
             if(dtt > 0.1*t) dtt = 0.1*t;
             
@@ -4003,8 +3992,6 @@ class Integrate: public Utilities {
             dt_desired = dtt;
             
             if(dtt > nextPlotTime - t_saved){
-                
-                //dt_desired[plotCounter-1] = dtt;
                 dtt = nextPlotTime - t_saved;
             }
             
@@ -4631,7 +4618,7 @@ int main() {
     
     Utilities::startTimer();    // Start a timer for integration
     
-    // Compute initial rates. If hydroProfile = false, rates won't
+    // Compute initial rates if hydroProfile = false. Rates won't
     // change in the integration and don't need to be computed again.  If either
     // T9 or rho change, the rates will be recomputed at each integration step.
     // Use functions of Reaction class to compute reaction rates. We have instantiated
@@ -4639,17 +4626,25 @@ int main() {
     // reaction in the network. Loop over this array and call the computeRate()
     // function of Reaction on each object. 
     
-    for(int i=0; i<SIZE; i++){
-        reaction[i].computeConstantFacs(T9, rho);
-        reaction[i].computeRate(T9, rho);
+    if(!hydroProfile){
+        
+        for(int i=0; i<SIZE; i++){
+            reaction[i].computeConstantFacs(T9, rho);
+            reaction[i].computeRate(T9, rho);
+        }
     }
+    
     
     // Summarize computed rates
     
-    fprintf(pFileD, "\nINITIAL COMPUTED RATES\n");
-    for(int i=0; i<SIZE; i++){
-        reaction[i].showRates();
+    if(!hydroProfile){
+        
+        fprintf(pFileD, "\nINITIAL COMPUTED RATES\n");
+        for(int i=0; i<SIZE; i++){
+            reaction[i].showRates();
+        }
     }
+    
     
     if(!hydroProfile){
         fprintf(pFileD, 
@@ -4742,7 +4737,8 @@ int main() {
         // integration. Otherwise they are recomputed for each integration step in
         // the following conditional.
         
-        if( (hydroProfile) && totalTimeSteps > 1){
+        if(hydroProfile){
+        //if( (hydroProfile) && totalTimeSteps > 1){
             
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
