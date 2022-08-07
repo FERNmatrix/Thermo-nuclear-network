@@ -2271,56 +2271,53 @@ class Reaction: public Utilities {
         // flux follows from multiplying Rrate by appropriate abundances Y in computeFlux().
         
         void computeRate(double T9, double rho){
-            
-            // Temperature-dependent rate from parameters in ReacLib library
-            
+
             // The ReacLib library in use has parameters that have been fitted
             // over a range T=1e7 K to T=1e10 K. Thus, it is unreliable to use it
-            // for temperatures outside that range. For T < 1e7 K, we will give a
-            // warning, set the corresponding rates equal to zero, and continue.
+            // for temperatures outside that range. For T < 1e7 K, we will
+            // set the corresponding rates equal to zero and continue, with a
+            // warning message posted at the end of the calculation that some
+            // rates have been set to zero because the temperature was out of bounds.
             // For T > 1e10 K we will warn that the temperature is out of the
-            // reliable bounds and exit the program.
+            // reliable bounds of the library and exit the program at that point.
             
-            if(T9 > 10){
-                printf("\n\n*** STOP: Extrapolation of rates for T > 1e10K unreliable.\n\n");
+            if(T9 > 10){           // Temperature above upper bound for library
+                
+                string str("\n\n\n*** HALTING: t=%7.4es and T9=%5.3f; ");
+                str += "rates for T9 > 10 are unreliable for this library.\n\n\n";
+                printf(Utilities::stringToChar(str), t, T9);
                 exit(1);
+                
             }
             
-            // If T < 1e7 K, set rate = 0 and set a flag to display a warning message. 
-            // Otherwise compute rate using ReacLib.
+            // If T < 1e7 K set rate = 0 and continue, but set a flag to display
+            // a warning message at the end of the calculation. 
             
-            if(T9 < 0.01){  
+            if(T9 < 0.01){         // Temperature below lower bound for library
                 
                 if(!reacLibWarn){
+                    
                     reacLibWarn = true;
                     warnTime = t;
                     warnT = T9;
                 }
                 
-                rate = 0.0;
+                rate = 0.0; 
                 
-            } else {
+            } else {               // Temperature in bounds for library
                 
-                double e0 = p[0];
-                double e1 = t1*p[1];
-                double e2 = t2*p[2];
-                double e3 = t3*p[3];
-                double e4 = t4*p[4];
-                double e5 = t5*p[5];
-                double e6 = t6*p[6];
-                
-                double expo = e0 + e1 + e2 + e3 + e4 + e5 + e6;
-                //double expo = p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6];
-                //rate = exp( p[0] + t1*p[1] + t2*p[2] + t3*p[3] + t4*p[4] + t5*p[5] + t6*p[6] ); 
-                
-                rate = exp(expo);
+                rate = exp( p[0] 
+                    + t1*p[1] 
+                    + t2*p[2] 
+                    + t3*p[3] 
+                    + t4*p[4] 
+                    + t5*p[5] 
+                    + t6*p[6] 
+                );
             }
             
-            
-            
-            
-            // Correct rate by multiplying by partition functions if the
-            // temperature is high enough
+            // Correct rate by multiplying by partition functions for select 
+            // reactions if the temperature is high enough
             
             if(T9 > pfCut9) pfUpdate();
 
@@ -2346,10 +2343,10 @@ class Reaction: public Utilities {
             // Realistic calculations at higher temperatures should use
             // the partition functions so generally set dopf=true unless testing.
             // Partition functions are very near 1.000 if T9 < 1, so we will typically
-            // only implement partition function correction if T9 > pfCut9 = 1.0, but
+            // only implement partition function corrections if T9 > pfCut9 = 1.0, but
             // the table of partition functions allows pfCut9 as small as 0.1.
             // Interpolation is in the log10 of the temperature, so pass log10(T9)
-            // rather than T9 to pfInterpolator (index, logt9). Because for the 
+            // rather than T9 to pfInterpolator(index, logt9). Because for the 
             // temperatures of interest the partition functions for all light ions
             // (protons, neutrons, alphas, tritons) are equal to 1.0, the structure
             // of the 8 Reaclib reaction classes specified by Reaction::reacClass
