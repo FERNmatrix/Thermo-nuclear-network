@@ -64,7 +64,7 @@ set pointsize 1.5    # Size of the plotted points
 set key outside    # Place legend outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="C++ Asy tidal supernova"
 ds = ds.": dt vs t"

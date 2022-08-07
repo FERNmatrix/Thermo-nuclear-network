@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -214,13 +214,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/tidalSNProfile_400.inp"; 
+char hydroFile[] = "data/rosswog.profile"; //"data/tidalSNProfile_400.inp"; 
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 413; // Max entries if reading hydro profile
+const static int maxHydroEntries = 2622; //413; // Max entries if reading hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -685,7 +685,6 @@ public:
         for(int i=0; i<size1; i++){
             x[i] = xarray[i];
             y[i] = yarray[i];
-            printf("\n    +++++ x[%d]=%7.4e y[%d]=%7.4e",i,x[i],i,y[i]);
         }
         
                     
@@ -901,14 +900,14 @@ class Utilities{
                 tempsum += logTimeSpacing;
                 v[i] = pow(10, tempsum);       // v[i] mapped to plotTimeTarget[]
                 
-if(i>0){
-    tup = v[i];
-    tlow = v[i-1];
-    dtmax = tup - tlow;
-    printf("\nPlotstep:%3d tlow=%7.5f tup=%7.5f dtmax=%7.5f 0.01*t=%7.5f log_tlow=%7.5f logtup=%7.5f", 
-            i, v[i-1], v[i], dtmax, 0.01*tlow, log10(tlow), log10(tup));
-    
-}
+// if(i>0){
+//     tup = v[i];
+//     tlow = v[i-1];
+//     dtmax = tup - tlow;
+//     printf("\nPlotstep:%3d tlow=%7.5f tup=%7.5f dtmax=%7.5f 0.01*t=%7.5f log_tlow=%7.5f logtup=%7.5f", 
+//             i, v[i-1], v[i], dtmax, 0.01*tlow, log10(tlow), log10(tup));
+//     
+// }
 
             }
         }
@@ -4626,8 +4625,6 @@ int main() {
     fastestOverallRate = 0.0;   // Initialize fastest overall rate
     timeMaxRate = 0.0;          // Initialize slowest overall rate
     
-    Utilities::startTimer();    // Start a timer for integration
-    
     // Compute initial rates if hydroProfile = false. Rates won't
     // change in the integration and don't need to be computed again.  If either
     // T9 or rho change, the rates will be recomputed at each integration step.
@@ -4689,6 +4686,7 @@ int main() {
     XcorrFac = 1.0;
     reacLibWarn = false;
     
+    Utilities::startTimer();    // Start a timer for integration
     
     while(t < stop_time){ 
         
@@ -4917,6 +4915,11 @@ int main() {
     }   // End time integration while-loop
     
     
+    // Write parameters at end of integration. Also stops timer started
+    // at beginning of the integration while-loop.
+    
+    showParameters();
+    
     // Output data to plot files after integration. 
     
     Utilities::plotOutput();
@@ -4924,10 +4927,6 @@ int main() {
     if(hydroProfile && plotHydroProfile){
         Utilities::outputHydroProfile();
     }
-    
-    // Write parameters at end of integration
-    
-    showParameters();
    
     // Display final abundances and mass fractions
 

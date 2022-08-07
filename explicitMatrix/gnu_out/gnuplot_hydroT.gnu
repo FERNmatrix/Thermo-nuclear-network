@@ -19,7 +19,7 @@ width = 8.5 #4.5
 height = 3.0 #6.5
 
 # x-axis resolution
-set samples 1000
+set samples 2000
 
 # Line styles.  
 # For lines: plot x with lines ls 1

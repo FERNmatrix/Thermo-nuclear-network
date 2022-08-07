@@ -70,7 +70,7 @@ set pointsize 1.5    # Size of the plotted points
 set key right top outside    # Place legend inside top  
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="C++ Asy tidal supernova."
 ds = ds.""
@@ -472,9 +472,9 @@ replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_X.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_X.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
