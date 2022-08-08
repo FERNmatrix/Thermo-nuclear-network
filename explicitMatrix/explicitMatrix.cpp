@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 1                 // Number of plot output steps
+#define plotSteps 50                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -2475,9 +2475,6 @@ class Reaction: public Utilities {
                     kfac = Rrate * Y[ reactantIndex[0] ];
                     flux = kfac * Y[ reactantIndex[1] ];  // Put in Reaction object flux field
                     Flux[reacIndex] = flux;               // Put in main flux array
-                    
-//                     if(reacIndex>33) printf("\n*** reacIndex=%d: Rrate=%6.4e Y=%6.4e",reacIndex,Rrate, Y[reactantIndex[0]]);
-                    
                     fastSlowRates(kfac);
                     
                     break;
@@ -2502,8 +2499,6 @@ class Reaction: public Utilities {
         
         void fastSlowRates(double testRate){
 
-//printf("\nSLOWFAST: t=%6.4e index=%d rate=%6.4e Flux=%6.4e", t, reacIndex, testRate, Flux[reacIndex]);
-            
             if (isinf(testRate)){
                 printf("\n\n***STOP: fastSlowRates() arg infinite for t=%6.4e rindex=%d\n\n",
                     t, reacIndex);
@@ -3837,7 +3832,7 @@ class Integrate: public Utilities {
             dt = min(dt_FE, dt_EA); 
             
             if(dt == 0){
-                printf ("\n\n*** STOPPING: dt=0 in doIntegrationStep() for step=%d, t=%7.5e ***\n\n", 
+                printf ("\n\n*** STOP: dt=0 in doIntegrationStep(); step=%d t=%7.5e ***\n\n", 
                     totalTimeSteps, t);
                 exit(1);
             }
@@ -3992,16 +3987,21 @@ class Integrate: public Utilities {
             
             if(dtt > 0.1*t) dtt = 0.1*t;
             
-            
-            
             // If timestep would cause t+dt to be larger than the next
             // plot output step, reduce trial dt to be equal to the
             // next plot output step.
             
             dt_desired = dtt;
+            double gap = nextPlotTime - t_saved;
+
+            if(dtt > gap && gap > 0){
+                dtt = gap;
+            }
             
-            if(dtt > nextPlotTime - t_saved){
-                dtt = nextPlotTime - t_saved;
+            if(dtt <= 0){
+                printf("\n\n*** STOP: dt=0 in computeTimeStep_EA(); step=%d, t=%7.5e\n\n", 
+                    totalTimeSteps, t);
+                exit(1);
             }
             
             return dtt;
