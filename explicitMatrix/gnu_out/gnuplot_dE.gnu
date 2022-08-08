@@ -66,20 +66,20 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="C++ Asy nova134 with nova125D hydro profile (no pf)"
+ds="C++ Asy tidalSN rosswog.profile  (no pf)"
 ds = ds.": |dE/dt| vs t"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
-xtics = 1     # Space between major x ticmarks
+xlow = 0.84
+xup = 1.0
+xtics = 0.01     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 8
-yup = 18
-ytics = 1      # Space between major y ticmarks
+ylow = -4
+yup = 20
+ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]

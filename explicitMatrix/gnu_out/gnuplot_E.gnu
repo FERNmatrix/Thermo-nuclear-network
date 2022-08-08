@@ -73,14 +73,14 @@ set title ds textcolor rgb title_color font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -4
-xup = 4
-xtics = 1     # Space between major x ticmarks
+xlow = 0.84
+xup = 1.0
+xtics = 0.02     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 10
-yup = 19
-ytics = 1      # Space between major y ticmarks
+ylow = -4
+yup = 20
+ytics = 2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]

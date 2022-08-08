@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100               // Number of plot output steps
+#define plotSteps 75               // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -306,8 +306,8 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 
 double start_time = 6.4;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 6.6;           // Start time for plot output
-double stop_time = 67;//10;                 // Stop time for integration
+double startplot_time = 6.9;           // Start time for plot output
+double stop_time = 10;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -1162,7 +1162,8 @@ class Utilities{
             // Write header for file pointed to by pFile
             
             for(int i=0; i<LX; i++){
-                iso = isoLabel[plotXlist[i]];
+                iso = "isotope"; 
+                isoLabel[plotXlist[i]];
                 app.append(Xstring);
                 app.append(iso);
                 app.append(")    ");
@@ -1178,7 +1179,7 @@ class Utilities{
 
             for(int i=0; i<LX; i++){
                 iso = isoLabel[plotXlist[i]];
-                appflux.append(Fpstring);
+                appflux.append("");
                 appflux.append(iso);
                 appflux.append(")   ");
             }
@@ -4693,7 +4694,6 @@ int main() {
     while(t < stop_time){ 
         
         if(plotCounter > plotSteps) {
-            
             printf("\n\nStopping Integration: plotCounter=%d t=%7.4e dt=%7.4e", plotCounter, t, dt);
             break;
         }

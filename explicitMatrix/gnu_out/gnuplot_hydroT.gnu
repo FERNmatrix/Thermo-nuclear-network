@@ -59,7 +59,7 @@ set ylabel ' T9' textcolor rgb tic_color font "Arial,32"
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
