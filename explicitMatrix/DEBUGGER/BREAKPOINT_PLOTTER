@@ -854,4 +854,9 @@ printf"\n e0=%7.4e e1=%7.4e e2=%7.4e e3=%7.4e e4=%7.4e e5=%7.4e e6=%7.4e\n",e0,e
 end
 ---------------------------------
 
+break 1148 if i > 199
+commands
+silent
+printf"i=%d plotSteps=%d totalTimeSteps-%d",i,plotSteps,totalTimeSteps
+end
 
