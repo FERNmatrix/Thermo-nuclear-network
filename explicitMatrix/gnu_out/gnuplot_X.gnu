@@ -35,7 +35,7 @@ set style line 7 lc rgb mybrown  pt 7   # circle
 set style line 8 lc rgb myorange  pt 7   # circle
 set style line 9 lc rgb myblue pt 7   # circle
 set style line 10 lc rgb 'green' pt 6   # open circle
-set style line 11 lc rgb 'red' pt 4   # open circle
+set style line 11 lc rgb 'red' pt 6   # open circle
 set style line 12 lc rgb 'gray' pt 4   # open circle
 set style line 13 lc rgb 'gold' pt 4   # open circle
 set style line 14 lc rgb 'dark-grey' pt 4   # open circle
@@ -65,7 +65,7 @@ set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key right top outside    # Place legend inside top  
 #unset key            # Don't show legend
@@ -82,8 +82,8 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0.84 #0.852
-xup = 1.82 #1.0
-xtics = 0.1    # Space between major x ticmarks
+xup = 1.0 #1.82
+xtics = 0.02    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14
@@ -150,7 +150,7 @@ set mytics minytics   # minor y tics per major tic
 
 # Alpha network (X)
 
-plot file1 using 1:8 with lines ls 2 lw 1.0 dashtype 1 title "4He"
+plot file1 using 1:8 with points ls 11 lw 1.0 dashtype 1 title "4He"
 replot file1 using 1:9 with lines ls 3 lw 1.0 dashtype 1 title "12C"
 replot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "16O"
 replot file1 using 1:11 with lines ls 4 lw 1.0 dashtype 1 title "20Ne"

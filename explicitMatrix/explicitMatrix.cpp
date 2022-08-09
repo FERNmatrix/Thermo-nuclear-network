@@ -58,6 +58,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
+#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
@@ -156,7 +158,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 75                  // Number of plot output steps
+#define plotSteps 130                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -405,17 +407,18 @@ double Flux[SIZE];                   // Flux from Reactions::computeFlux()
 
 // --- Species data in following arrays also contained in fields of class Species
 
-int Z[ISOTOPES];                 // Array holding Z values for isotopes
-int N[ISOTOPES];                 // Array holding N values for isotopes
-int AA[ISOTOPES];                // Array holding A values for isotopes
-double Y[ISOTOPES];              // Array holding current abundances Y for isotopes
-double Y0[ISOTOPES];             // Array holding abundances at beginning of timestep
-double Ystore[ISOTOPES];         // Array storing current abundances for later restore
-double YfullStep[ISOTOPES];      // Array holding full-step Y update
-double X[ISOTOPES];              // Array holding mass fractions X for isotopes
-double massExcess[ISOTOPES];     // Array holding mass excesses for isotopes
-char isoLabel[ISOTOPES][5];      // Isotope labels (max 5 characters; e.g. 238pu)
-double dYDt[ISOTOPES];           // Rate of change for Y
+int Z[ISOTOPES];                  // Array holding Z values for isotopes
+int N[ISOTOPES];                  // Array holding N values for isotopes
+int AA[ISOTOPES];                 // Array holding A values for isotopes
+double Y[ISOTOPES];               // Array holding current abundances Y for isotopes
+double Y0[ISOTOPES];              // Array holding abundances at beginning of timestep
+double Ystore[ISOTOPES];          // Array storing current abundances for later restore
+double YfullStep[ISOTOPES];       // Array holding full-step Y update
+double X[ISOTOPES];               // Array holding mass fractions X for isotopes
+double massExcess[ISOTOPES];      // Array holding mass excesses for isotopes
+const static int isoLen = 6;      // Max character length for isoLabel[][]
+char isoLabel[ISOTOPES][isoLen];  // Isotope labels (max 5 characters; e.g. 238pu)
+double dYDt[ISOTOPES];            // Rate of change for Y
 
 
 // --- Reaction data in following arrays also contained in fields of class Reaction
@@ -1153,36 +1156,64 @@ class Utilities{
             // Write header for file pointed to by pFile
             
             for(int i=0; i<LX; i++){
-                iso = to_string(plotXlist[i]);  //iso = isoLabel[plotXlist[i]];
+                int indy = plotXlist[i];
+                iso = to_string(indy);       // Use species index as label
+                
+                // Use instead isotope symbol as label
+                
+                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+                
+                // The above conversion of a character array to a string leaves
+                // 2 or 3 end of line characters after the isotope label in iso
+                // that prevent printing correctly in fprint(pFile, stringToChar(str1))
+                // below. Remove those characters with pop_back(). Unfortunately, since
+                // the isotope symbols are from 3 to 5 characters long 3 applications of 
+                // pop_back will in some cases remove the last character of the symbol.
+                
+                // iso.pop_back();
+                // iso.pop_back();
+                // iso.pop_back();
+                
                 app.append(Xstring);
                 app.append(iso);
                 app.append(")    ");
+                
             }
             
             str1.append(app);
             str1.append("\n");
+            
             fprintf(pFile, stringToChar(str1));
+            
+            ofstream out("gnufile.txt");
+            out << str1;
+            out.close();
             
             fprintf(pFile, "\n");
             
             // Write header for file pointed to by pFile3
 
             for(int i=0; i<LX; i++){
-                to_string(plotXlist[i]);  //iso = isoLabel[plotXlist[i]];
+                int indy = plotXlist[i];
+                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+                iso = to_string(plotXlist[i]);  
                 appflux.append(Fpstring);
                 appflux.append(iso);
                 appflux.append(")   ");
             }
 
             for(int i=0; i<LX; i++){
-                to_string(plotXlist[i]); //iso = isoLabel[plotXlist[i]];
+                int indy = plotXlist[i];
+                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+                iso = to_string(plotXlist[i]); 
                 appflux.append(Fmstring);
                 appflux.append(iso);
                 appflux.append(")   ");
             }
             
             for(int i=0; i<LX; i++){
-                to_string(plotXlist[i]); //iso = isoLabel[plotXlist[i]];
+                iso = to_string(plotXlist[i]); 
+                //iso = isoLabel[plotXlist[i]];
                 appflux.append(dFstring);
                 appflux.append(iso);
                 appflux.append(")   ");
@@ -1438,6 +1469,18 @@ class Utilities{
             static char cs[50];
             strcpy(cs, &s[0]);     // alternatively strcpy(cs, s.c_str());
             return cs;
+        }
+        
+        
+        // Convert a character array to a string
+        
+        static string charArrayToString (char* a, int size) {
+            int i;
+            string s = "";
+            for (i = 0; i < size; i++) {
+                s = s + a[i];
+            }
+            return s;
         }
         
         
