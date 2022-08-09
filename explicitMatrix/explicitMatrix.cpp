@@ -156,7 +156,7 @@ void restoreBe8(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 75               // Number of plot output steps
+#define plotSteps 75                  // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -899,15 +899,6 @@ class Utilities{
 
                 tempsum += logTimeSpacing;
                 v[i] = pow(10, tempsum);       // v[i] mapped to plotTimeTarget[]
-                
-// if(i>0){
-//     tup = v[i];
-//     tlow = v[i-1];
-//     dtmax = tup - tlow;
-//     printf("\nPlotstep:%3d tlow=%7.5f tup=%7.5f dtmax=%7.5f 0.01*t=%7.5f log_tlow=%7.5f logtup=%7.5f", 
-//             i, v[i-1], v[i], dtmax, 0.01*tlow, log10(tlow), log10(tup));
-//     
-// }
 
             }
         }
@@ -1162,8 +1153,7 @@ class Utilities{
             // Write header for file pointed to by pFile
             
             for(int i=0; i<LX; i++){
-                iso = "isotope"; 
-                isoLabel[plotXlist[i]];
+                iso = to_string(plotXlist[i]);  //iso = isoLabel[plotXlist[i]];
                 app.append(Xstring);
                 app.append(iso);
                 app.append(")    ");
@@ -1178,21 +1168,21 @@ class Utilities{
             // Write header for file pointed to by pFile3
 
             for(int i=0; i<LX; i++){
-                iso = isoLabel[plotXlist[i]];
-                appflux.append("");
+                to_string(plotXlist[i]);  //iso = isoLabel[plotXlist[i]];
+                appflux.append(Fpstring);
                 appflux.append(iso);
                 appflux.append(")   ");
             }
-            
+
             for(int i=0; i<LX; i++){
-                iso = isoLabel[plotXlist[i]];
+                to_string(plotXlist[i]); //iso = isoLabel[plotXlist[i]];
                 appflux.append(Fmstring);
                 appflux.append(iso);
                 appflux.append(")   ");
             }
             
             for(int i=0; i<LX; i++){
-                iso = isoLabel[plotXlist[i]];
+                to_string(plotXlist[i]); //iso = isoLabel[plotXlist[i]];
                 appflux.append(dFstring);
                 appflux.append(iso);
                 appflux.append(")   ");
@@ -1200,8 +1190,7 @@ class Utilities{
             
             strflux.append(appflux);
             fprintf(pFile3, stringToChar(strflux));
-            
-            
+
             // Loop over timesteps for plot output writing the data to the file 
             // line by line using concatenated fprintf statements.
             
