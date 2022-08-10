@@ -419,6 +419,7 @@ double X[ISOTOPES];               // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];      // Array holding mass excesses for isotopes
 const static int isoLen = 6;      // Max character length for isoLabel[][]
 char isoLabel[ISOTOPES][isoLen];  // Isotope labels (max 5 characters; e.g. 238pu)
+string isoString[ISOTOPES];       // Isotope labels as strings
 double dYDt[ISOTOPES];            // Rate of change for Y
 
 
@@ -1744,12 +1745,12 @@ class Reaction: public Utilities {
         int numberReactants;         // Number species on the left side of reaction
         int numberProducts;          // Number species on the right side of reaction
         int numberIsotopes;          // numberReactants + numberProducts in reaction
-        char* reacString;            // String describing reaction
-        char resonanceType;          // Whether resonant (r) or non-resonant (nr)
-        int isEC;                    // Whether electron capture reaction (1) or not (0)
-        int isReverse;               // Whether reverse reaction (1) or not (0)
-        int ispeforward;             // Whether reactions is labeled "forward" in PE scheme
-        bool isEquil;                // Whether in a RG satisfying PE conditions
+        char* reacString;            // Character string labeling reaction (not used)
+        char resonanceType;          // Resonant (r) or non-resonant (nr) [not used]
+        int isEC;                    // Electron capture reaction (1) or not (0)
+        int isReverse;               // Reverse reaction (1) or not (0)
+        int ispeforward;             // Reactions is labeled "forward" in PE scheme
+        bool isEquil;                // In a RG satisfying PE conditions if true
         
         double Q;                    // Q-value for reaction
         double prefac;               // The eta prefac for rates
@@ -1785,7 +1786,7 @@ class Reaction: public Utilities {
         double dErate;               // Current rate of energy release
         char cs[20];                 // Utility character array
         char ccs[20];                // Utility character array
-        char* ss;                    // Utility string
+        char* ss;                    // Utility character string
   
   
     public:
@@ -5524,6 +5525,9 @@ void readNetwork (char *fileName) {
             
             isotope[isoIndex].setisoIndex(isoIndex);
             isotope[isoIndex].setisoLabel(isoSymbol);
+            isoString[isoIndex] = isoSymbol;
+            printf("\n $$$$$$$$ isoIndex=%d isoString=%s len=%d", isoIndex, 
+                   Utilities::stringToChar(isoString[isoIndex]), isoString[isoIndex].length());
             isotope[isoIndex].setZ(z);
             isotope[isoIndex].setN(n);
             isotope[isoIndex].setA(a);
