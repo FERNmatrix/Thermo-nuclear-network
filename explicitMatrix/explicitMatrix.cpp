@@ -159,7 +159,7 @@ void restoreBe8(void);
 #define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -221,7 +221,7 @@ char hydroFile[] = "data/tidalSNProfile_400.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = true;
+static const bool plotHydroProfile = false;
 
 const static int maxHydroEntries = 413; // Max entries hydro profile
 
@@ -419,7 +419,6 @@ double X[ISOTOPES];               // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];      // Array holding mass excesses for isotopes
 const static int isoLen = 6;      // Max character length for isoLabel[][]
 char isoLabel[ISOTOPES][isoLen];  // Isotope labels (max 5 characters; e.g. 238pu)
-string isoString[ISOTOPES];       // Isotope labels as strings
 double dYDt[ISOTOPES];            // Rate of change for Y
 
 
@@ -5525,9 +5524,6 @@ void readNetwork (char *fileName) {
             
             isotope[isoIndex].setisoIndex(isoIndex);
             isotope[isoIndex].setisoLabel(isoSymbol);
-            isoString[isoIndex] = isoSymbol;
-            printf("\n $$$$$$$$ isoIndex=%d isoString=%s len=%d", isoIndex, 
-                   Utilities::stringToChar(isoString[isoIndex]), isoString[isoIndex].length());
             isotope[isoIndex].setZ(z);
             isotope[isoIndex].setN(n);
             isotope[isoIndex].setA(a);
