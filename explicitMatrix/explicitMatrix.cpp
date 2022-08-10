@@ -34,14 +34,14 @@
  * To set up a specific calculation:
  * ----------------------------------
  * 
- * 1. Change values of ISOTOPES and SIZE
- * 2. Change input files for networkFile and rateLibraryFile
- * 3. Decide on whether constant T and rho, or input from a hydro T and rho profile.
- * 4. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options
- * 5. Change control parameters like stop_time, massTol, ...
- * 6. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput()
- * 7. Change values of T9_start and rho_start if constant T and rho.
- *
+ * 1. Change values of ISOTOPES and SIZE.
+ * 2. Change input files for networkFile and rateLibraryFile.
+ * 3. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
+ * 4. Change control parameters like stop_time, massTol, ...
+ * 5. Change species to be plotted output mask plotXlist[] in Utilities::plotOutput().
+ * 6. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
+ * 7. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
+ *    choose true or false for plotHydroProfile
  * ----------------------------------
  * 
  * 
@@ -137,7 +137,8 @@ void restoreBe8(void);
  * main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
  * full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
  * 48              48      299     data/network_48.inp         data/rateLibrary_48.data
- * 70              70      598     data/network_70.inp         data/rateLibrary_70.data
+ * 70(C-O)         70      598     data/network_70.inp         data/rateLibrary_70.data
+ * 70(4He)         70      598     data/network_70_alpha.inp   data/rateLibrary_70.data
  * 116            116     1135     data/network_116.inp        data/rateLibrary_116.data
  * nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
  * 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
@@ -155,10 +156,10 @@ void restoreBe8(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 130                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -181,13 +182,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_tidalSN_alpha.inp";
+char networkFile[] = "data/network_70_he4.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_70.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -215,14 +216,14 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-//char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/rosswog.profile";
+char hydroFile[] = "data/tidalSNProfile_400.inp";
+//char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 2622; // Max entries hydro profile
+const static int maxHydroEntries = 413; // Max entries hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -309,7 +310,7 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 double start_time = 6.4;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 6.9;           // Start time for plot output
-double stop_time = 10;                 // Stop time for integration
+double stop_time = 12;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -330,7 +331,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -939,16 +940,16 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
-//             int maxPlotIsotopes = 16;
-//             int plotXlist[maxPlotIsotopes];
-//             for(int i=0; i<maxPlotIsotopes; i++){
-//                 plotXlist[i] = i;
-//             }
+            int maxPlotIsotopes = 70;
+            int plotXlist[maxPlotIsotopes];
+            for(int i=0; i<maxPlotIsotopes; i++){
+                plotXlist[i] = i;
+            }
             
 
 //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
             
-               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+//               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
                
 //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
 //             int plotXlist[] = {0,1,2};                                      // 3-alpha
