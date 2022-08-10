@@ -307,10 +307,10 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 6.4;               // Start time for integration
+double start_time = 6.0;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 6.9;           // Start time for plot output
-double stop_time = 12;                 // Stop time for integration
+double stop_time = 10;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -331,7 +331,7 @@ double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-5;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
