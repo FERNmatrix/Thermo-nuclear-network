@@ -216,13 +216,13 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // in format suitable for gnuplot.
 
 //char hydroFile[] = "data/tidalSNProfile_400.inp";
-char hydroFile[] = "data/rosswog.profile"; //"data/tidalSNProfile_400.inp"; 
+char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 2622; //413; // Max entries if reading hydro profile
+const static int maxHydroEntries = 2622; // Max entries hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -1166,11 +1166,15 @@ class Utilities{
                 // The above conversion of a character array to a string leaves
                 // 2 or 3 end of line characters after the isotope label in iso
                 // that prevent printing correctly in fprint(pFile, stringToChar(str1))
-                // below. Remove those characters with pop_back(). Unfortunately, since
-                // the isotope symbols are from 3 to 5 characters long 3 applications of 
-                // pop_back will in some cases remove the last character of the symbol.
+                // below. It will print with ofstream as commented out below, but 
+                // displaying 2-3 garbage symbols at the end. Remove those characters
+                // with pop_back(). Unfortunately, since the isotope symbols are from 3 to 5 
+                // characters long, 3 applications of pop_back removes the unwanted
+                // characters but will in some cases remove the last character of the 
+                // actual isotopic symbol. Thus switched to displaying the species number
+                // rather than the isotopic symbol in the plot output.  More compact anyway.
                 
-                // iso.pop_back();
+                // iso.pop_back();  // Remove last character
                 // iso.pop_back();
                 // iso.pop_back();
                 
@@ -1185,9 +1189,11 @@ class Utilities{
             
             fprintf(pFile, stringToChar(str1));
             
-            ofstream out("gnufile.txt");
-            out << str1;
-            out.close();
+            // Alternative output that can print strings
+            
+            //ofstream out("gnufile.txt");
+            //out << str1;
+            //out.close();
             
             fprintf(pFile, "\n");
             
@@ -1266,7 +1272,7 @@ class Utilities{
                         log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
                 }
                 
-                cout.flush();   // Force buffer dump
+                //cout.flush();   // Force buffer dump
                 
             }
             
@@ -4787,7 +4793,6 @@ int main() {
         // the following conditional.
         
         if(hydroProfile){
-        //if( (hydroProfile) && totalTimeSteps > 1){
             
             for(int i=0; i<SIZE; i++){
                 reaction[i].computeConstantFacs(T9, rho);
@@ -4869,9 +4874,6 @@ int main() {
         // larger than the target output times. Plots are made with respect to actual, not
         // target, output times.
         // ---------------------------------------------------------------------------------
-        
-// printf("\n**** step=%d t=%7.5e dt=%7.5e t+dt=%7.5e target=%7.5e", 
-//     plotCounter-1, t, dt, t+dt, plotTimeTargets[plotCounter-1]);
         
         if(t >= plotTimeTargets[plotCounter-1]){
             
