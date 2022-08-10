@@ -159,7 +159,7 @@ void restoreBe8(void);
 #define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 110                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -216,14 +216,14 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/tidalSNProfile_400.inp";
+char hydroFile[] = "data/tidalSNProfile_100.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = false;
 
-const static int maxHydroEntries = 413; // Max entries hydro profile
+const static int maxHydroEntries = 103; // Max entries hydro profile
 
 // Control printout of flux data (true to print, false to suppress)
  
@@ -310,7 +310,7 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 double start_time = 6.0;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 6.9;           // Start time for plot output
-double stop_time = 10;                 // Stop time for integration
+double stop_time = 20;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step

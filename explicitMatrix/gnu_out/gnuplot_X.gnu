@@ -82,8 +82,8 @@ file1 = "gnufile.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0.84 #0.852
-xup = 1.0 #1.82
-xtics = 0.02    # Space between major x ticmarks
+xup = 1.3 #1.82
+xtics = 0.05    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14
