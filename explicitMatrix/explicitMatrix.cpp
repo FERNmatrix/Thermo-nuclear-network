@@ -4947,7 +4947,7 @@ int main() {
             // course in production code we would not be writing significant output to the 
             // screen anyway.
             
-            cout.flush();   // Force buffer dump
+            cout.flush();   // Force buffer dumpc 
   
             // Increment the plot output counter for next graphics output
             
