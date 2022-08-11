@@ -91,6 +91,8 @@ clock_t startCPU, stopCPU;
 #define PRINT_CPU (printf("Timer: %7.4e ms used", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU (fprintf(pFile, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU2 (fprintf(pFile2, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU3 (fprintf(plotfile1, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define FPRINTF_CPU4 (fprintf(plotfile2, "in %7.4e seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPUD (fprintf(pFileD, "in %g seconds\n", (double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define PRINT_CPU_TEST (printf("\nTimer Test: %g ms used by CPU\n", 1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));  
 
@@ -148,7 +150,7 @@ void plotFileSetup(void);
  * 268            268     3175     network_268.inp             data/rateLibrary_268.data
  * 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
  * 365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
- * tidalSN_alpha   16       48     data/network_tidalSN_alpha.inp  data/rateLibrary_alpha.data
+ * tidalSN_alpha   16       48     data/network_alpha_he4.inp  data/rateLibrary_alpha.data
  * ------------------------------------------------------------------------------------------
  */
 
@@ -157,10 +159,10 @@ void plotFileSetup(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 110                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -183,13 +185,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_70_he4.inp";
+char networkFile[] = "data/network_alpha_he4.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_70.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -232,7 +234,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = 70;    // Number species output to plot files
+static const int maxPlotIsotopes = 16;    // Number species output to plot files
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 FILE * plotfile1;
 FILE * plotfile2;
@@ -5113,7 +5115,94 @@ void plotFileSetup(){
         if(plotFluxes){fprintf(plotfile3, "# QSS");}
         //fprintf(pFileD, "# QSS");
     }
+    
+    if(doPE){
+        fprintf(plotfile1, "+PE");
+        fprintf(plotfile2, "+PE");
+        if(plotFluxes){fprintf(plotfile3, "+PE");}
+        //fprintf(pFileD, "+PE");
+    } 
+    
+    if(dopf){
+        fprintf(plotfile1, " method (with partition functions) ");
+        fprintf(plotfile2, " method (with partition functions) ");
+        if(plotFluxes){fprintf(plotfile3, " method (with partition functions): ");}
+        //fprintf(pFileD, "+ method (with partition functions): ");
+    } else {
+        fprintf(plotfile1, " method (no partition functions) ");
+        fprintf(plotfile2, " method (no partition functions) ");
+        if(plotFluxes){fprintf(plotfile3, " method (no partition functions): ");}
+        //fprintf(pFileD, "+ method (no partition functions): "); 
+    }
+    
+    //fprintf(plotfile1, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+    //fprintf(plotfile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//     if(plotFluxes) fprintf(plotfile3, "%d integration steps ", 
+//         totalTimeSteps - totalTimeStepsZero);
+    //fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+        
+    //FPRINTF_CPU3;
+    //FPRINTF_CPU4;
+    //FPRINTF_CPUD;
+    
+    fprintf(plotfile1, "\n# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
+    fprintf(plotfile1, "# Log of absolute values for E and dE/dt as they can be negative\n");
+    fprintf(plotfile1, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
+    fprintf(plotfile1, "#\n");
+    
+    string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
+    str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
+    fprintf(plotfile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
+    fprintf(plotfile2, Utilities::stringToChar(str2));
+    
+    
+    // Write header for file pointed to by pFile
+            
+    for(int i=0; i<LX; i++){
+        int indy = plotXlist[i];
+        iso = to_string(indy);       // Use species index as label
+        
+        // Use instead isotope symbol as label
+        
+        // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+        
+        // The above conversion of a character array to a string leaves
+        // 2 or 3 end of line characters after the isotope label in iso
+        // that prevent printing correctly in fprint(pFile, stringToChar(str1))
+        // below. It will print with ofstream as commented out below, but 
+        // displaying 2-3 garbage symbols at the end. Remove those characters
+        // with pop_back(). Unfortunately, since the isotope symbols are from 3 to 5 
+        // characters long, 3 applications of pop_back removes the unwanted
+        // characters but will in some cases remove the last character of the 
+        // actual isotopic symbol. Thus switched to displaying the species number
+        // rather than the isotopic symbol in the plot output.  More compact anyway.
+        
+        // iso.pop_back();  // Remove last character
+        // iso.pop_back();
+        // iso.pop_back();
+        
+        app.append(Xstring);
+        app.append(iso);
+        app.append(")    ");
+        
+    }
+    
+    str1.append(app);
+    str1.append("\n");
+    
+    fprintf(plotfile1, Utilities::stringToChar(str1));
+    
+    // Alternative output that can print strings
+    
+    //ofstream out("gnufile.txt");
+    //out << str1;
+    //out.close();
+    
+    fprintf(plotfile1, "\n");
+    
+    
 }
+
 
 
 // Function restoreBe9() to convert all 8-Be to alpha particles since lifetime 
