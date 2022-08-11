@@ -120,6 +120,7 @@ void showParameters(void);
 double dE_halfstep(void);
 void sumFplusFminus(void);
 void restoreBe8(void);
+void plotFileSetup(void);
 
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
@@ -228,6 +229,15 @@ const static int maxHydroEntries = 103; // Max entries hydro profile
 // Control printout of flux data (true to print, false to suppress)
  
 static const bool plotFluxes = false;
+
+// Plot output controls and file pointers
+
+static const int maxPlotIsotopes = 70;    // Number species output to plot files
+int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
+FILE * plotfile1;
+FILE * plotfile2;
+FILE * plotfile3;
+FILE * plotfile4;
 
 // Control flags for diagnostic output to file pointed to by *pFileD
 
@@ -4718,23 +4728,16 @@ int main() {
         interpolateRho.spline(hydroTime, hydroRho, hydroLines, hydroLines);
     }
     
-    // Open file for plot output at each plot step during integration
+    // Open files for plot output at each plot step during integration
     
-    FILE * plotfile1;
-    plotfile1 = fopen("gnu_out/plot1.data","w");
-            
-    FILE * plotfile2;
-    plotfile2 = fopen("gnu_out/plot2.data","w");
-    
-    FILE * plotfile3;
-    plotfile3 = fopen("gnu_out/plot3.data","w");
-    
-    FILE * plotfile4;
-    plotfile4 = fopen("gnu_out/plot4.data","w");
+    plotfile1 = fopen("gnu_out/plot1.data","w");   // t, dt, mass fractions
+    plotfile2 = fopen("gnu_out/plot2.data","w");   // timestepping stuff
+    plotfile3 = fopen("gnu_out/plot3.data","w");   // fluxes
+    plotfile4 = fopen("gnu_out/plot4.data","w");   // hydro profile
 
     // Setup files for plot output during the integration by writing headers
 
-    
+    plotFileSetup();
     
     // ------------------------------------ //
     // *** Begin main integration loop ***  //
@@ -5063,6 +5066,54 @@ int main() {
 // **********************************************************
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
+
+
+// Set up headers for the plot files that will be written to during 
+// the integration.
+
+void plotFileSetup(){
+    
+    // Following array controls which mass fractions are exported to plotting
+    // file.  The entries in plotXlist[] are the species indices for the
+    // isotopes in the network to be plotted. For small networks export all;
+    // for large networks we will usually export only a representative subset.
+    // Hardwired for now, but eventually we should read the entries of this
+    // array in from a data file.
+
+    for(int i=0; i<maxPlotIsotopes; i++){
+        plotXlist[i] = i;
+    }
+    
+    // Get length LX of array plotXlist holding the species indices for
+    // isotopes that we will plot mass fraction X for.
+            
+    int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
+    
+    string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+    string strflux = "\n#    t     dt   ";
+    string app = "  ";
+    string app1;
+    string appflux;
+    string Xstring = "X(";
+    string Fpstring = "F+(";
+    string Fmstring = "F-(";
+    string dFstring = "dF(";
+    string iso;
+    
+    fprintf(pFileD, "\n\n");
+    
+    if(doASY){
+        fprintf(plotfile1, "# ASY");
+        fprintf(plotfile2, "# ASY");
+        if(plotFluxes){fprintf(plotfile3, "# ASY");}
+        //fprintf(pFileD, "# ASY");
+    } else {
+        fprintf(plotfile1, "# QSS");
+        fprintf(plotfile2, "# QSS");
+        if(plotFluxes){fprintf(plotfile3, "# QSS");}
+        //fprintf(pFileD, "# QSS");
+    }
+}
 
 
 // Function restoreBe9() to convert all 8-Be to alpha particles since lifetime 
