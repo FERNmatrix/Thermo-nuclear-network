@@ -5121,7 +5121,37 @@ void toPlotNow(){
             log10(dt_FE), log10(dt_EA), log10(dt),
             logTnow, logRhoNow
         );
-}
+        
+//         // Output hydro profile if desired
+//         
+//     if(hydroProfile && plotHydroProfile){
+//         Utilities::outputHydroProfile();
+//     }
+//     
+//     // Static function Utilities::plotHydroprofile() to send hydro profile 
+//     // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
+//     // are true.
+//         
+//         static void outputHydroProfile(){
+//             
+//             FILE * pHydro;
+//             pHydro = fopen("gnu_out/hydroProfile.out","w");
+//             if( pHydro == NULL ) {
+//                 fprintf(stderr, "Couldn't open file: %s\n", strerror(errno));
+//                 exit(1);
+//             }
+//             
+//             fprintf(pHydro, "#  time          T          rho");
+//             
+//             for (int i=0; i<hydroLines; i++){
+//                 fprintf(pHydro, "\n%6.4e  %6.4e  %6.4e", 
+//                     hydroTime[i], hydroTemp[i], hydroRho[i]);
+//             }
+//             
+//             fclose (pHydro);
+//         }
+        
+}  // End of toPlotNow()
 
 
 // Set up headers for the plot files that will be written to during 
@@ -5254,7 +5284,7 @@ void plotFileSetup(){
     
     //fprintf(plotfile1, "\n");
     
-}
+}  // End of plotFileSetup
 
 
 
