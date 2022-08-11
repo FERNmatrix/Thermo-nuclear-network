@@ -4717,12 +4717,29 @@ int main() {
         interpolateT.spline(hydroTime, hydroTemp, hydroLines, hydroLines);
         interpolateRho.spline(hydroTime, hydroRho, hydroLines, hydroLines);
     }
+    
+    // Open file for plot output at each plot step during integration
+    
+    FILE * plotfile1;
+    plotfile1 = fopen("gnu_out/plot1.data","w");
+            
+    FILE * plotfile2;
+    plotfile2 = fopen("gnu_out/plot2.data","w");
+    
+    FILE * plotfile3;
+    plotfile3 = fopen("gnu_out/plot3.data","w");
+    
+    FILE * plotfile4;
+    plotfile4 = fopen("gnu_out/plot4.data","w");
+
+    // Setup files for plot output during the integration by writing headers
 
     
-
+    
     // ------------------------------------ //
     // *** Begin main integration loop ***  //
     // ------------------------------------ //
+    
     
     totalIterations = 0;
     XcorrFac = 1.0;
@@ -4956,6 +4973,13 @@ int main() {
         }
     
     }   // End time integration while-loop
+    
+    // Close plot output files
+    
+    fclose(plotfile1);
+    fclose(plotfile2);
+    fclose(plotfile3);
+    fclose(plotfile4);
     
     
     // Write parameters at end of integration. Also stops timer started
