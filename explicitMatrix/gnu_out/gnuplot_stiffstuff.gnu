@@ -96,7 +96,8 @@ set mytics minytics   # minor y tics per major tic
 
 # -------- Axis ranges and ticmarks -----------
 
-file1 = "gnufile2.data"
+file1 = "plot2.data"
+#file1 = "gnufile2.data"
 
 # Plot data
 

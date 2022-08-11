@@ -123,6 +123,7 @@ double dE_halfstep(void);
 void sumFplusFminus(void);
 void restoreBe8(void);
 void plotFileSetup(void);
+void toPlotNow(void);
 
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
@@ -952,7 +953,7 @@ class Utilities{
             // Hardwired for now, but eventually we should read the entries of this
             // array in from a data file.
             
-            int maxPlotIsotopes = 70;
+            int maxPlotIsotopes = 16;
             int plotXlist[maxPlotIsotopes];
             for(int i=0; i<maxPlotIsotopes; i++){
                 plotXlist[i] = i;
@@ -4904,6 +4905,10 @@ int main() {
             
             if(plotCounter == 1) {totalTimeStepsZero =  totalTimeSteps;}
             
+            // Output to files for this timestep
+            
+            toPlotNow();
+            
             // Output to plot arrays for this timestep
             
             tplot[plotCounter-1] = log10(t);
@@ -5070,6 +5075,55 @@ int main() {
 // **********************************************************
 
 
+
+
+void toPlotNow(){
+    
+    // Output to plotfile1 stream -> plot1.data
+    
+    fprintf(plotfile1, "\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+        log10(t), log10(dt), log10( abs(ECON*ERelease)), 
+        log10( abs(ECON*netdERelease) ), (double)totalAsy/(double)ISOTOPES,
+        (double)totalEquilRG/(double)numberRG, sumX
+    );
+    
+    // Now add one data field for each X(i) in plotXlist[]. Add
+    // 1e-24 to X in case it is identically zero since we are
+    // taking the log.
+    
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile1, " %5.3e", log10(X[j] + 1e-24));
+    }
+    
+//     fprintf(plotfile1, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//     fprintf(plotfile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//     if(plotFluxes) fprintf(plotfile3, "%d integration steps ", 
+//         totalTimeSteps - totalTimeStepsZero);
+//     fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//         
+//     FPRINTF_CPU3;
+//     FPRINTF_CPU4;
+    //FPRINTF_CPUD;
+    
+    //fprintf(plotfile1, "\n");
+
+            
+    interpT[plotCounter-1] = logTnow;
+            interpRho[plotCounter-1] = logRhoNow;
+    
+    // Output data to plotfile2 stream -> plot2.data
+    
+        fprintf(plotfile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
+            log10(t), log10(dt), log10(1.0/slowestCurrentRate), 
+            reacLabel[ slowestCurrentRateIndex],
+            log10(2.0/fastestCurrentRate),
+            reacLabel[fastestCurrentRateIndex],
+            log10(dt_FE), log10(dt_EA), log10(dt),
+            logTnow, logRhoNow
+        );
+}
+
+
 // Set up headers for the plot files that will be written to during 
 // the integration.
 
@@ -5091,12 +5145,12 @@ void plotFileSetup(){
             
     int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
     
-    string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+    string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil sumX";
     string strflux = "\n#    t     dt   ";
     string app = "  ";
     string app1;
     string appflux;
-    string Xstring = "X(";
+    string Xstring = "  X(";
     string Fpstring = "F+(";
     string Fmstring = "F-(";
     string dFstring = "dF(";
@@ -5152,11 +5206,11 @@ void plotFileSetup(){
     
     string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
     str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
-    fprintf(plotfile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
+    fprintf(plotfile2, "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
     fprintf(plotfile2, Utilities::stringToChar(str2));
     
     
-    // Write header for file pointed to by pFile
+    // Write header for file pointed to by plotfile1
             
     for(int i=0; i<LX; i++){
         int indy = plotXlist[i];
@@ -5198,8 +5252,7 @@ void plotFileSetup(){
     //out << str1;
     //out.close();
     
-    fprintf(plotfile1, "\n");
-    
+    //fprintf(plotfile1, "\n");
     
 }
 

@@ -76,7 +76,8 @@ ds="C++ Asy tidal supernova."
 ds = ds.""
 set title ds textcolor rgb title_color
 
-file1 = "gnufile.data"
+file1 = "plot1.data"
+#file1 = "gnufile.data"
 
 
 # -------- Axis ranges and ticmarks -----------
