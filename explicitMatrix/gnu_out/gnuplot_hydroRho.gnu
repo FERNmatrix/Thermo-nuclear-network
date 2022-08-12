@@ -96,12 +96,13 @@ set mytics minytics   # minor y tics per major tic
 # -------- Axis ranges and ticmarks -----------
 
 
-file1 = "gnufile2.data"
+#file1 = "gnufile2.data"
+file1 = "plot4.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 #plot file1 using 1:(10**$11) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
 #plot file1 using 1:11 with lines ls 1 lw 1.0 dashtype 1 title "log Rho interp (t)"
-plot file1 using 1:(10**$11) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
+plot file1 using 1:(10**$3) with lines ls 1 lw 1.0 dashtype 1 title "Rho interp (t)"
 
 file2 = "hydroProfile.out"  # The input hydro profile
 

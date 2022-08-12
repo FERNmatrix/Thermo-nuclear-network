@@ -97,11 +97,12 @@ set mytics minytics   # minor y tics per major tic
 
 
 #file1 = "hydroProfile.out"
-file1 = "gnufile2.data"
+#file1 = "gnufile2.data"
+file1 = "plot4.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 #plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$10/1e9) with lines ls 1 lw 1.0 dashtype 1 title "T9 interp (t)"
+plot file1 using 1:(10**$2/1e9) with lines ls 1 lw 1.0 dashtype 1 title "T9 interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
 #file2 = "../data/nova125DProfile.inp"

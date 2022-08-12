@@ -225,7 +225,7 @@ char hydroFile[] = "data/tidalSNProfile_100.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = false;
+static const bool plotHydroProfile = true;
 
 const static int maxHydroEntries = 103; // Max entries hydro profile
 
@@ -4707,7 +4707,6 @@ int main() {
         }
     }
     
-    
     if(!hydroProfile){
         fprintf(pFileD, 
             "\n\n**** Rates won't be computed again since T and rho won't ");
@@ -4733,8 +4732,8 @@ int main() {
     
     // Open files for plot output at each plot step during integration
     
-    plotfile1 = fopen("gnu_out/plot1.data","w");   // t, dt, mass fractions
-    plotfile2 = fopen("gnu_out/plot2.data","w");   // timestepping stuff
+    plotfile1 = fopen("gnu_out/plot1.data","w");   // t, dt, E, dE, X
+    plotfile2 = fopen("gnu_out/plot2.data","w");   // dt, Rmax
     plotfile3 = fopen("gnu_out/plot3.data","w");   // fluxes
     plotfile4 = fopen("gnu_out/plot4.data","w");   // hydro profile
 
@@ -5074,9 +5073,6 @@ int main() {
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
 
-
-
-
 void toPlotNow(){
     
     // Output to plotfile1 stream -> plot1.data
@@ -5107,20 +5103,29 @@ void toPlotNow(){
     
     //fprintf(plotfile1, "\n");
 
-            
-    interpT[plotCounter-1] = logTnow;
-            interpRho[plotCounter-1] = logRhoNow;
     
-    // Output data to plotfile2 stream -> plot2.data
+    // Output to plotfile2 stream -> plot2.data
     
-        fprintf(plotfile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
-            log10(t), log10(dt), log10(1.0/slowestCurrentRate), 
-            reacLabel[ slowestCurrentRateIndex],
-            log10(2.0/fastestCurrentRate),
-            reacLabel[fastestCurrentRateIndex],
-            log10(dt_FE), log10(dt_EA), log10(dt),
-            logTnow, logRhoNow
-        );
+    fprintf(plotfile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
+        log10(t), log10(dt), log10(1.0/slowestCurrentRate), 
+        reacLabel[ slowestCurrentRateIndex],
+        log10(2.0/fastestCurrentRate),
+        reacLabel[fastestCurrentRateIndex],
+        log10(dt_FE), log10(dt_EA), log10(dt),
+        logTnow, logRhoNow
+    );
+        
+        
+    // Output to plotfile3 stream -> plot4.data
+        
+    if(hydroProfile && plotHydroProfile){
+        
+        for (int i=0; i<hydroLines; i++){
+            fprintf(plotfile4, "\n%6.4e  %6.4e  %6.4e", 
+                hydroTime[i], hydroTemp[i], hydroRho[i]);
+            }
+                        
+    }
         
 //         // Output hydro profile if desired
 //         
@@ -5283,6 +5288,12 @@ void plotFileSetup(){
     //out.close();
     
     //fprintf(plotfile1, "\n");
+    
+    
+    // Write header for plotfile4 stream -> plot4.data
+    
+    if(hydroProfile && plotHydroProfile)
+    fprintf(plotfile4, "#  time          T          rho");
     
 }  // End of plotFileSetup
 
