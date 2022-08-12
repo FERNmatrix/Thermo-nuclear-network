@@ -204,8 +204,8 @@ bool hydroProfile = true;
 
 double logTnow;               // Log10 of current temp
 double logRhoNow;             // Log10 of current rho
-double interpT[plotSteps];    // Interpolated value of T if hydro profile
-double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
+//double interpT[plotSteps];    // Interpolated value of T if hydro profile
+//double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -340,9 +340,9 @@ double dt_desired;                     // dt desired but prevented by plot times
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
-double dt_FEplot[plotSteps];           // Store at plotsteps
-double dt_EAplot[plotSteps];           // Store at plotsteps
-double dt_trial[plotSteps];            // Trial dt at plotstep
+//double dt_FEplot[plotSteps];           // Store at plotsteps
+//double dt_EAplot[plotSteps];           // Store at plotsteps
+//double dt_trial[plotSteps];            // Trial dt at plotstep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
@@ -393,7 +393,7 @@ int totalTimeSteps;                  // Number of integration timesteps taken
 int totalTimeStepsZero;              // Timestep when plotting starts
 int plotCounter;                     // Plot output counter
 double logTimeSpacing;               // Constant spacing of plot points in log time
-double logSpacing[plotSteps];
+//double logSpacing[plotSteps];
 double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
 
@@ -611,20 +611,20 @@ int indexAlpha = -1;     // Species index of He4 if hasAlpha = true
 double plotTimeTargets[plotSteps];           // Target plot times
 double nextPlotTime;                         // Next plot output time
 
-double tplot[plotSteps];                     // Actual time for plot step
-double dtplot[plotSteps];                    // dt for plot step
-double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
-double sumXplot[plotSteps];                  // Sum of mass fractions
-int numAsyplot[plotSteps];                   // Number asymptotic species
-int numRG_PEplot[plotSteps];                 // Number RG in PE
-double EReleasePlot[plotSteps];              // Integrated energy release
-double dEReleasePlot[plotSteps];             // Differential energy release
-double fastestRatePlot[plotSteps];           // Fastest reaction rate at time t
-int fastestRateIndexPlot[plotSteps];         // Reaction index fastest rate
-double slowestRatePlot[plotSteps];           // Slowest reaction rate at time t
-int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
-double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
-double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
+//double tplot[plotSteps];                     // Actual time for plot step
+//double dtplot[plotSteps];                    // dt for plot step
+//double Xplot[ISOTOPES][plotSteps];           // Mass fractions X
+//double sumXplot[plotSteps];                  // Sum of mass fractions
+//int numAsyplot[plotSteps];                   // Number asymptotic species
+//int numRG_PEplot[plotSteps];                 // Number RG in PE
+//double EReleasePlot[plotSteps];              // Integrated energy release
+//double dEReleasePlot[plotSteps];             // Differential energy release
+//double fastestRatePlot[plotSteps];           // Fastest reaction rate at time t
+//int fastestRateIndexPlot[plotSteps];         // Reaction index fastest rate
+//double slowestRatePlot[plotSteps];           // Slowest reaction rate at time t
+//int slowestRateIndexPlot[plotSteps];         // Reaction index slowest rate
+//double FplusSumPlot[ISOTOPES][plotSteps];    // FplusSum
+//double FminusSumPlot[ISOTOPES][plotSteps];   // FplusSum
 
 
 
@@ -934,368 +934,368 @@ class Utilities{
         
         static void plotOutput(){
 
-            // Open files for ascii output. Assumes that the subdirectory
-            // gnu_out already exists. If it doesn't, will compile but
-            // may crash when executed.
-            
-            FILE * pFile;
-            pFile = fopen("gnu_out/gnufile.data","w");
-            
-            FILE * pFile2;
-            pFile2 = fopen("gnu_out/gnufile2.data","w");
-            
-            FILE * pFile3;
-            pFile3 = fopen("gnu_out/gnufileFlux.data","w");
-            
-            // Following array controls which mass fractions are exported to plotting
-            // file.  The entries in plotXlist[] are the species indices for the
-            // isotopes in the network to be plotted. For small networks export all;
-            // for large networks we will usually export only a representative subset.
-            // Hardwired for now, but eventually we should read the entries of this
-            // array in from a data file.
-            
-            int maxPlotIsotopes = 16;
-            int plotXlist[maxPlotIsotopes];
-            for(int i=0; i<maxPlotIsotopes; i++){
-                plotXlist[i] = i;
-            }
-            
-
-//             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-            
-//               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
-               
-//             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-//             int plotXlist[] = {0,1,2};                                      // 3-alpha
-//             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
-//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
-//   
-//             int plotXlist[] = {
-//                 1,
-//                 3,
-//                 4,
-//                 11,
-//                 12,
-//                 15,
-//                 16,
-//                 17,
-//                 21,
-//                 22,
-//                 23,
-//                 26,
-//                 27,
-//                 32,
-//                 33,
-//                 40,
-//                 41,
-//                 48,
-//                 49,
-//                 55,
-//                 56,
-//                 62,
-//                 63,
-//                 64,
-//                 70,
-//                 77,
-//                 78,
-//                 86,
-//                 95,
-//                 104,
-//                 112,
-//                 34,
-//                 20,
-//                 46,
-//                 42,
-//                 30,
-//                 75,
-//                 76,
-//                 54,
-//                 69,
-//                 60,
-//                 19,
-//                 61,
-//                 68,
-//                 25,
-//                 67,
-//                 53,
-//                 59,
-//                 74,
-//                 79,
-//                 84,
-//                 39,
-//                 83,
-//                 31,
-//                 96,
-//                 85,
-//                 88,
-//                 50,
-//                 93,
-//                 97,
-//                 96,
-//                 94,
-//                 66,
-//                 102,
-//                 92,
-//                 52,
-//                 111,
-//                 110,
-//                 99,
-//                 38,
-//                 101,
-//                 45,
-//                 113,
-//                 43,
-//                 119,
-//                 114,
-//                 118,
-//                 100,
-//                 120,
-//                 6,
-//                 107,
-//                 109,
-//                 115,
-//                 121,
-//                 3,
-//                 125,
-//                 108,
-//                 37,
-//                 124,
-//                 126,
-//                 71,
-//                 10,
-//                 7,
-//                 57,
-//                 127,
-//                 65,
-//                 73,
-//                 106,
-//                 9,
-//                 87,
-//                 80
-//             };                                              // 101 nova134 isotopes
-                
-                
-//                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
-//                23,26,27,32,33,40,41,48,49,55,
-//                56,62,63,64,70,77,78,86,95,104,
-//                112,34};                                              // 31 nova134 selection
-
-//             int plotXlist[] = 
-//             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
-//             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
-            
-            
-            // Get length LX of array plotXlist holding the species indices for
-            // isotopes that we will plot mass fraction X for.
-            
-            int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
-            
-            string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
-            string strflux = "\n#    t     dt   ";
-            string app = "  ";
-            string app1;
-            string appflux;
-            string Xstring = "X(";
-            string Fpstring = "F+(";
-            string Fmstring = "F-(";
-            string dFstring = "dF(";
-            string iso;
-            
-            fprintf(pFileD, "\n\n");
-            
-            if(doASY){
-                fprintf(pFile, "# ASY");
-                fprintf(pFile2, "# ASY");
-                if(plotFluxes){fprintf(pFile3, "# ASY");}
-                fprintf(pFileD, "# ASY");
-            } else {
-                fprintf(pFile, "# QSS");
-                fprintf(pFile2, "# QSS");
-                if(plotFluxes){fprintf(pFile3, "# QSS");}
-                fprintf(pFileD, "# QSS");
-            }
-            
-            if(doPE){
-                fprintf(pFile, "+PE");
-                fprintf(pFile2, "+PE");
-                if(plotFluxes){fprintf(pFile3, "+PE");}
-                fprintf(pFileD, "+PE");
-            } 
-            
-            if(dopf){
-                fprintf(pFile, " method (with partition functions): ");
-                fprintf(pFile2, " method (with partition functions): ");
-                if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
-                fprintf(pFileD, "+ method (with partition functions): ");
-            } else {
-                fprintf(pFile, " method (no partition functions): ");
-                fprintf(pFile2, " method (no partition functions): ");
-                if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
-                fprintf(pFileD, "+ method (no partition functions): "); 
-            }
-            
-            fprintf(pFile, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-            fprintf(pFile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-            if(plotFluxes) fprintf(pFile3, "%d integration steps ", 
-                totalTimeSteps - totalTimeStepsZero);
-            fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-                
-            FPRINTF_CPU;
-            FPRINTF_CPU2;
-            FPRINTF_CPUD;
-            
-            fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
-            fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
-            fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
-            fprintf(pFile, "#\n");
-            
-            string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
-            str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
-            fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
-            fprintf(pFile2, stringToChar(str2));
-            
-            for(int i=0; i<plotSteps; i++){
-                
-                fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
-                    tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
-                    reacLabel[ slowestRateIndexPlot[i]],
-                    log10(2.0/fastestRatePlot[i]),
-                    reacLabel[ fastestRateIndexPlot[i]],
-                    log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i]),
-                    interpT[i], interpRho[i]
-                );
-            }
-            
-            cout.flush();
-            
-            // Write header for file pointed to by pFile
-            
-            for(int i=0; i<LX; i++){
-                int indy = plotXlist[i];
-                iso = to_string(indy);       // Use species index as label
-                
-                // Use instead isotope symbol as label
-                
-                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
-                
-                // The above conversion of a character array to a string leaves
-                // 2 or 3 end of line characters after the isotope label in iso
-                // that prevent printing correctly in fprint(pFile, stringToChar(str1))
-                // below. It will print with ofstream as commented out below, but 
-                // displaying 2-3 garbage symbols at the end. Remove those characters
-                // with pop_back(). Unfortunately, since the isotope symbols are from 3 to 5 
-                // characters long, 3 applications of pop_back removes the unwanted
-                // characters but will in some cases remove the last character of the 
-                // actual isotopic symbol. Thus switched to displaying the species number
-                // rather than the isotopic symbol in the plot output.  More compact anyway.
-                
-                // iso.pop_back();  // Remove last character
-                // iso.pop_back();
-                // iso.pop_back();
-                
-                app.append(Xstring);
-                app.append(iso);
-                app.append(")    ");
-                
-            }
-            
-            str1.append(app);
-            str1.append("\n");
-            
-            fprintf(pFile, stringToChar(str1));
-            
-            // Alternative output that can print strings
-            
-            //ofstream out("gnufile.txt");
-            //out << str1;
-            //out.close();
-            
-            fprintf(pFile, "\n");
-            
-            // Write header for file pointed to by pFile3
-
-            for(int i=0; i<LX; i++){
-                int indy = plotXlist[i];
-                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
-                iso = to_string(plotXlist[i]);  
-                appflux.append(Fpstring);
-                appflux.append(iso);
-                appflux.append(")   ");
-            }
-
-            for(int i=0; i<LX; i++){
-                int indy = plotXlist[i];
-                // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
-                iso = to_string(plotXlist[i]); 
-                appflux.append(Fmstring);
-                appflux.append(iso);
-                appflux.append(")   ");
-            }
-            
-            for(int i=0; i<LX; i++){
-                iso = to_string(plotXlist[i]); 
-                //iso = isoLabel[plotXlist[i]];
-                appflux.append(dFstring);
-                appflux.append(iso);
-                appflux.append(")   ");
-            }
-            
-            strflux.append(appflux);
-            fprintf(pFile3, stringToChar(strflux));
-
-            // Loop over timesteps for plot output writing the data to the file 
-            // line by line using concatenated fprintf statements.
-            
-            for(int i=0; i<plotSteps; i++){
-                
-                // Initial data fields for t, dt, sumX, fraction of asymptotic
-                // isotopes, and fraction of reaction groups in equilibrium.
-                
-                fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-                    tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
-                    (double)numAsyplot[i]/(double)ISOTOPES,
-                    (double)numRG_PEplot[i]/(double)numberRG,
-                    sumXplot[i]
-                );
-                
-                // Now add one data field for each X(i) in plotXlist[]. Add
-                // 1e-24 to X in case it is identically zero since we are
-                // taking the log.
-                
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile, " %5.3e", log10(Xplot[plotXlist[j]][i]+1e-24));
-                }
-                
-                fprintf(pFile, "\n");
-                
-                // Fluxes
-                
-                fprintf(pFile3, "\n%+6.3f %+6.3f", tplot[i], dtplot[i]);
-                
-                // Now add one data field for each FplusSumPlot. Add
-                // 1e-24 to X in case it is identically zero since we are
-                // taking the log.
-                
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile3, " %5.3e", log10(abs( FplusSumPlot[j][i]+1e-24) ));
-                }
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile3, " %5.3e", log10(abs( FminusSumPlot[j][i]+1e-24)));
-                }
-                for(int j=0; j<LX; j++){
-                    fprintf(pFile3, " %5.3e", 
-                        log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
-                }
-                
-                //cout.flush();   // Force buffer dump
-                
-            }
-            
-            // Close output files
-            
-            fclose (pFile);
-            fclose (pFile2);
-            fclose (pFile3);
+//             // Open files for ascii output. Assumes that the subdirectory
+//             // gnu_out already exists. If it doesn't, will compile but
+//             // may crash when executed.
+//             
+//             FILE * pFile;
+//             pFile = fopen("gnu_out/gnufile.data","w");
+//             
+//             FILE * pFile2;
+//             pFile2 = fopen("gnu_out/gnufile2.data","w");
+//             
+//             FILE * pFile3;
+//             pFile3 = fopen("gnu_out/gnufileFlux.data","w");
+//             
+//             // Following array controls which mass fractions are exported to plotting
+//             // file.  The entries in plotXlist[] are the species indices for the
+//             // isotopes in the network to be plotted. For small networks export all;
+//             // for large networks we will usually export only a representative subset.
+//             // Hardwired for now, but eventually we should read the entries of this
+//             // array in from a data file.
+//             
+// //             int maxPlotIsotopes = 16;
+// //             int plotXlist[maxPlotIsotopes];
+// //             for(int i=0; i<maxPlotIsotopes; i++){
+// //                 plotXlist[i] = i;
+// //             }
+//             
+// 
+// //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+//             
+// //               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+//                
+// //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
+// //             int plotXlist[] = {0,1,2};                                      // 3-alpha
+// //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+// //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
+// //   
+// //             int plotXlist[] = {
+// //                 1,
+// //                 3,
+// //                 4,
+// //                 11,
+// //                 12,
+// //                 15,
+// //                 16,
+// //                 17,
+// //                 21,
+// //                 22,
+// //                 23,
+// //                 26,
+// //                 27,
+// //                 32,
+// //                 33,
+// //                 40,
+// //                 41,
+// //                 48,
+// //                 49,
+// //                 55,
+// //                 56,
+// //                 62,
+// //                 63,
+// //                 64,
+// //                 70,
+// //                 77,
+// //                 78,
+// //                 86,
+// //                 95,
+// //                 104,
+// //                 112,
+// //                 34,
+// //                 20,
+// //                 46,
+// //                 42,
+// //                 30,
+// //                 75,
+// //                 76,
+// //                 54,
+// //                 69,
+// //                 60,
+// //                 19,
+// //                 61,
+// //                 68,
+// //                 25,
+// //                 67,
+// //                 53,
+// //                 59,
+// //                 74,
+// //                 79,
+// //                 84,
+// //                 39,
+// //                 83,
+// //                 31,
+// //                 96,
+// //                 85,
+// //                 88,
+// //                 50,
+// //                 93,
+// //                 97,
+// //                 96,
+// //                 94,
+// //                 66,
+// //                 102,
+// //                 92,
+// //                 52,
+// //                 111,
+// //                 110,
+// //                 99,
+// //                 38,
+// //                 101,
+// //                 45,
+// //                 113,
+// //                 43,
+// //                 119,
+// //                 114,
+// //                 118,
+// //                 100,
+// //                 120,
+// //                 6,
+// //                 107,
+// //                 109,
+// //                 115,
+// //                 121,
+// //                 3,
+// //                 125,
+// //                 108,
+// //                 37,
+// //                 124,
+// //                 126,
+// //                 71,
+// //                 10,
+// //                 7,
+// //                 57,
+// //                 127,
+// //                 65,
+// //                 73,
+// //                 106,
+// //                 9,
+// //                 87,
+// //                 80
+// //             };                                              // 101 nova134 isotopes
+//                 
+//                 
+// //                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
+// //                23,26,27,32,33,40,41,48,49,55,
+// //                56,62,63,64,70,77,78,86,95,104,
+// //                112,34};                                              // 31 nova134 selection
+// 
+// //             int plotXlist[] = 
+// //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
+// //             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
+//             
+//             
+//             // Get length LX of array plotXlist holding the species indices for
+//             // isotopes that we will plot mass fraction X for.
+//             
+//             int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
+//             
+//             string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil  sumX";
+//             string strflux = "\n#    t     dt   ";
+//             string app = "  ";
+//             string app1;
+//             string appflux;
+//             string Xstring = "X(";
+//             string Fpstring = "F+(";
+//             string Fmstring = "F-(";
+//             string dFstring = "dF(";
+//             string iso;
+//             
+//             fprintf(pFileD, "\n\n");
+//             
+//             if(doASY){
+//                 fprintf(pFile, "# ASY");
+//                 fprintf(pFile2, "# ASY");
+//                 if(plotFluxes){fprintf(pFile3, "# ASY");}
+//                 fprintf(pFileD, "# ASY");
+//             } else {
+//                 fprintf(pFile, "# QSS");
+//                 fprintf(pFile2, "# QSS");
+//                 if(plotFluxes){fprintf(pFile3, "# QSS");}
+//                 fprintf(pFileD, "# QSS");
+//             }
+//             
+//             if(doPE){
+//                 fprintf(pFile, "+PE");
+//                 fprintf(pFile2, "+PE");
+//                 if(plotFluxes){fprintf(pFile3, "+PE");}
+//                 fprintf(pFileD, "+PE");
+//             } 
+//             
+//             if(dopf){
+//                 fprintf(pFile, " method (with partition functions): ");
+//                 fprintf(pFile2, " method (with partition functions): ");
+//                 if(plotFluxes){fprintf(pFile3, " method (with partition functions): ");}
+//                 fprintf(pFileD, "+ method (with partition functions): ");
+//             } else {
+//                 fprintf(pFile, " method (no partition functions): ");
+//                 fprintf(pFile2, " method (no partition functions): ");
+//                 if(plotFluxes){fprintf(pFile3, " method (no partition functions): ");}
+//                 fprintf(pFileD, "+ method (no partition functions): "); 
+//             }
+//             
+//             fprintf(pFile, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//             fprintf(pFile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//             if(plotFluxes) fprintf(pFile3, "%d integration steps ", 
+//                 totalTimeSteps - totalTimeStepsZero);
+//             fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
+//                 
+//             FPRINTF_CPU;
+//             FPRINTF_CPU2;
+//             FPRINTF_CPUD;
+//             
+//             fprintf(pFile, "# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
+//             fprintf(pFile, "# Log of absolute values for E and dE/dt as they can be negative\n");
+//             fprintf(pFile, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
+//             fprintf(pFile, "#\n");
+//             
+//             string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
+//             str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
+//             fprintf(pFile2, "# All double quantities are log10(x); rates in units of s^-1\n#\n");
+//             fprintf(pFile2, stringToChar(str2));
+//             
+//             for(int i=0; i<plotSteps; i++){
+//                 
+//                 fprintf(pFile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
+//                     tplot[i], dtplot[i], log10(1.0/slowestRatePlot[i]), 
+//                     reacLabel[ slowestRateIndexPlot[i]],
+//                     log10(2.0/fastestRatePlot[i]),
+//                     reacLabel[ fastestRateIndexPlot[i]],
+//                     log10(dt_FEplot[i]), log10(dt_EAplot[i]), log10(dt_trial[i]),
+//                     interpT[i], interpRho[i]
+//                 );
+//             }
+//             
+//             cout.flush();
+//             
+//             // Write header for file pointed to by pFile
+//             
+//             for(int i=0; i<LX; i++){
+//                 int indy = plotXlist[i];
+//                 iso = to_string(indy);       // Use species index as label
+//                 
+//                 // Use instead isotope symbol as label
+//                 
+//                 // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+//                 
+//                 // The above conversion of a character array to a string leaves
+//                 // 2 or 3 end of line characters after the isotope label in iso
+//                 // that prevent printing correctly in fprint(pFile, stringToChar(str1))
+//                 // below. It will print with ofstream as commented out below, but 
+//                 // displaying 2-3 garbage symbols at the end. Remove those characters
+//                 // with pop_back(). Unfortunately, since the isotope symbols are from 3 to 5 
+//                 // characters long, 3 applications of pop_back removes the unwanted
+//                 // characters but will in some cases remove the last character of the 
+//                 // actual isotopic symbol. Thus switched to displaying the species number
+//                 // rather than the isotopic symbol in the plot output.  More compact anyway.
+//                 
+//                 // iso.pop_back();  // Remove last character
+//                 // iso.pop_back();
+//                 // iso.pop_back();
+//                 
+//                 app.append(Xstring);
+//                 app.append(iso);
+//                 app.append(")    ");
+//                 
+//             }
+//             
+//             str1.append(app);
+//             str1.append("\n");
+//             
+//             fprintf(pFile, stringToChar(str1));
+//             
+//             // Alternative output that can print strings
+//             
+//             //ofstream out("gnufile.txt");
+//             //out << str1;
+//             //out.close();
+//             
+//             fprintf(pFile, "\n");
+//             
+//             // Write header for file pointed to by pFile3
+// 
+//             for(int i=0; i<LX; i++){
+//                 int indy = plotXlist[i];
+//                 // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+//                 iso = to_string(plotXlist[i]);  
+//                 appflux.append(Fpstring);
+//                 appflux.append(iso);
+//                 appflux.append(")   ");
+//             }
+// 
+//             for(int i=0; i<LX; i++){
+//                 int indy = plotXlist[i];
+//                 // iso = charArrayToString(isoLabel[indy], isoLen);  // char array to string
+//                 iso = to_string(plotXlist[i]); 
+//                 appflux.append(Fmstring);
+//                 appflux.append(iso);
+//                 appflux.append(")   ");
+//             }
+//             
+//             for(int i=0; i<LX; i++){
+//                 iso = to_string(plotXlist[i]); 
+//                 //iso = isoLabel[plotXlist[i]];
+//                 appflux.append(dFstring);
+//                 appflux.append(iso);
+//                 appflux.append(")   ");
+//             }
+//             
+//             strflux.append(appflux);
+//             fprintf(pFile3, stringToChar(strflux));
+// 
+//             // Loop over timesteps for plot output writing the data to the file 
+//             // line by line using concatenated fprintf statements.
+//             
+//             for(int i=0; i<plotSteps; i++){
+//                 
+//                 // Initial data fields for t, dt, sumX, fraction of asymptotic
+//                 // isotopes, and fraction of reaction groups in equilibrium.
+//                 
+//                 fprintf(pFile, "%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+//                     tplot[i], dtplot[i], EReleasePlot[i], dEReleasePlot[i], 
+//                     (double)numAsyplot[i]/(double)ISOTOPES,
+//                     (double)numRG_PEplot[i]/(double)numberRG,
+//                     sumXplot[i]
+//                 );
+//                 
+//                 // Now add one data field for each X(i) in plotXlist[]. Add
+//                 // 1e-24 to X in case it is identically zero since we are
+//                 // taking the log.
+//                 
+//                 for(int j=0; j<LX; j++){
+//                     fprintf(pFile, " %5.3e", log10(Xplot[plotXlist[j]][i]+1e-24));
+//                 }
+//                 
+//                 fprintf(pFile, "\n");
+//                 
+//                 // Fluxes
+//                 
+//                 fprintf(pFile3, "\n%+6.3f %+6.3f", tplot[i], dtplot[i]);
+//                 
+//                 // Now add one data field for each FplusSumPlot. Add
+//                 // 1e-24 to X in case it is identically zero since we are
+//                 // taking the log.
+//                 
+//                 for(int j=0; j<LX; j++){
+//                     fprintf(pFile3, " %5.3e", log10(abs( FplusSumPlot[j][i]+1e-24) ));
+//                 }
+//                 for(int j=0; j<LX; j++){
+//                     fprintf(pFile3, " %5.3e", log10(abs( FminusSumPlot[j][i]+1e-24)));
+//                 }
+//                 for(int j=0; j<LX; j++){
+//                     fprintf(pFile3, " %5.3e", 
+//                         log10( abs(FplusSumPlot[j][i] - FminusSumPlot[j][i] + 1e-24) ));
+//                 }
+//                 
+//                 //cout.flush();   // Force buffer dump
+//                 
+//             }
+//             
+//             // Close output files
+//             
+//             fclose (pFile);
+//             fclose (pFile2);
+//             fclose (pFile3);
             
         }   // End plotOutput()
         
@@ -1305,7 +1305,7 @@ class Utilities{
         // are true.
         
         static void outputHydroProfile(){
-            
+/*            
             FILE * pHydro;
             pHydro = fopen("gnu_out/hydroProfile.out","w");
             if( pHydro == NULL ) {
@@ -1320,7 +1320,7 @@ class Utilities{
                     hydroTime[i], hydroTemp[i], hydroRho[i]);
             }
             
-            fclose (pHydro);
+            fclose (pHydro);*/
         }
         
         
@@ -4911,40 +4911,40 @@ int main() {
             
             // Output to plot arrays for this timestep
             
-            tplot[plotCounter-1] = log10(t);
-            dtplot[plotCounter-1] = log10(dt);
-            
-            // Log of E in erg and log of dE/dt in erg/g/s
-            
-            EReleasePlot[plotCounter-1] = log10( abs(ECON*ERelease) );
-            dEReleasePlot[plotCounter-1] = log10( abs(ECON*netdERelease) );
-            
-            // Min and Max rate values (Rrate in sec^-1)
-            
-            slowestRatePlot[plotCounter-1] = slowestCurrentRate;
-            slowestRateIndexPlot[plotCounter-1] = slowestCurrentRateIndex;
-            fastestRatePlot[plotCounter-1] = fastestCurrentRate;
-            fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
-            
-            sumXplot[plotCounter-1] = sumX;
-            numAsyplot[plotCounter-1] = totalAsy;
-            totalEquilRG = 0;
-            
-            dt_FEplot[plotCounter-1] = dt_FE;
-            dt_EAplot[plotCounter-1] = dt_EA;
-            dt_trial[plotCounter-1] = dt;
-            
-            for(int i=0; i<numberRG;i++){                
-                if(RG[i].getisEquil()) totalEquilRG ++;
-            }
-            
-            numRG_PEplot[plotCounter-1] = totalEquilRG;
-            
-            for(int i=0; i<ISOTOPES; i++){
-                Xplot[i][plotCounter-1] = X[i];
-                FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
-                FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
-            }
+//             tplot[plotCounter-1] = log10(t);
+//             dtplot[plotCounter-1] = log10(dt);
+//             
+//             // Log of E in erg and log of dE/dt in erg/g/s
+//             
+//             EReleasePlot[plotCounter-1] = log10( abs(ECON*ERelease) );
+//             dEReleasePlot[plotCounter-1] = log10( abs(ECON*netdERelease) );
+//             
+//             // Min and Max rate values (Rrate in sec^-1)
+//             
+//             slowestRatePlot[plotCounter-1] = slowestCurrentRate;
+//             slowestRateIndexPlot[plotCounter-1] = slowestCurrentRateIndex;
+//             fastestRatePlot[plotCounter-1] = fastestCurrentRate;
+//             fastestRateIndexPlot[plotCounter-1] = fastestCurrentRateIndex;
+//             
+//             sumXplot[plotCounter-1] = sumX;
+//             numAsyplot[plotCounter-1] = totalAsy;
+//             totalEquilRG = 0;
+//             
+//             dt_FEplot[plotCounter-1] = dt_FE;
+//             dt_EAplot[plotCounter-1] = dt_EA;
+//             dt_trial[plotCounter-1] = dt;
+//             
+//             for(int i=0; i<numberRG;i++){                
+//                 if(RG[i].getisEquil()) totalEquilRG ++;
+//             }
+//             
+//             numRG_PEplot[plotCounter-1] = totalEquilRG;
+//             
+//             for(int i=0; i<ISOTOPES; i++){
+//                 Xplot[i][plotCounter-1] = X[i];
+//                 FplusSumPlot[i][plotCounter-1] = isotope[i].getfplus();
+//                 FminusSumPlot[i][plotCounter-1] = isotope[i].getfminus();
+//             }
             
             // Output to screen for this plot step
             
@@ -4957,13 +4957,13 @@ int main() {
                    100*(double)totalEquilRG/(double)numberRG, 
                    sumX, XcorrFac, ECON*netdERelease, 
                    ECON*ERelease, E_R, choice1, choice2, 
-                   reacLabel[ fastestRateIndexPlot[plotCounter-1]],
-                   reaction[fastestRateIndexPlot[plotCounter-1]].getQ(), mostDevious, 
+                   reacLabel[ fastestCurrentRateIndex ],
+                   reaction[fastestCurrentRateIndex].getQ(), mostDevious, 
                    logTnow, logRhoNow
             );
             
-            interpT[plotCounter-1] = logTnow;
-            interpRho[plotCounter-1] = logRhoNow;
+            //interpT[plotCounter-1] = logTnow;
+            //interpRho[plotCounter-1] = logRhoNow;
             
             // Above printf writes to a buffer and the buffer is written to the screen only
             // after the buffer fills. Following command flushes the print buffer
