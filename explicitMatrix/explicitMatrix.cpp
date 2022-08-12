@@ -239,6 +239,7 @@ static const bool plotFluxes = true;
 
 static const int maxPlotIsotopes = 16;    // Number species output to plot files
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
+
 FILE * plotfile1;
 FILE * plotfile2;
 FILE * plotfile3;
@@ -336,7 +337,6 @@ double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
 double dt_desired;                     // dt desired but prevented by plot timestep
-//double dt_desired[plotSteps];        // dt desired but prevented by plot timestep
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
@@ -706,7 +706,6 @@ public:
             y[i] = yarray[i];
         }
         
-                    
         // Natural spline boundary conditions
             
         y2[0] = 0.0;
@@ -770,7 +769,7 @@ public:
         double a = (x[ihigh]-xvalue)/h;
         double b = (xvalue-x[ilow])/h;
         return a*y[ilow] + b*y[ihigh] 
-        + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
+            + ((a*a*a-a)*y2[ilow]+(b*b*b-b)*y2[ihigh])*h*h/6.0;
         
     }
     
@@ -5075,66 +5074,9 @@ int main() {
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
 
-void toPlotNow(){
-    
-    // Output to plotfile1 stream -> plot1.data
-    
-    fprintf(plotfile1, "\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-        log10(t), log10(dt), log10( abs(ECON*ERelease)), 
-        log10( abs(ECON*netdERelease) ), (double)totalAsy/(double)ISOTOPES,
-        (double)totalEquilRG/(double)numberRG, sumX
-    );
-    
-    // Now add one data field for each X(i) in plotXlist[]. Add
-    // 1e-24 to X in case it is identically zero since we are
-    // taking the log.
-    
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile1, " %5.3e", log10(X[j] + 1e-24));
-    }
-
-    // Output to plotfile2 stream -> plot2.data
-    
-    fprintf(plotfile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
-        log10(t), log10(dt), log10(1.0/slowestCurrentRate), 
-        reacLabel[ slowestCurrentRateIndex],
-        log10(2.0/fastestCurrentRate),
-        reacLabel[fastestCurrentRateIndex],
-        log10(dt_FE), log10(dt_EA), log10(dt),
-        logTnow, logRhoNow
-    );
-    
-    // Output to plotfile3 stream -> plot3.data (fluxes)
-    
-    fprintf(plotfile3, "\n%+6.3f %+6.3f", log10(t), log10(dt));
-    
-    // Now add one data field for each FplusSumPlot. Add
-    // 1e-24 to X in case it is identically zero since we are
-    // taking the log.
-    
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", log10(abs( isotope[j].getfplus() +1e-24) ));
-    }
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", log10(abs( isotope[j].getfminus() +1e-24)));
-    }
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", 
-                log10( abs(isotope[j].getfplus() - isotope[j].getfminus() + 1e-24) ));
-    }
-        
-    // Output to plotfile4 stream -> plot4.data (hydro profile)
-        
-    if(hydroProfile && plotHydroProfile){
-        fprintf(plotfile4, "\n%6.4e  %6.4e  %6.4e",
-            log10(t), logTnow, logRhoNow);
-    }
-        
-}  // End of toPlotNow()
-
 
 // Set up headers for the plot files that will be written to during 
-// the integration.
+// the integration by toPlotNow().
 
 void plotFileSetup(){
     
@@ -5144,14 +5086,14 @@ void plotFileSetup(){
     // for large networks we will usually export only a representative subset.
     // Hardwired for now, but eventually we should read the entries of this
     // array in from a data file.
-
+    
     for(int i=0; i<maxPlotIsotopes; i++){
         plotXlist[i] = i;
     }
     
     // Get length LX of array plotXlist holding the species indices for
     // isotopes that we will plot mass fraction X for.
-            
+    
     int LX = sizeof(plotXlist)/sizeof(plotXlist[0]);
     
     string str1 = "#    t     dt     |E|  |dE/dt| Asy  Equil sumX";
@@ -5187,28 +5129,25 @@ void plotFileSetup(){
     } 
     
     if(dopf){
-        fprintf(plotfile1, " method (with partition functions) ");
-        fprintf(plotfile2, " method (with partition functions) ");
-        if(plotFluxes){fprintf(plotfile3, " method (with partition functions) ");}
-        fprintf(pFileD, "+ method (with partition functions): ");
+        fprintf(plotfile1, " method (with partition functions). ");
+        fprintf(plotfile2, " method (with partition functions). ");
+        if(plotFluxes){fprintf(plotfile3, " method (with partition functions). ");}
+        fprintf(pFileD, "+ method (with partition functions). ");
     } else {
-        fprintf(plotfile1, " method (no partition functions) ");
-        fprintf(plotfile2, " method (no partition functions) ");
-        if(plotFluxes){fprintf(plotfile3, " method (no partition functions) ");}
-        fprintf(pFileD, "+ method (no partition functions): "); 
+        fprintf(plotfile1, " method (no partition functions). ");
+        fprintf(plotfile2, " method (no partition functions). ");
+        if(plotFluxes){fprintf(plotfile3, " method (no partition functions). ");}
+        fprintf(pFileD, "+ method (no partition functions). "); 
     }
-        
-    //FPRINTF_CPU3;
-    //FPRINTF_CPU4;
-    //FPRINTF_CPUD;
     
-    fprintf(plotfile1, "\n# All quantities except Asy, RG_PE, and sumX are log10(x)\n");
-    fprintf(plotfile1, "# Log of absolute values for E and dE/dt as they can be negative\n");
-    fprintf(plotfile1, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
+    fprintf(plotfile1, "\n# All quantities except Asy, RG_PE, and sumX are \n");
+    fprintf(plotfile1, "# log10(x). Log of absolute values for E and dE/dt, as\n");
+    fprintf(plotfile1, "# they can be negative. UNITS: t and dt in s; E in erg; \n");
+    fprintf(plotfile1, "# dE/dt in erg/g/s; all others dimensionless \n");
     fprintf(plotfile1, "#\n");
     
     // Write header for file pointed to by plotfile1
-            
+    
     for(int i=0; i<LX; i++){
         int indy = plotXlist[i];
         iso = to_string(indy);       // Use species index as label
@@ -5249,7 +5188,8 @@ void plotFileSetup(){
     
     string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
     str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
-    fprintf(plotfile2, "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
+    fprintf(plotfile2, 
+            "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
     fprintf(plotfile2, Utilities::stringToChar(str2));
     
     
@@ -5285,10 +5225,74 @@ void plotFileSetup(){
     // Write header for plotfile4 stream -> plot4.data
     
     if(hydroProfile && plotHydroProfile)
-    fprintf(plotfile4, "#  time          T          rho");
+        fprintf(plotfile4, "#  time          T          rho");
     
-}  // End of plotFileSetup
+}  // End of plotFileSetup()
 
+
+// Function to write data to output files at each plot step, rather than 
+// storing in arrays and plotting at the end.  Headers for these data
+// files are created in plotFileSetup() above.
+
+void toPlotNow(){
+    
+    // Output to plotfile1 stream -> plot1.data
+    
+    fprintf(plotfile1, "\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+        log10(t), log10(dt), log10( abs(ECON*ERelease)), 
+        log10( abs(ECON*netdERelease) ), (double)totalAsy/(double)ISOTOPES,
+        (double)totalEquilRG/(double)numberRG, sumX
+    );
+    
+    // Now add one data field for each X(i) in plotXlist[]. Add
+    // 1e-24 to X in case it is identically zero since we are
+    // taking the log.
+    
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile1, " %5.3e", log10(X[j] + 1e-24));
+    }
+
+    // Output to plotfile2 stream -> plot2.data
+    
+    fprintf(plotfile2, 
+        "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
+            log10(t), log10(dt), log10(1.0/slowestCurrentRate), 
+            reacLabel[ slowestCurrentRateIndex],
+            log10(2.0/fastestCurrentRate),
+            reacLabel[fastestCurrentRateIndex],
+            log10(dt_FE), log10(dt_EA), log10(dt),
+            logTnow, logRhoNow
+    );
+    
+    // Output to plotfile3 stream -> plot3.data (fluxes)
+    
+    fprintf(plotfile3, "\n%+6.3f %+6.3f", log10(t), log10(dt));
+    
+    // Now add one data field for each FplusSumPlot. Add
+    // 1e-24 to X in case it is identically zero since we are
+    // taking the log.
+    
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", 
+            log10(abs( isotope[j].getfplus() +1e-24) ));
+    }
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", 
+            log10(abs( isotope[j].getfminus() +1e-24)));
+    }
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", 
+                log10( abs(isotope[j].getfplus() - isotope[j].getfminus() + 1e-24) ));
+    }
+        
+    // Output to plotfile4 stream -> plot4.data (hydro profile)
+        
+    if(hydroProfile && plotHydroProfile){
+        fprintf(plotfile4, "\n%6.4e  %6.4e  %6.4e",
+            log10(t), logTnow, logRhoNow);
+    }
+        
+}  // End of toPlotNow()
 
 
 // Function restoreBe9() to convert all 8-Be to alpha particles since lifetime 
