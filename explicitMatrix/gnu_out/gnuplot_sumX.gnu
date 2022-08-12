@@ -67,18 +67,16 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy C++ T9=5 rho=1e8 (no pf)"
+ds="Asy tidal SN (no pf)"
 ds = ds.": Sum X  vs t"
 set title ds textcolor rgb title_color
-
-file1 = "gnufile.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 1
-xtics = 1     # Space between major x ticmarks
+xlow = 0.84
+xup = 1.3
+xtics = 0.1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0.98
@@ -100,8 +98,7 @@ set grid   # set x-y grid at major ticmarks
 
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+file1 = "gnufile.data"
 
 plot file1 using 1:7 with lines ls 2 title "sum X"
 #replot file1 using 1:6 with lines ls 3 title "Frac RG equil"

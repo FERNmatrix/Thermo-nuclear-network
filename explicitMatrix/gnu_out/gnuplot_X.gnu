@@ -82,8 +82,8 @@ file1 = "plot1.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84 #0.852
-xup = 1.3 #1.82
+xlow = 0.82 #0.852
+xup = 1.3
 xtics = 0.05    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -151,7 +151,7 @@ set mytics minytics   # minor y tics per major tic
 
 # Alpha network (X)
 
-plot file1 using 1:8 with points ls 11 lw 1.0 dashtype 1 title "4He"
+plot file1 using 1:8 with lines ls 11 lw 1.0 dashtype 1 title "4He"
 replot file1 using 1:9 with lines ls 3 lw 1.0 dashtype 1 title "12C"
 replot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "16O"
 replot file1 using 1:11 with lines ls 4 lw 1.0 dashtype 1 title "20Ne"

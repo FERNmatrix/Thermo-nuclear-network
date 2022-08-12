@@ -62,12 +62,12 @@ set ylabel 'log dt (s)' textcolor rgb tic_color font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top inside   #  Place legend inside top
+set key bottom inside   #  Place legend inside top
 #unset key            # Don't show legend
 
 #set timestamp       # Date/time
 
-ds="Asy C++ T9=5 rho=1e8 (no pf; new dt)"
+ds="Asy tidal SN (no pf)"
 ds = ds.": Timesteps"
 set title ds textcolor rgb title_color
 
@@ -76,14 +76,14 @@ file1 = "gnufile2.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -12
-xup = -3
-xtics = 2     # Space between major x ticmarks
+xlow = 0.84
+xup = 1.3
+xtics = 0.1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -6
 yup = 0
-ytics = 2      # Space between major y ticmarks
+ytics = 1      # Space between major y ticmarks
 minytics = 4  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -111,7 +111,7 @@ replot file1 using 1:5 with lines ls 14 title "log 2/Rmax"
 # plot column 5 divided by 2 (Note: log 2 = 0.301) so
 # log (m/n) = log m -log n and log(m/2)= log m - log 2
 #
-replot file1 using 1:($5-0.301) with lines ls 10 title "log 1/Rmax"
+#replot file1 using 1:($5-0.301) with lines ls 10 title "log 1/Rmax"
 
 # Reset font sizes for .eps and .png output2
 
@@ -128,9 +128,9 @@ replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_timesteps.png"
-# Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set out "gnuplot_timesteps.png"
+## Assume 72 pixels/inch and make bitmap twice as large for display resolution
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit

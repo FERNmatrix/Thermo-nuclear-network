@@ -160,10 +160,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -186,13 +186,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_nova134.inp";
+char networkFile[] = "data/network_alpha_he4.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_nova134.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -220,19 +220,20 @@ double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile.inp";
+char hydroFile[] = "data/tidalSNProfile_100.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 203; // Max entries hydro profile
+const static int maxHydroEntries = 103; // Max entries hydro profile
 //const static int maxHydroEntries = 2622; // Max entries hydro profile
 
-// Control printout of flux data (true to print, false to suppress)
+// Control printout of flux data (true to print, false to suppress).
+// Lots of data, so most useful for small networks.
  
-static const bool plotFluxes = false;
+static const bool plotFluxes = true;
 
 // Plot output controls and file pointers
 
@@ -321,10 +322,10 @@ double rho_start = 1e4;           // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1e-20;               // Start time for integration
+double start_time = 6.5;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 5e-6;           // Start time for plot output
-double stop_time = 1e6;                 // Stop time for integration
+double startplot_time = 6.6;           // Start time for plot output
+double stop_time = 20;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -356,7 +357,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                    // Absolute error tolerance
+double EpsA = 1e-5;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -5091,20 +5092,7 @@ void toPlotNow(){
     for(int j=0; j<maxPlotIsotopes; j++){
         fprintf(plotfile1, " %5.3e", log10(X[j] + 1e-24));
     }
-    
-//     fprintf(plotfile1, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-//     fprintf(plotfile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-//     if(plotFluxes) fprintf(plotfile3, "%d integration steps ", 
-//         totalTimeSteps - totalTimeStepsZero);
-//     fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-//         
-//     FPRINTF_CPU3;
-//     FPRINTF_CPU4;
-    //FPRINTF_CPUD;
-    
-    //fprintf(plotfile1, "\n");
 
-    
     // Output to plotfile2 stream -> plot2.data
     
     fprintf(plotfile2, "%7.4f %7.4f %7.4f %s %7.4f %s %7.4f %7.4f %7.4f %7.4e %7.4e\n", 
@@ -5115,48 +5103,32 @@ void toPlotNow(){
         log10(dt_FE), log10(dt_EA), log10(dt),
         logTnow, logRhoNow
     );
-        
-        
-    // Output to plotfile3 stream -> plot4.data
-        
-    if(hydroProfile && plotHydroProfile){
-        
-        //for (int i=0; i<hydroLines; i++){
-            fprintf(plotfile4, "\n%6.4e  %6.4e  %6.4e",
-               log10(t), logTnow, logRhoNow);
-                //hydroTime[i], hydroTemp[i], hydroRho[i]);
-            //}
-                        
+    
+    // Output to plotfile3 stream -> plot3.data (fluxes)
+    
+    fprintf(plotfile3, "\n%+6.3f %+6.3f", log10(t), log10(dt));
+    
+    // Now add one data field for each FplusSumPlot. Add
+    // 1e-24 to X in case it is identically zero since we are
+    // taking the log.
+    
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", log10(abs( isotope[j].getfplus() +1e-24) ));
+    }
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", log10(abs( isotope[j].getfminus() +1e-24)));
+    }
+    for(int j=0; j<maxPlotIsotopes; j++){
+        fprintf(plotfile3, " %5.3e", 
+                log10( abs(isotope[j].getfplus() - isotope[j].getfminus() + 1e-24) ));
     }
         
-//         // Output hydro profile if desired
-//         
-//     if(hydroProfile && plotHydroProfile){
-//         Utilities::outputHydroProfile();
-//     }
-//     
-//     // Static function Utilities::plotHydroprofile() to send hydro profile 
-//     // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
-//     // are true.
-//         
-//         static void outputHydroProfile(){
-//             
-//             FILE * pHydro;
-//             pHydro = fopen("gnu_out/hydroProfile.out","w");
-//             if( pHydro == NULL ) {
-//                 fprintf(stderr, "Couldn't open file: %s\n", strerror(errno));
-//                 exit(1);
-//             }
-//             
-//             fprintf(pHydro, "#  time          T          rho");
-//             
-//             for (int i=0; i<hydroLines; i++){
-//                 fprintf(pHydro, "\n%6.4e  %6.4e  %6.4e", 
-//                     hydroTime[i], hydroTemp[i], hydroRho[i]);
-//             }
-//             
-//             fclose (pHydro);
-//         }
+    // Output to plotfile4 stream -> plot4.data (hydro profile)
+        
+    if(hydroProfile && plotHydroProfile){
+        fprintf(plotfile4, "\n%6.4e  %6.4e  %6.4e",
+            log10(t), logTnow, logRhoNow);
+    }
         
 }  // End of toPlotNow()
 
@@ -5199,38 +5171,32 @@ void plotFileSetup(){
         fprintf(plotfile1, "# ASY");
         fprintf(plotfile2, "# ASY");
         if(plotFluxes){fprintf(plotfile3, "# ASY");}
-        //fprintf(pFileD, "# ASY");
+        fprintf(pFileD, "# ASY");
     } else {
         fprintf(plotfile1, "# QSS");
         fprintf(plotfile2, "# QSS");
         if(plotFluxes){fprintf(plotfile3, "# QSS");}
-        //fprintf(pFileD, "# QSS");
+        fprintf(pFileD, "# QSS");
     }
     
     if(doPE){
         fprintf(plotfile1, "+PE");
         fprintf(plotfile2, "+PE");
         if(plotFluxes){fprintf(plotfile3, "+PE");}
-        //fprintf(pFileD, "+PE");
+        fprintf(pFileD, "+PE");
     } 
     
     if(dopf){
         fprintf(plotfile1, " method (with partition functions) ");
         fprintf(plotfile2, " method (with partition functions) ");
-        if(plotFluxes){fprintf(plotfile3, " method (with partition functions): ");}
-        //fprintf(pFileD, "+ method (with partition functions): ");
+        if(plotFluxes){fprintf(plotfile3, " method (with partition functions) ");}
+        fprintf(pFileD, "+ method (with partition functions): ");
     } else {
         fprintf(plotfile1, " method (no partition functions) ");
         fprintf(plotfile2, " method (no partition functions) ");
-        if(plotFluxes){fprintf(plotfile3, " method (no partition functions): ");}
-        //fprintf(pFileD, "+ method (no partition functions): "); 
+        if(plotFluxes){fprintf(plotfile3, " method (no partition functions) ");}
+        fprintf(pFileD, "+ method (no partition functions): "); 
     }
-    
-    //fprintf(plotfile1, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-    //fprintf(plotfile2, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
-//     if(plotFluxes) fprintf(plotfile3, "%d integration steps ", 
-//         totalTimeSteps - totalTimeStepsZero);
-    //fprintf(pFileD, "%d integration steps ", totalTimeSteps - totalTimeStepsZero);
         
     //FPRINTF_CPU3;
     //FPRINTF_CPU4;
@@ -5240,12 +5206,6 @@ void plotFileSetup(){
     fprintf(plotfile1, "# Log of absolute values for E and dE/dt as they can be negative\n");
     fprintf(plotfile1, "# Units: t and dt in s; E in erg; dE/dt in erg/g/s; others dimensionless \n");
     fprintf(plotfile1, "#\n");
-    
-    string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
-    str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
-    fprintf(plotfile2, "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
-    fprintf(plotfile2, Utilities::stringToChar(str2));
-    
     
     // Write header for file pointed to by plotfile1
             
@@ -5281,15 +5241,45 @@ void plotFileSetup(){
     str1.append(app);
     str1.append("\n");
     
+    // Write header for plotfile1 -> plot1.data output
+    
     fprintf(plotfile1, Utilities::stringToChar(str1));
     
-    // Alternative output that can print strings
+    // Write header for plotfile2 -> plot2.data output
     
-    //ofstream out("gnufile.txt");
-    //out << str1;
-    //out.close();
+    string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
+    str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
+    fprintf(plotfile2, "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
+    fprintf(plotfile2, Utilities::stringToChar(str2));
     
-    //fprintf(plotfile1, "\n");
+    
+    // Write header for plotfile3 stream -> plot3.data (fluxes)
+    
+    for(int i=0; i<LX; i++){
+        int indy = plotXlist[i];
+        iso = to_string(plotXlist[i]);  
+        appflux.append(Fpstring);
+        appflux.append(iso);
+        appflux.append(")   ");
+    }
+    
+    for(int i=0; i<LX; i++){
+        int indy = plotXlist[i];
+        iso = to_string(plotXlist[i]); 
+        appflux.append(Fmstring);
+        appflux.append(iso);
+        appflux.append(")   ");
+    }
+    
+    for(int i=0; i<LX; i++){
+        iso = to_string(plotXlist[i]); 
+        appflux.append(dFstring);
+        appflux.append(iso);
+        appflux.append(")   ");
+    }
+    
+    strflux.append(appflux);
+    fprintf(plotfile3, Utilities::stringToChar(strflux));
     
     
     // Write header for plotfile4 stream -> plot4.data
@@ -5625,13 +5615,10 @@ void readhydroProfile(char *fileName){
      double Temp;
      double Rho;
     
-    // Open a file for reading 
+     // Open a file for reading. Exit if the file can't be read
     
     FILE *fr; 
     fr = fopen (fileName, "r");
-    
-    // Exit if the file doesn't exist or can't be read
-    
     if( fr == NULL ){
         printf ("*** File Input Error: No readable file named %s\n", fileName);
         exit(1);
@@ -5656,7 +5643,8 @@ void readhydroProfile(char *fileName){
             if(numberEntries > maxHydroEntries){
                 printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ", 
                     fileName, numberEntries);
-                printf("\ninconsistent with spline arrays. Change the static constant maxHydroEntries ");
+                printf("\ninconsistent with spline arrays. "); 
+                printf("Change the static constant maxHydroEntries ");
                 printf("to a value \nof %d and recompile.\n\n", numberEntries);
                 exit(1);
             }
@@ -5748,13 +5736,10 @@ void readNetwork (char *fileName) {
     double y, mass;
     double pf0, pf1, pf2, pf3, pf4, pf5, pf6, pf7;
     
-    // Open a file for reading 
+    // Open a file for reading. Exit if the file can't be read
     
     FILE *fr; 
     fr = fopen (fileName, "r");
-    
-    // Exit if the file doesn't exist or can't be read
-    
     if( fr == NULL ){
         printf ("*** File Input Error: No readable file named %s\n", fileName);
         exit(1) ;
@@ -5858,13 +5843,10 @@ void readLibraryParams (char *fileName) {
     double tempp[7];
     int tempZN[4] = {-1, -1, -1, -1};
     
-    // Open a file for reading  
+    // Open a file for reading. Exit if the file can't be read.
     
     FILE *fr; 
     fr = fopen (fileName, "r");
-    
-    // Exit if the file doesn't exist or can't be read
-    
     if( fr == NULL ){
         printf ("*** File Input Error: No readable file named %s\n", fileName);
         exit(1) ;

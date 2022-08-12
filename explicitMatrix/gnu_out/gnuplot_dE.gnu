@@ -72,14 +72,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
+xlow = 0.82
 xup = 1.3
 xtics = 0.05     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 12
-yup = 20
-ytics = 2      # Space between major y ticmarks
+ylow = -11
+yup = 21
+ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -97,7 +97,8 @@ set grid   # set x-y grid at major ticmarks
 
 #plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
 plot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 1 title " log10 |dE/dt|"
 
