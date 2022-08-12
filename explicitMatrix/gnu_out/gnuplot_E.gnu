@@ -102,7 +102,8 @@ set title ds textcolor rgb title_color
 
 #plot file1 using 1:3 with lines ls 1 lw 1.0 dashtype 1 title "Asy Log E"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
 plot file2 using 1:3 with lines ls 11 lw 1.0 dashtype 1 title "Log E"
 

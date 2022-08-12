@@ -98,7 +98,8 @@ set grid   # set x-y grid at major ticmarks
 
 
 
-file1 = "gnufile.data"
+#file1 = "gnufile.data"
+file1 = "plot1.data"
 
 plot file1 using 1:7 with lines ls 2 title "sum X"
 #replot file1 using 1:6 with lines ls 3 title "Frac RG equil"

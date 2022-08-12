@@ -233,7 +233,7 @@ const static int maxHydroEntries = 103; // Max entries hydro profile
 // Control printout of flux data (true to print, false to suppress).
 // Lots of data, so most useful for small networks.
  
-static const bool plotFluxes = true;
+static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
@@ -4999,11 +4999,11 @@ int main() {
     
     // Output data to plot files after integration. 
     
-    Utilities::plotOutput();
+    //Utilities::plotOutput();
     
-    if(hydroProfile && plotHydroProfile){
-        Utilities::outputHydroProfile();
-    }
+//     if(hydroProfile && plotHydroProfile){
+//         Utilities::outputHydroProfile();
+//     }
    
     // Display final abundances and mass fractions
 
@@ -5195,32 +5195,33 @@ void plotFileSetup(){
     
     // Write header for plotfile3 stream -> plot3.data (fluxes)
     
-    for(int i=0; i<LX; i++){
-        int indy = plotXlist[i];
-        iso = to_string(plotXlist[i]);  
-        appflux.append(Fpstring);
-        appflux.append(iso);
-        appflux.append(")   ");
+    if(plotFluxes){
+        for(int i=0; i<LX; i++){
+            int indy = plotXlist[i];
+            iso = to_string(plotXlist[i]);  
+            appflux.append(Fpstring);
+            appflux.append(iso);
+            appflux.append(")   ");
+        }
+        
+        for(int i=0; i<LX; i++){
+            int indy = plotXlist[i];
+            iso = to_string(plotXlist[i]); 
+            appflux.append(Fmstring);
+            appflux.append(iso);
+            appflux.append(")   ");
+        }
+        
+        for(int i=0; i<LX; i++){
+            iso = to_string(plotXlist[i]); 
+            appflux.append(dFstring);
+            appflux.append(iso);
+            appflux.append(")   ");
+        }
+        
+        strflux.append(appflux);
+        fprintf(plotfile3, Utilities::stringToChar(strflux));
     }
-    
-    for(int i=0; i<LX; i++){
-        int indy = plotXlist[i];
-        iso = to_string(plotXlist[i]); 
-        appflux.append(Fmstring);
-        appflux.append(iso);
-        appflux.append(")   ");
-    }
-    
-    for(int i=0; i<LX; i++){
-        iso = to_string(plotXlist[i]); 
-        appflux.append(dFstring);
-        appflux.append(iso);
-        appflux.append(")   ");
-    }
-    
-    strflux.append(appflux);
-    fprintf(plotfile3, Utilities::stringToChar(strflux));
-    
     
     // Write header for plotfile4 stream -> plot4.data
     
@@ -5266,23 +5267,26 @@ void toPlotNow(){
     
     // Output to plotfile3 stream -> plot3.data (fluxes)
     
-    fprintf(plotfile3, "\n%+6.3f %+6.3f", log10(t), log10(dt));
-    
-    // Now add one data field for each FplusSumPlot. Add
-    // 1e-24 to X in case it is identically zero since we are
-    // taking the log.
-    
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", 
-            log10(abs( isotope[j].getfplus() +1e-24) ));
-    }
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", 
-            log10(abs( isotope[j].getfminus() +1e-24)));
-    }
-    for(int j=0; j<maxPlotIsotopes; j++){
-        fprintf(plotfile3, " %5.3e", 
-                log10( abs(isotope[j].getfplus() - isotope[j].getfminus() + 1e-24) ));
+    if(plotFluxes){
+        fprintf(plotfile3, "\n%+6.3f %+6.3f", log10(t), log10(dt));
+        
+        // Now add one data field for each FplusSumPlot. Add
+        // 1e-24 to X in case it is identically zero since we are
+        // taking the log.
+        
+        for(int j=0; j<maxPlotIsotopes; j++){
+            fprintf(plotfile3, " %5.3e", 
+                log10(abs( isotope[j].getfplus() +1e-24) ));
+        }
+        for(int j=0; j<maxPlotIsotopes; j++){
+            fprintf(plotfile3, " %5.3e", 
+                log10(abs( isotope[j].getfminus() +1e-24)));
+        }
+        for(int j=0; j<maxPlotIsotopes; j++){
+            fprintf(plotfile3, " %5.3e", 
+                    log10( abs(isotope[j].getfplus() - isotope[j].getfminus() 
+                    + 1e-24) ));
+        }
     }
         
     // Output to plotfile4 stream -> plot4.data (hydro profile)

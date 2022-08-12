@@ -71,18 +71,17 @@ ds="Asy tidal SN (no pf)"
 ds = ds.": Timesteps"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile2.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1.3
+xlow = 0.86
+xup = 1.0
 xtics = 0.1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -6
-yup = 0
+ylow = -4
+yup = 2
 ytics = 1      # Space between major y ticmarks
 minytics = 4  # Number minor y tics
 
@@ -99,6 +98,8 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
+#file1 = "gnufile2.data"
+file1 = "plot1.data"
 
 # Edit the following plot commands to correspond to data
 # read in from data file
@@ -106,6 +107,7 @@ set grid   # set x-y grid at major ticmarks
 plot file1 using 1:($7+0.301) with lines ls 2 title "log dtFE"
 replot file1 using 1:8 with lines ls 3 title "log dtEA"
 replot file1 using 1:9 with lines ls 5 title "log dt trial"
+replot file1 using 1:2 with lines ls 6 title "log dt"
 replot file1 using 1:5 with lines ls 14 title "log 2/Rmax"
 #
 # plot column 5 divided by 2 (Note: log 2 = 0.301) so
