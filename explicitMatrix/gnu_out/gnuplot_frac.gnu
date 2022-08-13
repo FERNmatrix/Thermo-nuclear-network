@@ -65,7 +65,7 @@ set pointsize 1.5    # Size of the plotted points
 set key outside    # Place legend outside
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="C++ Asy+PE (no pf)"
 ds = ds.": Fraction"

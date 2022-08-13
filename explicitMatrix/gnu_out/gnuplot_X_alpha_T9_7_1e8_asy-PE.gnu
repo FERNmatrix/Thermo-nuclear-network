@@ -70,7 +70,7 @@ set pointsize 1.0    # Size of the plotted points
 set key right top outside    # Place legend inside top  
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="C++ T9=7 rho=1e8 (no pf)"
 ds = ds.": mass fraction"

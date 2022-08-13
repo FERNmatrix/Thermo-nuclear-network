@@ -163,7 +163,7 @@ void toPlotNow(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -354,7 +354,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 6e-5;                    // Absolute error tolerance
+double EpsA = 5e-5;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -369,8 +369,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilibrateTime = start_time;  // Time to begin checking for PE
-double equiTol = 0.01;                // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;              // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.001;                // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.3;              // Max allowed deviation from equil k ratio in timestep
 double thisDevious;                   // Deviation of kratio from equil
 double mostDevious;                   // Largest current deviation of kratio from equil
 int mostDeviousIndex;                 // Index of RG with mostDevious
