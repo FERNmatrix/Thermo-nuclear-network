@@ -65,7 +65,7 @@ set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key right top outside    # Place legend inside top  
 #unset key            # Don't show legend
@@ -100,10 +100,6 @@ set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
-
-# Edit the following plot commands to correspond to data
-# read in from data file
-
 # Reference Asy calculation
 
 file1 = "gnufile_alpha_T9_7_1e8_asy.data"
@@ -127,24 +123,25 @@ replot file1 using 1:21 with lines ls 14 lw 1.5 dashtype 1 title "60Zn asy"
 replot file1 using 1:22 with lines ls 1 lw 1.5 dashtype 1 title "64Ge asy"
 replot file1 using 1:23 with lines ls 2 lw 1.5 dashtype 1 title "68Se asy"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
-replot file2 using 1:8 with lines ls 2 lw 1.5 dashtype 2 title "4He asy+pe"
-replot file2 using 1:9 with lines ls 3 lw 1.5 dashtype 2 title "12C asy+pe"
-replot file2 using 1:10 with lines ls 1 lw 1.5 dashtype 2 title "16O asy+pe"
-replot file2 using 1:11 with lines ls 4 lw 1.5 dashtype 2 title "20Ne asy+pe"
-replot file2 using 1:12 with lines ls 5 lw 1.5 dashtype 2 title "24Mg asy+pe"
-replot file2 using 1:13 with lines ls 6 lw 1.5 dashtype 2 title "28Si asy+pe"
-replot file2 using 1:14 with lines ls 7 lw 1.5 dashtype 2 title "32S asy+pe"
-replot file2 using 1:15 with lines ls 8 lw 1.5 dashtype 2 title "36Ar asy+pe"
-replot file2 using 1:16 with lines ls 9 lw 1.5 dashtype 2 title "40Ca asy+pe"
-replot file2 using 1:17 with lines ls 10 lw 1.5 dashtype 2 title "44Ti asy+pe"
-replot file2 using 1:18 with lines ls 11 lw 1.5 dashtype 2 title "48Cr asy+pe"
-replot file2 using 1:19 with lines ls 12 lw 1.5 dashtype 2 title "52Fe asy+pe"
-replot file2 using 1:20 with lines ls 13 lw 1.5 dashtype 2 title "56Ni asy+pe"
-replot file2 using 1:21 with lines ls 14 lw 1.5 dashtype 2 title "60Zn asy+pe"
-replot file2 using 1:22 with lines ls 1 lw 1.5 dashtype 2 title "64Ge asy+pe"
-replot file2 using 1:23 with lines ls 2 lw 1.5 dashtype 2 title "68Se asy+pe"
+replot file2 using 1:8 with points ls 2 lw 1.5 dashtype 2 title "4He asy+pe"
+replot file2 using 1:9 with points ls 3 lw 1.5 dashtype 2 title "12C asy+pe"
+replot file2 using 1:10 with points ls 1 lw 1.5 dashtype 2 title "16O asy+pe"
+replot file2 using 1:11 with points ls 4 lw 1.5 dashtype 2 title "20Ne asy+pe"
+replot file2 using 1:12 with points ls 5 lw 1.5 dashtype 2 title "24Mg asy+pe"
+replot file2 using 1:13 with points ls 6 lw 1.5 dashtype 2 title "28Si asy+pe"
+replot file2 using 1:14 with points ls 7 lw 1.5 dashtype 2 title "32S asy+pe"
+replot file2 using 1:15 with points ls 8 lw 1.5 dashtype 2 title "36Ar asy+pe"
+replot file2 using 1:16 with points ls 9 lw 1.5 dashtype 2 title "40Ca asy+pe"
+replot file2 using 1:17 with points ls 10 lw 1.5 dashtype 2 title "44Ti asy+pe"
+replot file2 using 1:18 with points ls 11 lw 1.5 dashtype 2 title "48Cr asy+pe"
+replot file2 using 1:19 with points ls 12 lw 1.5 dashtype 2 title "52Fe asy+pe"
+replot file2 using 1:20 with points ls 13 lw 1.5 dashtype 2 title "56Ni asy+pe"
+replot file2 using 1:21 with points ls 14 lw 1.5 dashtype 2 title "60Zn asy+pe"
+replot file2 using 1:22 with points ls 1 lw 1.5 dashtype 2 title "64Ge asy+pe"
+replot file2 using 1:23 with points ls 2 lw 1.5 dashtype 2 title "68Se asy+pe"
 
 
 
