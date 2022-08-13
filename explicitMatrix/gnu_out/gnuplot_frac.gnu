@@ -67,7 +67,7 @@ set key outside    # Place legend outside
 
 #set timestamp       # Date/time
 
-ds="C++ Asy nova134 nova125D profile (no pf)"
+ds="C++ Asy+PE (no pf)"
 ds = ds.": Fraction"
 
 set title ds textcolor rgb title_color
@@ -75,9 +75,9 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1.3
-xtics = 0.1     # Space between major x ticmarks
+xlow = -16
+xup = 0
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0.0 #-0.01
