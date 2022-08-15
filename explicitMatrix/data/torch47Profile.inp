@@ -1,4 +1,4 @@
-Index   time[s]   T[K]   rho[g/cm^3]
+#Index   time[s]   T[K]   rho[g/cm^3]
 202
 0   1.0e-16     1.7e9       1.0e9
 0   1.00000e-08 1.70000e+09 1.00000e+09
