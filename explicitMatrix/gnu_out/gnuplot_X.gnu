@@ -82,8 +82,8 @@ file1 = "plot1.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -5
+xlow = -4
+xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -340,7 +340,7 @@ set mytics minytics   # minor y tics per major tic
 #replot file1 using 1:54 with lines ls 6 lw 1 dashtype 2 title "(47)"
 
 
-# 70-isotope network
+# 150-isotope network
 
 plot file1 using 1:8 with lines ls 2 lw 1 dashtype 1 title "(0)"
 replot file1 using 1:9 with lines ls 3 lw 1 dashtype 1 title "(1)"
