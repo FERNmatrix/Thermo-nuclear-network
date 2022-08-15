@@ -160,8 +160,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1604                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -186,13 +186,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_70.inp";
+char networkFile[] = "data/network_150.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_70.data";
+char rateLibraryFile[] = "data/rateLibrary_150.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -232,7 +232,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = 70;    // Number species output to plot files
+static const int maxPlotIsotopes = 150;    // Number species output to plot files
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 
 FILE * plotfile1;
@@ -318,10 +318,10 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Generally,startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration,stop_time.
 
-double start_time = 1e-20;               // Start time for integration
+double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;           // Start time for plot output
-double stop_time = 1e-8;                 // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e-6;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -338,7 +338,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 3e-8;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -349,7 +349,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 3e-8;                    // Absolute error tolerance
+double EpsA = 1e-7;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -4018,7 +4018,8 @@ class Integrate: public Utilities {
             // next plot output step.
             
             dt_desired = dtt;
-            double gap = 1.5*nextPlotTime - t_saved;
+            double upfac = 1.0;
+            double gap = upfac*nextPlotTime - t_saved;
 
             if(dtt > gap && gap > 0){
                 dtt = gap;
