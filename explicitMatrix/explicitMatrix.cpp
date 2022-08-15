@@ -163,7 +163,7 @@ void toPlotNow(void);
 #define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 1566                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
