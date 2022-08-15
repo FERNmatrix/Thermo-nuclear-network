@@ -88,7 +88,7 @@ using std::string;
 clock_t startCPU,stopCPU;
 #define START_CPU if ((startCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
 #define STOP_CPU if ((stopCPU=clock())==-1) {printf("Error calling clock"); exit(1);}
-#define PRINT_CPU (printf("Timer: %7.4e ms used",1000*(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
+#define PRINT_CPU (printf("Timer: %7.4e sec used",(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU (fprintf(pFile,"in %7.4e seconds\n",(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU2 (fprintf(pFile2,"in %7.4e seconds\n",(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
 #define FPRINTF_CPU3 (fprintf(plotfile1,"in %7.4e seconds\n",(double)(stopCPU-startCPU)/CLOCKS_PER_SEC));
@@ -160,10 +160,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 70                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 598                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -186,13 +186,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_70.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_70.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -202,18 +202,13 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 bool hydroProfile = false; 
 
-double logTnow;               // Log10 of current temp
-double logRhoNow;             // Log10 of current rho
-//double interpT[plotSteps];    // Interpolated value of T if hydro profile
-//double interpRho[plotSteps];  // Interpolated value of rho if hydro profile
-
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
 // files included in the data subdirectory are
 //
 //    data/torch47Profile.data         // Very hot Type Ia supernova zone
 //    data/nova125DProfile.inp         // Representative zone in nova explosion
-//    data/tidalSupernovaRosswog.inp   // Zone in tidal supernova explosion
+//    data/tidalSNProfile_100.inp      // Zone in tidal supernova explosion
 //
 // Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
 // plotHydroProfile are true,the hydro profile used for the temperature and 
@@ -237,7 +232,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = 16;    // Number species output to plot files
+static const int maxPlotIsotopes = 70;    // Number species output to plot files
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 
 FILE * plotfile1;
@@ -260,7 +255,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -326,7 +321,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;               // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;           // Start time for plot output
-double stop_time = 1e0;                 // Stop time for integration
+double stop_time = 1e-8;                 // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -343,7 +338,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-7;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 3e-8;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -354,7 +349,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-5;                    // Absolute error tolerance
+double EpsA = 3e-8;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -369,8 +364,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilibrateTime = start_time;  // Time to begin checking for PE
-double equiTol = 0.001;                // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.3;              // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.01;                // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;              // Max allowed deviation from equil k ratio in timestep
 double thisDevious;                   // Deviation of kratio from equil
 double mostDevious;                   // Largest current deviation of kratio from equil
 int mostDeviousIndex;                 // Index of RG with mostDevious
@@ -384,6 +379,8 @@ int choice2;                          // Diagnostic variable for new timestepper
 
 double Ythresh = 1.0e-24;
 
+double logTnow;                      // Log10 of current temp
+double logRhoNow;                    // Log10 of current rho
 double dt;                           // Current integration timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
@@ -929,135 +926,135 @@ class Utilities{
 //             // Hardwired for now,but eventually we should read the entries of this
 //             // array in from a data file.
 //             
-// //             int maxPlotIsotopes = 16;
-// //             int plotXlist[maxPlotIsotopes];
-// //             for(int i=0; i<maxPlotIsotopes; i++){
-// //                 plotXlist[i] = i;
-// //             }
-//             
-// 
-// //             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//             
-// //               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
-//                
-// //             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-// //             int plotXlist[] = {0,1,2};                                      // 3-alpha
-// //             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
-// //             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
-// //   
-// //             int plotXlist[] = {
-// //                 1,
-// //                 3,
-// //                 4,
-// //                 11,
-// //                 12,
-// //                 15,
-// //                 16,
-// //                 17,
-// //                 21,
-// //                 22,
-// //                 23,
-// //                 26,
-// //                 27,
-// //                 32,
-// //                 33,
-// //                 40,
-// //                 41,
-// //                 48,
-// //                 49,
-// //                 55,
-// //                 56,
-// //                 62,
-// //                 63,
-// //                 64,
-// //                 70,
-// //                 77,
-// //                 78,
-// //                 86,
-// //                 95,
-// //                 104,
-// //                 112,
-// //                 34,
-// //                 20,
-// //                 46,
-// //                 42,
-// //                 30,
-// //                 75,
-// //                 76,
-// //                 54,
-// //                 69,
-// //                 60,
-// //                 19,
-// //                 61,
-// //                 68,
-// //                 25,
-// //                 67,
-// //                 53,
-// //                 59,
-// //                 74,
-// //                 79,
-// //                 84,
-// //                 39,
-// //                 83,
-// //                 31,
-// //                 96,
-// //                 85,
-// //                 88,
-// //                 50,
-// //                 93,
-// //                 97,
-// //                 96,
-// //                 94,
-// //                 66,
-// //                 102,
-// //                 92,
-// //                 52,
-// //                 111,
-// //                 110,
-// //                 99,
-// //                 38,
-// //                 101,
-// //                 45,
-// //                 113,
-// //                 43,
-// //                 119,
-// //                 114,
-// //                 118,
-// //                 100,
-// //                 120,
-// //                 6,
-// //                 107,
-// //                 109,
-// //                 115,
-// //                 121,
-// //                 3,
-// //                 125,
-// //                 108,
-// //                 37,
-// //                 124,
-// //                 126,
-// //                 71,
-// //                 10,
-// //                 7,
-// //                 57,
-// //                 127,
-// //                 65,
-// //                 73,
-// //                 106,
-// //                 9,
-// //                 87,
-// //                 80
-// //             };                                              // 101 nova134 isotopes
-//                 
-//                 
-// //                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
-// //                23,26,27,32,33,40,41,48,49,55,
-// //                56,62,63,64,70,77,78,86,95,104,
-// //                112,34};                                              // 31 nova134 selection
-// 
-// //             int plotXlist[] = 
-// //             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
-// //             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
+//             int maxPlotIsotopes = 70;
+//             int plotXlist[maxPlotIsotopes];
+//             for(int i=0; i<maxPlotIsotopes; i++){
+//                 plotXlist[i] = i;
+//             }
+            
+
+//             int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
+            
+//               int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
+               
+//             int plotXlist[] = {0,1,2,3};                                    // 4-alpha
+//             int plotXlist[] = {0,1,2};                                      // 3-alpha
+//             int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
+//             int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
+//   
+//             int plotXlist[] = {
+//                 1,
+//                 3,
+//                 4,
+//                 11,
+//                 12,
+//                 15,
+//                 16,
+//                 17,
+//                 21,
+//                 22,
+//                 23,
+//                 26,
+//                 27,
+//                 32,
+//                 33,
+//                 40,
+//                 41,
+//                 48,
+//                 49,
+//                 55,
+//                 56,
+//                 62,
+//                 63,
+//                 64,
+//                 70,
+//                 77,
+//                 78,
+//                 86,
+//                 95,
+//                 104,
+//                 112,
+//                 34,
+//                 20,
+//                 46,
+//                 42,
+//                 30,
+//                 75,
+//                 76,
+//                 54,
+//                 69,
+//                 60,
+//                 19,
+//                 61,
+//                 68,
+//                 25,
+//                 67,
+//                 53,
+//                 59,
+//                 74,
+//                 79,
+//                 84,
+//                 39,
+//                 83,
+//                 31,
+//                 96,
+//                 85,
+//                 88,
+//                 50,
+//                 93,
+//                 97,
+//                 96,
+//                 94,
+//                 66,
+//                 102,
+//                 92,
+//                 52,
+//                 111,
+//                 110,
+//                 99,
+//                 38,
+//                 101,
+//                 45,
+//                 113,
+//                 43,
+//                 119,
+//                 114,
+//                 118,
+//                 100,
+//                 120,
+//                 6,
+//                 107,
+//                 109,
+//                 115,
+//                 121,
+//                 3,
+//                 125,
+//                 108,
+//                 37,
+//                 124,
+//                 126,
+//                 71,
+//                 10,
+//                 7,
+//                 57,
+//                 127,
+//                 65,
+//                 73,
+//                 106,
+//                 9,
+//                 87,
+//                 80
+//             };                                              // 101 nova134 isotopes
+                
+                
+//                int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,
+//                23,26,27,32,33,40,41,48,49,55,
+//                56,62,63,64,70,77,78,86,95,104,
+//                112,34};                                              // 31 nova134 selection
+
+//             int plotXlist[] = 
+//             {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
+//             13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38};   // 150-isotope select)
 //             
 //             
 //             // Get length LX of array plotXlist holding the species indices for
@@ -4021,7 +4018,7 @@ class Integrate: public Utilities {
             // next plot output step.
             
             dt_desired = dtt;
-            double gap = nextPlotTime - t_saved;
+            double gap = 1.5*nextPlotTime - t_saved;
 
             if(dtt > gap && gap > 0){
                 dtt = gap;
@@ -5249,6 +5246,8 @@ void toPlotNow(){
     if(hydroProfile && plotHydroProfile){
         fprintf(plotfile4,"\n%6.4e  %6.4e  %6.4e", log10(t),logTnow,logRhoNow);
     }
+    
+    cout.flush();
         
 }  // End of toPlotNow()
 
