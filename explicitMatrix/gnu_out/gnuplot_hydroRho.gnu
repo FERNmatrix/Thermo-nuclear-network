@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 3.0
+width = 4 #8.5
+height = 8 #3.0
 
 # x-axis resolution
 set samples 1000
@@ -59,7 +59,7 @@ set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,32"
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
@@ -73,13 +73,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -4
+xlow = -3
 xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
-yup = 10000
+yup = 1e4
 ytics = 1000    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 

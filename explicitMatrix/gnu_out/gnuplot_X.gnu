@@ -87,7 +87,7 @@ xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -10
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -148,7 +148,6 @@ set mytics minytics   # minor y tics per major tic
 #replot file1 using 1:13 with lines ls 6 lw 1.5 title "7Be"
 #replot file1 using 1:14 with lines ls 15 lw 1.5 title "8B"
 
-
 # Alpha network (X)
 
 #plot file1 using 1:8 with lines ls 11 lw 1.0 dashtype 1 title "4He"
@@ -168,179 +167,21 @@ set mytics minytics   # minor y tics per major tic
 #replot file1 using 1:22 with lines ls 1 lw 1.0 dashtype 1 title "64Ge"
 #replot file1 using 1:23 with lines ls 2 lw 1.0 dashtype 1 title "68Se"
 
-# 101 isotopes from nova134 with nova125DProfile
-# Numbers in parentheses is the species (isotope) index from network
 
-#plot file1 using 1:8 with lines ls 2 lw 3 dashtype 1 title "(1)"
-#replot file1 using 1:9 with lines ls 3 lw 1 dashtype 1 title "(3)"
-#replot file1 using 1:10 with lines ls 1 lw 1 dashtype 1 title "(4)"
-#replot file1 using 1:11 with lines ls 4 lw 1 dashtype 1 title "(11)"
-#replot file1 using 1:12 with lines ls 5 lw 1 dashtype 1 title "(12)"
-#replot file1 using 1:13 with lines ls 6 lw 1 dashtype 1 title "(15)"
-#replot file1 using 1:14 with lines ls 7 lw 1 dashtype 1 title "(16)"
-#replot file1 using 1:15 with lines ls 8 lw 1 dashtype 1 title "(17)"
-#replot file1 using 1:16 with lines ls 9 lw 1 dashtype 1 title "(21)"
-#replot file1 using 1:17 with lines ls 10 lw 1 dashtype 1 title "(22)"
-
-#replot file1 using 1:18 with lines ls 11 lw 1 dashtype 1 title "(23)"
-#replot file1 using 1:19 with lines ls 12 lw 1 dashtype 1 title "(26)"
-#replot file1 using 1:20 with lines ls 13 lw 1 dashtype 1 title "(27)"
-#replot file1 using 1:21 with lines ls 14 lw 1 dashtype 1 title "(32)"
-#replot file1 using 1:22 with lines ls 3 lw 1 dashtype 1 title "(33)"
-#replot file1 using 1:23 with lines ls 4 lw 1 dashtype 1 title "(40)"
-#replot file1 using 1:24 with lines ls 15 lw 1 dashtype 1 title "(41)"
-#replot file1 using 1:25 with lines ls 16 lw 1 dashtype 1 title "(48)"
-#replot file1 using 1:26 with lines ls 17 lw 1 dashtype 1 title "(49)"
-#replot file1 using 1:27 with lines ls 18 lw 1 dashtype 1 title "(55)"
-
-#replot file1 using 1:28 with lines ls 19 lw 1 dashtype 1 title "(56)"
-#replot file1 using 1:29 with lines ls 20 lw 1 dashtype 1 title "(62)"
-#replot file1 using 1:30 with lines ls 5 lw 1 dashtype 1 title "(63)"
-#replot file1 using 1:31 with lines ls 6 lw 1 dashtype 1 title "(64)"
-#replot file1 using 1:32 with lines ls 7 lw 1 dashtype 1 title "(70)"
-#replot file1 using 1:33 with lines ls 8 lw 1 dashtype 1 title "(77)"
-#replot file1 using 1:34 with lines ls 9 lw 1 dashtype 1 title "(78)"
-#replot file1 using 1:35 with lines ls 10 lw 1 dashtype 1 title "(86)"
-#replot file1 using 1:36 with lines ls 11 lw 1 dashtype 1 title "(95)"
-#replot file1 using 1:37 with lines ls 12 lw 1 dashtype 1 title "(104)"
-
-#replot file1 using 1:38 with lines ls 13 lw 1 dashtype 1 title "(112)"
-#replot file1 using 1:39 with lines ls 14 lw 1 dashtype 1 title "(34)"
-#replot file1 using 1:40 with lines ls 13 lw 1 dashtype 1 title "(20)"
-#replot file1 using 1:41 with lines ls 14 lw 1 dashtype 1 title "(46)"
-#replot file1 using 1:42 with lines ls 3 lw 1 dashtype 1 title "(42)"
-#replot file1 using 1:43 with lines ls 4 lw 1 dashtype 1 title "(30)"
-#replot file1 using 1:44 with lines ls 15 lw 1 dashtype 1 title "(75)"
-#replot file1 using 1:45 with lines ls 16 lw 1 dashtype 1 title "(76)"
-#replot file1 using 1:46 with lines ls 17 lw 1 dashtype 1 title "(54)"
-#replot file1 using 1:47 with lines ls 18 lw 1 dashtype 1 title "(69)"
-
-#replot file1 using 1:48 with lines ls 13 lw 1 dashtype 1 title "(60)"
-#replot file1 using 1:49 with lines ls 14 lw 1 dashtype 1 title "(19)"
-#replot file1 using 1:50 with lines ls 13 lw 1 dashtype 1 title "(61)"
-#replot file1 using 1:51 with lines ls 14 lw 1 dashtype 1 title "(68)"
-#replot file1 using 1:52 with lines ls 3 lw 1 dashtype 1 title "(25)"
-#replot file1 using 1:53 with lines ls 4 lw 1 dashtype 1 title "(67)"
-#replot file1 using 1:54 with lines ls 15 lw 1 dashtype 1 title "(53)"
-#replot file1 using 1:55 with lines ls 16 lw 1 dashtype 1 title "(59)"
-#replot file1 using 1:56 with lines ls 17 lw 1 dashtype 1 title "(74)"
-#replot file1 using 1:57 with lines ls 18 lw 1 dashtype 1 title "(79)"
-
-#replot file1 using 1:58 with lines ls 13 lw 1 dashtype 1 title "(84)"
-#replot file1 using 1:59 with lines ls 14 lw 1 dashtype 1 title "(39)"
-#replot file1 using 1:60 with lines ls 13 lw 1 dashtype 1 title "(83)"
-#replot file1 using 1:61 with lines ls 14 lw 1 dashtype 1 title "(31)"
-#replot file1 using 1:62 with lines ls 3 lw 1 dashtype 1 title "(96)"
-#replot file1 using 1:63 with lines ls 4 lw 1 dashtype 1 title "(85)"
-#replot file1 using 1:64 with lines ls 15 lw 1 dashtype 1 title "(88)"
-#replot file1 using 1:65 with lines ls 16 lw 1 dashtype 1 title "(50)"
-#replot file1 using 1:66 with lines ls 17 lw 1 dashtype 1 title "(93)"
-#replot file1 using 1:67 with lines ls 18 lw 1 dashtype 1 title "(97)"
-
-#replot file1 using 1:68 with lines ls 19 lw 1 dashtype 1 title "(96)"
-#replot file1 using 1:69 with lines ls 20 lw 1 dashtype 1 title "(94)"
-#replot file1 using 1:70 with lines ls 5 lw 1 dashtype 1 title "(66)"
-#replot file1 using 1:71 with lines ls 6 lw 1 dashtype 1 title "(102)"
-#replot file1 using 1:72 with lines ls 7 lw 1 dashtype 1 title "(92)"
-#replot file1 using 1:73 with lines ls 8 lw 1 dashtype 1 title "(52)"
-#replot file1 using 1:74 with lines ls 9 lw 1 dashtype 1 title "(111)"
-#replot file1 using 1:75 with lines ls 10 lw 1 dashtype 1 title "(110)"
-#replot file1 using 1:76 with lines ls 11 lw 1 dashtype 1 title "(99)"
-#replot file1 using 1:77 with lines ls 12 lw 1 dashtype 1 title "(38)"
-
-#replot file1 using 1:78 with lines ls 19 lw 1 dashtype 1 title "(101)"
-#replot file1 using 1:79 with lines ls 20 lw 1 dashtype 1 title "(45)"
-#replot file1 using 1:80 with lines ls 5 lw 1 dashtype 1 title "(113)"
-#replot file1 using 1:81 with lines ls 6 lw 1 dashtype 1 title "(43)"
-#replot file1 using 1:82 with lines ls 7 lw 1 dashtype 1 title "(119)"
-#replot file1 using 1:83 with lines ls 8 lw 1 dashtype 1 title "(114)"
-#replot file1 using 1:84 with lines ls 9 lw 1 dashtype 1 title "(118)"
-#replot file1 using 1:85 with lines ls 10 lw 1 dashtype 1 title "(100)"
-#replot file1 using 1:86 with lines ls 11 lw 1 dashtype 1 title "(120)"
-#replot file1 using 1:87 with lines ls 12 lw 1 dashtype 1 title "(6)"
-
-#replot file1 using 1:88 with lines ls 2 lw 3 dashtype 1 title "(107)"
-#replot file1 using 1:89 with lines ls 3 lw 1 dashtype 1 title "(109)"
-#replot file1 using 1:90 with lines ls 1 lw 1 dashtype 1 title "(115)"
-#replot file1 using 1:91 with lines ls 4 lw 1 dashtype 1 title "(121)"
-#replot file1 using 1:92 with lines ls 5 lw 1 dashtype 1 title "(3)"
-#replot file1 using 1:93 with lines ls 6 lw 1 dashtype 1 title "(125)"
-#replot file1 using 1:94 with lines ls 7 lw 1 dashtype 1 title "(108)"
-#replot file1 using 1:95 with lines ls 8 lw 1 dashtype 1 title "(37)"
-#replot file1 using 1:96 with lines ls 9 lw 1 dashtype 1 title "(124)"
-#replot file1 using 1:97 with lines ls 10 lw 1 dashtype 1 title "(126)"
-
-#replot file1 using 1:98 with lines ls 2 lw 3 dashtype 1 title "(71)"
-#replot file1 using 1:99 with lines ls 3 lw 1 dashtype 1 title "(10)"
-#replot file1 using 1:100 with lines ls 1 lw 1 dashtype 1 title "(7)"
-#replot file1 using 1:101 with lines ls 4 lw 1 dashtype 1 title "(57)"
-#replot file1 using 1:102 with lines ls 5 lw 1 dashtype 1 title "(127)"
-#replot file1 using 1:103 with lines ls 6 lw 1 dashtype 1 title "(65)"
-#replot file1 using 1:104 with lines ls 7 lw 1 dashtype 1 title "(73)"
-#replot file1 using 1:105 with lines ls 8 lw 1 dashtype 1 title "(106)"
-#replot file1 using 1:106 with lines ls 9 lw 1 dashtype 1 title "(9)"
-#replot file1 using 1:107 with lines ls 10 lw 1 dashtype 1 title "(87)"
-
-#replot file1 using 1:107 with lines ls 10 lw 1 dashtype 1 title "(80)"
-
-
-# 48-isotope network
-
-#plot file1 using 1:8 with lines ls 2 lw 1 dashtype 2 title "(0)"
-#replot file1 using 1:9 with lines ls 3 lw 1 dashtype 2 title "(1)"
-#replot file1 using 1:10 with lines ls 1 lw 1 dashtype 2 title "(2)"
-#replot file1 using 1:11 with lines ls 4 lw 1 dashtype 2 title "(3)"
-#replot file1 using 1:12 with lines ls 5 lw 1 dashtype 2 title "(4)"
-#replot file1 using 1:13 with lines ls 6 lw 1 dashtype 2 title "(5)"
-#replot file1 using 1:14 with lines ls 7 lw 1 dashtype 2 title "(6)"
-#replot file1 using 1:15 with lines ls 8 lw 1 dashtype 2 title "(7)"
-#replot file1 using 1:16 with lines ls 9 lw 1 dashtype 2 title "(8)"
-#replot file1 using 1:17 with lines ls 10 lw 1 dashtype 2 title "(9)"
-
-#replot file1 using 1:18 with lines ls 11 lw 1 dashtype 2 title "(10)"
-#replot file1 using 1:19 with lines ls 12 lw 1 dashtype 2 title "(11)"
-#replot file1 using 1:20 with lines ls 13 lw 1 dashtype 2 title "(12)"
-#replot file1 using 1:21 with lines ls 14 lw 1 dashtype 2 title "(13)"
-#replot file1 using 1:22 with lines ls 3 lw 1 dashtype 2 title "(14)"
-#replot file1 using 1:23 with lines ls 4 lw 1 dashtype 2 title "(15)"
-#replot file1 using 1:24 with lines ls 15 lw 1 dashtype 2 title "(16)"
-#replot file1 using 1:25 with lines ls 16 lw 1 dashtype 2 title "(17)"
-#replot file1 using 1:26 with lines ls 17 lw 1 dashtype 2 title "(18)"
-#replot file1 using 1:27 with lines ls 18 lw 1 dashtype 2 title "(19)"
-
-#replot file1 using 1:28 with lines ls 19 lw 1 dashtype 2 title "(20)"
-#replot file1 using 1:29 with lines ls 20 lw 1 dashtype 2 title "(21)"
-#replot file1 using 1:30 with lines ls 5 lw 1 dashtype 2 title "(22)"
-#replot file1 using 1:31 with lines ls 6 lw 1 dashtype 2 title "(23)"
-#replot file1 using 1:32 with lines ls 7 lw 1 dashtype 2 title "(24)"
-#replot file1 using 1:33 with lines ls 8 lw 1 dashtype 2 title "(25)"
-#replot file1 using 1:34 with lines ls 9 lw 1 dashtype 2 title "(26)"
-#replot file1 using 1:35 with lines ls 10 lw 1 dashtype 2 title "(27)"
-#replot file1 using 1:36 with lines ls 11 lw 1 dashtype 2 title "(28)"
-#replot file1 using 1:37 with lines ls 12 lw 1 dashtype 2 title "(29)"
-
-#replot file1 using 1:38 with lines ls 13 lw 1 dashtype 2 title "(30)"
-#replot file1 using 1:39 with lines ls 14 lw 1 dashtype 2 title "(31)"
-#replot file1 using 1:39 with lines ls 13 lw 1 dashtype 2 title "(32)"
-#replot file1 using 1:40 with lines ls 14 lw 1 dashtype 2 title "(33)"
-#replot file1 using 1:41 with lines ls 15 lw 1 dashtype 2 title "(34)"
-#replot file1 using 1:42 with lines ls 16 lw 1 dashtype 2 title "(35)"
-#replot file1 using 1:43 with lines ls 17 lw 1 dashtype 2 title "(36)"
-#replot file1 using 1:44 with lines ls 18 lw 1 dashtype 2 title "(37)"
-#replot file1 using 1:45 with lines ls 19 lw 1 dashtype 2 title "(38)"
-#replot file1 using 1:46 with lines ls 20 lw 1 dashtype 2 title "(39)"
-
-#replot file1 using 1:47 with lines ls 21 lw 1 dashtype 2 title "(40)"
-#replot file1 using 1:48 with lines ls 22 lw 1 dashtype 2 title "(41)"
-#replot file1 using 1:49 with lines ls 1 lw 1 dashtype 2 title "(42)"
-#replot file1 using 1:50 with lines ls 2 lw 1 dashtype 2 title "(43)"
-#replot file1 using 1:51 with lines ls 3 lw 1 dashtype 2 title "(44)"
-#replot file1 using 1:52 with lines ls 4 lw 1 dashtype 2 title "(45)"
-#replot file1 using 1:53 with lines ls 5 lw 1 dashtype 2 title "(46)"
-#replot file1 using 1:54 with lines ls 6 lw 1 dashtype 2 title "(47)"
-
-
-# 150-isotope network
+# Following lines output generated in plotfile1 --> plot1.data by
+#
+#
+#    for(int i=0; i<maxPlotIsotopes; i++){
+#        plotXlist[i] = i;
+#    }
+#
+# in plotFileSetup() of explicitMatrix.cpp.  Following will plot
+# all isotopes for maxPlotIsotopes <= 150 set in explicitMatrix.cpp.
+# Numbers in parentheses are the isotope index of the species in the 
+# calculation, so this can plot generically for any network, but the 
+# meaning of the numbers varies from network to network. The species
+# (isotope) number for each isotope is output to the screen at the 
+# end of a explicitMatrix.cpp calculation.
 
 plot file1 using 1:8 with lines ls 2 lw 1 dashtype 1 title "(0)"
 replot file1 using 1:9 with lines ls 3 lw 1 dashtype 1 title "(1)"
@@ -507,44 +348,6 @@ replot file1 using 1:154 with lines ls 6 lw 1 dashtype 1 title "(147)"
 replot file1 using 1:155 with lines ls 6 lw 1 dashtype 1 title "(148)"
 replot file1 using 1:156 with lines ls 6 lw 1 dashtype 1 title "(149)"
 
-
-
-# Select isotopes from 150 network
-
-#plot file1 using 1:8 with lines ls 2 lw 3 title "4He"
-#replot file1 using 1:9 with lines ls 3 title "12C"
-#replot file1 using 1:10 with lines ls 1 title "16O"
-#replot file1 using 1:11 with lines ls 4 title "20Ne"
-#replot file1 using 1:12 with lines ls 5 title "24Mg"
-#replot file1 using 1:13 with lines ls 6 lw 3 title "28Si"
-#replot file1 using 1:14 with lines ls 7 title "32S"
-#replot file1 using 1:15 with lines ls 8 title "36Ar"
-#replot file1 using 1:16 with lines ls 9 title "40Ca"
-#replot file1 using 1:17 with lines ls 10 title "44Ti"
-#replot file1 using 1:18 with lines ls 11 title "48Cr"
-#replot file1 using 1:19 with lines ls 12 lw 3 title "52Fe"
-#replot file1 using 1:20 with lines ls 13 lw 3 title "56Ni"
-#replot file1 using 1:21 with lines ls 14 title "60Zn"
-
-#replot file1 using 1:22 with lines ls 3 lw 3 title "1H"
-#replot file1 using 1:23 with lines ls 4 lw 3 title "n"
-#replot file1 using 1:24 with lines ls 15 title "13C"
-#replot file1 using 1:25 with lines ls 16 title "14N"
-#replot file1 using 1:26 with lines ls 17 title "29Si"
-#replot file1 using 1:27 with lines ls 18 title "31P"
-#replot file1 using 1:28 with lines ls 19 title "64Zn"
-#replot file1 using 1:29 with lines ls 20 title "60Ni"
-#replot file1 using 1:30 with lines ls 5 title "55Co"
-#replot file1 using 1:31 with lines ls 6 title "24Al"
-
-#replot file1 using 1:32 with lines ls 7 title "19Fl"
-#replot file1 using 1:33 with lines ls 8 title "22Na"
-#replot file1 using 1:34 with lines ls 9 title "22Ne"
-#replot file1 using 1:35 with lines ls 10 title "23Mg"
-#replot file1 using 1:36 with lines ls 11 title "7Be"
-#replot file1 using 1:37 with lines ls 12 lw 3 title "14O"
-#replot file1 using 1:38 with lines ls 13 lw 3 title "17O"
-#replot file1 using 1:39 with lines ls 14 title "24Al"
 
 # Reset font sizes for .eps and .png output2
 

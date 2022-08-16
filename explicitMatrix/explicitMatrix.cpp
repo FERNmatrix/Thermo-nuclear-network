@@ -160,10 +160,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                // Number of plot output steps
+#define plotSteps 300                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -215,14 +215,14 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_100.inp";
+char hydroFile[] = "data/nova125DProfile_400.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 103; // Max entries hydro profile
+const static int maxHydroEntries = 403; // Max entries hydro profile
 //const static int maxHydroEntries = 2622; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
@@ -318,9 +318,9 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Generally,startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration,stop_time.
 
-double start_time = 1e-20;             // Start time for integration
+double start_time = 1e-5;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 5e-6;          // Start time for plot output
+double startplot_time = 1e-3;          // Start time for plot output
 double stop_time = 1e6;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
