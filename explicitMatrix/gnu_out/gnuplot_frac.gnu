@@ -65,20 +65,18 @@ set pointsize 1.5    # Size of the plotted points
 set key outside    # Place legend outside
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="C++ Asy T9=7 rho=1e8 (no pf; new dt)"
+ds="C++ Asy+PE (no pf)"
 ds = ds.": Fraction"
 
 set title ds textcolor rgb title_color
 
-file1 = "gnufile.data"
-
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 0
+xlow = -4
+xup = 8
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -102,10 +100,8 @@ set grid   # set x-y grid at major ticmarks
 # -------- Axis ranges and ticmarks -----------
 
 
-
-
-# Edit the following plot commands to correspond to data
-# read in from data file
+#file1 = "gnufile.data"
+file1 = "plot1.data"
 
 plot file1 using 1:5 with lines ls 2 title "Frac Asy"
 replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
@@ -132,9 +128,9 @@ replot               # Plot to postscript file
 
 # Plot to PNG file
 
-set out "gnuplot_frac.png"
+#set out "gnuplot_frac.png"
 # Assume 72 pixels/inch and make bitmap twice as large for display resolution
-set terminal png transparent size 2*width*72, 2*height*72 lw 2
-replot
+#set terminal png transparent size 2*width*72, 2*height*72 lw 2
+#replot
 
 quit
