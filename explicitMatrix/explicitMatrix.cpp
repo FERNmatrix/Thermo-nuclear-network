@@ -215,8 +215,7 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/hydroProfile.out";
-//char hydroFile[] = "data/nova125DProfile_400.inp";
+char hydroFile[] = "data/nova125DProfile_400.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
@@ -307,7 +306,7 @@ bool isotopeInEquilLast[ISOTOPES];
 double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
-// Integration time data.  The variables start_time and stop_time 
+// Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
 // and dt_start sets the initial integration timestep. In an operator-split 
 // coupling  start_time will be ~0,stop_time will correspond to the length
@@ -319,9 +318,9 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Generally,startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration,stop_time.
 
-double start_time = 1e-7;             // Start time for integration
+double start_time = 1e-5;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-7;          // Start time for plot output
+double startplot_time = 1e-3;          // Start time for plot output
 double stop_time = 1e6;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -465,6 +464,7 @@ int reacMask[ISOTOPES][SIZE];
 
 gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
+gsl_vector *rv2minus;
 
 // Total number of F+ and F- terms in the network
 
@@ -893,7 +893,7 @@ class Utilities{
 
             }
         }
-
+        
         
         // Static function Utilities::plotHydroprofile() to send hydro profile 
         // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
@@ -2237,7 +2237,7 @@ class ReactionVector:  public Utilities {
                 
                 //Prototype GSL reaction vector
                 
-                gsl_vector * v1 = gsl_vector_alloc (ISOTOPES); 
+                gsl_vector * v1 = gsl_vector_alloc (ISOTOPES);
                 
                 // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
                 
@@ -2304,13 +2304,15 @@ class ReactionVector:  public Utilities {
         
         k = gsl_vector_equal(rv1,rv2);
         
+        
+        
         if (k==1) return 1;  // rv1 = rv2
         
         // If above statement is false,rv1 and rv2 are not equal.
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
         
-        gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+        rv2minus = gsl_vector_alloc(ISOTOPES);
         gsl_vector_memcpy(rv2minus,rv2);
         gsl_vector_scale(rv2minus,-1);
         kk = gsl_vector_equal(rv1,rv2minus);
@@ -2324,6 +2326,8 @@ class ReactionVector:  public Utilities {
             return 2;  // rv1 equal to -rv2
 
         }
+        
+        //gsl_vector_free(rv2minus);
         
     }    // End function compareGSLvectors
     
@@ -2584,12 +2588,12 @@ class MatrixUtils: public Utilities {
             return *abundances;
         }
 
-        // Free allocated matrix and vector memory
-        
-        void freeGSL(){
-            gsl_vector_free(abundances);
-            gsl_matrix_free(fluxes);
-        }
+//         // Free allocated matrix and vector memory. Function not presently used
+//         
+//         void freeGSL(){
+//             gsl_vector_free(abundances);
+//             gsl_matrix_free(fluxes);
+//         }
 
 };  // end of class MatrixUtils
 
@@ -4621,7 +4625,9 @@ int main() {
     free(FplusIsotopeIndex);
     free(FminusIsotopeIndex);
     free(RG);
+    
     gsl_vector_free(abundances);
+    gsl_vector_free(rv2minus);
     gsl_matrix_free(fluxes);
     
 }  // End of main routine

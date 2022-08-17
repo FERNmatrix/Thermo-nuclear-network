@@ -15,8 +15,10 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 4 #8.5
-height = 8 #3.0
+width = 10.5
+height = 6.5
+
+set pointsize 1.5    # Size of the plotted points
 
 # x-axis resolution
 set samples 1000
@@ -59,12 +61,10 @@ set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,32"
 #set logscale x
 #set logscale y
 
-set pointsize 1.0    # Size of the plotted points
-
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="tidal SN profile"
 ds = ds.": Density"
@@ -114,13 +114,12 @@ file2 = "hydroProfile.out"  # The input hydro profile
 replot file2 using 1:(10**$3) with points ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
 
 
-
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,16"
-set key top right font "Arial,16"
-set xlabel 'log time' textcolor rgb tic_color font "Arial,18"
-set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,18"
+set title ds textcolor rgb title_color font "Arial,20"
+set key top right font "Arial,20"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,22"
+set ylabel 'log density (g/cm^3)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 

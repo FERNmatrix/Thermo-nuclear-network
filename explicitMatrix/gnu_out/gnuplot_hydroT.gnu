@@ -15,8 +15,10 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5 #4.5
-height = 3.0 #6.5
+width = 10.5
+height = 6.5
+
+set pointsize 1.5    # Size of the plotted points
 
 # x-axis resolution
 set samples 2000
@@ -58,8 +60,6 @@ set ylabel ' T9' textcolor rgb tic_color font "Arial,32"
 # Uncomment following to set log or log-log plots
 #set logscale x
 #set logscale y
-
-set pointsize 1.0    # Size of the plotted points
 
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
@@ -118,10 +118,10 @@ replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T9 i
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,16"
+set title ds textcolor rgb title_color font "Arial,18"
 set key top right font "Arial,16"
-set xlabel 'log time' textcolor rgb tic_color font "Arial,18"
-set ylabel 'T9' textcolor rgb tic_color font "Arial,18"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,20"
+set ylabel 'T9' textcolor rgb tic_color font "Arial,20"
 
 # Plot to postscript file
 
