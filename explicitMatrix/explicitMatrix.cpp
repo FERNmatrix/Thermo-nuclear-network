@@ -97,13 +97,13 @@ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nov
 194            194     2232     network_194.inp             data/rateLibrary_194.data
 268            268     3175     network_268.inp             data/rateLibrary_268.data
 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
-365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
+365 (solar)    365     4395     data/network_365solar.inp  data/rateLibrary_365.data
 ------------------------------------------------------------------------------------------
 */
 
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 365                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 4395                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -147,13 +147,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_365solar.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_365.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -2283,7 +2283,11 @@ class ReactionVector:  public Utilities {
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1);
         kk = gsl_vector_equal(rv1, rv2minus);
-        
+       
+        // Free the vector. Better solution would be to globally allocate
+        // this and remove the repeated allocation all together.
+        gsl_vector_free(rv2minus);
+ 
         if(kk==0){
             
             return 0;  // rv1 not equal to rv2 and not equal to -rv2
