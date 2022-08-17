@@ -1,0 +1,1709 @@
+==13119== Memcheck, a memory error detector
+==13119== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==13119== Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info
+==13119== Command: ./explicitMatrix
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x40B3E9: ReactionVector::sortReactionGroups() (explicitMatrix.cpp:2339)
+==13119==    by 0x402B2E: main (explicitMatrix.cpp:4115)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40B39F: ReactionVector::sortReactionGroups() (explicitMatrix.cpp:2310)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x484A5F9: strlen (vg_replace_strmem.c:495)
+==13119==    by 0x4F1C7B7: __vfprintf_internal (vfprintf-internal.c:1647)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406676: assignRG() (explicitMatrix.cpp:5540)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x4045CB: readNetwork(char*) (explicitMatrix.cpp:4933)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F02388: __printf_fp_l (printf_fp.c:397)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F023A2: __printf_fp_l (printf_fp.c:397)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFE36A: __mpn_extract_double (dbl2mpn.c:56)
+==13119==    by 0x4F0264E: __printf_fp_l (printf_fp.c:397)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFE36F: __mpn_extract_double (dbl2mpn.c:60)
+==13119==    by 0x4F0264E: __printf_fp_l (printf_fp.c:397)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0269E: __printf_fp_l (printf_fp.c:438)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F026C1: __printf_fp_l (printf_fp.c:438)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F02F42: __printf_fp_l (printf_fp.c:438)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F026F1: __printf_fp_l (printf_fp.c:439)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F02714: __printf_fp_l (printf_fp.c:439)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F02716: __printf_fp_l (printf_fp.c:439)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0273F: __printf_fp_l (printf_fp.c:440)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F02764: __printf_fp_l (printf_fp.c:440)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F02766: __printf_fp_l (printf_fp.c:440)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F02784: __printf_fp_l (printf_fp.c:447)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F037DD: __printf_fp_l (printf_fp.c:650)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F03AC4: __printf_fp_l (printf_fp.c:666)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1E5C: __mpn_lshift (lshift.S:59)
+==13119==    by 0x4F03AC8: __printf_fp_l (printf_fp.c:666)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1E5F: __mpn_lshift (lshift.S:60)
+==13119==    by 0x4F03AC8: __printf_fp_l (printf_fp.c:666)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F03B05: __printf_fp_l (printf_fp.c:667)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03BC7: __printf_fp_l (printf_fp.c:678)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03BBA: __printf_fp_l (printf_fp.c:790)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD3A8: __mpn_mul (mul.c:71)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFD3AF: __mpn_mul (mul.c:72)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D0: __mpn_mul_1 (mul_1.S:90)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2132: __mpn_mul_1 (mul_1.S:117)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD5AD: __mpn_mul (mul.c:83)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD5D2: __mpn_mul (mul.c:88)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFD5FD: __mpn_mul (mul.c:91)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFD5DD: __mpn_mul (mul.c:94)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1C67: __mpn_add_n (add_n.S:37)
+==13119==    by 0x4EFD620: __mpn_mul (mul.c:95)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD621: __mpn_mul (mul.c:95)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFD5EF: __mpn_mul (mul.c:88)
+==13119==    by 0x4F03B32: __printf_fp_l (printf_fp.c:686)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03B44: __printf_fp_l (printf_fp.c:695)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F03B70: __printf_fp_l (printf_fp.c:698)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03B92: __printf_fp_l (printf_fp.c:707)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03B9E: __printf_fp_l (printf_fp.c:729)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F03C4E: __printf_fp_l (printf_fp.c:746)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03C54: __printf_fp_l (printf_fp.c:746)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F03C68: __printf_fp_l (printf_fp.c:746)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03C8B: __printf_fp_l (printf_fp.c:746)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03C91: __printf_fp_l (printf_fp.c:747)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F04233: __printf_fp_l (printf_fp.c:768)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FD8: __mpn_rshift (rshift.S:92)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2038: __mpn_mul_1 (mul_1.S:36)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20AC: __mpn_mul_1 (mul_1.S:77)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC210D: __mpn_mul_1 (mul_1.S:106)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D0: __mpn_mul_1 (mul_1.S:90)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D7: __mpn_mul_1 (mul_1.S:92)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2132: __mpn_mul_1 (mul_1.S:117)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD5AD: __mpn_mul (mul.c:83)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1D1C: __mpn_addmul_1 (addmul_1.S:40)
+==13119==    by 0x1FFEFFEE5F: ???
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1D1F: __mpn_addmul_1 (addmul_1.S:41)
+==13119==    by 0x1FFEFFEE5F: ???
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EFD60D: __mpn_mul (mul.c:98)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4EFD5EF: __mpn_mul (mul.c:88)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F04778: __printf_fp_l (printf_fp.c:747)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0478D: __printf_fp_l (printf_fp.c:757)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F2B: __mpn_rshift (rshift.S:33)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FFA: __mpn_rshift (rshift.S:101)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2097: __mpn_mul_1 (mul_1.S:70)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20FA: __mpn_mul_1 (mul_1.S:101)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1E15: __mpn_lshift (lshift.S:36)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1EEA: __mpn_lshift (lshift.S:103)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1EC7: __mpn_lshift (lshift.S:94)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F047DA: __printf_fp_l (printf_fp.c:766)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2079: __mpn_mul_1 (mul_1.S:60)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20E7: __mpn_mul_1 (mul_1.S:96)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F52: __mpn_rshift (rshift.S:46)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F61: __mpn_rshift (rshift.S:51)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FEA: __mpn_rshift (rshift.S:97)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FEE: __mpn_rshift (rshift.S:98)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FD4: __mpn_rshift (rshift.S:91)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0412B: __printf_fp_l (printf_fp.c:792)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2038: __mpn_mul_1 (mul_1.S:36)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2079: __mpn_mul_1 (mul_1.S:60)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20E7: __mpn_mul_1 (mul_1.S:96)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D0: __mpn_mul_1 (mul_1.S:90)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D7: __mpn_mul_1 (mul_1.S:92)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2132: __mpn_mul_1 (mul_1.S:117)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F0416B: __printf_fp_l (printf_fp.c:800)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F04177: __printf_fp_l (printf_fp.c:801)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F52: __mpn_rshift (rshift.S:46)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F61: __mpn_rshift (rshift.S:51)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FEA: __mpn_rshift (rshift.S:97)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FEE: __mpn_rshift (rshift.S:98)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FD4: __mpn_rshift (rshift.S:91)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FD8: __mpn_rshift (rshift.S:92)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F01C81: hack_digit (printf_fp.c:178)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2038: __mpn_mul_1 (mul_1.S:36)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2097: __mpn_mul_1 (mul_1.S:70)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20FA: __mpn_mul_1 (mul_1.S:101)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D0: __mpn_mul_1 (mul_1.S:90)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D7: __mpn_mul_1 (mul_1.S:92)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2132: __mpn_mul_1 (mul_1.S:117)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F01C81: hack_digit (printf_fp.c:178)
+==13119==    by 0x4F02CDE: __printf_fp_l (printf_fp.c:967)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2038: __mpn_mul_1 (mul_1.S:36)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02CDE: __printf_fp_l (printf_fp.c:967)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC2097: __mpn_mul_1 (mul_1.S:70)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02CDE: __printf_fp_l (printf_fp.c:967)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20FA: __mpn_mul_1 (mul_1.S:101)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02CDE: __printf_fp_l (printf_fp.c:967)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20D0: __mpn_mul_1 (mul_1.S:90)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02CDE: __printf_fp_l (printf_fp.c:967)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== 
+==13119== More than 100 errors detected.  Subsequent errors
+==13119== will still be recorded, but in less detail than before.
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F02FED: __printf_fp_l (printf_fp.c:979)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F01C81: hack_digit (printf_fp.c:178)
+==13119==    by 0x4F03000: __printf_fp_l (printf_fp.c:980)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03019: __printf_fp_l (printf_fp.c:982)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03088: UnknownInlinedFun (rounding-mode.h:52)
+==13119==    by 0x4F03088: __printf_fp_l (printf_fp.c:999)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0308D: UnknownInlinedFun (rounding-mode.h:52)
+==13119==    by 0x4F0308D: __printf_fp_l (printf_fp.c:999)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F036E2: __printf_fp_l (printf_fp.c:1009)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0370B: __printf_fp_l (printf_fp.c:1009)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0373F: __printf_fp_l (printf_fp.c:1029)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F032EE: __printf_fp_l (printf_fp.c:1167)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F0353D: __printf_fp_l (printf_fp.c:1229)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03523: __printf_fp_l (printf_fp.c:1231)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FB0: __mpn_rshift (rshift.S:80)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x484E18D: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x484E1A9: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x484E1C4: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x484E1DA: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x484E1E0: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x484E1E9: memset (vg_replace_strmem.c:1361)
+==13119==    by 0x4EFD3D2: __mpn_mul (mul.c:77)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1D1C: __mpn_addmul_1 (addmul_1.S:40)
+==13119==    by 0x1FFEFFEEBF: ???
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1D1F: __mpn_addmul_1 (addmul_1.S:41)
+==13119==    by 0x1FFEFFEEBF: ???
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F7C: __mpn_rshift (rshift.S:62)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1F8F: __mpn_rshift (rshift.S:68)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FDF: __mpn_rshift (rshift.S:94)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FE2: __mpn_rshift (rshift.S:95)
+==13119==    by 0x4F0424E: __printf_fp_l (printf_fp.c:780)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20C3: __mpn_mul_1 (mul_1.S:85)
+==13119==    by 0x4EFD5A0: __mpn_mul (mul.c:81)
+==13119==    by 0x4F03C05: __printf_fp_l (printf_fp.c:691)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1E62: __mpn_lshift (lshift.S:64)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1E75: __mpn_lshift (lshift.S:70)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1ECE: __mpn_lshift (lshift.S:96)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1ED2: __mpn_lshift (lshift.S:97)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1EC4: __mpn_lshift (lshift.S:93)
+==13119==    by 0x4F047BA: __printf_fp_l (printf_fp.c:763)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20AC: __mpn_mul_1 (mul_1.S:77)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC210D: __mpn_mul_1 (mul_1.S:106)
+==13119==    by 0x4F0414C: __printf_fp_l (printf_fp.c:796)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC1FB0: __mpn_rshift (rshift.S:80)
+==13119==    by 0x4F046C3: __printf_fp_l (printf_fp.c:809)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4EC20C3: __mpn_mul_1 (mul_1.S:85)
+==13119==    by 0x4F01C88: hack_digit (printf_fp.c:179)
+==13119==    by 0x4F02C3B: __printf_fp_l (printf_fp.c:943)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Use of uninitialised value of size 8
+==13119==    at 0x4F0304E: __printf_fp_l (printf_fp.c:992)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03054: __printf_fp_l (printf_fp.c:992)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F032E4: __printf_fp_l (printf_fp.c:1167)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x4F03371: __printf_fp_l (printf_fp.c:1174)
+==13119==    by 0x4F1C0E7: __vfprintf_internal (vfprintf-internal.c:1646)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406D29: assignRG() (explicitMatrix.cpp:5608)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Syscall param write(buf) points to uninitialised byte(s)
+==13119==    at 0x4FD6727: write (write.c:26)
+==13119==    by 0x4F2F78C: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1181)
+==13119==    by 0x4F2EB05: new_do_write (fileops.c:449)
+==13119==    by 0x4F30828: _IO_new_do_write (fileops.c:426)
+==13119==    by 0x4F30828: _IO_do_write@@GLIBC_2.2.5 (fileops.c:423)
+==13119==    by 0x4F2FDD5: _IO_new_file_xsputn (fileops.c:1244)
+==13119==    by 0x4F2FDD5: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==13119==    by 0x4F1AA6C: outstring_func (vfprintf-internal.c:239)
+==13119==    by 0x4F1AA6C: __vfprintf_internal (vfprintf-internal.c:1404)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x406CD7: assignRG() (explicitMatrix.cpp:5606)
+==13119==    by 0x402B51: main (explicitMatrix.cpp:4125)
+==13119==  Address 0x50b6ec4 is 148 bytes inside a block of size 4,096 alloc'd
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x4F23C43: _IO_file_doallocate (filedoalloc.c:101)
+==13119==    by 0x4F3193F: _IO_doallocbuf (genops.c:347)
+==13119==    by 0x4F3193F: _IO_doallocbuf (genops.c:342)
+==13119==    by 0x4F30CE7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==13119==    by 0x4F2FDD5: _IO_new_file_xsputn (fileops.c:1244)
+==13119==    by 0x4F2FDD5: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==13119==    by 0x4F1AA6C: outstring_func (vfprintf-internal.c:239)
+==13119==    by 0x4F1AA6C: __vfprintf_internal (vfprintf-internal.c:1404)
+==13119==    by 0x4F07959: fprintf (fprintf.c:32)
+==13119==    by 0x402564: main (explicitMatrix.cpp:3948)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+==13119== Conditional jump or move depends on uninitialised value(s)
+==13119==    at 0x40ED17: double const& std::max<double>(double const&, double const&) (stl_algobase.h:259)
+==13119==    by 0x40D26A: ReactionGroup::computeEqRatios() (explicitMatrix.cpp:3198)
+==13119==    by 0x40D15E: ReactionGroup::computeQuad() (explicitMatrix.cpp:3162)
+==13119==    by 0x40C289: ReactionGroup::computeEquilibrium() (explicitMatrix.cpp:2901)
+==13119==    by 0x40317E: main (explicitMatrix.cpp:4324)
+==13119==  Uninitialised value was created by a stack allocation
+==13119==    at 0x40572D: assignRG() (explicitMatrix.cpp:5363)
+==13119== 
+
+Wed Aug 17 13:29:05 2022
+
+
+Integration using ASY+PE method
+T9=7.000e+00 rho=1.000e+08 massTol_asy=1.00e-09 massTol_PE=9.00e-04
+sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-20
+maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
+Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
+Isotopes=16 Reactions=48
+
+BEGIN TIME INTEGRATION:
+
+1 it=0 t=1.35e-18 dt=1.35e-19 int=55 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.22e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+2 it=0 t=1.63e-18 dt=1.63e-19 int=57 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.69e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+3 it=0 t=1.98e-18 dt=1.98e-19 int=59 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.25e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+4 it=0 t=2.39e-18 dt=2.39e-19 int=61 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.94e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+5 it=0 t=2.89e-18 dt=2.89e-19 int=63 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=4.77e+10 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+6 it=0 t=3.50e-18 dt=3.50e-19 int=65 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=5.78e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+7 it=0 t=4.66e-18 dt=4.66e-19 int=68 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=7.70e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+8 it=0 t=5.64e-18 dt=5.64e-19 int=70 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=9.32e+10 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+9 it=0 t=6.82e-18 dt=6.82e-19 int=72 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.13e+11 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+10 it=0 t=8.26e-18 dt=8.26e-19 int=74 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.36e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+11 it=0 t=9.99e-18 dt=9.99e-19 int=76 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.65e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+12 it=0 t=1.21e-17 dt=1.21e-18 int=78 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.00e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+13 it=0 t=1.61e-17 dt=1.61e-18 int=81 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.66e+11 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+14 it=0 t=1.95e-17 dt=1.95e-18 int=83 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.22e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+15 it=0 t=2.36e-17 dt=2.36e-18 int=85 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.90e+11 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+16 it=0 t=2.85e-17 dt=2.85e-18 int=87 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=4.72e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+17 it=0 t=3.45e-17 dt=3.45e-18 int=89 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=5.71e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+18 it=0 t=4.17e-17 dt=4.17e-18 int=91 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=6.90e+11 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+19 it=0 t=5.55e-17 dt=5.55e-18 int=94 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=9.19e+11 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+20 it=0 t=6.72e-17 dt=6.72e-18 int=96 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.11e+12 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+21 it=0 t=8.13e-17 dt=8.13e-18 int=98 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.35e+12 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+22 it=0 t=9.84e-17 dt=9.84e-18 int=100 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.63e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+23 it=0 t=1.19e-16 dt=1.19e-17 int=102 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.97e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+24 it=0 t=1.58e-16 dt=1.58e-17 int=105 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.62e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+25 it=0 t=1.92e-16 dt=1.92e-17 int=107 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.17e+12 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+26 it=0 t=2.32e-16 dt=2.32e-17 int=109 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.84e+12 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+27 it=0 t=2.81e-16 dt=2.81e-17 int=111 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=4.65e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+28 it=0 t=3.40e-16 dt=3.40e-17 int=113 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=5.62e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+29 it=0 t=4.11e-16 dt=4.11e-17 int=115 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=6.80e+12 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+30 it=0 t=5.47e-16 dt=5.47e-17 int=118 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=9.05e+12 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+31 it=0 t=6.62e-16 dt=6.62e-17 int=120 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.10e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+32 it=0 t=8.01e-16 dt=8.01e-17 int=122 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.33e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+33 it=0 t=9.69e-16 dt=9.69e-17 int=124 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.60e+13 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+34 it=0 t=1.17e-15 dt=1.17e-16 int=126 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.94e+13 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+35 it=0 t=1.42e-15 dt=1.42e-16 int=128 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.35e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+36 it=0 t=1.89e-15 dt=1.89e-16 int=131 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.12e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+37 it=0 t=2.29e-15 dt=2.29e-16 int=133 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=3.78e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+38 it=0 t=2.77e-15 dt=2.77e-16 int=135 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=4.57e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+39 it=0 t=3.35e-15 dt=3.35e-16 int=137 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=5.53e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+40 it=0 t=4.05e-15 dt=4.05e-16 int=139 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=6.70e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+41 it=0 t=4.90e-15 dt=4.90e-16 int=141 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=8.10e+13 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+42 it=0 t=6.52e-15 dt=6.52e-16 int=144 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.08e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+43 it=0 t=7.89e-15 dt=7.89e-16 int=146 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.30e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+44 it=0 t=9.55e-15 dt=9.55e-16 int=148 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.58e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+45 it=0 t=1.16e-14 dt=1.16e-15 int=150 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=1.91e+14 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+46 it=0 t=1.40e-14 dt=1.40e-15 int=152 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.65e+28 E=2.31e+14 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+47 it=0 t=1.86e-14 dt=1.86e-15 int=155 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.64e+28 E=3.07e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+48 it=0 t=2.25e-14 dt=2.25e-15 int=157 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.64e+28 E=3.71e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+49 it=0 t=2.72e-14 dt=2.72e-15 int=159 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.64e+28 E=4.49e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+50 it=0 t=3.30e-14 dt=3.30e-15 int=161 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.64e+28 E=5.42e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+51 it=0 t=3.99e-14 dt=3.99e-15 int=163 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.63e+28 E=6.55e+14 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+52 it=0 t=4.83e-14 dt=4.83e-15 int=165 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.63e+28 E=7.92e+14 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+53 it=0 t=6.42e-14 dt=6.42e-15 int=168 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.62e+28 E=1.05e+15 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+54 it=0 t=7.77e-14 dt=7.77e-15 int=170 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.61e+28 E=1.27e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+55 it=0 t=9.40e-14 dt=9.40e-15 int=172 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.60e+28 E=1.53e+15 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+56 it=0 t=1.14e-13 dt=1.14e-14 int=174 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.59e+28 E=1.85e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+57 it=0 t=1.38e-13 dt=1.38e-14 int=176 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.58e+28 E=2.23e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+58 it=0 t=1.67e-13 dt=1.67e-14 int=178 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.57e+28 E=2.68e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+59 it=0 t=2.22e-13 dt=2.22e-14 int=181 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.54e+28 E=3.53e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+60 it=0 t=2.68e-13 dt=2.68e-14 int=183 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.52e+28 E=4.24e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+61 it=0 t=3.25e-13 dt=3.25e-14 int=185 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.49e+28 E=5.09e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+62 it=0 t=3.93e-13 dt=3.93e-14 int=187 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.46e+28 E=6.09e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+63 it=0 t=4.75e-13 dt=4.75e-14 int=189 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.42e+28 E=7.27e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+64 it=0 t=6.33e-13 dt=6.33e-14 int=192 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.36e+28 E=9.44e+15 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+65 it=0 t=7.65e-13 dt=7.65e-14 int=194 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.30e+28 E=1.12e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+66 it=0 t=9.26e-13 dt=9.26e-14 int=196 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.24e+28 E=1.32e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+67 it=0 t=1.12e-12 dt=1.12e-13 int=198 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.18e+28 E=1.55e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+68 it=0 t=1.36e-12 dt=1.36e-13 int=200 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.10e+28 E=1.82e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+69 it=0 t=1.64e-12 dt=1.64e-13 int=202 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.02e+28 E=2.11e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+70 it=0 t=2.18e-12 dt=2.18e-13 int=205 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.83e+27 E=2.61e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+71 it=0 t=2.64e-12 dt=2.64e-13 int=207 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=7.87e+27 E=2.99e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+72 it=0 t=3.20e-12 dt=3.20e-13 int=209 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=6.89e+27 E=3.38e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+73 it=0 t=3.87e-12 dt=3.87e-13 int=211 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=5.92e+27 E=3.79e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+74 it=0 t=4.68e-12 dt=4.68e-13 int=213 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=4.96e+27 E=4.22e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+75 it=0 t=5.66e-12 dt=5.66e-13 int=215 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=4.06e+27 E=4.64e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+76 it=0 t=7.54e-12 dt=7.54e-13 int=218 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=2.84e+27 E=5.24e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+77 it=0 t=9.12e-12 dt=9.12e-13 int=220 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=2.14e+27 E=5.60e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+78 it=0 t=1.10e-11 dt=1.10e-12 int=222 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.54e+27 E=5.92e+16 E_R=0.00e+00 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+79 it=0 t=1.34e-11 dt=1.34e-12 int=224 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.04e+27 E=6.19e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+80 it=0 t=1.62e-11 dt=1.62e-12 int=226 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=6.35e+26 E=6.39e+16 E_R=8.88e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+81 it=0 t=1.96e-11 dt=1.96e-12 int=228 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=3.23e+26 E=6.53e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+82 it=0 t=2.60e-11 dt=2.60e-12 int=231 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=3.92e+24 E=6.59e+16 E_R=4.44e-14 c1=1 c2=1 c12+c12-->he4+ne20 Q=4.621 dev=0.000e+00
+83 it=0 t=3.15e-11 dt=3.15e-12 int=233 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-1.25e+26 E=6.53e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+84 it=0 t=3.81e-11 dt=3.81e-12 int=235 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-2.01e+26 E=6.41e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+85 it=0 t=4.61e-11 dt=4.61e-12 int=237 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-2.32e+26 E=6.23e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+86 it=0 t=5.58e-11 dt=5.58e-12 int=239 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-2.29e+26 E=6.00e+16 E_R=8.88e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+87 it=0 t=7.43e-11 dt=7.43e-12 int=242 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-1.80e+26 E=5.64e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+88 it=0 t=8.99e-11 dt=8.99e-12 int=244 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-1.31e+26 E=5.41e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+89 it=0 t=1.09e-10 dt=1.09e-11 int=246 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-7.85e+25 E=5.24e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+90 it=0 t=1.32e-10 dt=1.32e-11 int=248 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=-2.83e+25 E=5.15e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+91 it=0 t=1.59e-10 dt=1.59e-11 int=250 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.41e+25 E=5.16e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+92 it=0 t=1.93e-10 dt=1.93e-11 int=252 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=4.60e+25 E=5.29e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+93 it=0 t=2.56e-10 dt=2.56e-11 int=255 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=7.41e+25 E=5.72e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+94 it=0 t=3.10e-10 dt=3.10e-11 int=257 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.26e+25 E=6.16e+16 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+95 it=0 t=3.75e-10 dt=3.75e-11 int=259 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.61e+25 E=6.71e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+96 it=0 t=4.54e-10 dt=4.54e-11 int=261 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.70e+25 E=7.40e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+97 it=0 t=5.50e-10 dt=5.50e-11 int=263 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.63e+25 E=8.22e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+98 it=1 t=6.73e-10 dt=6.73e-11 int=266 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.42e+25 E=9.27e+16 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+99 it=1 t=8.25e-10 dt=8.25e-11 int=269 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=8.06e+25 E=1.05e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+100 it=1 t=1.03e-09 dt=1.03e-10 int=274 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=7.44e+25 E=1.21e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+101 it=2 t=1.23e-09 dt=9.55e-11 int=278 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=6.81e+25 E=1.35e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+102 it=2 t=1.54e-09 dt=8.29e-11 int=285 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=5.86e+25 E=1.54e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+103 it=2 t=1.89e-09 dt=1.01e-10 int=293 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=4.95e+25 E=1.73e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+104 it=2 t=2.30e-09 dt=8.40e-11 int=302 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=4.03e+25 E=1.91e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+105 it=2 t=2.83e-09 dt=9.41e-11 int=314 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=3.14e+25 E=2.10e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+106 it=2 t=3.48e-09 dt=9.93e-11 int=329 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=2.36e+25 E=2.27e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+107 it=2 t=4.27e-09 dt=9.86e-11 int=347 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.72e+25 E=2.43e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+108 it=2 t=5.25e-09 dt=9.03e-11 int=369 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=1.20e+25 E=2.57e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+109 it=1 t=6.49e-09 dt=1.03e-10 int=398 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=7.98e+24 E=2.69e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+110 it=2 t=7.97e-09 dt=7.38e-11 int=432 Asy=0 Eq=0 sumX=1.0000 Xfac=1.0000 dE=5.18e+24 E=2.79e+17 E_R=4.44e-14 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=0.000e+00
+111 it=2 t=9.95e-09 dt=9.29e-10 int=445 Asy=1 Eq=2 sumX=1.0000 Xfac=0.9994 dE=2.12e+24 E=2.85e+17 E_R=3.68e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.947e-02
+112 it=1 t=1.23e-08 dt=1.23e-09 int=449 Asy=1 Eq=2 sumX=1.0000 Xfac=0.9992 dE=1.27e+24 E=2.88e+17 E_R=4.71e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.784e-02
+113 it=0 t=1.55e-08 dt=1.55e-09 int=452 Asy=3 Eq=2 sumX=1.0000 Xfac=0.9991 dE=6.92e+23 E=2.91e+17 E_R=6.07e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.413e-02
+114 it=0 t=1.87e-08 dt=1.87e-09 int=454 Asy=3 Eq=2 sumX=1.0000 Xfac=0.9989 dE=3.83e+23 E=2.93e+17 E_R=2.47e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.514e-02
+115 it=0 t=2.27e-08 dt=2.27e-09 int=456 Asy=3 Eq=3 sumX=1.0000 Xfac=0.9999 dE=1.04e+23 E=2.93e+17 E_R=3.38e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.913e-02
+116 it=1 t=2.78e-08 dt=2.78e-09 int=459 Asy=3 Eq=4 sumX=1.0000 Xfac=0.9990 dE=-2.36e+23 E=2.92e+17 E_R=2.33e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.290e-02
+117 it=0 t=3.70e-08 dt=3.70e-09 int=462 Asy=3 Eq=4 sumX=1.0000 Xfac=0.9988 dE=-2.86e+23 E=2.89e+17 E_R=4.72e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.491e-02
+118 it=0 t=4.48e-08 dt=4.48e-09 int=464 Asy=4 Eq=5 sumX=1.0000 Xfac=0.9993 dE=-2.75e+23 E=2.87e+17 E_R=4.69e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.264e-02
+119 it=0 t=5.42e-08 dt=5.42e-09 int=466 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9992 dE=-2.84e+23 E=2.85e+17 E_R=3.81e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.818e-02
+120 it=0 t=6.55e-08 dt=6.55e-09 int=468 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9991 dE=-2.68e+23 E=2.82e+17 E_R=6.99e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.374e-02
+121 it=0 t=7.93e-08 dt=7.93e-09 int=470 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9988 dE=-2.59e+23 E=2.78e+17 E_R=4.33e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.991e-02
+122 it=1 t=9.98e-08 dt=9.98e-09 int=473 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9991 dE=-2.39e+23 E=2.73e+17 E_R=9.62e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.713e-02
+123 it=1 t=1.22e-07 dt=1.22e-08 int=476 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9988 dE=-2.33e+23 E=2.68e+17 E_R=5.07e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.265e-02
+124 it=2 t=1.47e-07 dt=1.10e-08 int=479 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9991 dE=-2.15e+23 E=2.62e+17 E_R=9.70e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.740e-02
+125 it=2 t=1.84e-07 dt=1.42e-08 int=484 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9991 dE=-2.07e+23 E=2.54e+17 E_R=3.75e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.651e-02
+126 it=2 t=2.20e-07 dt=1.87e-08 int=488 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9988 dE=-1.91e+23 E=2.47e+17 E_R=4.64e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.378e-02
+127 it=2 t=2.72e-07 dt=1.66e-08 int=494 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-1.76e+23 E=2.38e+17 E_R=3.73e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.788e-02
+128 it=2 t=3.32e-07 dt=2.10e-08 int=500 Asy=5 Eq=5 sumX=1.0000 Xfac=0.9989 dE=-1.59e+23 E=2.28e+17 E_R=4.16e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.371e-02
+129 it=1 t=4.12e-07 dt=2.55e-08 int=508 Asy=6 Eq=5 sumX=1.0000 Xfac=0.9987 dE=-1.41e+23 E=2.16e+17 E_R=4.98e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.833e-02
+130 it=2 t=5.06e-07 dt=2.17e-08 int=516 Asy=6 Eq=5 sumX=1.0000 Xfac=0.9991 dE=-1.26e+23 E=2.03e+17 E_R=3.26e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.004e-02
+131 it=2 t=6.19e-07 dt=2.59e-08 int=525 Asy=6 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-1.10e+23 E=1.90e+17 E_R=3.13e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.392e-02
+132 it=2 t=7.68e-07 dt=2.96e-08 int=536 Asy=6 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-9.47e+22 E=1.75e+17 E_R=2.74e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.642e-02
+133 it=2 t=9.39e-07 dt=3.39e-08 int=547 Asy=6 Eq=5 sumX=1.0000 Xfac=0.9989 dE=-8.16e+22 E=1.60e+17 E_R=2.27e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.948e-02
+134 it=2 t=1.17e-06 dt=3.72e-08 int=560 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9989 dE=-6.91e+22 E=1.43e+17 E_R=6.17e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.109e-02
+135 it=2 t=1.42e-06 dt=4.09e-08 int=573 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-5.89e+22 E=1.27e+17 E_R=7.63e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.330e-02
+136 it=2 t=1.75e-06 dt=4.31e-08 int=588 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-4.95e+22 E=1.09e+17 E_R=8.34e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.377e-02
+137 it=1 t=2.14e-06 dt=6.50e-08 int=603 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9987 dE=-4.07e+22 E=9.20e+16 E_R=6.41e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.695e-02
+138 it=2 t=2.63e-06 dt=6.72e-08 int=619 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9989 dE=-3.36e+22 E=7.38e+16 E_R=1.35e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.764e-02
+139 it=2 t=3.25e-06 dt=6.67e-08 int=637 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9990 dE=-2.78e+22 E=5.53e+16 E_R=1.33e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.538e-02
+140 it=2 t=3.99e-06 dt=9.47e-08 int=655 Asy=7 Eq=5 sumX=1.0000 Xfac=0.9988 dE=-2.21e+22 E=3.71e+16 E_R=1.59e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.044e-01
+141 it=2 t=4.92e-06 dt=9.03e-08 int=675 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9990 dE=-1.80e+22 E=1.85e+16 E_R=1.59e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.045e-02
+142 it=2 t=6.05e-06 dt=1.23e-07 int=695 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9988 dE=-1.42e+22 E=6.75e+14 E_R=1.81e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.899e-02
+143 it=2 t=7.48e-06 dt=1.61e-07 int=717 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9986 dE=-1.12e+22 E=-1.72e+16 E_R=1.62e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.172e-02
+144 it=2 t=9.16e-06 dt=1.47e-07 int=739 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9989 dE=-9.12e+21 E=-3.41e+16 E_R=1.85e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.835e-02
+145 it=2 t=1.13e-05 dt=1.89e-07 int=762 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9988 dE=-7.24e+21 E=-5.09e+16 E_R=1.92e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.572e-02
+146 it=2 t=1.39e-05 dt=2.33e-07 int=787 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9987 dE=-5.81e+21 E=-6.79e+16 E_R=1.88e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.116e-03
+147 it=2 t=1.71e-05 dt=2.81e-07 int=813 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9986 dE=-4.74e+21 E=-8.46e+16 E_R=1.82e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.154e-02
+148 it=2 t=2.10e-05 dt=2.15e-07 int=844 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9991 dE=-4.05e+21 E=-1.02e+17 E_R=1.59e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.935e-03
+149 it=2 t=2.57e-05 dt=2.96e-07 int=881 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9990 dE=-3.29e+21 E=-1.19e+17 E_R=1.25e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=6.349e-03
+150 it=2 t=3.17e-05 dt=2.39e-07 int=927 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9993 dE=-2.74e+21 E=-1.37e+17 E_R=1.20e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.750e-03
+151 it=2 t=3.89e-05 dt=3.70e-07 int=976 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9991 dE=-2.17e+21 E=-1.54e+17 E_R=3.78e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.048e-03
+152 it=2 t=4.80e-05 dt=3.92e-07 int=1026 Asy=4 Eq=8 sumX=1.0000 Xfac=0.9992 dE=-1.81e+21 E=-1.72e+17 E_R=2.86e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.471e-03
+153 it=2 t=5.91e-05 dt=6.32e-07 int=1073 Asy=5 Eq=8 sumX=1.0000 Xfac=0.9991 dE=-1.41e+21 E=-1.90e+17 E_R=1.42e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.405e-03
+154 it=2 t=7.24e-05 dt=7.89e-07 int=1115 Asy=5 Eq=8 sumX=1.0000 Xfac=0.9991 dE=-1.08e+21 E=-2.06e+17 E_R=1.10e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.601e-03
+155 it=2 t=8.91e-05 dt=1.05e-06 int=1154 Asy=6 Eq=8 sumX=1.0000 Xfac=0.9991 dE=-7.97e+20 E=-2.22e+17 E_R=1.08e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.946e-03
+156 it=2 t=1.10e-04 dt=2.43e-06 int=1183 Asy=4 Eq=11 sumX=1.0000 Xfac=0.9993 dE=-6.08e+20 E=-2.38e+17 E_R=1.10e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.317e-03
+157 it=1 t=1.36e-04 dt=8.09e-06 int=1194 Asy=4 Eq=11 sumX=1.0000 Xfac=0.9990 dE=-2.18e+20 E=-2.47e+17 E_R=2.22e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.127e-03
+158 it=0 t=1.73e-04 dt=1.73e-05 int=1198 Asy=4 Eq=11 sumX=1.0000 Xfac=0.9987 dE=-5.79e+19 E=-2.51e+17 E_R=1.96e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.887e-03
+159 it=0 t=2.09e-04 dt=2.09e-05 int=1200 Asy=4 Eq=12 sumX=1.0000 Xfac=0.9999 dE=2.84e+19 E=-2.50e+17 E_R=5.14e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.578e-03
+160 it=0 t=2.53e-04 dt=2.53e-05 int=1202 Asy=5 Eq=12 sumX=1.0000 Xfac=0.9999 dE=4.60e+18 E=-2.50e+17 E_R=1.48e-02 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.344e-03
+161 it=0 t=3.36e-04 dt=3.36e-05 int=1205 Asy=5 Eq=12 sumX=1.0000 Xfac=0.9998 dE=-2.48e+18 E=-2.51e+17 E_R=7.53e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.667e-04
+162 it=0 t=4.07e-04 dt=4.07e-05 int=1207 Asy=5 Eq=12 sumX=1.0000 Xfac=0.9998 dE=-2.78e+18 E=-2.51e+17 E_R=6.37e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.474e-04
+163 it=0 t=4.93e-04 dt=4.93e-05 int=1209 Asy=5 Eq=13 sumX=1.0000 Xfac=0.9998 dE=-2.72e+18 E=-2.51e+17 E_R=5.42e-03 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.229e-05
+164 it=0 t=5.96e-04 dt=5.96e-05 int=1211 Asy=4 Eq=19 sumX=1.0000 Xfac=1.0002 dE=2.65e+18 E=-2.54e+17 E_R=1.37e-01 c1=0 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.281e-03
+165 it=0 t=7.21e-04 dt=7.21e-05 int=1213 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.570e-04
+166 it=0 t=8.73e-04 dt=8.73e-05 int=1215 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.074e-05
+167 it=0 t=1.16e-03 dt=1.16e-04 int=1218 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.141e-03
+168 it=0 t=1.41e-03 dt=1.41e-04 int=1220 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.457e-03
+169 it=0 t=1.70e-03 dt=1.70e-04 int=1222 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.293e-04
+170 it=0 t=2.06e-03 dt=2.06e-04 int=1224 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.228e-05
+171 it=0 t=2.49e-03 dt=2.49e-04 int=1226 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.652e-04
+172 it=0 t=3.31e-03 dt=3.31e-04 int=1229 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.329e-04
+173 it=0 t=4.01e-03 dt=4.01e-04 int=1231 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.659e-04
+174 it=0 t=4.85e-03 dt=4.85e-04 int=1233 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.216e-04
+175 it=0 t=5.87e-03 dt=5.87e-04 int=1235 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.615e-03
+176 it=0 t=7.10e-03 dt=7.10e-04 int=1237 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.486e-03
+177 it=0 t=8.60e-03 dt=8.60e-04 int=1239 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.286e-03
+178 it=0 t=1.14e-02 dt=1.14e-03 int=1242 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.425e-04
+179 it=0 t=1.38e-02 dt=1.38e-03 int=1244 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.897e-04
+180 it=0 t=1.67e-02 dt=1.67e-03 int=1246 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.731e-03
+181 it=0 t=2.03e-02 dt=2.03e-03 int=1248 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.753e-04
+182 it=0 t=2.45e-02 dt=2.45e-03 int=1250 Asy=0 Eq=19 sumX=1.0000 Xfac=0.9999 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.971e-04
+183 it=0 t=2.97e-02 dt=2.97e-03 int=1252 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.161e-03
+184 it=0 t=3.95e-02 dt=3.95e-03 int=1255 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.815e-05
+185 it=0 t=4.78e-02 dt=4.78e-03 int=1257 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.642e-03
+186 it=0 t=5.78e-02 dt=5.78e-03 int=1259 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.981e-03
+187 it=0 t=7.00e-02 dt=7.00e-03 int=1261 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=8.180e-04
+188 it=0 t=8.47e-02 dt=8.47e-03 int=1263 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.937e-04
+189 it=0 t=1.02e-01 dt=1.02e-02 int=1265 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=3.145e-04
+190 it=0 t=1.36e-01 dt=1.36e-02 int=1268 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.587e-04
+191 it=0 t=1.65e-01 dt=1.65e-02 int=1270 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=4.076e-04
+192 it=0 t=2.00e-01 dt=2.00e-02 int=1272 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.131e-04
+193 it=0 t=2.42e-01 dt=2.42e-02 int=1274 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.155e-04
+194 it=0 t=2.92e-01 dt=2.92e-02 int=1276 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.610e-03
+195 it=0 t=3.89e-01 dt=3.89e-02 int=1279 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=7.341e-04
+196 it=0 t=4.71e-01 dt=4.71e-02 int=1281 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=9.679e-04
+197 it=0 t=5.70e-01 dt=5.70e-02 int=1283 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=5.578e-04
+198 it=0 t=6.89e-01 dt=6.89e-02 int=1285 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.472e-04
+199 it=0 t=8.34e-01 dt=8.34e-02 int=1287 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=2.532e-03
+200 it=0 t=1.01e+00 dt=1.01e-01 int=1289 Asy=0 Eq=19 sumX=1.0000 Xfac=1.0000 dE=0.00e+00 E=-2.54e+17 E_R=0.00e+00 c1=1 c2=1 ne20-->he4+o16 Q=-4.734 dev=1.399e-03
+
+Integration using ASY+PE method
+T9=7.000e+00 rho=1.000e+08 massTol_asy=1.00e-09 massTol_PE=9.00e-04
+sf=1.00e+25 equiTol=1.00e-02 equilTime=1.00e-20
+maxit=20 downbumper= 0.700 EpsA=5.00e-03 EpsR=2.00e-04
+Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
+Isotopes=16 Reactions=48 ReactionGroups=19
+Integration steps=1289  totalIterations=1735 IntegrationSteps_plotted=1234
+Timer: 9.2831e+02 ms used
+
+FINAL ABUNDANCES Y AND MASS FRACTIONS X
+
+0 4He Y=1.1485e-01 X=4.5939e-01
+1 12C Y=6.4162e-06 X=7.6994e-05
+2 16O Y=1.1199e-05 X=1.7919e-04
+3 20Ne Y=3.1656e-07 X=6.3313e-06
+4 24Mg Y=1.6690e-05 X=4.0057e-04
+5 28Si Y=2.5497e-03 X=7.1392e-02
+6 32S Y=2.4577e-03 X=7.8645e-02
+7 36Ar Y=1.3843e-03 X=4.9835e-02
+8 40Ca Y=1.4859e-03 X=5.9437e-02
+9 44Ti Y=6.2717e-05 X=2.7595e-03
+10 48Cr Y=1.8030e-04 X=8.6546e-03
+11 52Fe Y=8.1219e-04 X=4.2234e-02
+12 56Ni Y=4.0501e-03 X=2.2681e-01
+13 60Zn Y=3.1389e-06 X=1.8834e-04
+14 64Ge Y=2.2591e-09 X=1.4458e-07
+15 68Se Y=2.5531e-12 X=1.7361e-10
+
+==13119== 
+==13119== HEAP SUMMARY:
+==13119==     in use at exit: 214,544 bytes in 3,498 blocks
+==13119==   total heap usage: 3,768 allocs, 270 frees, 390,435 bytes allocated
+==13119== 
+==13119== 768 bytes in 48 blocks are still reachable in loss record 1 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x48E8F07: gsl_block_alloc (init_source.c:25)
+==13119==    by 0x4A62E97: gsl_vector_alloc (init_source.c:34)
+==13119==    by 0x40B0F7: ReactionVector::makeReactionVectors() (explicitMatrix.cpp:2209)
+==13119==    by 0x402B29: main (explicitMatrix.cpp:4110)
+==13119== 
+==13119== 1,920 bytes in 48 blocks are definitely lost in loss record 2 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x4A62E87: gsl_vector_alloc (init_source.c:26)
+==13119==    by 0x40B0F7: ReactionVector::makeReactionVectors() (explicitMatrix.cpp:2209)
+==13119==    by 0x402B29: main (explicitMatrix.cpp:4110)
+==13119== 
+==13119== 6,144 bytes in 48 blocks are still reachable in loss record 3 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x48E8F1C: gsl_block_alloc (init_source.c:33)
+==13119==    by 0x4A62E97: gsl_vector_alloc (init_source.c:34)
+==13119==    by 0x40B0F7: ReactionVector::makeReactionVectors() (explicitMatrix.cpp:2209)
+==13119==    by 0x402B29: main (explicitMatrix.cpp:4110)
+==13119== 
+==13119== 17,888 bytes in 1,118 blocks are indirectly lost in loss record 4 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x48E8F07: gsl_block_alloc (init_source.c:25)
+==13119==    by 0x4A62E97: gsl_vector_alloc (init_source.c:34)
+==13119==    by 0x40B345: ReactionVector::compareGSLvectors(gsl_vector*, gsl_vector*) (explicitMatrix.cpp:2282)
+==13119==    by 0x40B445: ReactionVector::sortReactionGroups() (explicitMatrix.cpp:2356)
+==13119==    by 0x402B2E: main (explicitMatrix.cpp:4115)
+==13119== 
+==13119== 143,104 bytes in 1,118 blocks are indirectly lost in loss record 5 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x48E8F1C: gsl_block_alloc (init_source.c:33)
+==13119==    by 0x4A62E97: gsl_vector_alloc (init_source.c:34)
+==13119==    by 0x40B345: ReactionVector::compareGSLvectors(gsl_vector*, gsl_vector*) (explicitMatrix.cpp:2282)
+==13119==    by 0x40B445: ReactionVector::sortReactionGroups() (explicitMatrix.cpp:2356)
+==13119==    by 0x402B2E: main (explicitMatrix.cpp:4115)
+==13119== 
+==13119== 205,712 (44,720 direct, 160,992 indirect) bytes in 1,118 blocks are definitely lost in loss record 6 of 6
+==13119==    at 0x484486F: malloc (vg_replace_malloc.c:381)
+==13119==    by 0x4A62E87: gsl_vector_alloc (init_source.c:26)
+==13119==    by 0x40B345: ReactionVector::compareGSLvectors(gsl_vector*, gsl_vector*) (explicitMatrix.cpp:2282)
+==13119==    by 0x40B445: ReactionVector::sortReactionGroups() (explicitMatrix.cpp:2356)
+==13119==    by 0x402B2E: main (explicitMatrix.cpp:4115)
+==13119== 
+==13119== LEAK SUMMARY:
+==13119==    definitely lost: 46,640 bytes in 1,166 blocks
+==13119==    indirectly lost: 160,992 bytes in 2,236 blocks
+==13119==      possibly lost: 0 bytes in 0 blocks
+==13119==    still reachable: 6,912 bytes in 96 blocks
+==13119==         suppressed: 0 bytes in 0 blocks
+==13119== 
+==13119== For lists of detected and suppressed errors, rerun with: -s
+==13119== ERROR SUMMARY: 14641 errors from 142 contexts (suppressed: 0 from 0)

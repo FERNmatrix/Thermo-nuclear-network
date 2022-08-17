@@ -27,7 +27,11 @@
  * 
  * Further information about using GDB may be found in the directory DEBUGGER.
  * 
- * Execution for other Linux systems,or Mac or PC,will depend on the C/C++ compiler installed on 
+ * Memory checks with valgrind:
+ * 
+ * valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./explicitMatrix 2>&1 | tee valgrind_out.txt
+ * 
+ * Execution for other Linux systems,or Mac or PC, will depend on the C/C++ compiler installed on 
  * your machine but should be similar to above.
  *  
  * ----------------------------------
@@ -321,7 +325,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-5;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-3;          // Start time for plot output
-double stop_time = 1e6;                // Stop time for integration
+double stop_time = 1e10;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
