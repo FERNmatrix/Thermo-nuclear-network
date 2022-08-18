@@ -55,6 +55,7 @@
  * Ashton DeRousse
  * Adam Cole
  * Raghav Chari
+ * Jay Billings
  * Mike Guidry
  * ----------------
  */
@@ -162,10 +163,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -188,13 +189,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -234,8 +235,9 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = 150;    // Number species output to plot files
-int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
+static const int maxPlotIsotopes = min(ISOTOPES, 150);  // Number species output to plot files
+
+int plotXlist[maxPlotIsotopes];                         // Array of species indices to plot
 
 FILE * plotfile1;
 FILE * plotfile2;
@@ -2371,7 +2373,7 @@ class ReactionVector:  public Utilities {
         // Variable numberMembers will keep track of the number of members
         // for the reaction group labeled by rg.
         
-        int numberMembers;
+        int numberMembers = 0;
         
         // Cycle over all reaction vectors (loop in i) and compare them
         // pairwise with all reaction vectors (loop in j)
@@ -2616,7 +2618,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Static functions can be called directly from the class
     // without having to instantiate.
     
-    private:
+    public:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[6] = {2,3,4,4,5,6};       // Number isotopic species in 6 RG classes

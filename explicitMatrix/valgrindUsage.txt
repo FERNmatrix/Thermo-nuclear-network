@@ -1,6 +1,9 @@
  
  valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./explicitMatrix 2>&1 | tee valgrind_out.txt
  
+ Note: Compile the code with -g flag to get line numbers in valgrind output.
+ 
+ 
  valgrind --tool=callgrind ./explicitMatrix
 
 And I used kcachegrind to view the results since the output file is pure text. Note that callgrind always dumps a file like "callgrind.out.12345" in the present directory.
