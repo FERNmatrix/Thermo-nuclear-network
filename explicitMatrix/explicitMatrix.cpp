@@ -5971,12 +5971,20 @@ void assignRG(){
         for(int j=0; j<numr; j++){
             
             int reacID = RG[i].getmemberReactions(j);
-            fprintf(pFileD,
-                "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s",
-                j,reacLabel[reacID],RG[i].getisolabel(0),
-                RG[i].getisolabel(1),RG[i].getisolabel(2),
-                RG[i].getisolabel(3)
+                fprintf(pFileD,
+                "\n%d %s" ,
+                j,reacLabel[reacID]
+//                 RG[i].getisolabel(0),
+//                 RG[i].getisolabel(1),RG[i].getisolabel(2),
+//                 RG[i].getisolabel(3)
             );
+//             fprintf(pFileD,
+//                 "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s",
+//                 j,reacLabel[reacID],
+//                 RG[i].getisolabel(0),
+//                 RG[i].getisolabel(1),RG[i].getisolabel(2),
+//                 RG[i].getisolabel(3)
+//             );
         }
     }
     
