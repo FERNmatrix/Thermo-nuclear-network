@@ -78,8 +78,6 @@
 using namespace std;
 using std::string;
 
-
-
 // Define some CPU timing utilities. Usage:
 //
 //     START_CPU;
@@ -325,7 +323,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-5;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-3;          // Start time for plot output
-double stop_time = 1e10;                // Stop time for integration
+double stop_time = 1e6;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -2316,11 +2314,16 @@ class ReactionVector:  public Utilities {
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
         
-        rv2minus = gsl_vector_alloc(ISOTOPES);
-        gsl_vector_memcpy(rv2minus,rv2);
-        gsl_vector_scale(rv2minus,-1);
-        kk = gsl_vector_equal(rv1,rv2minus);
-        
+
+        gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+        gsl_vector_memcpy(rv2minus, rv2);
+        gsl_vector_scale(rv2minus, -1);
+        kk = gsl_vector_equal(rv1, rv2minus);
+       
+        // Free the vector. Better solution would be to globally allocate
+        // this and remove the repeated allocation all together.
+        gsl_vector_free(rv2minus);
+ 
         if(kk==0){
             
             return 0;  // rv1 not equal to rv2 and not equal to -rv2
