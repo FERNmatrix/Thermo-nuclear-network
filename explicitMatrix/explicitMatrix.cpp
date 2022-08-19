@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 150                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1604                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -188,13 +188,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_150.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_150.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -234,7 +234,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = 150;    // Number species output to plot files
+static const int maxPlotIsotopes = min(ISOTOPES, 150);  // # species to plot
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 
 FILE * plotfile1;
@@ -323,7 +323,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-7;                // Stop time for integration
+double stop_time = 1e-10;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -2371,7 +2371,7 @@ class ReactionVector:  public Utilities {
         // Variable numberMembers will keep track of the number of members
         // for the reaction group labeled by rg.
         
-        int numberMembers;
+        int numberMembers = 0;
         
         // Cycle over all reaction vectors (loop in i) and compare them
         // pairwise with all reaction vectors (loop in j)
