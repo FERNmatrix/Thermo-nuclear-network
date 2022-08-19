@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 150                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1604                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -188,13 +188,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_150.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_150.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -323,7 +323,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-10;                // Stop time for integration
+double stop_time = 1e-12;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -2624,11 +2624,11 @@ class ReactionGroup:  public Utilities {
         int RGn;                               // Index this object in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
         int memberReactions[maxreac];          // reacIndex of reactions in reaction group
-        int numberReactants[maxreac];          // Number of reactants for each reaction in RG
-        int numberProducts[maxreac];           // Number of products for each reaction in RG
+        int numberReactants[maxreac] = {0,0,0,0,0,0,0,0,0,0};  // # reactants for each reaction in RG
+        int numberProducts[maxreac] =  {0,0,0,0,0,0,0,0,0,0};  // #products for each reaction in RG
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
-        int rgclass;                           // Reaction group class (1-5)
+        int rgclass = 0;                           // Reaction group class (1-5)
         bool isEquil;                          // True if RG in equilibrium; false otherwise
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
         double flux[maxreac];                  // Current flux for each reaction in RG
@@ -2648,8 +2648,8 @@ class ReactionGroup:  public Utilities {
         double rootq;                  // Math.sqrt(-q)
         double tau;                    // Timescale for equilibrium
 
-        double equilRatio;             // Equilibrium ratio of abundances
-        double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
+        double equilRatio = 0;         // Equilibrium ratio of abundances
+        double kratio = 0;             // Ratio k_r/k_f. Equal to equilRatio at equilibrium
         double eqcheck[5];             // Population ratio to check equilibrium
         double Yminner;                // Current minimum Y in reaction group
         double eqRatio[5];             // Ratio eqcheck[i]/equiTol. 
@@ -2670,12 +2670,13 @@ class ReactionGroup:  public Utilities {
         // resize arrays.
         
         int isoindex[5];               // Species index for participants in reaction   
-        char isolabel[5][5];           // Isotopic label of species in RG reactions
-        int isoZ[5];                   // Z for niso isotopes in the reactions of the group
+        char isolabel[5][5] = 
+           {' ', ' ', ' ', ' ', ' '};  // Label of isotopic species in RG reactions
+        int isoZ[5] = {0,0,0,0,0};     // Z for niso isotopes in the reactions of group
         int isoN[5];                   // N for niso isotopes in the reactions of the group
         double isoA[5];                // A for niso isotopes in the reactions of the group
-        double isoYeq[5];              // Y_eq for niso isotopes in reactions of the group
-        double isoY[5];                // Current Y for niso isotopes in reactions of group
+        double isoYeq[5] = {0,0,0,0,0};// Y_eq for niso isotopes in reactions of the group
+        double isoY[5] = {0,0,0,0,0};  // Current Y for niso isotopes in reactions of group
         double isoY0[5];               // Y0 for niso isotopes in the reactions of the group
 
     
@@ -3126,7 +3127,7 @@ class ReactionGroup:  public Utilities {
         
         if (rgclass > 1) {
             qq = computeq(aa,bb,cc);
-            rootq = sqrt( max(-qq,0.0) );
+            rootq = sqrt( max(-qq, 0.0) );
             if (numberMemberReactions > 1) {
                 tau = 1.0 / rootq;
             }
@@ -3237,7 +3238,7 @@ class ReactionGroup:  public Utilities {
         // Limit how small denominator can be in following to prevent 
         // possible divide by zero
         
-        thisDevious = abs((equilRatio - kratio) / max(kratio,1.0e-24));
+        thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
         
         // Store max value of thisDevious
         
@@ -3388,6 +3389,8 @@ class ReactionGroup:  public Utilities {
     
     bool speciesIsInRG(int speciesIndex) { 
         
+        int sindex = speciesIndex;
+        
         // Loop over member reactions in the RG
         
         for(int i=0; i<numberMemberReactions; i++){
@@ -3395,7 +3398,7 @@ class ReactionGroup:  public Utilities {
             // Loop over isotopes in reactants
             
             for (int j=0; j<numberReactants[i]; j++){ 
-                if(isoindex[j] == speciesIndex){
+                if(isoindex[j] == sindex){
                     return true;
                 }
             }
@@ -3403,7 +3406,7 @@ class ReactionGroup:  public Utilities {
             // Loop over isotopes in products
             
             for (int j=0; j<numberProducts[i]; j++){
-                if(isoindex[j+numberReactants[i]] == speciesIndex){
+                if(isoindex[j+numberReactants[i]] == sindex){
                     return true;
                 }
             }
