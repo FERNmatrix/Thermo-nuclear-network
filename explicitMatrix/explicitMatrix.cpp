@@ -469,6 +469,7 @@ int reacMask[ISOTOPES][SIZE];
 gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
 gsl_vector *rv2minus;
+gsl_vector * v1;
 
 // Total number of F+ and F- terms in the network
 
@@ -2241,7 +2242,7 @@ class ReactionVector:  public Utilities {
                 
                 //Prototype GSL reaction vector
                 
-                gsl_vector * v1 = gsl_vector_alloc (ISOTOPES);
+                v1 = gsl_vector_alloc (ISOTOPES);
                 
                 // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
                 
@@ -2299,7 +2300,7 @@ class ReactionVector:  public Utilities {
     // The two arguments of the function are pointers to the two GSL vectors.
     // ------------------------------------------------------------------------
     
-    int static compareGSLvectors(gsl_vector* rv1,gsl_vector* rv2){
+    int static compareGSLvectors(gsl_vector* rv1, gsl_vector* rv2){
         
         int k,kk;
         
@@ -2631,7 +2632,7 @@ class ReactionGroup:  public Utilities {
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
         int rgclass;                           // Reaction group class (1-5)
-        bool isEquil;                          // True if RG in equilibrium; false otherwise
+        bool isEquil = false;                  // True if RG in equilibrium; false otherwise
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
         double flux[maxreac];                  // Current flux for each reaction in RG
         double netflux;                        // Net flux for the entire reaction group
@@ -2644,14 +2645,14 @@ class ReactionGroup:  public Utilities {
         double rgkf;                   // Forward rate parameter for partial equilibrium
         double rgkr;                   // Reverse rate parameter for partial equilibrium
         
-        double aa,bb,cc;             // Quadratic coefficients a,b,c
-        double alpha,beta,gamma;     // Coefficients for cubic ~ quadratic approximation
+        double aa,bb,cc;               // Quadratic coefficients a,b,c
+        double alpha,beta,gamma;       // Coefficients for cubic ~ quadratic approximation
         double qq;                     // q = 4ac-b^2
         double rootq;                  // Math.sqrt(-q)
         double tau;                    // Timescale for equilibrium
 
-        double equilRatio;             // Equilibrium ratio of abundances
-        double kratio;                 // Ratio k_r/k_f. Equal to equilRatio at equilibrium
+        double equilRatio = 0;         // Equilibrium ratio of abundances
+        double kratio = 0;             // Ratio k_r/k_f. Equal to equilRatio at equilibrium
         double eqcheck[5];             // Population ratio to check equilibrium
         double Yminner;                // Current minimum Y in reaction group
         double eqRatio[5];             // Ratio eqcheck[i]/equiTol. 
@@ -2672,11 +2673,13 @@ class ReactionGroup:  public Utilities {
         // resize arrays.
         
         int isoindex[5];               // Species index for participants in reaction   
-        char isolabel[5][5];           // Isotopic label of species in RG reactions
+        char isolabel[5][5] = 
+           {' ', ' ', ' ', ' ', ' '};  // Label of isotopic species in RG reactions
         int isoZ[5];                   // Z for niso isotopes in the reactions of the group
         int isoN[5];                   // N for niso isotopes in the reactions of the group
         double isoA[5];                // A for niso isotopes in the reactions of the group
-        double isoYeq[5];              // Y_eq for niso isotopes in reactions of the group
+        double isoYeq[5] =
+           {' ', ' ', ' ', ' ', ' '};  // Y_eq for niso isotopes in reactions of the group
         double isoY[5];                // Current Y for niso isotopes in reactions of group
         double isoY0[5];               // Y0 for niso isotopes in the reactions of the group
 
@@ -4638,6 +4641,7 @@ int main() {
     gsl_vector_free(abundances);
     gsl_vector_free(rv2minus);
     gsl_matrix_free(fluxes);
+    gsl_vector_free(v1);
     
 }  // End of main routine
 
@@ -5970,21 +5974,21 @@ void assignRG(){
         
         for(int j=0; j<numr; j++){
             
-            int reacID = RG[i].getmemberReactions(j);
-                fprintf(pFileD,
-                "\n%d %s" ,
-                j,reacLabel[reacID]
+             int reacID = RG[i].getmemberReactions(j);
+//                 fprintf(pFileD,
+//                 "\n%d %s" ,
+//                 j,reacLabel[reacID]
 //                 RG[i].getisolabel(0),
 //                 RG[i].getisolabel(1),RG[i].getisolabel(2),
 //                 RG[i].getisolabel(3)
+//            );
+            fprintf(pFileD,
+                "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s",
+                j,reacLabel[reacID],
+                RG[i].getisolabel(0),
+                RG[i].getisolabel(1),RG[i].getisolabel(2),
+                RG[i].getisolabel(3)
             );
-//             fprintf(pFileD,
-//                 "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s",
-//                 j,reacLabel[reacID],
-//                 RG[i].getisolabel(0),
-//                 RG[i].getisolabel(1),RG[i].getisolabel(2),
-//                 RG[i].getisolabel(3)
-//             );
         }
     }
     
