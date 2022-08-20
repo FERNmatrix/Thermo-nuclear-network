@@ -455,10 +455,10 @@ int numberReactions;             // Actual # reactions in network (usually = SIZ
 // Array with entries +1 if a reaction increases the population of the isotope 
 // (contributes to F+),-1 if it decreases it (contributes to F-) and 0 if the 
 // reaction does not change the population of the isotope. This array is populated 
-// in the function ReactionVector::parseF().  It is characteristic of the structure 
+// in the function ReactionVector::parseF(). It characterizes the structure 
 // of the network and thus has to be calculated only once for a given network.
 
-int reacMask[ISOTOPES][SIZE]; 
+double reacMask[ISOTOPES][SIZE]; 
 
 // Define an array rv[] and corresponding pointers that will hold GSL vectors 
 // corresponding to the reaction vectors for the system.  This will be implemented 
@@ -2226,7 +2226,7 @@ class ReactionVector:  public Utilities {
             
             // -----------------------------------------------------------------------
             // Now implement reaction vectors as GSL vectors so that we can use the
-            // GSL and GSL_BLAS API to manipulate them.  The prototypes for doing this
+            // GSL and GSL_BLAS APIs to manipulate them.  Prototypes for doing this
             // may be found in the example code arrayPointers.c and matrixGSL.c
             // -----------------------------------------------------------------------
             
@@ -2258,21 +2258,24 @@ class ReactionVector:  public Utilities {
             
             for (int i = 0; i < SIZE; i++) {
  
-                for(int j=0; j<ISOTOPES; j++){
+                for(int j=0; j < ISOTOPES; j++){
                     
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
 
                 }
             }
             
-            // Display reaction vectors as component list
+            // Display reaction vectors as component list in 
+            // pFileD -> gnu_out/diagnostics.data
             
             fprintf(pFileD,
                 "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
                 SIZE,ISOTOPES);
             
             for (int i = 0; i < SIZE; i++) {
+                
                 fprintf(pFileD,"\nrv[%d]: [",i);
+                
                 for(int j=0; j<ISOTOPES; j++){
                     
                     // Define a pointer to the GSL vector in array entry rv[i]
@@ -2281,8 +2284,8 @@ class ReactionVector:  public Utilities {
                     
                     // Assign the jth component of the vector in rv[i] to a variable
                     
-                    int component = gsl_vector_get (vector,j);
-                    fprintf (pFileD,"%3d",component);
+                    int component = gsl_vector_get (vector, j);
+                    fprintf (pFileD, "%3d", component);
                 }
                 
                 fprintf(pFileD," ]");
@@ -2299,16 +2302,16 @@ class ReactionVector:  public Utilities {
     // The two arguments of the function are pointers to the two GSL vectors.
     // ------------------------------------------------------------------------
     
-    int static compareGSLvectors(gsl_vector *rv1,gsl_vector *rv2){
+    int static compareGSLvectors(gsl_vector *rv1, gsl_vector *rv2){
         
-        int k,kk;
+        int k, kk;
         
         // Compare rv1 and rv2. Function gsl_vector_equal(rv1,rv2) returns 1 
         // if vectors are equal and 0 if they are not.
         
-        k = gsl_vector_equal(rv1,rv2);
+        k = gsl_vector_equal(rv1, rv2);
         
-        if (k==1) return 1;    // rv1 = rv2; same reaction group (RG)
+        if (k == 1) return 1;    // rv1 = rv2; same reaction group (RG)
         
         // If above statement is false, rv1 and rv2 are not equal.
         // Now compare rv1 and -rv2 to see if the two vectors are
@@ -2325,7 +2328,7 @@ class ReactionVector:  public Utilities {
         
         gsl_vector_free(rv2minus);
  
-        if(kk==0){
+        if(kk == 0){
             
             return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
             
@@ -2394,7 +2397,7 @@ class ReactionVector:  public Utilities {
                 // Reaction vectors having ck=0 belong to different
                 // reaction groups.
                 
-                ck = compareGSLvectors(rvPt+i,rvPt+j);
+                ck = compareGSLvectors(rvPt+i, rvPt+j);
                 
                 // Based on value of ck,assign to RG.  The condition
                 // RGindex[j] < 0 ensures that we don't assign a
@@ -2415,7 +2418,7 @@ class ReactionVector:  public Utilities {
             
         }
         
-        // If the last trial reaction group has no members,subtract 
+        // If the last trial reaction group has no members, subtract 
         // one from rg (which was incremented at the beginning of the trial).
         
         if(numberMembers == 0) rg--;
@@ -2436,9 +2439,9 @@ class ReactionVector:  public Utilities {
                     rgindex ++; 
                     setRG(j,RGclass[j],RGindex[j]);
                     fprintf(pfnet,
-                            "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG:%s",
-                            reacLabel[j],j,rgindex,RGclass[j],RGMemberIndex[j],
-                            isPEforward[j],Utilities::stringToChar(RGstring[j]));
+                    "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG:%s",
+                    reacLabel[j],j,rgindex,RGclass[j],RGMemberIndex[j],
+                    isPEforward[j],Utilities::stringToChar(RGstring[j]));
                 }
             }
         }
@@ -2473,6 +2476,7 @@ class ReactionVector:  public Utilities {
                 // change its population up (contributing to F+) or down (contributing to F-).
                 
                 for(int j=0; j<numberReactions; j++) {
+                    
                     int totalL = 0;
                     int totalR = 0;
                     
@@ -2504,7 +2508,8 @@ class ReactionVector:  public Utilities {
                     }
                 }
                 
-                // Keep track of the total number of F+ and F- terms in the network for all isotopes
+                // Keep track of the total number of F+ and F- terms in the network 
+                // for all isotopes
                 
                 totalFplus += numFplus;
                 totalFminus += numFminus;
@@ -2520,7 +2525,7 @@ class ReactionVector:  public Utilities {
             // Display isotope component array
             
             fprintf(pFileD,
-                "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
+            "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
             fprintf(pFileD,"\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
             
             int uppity = minimumOf(30,numberSpecies);  // limit printout width to 30 species
@@ -2577,19 +2582,21 @@ class MatrixUtils: public Utilities {
         // Allocate and populate GSL flux matrix
         
         void buildGSLMatrix(double f [][FLUXCOLS]){
-            fluxes = gsl_matrix_alloc(FLUXROWS,FLUXCOLS);
+            
+            fluxes = gsl_matrix_alloc(FLUXROWS, FLUXCOLS);
 
             for (int i = 0; i < FLUXCOLS; i++){
                 for (int j = 0; j < FLUXROWS; j++){
-                    gsl_matrix_set(fluxes,i,j,f[i][j]);
+                    gsl_matrix_set(fluxes, i, j, f[i][j]);
                 }
             }
         }
 
         // Matrix vector multiply fluxes * abundances and store back into abundances
         
-        gsl_vector multiply(gsl_vector a,gsl_matrix f){
-            gsl_blas_dgemv(CblasNoTrans,1.0,fluxes,abundances,0.0,abundances);
+        gsl_vector multiply(gsl_vector a, gsl_matrix f){
+            
+            gsl_blas_dgemv(CblasNoTrans, 1.0, fluxes, abundances, 0.0, abundances);
 
             return *abundances;
         }
@@ -2598,9 +2605,12 @@ class MatrixUtils: public Utilities {
 
 
 
-// Class ReactionGroup to handle reaction groups.  Inherits from class Utilities. In 
-// this code we instantiate an array of ReactionGroup objects RG[],on for each
-// reaction group in the network.
+// Class ReactionGroup to handle partial equilibrium (PE) reaction groups (RG).  
+// Inherits from class Utilities. In this code we instantiate an array of ReactionGroup 
+// objects RG[], one for each reaction group in the network. For consistency we assume
+// that all reactions in the network are in one (and only one) reaction group. Thus, 
+// there will be reaction groups with a single member reaction if the network does not
+// have inverse reactions for every reaction.
 
 class ReactionGroup:  public Utilities {
     
@@ -2616,8 +2626,8 @@ class ReactionGroup:  public Utilities {
         int RGn;                               // Index this object in RG array (0,1,... #RG)
         int numberMemberReactions;             // Number of reactions in this RG instance
         int memberReactions[maxreac];          // reacIndex of reactions in reaction group
-        int numberReactants[maxreac] = {0,0,0,0,0,0,0,0,0,0};  // # reactants for each reaction in RG
-        int numberProducts[maxreac] =  {0,0,0,0,0,0,0,0,0,0};  // #products for each reaction in RG
+        int numberReactants[maxreac];          // # reactants for each reaction in RG
+        int numberProducts[maxreac];           // #products for each reaction in RG
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
         int rgclass = -1;                       // Reaction group class (1-5)
@@ -2667,8 +2677,8 @@ class ReactionGroup:  public Utilities {
         int isoZ[5] = {0,0,0,0,0};     // Z for niso isotopes in the reactions of group
         int isoN[5];                   // N for niso isotopes in the reactions of the group
         double isoA[5];                // A for niso isotopes in the reactions of the group
-        double isoYeq[5] = {0,0,0,0,0};// Y_eq for niso isotopes in reactions of the group
-        double isoY[5] = {0,0,0,0,0};  // Current Y for niso isotopes in reactions of group
+        double isoYeq[5]={0,0,0,0,0};  // Y_eq for niso isotopes in reactions of the group
+        double isoY[5]={0,0,0,0,0};    // Current Y for niso isotopes in reactions of group
         double isoY0[5];               // Y0 for niso isotopes in the reactions of the group
 
     
