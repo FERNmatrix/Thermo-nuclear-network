@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -188,13 +188,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -466,8 +466,8 @@ int reacMask[ISOTOPES][SIZE];
 
 gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
-gsl_vector *rv2minus;
-gsl_vector *v1;
+//gsl_vector *rv2minus;
+//gsl_vector *v1;
 
 // Total number of F+ and F- terms in the network
 
@@ -2230,19 +2230,23 @@ class ReactionVector:  public Utilities {
             // may be found in the example code arrayPointers.c and matrixGSL.c
             // -----------------------------------------------------------------------
             
-            // Set pointer to beginning address of array rv
+            // Set pointer rvPt to beginning address of array rv, which will hold 
+            // GSL vectors corresponding to the reaction vectors for the system
             
             rvPt = rv;
             
-            // Allocate an array populated with GSL vectors
+            gsl_vector *v1;  // Pointer to array holding GSL vectors
             
             for(int i=0; i<SIZE; i++){
                 
-                //Prototype GSL reaction vector
+                // Allocate memory for a GSL reaction vector, which will contain 
+                // ISOTOPES entries indicating how isotopic species change in a 
+                // reaction.
                 
                  v1 = gsl_vector_alloc (ISOTOPES);
                 
-                // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
+                // Set elements of the SIZE elements of rv[] pointed to by 
+                // *rvPt equal to GSL vectors
                 
                 *(rvPt+i) = *v1;   
             }
@@ -2256,15 +2260,10 @@ class ReactionVector:  public Utilities {
  
                 for(int j=0; j<ISOTOPES; j++){
                     
-                    gsl_vector_set (rvPt+i,j,reacMask[j][i]);
-                    
-                    // Retrieve the vector component just stored and print it
-                    
-                    int temp = gsl_vector_get(rvPt+i,j);
+                    gsl_vector_set (rvPt+i, j, reacMask[j][i]);
 
                 }
             }
-        
             
             // Display reaction vectors as component list
             
@@ -2294,13 +2293,13 @@ class ReactionVector:  public Utilities {
     
     // ------------------------------------------------------------------------
     // ReactionVector::compareGSLvectors(rv1,rv2) to compare two GSL vectors 
-    // of same length,with the vectors being equivalent only if they are
+    // of same length, with the vectors being equivalent only if they are
     // equal component by component.  Returns 0 if they are not equivalent,
-    // 1 if they are the same,2 if one vector is the negative of the other. 
+    // 1 if they are the same, 2 if one vector is the negative of the other. 
     // The two arguments of the function are pointers to the two GSL vectors.
     // ------------------------------------------------------------------------
     
-    int static compareGSLvectors(gsl_vector* rv1,gsl_vector* rv2){
+    int static compareGSLvectors(gsl_vector *rv1,gsl_vector *rv2){
         
         int k,kk;
         
@@ -2309,16 +2308,14 @@ class ReactionVector:  public Utilities {
         
         k = gsl_vector_equal(rv1,rv2);
         
+        if (k==1) return 1;    // rv1 = rv2; same reaction group (RG)
         
-        
-        if (k==1) return 1;  // rv1 = rv2
-        
-        // If above statement is false,rv1 and rv2 are not equal.
+        // If above statement is false, rv1 and rv2 are not equal.
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
-        
 
         gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+        
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1);
         kk = gsl_vector_equal(rv1, rv2minus);
@@ -2327,19 +2324,16 @@ class ReactionVector:  public Utilities {
         // this and remove the repeated allocation all together.
         
         gsl_vector_free(rv2minus);
-        //gsl_vector_free(v1);
  
         if(kk==0){
             
-            return 0;  // rv1 not equal to rv2 and not equal to -rv2
+            return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
             
         } else {
 
-            return 2;  // rv1 equal to -rv2
+            return 2;    // rv1 = -rv2; same reaction group
 
         }
-        
-        //gsl_vector_free(rv2minus);
         
     }    // End function compareGSLvectors
     
@@ -2600,13 +2594,6 @@ class MatrixUtils: public Utilities {
             return *abundances;
         }
 
-//         // Free allocated matrix and vector memory. Function not presently used
-//         
-//         void freeGSL(){
-//             gsl_vector_free(abundances);
-//             gsl_matrix_free(fluxes);
-//         }
-
 };  // end of class MatrixUtils
 
 
@@ -2633,7 +2620,7 @@ class ReactionGroup:  public Utilities {
         int numberProducts[maxreac] =  {0,0,0,0,0,0,0,0,0,0};  // #products for each reaction in RG
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
-        int rgclass = 0;                           // Reaction group class (1-5)
+        int rgclass = -1;                       // Reaction group class (1-5)
         bool isEquil;                          // True if RG in equilibrium; false otherwise
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
         double flux[maxreac];                  // Current flux for each reaction in RG
@@ -2647,8 +2634,8 @@ class ReactionGroup:  public Utilities {
         double rgkf;                   // Forward rate parameter for partial equilibrium
         double rgkr;                   // Reverse rate parameter for partial equilibrium
         
-        double aa,bb,cc;             // Quadratic coefficients a,b,c
-        double alpha,beta,gamma;     // Coefficients for cubic ~ quadratic approximation
+        double aa,bb,cc;               // Quadratic coefficients a,b,c
+        double alpha,beta,gamma;       // Coefficients for cubic ~ quadratic approximation
         double qq;                     // q = 4ac-b^2
         double rootq;                  // Math.sqrt(-q)
         double tau;                    // Timescale for equilibrium
@@ -4642,8 +4629,6 @@ int main() {
     free(RG);
     
     gsl_vector_free(abundances);
-    //gsl_vector_free(rv2minus);
-    //gsl_vector_free(v1);
     gsl_matrix_free(fluxes);
     
 }  // End of main routine
@@ -4678,16 +4663,6 @@ void plotFileSetup(){
 //     int plotXlist[] = {0,1,2};                                      // 3-alpha
 //     int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
 //     int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
-      
-//     int plotXlist[] = {1,3,4,11,12,15,16,17,21,22,23,26,27,32,33,40,41,48,49,55,
-//         56,62,63,64,70,77,78,86,95,104,112,34,20,46,42,30,75,76,54,69,60,19,61,
-//         68,25,67,53,59,74,79,84,39,83,31,96,85,88,50,93,97,96,94,66,102,92,52,111,
-//         110,99,38,101,45,113,43,119,114,118,100,120,6,107,109,115,121,3,125,108,37,
-//         124,126,71,10,7,57,127,65,73,106,9,87,80 };  // 101 nova134 isotopes
-                    
-    
-//     int plotXlist[] = {4,12,20,28,35,42,52,62,72,88,101,114,128,143,0,1,
-//     13,16,43,49,147,132,123,38,25,32,30,34,7,18,21,38}; // 150-isotope select)
     
     // Get length LX of array plotXlist holding the species indices for
     // isotopes that we will plot mass fraction X for.
