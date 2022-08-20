@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -188,13 +188,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_365.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_365.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -467,6 +467,7 @@ int reacMask[ISOTOPES][SIZE];
 gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
 gsl_vector *rv2minus;
+gsl_vector *v1;
 
 // Total number of F+ and F- terms in the network
 
@@ -2239,12 +2240,14 @@ class ReactionVector:  public Utilities {
                 
                 //Prototype GSL reaction vector
                 
-                gsl_vector * v1 = gsl_vector_alloc (ISOTOPES);
+                 v1 = gsl_vector_alloc (ISOTOPES);
                 
                 // Set elements of rv[] pointed to by *rvPt equal to GSL vectors
                 
                 *(rvPt+i) = *v1;   
             }
+            
+            gsl_vector_free(v1);
             
             // Fill vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices)
@@ -2322,7 +2325,9 @@ class ReactionVector:  public Utilities {
        
         // Free the vector. Better solution would be to globally allocate
         // this and remove the repeated allocation all together.
+        
         gsl_vector_free(rv2minus);
+        //gsl_vector_free(v1);
  
         if(kk==0){
             
@@ -4637,7 +4642,8 @@ int main() {
     free(RG);
     
     gsl_vector_free(abundances);
-    gsl_vector_free(rv2minus);
+    //gsl_vector_free(rv2minus);
+    //gsl_vector_free(v1);
     gsl_matrix_free(fluxes);
     
 }  // End of main routine
