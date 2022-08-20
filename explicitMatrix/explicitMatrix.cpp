@@ -165,7 +165,7 @@ void toPlotNow(void);
 #define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -177,6 +177,11 @@ void toPlotNow(void);
 
 #define unitd static_cast<double>(1.0)  // Constant double equal to 1
 #define zerod static_cast<double>(0.0)  // Constant double equal to 0
+
+// Constants for use in gsl_vector
+
+const size_t sizy = SIZE;
+const size_t isy = ISOTOPES;
 
 // File pointers for diagnostics output. Corresponding filenames declared 
 // at top of main.
@@ -323,7 +328,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-12;                // Stop time for integration
+double stop_time = 1e-11;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -2256,9 +2261,12 @@ class ReactionVector:  public Utilities {
             // Fill vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices)
             
-            for (int i = 0; i < SIZE; i++) {
+            //size_t sizy = SIZE;
+            //size_t isy = ISOTOPES;
+            
+            for (size_t i = 0; i < sizy; i++) {
  
-                for(int j=0; j < ISOTOPES; j++){
+                for(size_t j=0; j < isy; j++){
                     
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
 
@@ -2272,11 +2280,11 @@ class ReactionVector:  public Utilities {
                 "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
                 SIZE,ISOTOPES);
             
-            for (int i = 0; i < SIZE; i++) {
+            for (size_t i = 0; i < sizy; i++) {
                 
                 fprintf(pFileD,"\nrv[%d]: [",i);
                 
-                for(int j=0; j<ISOTOPES; j++){
+                for(size_t j=0; j < isy; j++){
                     
                     // Define a pointer to the GSL vector in array entry rv[i]
                     
@@ -2284,8 +2292,8 @@ class ReactionVector:  public Utilities {
                     
                     // Assign the jth component of the vector in rv[i] to a variable
                     
-                    int component = gsl_vector_get (vector, j);
-                    fprintf (pFileD, "%3d", component);
+                    double component = gsl_vector_get (vector, j);
+                    fprintf (pFileD, "%7.4e", component);
                 }
                 
                 fprintf(pFileD," ]");
@@ -2317,7 +2325,7 @@ class ReactionVector:  public Utilities {
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
 
-        gsl_vector * rv2minus = gsl_vector_alloc(ISOTOPES);
+        gsl_vector *rv2minus = gsl_vector_alloc(ISOTOPES);
         
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1);
