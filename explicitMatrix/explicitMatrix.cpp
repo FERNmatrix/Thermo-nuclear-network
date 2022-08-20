@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -181,7 +181,7 @@ void toPlotNow(void);
 // Constants for use in gsl_vector
 
 const size_t sizy = SIZE;
-const size_t isy = ISOTOPES;
+const size_t  isy = ISOTOPES;
 
 // File pointers for diagnostics output. Corresponding filenames declared 
 // at top of main.
@@ -193,13 +193,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -328,7 +328,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-11;                // Stop time for integration
+double stop_time = 1e-7;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -463,13 +463,13 @@ int numberReactions;             // Actual # reactions in network (usually = SIZ
 // in the function ReactionVector::parseF(). It characterizes the structure 
 // of the network and thus has to be calculated only once for a given network.
 
-double reacMask[ISOTOPES][SIZE]; 
+double reacMask[isy][sizy]; 
 
 // Define an array rv[] and corresponding pointers that will hold GSL vectors 
 // corresponding to the reaction vectors for the system.  This will be implemented 
 // in the function makeReactionVectors() of the class ReactionVector.
 
-gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
+gsl_vector rv[sizy];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
 //gsl_vector *rv2minus;
 //gsl_vector *v1;
@@ -1857,12 +1857,12 @@ class Reaction: public Utilities {
                 {
                     if(reacMask[i][j] > 0)
                     {
-                        FplusFac[tempCountPlus] = (double)reacMask[i][j];
+                        FplusFac[tempCountPlus] = reacMask[i][j];
                         tempCountPlus ++;
                     }
                     else if(reacMask[i][j] < 0)
                     {
-                        FminusFac[tempCountMinus] = -(double) reacMask[i][j];
+                        FminusFac[tempCountMinus] = -reacMask[i][j];
                         tempCountMinus ++;
                     }	
                 }
@@ -2224,9 +2224,9 @@ class ReactionVector:  public Utilities {
             for(int j=0; j<numberReactions; j++){
                 fprintf(pFileD,"%4d %22s [ ",j,reacLabel[j]);
                 for(int k=0; k<uppity-1; k++){
-                    fprintf(pFileD,"%2d    ",reacMask[k][j]);
+                    fprintf(pFileD,"%2d    ", (int)reacMask[k][j]);
                 }
-                fprintf(pFileD,"%2d ]\n",reacMask[uppity-1][j]);
+                fprintf(pFileD,"%2d ]\n",(int)reacMask[uppity-1][j]);
             }
             
             // -----------------------------------------------------------------------
@@ -2242,13 +2242,17 @@ class ReactionVector:  public Utilities {
             
             gsl_vector *v1;  // Pointer to array holding GSL vectors
             
-            for(int i=0; i<SIZE; i++){
+//             int testy1;
+//             size_t testy2;
+//             printf("\n\n+=+=+= sizeof(int)=%d sizeof(size_t)=%d\n", sizeof(testy1), sizeof(testy2));
+            
+            for(size_t i=0; i<sizy; i++){
                 
                 // Allocate memory for a GSL reaction vector, which will contain 
                 // ISOTOPES entries indicating how isotopic species change in a 
                 // reaction.
                 
-                 v1 = gsl_vector_alloc (ISOTOPES);
+                 v1 = gsl_vector_alloc (isy);
                 
                 // Set elements of the SIZE elements of rv[] pointed to by 
                 // *rvPt equal to GSL vectors
@@ -2260,9 +2264,6 @@ class ReactionVector:  public Utilities {
             
             // Fill vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices)
-            
-            //size_t sizy = SIZE;
-            //size_t isy = ISOTOPES;
             
             for (size_t i = 0; i < sizy; i++) {
  
@@ -2293,7 +2294,7 @@ class ReactionVector:  public Utilities {
                     // Assign the jth component of the vector in rv[i] to a variable
                     
                     double component = gsl_vector_get (vector, j);
-                    fprintf (pFileD, "%7.4e", component);
+                    fprintf (pFileD, "%3d", (int) component);
                 }
                 
                 fprintf(pFileD," ]");
@@ -2325,7 +2326,7 @@ class ReactionVector:  public Utilities {
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
 
-        gsl_vector *rv2minus = gsl_vector_alloc(ISOTOPES);
+        gsl_vector *rv2minus = gsl_vector_alloc(isy);
         
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1);
@@ -2504,12 +2505,12 @@ class ReactionVector:  public Utilities {
                     
                     if(total > 0){       // Contributes to F- for this isotope
                         numFminus ++;
-                        reacMask[i][j] = -total;
+                        reacMask[i][j] = (double) -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
                     } 
                     else if(total < 0){  // Contributes to F+ for this isotope
                         numFplus ++;
-                        reacMask[i][j] = -total;
+                        reacMask[i][j] = (double) -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
                     } else {             // Doesn't contribute to flux for this isotope
                         reacMask[i][j] = 0;
@@ -2544,7 +2545,7 @@ class ReactionVector:  public Utilities {
             for(int j=0; j<numberReactions; j++){
                 fprintf(pFileD,"\n%3d %22s",j,reacLabel[j]);
                 for(int k=0; k<uppity; k++){
-                    fprintf(pFileD," %4d",reacMask[k][j]);
+                    fprintf(pFileD," %4d", (int)reacMask[k][j]);
                 }
             }
             
