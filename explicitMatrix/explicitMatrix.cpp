@@ -432,7 +432,7 @@ double Ystore[ISOTOPES];          // Array storing current abundances for later 
 double YfullStep[ISOTOPES];       // Array holding full-step Y update
 double X[ISOTOPES];               // Array holding mass fractions X for isotopes
 double massExcess[ISOTOPES];      // Array holding mass excesses for isotopes
-const static int isoLen = 6;      // Max character length for isoLabel[][]
+const static int isoLen = 5;      // Max character length for isoLabel[][]
 char isoLabel[ISOTOPES][isoLen];  // Isotope labels (max 5 characters; e.g. 238pu)
 double dYDt[ISOTOPES];            // Rate of change for Y
 
@@ -457,13 +457,13 @@ int isPEforward[SIZE];           // Whether labeled "forward" reaction in PE sch
 int numberSpecies;               // Actual # species in network (usually = ISOTOPES)
 int numberReactions;             // Actual # reactions in network (usually = SIZE)
 
-// Array with entries +1 if a reaction increases the population of the isotope 
-// (contributes to F+),-1 if it decreases it (contributes to F-) and 0 if the 
+// Array with entries positive integer if a reaction increases the population of the isotope 
+// (contributes to F+), negative integer if it decreases it (contributes to F-) and 0 if the 
 // reaction does not change the population of the isotope. This array is populated 
 // in the function ReactionVector::parseF(). It characterizes the structure 
 // of the network and thus has to be calculated only once for a given network.
 
-double reacMask[isy][sizy]; 
+int reacMask[isy][sizy]; 
 
 // Define an array rv[] and corresponding pointers that will hold GSL vectors 
 // corresponding to the reaction vectors for the system.  This will be implemented 
@@ -471,8 +471,6 @@ double reacMask[isy][sizy];
 
 gsl_vector rv[sizy];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
-//gsl_vector *rv2minus;
-//gsl_vector *v1;
 
 // Total number of F+ and F- terms in the network
 
@@ -1877,16 +1875,14 @@ class Reaction: public Utilities {
             int tempCountPlus = 0;
             int tempCountMinus = 0;
             for(int i=0; i<ISOTOPES; i++){
-                for(int j=0; j<SIZE; j++)
-                {
-                    if(reacMask[i][j] > 0)
-                    {
-                        FplusFac[tempCountPlus] = reacMask[i][j];
+                
+                for(int j=0; j<SIZE; j++) {
+                    if(reacMask[i][j] > 0){
+                        FplusFac[tempCountPlus] = (double) reacMask[i][j];
                         tempCountPlus ++;
                     }
-                    else if(reacMask[i][j] < 0)
-                    {
-                        FminusFac[tempCountMinus] = -reacMask[i][j];
+                    else if(reacMask[i][j] < 0){
+                        FminusFac[tempCountMinus] = (double) -reacMask[i][j];
                         tempCountMinus ++;
                     }	
                 }
@@ -2248,9 +2244,9 @@ class ReactionVector:  public Utilities {
             for(int j=0; j<numberReactions; j++){
                 fprintf(pFileD,"%4d %22s [ ",j,reacLabel[j]);
                 for(int k=0; k<uppity-1; k++){
-                    fprintf(pFileD,"%2d    ", (int)reacMask[k][j]);
+                    fprintf(pFileD,"%2d    ", reacMask[k][j]);
                 }
-                fprintf(pFileD,"%2d ]\n",(int)reacMask[uppity-1][j]);
+                fprintf(pFileD,"%2d ]\n", reacMask[uppity-1][j]);
             }
             
             // -----------------------------------------------------------------------
@@ -2283,17 +2279,21 @@ class ReactionVector:  public Utilities {
             gsl_vector_free(v1);
             
             // Fill vector component entries created above with data contained in  
-            // reacMask[j][i] (notice reversed indices)
+            // reacMask[j][i] (notice reversed indices because outer loop is reactions
+            // and inner loop is isotopes.)
             
             for (size_t i = 0; i < sizy; i++) {
  
                 for(size_t j=0; j < isy; j++){
                     
-                    printf("\n2292: i=%d j=%d rvPt=%d reacMask= %2.0f reacMask=%d",
-                           i,j,rvPt+i, reacMask[j][i], (int)reacMask[j][i]);
-                    if(j == isy-1)printf("\n");
+                    printf("2298: i=%d j=%d rvPt=%d reac=%s iso=%s reacMask=%d\n",
+                           i, j, rvPt+i, reacLabel[i],
+                            isoLabel[j], reacMask[j][i]);
+                    if(j == isy - 1)printf("\n");
                     
-                    gsl_vector_set (rvPt+i, j, reacMask[j][i]);
+                    cout.flush();
+                    
+                    gsl_vector_set (rvPt+i, j, (double) reacMask[j][i]);
 
                 }
                 //printf("\n");
@@ -2530,12 +2530,12 @@ class ReactionVector:  public Utilities {
                     
                     if(total > 0){       // Contributes to F- for this isotope
                         numFminus ++;
-                        reacMask[i][j] = (double) -total;
+                        reacMask[i][j] =  -total;
                         tempInt2[incrementMinus + numFminus-1] = j;
                     } 
                     else if(total < 0){  // Contributes to F+ for this isotope
                         numFplus ++;
-                        reacMask[i][j] = (double) -total;
+                        reacMask[i][j] =  -total;
                         tempInt1[incrementPlus + numFplus-1] = j;
                     } else {             // Doesn't contribute to flux for this isotope
                         reacMask[i][j] = 0;
@@ -2570,7 +2570,7 @@ class ReactionVector:  public Utilities {
             for(int j=0; j<numberReactions; j++){
                 fprintf(pFileD,"\n%3d %22s",j,reacLabel[j]);
                 for(int k=0; k<uppity; k++){
-                    fprintf(pFileD," %4d", (int)reacMask[k][j]);
+                    fprintf(pFileD," %4d", reacMask[k][j]);
                 }
             }
             
