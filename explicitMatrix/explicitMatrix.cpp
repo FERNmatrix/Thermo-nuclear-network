@@ -162,8 +162,8 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -193,13 +193,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -825,7 +825,7 @@ class Utilities{
     
     public:
         
-        static const int maxcsize = 4500;   // Max string size in stringToChar(string)
+        static const int MAXCSIZE = 4500;   // Max string size in stringToChar(string)
         
         // Static function Utilities::showTime() to return date and local time as a 
         // character array
@@ -1093,28 +1093,28 @@ class Utilities{
         // The function Utilities::stringToChar(string) defined below converts a 
         // string to a corresponding character array (returning a pointer to the
         // character array), which either printf or cout can print. Assumes that 
-        // the string argument has no more than Utilities::maxcsize characters. Change 
-        // Utilities::maxcsize to increase that.
+        // the string argument has no more than Utilities::MAXCSIZE characters. Change 
+        // Utilities::MAXCSIZE to increase that.
         // ----------------------------------------------------------------------
         
         static char* stringToChar(string s){
             
             // First ensure that string passed to function is not too long
             
-            if(s.length() > Utilities::maxcsize - 1){
+            if(s.length() > Utilities::MAXCSIZE - 1){
                 
                 printf("\n\n*** EXIT: The string\n\n");
                 cout << s;
                 printf("\nof length %d", s.length());
                 printf(" is too long for the Utilities::stringToChar(string) function.");
                 printf(
-                "\nChange Utilities::maxcsize = %d to value of at least %d and recompile.\n\n", 
-                Utilities::maxcsize, s.length() + 1);
+                "\nChange Utilities::MAXCSIZE = %d to value of at least %d and recompile.\n\n", 
+                Utilities::MAXCSIZE, s.length() + 1);
                 exit(1);
                 
             }
             
-            static char cs[maxcsize];
+            static char cs[MAXCSIZE];
             strcpy(cs, &s[0]);          // alternatively strcpy(cs,s.c_str());
             return cs;
         }
@@ -2266,10 +2266,6 @@ class ReactionVector:  public Utilities {
             
             gsl_vector *v1;  // Pointer to array holding GSL vectors
             
-//             int testy1;
-//             size_t testy2;
-//             printf("\n\n+=+=+= sizeof(int)=%d sizeof(size_t)=%d\n", sizeof(testy1), sizeof(testy2));
-            
             for(size_t i=0; i<sizy; i++){
                 
                 // Allocate memory for a GSL reaction vector, which will contain 
@@ -2293,9 +2289,14 @@ class ReactionVector:  public Utilities {
  
                 for(size_t j=0; j < isy; j++){
                     
+                    printf("\n2292: i=%d j=%d rvPt=%d reacMask= %2.0f reacMask=%d",
+                           i,j,rvPt+i, reacMask[j][i], (int)reacMask[j][i]);
+                    if(j == isy-1)printf("\n");
+                    
                     gsl_vector_set (rvPt+i, j, reacMask[j][i]);
 
                 }
+                //printf("\n");
             }
             
             // Display reaction vectors as component list in 
