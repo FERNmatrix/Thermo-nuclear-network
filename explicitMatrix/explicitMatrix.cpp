@@ -162,10 +162,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 365                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 4395                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -193,13 +193,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_365.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_365.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -825,6 +825,8 @@ class Utilities{
     
     public:
         
+        static const int maxcsize = 4500;   // Max string size in stringToChar(string)
+        
         // Static function Utilities::showTime() to return date and local time as a 
         // character array
         
@@ -1059,13 +1061,13 @@ class Utilities{
         
         // ----------------------------------------------------------------------
         // Using the C++ class string instead of char to handle strings 
-        // won't compile on my system unless #include <iostream> is included. The
-        // C printf command also won't work correctly because it isn't typesafe.
-        // See the discussion at
+        // requires #include <iostream>. The C printf command also won't work 
+        // correctly with a string type, because it isn't typesafe. See the 
+        // discussion at
         //
         //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
         //
-        // Instead,print with the cout command (which requires #include <iostream>)
+        // Instead, print with the cout command (which requires #include <iostream>)
         // Example: 
         //
         //      string test("howdy");
@@ -1076,37 +1078,58 @@ class Utilities{
         //
         //      printf("\n%s",test+test2);
         //
-        // it will likely print garbage. However,you can print a string with printf
-        // if it is first converted to a char:
+        // it will likely print garbage. However, you can print a string with printf
+        // if it is first converted to a char string:
         //
         //      string s = "Howdy World!";
         //      char cs[s.size() + 1];
-        //      strcpy(cs,&s[0]);	// or strcpy(cs,s.c_str());
-        //      printf("\n\nstring=%s\n",strcpy(cs,&s[0]));
+        //      strcpy(cs,&s[0]);	    // or strcpy(cs,s.c_str());
+        //      printf("\n\nstring=%s\n", strcpy(cs,&s[0]));
         //  
         // Typically a string type can be printed with cout but a string given 
         // to printf usually displays garbage because of type issues in the 
-        // C function printf noted above. The function stringToChar(string) defined
-        // below converts a string to a corresponding character array,which either 
-        // printf or cout can print. Presently assumes the string has no more than 50 
-        // characters.  Change the dimension of cs[] to change that.
+        // C function printf noted above. 
+        //
+        // The function Utilities::stringToChar(string) defined below converts a 
+        // string to a corresponding character array (returning a pointer to the
+        // character array), which either printf or cout can print. Assumes that 
+        // the string argument has no more than Utilities::maxcsize characters. Change 
+        // Utilities::maxcsize to increase that.
         // ----------------------------------------------------------------------
         
         static char* stringToChar(string s){
-            static char cs[50];
-            strcpy(cs,&s[0]);     // alternatively strcpy(cs,s.c_str());
+            
+            // First ensure that string passed to function is not too long
+            
+            if(s.length() > Utilities::maxcsize - 1){
+                
+                printf("\n\n*** EXIT: The string\n\n");
+                cout << s;
+                printf("\nof length %d", s.length());
+                printf(" is too long for the Utilities::stringToChar(string) function.");
+                printf(
+                "\nChange Utilities::maxcsize = %d to value of at least %d and recompile.\n\n", 
+                Utilities::maxcsize, s.length() + 1);
+                exit(1);
+                
+            }
+            
+            static char cs[maxcsize];
+            strcpy(cs, &s[0]);          // alternatively strcpy(cs,s.c_str());
             return cs;
         }
         
-        
         // Convert a character array to a string
         
-        static string charArrayToString (char* a,int size) {
+        static string charArrayToString (char* a, int size) {
+            
             int i;
             string s = "";
+            
             for (i = 0; i < size; i++) {
                 s = s + a[i];
             }
+            
             return s;
         }
         
@@ -1117,6 +1140,7 @@ class Utilities{
         // ----------------------------------------------------------------------
         
         static void startTimer(){
+            
             START_CPU     // Start a timer for rate calculation
         }
         
@@ -4773,7 +4797,7 @@ void plotFileSetup(){
     str1.append(app);
     str1.append("\n");
     
-    // Write header for plotfile1 -> plot1.data output
+    // Write header for plotfile1 -> plot1.data output. 
     
     fprintf(plotfile1,Utilities::stringToChar(str1));
     
@@ -4783,8 +4807,7 @@ void plotFileSetup(){
     str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
     fprintf(plotfile2,
             "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
-    fprintf(plotfile2,Utilities::stringToChar(str2));
-    
+    fprintf(plotfile2, Utilities::stringToChar(str2));
     
     // Write header for plotfile3 stream -> plot3.data (fluxes)
     
