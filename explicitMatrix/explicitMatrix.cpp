@@ -162,10 +162,10 @@ void toPlotNow(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 8                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 22                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 300                // Number of plot output steps
+#define plotSteps 180                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -193,13 +193,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_cno.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_cno.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -310,8 +310,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes,or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 0.020;           // Initial temperature in units of 10^9 K
-double rho_start = 1e3;        // Initial density in g/cm^3
+double T9_start = 7;           // Initial temperature in units of 10^9 K
+double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -327,8 +327,8 @@ double rho_start = 1e3;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-4;          // Start time for plot output
-double stop_time = 3e16;                // Stop time for integration
+double startplot_time = 1e-18;          // Start time for plot output
+double stop_time = 1e-4;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -345,7 +345,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -634,7 +634,6 @@ double nextPlotTime;                         // Next plot output time
 
 
 class SplineInterpolator{
-    
     
 private:
     
@@ -1209,9 +1208,8 @@ class Species: public Utilities {
         
         // Temperatures in units of 10^9 K for partition function table (see pf[]). 
         
-        const double Tpf[PF] = { 0.1f,0.15f,0.2f,0.3f,0.4f,0.5f,
-            0.6f,0.7f,0.8f,0.9f,1.0f,1.5f,2.0f,2.5f,3.0f,3.5f,
-            4.0f,4.5f,5.0f,6.0f,7.0f,8.0f,9.0f,10.0f };
+        const double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 
+            1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     
     public:
         
@@ -1369,6 +1367,7 @@ class Species: public Utilities {
  * of this class for each reaction in the network. Inherits from Utilities */
 
 class Reaction: public Utilities {
+//class Reaction: public Utilities, public SplineInterpolator {
     
     // Make data fields private,with external access to them through public setter 
     // and getter functions
@@ -1434,6 +1433,10 @@ class Reaction: public Utilities {
         
         // Constructor executed when objects are instantiated
         
+//         SplineInterpolator(24, ){
+//             
+//         }
+        
         Reaction(){
             
             // Set all reaction objects to not-equilibrated initially.
@@ -1441,7 +1444,7 @@ class Reaction: public Utilities {
             isEquil = false;
             reacIsActive[reacIndex] =  true;
             
-
+            //SplineInterpolator interpolatePF;
         }
         
         // Public Reaction setter functions to set values of private class fields
@@ -2021,16 +2024,16 @@ class Reaction: public Utilities {
             // sense defined in ReacLib (defined by field Reaction::isReverse=true). 
             // Realistic calculations at higher temperatures should use
             // the partition functions so generally set dopf=true unless testing.
-            // Partition functions are very near 1.000 if T9 < 1,so we will typically
+            // Partition functions are very near 1.000 if T9 < 1, so we will typically
             // only implement partition function corrections if T9 > pfCut9 = 1.0,but
             // the table of partition functions allows pfCut9 as small as 0.1.
             // Interpolation is in the log10 of the temperature,so pass log10(T9)
             // rather than T9 to pfInterpolator(index,logt9). Because for the 
             // temperatures of interest the partition functions for all light ions
-            // (protons,neutrons,alphas,tritons) are equal to 1.0,the structure
+            // (protons, neutrons, alphas, tritons) are equal to 1.0, the structure
             // of the 8 Reaclib reaction classes specified by Reaction::reacClass
             // means that this correction is only required for reverse reactions
-            // in Reaclib classes reacClass = 2,5.
+            // in Reaclib classes reacClass = 2, and 5.
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
@@ -2051,9 +2054,9 @@ class Reaction: public Utilities {
         
         
         // ------------------------------------------------------------------------
-        // Reaction::pfInterpolator(int,double) to return
+        // Reaction::pfInterpolator(int, double) to return
         // partition function of isotope labeled by isoIndex at log_10 of
-        // temperature T9. Note that the 2nd argument is log10(T9),not T9,
+        // temperature T9. Note that the 2nd argument is log10(T9), not T9,
         // because the interpolation in the partition function table is in the 
         // log10 of the temperature.  The following commented-out code assumes
         // that the object interpolatepf of the SplineInterpolator class has
@@ -4043,8 +4046,6 @@ Reaction reaction [SIZE];
 
 ReactionGroup *RG;   // Pointer to 1D array for reaction groups
 
-// SplineInterpolator interpolateT = SplineInterpolator();
-// SplineInterpolator interpolateRho = SplineInterpolator();
 
 
 // ---------------------------------
@@ -4370,24 +4371,25 @@ int main() {
     
     // Instantiate hydro temperature interpolator object
     
-    SplineInterpolator interpolateT = SplineInterpolator (hydroLines,hydroTime,hydroTemp);
-    SplineInterpolator interpolateRho = SplineInterpolator (hydroLines,hydroTime,hydroRho);
+    SplineInterpolator interpolateT = SplineInterpolator (hydroLines, hydroTime, hydroTemp);
+    SplineInterpolator interpolateRho = SplineInterpolator (hydroLines, hydroTime, hydroRho);
     
     // Initialize interpolator objects if using a hydro profile
     
     if(hydroProfile){
-        interpolateT.spline(hydroTime,hydroTemp,hydroLines,hydroLines);
-        interpolateRho.spline(hydroTime,hydroRho,hydroLines,hydroLines);
+        
+        interpolateT.spline(hydroTime, hydroTemp, hydroLines, hydroLines);
+        interpolateRho.spline(hydroTime, hydroRho, hydroLines, hydroLines);
     }
     
     // Open files for plot output. Assumes that the subdirectory
     // gnu_out already exists. If it doesn't,will compile but
     // may crash when executed.
     
-    plotfile1 = fopen("gnu_out/plot1.data","w");   // t,dt,E,dE,X
-    plotfile2 = fopen("gnu_out/plot2.data","w");   // dt,Rmax
-    plotfile3 = fopen("gnu_out/plot3.data","w");   // fluxes
-    plotfile4 = fopen("gnu_out/plot4.data","w");   // hydro profile
+    plotfile1 = fopen("gnu_out/plot1.data", "w");   // t,dt,E,dE,X
+    plotfile2 = fopen("gnu_out/plot2.data", "w");   // dt,Rmax
+    plotfile3 = fopen("gnu_out/plot3.data", "w");   // fluxes
+    plotfile4 = fopen("gnu_out/plot4.data", "w");   // hydro profile
 
     // Setup files for plot output during the integration by writing headers
 
@@ -5388,7 +5390,7 @@ void readNetwork (char *fileName) {
     
     // Read lines until NULL encountered. Data lines can contain up to 60 characters.
     
-    while(fgets(line,60,fr) != NULL){
+    while(fgets(line, 60, fr) != NULL){
         
         isoSubIndex ++;
         
@@ -5413,10 +5415,14 @@ void readNetwork (char *fileName) {
             
         } else {             // line contains partition function entries
             
-            // Scan and parse a partition function line
+            // Scan and parse a partition function line. Each line contains 8
+            // partition function values and there are three lines of partition
+            // function values (so total of 24). The temperatures corresponding
+            // to these 24 partition function values are given in the constant
+            // array Tpf[PF] in the Species objects isotope[].
             
-            sscanf (line,"%lf %lf %lf %lf %lf %lf %lf %lf",&pf0,&pf1,&pf2,&pf3,
-                &pf4,&pf5,&pf6,&pf7);
+            sscanf (line,"%lf %lf %lf %lf %lf %lf %lf %lf", &pf0, &pf1, &pf2, &pf3,
+                &pf4, &pf5, &pf6, &pf7);
             
             // Store the 24 partition function table values in Species object isotope[]
             
@@ -5426,14 +5432,14 @@ void readNetwork (char *fileName) {
             
             SpeciesPtr = &isotope[isoIndex];
             
-            SpeciesPtr->setpf(8*(tin),pf0);
-            SpeciesPtr->setpf(8*(tin)+1,pf1);
-            SpeciesPtr->setpf(8*(tin)+2,pf2);
-            SpeciesPtr->setpf(8*(tin)+3,pf3);
-            SpeciesPtr->setpf(8*(tin)+4,pf4);
-            SpeciesPtr->setpf(8*(tin)+5,pf5);
-            SpeciesPtr->setpf(8*(tin)+6,pf6);
-            SpeciesPtr->setpf(8*(tin)+7,pf7);
+            SpeciesPtr->setpf(8*(tin), pf0);
+            SpeciesPtr->setpf(8*(tin)+1, pf1);
+            SpeciesPtr->setpf(8*(tin)+2, pf2);
+            SpeciesPtr->setpf(8*(tin)+3, pf3);
+            SpeciesPtr->setpf(8*(tin)+4, pf4);
+            SpeciesPtr->setpf(8*(tin)+5, pf5);
+            SpeciesPtr->setpf(8*(tin)+6, pf6);
+            SpeciesPtr->setpf(8*(tin)+7, pf7);
         }
         
         // Normally numberSpecies = ISOTOPES,but numberSpecies counts the 
