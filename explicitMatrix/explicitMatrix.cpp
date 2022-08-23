@@ -866,25 +866,25 @@ class Utilities{
         }
         
         
-        // -------------------------------------------------------------------------
-        // Static function Utilities::interpolate_rho(t) to find an interpolated 
-        // density rho as a function of time if hydroProfile is true.
-        // -------------------------------------------------------------------------
-        
-        static double interpolate_rho(double t){
-            
-            // Will call spline interpolator in hydro profile table to return 
-            // rho at this value of time t.  For now,we just return rho_start.
-            
-            double rhonow;             // Interpolated density
-            rhonow = rho_start;        // Temporary constant value for testing
-            
-            // **********
-            // Call to spline interpolator for density goes here
-            // **********
-            
-            return rhonow;
-        }
+//         // -------------------------------------------------------------------------
+//         // Static function Utilities::interpolate_rho(t) to find an interpolated 
+//         // density rho as a function of time if hydroProfile is true.
+//         // -------------------------------------------------------------------------
+//         
+//         static double interpolate_rho(double t){
+//             
+//             // Will call spline interpolator in hydro profile table to return 
+//             // rho at this value of time t.  For now,we just return rho_start.
+//             
+//             double rhonow;             // Interpolated density
+//             rhonow = rho_start;        // Temporary constant value for testing
+//             
+//             // **********
+//             // Call to spline interpolator for density goes here
+//             // **********
+//             
+//             return rhonow;
+//         }
         
         
         // -------------------------------------------------------------------------
@@ -2041,7 +2041,7 @@ class Reaction: public Utilities {
                 int rin;
                 int pin;
                 
-                printf("\nreac=%d %s reacClass=%d", reacIndex, reacLabel[reacIndex], reacClass);
+                //printf("\nreac=%d %s reacClass=%d", reacIndex, reacLabel[reacIndex], reacClass);
                 
                 if(reacClass == 2){
                     
@@ -2049,8 +2049,8 @@ class Reaction: public Utilities {
                     pin = productIndex[1];
                     pfden = currentPF[rin];
                     pfnum = currentPF[pin];
-                    printf(" reac[0]=%d(%s)", rin, isoLabel[rin]);
-                    printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
+                    //printf(" reac[0]=%d(%s)", rin, isoLabel[rin]);
+                    //printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
                     
                 } else if(reacClass == 5){
                     
@@ -2058,8 +2058,8 @@ class Reaction: public Utilities {
                     pin = productIndex[1];
                     pfden = currentPF[rin];
                     pfnum = currentPF[pin];
-                    printf(" reac[1]=%d(%s)", rin, isoLabel[rin]);
-                    printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
+                    //printf(" reac[1]=%d(%s)", rin, isoLabel[rin]);
+                    //printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
                     
                 } else {
                     
@@ -2070,48 +2070,48 @@ class Reaction: public Utilities {
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
                 
-                printf(" pfnum=%5.3e pfden=%5.3e pfFactor=%5.3e",pfnum, pfden, pfFactor);
+                //printf(" pfnum=%5.3e pfden=%5.3e pfFactor=%5.3e",pfnum, pfden, pfFactor);
             }
         }
         
         
-        // ------------------------------------------------------------------------
-        // Reaction::pfInterpolator(int, double) to return
-        // partition function of isotope labeled by isoIndex at log_10 of
-        // temperature T9. Note that the 2nd argument is log10(T9), not T9,
-        // because the interpolation in the partition function table is in the 
-        // log10 of the temperature.  The following commented-out code assumes
-        // that the object interpolatepf of the SplineInterpolator class has
-        // first invoked the interpolatepf.bisection method to use bisection 
-        // to find the interval containing root and store the lower index of
-        // that interval in lowPFindex. Then SplineInterpolator interpolates
-        // the root restricted to that interval.  This guards against the
-        // spline interpolator finding the wrong root if there are multiple
-        // roots (as could be true in the general case,though probably not here
-        // since the function is typically monotonic).
-        // ------------------------------------------------------------------------
-        
-        double pfInterpolator(int index,double logt9) {
-            
-            // Following commented out for testing purposes until spline interpolator
-            // is implemented
-            
-//             double rdt;
-//             double term1;
-//             double term2;
-//             double sumterms;
-//             double bob;
-//             rdt = (logt9 - Tpf[lowPFindex]) / (Tpf[lowPFindex + 1] - Tpf[lowPFindex]);
-//             term1 = rdt * Math.log(pf[Z][N][lowPFindex + 1]);
-//             term2 = (1.0 - rdt) * Math.log(pf[Z][N][lowPFindex]);
-//             sumterms = term1 + term2;
-//             bob = Math.exp(sumterms);
-//             // System.out.println("PF stuff: "+t9+" "+Z+" "+N+" "+rdt+" "+sumterms+" "+bob);
-//             return bob;
-            
-            return 1.0;  // Temporary
-            
-        }
+//         // ------------------------------------------------------------------------
+//         // Reaction::pfInterpolator(int, double) to return
+//         // partition function of isotope labeled by isoIndex at log_10 of
+//         // temperature T9. Note that the 2nd argument is log10(T9), not T9,
+//         // because the interpolation in the partition function table is in the 
+//         // log10 of the temperature.  The following commented-out code assumes
+//         // that the object interpolatepf of the SplineInterpolator class has
+//         // first invoked the interpolatepf.bisection method to use bisection 
+//         // to find the interval containing root and store the lower index of
+//         // that interval in lowPFindex. Then SplineInterpolator interpolates
+//         // the root restricted to that interval.  This guards against the
+//         // spline interpolator finding the wrong root if there are multiple
+//         // roots (as could be true in the general case,though probably not here
+//         // since the function is typically monotonic).
+//         // ------------------------------------------------------------------------
+//         
+//         double pfInterpolator(int index,double logt9) {
+//             
+//             // Following commented out for testing purposes until spline interpolator
+//             // is implemented
+//             
+// //             double rdt;
+// //             double term1;
+// //             double term2;
+// //             double sumterms;
+// //             double bob;
+// //             rdt = (logt9 - Tpf[lowPFindex]) / (Tpf[lowPFindex + 1] - Tpf[lowPFindex]);
+// //             term1 = rdt * Math.log(pf[Z][N][lowPFindex + 1]);
+// //             term2 = (1.0 - rdt) * Math.log(pf[Z][N][lowPFindex]);
+// //             sumterms = term1 + term2;
+// //             bob = Math.exp(sumterms);
+// //             // System.out.println("PF stuff: "+t9+" "+Z+" "+N+" "+rdt+" "+sumterms+" "+bob);
+// //             return bob;
+//             
+//             return 1.0;  // Temporary
+//             
+//         }
         
         // Function Reaction::showRates() to display computed rates for this
         // Reaction object.
@@ -4753,7 +4753,7 @@ void updatePF(){
         
     }
     
-}
+}  // End of updatePF()
 
 
 
