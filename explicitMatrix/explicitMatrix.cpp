@@ -287,8 +287,13 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = false;
+bool dopf = true;
 double pfCut9 = 1.0;
+
+// Temperatures in units of 10^9 K for partition function table (see pf[]). 
+
+double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 
+    1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
@@ -1206,10 +1211,6 @@ class Species: public Utilities {
         double dYdt;         // Current dY/dt for this isotope
         double dXdt;         // Current dX/dt for this isotope
         
-        // Temperatures in units of 10^9 K for partition function table (see pf[]). 
-        
-        const double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 
-            1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     
     public:
         
@@ -1344,9 +1345,9 @@ class Species: public Utilities {
         
         double getpf(int i){return pf[i]; }
         
-        // Partition function table temperatures 
-        
-        double getTpf(int i){return Tpf[i]; }
+//         // Partition function table temperatures 
+//         
+//         double getTpf(int i){return Tpf[i]; }
         
         double getfminus(){return fminus; }
         
@@ -1367,7 +1368,6 @@ class Species: public Utilities {
  * of this class for each reaction in the network. Inherits from Utilities */
 
 class Reaction: public Utilities {
-//class Reaction: public Utilities, public SplineInterpolator {
     
     // Make data fields private,with external access to them through public setter 
     // and getter functions
@@ -1433,18 +1433,13 @@ class Reaction: public Utilities {
         
         // Constructor executed when objects are instantiated
         
-//         SplineInterpolator(24, ){
-//             
-//         }
-        
         Reaction(){
             
             // Set all reaction objects to not-equilibrated initially.
             
             isEquil = false;
             reacIsActive[reacIndex] =  true;
-            
-            //SplineInterpolator interpolatePF;
+
         }
         
         // Public Reaction setter functions to set values of private class fields
@@ -2023,11 +2018,11 @@ class Reaction: public Utilities {
             // Make a partition function correction if this is reverse reaction in
             // sense defined in ReacLib (defined by field Reaction::isReverse=true). 
             // Realistic calculations at higher temperatures should use
-            // the partition functions so generally set dopf=true unless testing.
+            // the partition functions so generally set dopf = true unless testing.
             // Partition functions are very near 1.000 if T9 < 1, so we will typically
             // only implement partition function corrections if T9 > pfCut9 = 1.0,but
             // the table of partition functions allows pfCut9 as small as 0.1.
-            // Interpolation is in the log10 of the temperature,so pass log10(T9)
+            // Interpolation is in the log10 of the temperature, so pass log10(T9)
             // rather than T9 to pfInterpolator(index,logt9). Because for the 
             // temperatures of interest the partition functions for all light ions
             // (protons, neutrons, alphas, tritons) are equal to 1.0, the structure
@@ -4383,7 +4378,7 @@ int main() {
     }
     
     // Open files for plot output. Assumes that the subdirectory
-    // gnu_out already exists. If it doesn't,will compile but
+    // gnu_out already exists. If it doesn't, will compile but
     // may crash when executed.
     
     plotfile1 = fopen("gnu_out/plot1.data", "w");   // t,dt,E,dE,X
@@ -4395,10 +4390,10 @@ int main() {
 
     plotFileSetup();
     
+    
     // ------------------------------------ //
     // *** Begin main integration loop ***  //
     // ------------------------------------ //
-    
     
     totalIterations = 0;
     XcorrFac = 1.0;
@@ -4460,6 +4455,41 @@ int main() {
         
         T9 = pow(10,logTnow)/1e9;
         rho = pow(10,logRhoNow);
+        
+        // Spline interpolation of partition functions if needed for this temperature
+        
+        if(dopf && T9 > pfCut9){
+            
+            double pf_Iso[24];
+            double pfNow;
+            
+            for (int i=0; i<ISOTOPES; i++){
+                
+                // Fill pf_Iso[] with pf values for this isotope
+                
+                for(int k=0; k<PF; k++){
+                    pf_Iso[k] = isotope[i].getpf(k);
+                    
+                    //if(totalTimeSteps = 5) printf("\n i=%d k=%d pf=%4.2f", i, k, pf_Iso[k]);
+                }
+                
+                // Instantiate and initialize spline interpolator for pf of this isotope
+                
+                SplineInterpolator interpolatePF = SplineInterpolator(PF, Tpf, pf_Iso);
+                interpolatePF.spline(Tpf, pf_Iso, PF, PF);
+                
+                // Interpolate pf for this isotope at present temperature
+                
+                pfNow = interpolatePF.splint(logTnow);
+                
+                if(totalTimeSteps == 5) printf("\n i=%d logT=%4.3f pf=%4.2f", i, logTnow, pfNow);
+            }
+            
+        }
+        
+        
+        
+        
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i],one entry for each
@@ -4472,8 +4502,8 @@ int main() {
         if(hydroProfile){
             
             for(int i=0; i<SIZE; i++){
-                reaction[i].computeConstantFacs(T9,rho);
-                reaction[i].computeRate(T9,rho);
+                reaction[i].computeConstantFacs(T9, rho);
+                reaction[i].computeRate(T9, rho);
             }
             
         }
@@ -5741,22 +5771,22 @@ void writeNetwork() {
         
     }
     
-    // Write partition function table from isotope[] to data file
+    // Write partition function table to output data file
     
     fprintf(pfnet,"\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
     fprintf(pfnet,"\nT9:  ");
     
     for(int k=0; k<24; k++){
-        fprintf(pfnet,"%4.2f ",isotope[0].getTpf(k));
+        fprintf(pfnet,"%4.2f ", Tpf[k]);
     }
     
     for(int i=0; i<ISOTOPES; i++){
 
         fprintf(pfnet,"\n");
-        fprintf(pfnet,"%-5s",isotope[i].getLabel());
+        fprintf(pfnet,"%-5s", isotope[i].getLabel());
         
         for(int j=0; j<24; j++){ 
-            fprintf(pfnet,"%4.2f ",isotope[i].getpf(j)); 
+            fprintf(pfnet,"%4.2f ", isotope[i].getpf(j)); 
         }
         
     }
