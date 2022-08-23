@@ -126,6 +126,7 @@ void sumFplusFminus(void);
 void restoreBe8(void);
 void plotFileSetup(void);
 void toPlotNow(void);
+void updatePF(void);
 
 // void mtrace(void);     // Memory debugging
 // void muntrace(void);   // Memory debugging
@@ -4366,6 +4367,8 @@ int main() {
     
     if(!hydroProfile){
         
+        updatePF();      // Update partition functions for initial T9
+        
         for(int i=0; i<SIZE; i++){
             reaction[i].computeConstantFacs(T9,rho);
             reaction[i].computeRate(T9,rho);
@@ -4480,43 +4483,7 @@ int main() {
         T9 = pow(10,logTnow)/1e9;
         rho = pow(10,logRhoNow);
         
-        // Spline interpolation of partition functions, if needed for this temperature.
-        // The current interpolated value will be stored in the isotope[] species
-        // objects for later use in constructing partition function corrections for
-        // each reaction in the network that needs it.
-        
-        if(dopf && T9 > pfCut9){
-            
-            double pf_Iso[24];
-            double pfNow;
-            
-            for (int i=0; i<ISOTOPES; i++){
-                
-                // Fill pf_Iso[] with pf table values for this isotope
-                
-                for(int k=0; k<PF; k++){
-                    pf_Iso[k] = isotope[i].getpf(k);
-                }
-                
-                // Instantiate and initialize spline interpolator for pf of this isotope
-                
-                SplineInterpolator interpolatePF = SplineInterpolator(PF, Tpf, pf_Iso);
-                interpolatePF.spline((Tpf), pf_Iso, PF, PF);
-                
-                // Interpolate pf for this isotope at present temperature
-                
-                pfNow = interpolatePF.splint(T9);
-                
-                // Store current value of pf in species objects and array currentPF[]
-                
-                isotope[i].setpfnow(pfNow);
-                currentPF[i] = pfNow;
-                
-                if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
-                    i, T9, logTnow, currentPF[i]);
-            }
-            
-        }
+        updatePF();    // Update partition functions for current T9
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
@@ -4741,6 +4708,54 @@ int main() {
 // **********************************************************
 // ************  FUNCTION DEFINITIONS  **********************
 // **********************************************************
+
+
+// Spline interpolation of partition functions, if needed for this temperature.
+// The current interpolated value will be stored in the isotope[] species
+// objects and in the currentPF[] array for later use in constructing partition 
+// function corrections for each reaction in the network that needs it.
+
+void updatePF(){
+    
+    if(dopf && T9 > pfCut9){
+        
+        double pf_Iso[24];
+        double pfNow;
+        
+        for (int i=0; i<ISOTOPES; i++){
+            
+            // Fill pf_Iso[] with pf table values for this isotope
+            
+            for(int k=0; k<PF; k++){
+                pf_Iso[k] = isotope[i].getpf(k);
+            }
+            
+            // Instantiate spline interpolator for partition function of this isotope
+            
+            SplineInterpolator interpolatePF = SplineInterpolator(PF, Tpf, pf_Iso);
+            
+            // Initialize spline interpolator for partition function of this isotope
+            
+            interpolatePF.spline((Tpf), pf_Iso, PF, PF);
+            
+            // Interpolate partition function for this isotope at present temperature
+            
+            pfNow = interpolatePF.splint(T9);
+            
+            // Store current value of pf in species objects and array currentPF[]
+            
+            isotope[i].setpfnow(pfNow);
+            currentPF[i] = pfNow;
+            
+            if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
+                i, T9, logTnow, currentPF[i]);
+        }
+        
+    }
+    
+}
+
+
 
 
 // Set up headers for the plot files that will be written to during 
