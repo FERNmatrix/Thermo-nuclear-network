@@ -315,7 +315,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes,or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
+double T9_start = 3;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -1210,6 +1210,7 @@ class Species: public Utilities {
         double keff;         // Effective decay constant = fminus/YY
         double dYdt;         // Current dY/dt for this isotope
         double dXdt;         // Current dX/dt for this isotope
+        double pfnow = 1;    // Value of partition function at current T9 for this isotope 
         
     
     public:
@@ -1279,29 +1280,33 @@ class Species: public Utilities {
             
         }
         
-        // Partition function for this species (24 entries)
+        // Set partition function table for this species (24 entries)
         
-        void setpf(int i,double pfvalue){pf[i] = pfvalue; };
+        void setpf (int i, double pfvalue) { pf[i] = pfvalue; };
         
-        void setfminus(double f){
+        // Set PF for this species at current T9
+        
+        void setpfnow (double value) { pfnow = value; };
+        
+        void setfminus (double f){
             fminus = f;                 // Class field
             FminusSum[isoindex] = f;    // Array
         }
         
-        void setfplus(double f){
+        void setfplus (double f){
             fplus = f;                  // Class field
             FplusSum[isoindex] = f;     // Array entry
         }
         
-        void setkeff(double f){ keff=f; }
+        void setkeff (double f) { keff=f; }
         
-        void setdYdt(double d){
+        void setdYdt (double d){
             dYdt = d; 
             dXdt = d*(double)A;
             dYDt[isoindex] = d;
         }
         
-        void setdXdt(double d){
+        void setdXdt (double d){
             dXdt = d;
             dYdt = d/(double)A;
         }
@@ -1341,13 +1346,8 @@ class Species: public Utilities {
         char *getLabel() {return IsoLabel; };         // return pointer to label array
         char getLabel(int k) {return IsoLabel[k]; };  // return kth character of array
         
-        // Partition function table
-        
-        double getpf(int i){return pf[i]; }
-        
-//         // Partition function table temperatures 
-//         
-//         double getTpf(int i){return Tpf[i]; }
+        double getpf(int i) {return pf[i]; }          // Values in partition function table
+        double getpfnow() {return pfnow; }            // PF at current T9 for this isotope
         
         double getfminus(){return fminus; }
         
@@ -4395,6 +4395,7 @@ int main() {
     // *** Begin main integration loop ***  //
     // ------------------------------------ //
     
+    
     totalIterations = 0;
     XcorrFac = 1.0;
     reacLibWarn = false;
@@ -4404,7 +4405,8 @@ int main() {
     while(t < stop_time){ 
         
         if(plotCounter > plotSteps) {
-            printf("\n\nStopping Integration: plotCounter=%d t=%7.4e dt=%7.4e",plotCounter,t,dt);
+            printf("\n\nStopping Integration: plotCounter=%d t=%7.4e dt=%7.4e",
+                plotCounter, t, dt);
             break;
         }
         
@@ -4424,18 +4426,10 @@ int main() {
         
         updateY0();
         
-        // Specify temperature T9 and density rho. If hydroProfile = false,a constant
-        // temperature is assumed for the entire network calculation,set by T9_start
+        // Specify temperature T9 and density rho. If hydroProfile = false, a constant
+        // temperature is assumed for the entire network calculation, set by T9_start
         // above.  Otherwise (hydroProfile = true) we here interpolate the temperature
         // from a hydrodynamical profile for each timestep.  Likewise for the density.
-        
-        //if(hydroProfile && totalTimeSteps > 1) T9 = interpolateT.splint(t);
-        
-        //if(hydroProfile && totalTimeSteps > 1) T9 = Utilities::interpolate_T(t);
-        
-        //if(hydroProfile && totalTimeSteps > 1) rho = Utilities::interpolate_rho(t);
-        
-        
         // Since the arrays holding the hydro profile have entries in terms of log10,
         // interpolate in log10(t) if hydroProfile = true.
         
@@ -4456,7 +4450,10 @@ int main() {
         T9 = pow(10,logTnow)/1e9;
         rho = pow(10,logRhoNow);
         
-        // Spline interpolation of partition functions if needed for this temperature
+        // Spline interpolation of partition functions, if needed for this temperature.
+        // The current interpolated value will be stored in the isotope[] species
+        // objects for later use in constructing partition function corrections for
+        // each reaction in the network that needs it.
         
         if(dopf && T9 > pfCut9){
             
@@ -4465,24 +4462,27 @@ int main() {
             
             for (int i=0; i<ISOTOPES; i++){
                 
-                // Fill pf_Iso[] with pf values for this isotope
+                // Fill pf_Iso[] with pf table values for this isotope
                 
                 for(int k=0; k<PF; k++){
                     pf_Iso[k] = isotope[i].getpf(k);
-                    
-                    //if(totalTimeSteps = 5) printf("\n i=%d k=%d pf=%4.2f", i, k, pf_Iso[k]);
                 }
                 
                 // Instantiate and initialize spline interpolator for pf of this isotope
                 
                 SplineInterpolator interpolatePF = SplineInterpolator(PF, Tpf, pf_Iso);
-                interpolatePF.spline(Tpf, pf_Iso, PF, PF);
+                interpolatePF.spline((Tpf), pf_Iso, PF, PF);
                 
                 // Interpolate pf for this isotope at present temperature
                 
-                pfNow = interpolatePF.splint(logTnow);
+                pfNow = interpolatePF.splint(T9);
                 
-                if(totalTimeSteps == 5) printf("\n i=%d logT=%4.3f pf=%4.2f", i, logTnow, pfNow);
+                // Store current value of pf in species objects
+                
+                isotope[i].setpfnow(pfNow);
+                
+                if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
+                    i, T9, logTnow, isotope[i].getpfnow());
             }
             
         }
@@ -4492,7 +4492,7 @@ int main() {
         
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
-        // a set of Reaction objects in the array reaction[i],one entry for each
+        // a set of Reaction objects in the array reaction[i], one entry for each
         // reaction in the network. Loop over this array and call the computeRate()
         // function of Reaction on each object. If hydroProfile is false,
         // the rates only need be computed once as they won't change over this
@@ -5774,10 +5774,15 @@ void writeNetwork() {
     // Write partition function table to output data file
     
     fprintf(pfnet,"\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
-    fprintf(pfnet,"\nT9:  ");
     
+    fprintf(pfnet,"\nT9:  ");
     for(int k=0; k<24; k++){
         fprintf(pfnet,"%4.2f ", Tpf[k]);
+    }
+    
+    fprintf(pfnet,"\nlgT: ");
+    for(int k=0; k<24; k++){
+        fprintf(pfnet,"%4.2f ", log10(Tpf[k]*1e9));
     }
     
     for(int i=0; i<ISOTOPES; i++){
