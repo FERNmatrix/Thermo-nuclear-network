@@ -288,7 +288,7 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = true;
+bool dopf = false;
 double pfCut9 = 1.0;
 
 // Temperatures in units of 10^9 K for partition function table (see pf[]
@@ -340,7 +340,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-4;                // Stop time for integration
+double stop_time = 1e-3;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -357,7 +357,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-7;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-8;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
