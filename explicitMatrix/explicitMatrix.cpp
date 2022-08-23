@@ -163,8 +163,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 365                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 4395                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -194,13 +194,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_365.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_365.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -340,7 +340,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-3;                // Stop time for integration
+double stop_time = 1e-10;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -845,47 +845,6 @@ class Utilities{
             return tnow;
         }
         
-        // -------------------------------------------------------------------------
-        // Static function Utilities::interpolate_T(t) to find an interpolated T9
-        // as a function of time if hydroProfile = true.
-        // -------------------------------------------------------------------------
-        
-        static double interpolate_T(double t){
-            
-            // Will call spline interpolator in hydro profile table to return 
-            // T9 at this value of time t.  For now,we just return T9_start.
-            
-            double temp;            // Interpolated temperature
-            temp = T9_start;        // Temporary constant value for testing
-            
-            // **********
-            // Call to spline interpolator for temperature goes here
-            // **********
-            
-            return temp;
-        }
-        
-        
-//         // -------------------------------------------------------------------------
-//         // Static function Utilities::interpolate_rho(t) to find an interpolated 
-//         // density rho as a function of time if hydroProfile is true.
-//         // -------------------------------------------------------------------------
-//         
-//         static double interpolate_rho(double t){
-//             
-//             // Will call spline interpolator in hydro profile table to return 
-//             // rho at this value of time t.  For now,we just return rho_start.
-//             
-//             double rhonow;             // Interpolated density
-//             rhonow = rho_start;        // Temporary constant value for testing
-//             
-//             // **********
-//             // Call to spline interpolator for density goes here
-//             // **********
-//             
-//             return rhonow;
-//         }
-        
         
         // -------------------------------------------------------------------------
         // Static function Utilities::log10Spacing() to find num equal log10 
@@ -1016,7 +975,7 @@ class Utilities{
             
             int result;
             for (int i = 0; i < numberSpecies; i++) {
-                result = strcmp(isoLabel[i],symbol);
+                result = strcmp(isoLabel[i], symbol);
                 if (result == 0){
                     return i;
                 }
@@ -1030,9 +989,9 @@ class Utilities{
         // is in the network,false otherwise.
         // ----------------------------------------------------------------------
         
-        static bool isInNet(int Z,int N) {
+        static bool isInNet(int Z, int N) {
             
-            if (returnNetIndexZN(Z,N) < 0) {
+            if (returnNetIndexZN(Z, N) < 0) {
                 return false;
             } else {
                 return true;
@@ -1071,7 +1030,7 @@ class Utilities{
         // ----------------------------------------------------------------------
         // Using the C++ class string instead of char to handle strings 
         // requires #include <iostream>. The C printf command also won't work 
-        // correctly with a string type, because it isn't typesafe. See the 
+        // correctly with a string type because it isn't typesafe. See the 
         // discussion at
         //
         //    https://stackoverflow.com/questions/10865957/printf-with-stdstring
@@ -1088,16 +1047,12 @@ class Utilities{
         //      printf("\n%s",test+test2);
         //
         // it will likely print garbage. However, you can print a string with printf
-        // if it is first converted to a char string:
+        // if it is first converted to a char array:
         //
         //      string s = "Howdy World!";
         //      char cs[s.size() + 1];
         //      strcpy(cs,&s[0]);	    // or strcpy(cs,s.c_str());
         //      printf("\n\nstring=%s\n", strcpy(cs,&s[0]));
-        //  
-        // Typically a string type can be printed with cout but a string given 
-        // to printf usually displays garbage because of type issues in the 
-        // C function printf noted above. 
         //
         // The function Utilities::stringToChar(string) defined below converts a 
         // string to a corresponding character array (returning a pointer to the
@@ -2073,45 +2028,6 @@ class Reaction: public Utilities {
                 //printf(" pfnum=%5.3e pfden=%5.3e pfFactor=%5.3e",pfnum, pfden, pfFactor);
             }
         }
-        
-        
-//         // ------------------------------------------------------------------------
-//         // Reaction::pfInterpolator(int, double) to return
-//         // partition function of isotope labeled by isoIndex at log_10 of
-//         // temperature T9. Note that the 2nd argument is log10(T9), not T9,
-//         // because the interpolation in the partition function table is in the 
-//         // log10 of the temperature.  The following commented-out code assumes
-//         // that the object interpolatepf of the SplineInterpolator class has
-//         // first invoked the interpolatepf.bisection method to use bisection 
-//         // to find the interval containing root and store the lower index of
-//         // that interval in lowPFindex. Then SplineInterpolator interpolates
-//         // the root restricted to that interval.  This guards against the
-//         // spline interpolator finding the wrong root if there are multiple
-//         // roots (as could be true in the general case,though probably not here
-//         // since the function is typically monotonic).
-//         // ------------------------------------------------------------------------
-//         
-//         double pfInterpolator(int index,double logt9) {
-//             
-//             // Following commented out for testing purposes until spline interpolator
-//             // is implemented
-//             
-// //             double rdt;
-// //             double term1;
-// //             double term2;
-// //             double sumterms;
-// //             double bob;
-// //             rdt = (logt9 - Tpf[lowPFindex]) / (Tpf[lowPFindex + 1] - Tpf[lowPFindex]);
-// //             term1 = rdt * Math.log(pf[Z][N][lowPFindex + 1]);
-// //             term2 = (1.0 - rdt) * Math.log(pf[Z][N][lowPFindex]);
-// //             sumterms = term1 + term2;
-// //             bob = Math.exp(sumterms);
-// //             // System.out.println("PF stuff: "+t9+" "+Z+" "+N+" "+rdt+" "+sumterms+" "+bob);
-// //             return bob;
-//             
-//             return 1.0;  // Temporary
-//             
-//         }
         
         // Function Reaction::showRates() to display computed rates for this
         // Reaction object.
@@ -4367,7 +4283,7 @@ int main() {
     
     if(!hydroProfile){
         
-        updatePF();      // Update partition functions for initial T9
+        updatePF();   // Update partition functions for initial T9 if constant T
         
         for(int i=0; i<SIZE; i++){
             reaction[i].computeConstantFacs(T9,rho);
