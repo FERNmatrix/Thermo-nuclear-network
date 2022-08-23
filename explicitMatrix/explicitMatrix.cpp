@@ -165,7 +165,7 @@ void toPlotNow(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 160                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -290,10 +290,16 @@ double netdERelease;          // Energy released in timestep
 bool dopf = true;
 double pfCut9 = 1.0;
 
-// Temperatures in units of 10^9 K for partition function table (see pf[]). 
+// Temperatures in units of 10^9 K for partition function table (see pf[]
+// in the class Species). 
 
 double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 
-    1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+    
+// Array holding the value of the partition function for each isotope at
+// the current temperature if dopf = true and T9 > pfCut9.
+    
+double currentPF[ISOTOPES];
 
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
@@ -315,7 +321,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes,or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 3;           // Initial temperature in units of 10^9 K
+double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -1967,7 +1973,7 @@ class Reaction: public Utilities {
                 
             }
             
-            // If T < 1e7 K set rate = 0 and continue,but set a flag to display
+            // If T < 1e7 K set rate = 0 and continue, but set a flag to display
             // a warning message at the end of the calculation. 
             
             if(T9 < 0.01){         // Temperature below lower bound for library
@@ -1977,6 +1983,7 @@ class Reaction: public Utilities {
                     reacLibWarn = true;
                     warnTime = t;
                     warnT = T9;
+                    
                 }
                 
                 rate = 0.0; 
@@ -1993,10 +2000,10 @@ class Reaction: public Utilities {
                 );
             }
             
-            // Correct rate by multiplying by partition functions for select 
-            // reactions if the temperature is high enough
+            // Correct rate by multiplying by partition function factors for select 
+            // reactions if the temperature is high enough.
             
-            if(T9 > pfCut9) pfUpdate();
+            if(dopf && T9 > pfCut9) pfUpdate();
 
             // Full rate factor in units of time^-1 (rate from above multiplied 
             // by density factors)
@@ -2016,34 +2023,53 @@ class Reaction: public Utilities {
             double pfFactor;
             
             // Make a partition function correction if this is reverse reaction in
-            // sense defined in ReacLib (defined by field Reaction::isReverse=true). 
-            // Realistic calculations at higher temperatures should use
-            // the partition functions so generally set dopf = true unless testing.
+            // sense defined in ReacLib (defined by field Reaction::isReverse = true). 
+            // Realistic calculations at higher temperatures should use the partition 
+            // function correction so generally set dopf = true unless testing.
             // Partition functions are very near 1.000 if T9 < 1, so we will typically
-            // only implement partition function corrections if T9 > pfCut9 = 1.0,but
-            // the table of partition functions allows pfCut9 as small as 0.1.
-            // Interpolation is in the log10 of the temperature, so pass log10(T9)
-            // rather than T9 to pfInterpolator(index,logt9). Because for the 
-            // temperatures of interest the partition functions for all light ions
-            // (protons, neutrons, alphas, tritons) are equal to 1.0, the structure
-            // of the 8 Reaclib reaction classes specified by Reaction::reacClass
-            // means that this correction is only required for reverse reactions
-            // in Reaclib classes reacClass = 2, and 5.
+            // only implement partition function corrections if T9 > pfCut9 = 1.0, but
+            // the table of partition functions read in allows pfCut9 as small as 0.1.
+            // Because for the temperatures of interest the partition functions for 
+            // all light ions (protons, neutrons, alphas, tritons) are equal to 1.0, 
+            // the structure of the 8 Reaclib reaction classes specified by 
+            // Reaction::reacClass means that this correction is only required for 
+            // reverse reactions in Reaclib classes reacClass = 2 and reacClass = 5.
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
+                int rin;
+                int pin;
+                
+                printf("\nreac=%d %s reacClass=%d", reacIndex, reacLabel[reacIndex], reacClass);
+                
                 if(reacClass == 2){
-                    pfden = pfInterpolator (reactantIndex[0],log10(T9));
-                    pfnum = pfInterpolator (productIndex[1],log10(T9));
+                    
+                    rin = reactantIndex[0];
+                    pin = productIndex[1];
+                    pfden = currentPF[rin];
+                    pfnum = currentPF[pin];
+                    printf(" reac[0]=%d(%s)", rin, isoLabel[rin]);
+                    printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
+                    
                 } else if(reacClass == 5){
-                    pfden = pfInterpolator (reactantIndex[1],log10(T9));
-                    pfnum = pfInterpolator (productIndex[1],log10(T9));
+                    
+                    rin = reactantIndex[1];
+                    pin = productIndex[1];
+                    pfden = currentPF[rin];
+                    pfnum = currentPF[pin];
+                    printf(" reac[1]=%d(%s)", rin, isoLabel[rin]);
+                    printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
+                    
                 } else {
+                    
                     pfden = 1.0;
                     pfnum = 1.0;
                 }
+                
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
+                
+                printf(" pfnum=%5.3e pfden=%5.3e pfFactor=%5.3e",pfnum, pfden, pfFactor);
             }
         }
         
@@ -4063,6 +4089,10 @@ int main() {
     fprintf(pFileD,Utilities::showTime());
     printf("\n%s",Utilities::showTime());
     
+    // Initialize the array of current partition functions to unity.
+    
+    fill_n (currentPF, ISOTOPES, 1.0);
+    
     // Set labels and check consistency of choice for explicit algebraic methods set.
     // Generally we use either asymptotic (Asy) or quasi-steady-state (QSS) algorithms.
     // In either case we may choose to add the partial equilibrium (PE) algorithm. So
@@ -4477,19 +4507,16 @@ int main() {
                 
                 pfNow = interpolatePF.splint(T9);
                 
-                // Store current value of pf in species objects
+                // Store current value of pf in species objects and array currentPF[]
                 
                 isotope[i].setpfnow(pfNow);
+                currentPF[i] = pfNow;
                 
                 if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
-                    i, T9, logTnow, isotope[i].getpfnow());
+                    i, T9, logTnow, currentPF[i]);
             }
             
         }
-        
-        
-        
-        
     
         // Use functions of Reaction class to compute reaction rates. We have instantiated
         // a set of Reaction objects in the array reaction[i], one entry for each
@@ -4979,6 +5006,12 @@ void showParameters(){
     
     printf("\n\nIntegration using ");
     printf(Utilities::stringToChar(intMethod));
+    
+    if(dopf){
+        printf(" (Using partition functions for T9=%4.3f and above)", pfCut9);
+    } else {
+        printf(" (All partition functions set to 1)");
+    }
     
     if(hydroProfile){
         printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
