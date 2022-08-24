@@ -64,22 +64,24 @@ set pointsize 1.5    # Size of the plotted points
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="C++ Asy nova134 with nova125D profile (no pf)"
-ds = ds.": Log |E| vs t"
+ds="C++ Asy alpha with PF"
+ds = ds.": viktorExtendedProfileSmooth.inp"
+
+set timestamp
 set title ds textcolor rgb title_color font "Arial,22"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = 0
+xlow = -10
+xup = 0.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 12
-yup = 18
+yup = 19
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 

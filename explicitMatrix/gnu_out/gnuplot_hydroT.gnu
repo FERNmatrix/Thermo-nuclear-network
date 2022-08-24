@@ -66,21 +66,21 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="tidal SN profile"
-ds = ds.": Temperature"
+ds="C++ Asy: viktorExtendedProfileSmooth.inp"
+ds = ds.""
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 6
-xtics = 1     # Space between major x ticmarks
+xlow = -8
+xup = 0.5
+xtics = 0.5     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup =0.35
-ytics = 0.05     # Space between major y ticmarks
+ylow = 2
+yup = 6
+ytics = 1     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]

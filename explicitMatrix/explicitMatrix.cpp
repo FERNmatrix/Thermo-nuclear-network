@@ -163,10 +163,10 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 365                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 4395                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 150                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -194,13 +194,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_365.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_365.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -208,7 +208,7 @@ char rateLibraryFile[] = "data/rateLibrary_365.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -223,14 +223,15 @@ bool hydroProfile = false;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_400.inp";
+char hydroFile[] = "data/viktorExtendedProfileSmooth.inp";
+//char hydroFile[] = "data/viktorProfile_400.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 403; // Max entries hydro profile
+const static int maxHydroEntries = 408; // Max entries hydro profile
 //const static int maxHydroEntries = 2622; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
@@ -288,7 +289,7 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = false;
+bool dopf = true;
 double pfCut9 = 1.0;
 
 // Temperatures in units of 10^9 K for partition function table (see pf[]
@@ -337,10 +338,10 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Generally,startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration,stop_time.
 
-double start_time = 1e-20;             // Start time for integration
+double start_time = 1e-11;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-10;                // Stop time for integration
+double startplot_time = 1e-10;          // Start time for plot output
+double stop_time = 3.2;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -357,7 +358,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-8;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 5e-9;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -368,7 +369,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                    // Absolute error tolerance
+double EpsA = 1e-9;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -563,6 +564,7 @@ char dasher[] = "---------------------------------------------";
 
 int numberRG;                 // Number of partial equilibrium reaction groups
 int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
+int numberSingletRG;          // # RG with only a single member reactions
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -2349,6 +2351,7 @@ class ReactionVector:  public Utilities {
         // for the reaction group labeled by rg.
         
         int numberMembers = 0;
+        numberSingletRG = 0;
         
         // Cycle over all reaction vectors (loop in i) and compare them
         // pairwise with all reaction vectors (loop in j)
@@ -2391,6 +2394,10 @@ class ReactionVector:  public Utilities {
             
             RGnumberMembers[rg] = numberMembers;
             
+            // Count RG that are singlets (only a single reaction)
+            
+            if(numberMembers == 1) numberSingletRG ++;
+            
         }
         
         // If the last trial reaction group has no members, subtract 
@@ -2400,7 +2407,9 @@ class ReactionVector:  public Utilities {
         
         // Store total number of reaction groups
         
-        numberRG = rg+1;   
+        numberRG = rg+1; 
+        
+        
         
         // Output the components of the reaction groups pfnet ->
         // network.out.
@@ -4663,8 +4672,8 @@ void updatePF(){
             isotope[i].setpfnow(pfNow);
             currentPF[i] = pfNow;
             
-            if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
-                i, T9, logTnow, currentPF[i]);
+//             if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
+//                 i, T9, logTnow, currentPF[i]);
         }
         
     }
@@ -4960,7 +4969,7 @@ void showParameters(){
     if(hydroProfile) cout << "\nHydro profile: " << hydroFile;
     printf("\nIsotopes=%d Reactions=%d",ISOTOPES,SIZE);
     if(numberRG > 0) printf(" ReactionGroups=%d",numberRG);
-    if(numberRG > 0)
+    if(numberRG > 0) printf(" SingletRG=%d", numberSingletRG);
     printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d",
         totalTimeSteps,totalIterations,totalTimeSteps-totalTimeStepsZero);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time

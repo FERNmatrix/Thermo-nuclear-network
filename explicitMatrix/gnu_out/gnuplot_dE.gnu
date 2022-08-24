@@ -64,22 +64,22 @@ set pointsize 1.5    # Size of the plotted points
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="C++ Asy tidalSN rosswog.profile  (no pf)"
-ds = ds.": |dE/dt| vs t"
+ds="C++ Asy alpha with PF"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -4
-xup = 6
+xlow = -10
+xup = 0.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 8
-yup = 18
-ytics = 4      # Space between major y ticmarks
+ylow = 13
+yup = 25
+ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]

@@ -67,16 +67,16 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE (no pf)"
-ds = ds.": Fraction"
+ds="C++ Asy alpha with PF"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 6
+xlow = -10
+xup = 0.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

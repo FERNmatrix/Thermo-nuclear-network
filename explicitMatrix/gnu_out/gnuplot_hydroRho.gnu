@@ -66,21 +66,21 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="tidal SN profile"
-ds = ds.": Density"
+ds="viktorExtendedProfileSmooth.inp"
+ds = ds.": Density profile"
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 6
+xlow = -10
+xup = 0.5
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
-yup = 1e4
-ytics = 1000    # Space between major y ticmarks
+yup = 1e8
+ytics = 1e7    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]

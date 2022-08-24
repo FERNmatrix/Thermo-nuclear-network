@@ -66,21 +66,21 @@ set key outside    # Place legend outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy tidal supernova"
-ds = ds.": 70-isotope"
+ds="C++ Asy alpha with PF"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 set title ds textcolor rgb title_color
 
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -4
-xup = 18
+xlow = -10
+xup = 0.5
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -8 
-yup = 18
+ylow = -15 
+yup = -3
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 

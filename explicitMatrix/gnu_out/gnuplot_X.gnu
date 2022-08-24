@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 8.5 # 6.5
-height = 4.5 #8.5
+height = 8.5 #8.5
 
 # x-axis resolution
 set samples 1000
@@ -72,8 +72,8 @@ set key right top outside    # Place legend inside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy tidal supernova."
-ds = ds.""
+ds="C++ Asy alpha with PF"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 set title ds textcolor rgb title_color
 
 file1 = "plot1.data"
@@ -82,9 +82,9 @@ file1 = "plot1.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -3
-xtics = 1    # Space between major x ticmarks
+xlow = -10
+xup = 0.5
+xtics = 0.5    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14
