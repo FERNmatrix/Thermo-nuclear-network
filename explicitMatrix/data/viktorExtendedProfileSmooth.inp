@@ -1,5 +1,6 @@
 Index   time[s]   T[K]   rho[g/cm^3]
-408
+409
+0 1e-20 3e9 1e7
 0 1e-15 3e9 1e7
 0 1e-12 3e9 1e7
 0 1e-10 3e9 1e7
