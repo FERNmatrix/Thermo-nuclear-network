@@ -54,8 +54,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel ' T9' textcolor rgb tic_color font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,20"
+set ylabel ' T9' textcolor rgb tic_color font "Arial,20"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -80,7 +80,7 @@ minxtics = 5  # Number minor x tics
 
 ylow = 2
 yup = 6
-ytics = 1     # Space between major y ticmarks
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -118,10 +118,10 @@ replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T9 i
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,18"
-set key top right font "Arial,16"
-set xlabel 'log time' textcolor rgb tic_color font "Arial,20"
-set ylabel 'T9' textcolor rgb tic_color font "Arial,20"
+set title ds textcolor rgb title_color font "Arial,30"
+set key top right font "Arial,18"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,30"
+set ylabel 'T9' textcolor rgb tic_color font "Arial,30"
 
 # Plot to postscript file
 
