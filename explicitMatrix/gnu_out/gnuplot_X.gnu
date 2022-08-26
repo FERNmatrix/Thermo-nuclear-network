@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5 # 6.5
-height = 8.5 #8.5
+width = 10 # 6.5
+height = 10 #8.5
 
 # x-axis resolution
 set samples 1000
@@ -67,8 +67,8 @@ set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 
 set pointsize 1.0    # Size of the plotted points
 
-set key right top outside    # Place legend inside top  
-#unset key            # Don't show legend
+set key right top outside font "Arial,8"    # Place legend inside top 
+unset key            # Don't show legend
 
 set timestamp       # Date/time
 
@@ -83,8 +83,8 @@ file1 = "plot1.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0
-xtics = 1    # Space between major x ticmarks
+xup = 1
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14
