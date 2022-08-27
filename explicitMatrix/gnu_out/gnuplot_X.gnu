@@ -83,7 +83,7 @@ file1 = "plot1.data"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 1
+xup = 0.3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -104,9 +104,6 @@ set mytics minytics   # minor y tics per major tic
 
 # -------- Axis ranges and ticmarks -----------
 
-
-# Edit the following plot commands to correspond to data
-# read in from data file
 
 # Main CNO cycle
 
@@ -183,9 +180,9 @@ set mytics minytics   # minor y tics per major tic
 # (isotope) number for each isotope is output to the screen at the 
 # end of a explicitMatrix.cpp calculation.
 
-plot file1 using 1:8 with lines ls 2 lw 1 dashtype 1 title "(0)"
-replot file1 using 1:9 with lines ls 3 lw 1 dashtype 1 title "(1)"
-replot file1 using 1:10 with lines ls 1 lw 1 dashtype 1 title "(2)"
+plot file1 using 1:8 with lines ls 0 lw 1 dashtype 1 title "(0)"
+replot file1 using 1:9 with lines ls 1 lw 1 dashtype 1 title "(1)"
+replot file1 using 1:10 with lines ls 2 lw 1 dashtype 1 title "(2)"
 replot file1 using 1:11 with lines ls 4 lw 1 dashtype 1 title "(3)"
 replot file1 using 1:12 with lines ls 5 lw 1 dashtype 1 title "(4)"
 replot file1 using 1:13 with lines ls 6 lw 1 dashtype 1 title "(5)"
