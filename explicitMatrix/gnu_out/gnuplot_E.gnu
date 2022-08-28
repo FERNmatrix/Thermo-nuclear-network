@@ -76,7 +76,7 @@ set title ds textcolor rgb title_color font "Arial,22"
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -10
-xup = 0.5
+xup = 0.3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

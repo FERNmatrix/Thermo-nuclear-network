@@ -22,8 +22,8 @@ height = 10 #8.5
 set samples 1000
 
 # Line styles.  
-# For lines: plot x with lines ls 1
-# For points: plot x with points ls 1
+# For lines: plot x with lines
+# For points: plot x with points
 
 set style line 1 lc rgb 'black' pt 5   # fill square
 set style line 2 lc rgb myred pt 7   # circle
@@ -67,12 +67,12 @@ set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 
 set pointsize 1.0    # Size of the plotted points
 
-set key right top outside font "Arial,8"    # Place legend inside top 
-#unset key            # Don't show legend
+#set key right top outside    # Place legend inside top 
+unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha with PF"
+ds="C++ Asy 150 with PF"
 ds = ds.": viktorExtendedProfileSmooth.inp"
 set title ds textcolor rgb title_color
 
@@ -80,7 +80,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0.3
+xup = -0.5 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -102,23 +102,28 @@ set mytics minytics   # minor y tics per major tic
 # -------- Axis ranges and ticmarks -----------
 
 
-file1 = "plot1.data"
+modsize = 20          # Number independent linestyles defined above
+numberCurves = 150    # Number species to be plotted
+widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
+dasher = 1            # Dash style for curves (0,1,2,3, ...)
 
-modsize = 20
-numberCurves = 150
-tText = "("
-tend = ")"
+file1 = "plot1.data"  # Data file with mass fractions X
 
-plot for[i=8:numberCurves+8] file1 using 1:i with lines \
-ls (i-7)%modsize dashtype 1 title tText.(i-8).",".(i-8).tend
+# Loop to plot X for numberCurves isotopes output from 
+# explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
+# line styles defined above. Use the mod operator % to cycle
+# through the set of line styles once for every modsize of the 
+# numberCurves isotopes to be plotted.
 
+plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher title "(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,18"
-set key top right font "Arial,14"
-set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,21"
-set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
+set title ds textcolor rgb title_color font "Arial,20"
+set key top right outside font "Arial,15"
+set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
@@ -126,7 +131,7 @@ set out "gnuplot_X-loop.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
 replot               # Plot to postscript file
 
-# Plot to PNG file
+# Plot to PNG file (un-comment to enable)
 
 #set out "gnuplot_X-loop.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution

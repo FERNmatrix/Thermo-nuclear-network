@@ -22,8 +22,8 @@ height = 10 #8.5
 set samples 1000
 
 # Line styles.  
-# For lines: plot x with lines ls 1
-# For points: plot x with points ls 1
+# For lines: plot x with lines
+# For points: plot x with points
 
 set style line 1 lc rgb 'black' pt 5   # fill square
 set style line 2 lc rgb myred pt 7   # circle

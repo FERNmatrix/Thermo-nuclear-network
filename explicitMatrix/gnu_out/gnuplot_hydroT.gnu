@@ -54,8 +54,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,20"
-set ylabel ' T9' textcolor rgb tic_color font "Arial,20"
+set xlabel 'Log t (s)' textcolor rgb tic_color 
+set ylabel ' T9' textcolor rgb tic_color 
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -73,12 +73,12 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = 0.5
-xtics = 0.5     # Space between major x ticmarks
+xlow = -16
+xup = 0.3
+xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 2
+ylow = 2.5
 yup = 6
 ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -102,7 +102,7 @@ file1 = "plot4.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 #plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$2/1e9) with lines ls 1 lw 1.0 dashtype 1 title "T9 interp (t)"
+plot file1 using 1:(10**$2/1e9) with points ls 5 lw 1.0 dashtype 1 title "T9 interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
 #file2 = "../data/nova125DProfile.inp"
@@ -112,21 +112,21 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
 #replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T9 input (t)"
+replot file2 using 1:(10**$2/1e9) with lines ls 6 lw 1.0 dashtype 2 title "T9 input (t)"
 
 
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,30"
-set key top right font "Arial,18"
-set xlabel 'log time' textcolor rgb tic_color font "Arial,30"
-set ylabel 'T9' textcolor rgb tic_color font "Arial,30"
+set title ds textcolor rgb title_color font "Arial,20"
+set key top right font "Arial,15"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,25"
+set ylabel 'T9' textcolor rgb tic_color font "Arial,25"
 
 # Plot to postscript file
 
 set out "gnuplot_hydroT.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 #"Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 #"Arial" 26
 replot               # Plot to postscript file
 
 # Plot to PNG file
