@@ -15,10 +15,10 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10.5
-height = 6.5
+width = 8.5
+height = 4.0
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 # x-axis resolution
 set samples 1000
@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -10
-xup = 0.5
+xup = 0.7
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 1e8
-ytics = 1e7    # Space between major y ticmarks
+ylow = 5e6
+yup = 2e7
+ytics = 0.5e7    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -111,7 +111,8 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
 #replot file2 using 1:(10**$3) with points ls 6 lw 0.5 dashtype 2 title "Rho input (t)"
 #replot file2 using 1:3 with points ls 6 lw 1.0 dashtype 2 title "log Rho input (t)"
-replot file2 using 1:(10**$3) with points ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
+#replot file2 using 1:(10**$3) with points ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
+replot file2 using 1:(10**$3) with lines ls 6 lw 1.0 dashtype 2 title "Rho input (t)"
 
 
 # Reset font sizes for .eps and .png output2

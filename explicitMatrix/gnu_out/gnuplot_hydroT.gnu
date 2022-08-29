@@ -15,10 +15,10 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10.5
-height = 6.5
+width = 8.5
+height = 4.0
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 # x-axis resolution
 set samples 2000
@@ -74,7 +74,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 1
+xup = 0.7
 xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -102,7 +102,8 @@ file1 = "plot4.data"
 
 #plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
 #plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$2/1e9) with points ls 5 lw 0.5 dashtype 1 title "T9 interp (t)"
+plot file1 using 1:(10**$2/1e9) with lines ls 5 lw 0.5 dashtype 1 title "T9 interp (t)"
+#plot file1 using 1:(10**$2/1e9) with points ls 5 lw 0.5 dashtype 1 title "T9 interp (t)"
 
 #file2 = "../data/torch47Profile.inp"
 #file2 = "../data/nova125DProfile.inp"
@@ -111,7 +112,7 @@ file2 = "hydroProfile.out"  # The input hydro profile
 #replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
 #replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-#replot file2 using 1:(10**$2) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
+#replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
 replot file2 using 1:(10**$2/1e9) with lines ls 6 lw 0.5 dashtype 2 title "T9 input (t)"
 
 

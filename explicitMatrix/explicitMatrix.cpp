@@ -55,6 +55,7 @@
  * Ashton DeRousse
  * Adam Cole
  * Raghav Chari
+ * Jay Billings
  * Mike Guidry
  * ----------------
  */
@@ -163,8 +164,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 48                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 299                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 150                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -194,13 +195,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_48.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_48.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -320,10 +321,10 @@ bool isotopeInEquilLast[ISOTOPES];
 // Set the temperature in units of 10^9 K and density in units of g/cm^3. In a
 // realistic calculation the temperature and density will be passed from the hydro 
 // code in an operator-split coupling of this network to hydro. Here we hardwire
-// constant values for testing purposes,or read in a temperature and density
+// constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
+double T9_start = 3;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -341,7 +342,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-16;         // Start time for plot output
-double stop_time = 1e-0;                // Stop time for integration
+double stop_time = 5;                  // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -358,7 +359,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 3e-10;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 5e-9;            // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -369,7 +370,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 3e-10;                    // Absolute error tolerance
+double EpsA = 5e-9;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -4513,19 +4514,18 @@ int main() {
             
             // Output to screen for this plot step
             
-            ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d Asy=%-3.1f%% ";
-            ts += "Eq=%-3.1f%% sX=%6.4f Xfac=%6.4f dE=%6.2e E=%6.2e E_R=%6.2e c1=%d";
-            ts += " c2=%d %s Q=%5.3f dev=%5.3e lgT=%4.3f lgRho=%4.2f";
+            ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
+            ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e E=%6.2e E_R=%6.2e c1=%d";
+            ts += " c2=%d fast=%d Q=%4.2f dev=%4.2f lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter,iterations,t,dt,dt_desired,totalTimeSteps,
-                   100*(double)totalAsy/(double)ISOTOPES,
-                   100*(double)totalEquilRG/(double)numberRG,
+                   (double)totalAsy/(double)ISOTOPES,
+                   (double)totalEquilRG/(double)numberRG,
                    sumX,XcorrFac,ECON*netdERelease,
                    ECON*ERelease,E_R,choice1,choice2,
-                   reacLabel[ fastestCurrentRateIndex ],
-                   reaction[fastestCurrentRateIndex].getQ(),mostDevious,
-                   logTnow,logRhoNow
+                   fastestCurrentRateIndex,reaction[fastestCurrentRateIndex].getQ(),
+                   mostDevious,logTnow,logRhoNow
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only
@@ -4671,11 +4671,8 @@ void updatePF(){
             
             isotope[i].setpfnow(pfNow);
             currentPF[i] = pfNow;
-            
-//             if(totalTimeSteps == 5) printf("\n i=%d T9=%4.3f logT=%4.3f pf=%4.2f", 
-//                 i, T9, logTnow, currentPF[i]);
+
         }
-        
     }
     
 }  // End of updatePF()
@@ -4874,8 +4871,6 @@ void toPlotNow(){
         fprintf(plotfile1," %5.3e",log10(X[j] + 1e-24));
     }
     
-    fflush(plotfile1);
-    
     // Output to plotfile2 stream -> plot2.data
     
     fprintf(plotfile2,
@@ -4887,8 +4882,6 @@ void toPlotNow(){
             log10(dt_FE),log10(dt_EA),log10(dt),
             logTnow,logRhoNow
     );
-    
-    fflush(plotfile2);
     
     // Output to plotfile3 stream -> plot3.data (fluxes)
     
@@ -4915,18 +4908,22 @@ void toPlotNow(){
                     + 1e-24) ));
         }
     }
-    
-    fflush(plotfile3);
         
     // Output to plotfile4 stream -> plot4.data.  These are the interpolated
     // temperature and density during the calculation as a function of time.
     // The output file hydroProfile.out contains the input hydro profile
-    // from which the temperature and density are interpolated.
+    // from which the temperature and density were interpolated.
         
     if(hydroProfile && plotHydroProfile){
         fprintf(plotfile4,"\n%6.4e  %6.4e  %6.4e", log10(t),logTnow,logRhoNow);
     }
     
+    // Flush the buffers holding output to plotting data files at each plot
+    // output step so that plots can be made during a calculation if desired.
+    
+    fflush(plotfile1);
+    fflush(plotfile2);
+    fflush(plotfile3);
     fflush(plotfile4);
         
 }  // End of toPlotNow()
@@ -4963,7 +4960,7 @@ void showParameters(){
         printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
                massTol_asy,massTol_asyPE,sf,equiTol,equilibrateTime);
     } else {
-        printf("\nT9=%6.3e rho=%6.3e massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
+        printf("\nT9=%6.3e (constant) rho=%6.3e (constant) massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
                T9,rho,massTol_asy,massTol_asyPE,sf,equiTol,equilibrateTime);
     }
     

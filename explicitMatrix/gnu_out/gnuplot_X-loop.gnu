@@ -2,7 +2,7 @@ set macro  # Enable macro definition
 
 # Some macro definitions
 
-# Colors: hex #RRGGBB
+# Custom colors: hex #RRGGBB
 label_color = "#000000"
 tic_color = "#000000"
 title_color = "#000000"
@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10 # 6.5
-height = 5 #8.5
+width = 8.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -80,11 +80,11 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 1 
+xup = 0.7 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -16
+ylow = -12
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -103,7 +103,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 150    # Number species to be plotted
+numberCurves = 14    # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher = 1            # Dash style for curves (0,1,2,3, ...)
 
