@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.5
+width = 12.5
+height = 12.5
 
 # x-axis resolution
 set samples 1000
@@ -80,11 +80,11 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0.7 
+xup = -2 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -12
+ylow = -14
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -103,7 +103,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 14    # Number species to be plotted
+numberCurves = 15   # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher = 1            # Dash style for curves (0,1,2,3, ...)
 
@@ -127,6 +127,7 @@ set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
+#unset key
 set out "gnuplot_X-loop.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
 replot               # Plot to postscript file

@@ -230,7 +230,7 @@ char hydroFile[] = "data/viktorExtendedProfileSmooth.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = true;
+static const bool plotHydroProfile = false;
 
 const static int maxHydroEntries = 409; // Max entries hydro profile
 //const static int maxHydroEntries = 2622; // Max entries hydro profile
@@ -242,7 +242,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = min(ISOTOPES, 150);  // # species to plot
+static const int maxPlotIsotopes = min(ISOTOPES, 365);  // # species to plot
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 
 FILE * plotfile1;
@@ -342,7 +342,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-16;         // Start time for plot output
-double stop_time = 5;                  // Stop time for integration
+double stop_time = 1e-2;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -359,7 +359,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 5e-9;            // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-7;            // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -370,7 +370,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-9;                    // Absolute error tolerance
+double EpsA = 1e-7;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -388,7 +388,7 @@ double equilibrateTime = start_time;  // Time to begin checking for PE
 double equiTol = 0.01;                // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.5;              // Max allowed deviation from equil k ratio in timestep
 double thisDevious;                   // Deviation of kratio from equil
-double mostDevious;                   // Largest current deviation of kratio from equil
+double mostDevious = 0.0;             // Largest current deviation of kratio from equil
 int mostDeviousIndex;                 // Index of RG with mostDevious
 int choice1;                          // Diagnostic variable for new timestepper
 int choice2;                          // Diagnostic variable for new timestepper
@@ -2363,30 +2363,33 @@ class ReactionVector:  public Utilities {
             numberMembers = 0;
             
             // Loop over other reaction of pair labeled by (i,j).  Loop 
-            // only from j=i since we only have to check each pair once 
-            // membership in a reaction group labeled by rg.
+            // only from j=i since we only have to check each pair once. 
+            // Membership in a reaction group labeled by rg.
             
             for(int j=i; j<SIZE; j++){
                 
                 // Compare reaction vectors labeled by i and j.  If
-                // ck = 0 the vectors are not equivalent,if ck = 1
+                // ck = 0 the vectors are not equivalent, if ck = 1
                 // the vectors are equivalent,and if ck = 2 the
-                // vectors the negatives of each other. Reaction vectors
+                // vectors are negatives of each other. Reaction vectors
                 // having ck=1 or ck=2 belong to the same reaction group.
                 // Reaction vectors having ck=0 belong to different
                 // reaction groups.
                 
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
                 
-                // Based on value of ck,assign to RG.  The condition
+                // Based on value of ck, assign to RG.  The condition
                 // RGindex[j] < 0 ensures that we don't assign a
-                // reaction to a RG more than once.
+                // reaction to a RG more than once (since the array
+                // RGindex[] was initialized to -1).
                 
                 if(ck > 0 && RGindex[j] < 0) {
                     
                     RGindex[j] = rg;
                     numberMembers ++;
                 }
+                
+                int ckk = ck;
                 
             } 
             
@@ -4516,7 +4519,7 @@ int main() {
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
             ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e E=%6.2e E_R=%6.2e c1=%d";
-            ts += " c2=%d fast=%d Q=%4.2f dev=%4.2f lT=%4.3f lrho=%4.2f";
+            ts += " c2=%d fast=%d Q=%4.2f dev=%4.2e lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter,iterations,t,dt,dt_desired,totalTimeSteps,
