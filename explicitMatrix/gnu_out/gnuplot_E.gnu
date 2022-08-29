@@ -66,20 +66,20 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF)"
+ds="C++ Asy nova134 with nova125D profile (no pf)"
 ds = ds.": Log |E| vs t"
 set title ds textcolor rgb title_color font "Arial,22"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
+xlow = -16
 xup = 0
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 10
-yup = 19
+ylow = 12
+yup = 18
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -98,13 +98,14 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "gnufile_alpha_T9_7_1e8_asy.data"
+#file1 = "gnufile_alpha_T9_7_1e8_asy.data"
 
-plot file1 using 1:3 with lines ls 1 lw 1.0 dashtype 1 title "Asy Log E"
+#plot file1 using 1:3 with lines ls 1 lw 1.0 dashtype 1 title "Asy Log E"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
-replot file2 using 1:3 with lines ls 11 lw 1.0 dashtype 2 title "Asy-PE Log E"
+plot file2 using 1:3 with lines ls 11 lw 1.0 dashtype 1 title "Log E"
 
 
 # Reset font sizes for .eps and .png output2

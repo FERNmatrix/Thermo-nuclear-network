@@ -65,12 +65,12 @@ set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key right top outside    # Place legend inside top  
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
 ds="C++ T9=7 rho=1e8 (no pf)"
 ds = ds.": mass fraction"
@@ -100,10 +100,6 @@ set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
-
-# Edit the following plot commands to correspond to data
-# read in from data file
-
 # Reference Asy calculation
 
 file1 = "gnufile_alpha_T9_7_1e8_asy.data"
@@ -127,7 +123,8 @@ replot file1 using 1:21 with lines ls 14 lw 1.5 dashtype 1 title "60Zn asy"
 replot file1 using 1:22 with lines ls 1 lw 1.5 dashtype 1 title "64Ge asy"
 replot file1 using 1:23 with lines ls 2 lw 1.5 dashtype 1 title "68Se asy"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
 replot file2 using 1:8 with lines ls 2 lw 1.5 dashtype 2 title "4He asy+pe"
 replot file2 using 1:9 with lines ls 3 lw 1.5 dashtype 2 title "12C asy+pe"

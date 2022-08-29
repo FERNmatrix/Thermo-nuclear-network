@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 8.5
-height = 4.5
+height = 3.0
 
 # x-axis resolution
 set samples 2000
@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log dE/dt (erg/g/s)' textcolor rgb tic_color font "Arial,32"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -66,20 +66,20 @@ set key top outside   # Move legend to outside top
 
 #set timestamp       # Date/time
 
-ds="Asy T9=7 rho=1e8 (no PF)"
+ds="C++ Asy tidalSN rosswog.profile  (no pf)"
 ds = ds.": |dE/dt| vs t"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 0
+xlow = -4
+xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 14
-yup = 29
-ytics = 1      # Space between major y ticmarks
+ylow = 8
+yup = 18
+ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -93,20 +93,21 @@ set mytics minytics   # minor y tics per major tic
 set grid   # set x-y grid at major ticmarks
 
 
-file1 = "gnufile_alpha_T9_7_1e8_asy.data"
+#file1 = "gnufile_alpha_T9_7_1e8_asy.data"
 
-plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
+#plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
 
-file2 = "gnufile.data"
+#file2 = "gnufile.data"
+file2 = "plot1.data"
 
-replot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 2 title "Asy-PE log |dE/dt|"
+plot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 1 title " log10 |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dE/dt (erg/g/s)' textcolor rgb tic_color font "Arial,28"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,28"
 
 # Plot to postscript file
 

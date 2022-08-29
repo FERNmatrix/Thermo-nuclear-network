@@ -1,0 +1,31 @@
+ 7/24/2022
+ 
+ I found another problem that was causing segfaults sometimes in the thermonuclear C++ code.  Actually, the problem was more in the input files than the code itself.  
+ First, at least one of the rateLibrary files had a format inconsistent with the present version of the code (lacking a data field in the first line).  More fundamentally,  there is one class of ReacLib reactions (ReacLib class 7) of the form a+b -> c+d+e+f that is not a member of any of the five ReactionGroups that we have defined (A, B, C, D, E), or (1,2,3,4,5) because there are no 4-body reactions c+d+e+f -> a+b in ReacLib to pair with it.  There are only several instances of a ReacLib class 7 reaction in the library, and the Java code that produces the rateLibrary files for a network assigns a value of -1 in the output file for the ReactionGroup class for such reactions.  But the C++ code is set to use the value in that data field as an array index in the read-in and storing of data and the negative value of an array index of course generated a segfault.  Reactions in ReacLib class 7 are rare, and only occur in the  larger networks that we have defined, which explains why this segfault only appears in some networks.
+ To fix this problem, I have decided that we will adopt a consistent philosophy that every reaction is in one and only one reaction group, even if there is only one reaction in the reaction group  (actually, I adopted this philosophy from the beginning for the c++ code, but I was careless about whether the input data files were consistent with it).  
+ To implement this philosophy consistently I have now defined a reaction group F (6), that consists of the single member for ReacLib class 7 ( a+b -> c+d+e+f) reactions, increased the dimension of arrays associated with the 5 original reaction groups to 6, added code to handle reaction class 6 when reaction classes are being processed, and put logic in the data read-in to convert any reaction class -1 reactions to reaction class 6.  (And will probably modify the Java code producing rate files for the C++ code to assign a reaction group class 6 rather than -1 for such cases in the future).  
+ The current version of the C++ code implementing this is on branch guidry_debugSpline3 in the repository. Now, I have checked all the sample reactions listed at the top of the C++ code comments:
+ ----------------------------------------Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
+ 3=alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
+ 4-alpha          4       14     data/network_4alpha.inp     data/rateLibrary_4alpha.data
+ alpha           16       48     data/network_alpha.inp      data/rateLibrary_alpha.data
+ pp               7       28     data/network_pp.inp         data/rateLibrary_pp.data
+ main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
+ full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
+ 48              48      299     data/network_48.inp         data/rateLibrary_48.data
+ 70              70      598     data/network_70.inp         data/rateLibrary_70.data
+ 116            116     1135     data/network_116.inp        data/rateLibrary_116.data
+ nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
+ 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
+ 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
+ 194            194     2232     network_194.inp             data/rateLibrary_194.data
+ 268            268     3175     network_268.inp             data/rateLibrary_268.data
+ 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
+ 365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
+ ---------------------------------------------
+ All work without faults except that the 268 isotope network runs very slowly (more precisely, it seems to be executing the integration reasonably fast, but any i/o is greatly delayed), and the 365 isotope network responds even more slowly and is generating a segfault that makes no sense.  I think that this is partially, or totally, a memory problem.  On my machine, which nominally has 8GB of actual memory (and ~ 8GB of swap), the "top" command shows the following memory usage when each network is being integrated
+ 
+ Network         Memory usagepp                   0.1%full alpha        0.1%full CNO         0.1%48-isotope      0.3%70-isotope      1.5%116-isotope    8%134 nova        17.4%150-isotope    20%194-isotope    50%268-isotope    82%365-isotope    84%
+ Thus I suspect that the sluggish response for the largest networks (and maybe the segfault for the 365 isotope network?) are a consequence of running out of memory, causing increasing need for memory-disk swaps (especially because the older machine I am running on doesn't have solid state drives, so they are relatively slow for read/write if memory swaps are invoked). 
+ If you have a newer machine with more memory available, you might test how well the 268-isotope and 365-isotope networks work on your machine, using the explicitMatrix.cpp code and the input data files on the guidry_debugSpline3 branch.  We also may want to think about whether we can reduce the memory footprint of the code with some restructuring.
+

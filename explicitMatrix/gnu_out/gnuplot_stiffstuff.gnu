@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 7.5  # 8.5
-height = 3.5   # 4.5
+width = 8.5  # 8.5
+height = 3.0   # 4.5
 
 # x-axis resolution
 set samples 1000
@@ -64,25 +64,24 @@ set pointsize 1.5    # Size of the plotted points
 set key outside    # Place legend outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="C++ Asy T9=7 rho=1e8 (no pf; new dt)"
-ds = ds.": dt vs t"
+ds="C++ Asy tidal supernova"
+ds = ds.": 70-isotope"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile2.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 0
-xtics = 1     # Space between major x ticmarks
+xlow = -3
+xup = 9
+xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = xlow-1
-yup = xup-1
-ytics = 1      # Space between major y ticmarks
+ylow = -8 
+yup = 8
+ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -93,24 +92,28 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
+file1 = "plot2.data"
+#file1 = "gnufile2.data"
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+# Plot data
 
-plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
-replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
-replot file1 using 1:2 with lines ls 1 lw 1.0 dashtype 1 title "log dt"
-#replot file1 using 1:3 with lines ls 9 title "1/Rmin"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
+plot file1 using 1:5 with lines ls 2 lw 1.5 dashtype 2 title "log 2/Rmax"
+#replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
+replot file1 using 1:2 with lines ls 3 lw 1.5 dashtype 1 title "log dt"
 
+
+# Plot dt contours
+
+replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
+replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
+#replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
+#replot file1 using 1:12 with lines ls 3 lw 1.5 dashtype 2 title "log dt_desired"
 
 # Reset font sizes for .eps and .png output2
 

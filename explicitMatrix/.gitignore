@@ -3,3 +3,4 @@
  *.txt
  *.out
  debug.out
+gdb_debug.out
