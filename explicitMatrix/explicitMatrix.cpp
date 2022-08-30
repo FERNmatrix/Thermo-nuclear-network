@@ -12,7 +12,7 @@
  * math.h header to work for defining powf,expf,logf,...,(see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
  * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
- * the GDB debugger,add a -g flag:
+ * the GDB debugger, add a -g flag:
  * 
  *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
  * 
@@ -21,7 +21,7 @@
  *     ./explicitMatrix | tee temp.txt
  * 
  * where | tee temp.txt is unix shell script outputting to screen and also piping to a file temp.txt. 
- * If using GDB debug mode,set the -g flag as above for the compiler and execute in debug mode with
+ * If using GDB debug mode, set the -g flag as above for the compiler and execute in debug mode with
  * 
  *      gdb explicitMatrix | tee debug.out
  * 
