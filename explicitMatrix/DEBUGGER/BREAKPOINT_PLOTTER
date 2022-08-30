@@ -854,9 +854,17 @@ printf"\n e0=%7.4e e1=%7.4e e2=%7.4e e3=%7.4e e4=%7.4e e5=%7.4e e6=%7.4e\n",e0,e
 end
 ---------------------------------
 
+break 2363
+commands
+silent
+printf"\n"
+cont
+end
+
 break 2392
 commands
 silent
-printf"\ni=%d j=%d ck=%d RGindex[j]=%d members=%d\n",i,j,ck,RGindex[j],numberMembers
+printf"\ni=%d j=%d ck=%d rg=%d RGindex[j]=%d members=%d %s with %s",i,j,ck,rg,RGindex[j],numberMembers,reacLabel[i],reacLabel[j]
+cont
 end
 
