@@ -342,7 +342,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-16;         // Start time for plot output
-double stop_time = 1e-2;               // Stop time for integration
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -2360,6 +2360,7 @@ class ReactionVector:  public Utilities {
         
         for (int i=0; i<SIZE; i++){
             
+            if(RGindex[i] < 0) RGindex[i] = rg;
             if(numberMembers > 0) rg ++;
             numberMembers = 0;
             
@@ -2367,7 +2368,7 @@ class ReactionVector:  public Utilities {
             // only from j=i since we have to check each pair only once. 
             // Reaction group is labeled by rg.
             
-            for(int j=i; j<SIZE; j++){
+            for(int j=0; j<SIZE; j++){
                 
                 // Compare reaction vectors labeled by i and j.  If
                 // ck = 0 the vectors are not equivalent, if ck = 1
@@ -2390,14 +2391,17 @@ class ReactionVector:  public Utilities {
                     numberMembers ++;
                 }
                 
-                int ckk = ck;
+                if(i>43)
+                printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d RGindex[j]=%d",
+                       i, j, numberMembers, rg, ck, RGindex[j]
+                );
                 
             } 
             
             // Store the number of member reactions in this reaction group 
             // for later use
             
-            RGnumberMembers[rg] = numberMembers;
+            RGnumberMembers[rg] = numberMembers + 1;
             
             // Count RG that are singlets (only a single reaction)
             
@@ -2408,29 +2412,35 @@ class ReactionVector:  public Utilities {
         // If the last trial reaction group has no members, subtract 
         // one from rg (which was incremented at the beginning of the trial).
         
-        if(numberMembers == 0) rg--;
+        //if(numberMembers == 0) rg--;
         
         // Store total number of reaction groups
         
         numberRG = rg+1; 
         
+        // Diagnostic showing reaction group associated with each reaction
         
+        fprintf(pfnet, "\n");
+        fprintf(pfnet, "\nCHECK: Each reaction should be in one and only one RG\n");
+        for(int i=0; i<SIZE; i++){
+            fprintf(pfnet, "\n%d %s RG=%d", i, reacLabel[i], RGindex[i]);
+        }
         
         // Output the components of the reaction groups pfnet ->
         // network.out.
         
         fprintf(pfnet,"\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
         for(int i=0; i<numberRG; i++){
-            fprintf(pfnet,"\n\nReaction Group %d:",i);
+            fprintf(pfnet,"\n\nReaction Group %d (%d members):", i, RGnumberMembers[i]);
             int rgindex = -1;
             for(int j=0; j<SIZE; j++){
                 if(RGindex[j] == i){
                     rgindex ++; 
-                    setRG(j,RGclass[j],RGindex[j]);
+                    setRG(j, RGclass[j], RGindex[j]);
                     fprintf(pfnet,
                     "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG:%s",
-                    reacLabel[j],j,rgindex,RGclass[j],RGMemberIndex[j],
-                    isPEforward[j],Utilities::stringToChar(RGstring[j]));
+                    reacLabel[j],j, rgindex, RGclass[j], RGMemberIndex[j],
+                    isPEforward[j], Utilities::stringToChar(RGstring[j]));
                 }
             }
         }

@@ -1570,6 +1570,11 @@ void sortReactionGroups(void){
             if(showall==1)
             printf("\ni=%d j=%d RGindex[%d]=%d ck=%d rindex=%d scorekeeper=%d", 
                    i, j, j, RGindex[j], ck, rindex, scorekeeper);
+            
+            if(i>43)
+            printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d RGindex[j]=%d",
+                    i, j, scorekeeper+1, rindex, ck, RGindex[j]
+            );
         }
         if(scorekeeper > 0) rindex++;
     }
