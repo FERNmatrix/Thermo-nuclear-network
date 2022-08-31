@@ -1576,6 +1576,10 @@ void sortReactionGroups(void){
                     i, j, scorekeeper+1, rindex, ck, RGindex[j]
             );
         }
+        
+        if(i>43)
+            printf("\n Members = %d", numberMembers);
+        
         if(scorekeeper > 0) rindex++;
     }
     

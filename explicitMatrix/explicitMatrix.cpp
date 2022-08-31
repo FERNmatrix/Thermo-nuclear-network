@@ -2339,84 +2339,144 @@ class ReactionVector:  public Utilities {
         // a pair of vectors are equivalent (ck = 1), are the negative of each 
         // other (ck = 2), or are not equivalent (ck = 0).
         
+        
+        // The integer rg labels the reaction group
+        
         int rg = -1;
         int ck = -1;
         
-        // Initialize array RGindex[] holding the reaction group number
-        // to which each reaction belongs to -1.
+        // Initialize
         
         for(int i=0; i<SIZE; i++){
             RGindex[i] = -1;
         }
         
-        // Variable numberMembers will keep track of the number of members
-        // for the reaction group labeled by specific value of rg.
-        
-        int numberMembers = 0;
-        numberSingletRG = 0;
-        
-        // Cycle over all reaction vectors (loop in i) and compare them
-        // pairwise with all reaction vectors (loop in j)
+        int numberMembers;
         
         for (int i=0; i<SIZE; i++){
             
-            if(RGindex[i] < 0) RGindex[i] = rg;
-            if(numberMembers > 0) rg ++;
-            numberMembers = 0;
+            numberMembers = 1;
             
-            // Loop over other reaction of pair labeled by (i,j).  Loop 
-            // only from j=i since we have to check each pair only once. 
-            // Reaction group is labeled by rg.
+            if(i==0) rg ++;
             
+            ck=-1;
+
             for(int j=0; j<SIZE; j++){
                 
-                // Compare reaction vectors labeled by i and j.  If
-                // ck = 0 the vectors are not equivalent, if ck = 1
-                // the vectors are equivalent, and if ck = 2 the
-                // vectors are negatives of each other. A pair of
-                // reaction vectors having ck=1 or ck=2 are in the 
-                // same reaction group. A pair of reaction vectors 
-                // having ck=0 are in different reaction groups.
-                
+                if(RGindex[i] < 0) RGindex[i] = rg;
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
-                
-                // Based on value of ck, assign to RG.  The condition
-                // RGindex[j] < 0 ensures that we don't assign a
-                // reaction to a RG more than once (since the array
-                // RGindex[] was initialized to -1).
+
+                int preRGindex = RGindex[j];
                 
                 if(ck > 0 && RGindex[j] < 0) {
                     
                     RGindex[j] = rg;
                     numberMembers ++;
                 }
-                
+                    
                 if(i>43)
-                printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d RGindex[j]=%d",
-                       i, j, numberMembers, rg, ck, RGindex[j]
-                );
-                
-            } 
+                    printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d preRGindex=%d RGindex[j]=%d",
+                            i, j, numberMembers, rg, ck, preRGindex, RGindex[j]
+                    );
+            }
+            
+            
+            if(i>43)
+            printf("\n Members = %d", numberMembers);
+            
+            if(numberMembers > 1) rg ++;
             
             // Store the number of member reactions in this reaction group 
             // for later use
-            
-            RGnumberMembers[rg] = numberMembers + 1;
+                        
+            RGnumberMembers[rg] = numberMembers;
             
             // Count RG that are singlets (only a single reaction)
             
             if(numberMembers == 1) numberSingletRG ++;
-            
         }
         
-        // If the last trial reaction group has no members, subtract 
-        // one from rg (which was incremented at the beginning of the trial).
+        numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
         
-        //if(numberMembers == 0) rg--;
         
-        // Store total number of reaction groups
-        
-        numberRG = rg+1; 
+//         int rg = -1;
+//         int ck = -1;
+//         
+//         // Initialize array RGindex[] holding the reaction group number
+//         // to which each reaction belongs to -1.
+//         
+//         for(int i=0; i<SIZE; i++){
+//             RGindex[i] = -1;
+//         }
+//         
+//         // Variable numberMembers will keep track of the number of members
+//         // for the reaction group labeled by specific value of rg.
+//         
+//         int numberMembers = 0;
+//         numberSingletRG = 0;
+//         
+//         // Cycle over all reaction vectors (loop in i) and compare them
+//         // pairwise with all reaction vectors (loop in j)
+//         
+//         for (int i=0; i<SIZE; i++){
+//             
+//             if(RGindex[i] < 0) RGindex[i] = rg;
+//             if(numberMembers > 0) rg ++;
+//             numberMembers = 0;
+//             
+//             // Loop over other reaction of pair labeled by (i,j).  Loop 
+//             // only from j=i since we have to check each pair only once. 
+//             // Reaction group is labeled by rg.
+//             
+//             for(int j=0; j<SIZE; j++){
+//                 
+//                 // Compare reaction vectors labeled by i and j.  If
+//                 // ck = 0 the vectors are not equivalent, if ck = 1
+//                 // the vectors are equivalent, and if ck = 2 the
+//                 // vectors are negatives of each other. A pair of
+//                 // reaction vectors having ck=1 or ck=2 are in the 
+//                 // same reaction group. A pair of reaction vectors 
+//                 // having ck=0 are in different reaction groups.
+//                 
+//                 ck = compareGSLvectors(rvPt+i, rvPt+j);
+//                 
+//                 // Based on value of ck, assign to RG.  The condition
+//                 // RGindex[j] < 0 ensures that we don't assign a
+//                 // reaction to a RG more than once (since the array
+//                 // RGindex[] was initialized to -1).
+//                 
+//                 if(ck > 0 && RGindex[j] < 0) {
+//                     
+//                     RGindex[j] = rg;
+//                     numberMembers ++;
+//                 }
+//                 
+//                 if(i>43)
+//                 printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d RGindex[j]=%d",
+//                        i, j, numberMembers, rg, ck, RGindex[j]
+//                 );
+//                 
+//             } 
+//             
+//             // Store the number of member reactions in this reaction group 
+//             // for later use
+//             
+//             RGnumberMembers[rg] = numberMembers + 1;
+//             
+//             // Count RG that are singlets (only a single reaction)
+//             
+//             if(numberMembers == 1) numberSingletRG ++;
+//             
+//         }
+//         
+//         // If the last trial reaction group has no members, subtract 
+//         // one from rg (which was incremented at the beginning of the trial).
+//         
+//         //if(numberMembers == 0) rg--;
+//         
+//         // Store total number of reaction groups
+//         
+//         numberRG = rg+1; 
         
         // Diagnostic showing reaction group associated with each reaction
         
@@ -2429,13 +2489,19 @@ class ReactionVector:  public Utilities {
         // Output the components of the reaction groups pfnet ->
         // network.out.
         
+        numberSingletRG = 0;
+        
         fprintf(pfnet,"\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
         for(int i=0; i<numberRG; i++){
-            fprintf(pfnet,"\n\nReaction Group %d (%d members):", i, RGnumberMembers[i]);
+            
+            fprintf(pfnet,"\n\nReaction Group %d:", i);
             int rgindex = -1;
+            int rcounter = 0;
+            
             for(int j=0; j<SIZE; j++){
                 if(RGindex[j] == i){
                     rgindex ++; 
+                    rcounter ++;
                     setRG(j, RGclass[j], RGindex[j]);
                     fprintf(pfnet,
                     "\n%s reacIndex=%d RGindex=%d RGclass=%d RGreacIndex=%d isForward=%d RG:%s",
@@ -2443,9 +2509,28 @@ class ReactionVector:  public Utilities {
                     isPEforward[j], Utilities::stringToChar(RGstring[j]));
                 }
             }
+            
+            // Number of reactions in each RG
+            
+            RGnumberMembers[i] = rcounter;
+            
+            // Number of RG that are singlets (only one reaction)
+            
+            if (rcounter == 1) numberSingletRG ++;
         }
         
         fprintf(pfnet,"\n");
+        
+        fprintf(pfnet, "\n");
+        fprintf(pfnet, "\nCHECK: Number of reactions in each RG. The sum");
+        fprintf(pfnet, "\nover RG members should equal the total # of reactions.\n");
+        
+        int resum = 0;
+        for(int i=0; i<numberRG; i++){
+            resum = resum + RGnumberMembers[i];
+            fprintf(pfnet, "\nRG=%d # Reactions=%d", i, RGnumberMembers[i]);
+        }
+        fprintf(pfnet,"\n\nSum = %d = Total Reactions\n", resum);
         
     }   // End function sortReactionGroups()
         
@@ -2453,8 +2538,8 @@ class ReactionVector:  public Utilities {
     
         /*
         * ReactionVector::parseF() to find contributions to F+ and F- of each reaction for each 
-        * isotope. This is executed only once at the beginning of the entire calculation to determine 
-        * the structure of the network. Since executed only once,make it static so it can
+        * isotope. This is executed only once at the beginning of the calculation to determine 
+        * the structure of the network. Since executed only once, make it static so it can
         * be called directly from the class using ReactionVector::parseF(),without having
         * to instantiate.
         */
