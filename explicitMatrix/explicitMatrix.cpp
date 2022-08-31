@@ -2332,11 +2332,12 @@ class ReactionVector:  public Utilities {
     static void sortReactionGroups(void){
         
         // Cycle over all reaction vectors and compare them pairwise to 
-        // assign to reaction groups. The pointer rvPt points to the array
-        // rv[] of GSL reaction vectors. The integer rg labels the reaction 
-        // group.  The integer ck indicates whether a pair of vectors are 
-        // equivalent (ck = 1),are the negative of each other (ck = 2),or 
-        // are not equivalent (ck = 0).
+        // assign to reaction groups. The pointer rvPt points to the beginning
+        // of the array rv[] of GSL reaction vectors (rvPt points to to rv[0], 
+        // rvPt+1 points to rv[1], rvPt+2 points to rv[2], ...). The integer 
+        // rg labels the reaction group.  The integer ck indicates whether 
+        // a pair of vectors are equivalent (ck = 1), are the negative of each 
+        // other (ck = 2), or are not equivalent (ck = 0).
         
         int rg = -1;
         int ck = -1;
@@ -2349,7 +2350,7 @@ class ReactionVector:  public Utilities {
         }
         
         // Variable numberMembers will keep track of the number of members
-        // for the reaction group labeled by rg.
+        // for the reaction group labeled by specific value of rg.
         
         int numberMembers = 0;
         numberSingletRG = 0;
@@ -2363,18 +2364,18 @@ class ReactionVector:  public Utilities {
             numberMembers = 0;
             
             // Loop over other reaction of pair labeled by (i,j).  Loop 
-            // only from j=i since we only have to check each pair once. 
-            // Membership in a reaction group labeled by rg.
+            // only from j=i since we have to check each pair only once. 
+            // Reaction group is labeled by rg.
             
             for(int j=i; j<SIZE; j++){
                 
                 // Compare reaction vectors labeled by i and j.  If
                 // ck = 0 the vectors are not equivalent, if ck = 1
-                // the vectors are equivalent,and if ck = 2 the
-                // vectors are negatives of each other. Reaction vectors
-                // having ck=1 or ck=2 belong to the same reaction group.
-                // Reaction vectors having ck=0 belong to different
-                // reaction groups.
+                // the vectors are equivalent, and if ck = 2 the
+                // vectors are negatives of each other. A pair of
+                // reaction vectors having ck=1 or ck=2 are in the 
+                // same reaction group. A pair of reaction vectors 
+                // having ck=0 are in different reaction groups.
                 
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
                 
