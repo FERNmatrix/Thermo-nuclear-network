@@ -209,7 +209,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = true; 
+bool hydroProfile = false; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -265,7 +265,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -290,7 +290,7 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = true;
+bool dopf = false;
 double pfCut9 = 1.0;
 
 // Temperatures in units of 10^9 K for partition function table (see pf[]
@@ -324,7 +324,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 3;           // Initial temperature in units of 10^9 K
+double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -341,8 +341,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-16;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double startplot_time = 1e-18;         // Start time for plot output
+double stop_time = 1e0;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -370,7 +370,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-7;                    // Absolute error tolerance
+double EpsA = 4e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -2227,20 +2227,13 @@ class ReactionVector:  public Utilities {
             // and inner loop is isotopes.)
             
             for (size_t i = 0; i < sizy; i++) {
- 
+
                 for(size_t j=0; j < isy; j++){
-                    
-//                     printf("2298: i=%d j=%d rvPt=%d reac=%s iso=%s reacMask=%d\n",
-//                            i, j, rvPt+i, reacLabel[i],
-//                             isoLabel[j], reacMask[j][i]);
-//                     if(j == isy - 1)printf("\n");
-//                     
-//                     cout.flush();
                     
                     gsl_vector_set (rvPt+i, j, (double) reacMask[j][i]);
 
                 }
-                //printf("\n");
+
             }
             
             // Display reaction vectors as component list in 
@@ -2298,7 +2291,7 @@ class ReactionVector:  public Utilities {
         gsl_vector *rv2minus = gsl_vector_alloc(isy);
         
         gsl_vector_memcpy(rv2minus, rv2);
-        gsl_vector_scale(rv2minus, -1);
+        gsl_vector_scale(rv2minus, -1.0);
         kk = gsl_vector_equal(rv1, rv2minus);
        
         // Free the vector. Better solution would be to globally allocate
@@ -2310,10 +2303,14 @@ class ReactionVector:  public Utilities {
             
             return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
             
-        } else {
+        } else if (kk == 1){
 
             return 2;    // rv1 = -rv2; same reaction group
 
+        } else {
+            
+            return -1;
+            
         }
         
     }    // End function compareGSLvectors
@@ -2375,8 +2372,8 @@ class ReactionVector:  public Utilities {
                 }
                     
                 if(i>43)
-                    printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d preRGindex=%d RGindex[j]=%d",
-                            i, j, numberMembers, rg, ck, preRGindex, RGindex[j]
+                    printf("\ni=%d j=%d rg=%d ck=%d preRGindex=%d RGindex[j]=%d",
+                            i, j, rg, ck, preRGindex, RGindex[j]
                     );
             }
             
@@ -2386,14 +2383,14 @@ class ReactionVector:  public Utilities {
             
             if(numberMembers > 1) rg ++;
             
-            // Store the number of member reactions in this reaction group 
-            // for later use
-                        
-            RGnumberMembers[rg] = numberMembers;
+//             // Store the number of member reactions in this reaction group 
+//             // for later use
+//                         
+//             RGnumberMembers[rg] = numberMembers;
             
-            // Count RG that are singlets (only a single reaction)
-            
-            if(numberMembers == 1) numberSingletRG ++;
+//             // Count RG that are singlets (only a single reaction)
+//             
+//             if(numberMembers == 1) numberSingletRG ++;
         }
         
         numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
@@ -2486,8 +2483,7 @@ class ReactionVector:  public Utilities {
             fprintf(pfnet, "\n%d %s RG=%d", i, reacLabel[i], RGindex[i]);
         }
         
-        // Output the components of the reaction groups pfnet ->
-        // network.out.
+        // Output the components of the reaction groups pfnet -> network.out.
         
         numberSingletRG = 0;
         
@@ -2522,19 +2518,23 @@ class ReactionVector:  public Utilities {
         fprintf(pfnet,"\n");
         
         fprintf(pfnet, "\n");
-        fprintf(pfnet, "\nCHECK: Number of reactions in each RG. The sum");
-        fprintf(pfnet, "\nover RG members should equal the total # of reactions.\n");
+        fprintf(pfnet, "\nCHECK: Sum");
+        fprintf(pfnet, " over members of each RG should equal total number of reactions SIZE.\n");
         
         int resum = 0;
         for(int i=0; i<numberRG; i++){
             resum = resum + RGnumberMembers[i];
-            fprintf(pfnet, "\nRG=%d # Reactions=%d", i, RGnumberMembers[i]);
+            fprintf(pfnet, "\nRG=%d #reactions=%d", i, RGnumberMembers[i]);
         }
-        fprintf(pfnet,"\n\nSum = %d = Total Reactions\n", resum);
+        fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
+        
+// gsl_vector *neg = rv+44;
+// gsl_vector_scale(neg, -1.0);
+// int comp = gsl_vector_equal(rv+45, neg);
+// printf("\n++++++ comp=%d",comp);
         
     }   // End function sortReactionGroups()
         
-    
     
         /*
         * ReactionVector::parseF() to find contributions to F+ and F- of each reaction for each 
@@ -4213,7 +4213,7 @@ int main() {
     for(int i=0; i<SIZE; i++){
         
         fprintf(pfnet,
-            "\n%d %s reacClass=%d react=%d prod=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGsymb:%s",
+            "\n%d %s reacClass=%d #react=%d #prod=%d isEC=%d isReverse=%d Q=%5.4f prefac=%5.4f RGsymb:%s",
             reaction[i].getreacIndex(),
             reacLabel[i], 
             reaction[i].getreacClass(),
@@ -5052,7 +5052,7 @@ void showParameters(){
     if(dopf){
         printf(" (Partition function corrections for T9=%4.2f and above)", pfCut9);
     } else {
-        printf(" (All partition functions set to 1)");
+        printf(" (Partition function correction ignored)");
     }
     
     if(hydroProfile){
