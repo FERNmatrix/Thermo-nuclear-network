@@ -79,12 +79,12 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -2 
-xtics = 1     # Space between major x ticmarks
+xlow = -4
+xup = 16 
+xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -18
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -103,7 +103,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15   # Number species to be plotted
+numberCurves = 15     # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher = 1            # Dash style for curves (0,1,2,3, ...)
 
