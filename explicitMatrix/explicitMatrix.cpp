@@ -2361,6 +2361,7 @@ class ReactionVector:  public Utilities {
             for(int j=0; j<SIZE; j++){
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
+                
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
 
                 int preRGindex = RGindex[j];
@@ -2372,25 +2373,17 @@ class ReactionVector:  public Utilities {
                 }
                     
                 if(i>43)
-                    printf("\ni=%d j=%d rg=%d ck=%d preRGindex=%d RGindex[j]=%d",
-                            i, j, rg, ck, preRGindex, RGindex[j]
+                    printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
+                        i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
                     );
             }
             
             
             if(i>43)
-            printf("\n Members = %d", numberMembers);
+            printf("\n");
             
             if(numberMembers > 1) rg ++;
-            
-//             // Store the number of member reactions in this reaction group 
-//             // for later use
-//                         
-//             RGnumberMembers[rg] = numberMembers;
-            
-//             // Count RG that are singlets (only a single reaction)
-//             
-//             if(numberMembers == 1) numberSingletRG ++;
+
         }
         
         numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
@@ -2526,12 +2519,15 @@ class ReactionVector:  public Utilities {
             resum = resum + RGnumberMembers[i];
             fprintf(pfnet, "\nRG=%d #reactions=%d", i, RGnumberMembers[i]);
         }
+        
         fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
+        
         
 // gsl_vector *neg = rv+44;
 // gsl_vector_scale(neg, -1.0);
 // int comp = gsl_vector_equal(rv+45, neg);
 // printf("\n++++++ comp=%d",comp);
+        
         
     }   // End function sortReactionGroups()
         
@@ -2540,7 +2536,7 @@ class ReactionVector:  public Utilities {
         * ReactionVector::parseF() to find contributions to F+ and F- of each reaction for each 
         * isotope. This is executed only once at the beginning of the calculation to determine 
         * the structure of the network. Since executed only once, make it static so it can
-        * be called directly from the class using ReactionVector::parseF(),without having
+        * be called directly from the class using ReactionVector::parseF(), without having
         * to instantiate.
         */
         
@@ -6133,7 +6129,7 @@ void assignRG(){
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
         fprintf(pFileD,
             "\n\nRG=%d  RGclass=%d %s Species Index:",
-            i,RG[i].getrgclass(),
+            i, RG[i].getrgclass(),
             reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
         );
         
