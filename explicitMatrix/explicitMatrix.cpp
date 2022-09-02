@@ -164,8 +164,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 134                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 8                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 22                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -195,13 +195,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_cnoAll.inp";
+char networkFile[] = "data/network_cno.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_cnoAll.data";
+char rateLibraryFile[] = "data/rateLibrary_cno.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -265,7 +265,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -290,7 +290,7 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = false;
+bool dopf = true;
 double pfCut9 = 1.0;
 
 // Temperatures in units of 10^9 K for partition function table (see pf[]
@@ -341,8 +341,8 @@ double rho_start = 1e3;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-4;         // Start time for plot output
-double stop_time = 8e15;               // Stop time for integration
+double startplot_time = 1e-4;          // Start time for plot output
+double stop_time = 1e16;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -359,7 +359,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-8;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -370,10 +370,10 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-6;                    // Absolute error tolerance
+double EpsA = 1e-7;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
-// Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
+// equilibrateTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
 // probably an error in the Java version, since if operating properly nothing should
@@ -2342,7 +2342,7 @@ class ReactionVector:  public Utilities {
         int rg = -1;
         int ck = -1;
         
-        // Initialize
+        // Initialize to -1 so we can tell if a reaction has been assigned yet
         
         for(int i=0; i<SIZE; i++){
             RGindex[i] = -1;
@@ -2372,14 +2372,14 @@ class ReactionVector:  public Utilities {
                     numberMembers ++;
                 }
                     
-if(i>43)
+if(i>15)
     printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
         i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
     );
             }
             
             
-if(i>43) printf("\n");
+if(i>15) printf("\n");
             
             if(numberMembers > 1) rg ++;
 
