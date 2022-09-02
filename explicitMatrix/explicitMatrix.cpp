@@ -566,6 +566,7 @@ char dasher[] = "---------------------------------------------";
 int numberRG;                 // Number of partial equilibrium reaction groups
 int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
 int numberSingletRG;          // # RG with only a single member reactions
+int numberMembers;            // Number members in currently processing RG
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -2341,6 +2342,7 @@ class ReactionVector:  public Utilities {
         
         int rg = -1;
         int ck = -1;
+
         
         // Initialize to -1 so we can tell if a reaction has been assigned yet
         
@@ -2348,40 +2350,67 @@ class ReactionVector:  public Utilities {
             RGindex[i] = -1;
         }
         
-        int numberMembers;
+        //int numberMembers;
+        
+        int ckcounter;
         
         for (int i=0; i<SIZE; i++){
             
-            numberMembers = 1;
+printf("\n");
+            
+            numberMembers = 0;
             
             if(i==0) rg ++;
             
             ck=-1;
+            
+            ckcounter = 0;
+            
+            // Start sum from i, since we only have to consider pair (i, j) once
 
-            for(int j=0; j<SIZE; j++){
+            for(int j=i; j<SIZE; j++){
+                
+                // Need not consider both i,j and j,i
+                
+                //if(RGindex[i] >= 0 && RGindex[j] >= 0) continue;  // Already computed
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
                 
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
+                
+                if(ck > 0) ckcounter ++;
 
                 int preRGindex = RGindex[j];
                 
                 if(ck > 0 && RGindex[j] < 0) {
                     
                     RGindex[j] = rg;
+                    
                     numberMembers ++;
+                    printf("\n  +++++ i=%d j=%d rg=%d numberMembers=%d",i,j,rg,numberMembers);
+
                 }
                     
-if(i>15)
-    printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
-        i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
-    );
+//if(ck > 0)
+printf("\ni=%d j=%d rg=%d %s %s numberMembers=%d ck=%d ckcounter=%d preRGindex=%d RGindex[%d]=%d",
+i, j, rg, reacLabel[i], reacLabel[j], numberMembers, ck, ckcounter, preRGindex, j, RGindex[j]
+);
+
             }
             
+            if(numberMembers == 0 && ckcounter == 0){
+                
+                RGnumberMembers[rg] = 0;
+                
+            } else {
+                
+                RGnumberMembers[rg] = numberMembers + 1;
+            }
             
-if(i>15) printf("\n");
+printf("\nRGnumberMembers[%d]=%d ckcounter=%d\n\n", rg, RGnumberMembers[rg], ckcounter);
             
-            if(numberMembers > 1) rg ++;
+            if(numberMembers > 0) rg ++;
+            //if(numberMembers == 0 && ckcounter == 1) rg ++;
 
         }
         
