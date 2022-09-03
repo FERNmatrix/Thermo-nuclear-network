@@ -2344,7 +2344,8 @@ class ReactionVector:  public Utilities {
         int ck = -1;
 
         
-        // Initialize to -1 so we can tell if a reaction has been assigned yet
+        // Initialize to -1 so we can test if RG has been assigned yet for
+        // for a reaction.
         
         for(int i=0; i<SIZE; i++){
             RGindex[i] = -1;
@@ -2356,8 +2357,6 @@ class ReactionVector:  public Utilities {
         
         for (int i=0; i<SIZE; i++){
             
-printf("\n");
-            
             numberMembers = 0;
             
             if(i==0) rg ++;
@@ -2366,55 +2365,75 @@ printf("\n");
             
             ckcounter = 0;
             
+            int preRGindex = RGindex[i];
+            
+            if(RGindex[i] < 0) RGindex[i] = rg;
+            
             // Start sum from i, since we only have to consider pair (i, j) once
 
-            for(int j=i; j<SIZE; j++){
+            for(int j=0; j<SIZE; j++){
                 
-                // Need not consider both i,j and j,i
+                // Need to consider comparison of either (i,j) or (j,i), not both
                 
                 //if(RGindex[i] >= 0 && RGindex[j] >= 0) continue;  // Already computed
                 
-                if(RGindex[i] < 0) RGindex[i] = rg;
+                
                 
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
                 
-                if(ck > 0) ckcounter ++;
+//                 if(i==21 && j==21){
+//                     ck = 1;
+//                 } else {
+//                     ck = 0;
+//                 }
+                
+                if(ck > 0 && RGindex[j] < 0) ckcounter ++;
 
-                int preRGindex = RGindex[j];
+                
                 
                 if(ck > 0 && RGindex[j] < 0) {
                     
                     RGindex[j] = rg;
                     
                     numberMembers ++;
-                    printf("\n  +++++ i=%d j=%d rg=%d numberMembers=%d",i,j,rg,numberMembers);
+                    //printf("\n  +++++ i=%d j=%d rg=%d numberMembers=%d",i,j,rg,numberMembers);
 
                 }
+                
+                string adder;
+                if(ck > 0 && preRGindex < 0){
+                    adder = "ADD to rg";
+                    numberMembers ++;  
+                } else {
+                    adder = "";
+                }
+                
                     
 //if(ck > 0)
-printf("\ni=%d j=%d rg=%d %s %s numberMembers=%d ck=%d ckcounter=%d preRGindex=%d RGindex[%d]=%d",
-i, j, rg, reacLabel[i], reacLabel[j], numberMembers, ck, ckcounter, preRGindex, j, RGindex[j]
+printf("\ni=%d j=%d rg=%d %s %s numberMembers=%d ck=%d ckcounter=%d preRGindex=%d RGindex[%d]=%d %s",
+i, j, rg, reacLabel[i], reacLabel[j], numberMembers, ck, ckcounter, preRGindex, j, RGindex[j], 
+Utilities::stringToChar(adder)
 );
 
-            }
+            }  // end j loop
+            
             
             if(numberMembers == 0 && ckcounter == 0){
-                
                 RGnumberMembers[rg] = 0;
-                
             } else {
-                
                 RGnumberMembers[rg] = numberMembers + 1;
             }
             
-printf("\nRGnumberMembers[%d]=%d ckcounter=%d\n\n", rg, RGnumberMembers[rg], ckcounter);
+printf("\nRGnumberMembers[%d]=%d numberMembers=%d ckcounter=%d\n\n", 
+       rg, RGnumberMembers[rg], numberMembers, ckcounter);
             
             if(numberMembers > 0) rg ++;
+            
             //if(numberMembers == 0 && ckcounter == 1) rg ++;
 
-        }
+        }  // end i loop
         
-        numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
+        numberRG = rg;   // Total # reaction groups (add 1 because rg starts at 0)
  
         // Diagnostic showing reaction group associated with each reaction
         
