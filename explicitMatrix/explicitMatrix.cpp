@@ -376,11 +376,11 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
-// probably an error in the Java version,since if operating properly nothing should
-// be changed at a timestep if nothing satisfies PE condition.  Thus,we should not need
-// this in a final version for stability,but it might still be useful since early in
-// a calculation typically nothing satisfies PE,so checking for it is a waste of time.
-// On the other hand,the check costs little computing time so to make the code more
+// probably an error in the Java version, since if operating properly nothing should
+// be changed at a timestep if nothing satisfies PE condition.  Thus, we should not need
+// this in a final version for stability, but it might still be useful since early in
+// a calculation typically nothing satisfies PE, so checking for it is a waste of time.
+// On the other hand, the check costs little computing time so to make the code more
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
