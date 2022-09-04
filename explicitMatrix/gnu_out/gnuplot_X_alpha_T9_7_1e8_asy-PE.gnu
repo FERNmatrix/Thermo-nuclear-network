@@ -72,8 +72,8 @@ set key right top outside    # Place legend inside top
 
 set timestamp       # Date/time
 
-ds="C++ T9=7 rho=1e8 (no pf)"
-ds = ds.": mass fraction"
+ds="Compare C++ and Java, T9=7 rho=1e8"
+ds = ds.": Alpha network with PF"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
@@ -100,9 +100,10 @@ set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
-# Reference Asy calculation
+# Reference Asy calculation(T9=7, rho=1e8, no PF)
 
-file1 = "gnufile_alpha_T9_7_1e8_asy.data"
+#file1 = "gnufile_alpha_T9_7_1e8_asy.data"  # No PF
+file1 = "gnufile_alpha_T9_7_1e8_asy_PF.data"  # With PF
 
 # Alpha network asymptotic reference (X)
 
@@ -123,7 +124,6 @@ replot file1 using 1:21 with lines ls 14 lw 1.5 dashtype 1 title "60Zn asy"
 replot file1 using 1:22 with lines ls 1 lw 1.5 dashtype 1 title "64Ge asy"
 replot file1 using 1:23 with lines ls 2 lw 1.5 dashtype 1 title "68Se asy"
 
-#file2 = "gnufile.data"
 file2 = "plot1.data"
 
 replot file2 using 1:8 with lines ls 2 lw 1.5 dashtype 2 title "4He asy+pe"

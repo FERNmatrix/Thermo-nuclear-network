@@ -9,7 +9,7 @@
  * In this compile command the -o specifies thse name of the executable created in the
  * compile,the -lgsl flag links to GSL libraries,the -lgslcblas flag
  * links to GSL BLAS libraries,the -lm flag may be required in GCC Linux to get the 
- * math.h header to work for defining powf,expf,logf,...,(see https://
+ * math.h header to work for defining pow, exp, log,...,(see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
  * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
  * the GDB debugger, add a -g flag:
@@ -44,7 +44,7 @@
  * 4. Change control parameters like stop_time,massTol,...
  * 5. Change species to be plotted output mask plotXlist[] in plotFileSetup().
  * 6. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
- * 7. If using hydro profile: hydroProfile=true,set HydroFile[],set maxHydroEntries,
+ * 7. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
  *    choose true or false for plotHydroProfile
  * ----------------------------------
  * 
@@ -164,10 +164,10 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 150                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -175,7 +175,7 @@ void updatePF(void);
 #define ECON 9.5768e17                // Convert MeV/nucleon/s to erg/g/s
 #define LOG10 0.434294481903251       // Conversion natural log to log10
 #define MEV 931.494                   // Conversion of amu to MeV
-#define GZ 1.0e-24                    // Constant to ensure 1/max(num,GZ) never divides by 0
+#define GZ 1.0e-24                    // Constant to ensure 1/max(num, GZ) never divides by 0
 
 #define unitd static_cast<double>(1.0)  // Constant double equal to 1
 #define zerod static_cast<double>(0.0)  // Constant double equal to 0
@@ -265,7 +265,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = true;           // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -290,7 +290,7 @@ double netdERelease;          // Energy released in timestep
 // where pfCut9 is a cutoff temperature in units of T9. Typically in
 // realistic calculation we would choose dopf = true and pfCut9 = 1.0.
 
-bool dopf = false;
+bool dopf = true;
 double pfCut9 = 1.0;
 
 // Temperatures in units of 10^9 K for partition function table (see pf[]
@@ -336,13 +336,13 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // hydro timestep). Here we hardwire them for testing purposes.
 // The variable startplot_time allows the plotting interval output
 // in gnu_out/gnufile.data to be a subset of the full integration interval. 
-// Generally,startplot_time > start_time.  By default the stop time for
+// Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration,stop_time.
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e0;               // Stop time for integration
+double stop_time = 1e0;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -359,8 +359,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-7;            // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 5e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-8;            // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 8e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -370,7 +370,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 4e-3;                    // Absolute error tolerance
+double EpsA = 5e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -3790,7 +3790,7 @@ class Integrate: public Utilities {
             
             // Don't let dt exceed 0.1*t for accuracy reasons
             
-            dt_new = min(dt_new,0.1*t);
+            dt_new = min(dt_new, 0.1*t);
             
             // Return the new trial timestep that will be the starting point
             // for the next integration step.
