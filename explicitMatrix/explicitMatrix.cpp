@@ -2306,7 +2306,7 @@ class ReactionVector:  public Utilities {
     // The two arguments of the function are pointers to the two GSL vectors.
     // ------------------------------------------------------------------------
     
-    int static compareGSLvectors(gsl_vector *rv1, gsl_vector *rv2){
+    int static compareGSLvectors(int i1, int i2, gsl_vector *rv1, gsl_vector *rv2){
         
         int k, kk;
         
@@ -2317,6 +2317,15 @@ class ReactionVector:  public Utilities {
         // if vectors are equal and 0 if they are not.
         
         k = gsl_vector_equal(rv1, rv2);
+        
+        if(i1==47 && i2>43){
+            fprintf(pfnet, "\n");
+            fprintf(pfnet,"\ni1=%d i2=%d k=%d", i1, i2, k);
+            fprintf(pfnet,"\nrv1(%d):\n", i1);
+            gsl_vector_fprintf(pfnet, rv1, "%4.2e");
+            fprintf(pfnet,"\nrv2(%d):\n", i2);
+            gsl_vector_fprintf(pfnet, rv2, "%4.2f");
+        }
         
         if (k == 1) return 1;    // rv1 = rv2; same reaction group (RG)
         
@@ -2329,6 +2338,14 @@ class ReactionVector:  public Utilities {
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1.0);
         kk = gsl_vector_equal(rv1, rv2minus);
+        
+        
+        if(i1==47 && i2>43){
+            fprintf(pfnet, "\n");
+            fprintf(pfnet,"\ni1=%d i2=%d kk=%d", i1, i2, kk);
+            fprintf(pfnet,"\n-rv2(%d):\n", i2);
+            gsl_vector_fprintf(pfnet, rv2minus, "%4.2f");
+        }
        
         // Free the vector. Better solution would be to globally allocate
         // this and remove the repeated allocation all together.
@@ -2345,7 +2362,7 @@ class ReactionVector:  public Utilities {
 
         } else {
             
-            return -1;
+            return -1;   // Something went wrong
             
         }
         
@@ -2403,7 +2420,7 @@ class ReactionVector:  public Utilities {
                 } 
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
-                ck = compareGSLvectors(rvPt+i, rvPt+j);
+                ck = compareGSLvectors(i, j, rvPt+i, rvPt+j);
                 int preRGindex = RGindex[j];
                 
                 if(ck > 0 && RGindex[j] < 0) {
