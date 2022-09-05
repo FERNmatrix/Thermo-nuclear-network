@@ -2263,13 +2263,43 @@ class ReactionVector:  public Utilities {
                 }
                 
                 fprintf(pFileD," ]");
+                
             }
             
+            for(int k=0; k<SIZE; k++){
+                printReactionVectorComponents(rv,k);
+            }
+            
+            
         }  // End function makeReactionVectors()
+        
+        
+        // Static function ReactionVector::printReactionVectorComponents(*v,i)
+        // prints the components of a reaction vector pointed to by v+i.
+        
+        static void printReactionVectorComponents(gsl_vector *v, int i){
+               
+            // Define a pointer to the GSL vector in array entry v[i]
+            
+            gsl_vector *vector = v + i; 
+            
+            printf("\nv[%d]: [", i);
+            
+            for(size_t j=0; j < isy; j++){
+    
+                // Assign the jth component of the vector in v[i] to a variable
+                
+                double component = gsl_vector_get (vector, j);
+                printf ("%3d", (int) component);
+            }
+            
+            printf(" ]");
+            
+        }
     
     
     // ------------------------------------------------------------------------
-    // ReactionVector::compareGSLvectors(rv1,rv2) to compare two GSL vectors 
+    // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
     // of same length, with the vectors being equivalent only if they are
     // equal component by component.  Returns 0 if they are not equivalent,
     // 1 if they are the same, 2 if one vector is the negative of the other. 
@@ -2279,6 +2309,9 @@ class ReactionVector:  public Utilities {
     int static compareGSLvectors(gsl_vector *rv1, gsl_vector *rv2){
         
         int k, kk;
+        
+        ReactionVector::printReactionVectorComponents(rv1, 0);
+        ReactionVector::printReactionVectorComponents(rv2, 0);
         
         // Compare rv1 and rv2. Function gsl_vector_equal(rv1,rv2) returns 1 
         // if vectors are equal and 0 if they are not.
@@ -2343,9 +2376,11 @@ class ReactionVector:  public Utilities {
         // The integer rg labels the reaction group
         
         int rg = -1;
-        int ck = -1;
+        int ck;
         
-        // Initialize
+        // Initialize reaction vector indices that give the reaction group
+        // a reaction vector is in to -1 so that we can tell
+        // if a reaction vector has already been processed.
         
         for(int i=0; i<SIZE; i++){
             RGindex[i] = -1;
@@ -2356,17 +2391,19 @@ class ReactionVector:  public Utilities {
         for (int i=0; i<SIZE; i++){
             
             numberMembers = 1;
-            
             if(i==0) rg ++;
-            
             ck=-1;
 
             for(int j=0; j<SIZE; j++){
                 
-                if(RGindex[i] < 0) RGindex[i] = rg;
+                if(i==47){
+                    ReactionVector::printReactionVectorComponents(rv, i); 
+                    printf(" <--> ");
+                    ReactionVector::printReactionVectorComponents(rv, j);
+                } 
                 
+                if(RGindex[i] < 0) RGindex[i] = rg;
                 ck = compareGSLvectors(rvPt+i, rvPt+j);
-
                 int preRGindex = RGindex[j];
                 
                 if(ck > 0 && RGindex[j] < 0) {
@@ -2375,101 +2412,20 @@ class ReactionVector:  public Utilities {
                     numberMembers ++;
                 }
                     
-                if(i>43)
-                    printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
-                        i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
-                    );
+                if(i>42)  // Temporary diagnostic
+                printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
+                    i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
+                );
+                
             }
             
-            
-            if(i>43)
-            printf("\n");
+            if(i>42) printf("\n");     // Temporary diagnostic
             
             if(numberMembers > 1) rg ++;
 
         }
         
         numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
-        
-        
-//         int rg = -1;
-//         int ck = -1;
-//         
-//         // Initialize array RGindex[] holding the reaction group number
-//         // to which each reaction belongs to -1.
-//         
-//         for(int i=0; i<SIZE; i++){
-//             RGindex[i] = -1;
-//         }
-//         
-//         // Variable numberMembers will keep track of the number of members
-//         // for the reaction group labeled by specific value of rg.
-//         
-//         int numberMembers = 0;
-//         numberSingletRG = 0;
-//         
-//         // Cycle over all reaction vectors (loop in i) and compare them
-//         // pairwise with all reaction vectors (loop in j)
-//         
-//         for (int i=0; i<SIZE; i++){
-//             
-//             if(RGindex[i] < 0) RGindex[i] = rg;
-//             if(numberMembers > 0) rg ++;
-//             numberMembers = 0;
-//             
-//             // Loop over other reaction of pair labeled by (i,j).  Loop 
-//             // only from j=i since we have to check each pair only once. 
-//             // Reaction group is labeled by rg.
-//             
-//             for(int j=0; j<SIZE; j++){
-//                 
-//                 // Compare reaction vectors labeled by i and j.  If
-//                 // ck = 0 the vectors are not equivalent, if ck = 1
-//                 // the vectors are equivalent, and if ck = 2 the
-//                 // vectors are negatives of each other. A pair of
-//                 // reaction vectors having ck=1 or ck=2 are in the 
-//                 // same reaction group. A pair of reaction vectors 
-//                 // having ck=0 are in different reaction groups.
-//                 
-//                 ck = compareGSLvectors(rvPt+i, rvPt+j);
-//                 
-//                 // Based on value of ck, assign to RG.  The condition
-//                 // RGindex[j] < 0 ensures that we don't assign a
-//                 // reaction to a RG more than once (since the array
-//                 // RGindex[] was initialized to -1).
-//                 
-//                 if(ck > 0 && RGindex[j] < 0) {
-//                     
-//                     RGindex[j] = rg;
-//                     numberMembers ++;
-//                 }
-//                 
-//                 if(i>43)
-//                 printf("\ni=%d j=%d numberMembers=%d rg=%d ck=%d RGindex[j]=%d",
-//                        i, j, numberMembers, rg, ck, RGindex[j]
-//                 );
-//                 
-//             } 
-//             
-//             // Store the number of member reactions in this reaction group 
-//             // for later use
-//             
-//             RGnumberMembers[rg] = numberMembers + 1;
-//             
-//             // Count RG that are singlets (only a single reaction)
-//             
-//             if(numberMembers == 1) numberSingletRG ++;
-//             
-//         }
-//         
-//         // If the last trial reaction group has no members, subtract 
-//         // one from rg (which was incremented at the beginning of the trial).
-//         
-//         //if(numberMembers == 0) rg--;
-//         
-//         // Store total number of reaction groups
-//         
-//         numberRG = rg+1; 
         
         // Diagnostic showing reaction group associated with each reaction
         
@@ -2524,13 +2480,6 @@ class ReactionVector:  public Utilities {
         }
         
         fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
-        
-        
-// gsl_vector *neg = rv+44;
-// gsl_vector_scale(neg, -1.0);
-// int comp = gsl_vector_equal(rv+45, neg);
-// printf("\n++++++ comp=%d",comp);
-        
         
     }   // End function sortReactionGroups()
         
@@ -4628,14 +4577,11 @@ int main() {
             ts += " c2=%d fast=%d Q=%4.2f dev=%4.2e lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
-                   plotCounter,iterations,t,dt,dt_desired,totalTimeSteps,
-                   asyFrac, eqFrac,
-                   //(double)totalAsy/(double)ISOTOPES,
-                   //(double)totalEquilRG/(double)numberRG,
-                   sumX,XcorrFac,ECON*netdERelease,
-                   ECON*ERelease,E_R,choice1,choice2,
-                   fastestCurrentRateIndex,reaction[fastestCurrentRateIndex].getQ(),
-                   mostDevious,logTnow,logRhoNow
+                   plotCounter, iterations, t, dt, dt_desired, totalTimeSteps,
+                   asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease,
+                   ECON*ERelease, E_R, choice1, choice2,
+                   fastestCurrentRateIndex, reaction[fastestCurrentRateIndex].getQ(),
+                   mostDevious, logTnow, logRhoNow
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only
