@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5  # 8.5
-height = 3.0   # 4.5
+width = 8
+height = 4
 
 # x-axis resolution
 set samples 1000
@@ -66,8 +66,8 @@ set key outside    # Place legend outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha with PF"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds="C++ Asy and Asy+PE alpha with PF"
+ds = ds.": T9=7 rho=1e8"
 set title ds textcolor rgb title_color
 
 
@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0
+xup = -3
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -17 
-yup = 0
+yup = -4
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -118,14 +118,14 @@ replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
+set key top left inside font "Arial,16"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_stiffstuff.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 22
 replot               # Plot to postscript file
 
 # Plot to PNG file

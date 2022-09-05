@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 3.5
+width = 8
+height = 4
 
 # x-axis resolution
 set samples 1000
@@ -53,8 +53,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,22"
+set ylabel 'Fraction' textcolor rgb tic_color #font "Arial,22"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -67,8 +67,8 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha with PF"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds="C++ Asy and Asy+PE alpha with PF"
+ds = ds.": T9=7 rho=1e8"
 
 set title ds textcolor rgb title_color
 
@@ -76,7 +76,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0.7
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -105,25 +105,18 @@ file1 = "plot1.data"
 
 plot file1 using 1:5 with lines ls 2 title "Frac Asy"
 replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
-#replot file1 using 1:7 with lines ls 9 title "16O"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
-
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,24"
-set ylabel 'Fraction' textcolor rgb tic_color font "Arial,24"
+set title ds textcolor rgb title_color font "Arial,18"
+set key top left inside font "Arial,18"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Fraction' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_frac.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 1.5 "Arial" 20
+set terminal postscript eps size width, height enhanced color solid lw 1.5 "Symbol" 18
 replot               # Plot to postscript file
 
 # Plot to PNG file

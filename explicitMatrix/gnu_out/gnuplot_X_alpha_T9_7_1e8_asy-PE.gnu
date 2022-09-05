@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5 
-height = 8.5
+width = 8 
+height = 4
 
 # x-axis resolution
 set samples 1000
@@ -72,20 +72,20 @@ set key right top outside    # Place legend inside top
 
 set timestamp       # Date/time
 
-ds="Compare C++ and Java, T9=7 rho=1e8"
+ds="Compare C++ Asy and Asy+PE, T9=7 rho=1e8"
 ds = ds.": Alpha network with PF"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 0
+xlow = -16
+xup = -2
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14
 yup = 0
-ytics = 0.5    # Space between major y ticmarks
+ytics = 1    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -100,10 +100,8 @@ set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
-# Reference Asy calculation(T9=7, rho=1e8, no PF)
-
-#file1 = "gnufile_alpha_T9_7_1e8_asy.data"  # No PF
-file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # With PF
+#file1 = "gnufile_alpha_T9_7_1e8_asy.data"  # C++ No PF
+file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # C++ with PF
 
 # Alpha network asymptotic reference (X)
 
@@ -143,8 +141,6 @@ replot file2 using 1:21 with lines ls 14 lw 1.5 dashtype 2 title "60Zn asy+pe"
 replot file2 using 1:22 with lines ls 1 lw 1.5 dashtype 2 title "64Ge asy+pe"
 replot file2 using 1:23 with lines ls 2 lw 1.5 dashtype 2 title "68Se asy+pe"
 
-
-
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,18"
@@ -155,7 +151,7 @@ set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
 # Plot to postscript file
 
 set out "gnuplot_X_alpha_T9_7_1e8_asy-PE.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 18
 replot               # Plot to postscript file
 
 # Plot to PNG file

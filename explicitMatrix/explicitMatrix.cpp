@@ -265,7 +265,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;           // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -361,8 +361,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-8;            // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 8e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-4;            // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -372,7 +372,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 7e-3; //massTol_asyPE;                    // Absolute error tolerance
+double EpsA = massTol_asyPE;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -3739,9 +3739,9 @@ class Integrate: public Utilities {
             // Ensure timestep not larger than fraction dt_ceiling of time,
             // for accuracy.
             
-            dtt = min(dtt, dt_ceiling * t);
+            dtt = min(dtt, dt_ceiling*t);
             
-            //if(dtt > dt_ceiling * t) dtt = dt_ceiling * t;
+            //if(t<1e-9) dtt = 0.2*t;
             
             // If timestep would cause t+dt to be larger than the next
             // plot output step, reduce trial dt to be equal to upfac times

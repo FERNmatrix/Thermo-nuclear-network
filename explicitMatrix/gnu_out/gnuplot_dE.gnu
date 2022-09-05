@@ -15,11 +15,11 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 3.0
+width = 8
+height = 4
 
 # x-axis resolution
-set samples 2000
+set samples 1000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -66,19 +66,19 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha with PF"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds="C++ Asy and Asy+PE, alpha with PF"
+ds = ds.": T9=7 rho=1e8"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0.7
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 14
-yup = 24
+ylow = 15
+yup = 29
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -92,27 +92,23 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-
-#file1 = "gnufile_alpha_T9_7_1e8_asy.data"
-
-#plot file1 using 1:4 with lines ls 1 lw 1.0 dashtype 1 title "Asy log |dE/dt|"
-
-#file2 = "gnufile.data"
+file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 file2 = "plot1.data"
 
-plot file2 using 1:4 with lines ls 11 lw 1.0 dashtype 1 title " log10 |dE/dt|"
+plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title "Asy log10 |dE/dt|"
+replot file2 using 1:4 with lines ls 11 lw 1.5 dashtype 2 title " log10 |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,28"
+set title ds textcolor rgb title_color font "Arial,18"
+set key bottom left inside font "Arial,18"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_dE.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 18
 replot               # Plot to postscript file
 
 # Plot to PNG file

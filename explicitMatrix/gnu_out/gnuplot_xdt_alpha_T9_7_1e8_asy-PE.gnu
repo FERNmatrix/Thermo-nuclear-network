@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 8.0  # 8.5
-height = 5.0   # 4.5
+height = 4.0   # 4.5
 
 # x-axis resolution
 set samples 1000
@@ -66,8 +66,8 @@ set key outside     # Place legend outside top
 
 set timestamp       # Date/time
 
-ds="Asy-PE and Asy timestepping"
-ds = ds.": alpha T9=7 rho=1e8, with PF"
+ds="C++ Asy and Asy+PE alpha with PF"
+ds = ds.": T9=7 rho=1e8"
 set title ds textcolor rgb title_color
 
 
@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = 0
+xup = -2
 xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -17 
-yup = -1
+yup = -2
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
