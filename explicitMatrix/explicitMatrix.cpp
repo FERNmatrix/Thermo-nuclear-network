@@ -309,7 +309,7 @@ double currentPF[ISOTOPES];
 
 bool isAsy[ISOTOPES];
 double asycheck;              // Species asymptotic if asycheck > 1.0
-double asyFrac;               // Fraction isotopes that are asymptotic
+double asyFrac = 0.0;         // Fraction isotopes that are asymptotic
 
 // Whether isotope part of any RG in partial equilibrium this timestep
 
@@ -568,7 +568,7 @@ char dasher[] = "---------------------------------------------";
 int numberRG;                 // Number of partial equilibrium reaction groups
 int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
 int numberSingletRG;          // # RG with only a single member reactions
-double eqFrac;                // Fraction of RG equilibrated
+double eqFrac = 0.0;          // Fraction of RG equilibrated
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -3547,11 +3547,13 @@ class Integrate: public Utilities {
             totalTimeSteps ++; 
             
             // Choose massTol parameter
+            
             double eqCut = 0.15;
+            
             if(doPE && eqFrac > eqCut){
                 massTol = massTol_asyPE;  // If there are enough equilibrated RG
             } else {
-                massTol = massTol_asy;    // If no equilibrated RG
+                massTol = massTol_asy;    // If too few equilibrated RG
             }
 
             // Store quantities from previous timestep
