@@ -103,7 +103,7 @@ set grid   # set x-y grid at major ticmarks
 # Reference Asy calculation(T9=7, rho=1e8, no PF)
 
 #file1 = "gnufile_alpha_T9_7_1e8_asy.data"  # No PF
-file1 = "gnufile_alpha_T9_7_1e8_asy_PF.data"  # With PF
+file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # With PF
 
 # Alpha network asymptotic reference (X)
 

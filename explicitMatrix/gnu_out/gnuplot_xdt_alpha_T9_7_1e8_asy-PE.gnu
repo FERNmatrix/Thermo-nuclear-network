@@ -106,9 +106,9 @@ file3 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # C++ Asy (1e-8)
 # Plot data
 
 plot file1 using 1:5 with lines ls 1 lw 1.5 dashtype 2 title "log 2/Rmax"
-replot file3 using 1:2 with lines ls 10 lw 1.5 dashtype 1 title "log dt (asy C++)"
+replot file3 using 1:2 with lines ls 3 lw 1.5 dashtype 1 title "log dt (asy C++ 1e-8)"
 replot file1 using 1:2 with lines ls 2 lw 1.5 dashtype 1 title "log dt (asy+PE C++)"
-replot file2 using 1:2 with lines ls 3 lw 1.5 dashtype 1 title "log dt (asy java)"
+replot file2 using 1:2 with lines ls 10 lw 1.5 dashtype 1 title "log dt (asy java 1e-9)"
 
 # Plot dt vs t reference lines
 

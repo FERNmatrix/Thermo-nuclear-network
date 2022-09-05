@@ -309,6 +309,7 @@ double currentPF[ISOTOPES];
 
 bool isAsy[ISOTOPES];
 double asycheck;              // Species asymptotic if asycheck > 1.0
+double asyFrac;               // Fraction isotopes that are asymptotic
 
 // Whether isotope part of any RG in partial equilibrium this timestep
 
@@ -342,7 +343,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e0;                // Stop time for integration
+double stop_time = 1e-2;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -353,6 +354,7 @@ double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
 double dt_desired;                     // dt desired but prevented by plot timestep
+double dt_ceiling = 0.1;               // Max timestep is dt_ceiling*t, for accuracy
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
@@ -370,7 +372,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-3;                    // Absolute error tolerance
+double EpsA = 7e-3; //massTol_asyPE;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -566,6 +568,7 @@ char dasher[] = "---------------------------------------------";
 int numberRG;                 // Number of partial equilibrium reaction groups
 int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
 int numberSingletRG;          // # RG with only a single member reactions
+double eqFrac;                // Fraction of RG equilibrated
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -3521,10 +3524,10 @@ class Integrate: public Utilities {
         
         // Static function Integrate::doIntegrationStep() that may be invokied
         // to execute a single integration step.  Assumes that all fluxes have
-        // been calculated,and relevant fluxes set to zero if PE approximation
+        // been calculated, and relevant fluxes set to zero if PE approximation
         // and the reaction group has been judged to be in equilibrium.
         // Declared static so that it can be invoked directly from the class as
-        // Integrate::doIntegrationStep(),without having to instantiate an 
+        // Integrate::doIntegrationStep(), without having to instantiate an 
         // Integrate object.
         
         static void doIntegrationStep(){
@@ -3539,14 +3542,14 @@ class Integrate: public Utilities {
             
             // Increment integration step counter for the timestep we are
             // about to execute. Time at the end of this timestep will
-            // be set near the end of this funciton.
+            // be set near the end of this function.
             
             totalTimeSteps ++; 
             
             // Choose massTol parameter
-            
-            if(doPE && totalEquilRG > 0){
-                massTol = massTol_asyPE;  // If there are equilibrated RG
+            double eqCut = 0.15;
+            if(doPE && eqFrac > eqCut){
+                massTol = massTol_asyPE;  // If there are enough equilibrated RG
             } else {
                 massTol = massTol_asy;    // If no equilibrated RG
             }
@@ -3731,16 +3734,19 @@ class Integrate: public Utilities {
             
             diffXfinal = diffX;
             
-            // Ensure timestep not larger than 10% of time,for accuracy
+            // Ensure timestep not larger than fraction dt_ceiling of time,
+            // for accuracy.
             
-            if(dtt > 0.1*t) dtt = 0.1*t;
+            dtt = min(dtt, dt_ceiling * t);
+            
+            //if(dtt > dt_ceiling * t) dtt = dt_ceiling * t;
             
             // If timestep would cause t+dt to be larger than the next
-            // plot output step,reduce trial dt to be equal to the
-            // next plot output step.
+            // plot output step, reduce trial dt to be equal to upfac times
+            // the next plot output step.
             
             dt_desired = dtt;
-            double upfac = 1.0;
+            double upfac = 1.5;
             double gap = upfac*nextPlotTime - t_saved;
 
             if(dtt > gap && gap > 0){
@@ -4587,6 +4593,12 @@ int main() {
             if (isAsy[i]){totalAsy ++;}
         }
         
+        // Compute fraction of isotopes satisfying the asymptotic condition,
+        // and fraction of reaction groups satisfying equilibrium condition.
+        
+        asyFrac = (double)totalAsy/(double)ISOTOPES;
+        eqFrac = (double)totalEquilRG/(double)numberRG;
+        
         // ---------------------------------------------------------------------------------
         // Display and output to files updated quantities at plotSteps times corresponding
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
@@ -4615,8 +4627,9 @@ int main() {
             
             printf(Utilities::stringToChar(ts),
                    plotCounter,iterations,t,dt,dt_desired,totalTimeSteps,
-                   (double)totalAsy/(double)ISOTOPES,
-                   (double)totalEquilRG/(double)numberRG,
+                   asyFrac, eqFrac,
+                   //(double)totalAsy/(double)ISOTOPES,
+                   //(double)totalEquilRG/(double)numberRG,
                    sumX,XcorrFac,ECON*netdERelease,
                    ECON*ERelease,E_R,choice1,choice2,
                    fastestCurrentRateIndex,reaction[fastestCurrentRateIndex].getQ(),
