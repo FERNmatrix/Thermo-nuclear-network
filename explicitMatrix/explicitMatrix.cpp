@@ -2322,7 +2322,7 @@ class ReactionVector:  public Utilities {
             fprintf(pfnet, "\n");
             fprintf(pfnet,"\ni1=%d i2=%d k=%d", i1, i2, k);
             fprintf(pfnet,"\nrv1(%d):\n", i1);
-            gsl_vector_fprintf(pfnet, rv1, "%4.2e");
+            gsl_vector_fprintf(pfnet, rv1, "%4.2f");
             fprintf(pfnet,"\nrv2(%d):\n", i2);
             gsl_vector_fprintf(pfnet, rv2, "%4.2f");
         }
@@ -2385,9 +2385,9 @@ class ReactionVector:  public Utilities {
         // assign to reaction groups. The pointer rvPt points to the beginning
         // of the array rv[] of GSL reaction vectors (rvPt points to to rv[0], 
         // rvPt+1 points to rv[1], rvPt+2 points to rv[2], ...). The integer 
-        // rg labels the reaction group.  The integer ck indicates whether 
-        // a pair of vectors are equivalent (ck = 1), are the negative of each 
-        // other (ck = 2), or are not equivalent (ck = 0).
+        // rg labels the reaction group currently being filled.  The integer ck 
+        // indicates whether a pair of vectors are equivalent (ck = 1), are 
+        // the negative of each other (ck = 2), or are not equivalent (ck = 0).
         
         
         // The integer rg labels the reaction group
