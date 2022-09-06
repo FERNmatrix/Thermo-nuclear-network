@@ -2299,7 +2299,7 @@ class ReactionVector:  public Utilities {
     
     
     // ------------------------------------------------------------------------
-    // ReactionVector::compareGSLvectors(rv1, rv2) to compare two GSL vectors 
+    // ReactionVector::compareGSLvectors(i1,i2, rv1, rv2) to compare two GSL vectors 
     // of same length, with the vectors being equivalent only if they are
     // equal component by component.  Returns 0 if they are not equivalent,
     // 1 if they are the same, 2 if one vector is the negative of the other. 
@@ -2318,7 +2318,7 @@ class ReactionVector:  public Utilities {
         
         k = gsl_vector_equal(rv1, rv2);
         
-        if(i1==47 && i2>43){
+        if(i1==47 && i2>43){    // Diagnostics
             fprintf(pfnet, "\n");
             fprintf(pfnet,"\ni1=%d i2=%d k=%d", i1, i2, k);
             fprintf(pfnet,"\nrv1(%d):\n", i1);
@@ -2340,7 +2340,7 @@ class ReactionVector:  public Utilities {
         kk = gsl_vector_equal(rv1, rv2minus);
         
         
-        if(i1==47 && i2>43){
+        if(i1==47 && i2>43){    // Diagnostics
             fprintf(pfnet, "\n");
             fprintf(pfnet,"\ni1=%d i2=%d kk=%d", i1, i2, kk);
             fprintf(pfnet,"\n-rv2(%d):\n", i2);
