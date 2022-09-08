@@ -2414,8 +2414,6 @@ if(i1>44 && i2>44){
         // rg labels the reaction group currently being filled.  The integer ck 
         // indicates whether a pair of vectors are equivalent (ck = 1), are 
         // the negative of each other (ck = 2), or are not equivalent (ck = 0).
-        
-        
         // The integer rg labels the reaction group
         
         int rg = -1;
@@ -2430,11 +2428,6 @@ if(i1>44 && i2>44){
         }
         
         int numberMembers;
-    
-// Diagnostics
-// for(int i=0; i<SIZE; i++){
-//     ReactionVector::printReactionVectorComponents(rv, i); 
-// }
         
         for (int i=0; i<SIZE; i++){
             
@@ -2442,6 +2435,8 @@ if(i1>44 && i2>44){
             if(i==0) rg ++;
             ck=-1;
 
+            // For diagnostic purposes, start j at 0, but since we only need 
+            // compare pairwise, it can start at j=i.
             for(int j=0; j<SIZE; j++){
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
