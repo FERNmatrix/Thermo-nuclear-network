@@ -3,7 +3,7 @@ CFLAGS=-I. -g3
 
 #compiler flags
 LIBS=-lgsl -lgslcblas -lgmp -g
-all: explicitMatrix.cpp  #EMATS.cpp # TEST.cpp #NATS.cpp CEM.cpp #dtrange.cpp CATS.cpp
+all: explicitMatrix.cpp  vectorTest #EMATS.cpp # TEST.cpp #NATS.cpp CEM.cpp #dtrange.cpp CATS.cpp
 #	$(CC) -o EMATS EMATS.cpp $(CFLAGS) $(LIBS)
 #	$(CC) -o TEST TEST.cpp $(CFLAGS) $(LIBS)
 #	$(CC) -o NATS NATS.cpp $(CFLAGS) $(LIBS)
@@ -12,6 +12,9 @@ all: explicitMatrix.cpp  #EMATS.cpp # TEST.cpp #NATS.cpp CEM.cpp #dtrange.cpp CA
 	$(CC) -o EM.out explicitMatrix.cpp $(CFLAGS) $(LIBS)
 #	$(CC) -o dtrange dtrange.cpp $(CFLAGS) $(LIBS)
 #	$(CC) -o CATS CATS.cpp $(CFLAGS) $(LIBS)
+
+vectorTest: vectorTest.cpp
+	$(CC) -o vectorTest vectorTest.cpp $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 
