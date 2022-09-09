@@ -2307,7 +2307,6 @@ class ReactionVector:  public Utilities {
             // Define a pointer to the GSL vector in array entry v[i]
             
             gsl_vector *vector = v; 
-            
             fprintf(pfnet, "rv[]: [");
             
             for(size_t j=0; j < isy; j++){
@@ -2342,25 +2341,24 @@ class ReactionVector:  public Utilities {
         // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
         // if vectors are equal and 0 if they are not.
  
-// Diagnostics
-//if(i1<5 && i2<5){
-    fprintf(pfnet, "\n");
-    fprintf(pfnet,"COMPARE: i=%d j=%d\n", i1, i2);
-    //fprintf(pfnet,"\nrv1(%d):\n", i1);
-    //gsl_vector_fprintf(pfnet, rv1, "%4.2f");
-    ReactionVector::printReactionVectorComponents(rv1, i1);
-    //fprintf(pfnet,"\nrv2(%d):\n", i2);
-    //gsl_vector_fprintf(pfnet, rv2, "%4.2f");
-    ReactionVector::printReactionVectorComponents(rv2, i2);
-    //ReactionVector::printReactionVectorComponents(rvPt+47, 47);
-//}
+        // *************************
+        // Temporary diagnostics
+        fprintf(pfnet, "\n");
+        fprintf(pfnet,"COMPARE: i=%d j=%d\n", i1, i2);
+        ReactionVector::printReactionVectorComponents(rv1, i1);
+        ReactionVector::printReactionVectorComponents(rv2, i2);
+        // *************************
         
         k = gsl_vector_equal(rv1, rv2);
         
         if (k == 1){
             
+            // **********************
+            // Temporary diagnostics
             fprintf(pfnet, "VECTORS MATCH\n");
             ReactionVector::printReactionVectorComponents(rvPt+47, 47);
+            // ***********************
+            
             return 1;    // rv1 = rv2; same reaction group (RG)
         } 
         
@@ -2374,14 +2372,11 @@ class ReactionVector:  public Utilities {
         gsl_vector_scale(rv2minus, -1.0);
         kk = gsl_vector_equal(rv1, rv2minus);
         
-// Diagnostics
-//if(i1<5 && i2<5){ 
-    //fprintf(pfnet, "\n");
-    //fprintf(pfnet,"\n-rv2(%d):\n", i2);
-    //gsl_vector_fprintf(pfnet, rv2minus, "%4.2f");
-    fprintf(pfnet,"-");
-    ReactionVector::printReactionVectorComponents(rv2minus, i2);
-//}
+        // ********************
+        // Temporary diagnostics
+        fprintf(pfnet,"-");
+        ReactionVector::printReactionVectorComponents(rv2minus, i2);
+        // *********************
        
         // Free the vector. Better solution would be to globally allocate
         // this and remove the repeated allocation all together.
@@ -2390,18 +2385,23 @@ class ReactionVector:  public Utilities {
  
         if(kk == 0){
             
+            // Temporaray diagnostics
             fprintf(pfnet, "NO MATCH (%d and %d)\n", i1, i2);
             ReactionVector::printReactionVectorComponents(rvPt+47, 47);
+            
             return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
             
         } else if (kk == 1){
+            
+            //Temporary diagnostics
             fprintf(pfnet, "MATCH UP TO SIGN\n");
             ReactionVector::printReactionVectorComponents(rvPt+47, 47);
+            
             return 2;    // rv1 = -rv2; same reaction group
 
         } else {
             
-            return -1;   // Something went wrong
+            return -1;   // Something went wrong; should never get here
             
         }
         
@@ -2449,23 +2449,12 @@ class ReactionVector:  public Utilities {
             if(i==0) rg ++;
             ck=-1;
 
-            // For diagnostic purposes, start j at 0, but since we only need 
-            // compare pairwise, it can start at j=i.
+            // Since we only need to compare pairwise, inner loop can 
+            // start at j=i.
+            
             for(int j=i; j<SIZE; j++){
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
- 
-// Diagnostics
-// if(i>44 && j>44){ 
-//     fprintf(pfnet, "\n");
-//     fprintf(pfnet,"\nBEFORE COMPARE: i=%d j=%d", i, j);
-//     fprintf(pfnet,"\nrv1(%d):\n", i);
-//     gsl_vector_fprintf(pfnet, rvPt+i, "%4.2f");
-//     ReactionVector::printReactionVectorComponents(rvPt+i);
-//     fprintf(pfnet,"\nrv2(%d):\n", j);
-//     gsl_vector_fprintf(pfnet, rvPt+j, "%4.2f");
-//     ReactionVector::printReactionVectorComponents(rvPt+j);
-// }
                 
                 // rvPt is pointer to the origin of the array of reaction 
                 // vectors rv[].  Thus, rvPt+i points to the vector rv[i] 
@@ -2481,14 +2470,7 @@ class ReactionVector:  public Utilities {
                     numberMembers ++;
                 }
                 
-// Diagnostics                   
-if(i>42 && j>42) 
-printf("\ni=%d j=%d rg=%d %s %s ck=%d preRGindex=%d RGindex[%d]=%d",
-    i, j, rg, reacLabel[i], reacLabel[j], ck, preRGindex, j, RGindex[j]
-);
-                
             }
-if(i>44) printf("\n");     // Temporary diagnostic
             
             if(numberMembers > 1) rg ++;
 
@@ -2539,8 +2521,8 @@ if(i>44) printf("\n");     // Temporary diagnostic
         fprintf(pfnet,"\n");
         
         fprintf(pfnet, "\n");
-        fprintf(pfnet, "\nCHECK: Sum");
-        fprintf(pfnet, " over members of each RG should equal total number of reactions SIZE.\n");
+        fprintf(pfnet, "\nCHECK: Sum over members of ");
+        fprintf(pfnet, "each RG should equal total number of reactions SIZE.\n");
         
         int resum = 0;
         for(int i=0; i<numberRG; i++){
