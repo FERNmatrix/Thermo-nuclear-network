@@ -868,3 +868,6 @@ printf"\ni=%d j=%d ck=%d rg=%d RGindex[%d]=%d members=%d %s with %s",i,j,ck,rg,j
 cont
 end
 
+(gdb)x/16gf rvPt[15]->data
+
+
