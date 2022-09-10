@@ -2,18 +2,10 @@
 #include <algorithm>
 #include <functional>
 
-/**------------------------------------------------------------------------
-ReactionVector::compareGSLvectors(i1, i2, rv1, rv2) to compare two GSL vectors 
-of same length, with the vectors being equivalent only if they are
-equal component by component.  Returns 0 if they are not equivalent,
-1 if they are the same, 2 if one vector is the negative of the other. 
-The last two arguments of the function are pointers to the two GSL vectors
-to be compared, i1 is the index of the vector rv1 in the gsl vector array 
-rv[], and i2 is the index of the vector rv2 in the array rv[].
-------------------------------------------------------------------------*/
-
 /**
  * Compare two vectors
+ * @param rv1 First vector to compare
+ * @param rv2 Second vector to compare
  * @return 0 if the vectors are not equal, 1 if they are the same, 2 if one
  * vector is the negative of the other
  */
