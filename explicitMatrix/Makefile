@@ -17,7 +17,7 @@ vectorOps: vectorOps.cpp
 	$(CC) -c vectorOps.cpp
 
 # make sure boost-test is installed before calling this target
-# dnf install boost-test
+# dnf install boost-test boost-devel
 BOOST_TEST_LIBS=-lboost_unit_test_framework
 vectorTest: vectorTest.cpp vectorOps
 	$(CC) -o vectorTest vectorTest.cpp vectorOps.o $(CFLAGS) $(LIBS) $(BOOST_TEST_LIBS)
