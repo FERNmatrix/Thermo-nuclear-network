@@ -8,7 +8,7 @@
  * dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
  * In this compile command the -o specifies thse name of the executable created in the
  * compile,the -lgsl flag links to GSL libraries,the -lgslcblas flag
- * links to GSL BLAS libraries,the -lm flag may be required in GCC Linux to get the 
+ * links to GSL BLAS libraries, the -lm flag may be required in GCC Linux to get the 
  * math.h header to work for defining pow, exp, log,...,(see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
  * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
@@ -307,7 +307,7 @@ double currentPF[ISOTOPES];
 // Array to hold whether given species satisfies asymptotic condition
 // True (1) if asyptotic; else false (0).
 
-bool isAsy[ISOTOPES];
+bool isAsy[ISOTOPES];         // True if isotope is asymptotic
 double asycheck;              // Species asymptotic if asycheck > 1.0
 double asyFrac = 0.0;         // Fraction isotopes that are asymptotic
 
@@ -343,7 +343,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-2;                // Stop time for integration
+double stop_time = 1e-2;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -353,7 +353,7 @@ double dt_change;                      // Change in proposed dt from last timest
 double t_end;                          // End time for this timestep
 double dt_new;                         // Variable used in computeNextTimeStep()
 double dtmin;                          // Variable used in computeNextTimeStep()
-double dt_desired;                     // dt desired but prevented by plot timestep
+double dt_desired;                     // dt desired if not prevented by plot timestep
 double dt_ceiling = 0.1;               // Max timestep is dt_ceiling*t, for accuracy
 
 double dt_FE = dt_start;               // Max stable forward Euler timestep
@@ -361,7 +361,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-4;            // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -372,7 +372,7 @@ int totalIterations;                   // Total number of iterations,all steps t
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;                    // Absolute error tolerance
+double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -386,35 +386,26 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilibrateTime = start_time;  // Time to begin checking for PE
-double equiTol = 0.01;                // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;              // Max allowed deviation from equil k ratio in timestep
+double equilTime = start_time;  // Time to begin checking for PE
+
+double equiTol = 0.001;                // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.10;             // Max allowed deviation from equil k ratio in timestep
 double thisDevious;                   // Deviation of kratio from equil
 double mostDevious = 0.0;             // Largest current deviation of kratio from equil
 int mostDeviousIndex;                 // Index of RG with mostDevious
 int choice1;                          // Diagnostic variable for new timestepper
 int choice2;                          // Diagnostic variable for new timestepper
 
-
-// Threshold abundance for imposing equil in reactions.  There may be numerical
-// issues if the PE algorithm is imposed for very small abundances early in
-// the calculation.
-
-double Ythresh = 1.0e-24;
-
 double logTnow;                      // Log10 of current temp
 double logRhoNow;                    // Log10 of current rho
 double dt;                           // Current integration timestep
+double dtLast;                       // Last timestep
 double t;                            // Current time in integration
 int totalTimeSteps;                  // Number of integration timesteps taken
 int totalTimeStepsZero;              // Timestep when plotting starts
 int plotCounter;                     // Plot output counter
 double logTimeSpacing;               // Constant spacing of plot points in log time
-double deltaTime;                    // dt for current integration step
 int totalAsy;                        // Total number of asymptotic isotopes
-
-double dtLast;                       // Last timestep
-bool isValidUpdate;                  // Whether timestep accepted
 
 double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
 double sumXeq;                       // Sum X species in at least 1 equilibrated RG
@@ -427,14 +418,13 @@ double diffXzero;                    // diffX before computeTimeStep_EA (a,b) it
 double diffXfinal;                   // diffX after computeTimeStep_EA (a,b) iteration
 double sumXtrue;                     // True (un-renormalized) sumX
 
-double maxdYdt;                      // Maximum current dY/dt in network
-int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
-
 double Rate[SIZE];                   // Reaction rate from Reactions::computeRate()
+double Flux[SIZE];                   // Flux from Reactions::computeFlux()
 bool reacLibWarn;                    // Warning flag for T out of ReacLib bounds
 double warnTime;                     // Time for 1st violation associated with reacLibWarn
 double warnT;                        // Temperature at warnTime
-double Flux[SIZE];                   // Flux from Reactions::computeFlux()
+double maxdYdt;                      // Maximum current dY/dt in network
+int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
 
 
 // --- Species data in following arrays also contained in fields of class Species
@@ -3364,7 +3354,7 @@ class ReactionGroup:  public Utilities {
         
         if (isEquil && thisDevious < deviousMax) {
             return;
-        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilibrateTime) {
+        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilTime) {
             removeFromEquilibrium(1);
             return;
         }
@@ -3396,10 +3386,10 @@ class ReactionGroup:  public Utilities {
         bool lastEquilState = isEquil;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
-        // time is before the time to allow equilibration equilibrateTime,and true 
+        // time is before the time to allow equilibration equilTime,and true 
         // otherwise.
             
-        if (t > equilibrateTime && maxRatio < 1) {
+        if (t > equilTime && maxRatio < 1) {
             isEquil = true;
             if (lastEquilState != isEquil) addToEquilibrium();
         } else {
@@ -3410,7 +3400,7 @@ class ReactionGroup:  public Utilities {
         // Set the activity array for each reaction in reaction group to true if not in 
         // equil and false if it is,if we are imposing equilibrium.
         
-        if (doPE && t > equilibrateTime) {
+        if (doPE && t > equilTime) {
             
             for (int i = 0; i < numberMemberReactions; i++) {
                 int ck = memberReactions[i];
@@ -3551,7 +3541,7 @@ class Integrate: public Utilities {
             double eqCut = 0.15;
             
             if(doPE && eqFrac > eqCut){
-                massTol = massTol_asyPE;  // If there are enough equilibrated RG
+                massTol = massTol_asyPE;  // If enough equilibrated RG
             } else {
                 massTol = massTol_asy;    // If too few equilibrated RG
             }
@@ -4560,7 +4550,7 @@ int main() {
         // Compute equilibrium conditions for the state at the end of this timestep (starting time
         // for next timestep) if partial equilibrium is being implemented (doPE = true).
         
-        if( (doPE && t > equilibrateTime)){
+        if( (doPE && t > equilTime)){
             
             for(int i = 0; i < numberRG; i++) {
                 RG[i].computeEquilibrium();
@@ -4575,7 +4565,7 @@ int main() {
             }
         }
         
-        // If showPE == true (so doPE == false),count RG that would be in equilibrium 
+        // If showPE == true (so doPE == false), count RG that would be in equilibrium 
         // if doPE were true in current Asy or QSS calculations w/o PE.
         
         if(showPE){
@@ -5063,14 +5053,14 @@ void showParameters(){
     
     if(hydroProfile){
         printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
-               massTol_asy,massTol_asyPE,sf,equiTol,equilibrateTime);
+               massTol_asy,massTol_asyPE,sf,equiTol,equilTime);
     } else {
         printf("\nT9=%6.3e (constant) rho=%6.3e (constant) massTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
-               T9,rho,massTol_asy,massTol_asyPE,sf,equiTol,equilibrateTime);
+               T9,rho,massTol_asy,massTol_asyPE,sf,equiTol,equilTime);
     }
     
-    printf("\nmaxit=%d downbumper=%6.3f EpsA=%5.2e EpsR=%5.2e",
-           maxit,downbumper,EpsA,EpsR
+    printf("\nmaxit=%d downbumper=%6.3f EpsA=%5.2e EpsR=%5.2e deviousMax=%5.3f",
+           maxit, downbumper, EpsA, EpsR, deviousMax
     );
     cout << "\nNetwork: " << networkFile;
     cout << "  Rates: " << rateLibraryFile;
