@@ -75,6 +75,8 @@
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
 #include <vector>
+#include <algorithm>
+#include <functional>
 #include <mcheck.h>        // Memory debugging
 
 using namespace std;
@@ -2210,27 +2212,55 @@ class ReactionVector:  public Utilities {
 
             }
             
-            // Display std:vector components
+            // Display std:vector components just created
             
             cout << "\n\nSTD REACTION VECTORS\n\n";
             
+            // Outer loop over elements of vector array
+            
             for (int i = 0; i < SIZE; i++) {
                 
-                cout << "RV[" << i << "]" << ": [ ";
+                cout << "RV[" << i << "]" << ": [";
                 
-                // Displaying element at each column,
-                // begin() is the starting iterator,
-                // end() is the ending iterator
-                for (auto it = RV[i].begin();
-                     it != RV[i].end(); it++) {
+                // Inner iterates over components of each vector. Starting iterator 
+                // is specified by .begin() and ending iterator is specified by 
+                // .end(). The auto keyword asks the compiler to deduce the type 
+                // of the variable iter from the context.
+                
+                for (auto iter = RV[i].begin();
+                     iter != RV[i].end(); iter++) {
                     
-                    // (*it) is used to get the
-                    // value at iterator is
-                    // pointing
-                    cout << *it << ' ';
-                     }
-                     cout << "]" << endl;
+                    // *iter gets the value pointed to by the iterator
+                    
+                    printf("%3d", *iter);
+                    //cout << *iter << ' ';
+                
+                }
+                     cout << " ]" << endl;
             }
+            
+            // Now compare reaction vectors pairwise
+            
+            std::vector<int> vec1;
+            std::vector<int> vec2;
+            
+            for (int i=0; i<SIZE; i++){
+                
+                vec1 =  RV[i];
+            
+                for (int j=i; j<SIZE; j++){
+                    
+                    vec2 =  RV[j];
+                    int checker = compareVectors(vec1, vec2);
+                    
+                    if(checker > 0)
+                    printf("\ni=%d j=%d %s <-> %s ck=%d", 
+                        i, j, reacLabel[i], reacLabel[j], checker);
+                }
+                
+            } 
+            
+
             
             
             // -----------------------------------------------------------------------
@@ -2313,6 +2343,59 @@ class ReactionVector:  public Utilities {
         }  // End function makeReactionVectors()
         
         
+        /**
+         * Compare two vectors
+         * @param rv1 First vector to compare
+         * @param rv2 Second vector to compare
+         * @return 0 if the vectors are not equal, 1 if they are the same, 2 if one
+         * vector is the negative of the other
+         */
+        
+        static int compareVectors(const std::vector<int> & rv1, const std::vector<int> & rv2) {
+            
+            int retVal = 0;
+            // Check for element-wise equality
+            auto equal = std::equal(rv1.begin(),rv1.end(),rv2.begin(),rv2.end());
+            // If not equal, are they negated images?
+            if (!equal) {
+                // Flip rv2 by using the handy transformation instead of a for loop
+                std::vector<int> flippedRv2(rv2);
+                std::transform(rv2.begin(), rv2.end(), flippedRv2.begin(),
+                               std::bind(std::multiplies<int>(), std::placeholders::_1, -1.0));
+                // Check the value and set the flag
+                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
+                if (flipped) retVal = 2;
+            } else {
+                // Just flip the flag
+                retVal = 1;
+            }
+            
+            return retVal;
+        }
+        
+//         int compareVectors(const std::vector<double> & rv1, const std::vector<double> & rv2) {
+//             
+//             int retVal = 0;
+//             // Check for element-wise equality
+//             auto equal = std::equal(rv1.begin(),rv1.end(),rv2.begin(),rv2.end());
+//             // If not equal, are they negated images?
+//             if (!equal) {
+//                 // Flip rv2 by using the handy transformation instead of a for loop
+//                 std::vector<double> flippedRv2(rv2);
+//                 std::transform(rv2.begin(), rv2.end(), flippedRv2.begin(),
+//                                std::bind(std::multiplies<double>(), std::placeholders::_1, -1.0));
+//                 // Check the value and set the flag
+//                 bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
+//                 if (flipped) retVal = 2;
+//             } else {
+//                 // Just flip the flag
+//                 retVal = 1;
+//             }
+//             
+//             return retVal;
+//         }
+        
+        
         // Static function ReactionVector::printReactionVectorComponents(*v,i)
         // prints the components of a reaction vector pointed to by *v to
         // pfnet --> gnu_out/network.data.
@@ -2360,7 +2443,7 @@ class ReactionVector:  public Utilities {
             fprintf(pfnet, " ]\n");
             
         }
-        
+       
         
     
     // ------------------------------------------------------------------------
