@@ -74,6 +74,7 @@
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
+#include <vector>
 #include <mcheck.h>        // Memory debugging
 
 using namespace std;
@@ -386,45 +387,45 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = start_time;  // Time to begin checking for PE
+double equilTime = start_time;    // Time to begin checking for PE
 
-double equiTol = 0.001;                // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.10;             // Max allowed deviation from equil k ratio in timestep
-double thisDevious;                   // Deviation of kratio from equil
-double mostDevious = 0.0;             // Largest current deviation of kratio from equil
-int mostDeviousIndex;                 // Index of RG with mostDevious
-int choice1;                          // Diagnostic variable for new timestepper
-int choice2;                          // Diagnostic variable for new timestepper
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.10;         // Max allowed deviation from equil k ratio in timestep
+double thisDevious;               // Deviation of kratio from equil
+double mostDevious = 0.0;         // Largest current deviation of kratio from equil
+int mostDeviousIndex;             // Index of RG with mostDevious
+int choice1;                      // Diagnostic variable for new timestepper
+int choice2;                      // Diagnostic variable for new timestepper
 
-double logTnow;                      // Log10 of current temp
-double logRhoNow;                    // Log10 of current rho
-double dt;                           // Current integration timestep
-double dtLast;                       // Last timestep
-double t;                            // Current time in integration
-int totalTimeSteps;                  // Number of integration timesteps taken
-int totalTimeStepsZero;              // Timestep when plotting starts
-int plotCounter;                     // Plot output counter
-double logTimeSpacing;               // Constant spacing of plot points in log time
-int totalAsy;                        // Total number of asymptotic isotopes
+double logTnow;                   // Log10 of current temp
+double logRhoNow;                 // Log10 of current rho
+double dt;                        // Current integration timestep
+double dtLast;                    // Last timestep
+double t;                         // Current time in integration
+int totalTimeSteps;               // Number of integration timesteps taken
+int totalTimeStepsZero;           // Timestep when plotting starts
+int plotCounter;                  // Plot output counter
+double logTimeSpacing;            // Constant spacing of plot points in log time
+int totalAsy;                     // Total number of asymptotic isotopes
 
-double sumX;                         // Sum of mass fractions X(i).  Should be 1.0.
-double sumXeq;                       // Sum X species in at least 1 equilibrated RG
-double sumXNeq;                      // Sum X species not in an equilibrated RG
-double sumXtot;                      // Sum X all species
-double XcorrFac;                     // Equil normalization factor for timestep
-double sumXlast;                     // sumX from last timestep
-double diffX;                        // sumX - sumXlast
-double diffXzero;                    // diffX before computeTimeStep_EA (a,b) iteration 
-double diffXfinal;                   // diffX after computeTimeStep_EA (a,b) iteration
-double sumXtrue;                     // True (un-renormalized) sumX
+double sumX;                      // Sum of mass fractions X(i).  Should be 1.0.
+double sumXeq;                    // Sum X species in at least 1 equilibrated RG
+double sumXNeq;                   // Sum X species not in an equilibrated RG
+double sumXtot;                   // Sum X all species
+double XcorrFac;                  // Equil normalization factor for timestep
+double sumXlast;                  // sumX from last timestep
+double diffX;                     // sumX - sumXlast
+double diffXzero;                 // diffX before computeTimeStep_EA (a,b) iteration 
+double diffXfinal;                // diffX after computeTimeStep_EA (a,b) iteration
+double sumXtrue;                  // True (un-renormalized) sumX
 
-double Rate[SIZE];                   // Reaction rate from Reactions::computeRate()
-double Flux[SIZE];                   // Flux from Reactions::computeFlux()
-bool reacLibWarn;                    // Warning flag for T out of ReacLib bounds
-double warnTime;                     // Time for 1st violation associated with reacLibWarn
-double warnT;                        // Temperature at warnTime
-double maxdYdt;                      // Maximum current dY/dt in network
-int maxdYdtIndex;                    // Isotopic index of species with max dY/dt
+double Rate[SIZE];                // Reaction rate from Reactions::computeRate()
+double Flux[SIZE];                // Flux from Reactions::computeFlux()
+bool reacLibWarn;                 // Warning flag for T out of ReacLib bounds
+double warnTime;                  // Time for 1st violation associated with reacLibWarn
+double warnT;                     // Temperature at warnTime
+double maxdYdt;                   // Maximum current dY/dt in network
+int maxdYdtIndex;                 // Isotopic index of species with max dY/dt
 
 
 // --- Species data in following arrays also contained in fields of class Species
@@ -477,6 +478,11 @@ int reacMask[isy][sizy];
 
 gsl_vector rv[sizy];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
+
+// Define an array RV of type std::vector that will hold reaction vectors for
+// the system.
+
+vector <int> RV[SIZE];
 
 // Total number of F+ and F- terms in the network
 
@@ -2186,6 +2192,47 @@ class ReactionVector:  public Utilities {
                 fprintf(pFileD,"%2d ]\n", reacMask[uppity-1][j]);
             }
             
+            
+            // Fill std::vector component entries with data contained in  
+            // reacMask[j][i] (notice reversed indices because outer loop is reactions
+            // and inner loop is isotopes and reacMask is defined as reacMask[iso][reac]
+            // where iso in the isotopic index and reac is the reac index.)
+            
+            for (int i = 0; i < SIZE; i++) {     // Loop over std::vector array RV
+
+                // Populate RV[i] with components
+                
+                for(int j=0; j < ISOTOPES; j++){
+                    
+                    RV[i].push_back(reacMask[j][i]);
+
+                }
+
+            }
+            
+            // Display std:vector components
+            
+            cout << "\n\nSTD REACTION VECTORS\n\n";
+            
+            for (int i = 0; i < SIZE; i++) {
+                
+                cout << "RV[" << i << "]" << ": [ ";
+                
+                // Displaying element at each column,
+                // begin() is the starting iterator,
+                // end() is the ending iterator
+                for (auto it = RV[i].begin();
+                     it != RV[i].end(); it++) {
+                    
+                    // (*it) is used to get the
+                    // value at iterator is
+                    // pointing
+                    cout << *it << ' ';
+                     }
+                     cout << "]" << endl;
+            }
+            
+            
             // -----------------------------------------------------------------------
             // Now implement reaction vectors as GSL vectors so that we can use the
             // GSL and GSL_BLAS APIs to manipulate them.  Prototypes for doing this
@@ -2205,7 +2252,7 @@ class ReactionVector:  public Utilities {
                 // ISOTOPES entries indicating how isotopic species change in a 
                 // reaction.
                 
-                 v1 = gsl_vector_alloc (isy);
+                v1 = gsl_vector_alloc (isy);
                 
                 // Set elements of the SIZE elements of rv[] pointed to by 
                 // *rvPt equal to GSL vectors
@@ -2215,18 +2262,20 @@ class ReactionVector:  public Utilities {
             
             gsl_vector_free(v1);
             
-            // Fill vector component entries created above with data contained in  
+            // Fill gsl vector component entries created above with data contained in  
             // reacMask[j][i] (notice reversed indices because outer loop is reactions
             // and inner loop is isotopes.)
             
             for (size_t i = 0; i < sizy; i++) {
-
+                
                 for(size_t j=0; j < isy; j++){
                     
+                    // Populate gsl vector
+                    
                     gsl_vector_set (rvPt+i, j, (double) reacMask[j][i]);
-
+                    
                 }
-
+                
             }
             
             // Display reaction vectors as component list in 
