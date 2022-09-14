@@ -2565,11 +2565,16 @@ class ReactionVector:  public Utilities {
         
         int numberMembers;
         
+        std::vector<int> vec1;
+        std::vector<int> vec2;
+        
         for (int i=0; i<SIZE; i++){
             
             numberMembers = 1;
-            if(i==0) rg ++;
-            ck=-1;
+            if(i==0) rg++;
+            ck = -1;
+            
+            vec1 = RV[i];
 
             // Since we only need to compare pairwise, inner loop can 
             // start at j=i.
@@ -2578,11 +2583,18 @@ class ReactionVector:  public Utilities {
                 
                 if(RGindex[i] < 0) RGindex[i] = rg;
                 
-                // rvPt is pointer to the origin of the array of reaction 
-                // vectors rv[].  Thus, rvPt+i points to the vector rv[i] 
-                // and rvPt+j points to the vector rv[j].
-            
-                ck = compareGSLvectors(i, j, rvPt+i, rvPt+j);
+                
+                vec2 = RV[j]; 
+                
+                // Compare vectors
+                
+                ck = compareVectors(vec1, vec2);
+                
+//                 // rvPt is pointer to the origin of the array of reaction 
+//                 // vectors rv[].  Thus, rvPt+i points to the vector rv[i] 
+//                 // and rvPt+j points to the vector rv[j].
+//             
+//                 ck = compareGSLvectors(i, j, rvPt+i, rvPt+j);
                 
                 int preRGindex = RGindex[j];
                 
@@ -2598,8 +2610,15 @@ class ReactionVector:  public Utilities {
 
         }
         
-        numberRG = rg + 1;   // Total # reaction groups (add 1 because rg starts at 0)
+        // If the last trial reaction group has no members, subtract 
+        // one from rg (which was incremented at the beginning of the trial).
         
+        //if(numberMembers == 0) rg--;
+        
+        numberRG = rg;   // Total # reaction groups (add 1 because rg starts at 0)
+        
+//numberRG --;
+
         // Diagnostic showing reaction group associated with each reaction
         
         fprintf(pfnet, "\n");
@@ -2653,6 +2672,8 @@ class ReactionVector:  public Utilities {
         }
         
         fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
+        
+        fflush(pfnet);
         
     }   // End function sortReactionGroups()
         
