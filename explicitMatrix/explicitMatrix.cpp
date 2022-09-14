@@ -2239,7 +2239,7 @@ class ReactionVector:  public Utilities {
                      cout << " ]" << endl;
             }
             
-            // Now compare reaction vectors pairwise
+            // Now compare reaction vectors pairwise as check
             
             std::vector<int> vec1;
             std::vector<int> vec2;
@@ -2372,29 +2372,6 @@ class ReactionVector:  public Utilities {
             
             return retVal;
         }
-        
-//         int compareVectors(const std::vector<double> & rv1, const std::vector<double> & rv2) {
-//             
-//             int retVal = 0;
-//             // Check for element-wise equality
-//             auto equal = std::equal(rv1.begin(),rv1.end(),rv2.begin(),rv2.end());
-//             // If not equal, are they negated images?
-//             if (!equal) {
-//                 // Flip rv2 by using the handy transformation instead of a for loop
-//                 std::vector<double> flippedRv2(rv2);
-//                 std::transform(rv2.begin(), rv2.end(), flippedRv2.begin(),
-//                                std::bind(std::multiplies<double>(), std::placeholders::_1, -1.0));
-//                 // Check the value and set the flag
-//                 bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
-//                 if (flipped) retVal = 2;
-//             } else {
-//                 // Just flip the flag
-//                 retVal = 1;
-//             }
-//             
-//             return retVal;
-//         }
-        
         
         // Static function ReactionVector::printReactionVectorComponents(*v,i)
         // prints the components of a reaction vector pointed to by *v to
@@ -2553,7 +2530,7 @@ class ReactionVector:  public Utilities {
         // The integer rg labels the reaction group
         
         int rg = -1;
-        int ck;
+        int ck = -1;
         
         // Initialize reaction vector indices that give the reaction group
         // a reaction vector is in to -1 so that we can tell
@@ -2570,9 +2547,12 @@ class ReactionVector:  public Utilities {
         
         for (int i=0; i<SIZE; i++){
             
-            numberMembers = 1;
-            if(i==0) rg++;
-            ck = -1;
+            if(numberMembers > 0) rg ++;
+            numberMembers = 0;
+            
+//             numberMembers = 1;
+//             if(i==0) rg++;
+//             ck = -1;
             
             vec1 = RV[i];
 
@@ -2581,8 +2561,7 @@ class ReactionVector:  public Utilities {
             
             for(int j=i; j<SIZE; j++){
                 
-                if(RGindex[i] < 0) RGindex[i] = rg;
-                
+                //if(RGindex[i] < 0) RGindex[i] = rg;
                 
                 vec2 = RV[j]; 
                 
@@ -2604,18 +2583,29 @@ class ReactionVector:  public Utilities {
                     numberMembers ++;
                 }
                 
+                if(preRGindex < 0 && ck > 0)
+                printf("\ni=%d j=%d rg=%d preRGindex=%d numberMembers=%d ck=%d   %s : %s", 
+                    i,j,rg,preRGindex,numberMembers,ck, reacLabel[i], reacLabel[j]);
+                
+                if(j==27 && preRGindex < 0 && ck > 0) printf("\n");
+                
             }
             
-            if(numberMembers > 1) rg ++;
+            // Store the number of member reactions in this reaction group 
+            // for later use
+            
+            RGnumberMembers[rg] = numberMembers;
+            
+            //if(numberMembers > 1) rg ++;
 
         }
         
         // If the last trial reaction group has no members, subtract 
         // one from rg (which was incremented at the beginning of the trial).
         
-        //if(numberMembers == 0) rg--;
+        if(numberMembers == 0) rg--;
         
-        numberRG = rg;   // Total # reaction groups (add 1 because rg starts at 0)
+        numberRG = rg+1;   // Total # reaction groups (add 1 because rg starts at 0)
         
 //numberRG --;
 
