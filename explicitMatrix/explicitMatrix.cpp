@@ -391,8 +391,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilTime = start_time;    // Time to begin checking for PE
 
-double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.099;         // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.1;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious
