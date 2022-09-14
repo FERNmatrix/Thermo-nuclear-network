@@ -245,7 +245,7 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = min(ISOTOPES, 365);  // # species to plot
+static const int maxPlotIsotopes = min(ISOTOPES, 365);   // # species to plot
 int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
 
 FILE * plotfile1;
@@ -268,7 +268,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -346,7 +346,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-2;               // Stop time for integration
+double stop_time = 1e-7;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -364,7 +364,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-7;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -2354,19 +2354,29 @@ class ReactionVector:  public Utilities {
         static int compareVectors(const std::vector<int> & rv1, const std::vector<int> & rv2) {
             
             int retVal = 0;
+            
             // Check for element-wise equality
+            
             auto equal = std::equal(rv1.begin(),rv1.end(),rv2.begin(),rv2.end());
+            
             // If not equal, are they negated images?
+            
             if (!equal) {
+                
                 // Flip rv2 by using the handy transformation instead of a for loop
+                
                 std::vector<int> flippedRv2(rv2);
                 std::transform(rv2.begin(), rv2.end(), flippedRv2.begin(),
                                std::bind(std::multiplies<int>(), std::placeholders::_1, -1.0));
+                
                 // Check the value and set the flag
+                
                 bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
                 if (flipped) retVal = 2;
             } else {
+                
                 // Just flip the flag
+                
                 retVal = 1;
             }
             
@@ -2398,8 +2408,8 @@ class ReactionVector:  public Utilities {
             
         }
         
-        //Static method ReactionVector::printReactionVectorComponents (*v) to
-        // print components of a reaction vector v to pfnet --> gnu_out/network.data
+        // Static method ReactionVector::printReactionVectorComponents (*v) to
+        // print components of a gsl vector v to pfnet --> gnu_out/network.data
         
         static void printReactionVectorComponents(gsl_vector *v){
             
@@ -2431,6 +2441,7 @@ class ReactionVector:  public Utilities {
     // The last two arguments of the function are pointers to the two GSL vectors
     // to be compared, i1 is the index of the vector rv1 in the gsl vector array 
     // rv[], and i2 is the index of the vector rv2 in the array rv[].
+    // *** NOT PRESENTLY USED ***
     // ------------------------------------------------------------------------
     
     int static compareGSLvectors(int i1, int i2, gsl_vector *rv1, gsl_vector *rv2){
@@ -2439,25 +2450,10 @@ class ReactionVector:  public Utilities {
         
         // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
         // if vectors are equal and 0 if they are not.
- 
-        // *************************
-        // Temporary diagnostics
-        fprintf(pfnet, "\n");
-        fprintf(pfnet,"COMPARE: i=%d j=%d\n", i1, i2);
-        ReactionVector::printReactionVectorComponents(rv1, i1);
-        ReactionVector::printReactionVectorComponents(rv2, i2);
-        // *************************
         
         k = gsl_vector_equal(rv1, rv2);
         
         if (k == 1){
-            
-            // **********************
-            // Temporary diagnostics
-            fprintf(pfnet, "VECTORS MATCH\n");
-            ReactionVector::printReactionVectorComponents(rvPt+47, 47);
-            // ***********************
-            
             return 1;    // rv1 = rv2; same reaction group (RG)
         } 
         
@@ -2470,12 +2466,6 @@ class ReactionVector:  public Utilities {
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1.0);
         kk = gsl_vector_equal(rv1, rv2minus);
-        
-        // ********************
-        // Temporary diagnostics
-        fprintf(pfnet,"-");
-        ReactionVector::printReactionVectorComponents(rv2minus, i2);
-        // *********************
        
         // Free the vector. Better solution would be to globally allocate
         // this and remove the repeated allocation all together.
@@ -2484,17 +2474,9 @@ class ReactionVector:  public Utilities {
  
         if(kk == 0){
             
-            // Temporaray diagnostics
-            fprintf(pfnet, "NO MATCH (%d and %d)\n", i1, i2);
-            ReactionVector::printReactionVectorComponents(rvPt+47, 47);
-            
             return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
             
         } else if (kk == 1){
-            
-            //Temporary diagnostics
-            fprintf(pfnet, "MATCH UP TO SIGN\n");
-            ReactionVector::printReactionVectorComponents(rvPt+47, 47);
             
             return 2;    // rv1 = -rv2; same reaction group
 
@@ -2504,37 +2486,35 @@ class ReactionVector:  public Utilities {
             
         }
         
-        
     }    // End function compareGSLvectors
     
     
     
     // ------------------------------------------------------------------------
-    // ReactionVector::sortReactionGroups() uses compareGSLvectors to sort all 
+    // ReactionVector::sortReactionGroups() uses compareVectors to sort all 
     // reactions in the network into reaction groups labeled by a series of 
     // integers 0,1,...  All reactions in a reaction group have the same 
     // reaction vector up to a sign. The array RGindex[] of dimension SIZE 
     // holds the integer labeling reaction group (0,1,... #RG) for each 
-    // reaction after this function is executed. 
+    // reaction after this function is executed. Make static since function
+    // is called only once in a calculation.
     // ------------------------------------------------------------------------
     
     static void sortReactionGroups(void){
         
         // Cycle over all reaction vectors and compare them pairwise to 
-        // assign to reaction groups. The pointer rvPt points to the beginning
-        // of the array rv[] of GSL reaction vectors (rvPt points to to rv[0], 
-        // rvPt+1 points to rv[1], rvPt+2 points to rv[2], ...). The integer 
-        // rg labels the reaction group currently being filled.  The integer ck 
-        // indicates whether a pair of vectors are equivalent (ck = 1), are 
-        // the negative of each other (ck = 2), or are not equivalent (ck = 0).
-        // The integer rg labels the reaction group
+        // assign to reaction groups.  The integer rg labels the reaction 
+        // group currently being filled.  The integer ck indicates whether 
+        // a pair of vectors are equivalent (ck = 1), are the negative of 
+        // each other (ck = 2), or are not equivalent (ck = 0).
         
         int rg = -1;
         int ck = -1;
         
         // Initialize reaction vector indices that give the reaction group
-        // a reaction vector is in to -1 so that we can tell
-        // if a reaction vector has already been processed.
+        // for a reaction vector to -1, so that we can tell in sorting
+        // into reaction groups whether a reaction vector has already been 
+        // processed.
         
         for(int i=0; i<SIZE; i++){
             RGindex[i] = -1;
@@ -2549,31 +2529,18 @@ class ReactionVector:  public Utilities {
             
             if(numberMembers > 0) rg ++;
             numberMembers = 0;
-            
-//             numberMembers = 1;
-//             if(i==0) rg++;
-//             ck = -1;
-            
             vec1 = RV[i];
 
-            // Since we only need to compare pairwise, inner loop can 
-            // start at j=i.
+            // Since we only need to compare pairwise, once for each pair,
+            // inner loop can start at j=i.
             
             for(int j=i; j<SIZE; j++){
                 
-                //if(RGindex[i] < 0) RGindex[i] = rg;
-                
                 vec2 = RV[j]; 
                 
-                // Compare vectors
+                // Compare the vectors vec1 and vec2
                 
                 ck = compareVectors(vec1, vec2);
-                
-//                 // rvPt is pointer to the origin of the array of reaction 
-//                 // vectors rv[].  Thus, rvPt+i points to the vector rv[i] 
-//                 // and rvPt+j points to the vector rv[j].
-//             
-//                 ck = compareGSLvectors(i, j, rvPt+i, rvPt+j);
                 
                 int preRGindex = RGindex[j];
                 
@@ -2582,32 +2549,21 @@ class ReactionVector:  public Utilities {
                     RGindex[j] = rg;
                     numberMembers ++;
                 }
-                
-                if(preRGindex < 0 && ck > 0)
-                printf("\ni=%d j=%d rg=%d preRGindex=%d numberMembers=%d ck=%d   %s : %s", 
-                    i,j,rg,preRGindex,numberMembers,ck, reacLabel[i], reacLabel[j]);
-                
-                if(j==27 && preRGindex < 0 && ck > 0) printf("\n");
-                
             }
             
             // Store the number of member reactions in this reaction group 
             // for later use
             
             RGnumberMembers[rg] = numberMembers;
-            
-            //if(numberMembers > 1) rg ++;
 
         }
         
         // If the last trial reaction group has no members, subtract 
         // one from rg (which was incremented at the beginning of the trial).
         
-        if(numberMembers == 0) rg--;
+        if(numberMembers == 0) rg --;
         
-        numberRG = rg+1;   // Total # reaction groups (add 1 because rg starts at 0)
-        
-//numberRG --;
+        numberRG = rg + 1;   // Total # reaction groups (add 1 since rg starts at 0)
 
         // Diagnostic showing reaction group associated with each reaction
         
@@ -2663,7 +2619,7 @@ class ReactionVector:  public Utilities {
         
         fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
         
-        fflush(pfnet);
+        fflush(pfnet);  // Force quicker print
         
     }   // End function sortReactionGroups()
         
