@@ -40,8 +40,8 @@
  * 
  * 1. Change values of ISOTOPES and SIZE.
  * 2. Change input files for networkFile and rateLibraryFile.
- * 3. Change doASY,doQSS,and doPE to choose Asy,Asy+PE,QSS,QSS+PE options.
- * 4. Change control parameters like stop_time,massTol,...
+ * 3. Change doASY,doQSS,and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
+ * 4. Change control parameters like stop_time, massTol,...
  * 5. Change species to be plotted output mask plotXlist[] in plotFileSetup().
  * 6. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
  * 7. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
@@ -77,10 +77,9 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include <mcheck.h>        // Memory debugging
 
 using namespace std;
-using std::string;
+//using std::string;
 
 // Define some CPU timing utilities. Usage:
 //
@@ -268,7 +267,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = true;           // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -365,13 +364,13 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
 double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 2e-3;//7e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
 int maxit = 20;                        // Max asy dt iterations
 int iterations;                        // # iterations in step to conserve particles 
-int totalIterations;                   // Total number of iterations,all steps til now
+int totalIterations;                   // Total number of iterations, all steps til now
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
@@ -391,7 +390,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilTime = start_time;    // Time to begin checking for PE
 
-double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.1;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
@@ -1700,7 +1699,7 @@ class Reaction: public Utilities {
             if(k > numberReactants-1){
                 printf("\n\nERROR: k-1=%d larger than number reactants %d",
                     k,numberReactants);
-                return -1;
+                return -1;                 // Exit program since something is corrupt
             } else {
                 return reactantN[k];
             }
@@ -2000,16 +1999,12 @@ class Reaction: public Utilities {
                 int rin;
                 int pin;
                 
-                //printf("\nreac=%d %s reacClass=%d", reacIndex, reacLabel[reacIndex], reacClass);
-                
                 if(reacClass == 2){
                     
                     rin = reactantIndex[0];
                     pin = productIndex[1];
                     pfden = currentPF[rin];
                     pfnum = currentPF[pin];
-                    //printf(" reac[0]=%d(%s)", rin, isoLabel[rin]);
-                    //printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
                     
                 } else if(reacClass == 5){
                     
@@ -2017,8 +2012,6 @@ class Reaction: public Utilities {
                     pin = productIndex[1];
                     pfden = currentPF[rin];
                     pfnum = currentPF[pin];
-                    //printf(" reac[1]=%d(%s)", rin, isoLabel[rin]);
-                    //printf(" prod[1]=%d(%s)", pin, isoLabel[pin]);
                     
                 } else {
                     
@@ -2028,8 +2021,7 @@ class Reaction: public Utilities {
                 
                 pfFactor = pfnum/pfden;
                 rate *= pfFactor;
-                
-                //printf(" pfnum=%5.3e pfden=%5.3e pfFactor=%5.3e",pfnum, pfden, pfFactor);
+
             }
         }
         
@@ -2214,13 +2206,13 @@ class ReactionVector:  public Utilities {
             
             // Display std:vector components just created
             
-            cout << "\n\nSTD REACTION VECTORS\n\n";
+            fprintf(pfnet,"\n\nSTD REACTION VECTORS\n");
             
             // Outer loop over elements of vector array
             
             for (int i = 0; i < SIZE; i++) {
-                
-                cout << "RV[" << i << "]" << ": [";
+
+                fprintf(pfnet, "\nRV[%d]: [", i);
                 
                 // Inner iterates over components of each vector. Starting iterator 
                 // is specified by .begin() and ending iterator is specified by 
@@ -2228,15 +2220,15 @@ class ReactionVector:  public Utilities {
                 // of the variable iter from the context.
                 
                 for (auto iter = RV[i].begin();
+                     
                      iter != RV[i].end(); iter++) {
                     
                     // *iter gets the value pointed to by the iterator
                     
-                    printf("%3d", *iter);
-                    //cout << *iter << ' ';
+                    fprintf(pfnet, "%3d", *iter);
                 
                 }
-                     cout << " ]" << endl;
+                    fprintf(pfnet, " ]");
             }
             
             // Now compare reaction vectors pairwise as check
@@ -2254,13 +2246,11 @@ class ReactionVector:  public Utilities {
                     int checker = compareVectors(vec1, vec2);
                     
                     if(checker > 0)
-                    printf("\ni=%d j=%d %s <-> %s ck=%d", 
+                    fprintf(pfnet, "\ni=%d j=%d %s <-> %s ck=%d", 
                         i, j, reacLabel[i], reacLabel[j], checker);
                 }
                 
             } 
-            
-
             
             
             // -----------------------------------------------------------------------
@@ -2335,16 +2325,11 @@ class ReactionVector:  public Utilities {
                 
             }
             
-//             for(int k=0; k<SIZE; k++){
-//                 printReactionVectorComponents(rv,k);
-//             }
-            
-            
         }  // End function makeReactionVectors()
         
         
         /**
-         * Compare two vectors
+         * Compare two std vectors
          * @param rv1 First vector to compare
          * @param rv2 Second vector to compare
          * @return 0 if the vectors are not equal, 1 if they are the same, 2 if one
@@ -2367,24 +2352,23 @@ class ReactionVector:  public Utilities {
                 
                 std::vector<int> flippedRv2(rv2);
                 std::transform(rv2.begin(), rv2.end(), flippedRv2.begin(),
-                               std::bind(std::multiplies<int>(), std::placeholders::_1, -1.0));
+                    std::bind(std::multiplies<int>(), std::placeholders::_1, -1.0));
                 
                 // Check the value and set the flag
                 
-                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
+                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(),    flippedRv2.end());
                 if (flipped) retVal = 2;
+                
             } else {
                 
-                // Just flip the flag
-                
-                retVal = 1;
+                retVal = 1;  
             }
             
             return retVal;
         }
         
         // Static function ReactionVector::printReactionVectorComponents(*v,i)
-        // prints the components of a reaction vector pointed to by *v to
+        // prints the components of a GSL reaction vector pointed to by *v to
         // pfnet --> gnu_out/network.data.
         
         static void printReactionVectorComponents(gsl_vector *v, int i){
@@ -2600,7 +2584,7 @@ class ReactionVector:  public Utilities {
             
             RGnumberMembers[i] = rcounter;
             
-            // Number of RG that are singlets (only one reaction)
+            // Keep track of RG that are singlets (one reaction in RG)
             
             if (rcounter == 1) numberSingletRG ++;
         }
@@ -2609,7 +2593,7 @@ class ReactionVector:  public Utilities {
         
         fprintf(pfnet, "\n");
         fprintf(pfnet, "\nCHECK: Sum over members of ");
-        fprintf(pfnet, "each RG should equal total number of reactions SIZE.\n");
+        fprintf(pfnet, "each RG should equal total number of reactions (SIZE).\n");
         
         int resum = 0;
         for(int i=0; i<numberRG; i++){
@@ -2619,7 +2603,7 @@ class ReactionVector:  public Utilities {
         
         fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
         
-        fflush(pfnet);  // Force quicker print
+        fflush(pfnet);  // Dump buffer to force quicker print
         
     }   // End function sortReactionGroups()
         
@@ -3318,7 +3302,7 @@ class ReactionGroup:  public Utilities {
         
         switch (rgclass) {
             
-            // Reaclib class 7,which can't equilibrate because no inverse in 
+            // Reaclib class 7, which can't equilibrate because no inverse in 
             // standard Reaclib library.
             
             case -1: 
@@ -3410,7 +3394,7 @@ class ReactionGroup:  public Utilities {
         
         // Compute thisDevious,which measures difference from equil.
         // Limit how small denominator can be in following to prevent 
-        // possible divide by zero
+        // possible divide by zero.
         
         thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
         
@@ -3421,42 +3405,45 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
-        Yminner = 1000;
-        maxRatio = 0;
-        minRatio= 1000;
-
-        // Determine if reaction group RG is in equilibrium by computing the fractional
-        // difference of the actual and equilibrium abundances for all isotopic species
-        // in the reaction group.
-
-        for (int i = 0; i < niso; i++) {
-            
-            // Compute absolute value of deviation of abundances from 
-            // equilibrium values for this reaction group.
-            
-            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i],1e-24);
-            eqRatio[i] = eqcheck[i]/equiTol;
-            
-            // Store some min and max values for this RG
-            
-            if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
-            if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
-            if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
-            
-        }
+//         Yminner = 1000;
+//         maxRatio = 0;
+//         minRatio= 1000;
+// 
+//         // Determine if reaction group RG is in equilibrium by computing the fractional
+//         // difference of the actual and equilibrium abundances for all isotopic species
+//         // in the reaction group.
+// 
+//         for (int i = 0; i < niso; i++) {
+//             
+//             // Compute absolute value of deviation of abundances from 
+//             // equilibrium values for this reaction group.
+//             
+//             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
+//             eqRatio[i] = eqcheck[i]/equiTol;
+//             
+//             // Store some min and max values for this RG
+//             
+//             if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
+//             if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
+//             if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
+//             
+//         }
         
         // The return statements in the following if-clauses cause reaction
-        // groups already in equilibrium to stay in equilibrium. Otherwise,if
+        // groups already in equilibrium to stay in equilibrium. Otherwise, if
         // the RG is in equilibrium (isEquil=true) but the tolerance condition
-        // thisDevious < deviousMax is no longer satisfied,the RG is removed 
+        // thisDevious < deviousMax is no longer satisfied, the RG is removed 
         // from equilibrium.
         
         if (isEquil && thisDevious < deviousMax) {
             return;
-        } else if (isEquil && thisDevious >= deviousMax && doPE && t > equilTime) {
+        } else if (isEquil && thisDevious >= deviousMax) {
             removeFromEquilibrium(1);
             return;
         }
+        
+        // If we have gotten this far without returning from function, the
+        // reaction group was not in equilibrium before.  See if it is now.
         
         Yminner = 1000;
         maxRatio = 0;
@@ -3482,22 +3469,25 @@ class ReactionGroup:  public Utilities {
             
         }
         
-        bool lastEquilState = isEquil;
+        //bool lastEquilState = isEquil;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
-        // time is before the time to allow equilibration equilTime,and true 
+        // time is before the time to allow equilibration equilTime, and true 
         // otherwise.
             
-        if (t > equilTime && maxRatio < 1) {
+        if (t > equilTime && maxRatio < 1 && thisDevious < deviousMax) {
+            
             isEquil = true;
-            if (lastEquilState != isEquil) addToEquilibrium();
+            addToEquilibrium();
+            
         } else {
+            
             isEquil = false;
-            if (lastEquilState != isEquil) removeFromEquilibrium(2);
+            //if (lastEquilState != isEquil) removeFromEquilibrium(2);
         }
         
-        // Set the activity array for each reaction in reaction group to true if not in 
-        // equil and false if it is,if we are imposing equilibrium.
+        // Set the activity array for each reaction in reaction group to true 
+        // if not in equil and false if it is, if we are imposing equilibrium.
         
         if (doPE && t > equilTime) {
             
@@ -3521,8 +3511,8 @@ class ReactionGroup:  public Utilities {
         
         totalEquilRG ++;
         if(showAddRemove) fprintf(pFileD,
-            "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
-            RGn,totalTimeSteps,totalEquilRG,t,log10(t),thisDevious,minRatio,maxRatio);
+            "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f", RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious,
+            minRatio, maxRatio);
 
     }
     
@@ -3535,6 +3525,7 @@ class ReactionGroup:  public Utilities {
     // -----------------------------------------------------------
     
     void removeFromEquilibrium(int where) {
+        
         isEquil = false;
         thisDevious = abs((equilRatio - kratio) / max(kratio,1.0e-24));
         
@@ -4203,8 +4194,8 @@ int main() {
     
     // Write the time
     
-    fprintf(pFileD,Utilities::showTime());
-    printf("\n%s",Utilities::showTime());
+    fprintf(pFileD, Utilities::showTime());
+    printf("\n%s", Utilities::showTime());
     
     // Initialize the array of current partition functions to unity.
     
@@ -4253,11 +4244,10 @@ int main() {
     for (int i=0; i<SIZE; i++){ 
         reacIsActive[i] = true;
         reaction[i].setisEquil(false);
-        
         //reaction[i].setreacGroupSymbol(Utilities::stringToChar(RGstring[i]));
     }
     
-    // Determine whether the network contains Be-8,which must be handled as
+    // Determine whether the network contains Be-8,which is handled as
     // two alpha particles because of the rapid decay compared to network 
     // timescales.
     
@@ -4490,7 +4480,6 @@ int main() {
             reaction[i].computeRate(T9,rho);
         }
     }
-    
     
     // Summarize computed rates
     
@@ -5487,14 +5476,6 @@ void readhydroProfile(char *fileName){
                 exit(1);
             }
             
-//             if(numberEntries > maxHydroEntries-1){
-//                 printf("\n\nERROR: Number of entries in hydro profile table of file %s (%d) ",
-//                        fileName,numberEntries);
-//                 printf("\ntoo large for present arrays. Change the static constant maxHydroEntries ");
-//                 printf("to a value \nof %d and recompile.\n\n",numberEntries+1);
-//                 exit(1);
-//             }
-            
         } else if (subIndex > 1) {    // Line containing t,T,rho data
             
             sscanf(line,"%d %lf %lf %lf",&dummy,&Time,&Temp,&Rho); 
@@ -6186,7 +6167,7 @@ void assignRG(){
             // Bookkeeping. rgclass = 6 (F) can only contain one reaction from ReacLib class
             // 7 (a+b -> c + d + e + f),since there are no 4-body reactions in ReacLib
             // to serve as the inverse reaction.  But we will assume that all reactions
-            // belong to a unique reaction group for bookkeeping,even if there is only one 
+            // belong to a unique reaction group for bookkeeping, even if there is only one 
             // reaction in the reaction group so it can never equilibrate.
                 
             case 6: 
@@ -6397,9 +6378,7 @@ void computeReactionFluxes(){
     
     Reaction::populateFplusFminus();
     
-    // Sum F+ and F- for each isotope
-    
-    sumFplusFminus();
+    sumFplusFminus();     // Sum F+ and F- for each isotope
 }
 
 
@@ -6444,9 +6423,7 @@ void sumFplusFminus(){
         setSpeciesfminus(i,accum);    // Also sets FminusSum[i] = accum and keff
         setSpeciesdYdt(i,FplusSum[i] - FminusSum[i]);
         
-        // Store net flux
-        
-        dF[i] = FplusSum[i] - FminusSum[i];
+        dF[i] = FplusSum[i] - FminusSum[i];     // Store net flux
         
     }
     
