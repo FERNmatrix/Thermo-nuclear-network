@@ -73,11 +73,11 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = -2
+xup = 2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 15
+ylow = 12
 yup = 29
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
@@ -92,7 +92,8 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+file1 = "gnufile_alpha_T9_5_1e8_asy_java_PF.data"  # Asy reference"
+#file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 file2 = "plot1.data"
 
 plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title "Asy log10 |dE/dt|"

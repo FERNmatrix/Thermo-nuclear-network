@@ -267,7 +267,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;           // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -327,7 +327,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 7;           // Initial temperature in units of 10^9 K
+double T9_start = 5;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -345,7 +345,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-2;               // Stop time for integration
+double stop_time = 1e2;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -363,8 +363,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 2e-3;//7e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 3e-5;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 1e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -374,10 +374,10 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 1e-4; //massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
-// Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
+// equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
 // probably an error in the Java version, since if operating properly nothing should
@@ -388,10 +388,10 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = start_time;    // Time to begin checking for PE
+double equilTime = start_time;    // Time to begin checking for PE (default to start time)
 
-double equiTol = 0.01;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.1;          // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.02;            // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious
@@ -3356,13 +3356,13 @@ class ReactionGroup:  public Utilities {
         
         // Compute the equilibrium value of the progress variable
         
-        lambdaEq = isoY0[0] - isoYeq[0];  // Not presently used
+        lambdaEq = isoY0[0] - isoYeq[0];    // Not presently used
         
         // Compute the population ratios used to check equilibration
         
-        computeEqRatios();
-        
         kratio = rgkr / rgkf;
+        
+        if(t > equilTime) computeEqRatios();
         
     }    // End function computeQuad()
     
@@ -3405,50 +3405,26 @@ class ReactionGroup:  public Utilities {
             mostDeviousIndex = RGn;
         }
         
-//         Yminner = 1000;
-//         maxRatio = 0;
-//         minRatio= 1000;
-// 
-//         // Determine if reaction group RG is in equilibrium by computing the fractional
-//         // difference of the actual and equilibrium abundances for all isotopic species
-//         // in the reaction group.
-// 
-//         for (int i = 0; i < niso; i++) {
-//             
-//             // Compute absolute value of deviation of abundances from 
-//             // equilibrium values for this reaction group.
-//             
-//             eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
-//             eqRatio[i] = eqcheck[i]/equiTol;
-//             
-//             // Store some min and max values for this RG
-//             
-//             if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
-//             if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
-//             if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
-//             
-//         }
-        
         // The return statements in the following if-clauses cause reaction
-        // groups already in equilibrium to stay in equilibrium. Otherwise, if
-        // the RG is in equilibrium (isEquil=true) but the tolerance condition
+        // groups already in equilibrium to stay in equilibrium if the stil
+        // satisfy the tolerance condition. Otherwise, if the RG is in 
+        // equilibrium (isEquil = true) but the tolerance condition
         // thisDevious < deviousMax is no longer satisfied, the RG is removed 
         // from equilibrium.
         
         if (isEquil && thisDevious < deviousMax) {
             return;
-        } else if (isEquil && thisDevious >= deviousMax) {
-            removeFromEquilibrium(1);
+        } else if (isEquil && thisDevious >= deviousMax){
+            removeFromEquilibrium();
             return;
         }
-        
-        // If we have gotten this far without returning from function, the
-        // reaction group was not in equilibrium before.  See if it is now.
         
         Yminner = 1000;
         maxRatio = 0;
         minRatio= 1000;
         
+        // If we have gotten this far without returning from this function, the
+        // reaction group was not in equilibrium before this step. See if it is now.
         // Determine if reaction group RG is in equilibrium by computing the fractional
         // difference of the actual and equilibrium abundances for all isotopic species
         // in the reaction group.
@@ -3458,7 +3434,7 @@ class ReactionGroup:  public Utilities {
             // Compute absolute value of deviation of abundances from 
             // equilibrium values for this reaction group.
             
-            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i],1e-24);
+            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], 1e-24);
             eqRatio[i] = eqcheck[i]/equiTol;
             
             // Store some min and max values for this RG
@@ -3468,22 +3444,15 @@ class ReactionGroup:  public Utilities {
             if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
             
         }
-        
-        //bool lastEquilState = isEquil;
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilTime, and true 
         // otherwise.
             
-        if (t > equilTime && maxRatio < 1 && thisDevious < deviousMax) {
-            
-            isEquil = true;
+        if (t > equilTime && maxRatio < 1 ) {
             addToEquilibrium();
-            
         } else {
-            
             isEquil = false;
-            //if (lastEquilState != isEquil) removeFromEquilibrium(2);
         }
         
         // Set the activity array for each reaction in reaction group to true 
@@ -3509,11 +3478,18 @@ class ReactionGroup:  public Utilities {
     
     void addToEquilibrium(){
         
+        isEquil = true;
         totalEquilRG ++;
-        if(showAddRemove) fprintf(pFileD,
-            "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f", RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious,
-            minRatio, maxRatio);
-
+        
+        for (int i = 0; i < numberMemberReactions; i++) {
+            int ck = memberReactions[i];
+            reacIsActive[ck] = false;         
+        }
+        
+        if(showAddRemove) 
+        fprintf(pFileD,
+        "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f", RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious,
+        minRatio, maxRatio);
     }
     
     
@@ -3524,23 +3500,22 @@ class ReactionGroup:  public Utilities {
     // conditions for this timestep.
     // -----------------------------------------------------------
     
-    void removeFromEquilibrium(int where) {
+    void removeFromEquilibrium() {
         
         isEquil = false;
-        thisDevious = abs((equilRatio - kratio) / max(kratio,1.0e-24));
+        //thisDevious = abs((equilRatio - kratio) / max(kratio,1.0e-24));
         
         totalEquilRG -- ;
-        
-        if(showAddRemove)
-        fprintf(pFileD,
-            "\n*** REMOVE RG %d where=%d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
-            RGn,where,totalTimeSteps,totalEquilRG,t,log10(t),thisDevious,minRatio,maxRatio);
         
         for (int i = 0; i < numberMemberReactions; i++) {
             int ck = memberReactions[i];
             reacIsActive[ck] = true;         
         }
         
+        if(showAddRemove)
+        fprintf(pFileD,
+        "\n*** REMOVE RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f",
+        RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious, minRatio, maxRatio);
     }
     
     
@@ -3653,9 +3628,8 @@ class Integrate: public Utilities {
                 dt_FE = 0.00001*t;
             }
                 
-            
             // Compute timestep for explicit asymptotic method.  The 
-            // diagnostic flag choice2 indicates whether dt_FE or dt_EA 
+            // diagnostic choice2 indicates whether dt_FE or dt_EA 
             // is chosen as the timestep.
             
             choice2 =  0;
@@ -5134,7 +5108,7 @@ void showParameters(){
     printf(Utilities::stringToChar(intMethod));
     
     if(dopf){
-        printf(" (Partition function corrections for T9=%4.2f and above)", pfCut9);
+        printf(" (Partition function corrections applied for T9=%4.2f and above)", pfCut9);
     } else {
         printf(" (Partition function correction ignored)");
     }

@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5 
-height = 8.5
+width = 8 
+height = 8
 
 # x-axis resolution
 set samples 1000
@@ -78,7 +78,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
+xlow = -16
 xup = 2
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -106,7 +106,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference Asy calculation
 
-file1 = "gnufile_alpha_T9_5_1e8_asy.data"
+file1 = "gnufile_alpha_T9_5_1e8_asy_java_PF.data"
 
 # Alpha network asymptotic reference (X)
 
@@ -127,7 +127,7 @@ replot file1 using 1:21 with lines ls 14 lw 1.5 dashtype 1 title "60Zn asy"
 replot file1 using 1:22 with lines ls 1 lw 1.5 dashtype 1 title "64Ge asy"
 replot file1 using 1:23 with lines ls 2 lw 1.5 dashtype 1 title "68Se asy"
 
-file2 = "gnufile.data"
+file2 = "plot1.data"
 
 replot file2 using 1:8 with lines ls 2 lw 1.5 dashtype 2 title "4He asy+pe"
 replot file2 using 1:9 with lines ls 3 lw 1.5 dashtype 2 title "12C asy+pe"
