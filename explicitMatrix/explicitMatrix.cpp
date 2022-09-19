@@ -364,7 +364,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
 
 double massTol_asy = 3e-5;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 1e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 6e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
