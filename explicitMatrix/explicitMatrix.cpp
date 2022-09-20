@@ -361,10 +361,10 @@ double dt_ceiling = 0.1;               // Max timestep is dt_ceiling*t, for accu
 double dt_FE = dt_start;               // Max stable forward Euler timestep
 double dt_EA = dt_start;               // Max asymptotic timestep
 
-int dtMode;                            // Dual dt stage (0=full,1=1st half,2=2nd half)
+int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 3e-5;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 6e-5;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 7e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -374,7 +374,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4; //massTol_asyPE;           // Absolute error tolerance
+double EpsA = 4e-4; //massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
