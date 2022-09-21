@@ -100,8 +100,8 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "gnufile_alpha_T9_5_1e8_asy_java_PF.data"  # Asy reference
-#file1 = "gnufile_alpha_T9_7_1e8_asy_java_PF.data"  # Asy reference
+file1 = "dataRef/gnufile_alpha_T9_5_1e8_asy_java_PF.data"  # Asy reference
+#file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_java_PF.data"  # Asy reference
 file2 = "plot1.data"
 
 plot file1 using 1:3 with lines ls 1 lw 1.5 dashtype 1 title "Asy Log10 |E|"

@@ -100,8 +100,8 @@ set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
-#file1 = "gnufile_alpha_T9_7_1e8_asy.data"  # C++ No PF
-file1 = "gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # C++ with PF
+#file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy.data"  # C++ No PF
+file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"  # C++ with PF
 
 # Alpha network asymptotic reference (X)
 

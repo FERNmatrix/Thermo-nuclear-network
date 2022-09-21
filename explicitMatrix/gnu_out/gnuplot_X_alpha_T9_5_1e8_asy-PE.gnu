@@ -106,7 +106,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference Asy calculation
 
-file1 = "gnufile_alpha_T9_5_1e8_asy_java_PF.data"
+file1 = "dataRef/gnufile_alpha_T9_5_1e8_asy_java_PF.data"
 
 # Alpha network asymptotic reference (X)
 
