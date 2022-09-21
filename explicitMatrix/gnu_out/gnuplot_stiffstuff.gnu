@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 8
-height = 4
+height = 8
 
 # x-axis resolution
 set samples 1000
@@ -67,7 +67,7 @@ set key outside    # Place legend outside top
 set timestamp       # Date/time
 
 ds="C++ Asy and Asy+PE alpha with PF"
-ds = ds.": T9=7 rho=1e8"
+ds = ds.": T9=5 rho=1e8"
 set title ds textcolor rgb title_color
 
 
@@ -80,7 +80,7 @@ xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -17 
-yup = 1
+yup = 2
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -96,15 +96,23 @@ set mytics minytics   # minor y tics per major tic
 
 # -------- Axis ranges and ticmarks -----------
 
-file1 = "plot2.data"
-#file1 = "gnufile2.data"
+file1 = "plot2.data"     # C++
+file2 = "gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
+file3 = "gnufile_alpha_T9_5_1e8_asy_c++.data"   # C++ asy
 
-# Plot data
+# Plot C++ Asy+PE data
 
-plot file1 using 1:5 with lines ls 2 lw 1.5 dashtype 2 title "log 2/Rmax"
+plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
-replot file1 using 1:2 with lines ls 3 lw 1.5 dashtype 1 title "log dt"
+replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log dt (C++ asy+pe)"
 
+# Plot Java Asy+PE data
+
+replot file2 using 1:2 with lines ls 8 lw 2.0 dashtype 1 title "log dt (java asy+pe)"
+
+# Plot C++ asy
+
+replot file3 using 1:2 with lines ls 10 lw 2.0 dashtype 1 title "log dt (c++ asy)"
 
 # Plot dt contours
 
@@ -113,7 +121,6 @@ replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 
 replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
 replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
 #replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
-replot file1 using 1:12 with lines ls 3 lw 1.5 dashtype 2 title "log dt_desired"
 
 # Reset font sizes for .eps and .png output2
 

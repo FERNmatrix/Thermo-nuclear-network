@@ -340,7 +340,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // The variable startplot_time allows the plotting interval output
 // in gnu_out/gnufile.data to be a subset of the full integration interval. 
 // Generally, startplot_time > start_time.  By default the stop time for
-// plotting is the same as the stop time for integration,stop_time.
+// plotting is the same as the stop time for integration, stop_time.
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
@@ -363,7 +363,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 3e-5;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-5;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 7e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -372,9 +372,9 @@ int maxit = 20;                        // Max asy dt iterations
 int iterations;                        // # iterations in step to conserve particles 
 int totalIterations;                   // Total number of iterations, all steps til now
 double Error_Observed;                 // Observed integration error
-double Error_Desired;                  // Desired integration error
+double Error_Desired;                  // Desired max integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 4e-4; //massTol_asyPE;           // Absolute error tolerance
+double EpsA = 5e-4; //massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -388,9 +388,9 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = start_time;    // Time to begin checking for PE (default to start time)
+double equilTime = start_time;    // Time to begin checking for PE (default: start_time)
 
-double equiTol = 0.02;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
