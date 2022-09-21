@@ -106,7 +106,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference Asy calculation
 
-file1 = "gnufile_alpha_T9_5_1e7_asy.data"
+file1 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 
 # Alpha network asymptotic reference (X)
 
@@ -127,7 +127,7 @@ replot file1 using 1:21 with lines ls 14 lw 1.5 dashtype 1 title "60Zn asy"
 replot file1 using 1:22 with lines ls 1 lw 1.5 dashtype 1 title "64Ge asy"
 replot file1 using 1:23 with lines ls 2 lw 1.5 dashtype 1 title "68Se asy"
 
-file2 = "gnufile.data"
+file2 = "plot1.data"
 
 replot file2 using 1:8 with lines ls 2 lw 1.5 dashtype 2 title "4He asy+pe"
 replot file2 using 1:9 with lines ls 3 lw 1.5 dashtype 2 title "12C asy+pe"
