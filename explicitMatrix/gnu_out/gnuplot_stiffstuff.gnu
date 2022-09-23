@@ -98,7 +98,7 @@ set mytics minytics   # minor y tics per major tic
 
 file1 = "plot2.data"     # C++
 file2 = "dataRef/gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
-file3 = "dataRef/gnufile_alpha_T9_5_1e8_asy_c++.data"   # C++ asy
+file3 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"   # C++ asy
 
 # Plot C++ Asy+PE data
 
@@ -108,7 +108,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log dt (C++ asy+
 
 # Plot Java Asy+PE data
 
-replot file2 using 1:2 with lines ls 8 lw 2.0 dashtype 1 title "log dt (java asy+pe)"
+#replot file2 using 1:2 with lines ls 8 lw 2.0 dashtype 1 title "log dt (java asy+pe)"
 
 # Plot C++ asy
 

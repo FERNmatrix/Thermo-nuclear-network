@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 12.5
-height = 12.5
+width = 8
+height = 8
 
 # x-axis resolution
 set samples 1000
@@ -103,11 +103,13 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 16   # Number species to be plotted
+numberCurves = 15   # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
-dasher = 1            # Dash style for curves (0,1,2,3, ...)
+dasher1 = 1            # Dash style for curves (0,1,2,3, ...)
+dasher2 = 2            # Dash style for curves (0,1,2,3, ...)
 
-file1 = "plot1.data"  # Data file with mass fractions X
+file1 = "plot1.data"  # Current data file with mass fractions X
+fileRef = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # File with reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
@@ -116,7 +118,10 @@ file1 = "plot1.data"  # Data file with mass fractions X
 # numberCurves isotopes to be plotted.
 
 plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher title "(".(i-8).")"
+ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
+
+replot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
