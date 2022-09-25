@@ -97,7 +97,7 @@ set mytics minytics   # minor y tics per major tic
 # -------- Axis ranges and ticmarks -----------
 
 file1 = "plot2.data"     # C++
-file2 = "dataRef/gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
+#file2 = "dataRef/gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
 file3 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"   # C++ asy
 
 # Plot C++ Asy+PE data

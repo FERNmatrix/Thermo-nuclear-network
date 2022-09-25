@@ -92,7 +92,7 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-file1 = "dataRef/gnufile_alpha_T9_5_1e8_asy_java_PF.data"  # Asy reference"
+file1 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # Asy reference"
 #file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 file2 = "plot1.data"
 

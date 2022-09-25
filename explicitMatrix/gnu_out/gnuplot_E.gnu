@@ -67,7 +67,7 @@ set key top outside   # Move legend to outside top
 set timestamp       # Date/time
 
 ds="C++ Asy and Asy+PE alpha with PF"
-ds = ds.": T9=7 rho=1e8"
+ds = ds.": T9=7 rho=1e7"
 
 set timestamp
 set title ds textcolor rgb title_color font "Arial,22"
@@ -100,7 +100,7 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-file1 = "dataRef/gnufile_alpha_T9_5_1e8_asy_java_PF.data"  # Asy reference
+file1 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # Asy reference
 #file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_java_PF.data"  # Asy reference
 file2 = "plot1.data"
 

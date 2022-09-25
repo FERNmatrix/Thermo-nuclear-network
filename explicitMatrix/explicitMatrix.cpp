@@ -185,8 +185,8 @@ void updatePF(void);
 
 // Constants for use in gsl_vector
 
-const size_t sizy = SIZE;
-const size_t  isy = ISOTOPES;
+//const size_t sizy = SIZE;
+//const size_t  isy = ISOTOPES;
 
 // File pointers for diagnostics output. Corresponding filenames declared 
 // at top of main.
@@ -268,7 +268,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -364,7 +364,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4; //9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -391,7 +391,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilTime = start_time;    // Time to begin checking for PE (default: start_time)
 
-double equiTol = 0.015;            // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
@@ -472,13 +472,13 @@ int numberReactions;             // Actual # reactions in network (usually = SIZ
 // in the function ReactionVector::parseF(). It characterizes the structure 
 // of the network and thus has to be calculated only once for a given network.
 
-int reacMask[isy][sizy]; 
+int reacMask[ISOTOPES][SIZE]; 
 
 // Define an array rv[] and corresponding pointers that will hold GSL vectors 
 // corresponding to the reaction vectors for the system.  This will be implemented 
 // in the function makeReactionVectors() of the class ReactionVector.
 
-gsl_vector rv[sizy];   // Array of type gsl_vector to hold GSL vectors
+gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
 gsl_vector *rvPt;      // Pointer to rv[] array
 
 // Define an array RV of type std::vector that will hold reaction vectors for
@@ -2267,13 +2267,13 @@ class ReactionVector:  public Utilities {
             
             gsl_vector *v1;  // Pointer to array holding GSL vectors
             
-            for(size_t i=0; i<sizy; i++){
+            for(size_t i=0; i<SIZE; i++){
                 
                 // Allocate memory for a GSL reaction vector, which will contain 
                 // ISOTOPES entries indicating how isotopic species change in a 
                 // reaction.
                 
-                v1 = gsl_vector_alloc (isy);
+                v1 = gsl_vector_alloc (ISOTOPES);
                 
                 // Set elements of the SIZE elements of rv[] pointed to by 
                 // *rvPt equal to GSL vectors
@@ -2287,9 +2287,9 @@ class ReactionVector:  public Utilities {
             // reacMask[j][i] (notice reversed indices because outer loop is reactions
             // and inner loop is isotopes.)
             
-            for (size_t i = 0; i < sizy; i++) {
+            for (size_t i = 0; i < SIZE; i++) {
                 
-                for(size_t j=0; j < isy; j++){
+                for(size_t j=0; j < ISOTOPES; j++){
                     
                     // Populate gsl vector
                     
@@ -2306,11 +2306,11 @@ class ReactionVector:  public Utilities {
                 "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
                 SIZE,ISOTOPES);
             
-            for (size_t i = 0; i < sizy; i++) {
+            for (size_t i = 0; i < SIZE; i++) {
                 
                 fprintf(pFileD,"\nrv[%d]: [",i);
                 
-                for(size_t j=0; j < isy; j++){
+                for(size_t j=0; j < ISOTOPES; j++){
                     
                     // Define a pointer to the GSL vector in array entry rv[i]
                     
@@ -2380,7 +2380,7 @@ class ReactionVector:  public Utilities {
             
             fprintf(pfnet, "rv[%d]: [", i);
             
-            for(size_t j=0; j < isy; j++){
+            for(size_t j=0; j < ISOTOPES; j++){
     
                 // Assign the jth component of the vector in v[i] to a variable
                 // and print
@@ -2403,7 +2403,7 @@ class ReactionVector:  public Utilities {
             gsl_vector *vector = v; 
             fprintf(pfnet, "rv[]: [");
             
-            for(size_t j=0; j < isy; j++){
+            for(size_t j=0; j < ISOTOPES; j++){
                 
                 // Assign the jth component of the vector in v[i] to a variable
                 // and print
@@ -2446,7 +2446,7 @@ class ReactionVector:  public Utilities {
         // Now compare rv1 and -rv2 to see if the two vectors are
         // negatives of each other.
 
-        gsl_vector *rv2minus = gsl_vector_alloc(isy);
+        gsl_vector *rv2minus = gsl_vector_alloc(ISOTOPES);
         
         gsl_vector_memcpy(rv2minus, rv2);
         gsl_vector_scale(rv2minus, -1.0);
