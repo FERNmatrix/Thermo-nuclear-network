@@ -1,17 +1,24 @@
-SOME SAMPLE NETWORKS:
-
-Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
-3=alpha          3        8     network_3alpha.inp     data/rateLibrary_3alpha.data
-4-alpha          4       14     network_4alpha.inp     data/rateLibrary_4alpha.data
-alpha           16       48     network_alpha.inp      data/rateLibrary_alpha.data
-pp               7       28     data/network_pp.inp    data/rateLibrary_pp.data
-main cno         8       22     network_cno.inp        data/rateLibrary_cno.data
-full cno        16      134     network_cnoAll.inp     data/rateLibrary_cnoAll.data
-48              48      299     network_48.inp         data/rateLibrary_48.data
-nova134        134     1566     network_nova134.inp    data/rateLibrary_nova134.data
-150 (12C-16O)  150     1604     network_150.inp        data/rateLibrary_150.data
-150 (solar)    150     1604     network_150_solar.inp  data/rateLibrary_150.data
-194            194     2232     network_194.inp        data/rateLibrary_194.data
-268            268     3175     network_268.inp        data/rateLibrary_268.data
-365 (12C-16O)  365     4395     network_365.inp        data/rateLibrary_365.data
-365 (solar)    365     4395     network_365_solar.inp  data/rateLibrary_365.data
+ * ------------------------------------------------------------------------------------------
+ * SOME SAMPLE NETWORKS:
+ * 
+ * Network   ISOTOPES     SIZE     networkFile[]               rateLibraryFile[]
+ * 3=alpha          3        8     data/network_3alpha.inp     data/rateLibrary_3alpha.data
+ * 4-alpha          4       14     data/network_4alpha.inp     data/rateLibrary_4alpha.data
+ * alpha           16       48     data/network_alpha.inp      data/rateLibrary_alpha.data
+ * pp               7       28     data/network_pp.inp         data/rateLibrary_pp.data
+ * main cno         8       22     data/network_cno.inp        data/rateLibrary_cno.data
+ * full cno        16      134     data/network_cnoAll.inp     data/rateLibrary_cnoAll.data
+ * 48              48      299     data/network_48.inp         data/rateLibrary_48.data
+ * 70(C-O)         70      598     data/network_70.inp         data/rateLibrary_70.data
+ * 70(4He)         70      598     data/network_70_alpha.inp   data/rateLibrary_70.data
+ * 116            116     1135     data/network_116.inp        data/rateLibrary_116.data
+ * nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
+ * 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
+ * 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
+ * 194            194     2232     network_194.inp             data/rateLibrary_194.data
+ * 268            268     3175     network_268.inp             data/rateLibrary_268.data
+ * 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
+ * 365 (solar)    365     4395     data/network_365_solar.inp  data/rateLibrary_365.data
+ * tidalSN_alpha   16       48     data/network_alpha_he4.inp  data/rateLibrary_alpha.data
+ * big bang         8       64     data/network_bigbang.inp    data/rateLibrary_bigbang.data
+ * ------------------------------------------------------------------------------------------
