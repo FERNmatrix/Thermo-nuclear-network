@@ -2254,77 +2254,77 @@ class ReactionVector:  public Utilities {
             } 
             
             
-            // -----------------------------------------------------------------------
-            // Now implement reaction vectors as GSL vectors so that we can use the
-            // GSL and GSL_BLAS APIs to manipulate them.  Prototypes for doing this
-            // may be found in the example code arrayPointers.c and matrixGSL.c
-            // -----------------------------------------------------------------------
-            
-            // Set pointer rvPt to beginning address of array rv, which will hold 
-            // GSL vectors corresponding to the reaction vectors for the system
-            
-            rvPt = rv;
-            
-            gsl_vector *v1;  // Pointer to array holding GSL vectors
-            
-            for(size_t i=0; i<SIZE; i++){
-                
-                // Allocate memory for a GSL reaction vector, which will contain 
-                // ISOTOPES entries indicating how isotopic species change in a 
-                // reaction.
-                
-                v1 = gsl_vector_alloc (ISOTOPES);
-                
-                // Set elements of the SIZE elements of rv[] pointed to by 
-                // *rvPt equal to GSL vectors
-                
-                *(rvPt+i) = *v1;   
-            }
-            
-            gsl_vector_free(v1);
-            
-            // Fill gsl vector component entries created above with data contained in  
-            // reacMask[j][i] (notice reversed indices because outer loop is reactions
-            // and inner loop is isotopes.)
-            
-            for (size_t i = 0; i < SIZE; i++) {
-                
-                for(size_t j=0; j < ISOTOPES; j++){
-                    
-                    // Populate gsl vector
-                    
-                    gsl_vector_set (rvPt+i, j, (double) reacMask[j][i]);
-                    
-                }
-                
-            }
-            
-            // Display reaction vectors as component list in 
-            // pFileD -> gnu_out/diagnostics.data
-            
-            fprintf(pFileD,
-                "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
-                SIZE,ISOTOPES);
-            
-            for (size_t i = 0; i < SIZE; i++) {
-                
-                fprintf(pFileD,"\nrv[%d]: [",i);
-                
-                for(size_t j=0; j < ISOTOPES; j++){
-                    
-                    // Define a pointer to the GSL vector in array entry rv[i]
-                    
-                    gsl_vector *vector = rvPt+i;
-                    
-                    // Assign the jth component of the vector in rv[i] to a variable
-                    
-                    double component = gsl_vector_get (vector, j);
-                    fprintf (pFileD, "%3d", (int) component);
-                }
-                
-                fprintf(pFileD," ]");
-                
-            }
+//             // -----------------------------------------------------------------------
+//             // Now implement reaction vectors as GSL vectors so that we can use the
+//             // GSL and GSL_BLAS APIs to manipulate them.  Prototypes for doing this
+//             // may be found in the example code arrayPointers.c and matrixGSL.c
+//             // -----------------------------------------------------------------------
+//             
+//             // Set pointer rvPt to beginning address of array rv, which will hold 
+//             // GSL vectors corresponding to the reaction vectors for the system
+//             
+//             rvPt = rv;
+//             
+//             gsl_vector *v1;  // Pointer to array holding GSL vectors
+//             
+//             for(size_t i=0; i<SIZE; i++){
+//                 
+//                 // Allocate memory for a GSL reaction vector, which will contain 
+//                 // ISOTOPES entries indicating how isotopic species change in a 
+//                 // reaction.
+//                 
+//                 v1 = gsl_vector_alloc (ISOTOPES);
+//                 
+//                 // Set elements of the SIZE elements of rv[] pointed to by 
+//                 // *rvPt equal to GSL vectors
+//                 
+//                 *(rvPt+i) = *v1;   
+//             }
+//             
+//             gsl_vector_free(v1);
+//             
+//             // Fill gsl vector component entries created above with data contained in  
+//             // reacMask[j][i] (notice reversed indices because outer loop is reactions
+//             // and inner loop is isotopes.)
+//             
+//             for (size_t i = 0; i < SIZE; i++) {
+//                 
+//                 for(size_t j=0; j < ISOTOPES; j++){
+//                     
+//                     // Populate gsl vector
+//                     
+//                     gsl_vector_set (rvPt+i, j, (double) reacMask[j][i]);
+//                     
+//                 }
+//                 
+//             }
+//             
+//             // Display reaction vectors as component list in 
+//             // pFileD -> gnu_out/diagnostics.data
+//             
+//             fprintf(pFileD,
+//                 "\nGSL REACTION VECTOR COMPONENTS (%d reaction vectors with %d components)\n",
+//                 SIZE,ISOTOPES);
+//             
+//             for (size_t i = 0; i < SIZE; i++) {
+//                 
+//                 fprintf(pFileD,"\nrv[%d]: [",i);
+//                 
+//                 for(size_t j=0; j < ISOTOPES; j++){
+//                     
+//                     // Define a pointer to the GSL vector in array entry rv[i]
+//                     
+//                     gsl_vector *vector = rvPt+i;
+//                     
+//                     // Assign the jth component of the vector in rv[i] to a variable
+//                     
+//                     double component = gsl_vector_get (vector, j);
+//                     fprintf (pFileD, "%3d", (int) component);
+//                 }
+//                 
+//                 fprintf(pFileD," ]");
+//                 
+//             }
             
         }  // End function makeReactionVectors()
         
@@ -2368,110 +2368,110 @@ class ReactionVector:  public Utilities {
             return retVal;
         }
         
-        // Static function ReactionVector::printReactionVectorComponents(*v,i)
-        // prints the components of a GSL reaction vector pointed to by *v to
-        // pfnet --> gnu_out/network.data.
+//         // Static function ReactionVector::printReactionVectorComponents(*v,i)
+//         // prints the components of a GSL reaction vector pointed to by *v to
+//         // pfnet --> gnu_out/network.data.
+//         
+//         static void printReactionVectorComponents(gsl_vector *v, int i){
+//                
+//             // Define a pointer to the GSL vector in array entry v[i]
+//             
+//             gsl_vector *vector = v; 
+//             
+//             fprintf(pfnet, "rv[%d]: [", i);
+//             
+//             for(size_t j=0; j < ISOTOPES; j++){
+//     
+//                 // Assign the jth component of the vector in v[i] to a variable
+//                 // and print
+//                 
+//                 double component = gsl_vector_get (vector, j);
+//                 fprintf (pfnet, "%3d", (int) component);
+//             }
+//             
+//             fprintf(pfnet, " ]\n");
+//             
+//         }
         
-        static void printReactionVectorComponents(gsl_vector *v, int i){
-               
-            // Define a pointer to the GSL vector in array entry v[i]
-            
-            gsl_vector *vector = v; 
-            
-            fprintf(pfnet, "rv[%d]: [", i);
-            
-            for(size_t j=0; j < ISOTOPES; j++){
-    
-                // Assign the jth component of the vector in v[i] to a variable
-                // and print
-                
-                double component = gsl_vector_get (vector, j);
-                fprintf (pfnet, "%3d", (int) component);
-            }
-            
-            fprintf(pfnet, " ]\n");
-            
-        }
-        
-        // Static method ReactionVector::printReactionVectorComponents (*v) to
-        // print components of a gsl vector v to pfnet --> gnu_out/network.data
-        
-        static void printReactionVectorComponents(gsl_vector *v){
-            
-            // Define a pointer to the GSL vector in array entry v[i]
-            
-            gsl_vector *vector = v; 
-            fprintf(pfnet, "rv[]: [");
-            
-            for(size_t j=0; j < ISOTOPES; j++){
-                
-                // Assign the jth component of the vector in v[i] to a variable
-                // and print
-                
-                double component = gsl_vector_get (vector, j);
-                fprintf (pfnet, "%3d", (int) component);
-            }
-            
-            fprintf(pfnet, " ]\n");
-            
-        }
+//         // Static method ReactionVector::printReactionVectorComponents (*v) to
+//         // print components of a gsl vector v to pfnet --> gnu_out/network.data
+//         
+//         static void printReactionVectorComponents(gsl_vector *v){
+//             
+//             // Define a pointer to the GSL vector in array entry v[i]
+//             
+//             gsl_vector *vector = v; 
+//             fprintf(pfnet, "rv[]: [");
+//             
+//             for(size_t j=0; j < ISOTOPES; j++){
+//                 
+//                 // Assign the jth component of the vector in v[i] to a variable
+//                 // and print
+//                 
+//                 double component = gsl_vector_get (vector, j);
+//                 fprintf (pfnet, "%3d", (int) component);
+//             }
+//             
+//             fprintf(pfnet, " ]\n");
+//             
+//         }
        
         
     
-    // ------------------------------------------------------------------------
-    // ReactionVector::compareGSLvectors(i1, i2, rv1, rv2) to compare two GSL vectors 
-    // of same length, with the vectors being equivalent only if they are
-    // equal component by component.  Returns 0 if they are not equivalent,
-    // 1 if they are the same, 2 if one vector is the negative of the other. 
-    // The last two arguments of the function are pointers to the two GSL vectors
-    // to be compared, i1 is the index of the vector rv1 in the gsl vector array 
-    // rv[], and i2 is the index of the vector rv2 in the array rv[].
-    // *** NOT PRESENTLY USED ***
-    // ------------------------------------------------------------------------
-    
-    int static compareGSLvectors(int i1, int i2, gsl_vector *rv1, gsl_vector *rv2){
-        
-        int k, kk;
-        
-        // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
-        // if vectors are equal and 0 if they are not.
-        
-        k = gsl_vector_equal(rv1, rv2);
-        
-        if (k == 1){
-            return 1;    // rv1 = rv2; same reaction group (RG)
-        } 
-        
-        // If above statement is false, rv1 and rv2 are not equal.
-        // Now compare rv1 and -rv2 to see if the two vectors are
-        // negatives of each other.
-
-        gsl_vector *rv2minus = gsl_vector_alloc(ISOTOPES);
-        
-        gsl_vector_memcpy(rv2minus, rv2);
-        gsl_vector_scale(rv2minus, -1.0);
-        kk = gsl_vector_equal(rv1, rv2minus);
-       
-        // Free the vector. Better solution would be to globally allocate
-        // this and remove the repeated allocation all together.
-        
-        gsl_vector_free(rv2minus);
- 
-        if(kk == 0){
-            
-            return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
-            
-        } else if (kk == 1){
-            
-            return 2;    // rv1 = -rv2; same reaction group
-
-        } else {
-            
-            return -1;   // Something went wrong; should never get here
-            
-        }
-        
-    }    // End function compareGSLvectors
+//     // ------------------------------------------------------------------------
+//     // ReactionVector::compareGSLvectors(i1, i2, rv1, rv2) to compare two GSL vectors 
+//     // of same length, with the vectors being equivalent only if they are
+//     // equal component by component.  Returns 0 if they are not equivalent,
+//     // 1 if they are the same, 2 if one vector is the negative of the other. 
+//     // The last two arguments of the function are pointers to the two GSL vectors
+//     // to be compared, i1 is the index of the vector rv1 in the gsl vector array 
+//     // rv[], and i2 is the index of the vector rv2 in the array rv[].
+//     // *** NOT PRESENTLY USED ***
+//     // ------------------------------------------------------------------------
+//     
+//     int static compareGSLvectors(int i1, int i2, gsl_vector *rv1, gsl_vector *rv2){
+//         
+//         int k, kk;
+//         
+//         // Compare rv1 and rv2. Function gsl_vector_equal(rv1, rv2) returns 1 
+//         // if vectors are equal and 0 if they are not.
+//         
+//         k = gsl_vector_equal(rv1, rv2);
+//         
+//         if (k == 1){
+//             return 1;    // rv1 = rv2; same reaction group (RG)
+//         } 
+//         
+//         // If above statement is false, rv1 and rv2 are not equal.
+//         // Now compare rv1 and -rv2 to see if the two vectors are
+//         // negatives of each other.
+// 
+//         gsl_vector *rv2minus = gsl_vector_alloc(ISOTOPES);
+//         
+//         gsl_vector_memcpy(rv2minus, rv2);
+//         gsl_vector_scale(rv2minus, -1.0);
+//         kk = gsl_vector_equal(rv1, rv2minus);
+//        
+//         // Free the vector. Better solution would be to globally allocate
+//         // this and remove the repeated allocation all together.
+//         
+//         gsl_vector_free(rv2minus);
+//  
+//         if(kk == 0){
+//             
+//             return 0;    // rv1 != rv2 and rv1 != -rv2; not in same RG
+//             
+//         } else if (kk == 1){
+//             
+//             return 2;    // rv1 = -rv2; same reaction group
+// 
+//         } else {
+//             
+//             return -1;   // Something went wrong; should never get here
+//             
+//         }
+//         
+//     }    // End function compareGSLvectors
     
     
     
