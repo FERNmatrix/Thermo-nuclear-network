@@ -202,8 +202,8 @@ char networkFile[] = "data/network_nova134.inp";
 
 char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
-// Whether to use constant T and rho (hydroProfile false),in which case a
-// constant T9 = T9_start and rho = rho_start are used,or to read
+// Whether to use constant T and rho (hydroProfile false), in which case a
+// constant T9 = T9_start and rho = rho_start are used, or to read
 // in a hydrodynamical profile of T and rho versus time (hydroProfile true),
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
@@ -219,7 +219,7 @@ bool hydroProfile = true;
 //    data/tidalSNProfile_100.inp      // Zone in tidal supernova explosion
 //
 // Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
-// plotHydroProfile are true,the hydro profile used for the temperature and 
+// plotHydroProfile are true, the hydro profile used for the temperature and 
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
@@ -234,7 +234,7 @@ static const bool plotHydroProfile = true;
 const static int maxHydroEntries = 102; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
-// Lots of data,so most useful for small networks.
+// Lots of data, so most useful for small networks.
  
 static const bool plotFluxes = false;
 
@@ -260,7 +260,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS. The boolean showPE allows display of the number
 // of reaction groups (RG) that would be in equilibrium if PE approximation were
-// being implemented. It is true only if Asy or QSS,but PE not being
+// being implemented. It is true only if Asy or QSS, but PE not being
 // implemented.
 
 bool doASY = true;           // Whether to use asymptotic approximation
@@ -272,7 +272,7 @@ string intMethod = "";       // String holding integration method
 string ts;                   // Utility string
 
 // Temperature and density variables. Temperature and density can be
-// either constant,or read from a hydro profile as a function of time.
+// either constant, or read from a hydro profile as a function of time.
 
 double T9;                   // Current temperature in units of 10^9 K
 double rho;                  // Current density in units of g/cm^3
@@ -331,7 +331,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
 // and dt_start sets the initial integration timestep. In an operator-split 
-// coupling  start_time will be ~0, stop_time will correspond to the length
+// coupling  start_time will be 0, stop_time will correspond to the length
 // of the hydro timestep, and dt_init will likely be something like the 
 // last timestep of the previous network integration (for the preceding 
 // hydro timestep). Here we hardwire them for testing purposes.
