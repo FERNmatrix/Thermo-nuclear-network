@@ -3997,7 +3997,7 @@ int main() {
     // Set labels and check consistency of choice for explicit algebraic methods set.
     // Generally we use either asymptotic (Asy) or quasi-steady-state (QSS) algorithms.
     // In either case we may choose to add the partial equilibrium (PE) algorithm. So
-    // valid options are Asy,QSS,Asy+PE,and QSS+PE.
+    // valid options are Asy, QSS, Asy+PE, and QSS+PE.
     
     if(doASY && !doPE){
         doQSS = false;
@@ -4019,7 +4019,7 @@ int main() {
     // realistic calculation the temperature and density will be passed from the hydro 
     // code in an operator-split coupling of this network to hydro. Here we hardwire
     // them for testing purposes.  These will be used to calculate the reaction
-    // rates in the network. If we assume operator splitting,the temperature 
+    // rates in the network. If we assume operator splitting, the temperature 
     // and density are assumed constant for each network integration. We also allow
     // the possibility below to interpolate the temperature and density from a
     // hydrodynamical profile as a function of time.
@@ -4040,7 +4040,7 @@ int main() {
         //reaction[i].setreacGroupSymbol(Utilities::stringToChar(RGstring[i]));
     }
     
-    // Determine whether the network contains Be-8,which is handled as
+    // Determine whether the network contains Be-8, which is handled as
     // two alpha particles because of the rapid decay compared to network 
     // timescales.
     
@@ -4068,7 +4068,7 @@ int main() {
     readNetwork(networkFilePtr);
     writeNetwork();
     
-    // Read in rate library data from a file. This is required only once,at the
+    // Read in rate library data from a file. This is required only once, at the
     // beginning of the entire calculation.
     
     char *rateLibraryFilePtr = rateLibraryFile;
@@ -4098,7 +4098,7 @@ int main() {
             reaction[i].getQ(),
             reaction[i].getprefac(),
             Utilities::stringToChar(RGstring[i])
-            //reaction[i].getreacGroupSymbol()   // Always returns a<->b
+            //reaction[i].getreacGroupSymbol()   // Always returns a<->b?
         );
     }
 
@@ -4130,18 +4130,20 @@ int main() {
     tempInt2 = (int*) malloc(sizeof(int) * numberSpecies * numberReactions/2);
     
     /*
-     * Use ReactionVector::parseF() to find the contributions to F+ and F- of each reaction for each 
-     * isotope. This is executed only once at the beginning of the entire calculation to determine 
-     * the structure of the network.  The function is static so it can be called directly from the
-     * class without instantiating.
+     * Use ReactionVector::parseF() to find the contributions to F+ and F- of 
+     * each reaction for each isotope. This is executed only once at the beginning 
+     * of the entire calculation to determine the structure of the network.  
+     * The function is static so it can be called directly from the class without 
+     * instantiating.
      */
     
     ReactionVector::parseF();
     
     // Print out the network species vector
     
-    fprintf(pFileD,"\n\nNETWORK SPECIES VECTOR (%d components):\n\nIndex  Species    Z     N",
-        numberSpecies);
+    fprintf(pFileD,
+    "\n\nNETWORK SPECIES VECTOR (%d components):\n\nIndex  Species    Z     N",
+    numberSpecies);
     
     for(int i=0; i<numberSpecies; i++){
         fprintf(pFileD,"\n%5d    %5s  %3d  %4d",i,isoLabel[i],Z[i],N[i]);
@@ -4149,19 +4151,21 @@ int main() {
     
     fprintf(pFileD,"\n");
     
-    // Use the information gleaned from ReactionVector::parseF() to define the reaction vectors
-    // for the network using the static makeReactionVectors function of the class
-    // ReactionVector.
+    // Use the information gleaned from ReactionVector::parseF() to define 
+    // the reaction vectors for the network using the static makeReactionVectors 
+    // function of the class ReactionVector.
     
     ReactionVector::makeReactionVectors();
     
-    // Use static function ReactionVector::sortReactionGroups() to sort reactions into partial
-    // equilibrium reaction groups by comparing reaction vectors.
+    // Use static function ReactionVector::sortReactionGroups() to sort 
+    // reactions into partial equilibrium reaction groups by comparing 
+    // reaction vectors.
     
     ReactionVector::sortReactionGroups();
     
-    // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
-    // numberRG,where numberRG was determined by ReactionVector::sortReactionGroups() above.
+    // Allocate dynamically memory for an array of ReactionGroup objects of 
+    // dimension numberRG, where numberRG was determined by 
+    // ReactionVector::sortReactionGroups() above.
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup) * numberRG);
     
@@ -4186,9 +4190,10 @@ int main() {
         
     }
     
-    // Allocate memory for 1D arrays to hold non-zero F+ and F- for all reactions for all isotopes,
-    // the arrays holding the species factors FplusFac and FminusFac,and also arrays to hold 
-    // their sums for each isotope. ReactionVector::parseF() must be run first because it determines 
+    // Allocate memory for 1D arrays to hold non-zero F+ and F- for all reactions 
+    // for all isotopes, the arrays holding the species factors FplusFac and 
+    // FminusFac,and also arrays to hold their sums for each isotope. 
+    // ReactionVector::parseF() must be run first because it determines 
     // totalFplus and totalFminus.
     
     Fplus = (double*) malloc(sizeof(double) * totalFplus);
@@ -4199,8 +4204,8 @@ int main() {
     FminusSum = (double*) malloc(sizeof(double) * numberSpecies);
     dF =  (double*) malloc(sizeof(double) * numberSpecies);
     
-    // Allocate memory for arrays that hold the index of the boundary between different 
-    // isotopes in the Fplus and Fminus 1D arrays. 
+    // Allocate memory for arrays that hold the index of the boundary between 
+    // different isotopes in the Fplus and Fminus 1D arrays. 
     
     FplusMax = (int*) malloc(sizeof(int) * numberSpecies);
     FplusMin = (int*) malloc(sizeof(int) * numberSpecies);
@@ -4252,15 +4257,15 @@ int main() {
     totalEquilReactions = 0;    // Number equilibrated reactions
     totalAsy = 0;               // Number asymptotic species
     ERelease = 0.0;             // Total E released from Q values
-    plotCounter = 1;        // Plot output counter
+    plotCounter = 1;            // Plot output counter
     fastestOverallRate = 0.0;   // Initialize fastest overall rate
     timeMaxRate = 0.0;          // Initialize slowest overall rate
     
     // Compute initial rates if hydroProfile = false. Rates won't
     // change in the integration and don't need to be computed again.  If either
-    // T9 or rho change,the rates will be recomputed at each integration step.
+    // T9 or rho change, the rates will be recomputed at each integration step.
     // Use functions of Reaction class to compute reaction rates. We have instantiated
-    // a set of Reaction objects in the array reaction[i],one entry for each
+    // a set of Reaction objects in the array reaction[i], one entry for each
     // reaction in the network. Loop over this array and call the computeRate()
     // function of Reaction on each object. 
     
@@ -4342,7 +4347,7 @@ int main() {
         }
         
         // Next target plot output time.  Use to keep chosen dt from being
-        // much larger than the time to next plot output,which can occur
+        // much larger than the time to next plot output, which can occur
         // if the number of plot steps plotSteps is large (especially at
         // early times in the integration).
         
@@ -4375,7 +4380,7 @@ int main() {
             logRhoNow = log10(rho_start);
         }
         
-        // But then convert also to temperature in units of 10^9K and density in units
+        // But then convert also to temperature in units of 10^9 K and density in units
         // of g/cm^3 for the calculation
         
         T9 = pow(10,logTnow)/1e9;
@@ -4416,7 +4421,6 @@ int main() {
         
         // Variable t now holds the time at the end of the timestep just executed.
 
-        
         // Store true sumX before any renormalization.
         
         sumXtrue = Utilities::sumMassFractions();
@@ -4428,8 +4432,9 @@ int main() {
             restoreBe8();
         }
         
-        // Compute equilibrium conditions for the state at the end of this timestep (starting time
-        // for next timestep) if partial equilibrium is being implemented (doPE = true).
+        // Compute equilibrium conditions for the state at the end of this timestep 
+        // (starting time for next timestep) if partial equilibrium is being 
+        // implemented (doPE = true).
         
         if( (doPE && t > equilTime)){
             
@@ -4475,9 +4480,9 @@ int main() {
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
         // times are generated by Utilities::log10Spacing() and stored in the array
         // plotTimeTargets[plotSteps]. A screen and plot file output is triggered if
-        // t >= plotTimeTargets[plotCounter-1],so the actual output times may be slightly
-        // larger than the target output times. Plots are made with respect to actual,not
-        // target,output times.
+        // t >= constant x plotTimeTargets[plotCounter-1], so the actual output times 
+        // may be larger than the target output times. Plots are made with respect to 
+        // actual, not target, output times.
         // ---------------------------------------------------------------------------------
         
         if(t >= plotTimeTargets[plotCounter-1]){
@@ -4508,7 +4513,7 @@ int main() {
             // after the buffer fills. Following command flushes the print buffer
             // after each timestep so the output to screen is continuous as the integration
             // proceeds instead of in large chunks each time the buffer fills.  This is
-            // useful for diagnostics and development,but could impair efficiency of
+            // useful for diagnostics and development, but could impair efficiency of
             // code somewhat relative to letting the code decide when to empty buffer? Of
             // course in production code we would not be writing significant output to the 
             // screen anyway.
@@ -4564,13 +4569,12 @@ int main() {
     
     
     // **************************************************
-    // To test various function calls,insert code from 
+    // To test various function calls, insert code from 
     // functionTests.cpp here
     // **************************************************
 
-    // Flush streams and close output file
+    // Close diagnostic output files
     
-    cout.flush();
     fclose (pFileD);
     fclose (pfnet);
    
@@ -4664,21 +4668,11 @@ void plotFileSetup(){
     
     // Following arrays control which mass fractions are exported to plotting
     // file.  The entries in plotXlist[] are the species indices for the
-    // isotopes in the network to be plotted. For small networks export all;
-    // for large networks we will usually export only a representative subset.
-    // Hardwired for now,but eventually we should read the entries of this
-    // array in from a data file.
+    // isotopes in the network to be plotted.
     
     for(int i=0; i<maxPlotIsotopes; i++){
         plotXlist[i] = i;
     }
-    
-//     int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//     int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
-//     int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-//     int plotXlist[] = {0,1,2};                                      // 3-alpha
-//     int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
-//     int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
     
     // Get length LX of array plotXlist holding the species indices for
     // isotopes that we will plot mass fraction X for.
@@ -4729,8 +4723,8 @@ void plotFileSetup(){
         fprintf(pFileD,"+ method (no partition functions). "); 
     }
     
-    fprintf(plotfile1,"\n# All quantities except Asy,RG_PE,and sumX are \n");
-    fprintf(plotfile1,"# log10(x). Log of absolute values for E and dE/dt,as\n");
+    fprintf(plotfile1,"\n# All quantities except Asy, RG_PE, and sumX are \n");
+    fprintf(plotfile1,"# log10(x). Log of absolute values for E and dE/dt, as\n");
     fprintf(plotfile1,"# they can be negative. UNITS: t and dt in s; E in erg; \n");
     fprintf(plotfile1,"# dE/dt in erg/g/s; all others dimensionless \n");
     fprintf(plotfile1,"#\n");
@@ -4748,11 +4742,11 @@ void plotFileSetup(){
         
         // The above conversion of a character array to a string leaves
         // 2 or 3 end of line characters after the isotope label in iso
-        // that prevent printing correctly in fprint(pFile,stringToChar(str1))
-        // below. It will print with ofstream as commented out below,but 
+        // that prevent printing correctly in fprint (pFile,stringToChar(str1))
+        // below. It will print with ofstream as commented out below, but 
         // displaying 2-3 garbage symbols at the end. Remove those characters
-        // with pop_back(). Unfortunately,since the isotope symbols are from 3 to 5 
-        // characters long,3 applications of pop_back removes the unwanted
+        // with pop_back(). Unfortunately, since the isotope symbols are from 3 to 5 
+        // characters long, 3 applications of pop_back removes the unwanted
         // characters but will in some cases remove the last character of the 
         // actual isotopic symbol. Thus switched to displaying the species number
         // rather than the isotopic symbol in the plot output.  More compact anyway.
@@ -4825,7 +4819,7 @@ void plotFileSetup(){
 // at regular intervals of the integration to a file suitable for plotting. 
 // Assumes the existence of a subdirectory gnu_out. May crash if this directory
 // does not exist. Assuming gnuplot for plotting, but the output files
-// are whitespace-delimited ascii,so any plotting program could be used
+// are whitespace-delimited ascii, so any plotting program could be used
 // to read it. 
 
 
@@ -4866,16 +4860,16 @@ void toPlotNow(){
         
         // Now add one data field for each FplusSumPlot. Add
         // 1e-24 to X in case it is identically zero since we are
-        // taking the log.
+        // taking log10.
         
         for(int j=0; j<maxPlotIsotopes; j++){
             fprintf(plotfile3," %5.3e",
-                log10(abs( isotope[j].getfplus() +1e-24) ));
+                log10(abs( isotope[j].getfplus() + 1e-24) ));
         }
         
         for(int j=0; j<maxPlotIsotopes; j++){
             fprintf(plotfile3," %5.3e",
-                log10(abs( isotope[j].getfminus() +1e-24)));
+                log10(abs( isotope[j].getfminus() + 1e-24)));
         }
         
         for(int j=0; j<maxPlotIsotopes; j++){
@@ -4905,7 +4899,7 @@ void toPlotNow(){
 }  // End of toPlotNow()
 
 
-// Function restoreBe9() to convert all 8-Be to alpha particles since lifetime 
+// Function restoreBe8 () to convert all 8-Be to alpha particles since lifetime 
 // of 8-Be to decay to two alpha particles is short compared with typical 
 // integration steps.
 
@@ -4981,15 +4975,15 @@ double dE_halfstep(){
 /* Function restoreEquilibriumProg() to adjust populations at end of timestep when in PE
  * to correct for deviations from equilibrium during the timestep caused by reactions
  * not in equilibrium. This function sets the species abundances in each reaction group 
- * to their equilibrium value at the end of the numerical timestep. Then,the corrected 
+ * to their equilibrium value at the end of the numerical timestep. Then, the corrected 
  * abundances Y for all isotopes participating in partial equilibrium are averaged over
- * reaction groups if they participate in more than one reaction group. Finally,after 
- * Ys are updated by their average equilibrium values,all abundances are rescaled so 
+ * reaction groups if they participate in more than one reaction group. Finally, after 
+ * Ys are updated by their average equilibrium values, all abundances are rescaled so 
  * that total nucleon number is conserved by the overall timestep (by requiring the sum
  * of the mass fractions X to equal one). Thus this function for restoring equilibrium 
  * does not require a matrix solution or Newton-Raphson iteration. It should scale 
  * approximately linearly with the network size for sparse networks. Contrast with the 
- * different more complicated approach taken in the restoreEquilibrium() method of the 
+ * different more complicated approach taken in the restoreEquilibrium () method of the 
  * benchmark Java code. */
 
 
@@ -5000,7 +4994,7 @@ void restoreEquilibriumProg() {
     sumX = Utilities::sumMassFractions();
     
     /* In general when we compute the equilibrium value of say alpha in the 
-     * reaction group alpha+16O <-> 20Ne,we are computing it using non-equilibrium 
+     * reaction group alpha+16O <-> 20Ne, we are computing it using non-equilibrium 
      * values of 16O and 20Ne (i.e.,their values will not be the values that they 
      * will have after this step). Add a while loop that permits iteration to try 
      * to fix this. Preliminary tests indicate it has small effect so set to one 
@@ -5018,20 +5012,20 @@ void restoreEquilibriumProg() {
         /* Compute equilibrium value of the Ys participating in equilibrium 
          * starting from the value of Y at the end of the numerical timestep,
          * presently stored in Y[i]. Do so by first setting Y0[i] to the current 
-         * value of Y[i],which is the computed value at the END of the timestep. 
+         * value of Y[i], which is the computed value at the END of the timestep. 
          * Then evolve that initial value to the corresponding equilibrium value 
          * algebraically by calculating the equilibrium value for that Y0[i] 
          * and setting Y[i] to it (a form of operator splitting within the 
-         * network timestep). This work is done in evolveToEquilibrium(). */
+         * network timestep). This work is done in evolveToEquilibrium (). */
         
         evolveToEquilibrium();
         
         // Inventory reaction groups in equilibrium counting the number in the
-        // the variable countEquilRG,placing the index of each equilibrated 
-        // RG in the array RGindy[],and counting the number of different isotopes
+        // the variable countEquilRG, placing the index of each equilibrated 
+        // RG in the array RGindy[], and counting the number of different isotopes
         // in at least one equilibrated RG in the variable countEquilIsotopes.
 
-        int RGindy[numberRG] = {-1};       // Array to hold index of RG in equilibrium
+        int RGindy[numberRG] = {-1};   // Array to hold index of RG in equilibrium
         
         for (int i = 0; i < numberRG; i++) {
             
@@ -5049,7 +5043,7 @@ void restoreEquilibriumProg() {
                 // isotopeInEquil[] to true if a species is in a
                 // RG in equilibrium.  Thus species entry in 
                 // isotopeInEquil[] will be true if it is in at
-                // least one equilibrated RG,and false if it is in
+                // least one equilibrated RG, and false if it is in
                 // no equilibrated RGs.
                 
                 for (int j = 0; j < RG[i].getniso(); j++) {
@@ -5118,11 +5112,11 @@ void restoreEquilibriumProg() {
     }   // end while iteration loop
     
     
-    // If we are computing Asy+PE,set up renormalization of all Ys 
+    // If we are computing Asy+PE, set up renormalization of all Ys 
     // and Xs so that this integration step conserves total particle 
     // number (sum of X = 1.0). Option to check mass fractions separately 
     // for isotopes participating in equilibrium and those not but don't 
-    // presently use the fractions separately,only their sum. Whether
+    // presently use the fractions separately, only their sum. Whether
     // sum X normalized to one after PE evolution controlled by flag
     // normPEX (normally set to true).
     
@@ -5186,7 +5180,7 @@ void evolveToEquilibrium() {
 
 
 // ---------------------------------------------------------------
-// Function isoIsInRG(int isoindex,rgindex) to return 
+// Function isoIsInRG (int isoindex,rgindex) to return 
 // true if isotope labeled by species index isoindex is in the RG 
 // labeled by rgindex and false otherwise. Not presently used
 // since ReactionGroup::speciesIsInRG(speciesIndex) duplicates
@@ -5228,7 +5222,7 @@ void getmaxdYdt(){
 
 void readhydroProfile(char *fileName){
     
-     char line[60];
+     char line [60];
      int numberEntries;
      int dummy;
      double Time;
@@ -5249,7 +5243,7 @@ void readhydroProfile(char *fileName){
     
     // Read lines until NULL encountered. Data lines can contain up to 60 characters.
     // The first line of the data file fileName contains labels and not data.
-    // The second line contains the number of data points (lines) in the file,the
+    // The second line contains the number of data points (lines) in the file, the
     // following lines contain the temperature and density data for each time.
     
     while(fgets(line,60,fr) != NULL){
@@ -5274,7 +5268,7 @@ void readhydroProfile(char *fileName){
             sscanf(line,"%d %lf %lf %lf",&dummy,&Time,&Temp,&Rho); 
             
             // Store hydro profile in three arrays. We will interpolate in log10
-            // values,so store the time,temperature,and density from the
+            // values, so store the time,temperature,and density from the
             // hydro values as log10 of their value.
             
             hydroTime[index] = log10(Time);   // Time
@@ -5297,7 +5291,7 @@ void readhydroProfile(char *fileName){
 
 
 /* Function readNetwork(char *filename) to read the network data file line 
- * by line,with the filename as argument. This file is expected to have 4 
+ * by line, with the filename as argument. This file is expected to have 4 
  * lines per isotope with the line structure
  * 
  *	 isotopeSymbol A  Z  N  Y  MassExcess
@@ -5306,14 +5300,16 @@ void readhydroProfile(char *fileName){
  *	 pf20 pf21 pf22 pf23 pf24 pf25 pf26 pf27
  * 
  * where isotopeSymbol is an isotope label,A=Z+N is the atomic mass number,
- * Z is the proton number,N is the neutron number,Y is the initial abundance,
- * MassExcess is the mass excess in MeV,and the pf are 24 values of the partition 
+ * Z is the proton number, N is the neutron number, Y is the initial abundance,
+ * MassExcess is the mass excess in MeV, and the pf are 24 values of the partition 
  * function for that isotope at different values of the temperature that will form 
  * a table for interpolation in temperature. The assumed 24 values of the temperature 
  * for the partition function table are in array Tpf:
  * 
  * { 0.1,0.15,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.5,2.0,2.5,3.0,3.5,4.0,
- * 4.5,5.0,6.0,7.0,8.0,9.0,10.0 } in units of 10^9 K.
+ * 4.5,5.0,6.0,7.0,8.0,9.0,10.0 } 
+ * 
+ * in units of 10^9 K.
  * 
  * All fields on a line are separated by a blank space and there is no whitespace 
  * in the isotopeSymbol. The type signature of these four lines corresponding to a 
@@ -5439,14 +5435,14 @@ void readNetwork (char *fileName) {
 
 
 /* Function readLibraryParams (char *fileName) to read rate parameter 
- * data file line by line,with fileName as argument. This file is expected 
+ * data file line by line, with fileName as argument. This file is expected 
  * to have one reaction per line with the line structure
  * 
  *    p0 p1 p2 p3 p4 p5 p6 reactionLabel
  * 
  * where the pn are the values of the 7 Reaclib parameters for a reaction,
- * reactionLabel is a label for the reaction that must contain no whitespace,and
- * all fields on a line are separated by a blank space.
+ * reactionLabel is a label for the reaction that must contain no whitespace,
+ * and all fields on a line are separated by a blank space.
  */
 
 void readLibraryParams (char *fileName) {
@@ -5474,14 +5470,14 @@ void readLibraryParams (char *fileName) {
      * 
      *   reacLabel RGclass  RGmember reacClass #reac #prod  isEC isReverse Q prefac isForward
      *   p0        p1       p2       p3        p4    p5     p6   (reaction library constants)
-     *   reac1Z    reac2Z   reac3Z                               (Z of reactants,#reac entries)
-     *   reac1N    reac2N   reac3N                               (N of reactants,#reac entries) 
-     *   prod1Z    prod2Z   prod3Z   prod4Z                      (Z of products,#prod entries)
-     *   prod1N    prod2N   prod3N   prod4N                      (N of products,#prod entries)
+     *   reac1Z    reac2Z   reac3Z                               (Z of reactants, #reac entries)
+     *   reac1N    reac2N   reac3N                               (N of reactants, #reac entries) 
+     *   prod1Z    prod2Z   prod3Z   prod4Z                      (Z of products, #prod entries)
+     *   prod1N    prod2N   prod3N   prod4N                      (N of products, #prod entries)
      *   reac1Iso  reac2Iso reac3Iso                             (iso index reactants)
      *   prod1Iso  prod2Iso prod3Iso prod4Iso                    (iso index products)
      * 
-     * with each entry separated by a space,with NO WHITESPACE IN STRING reacLabel.
+     * where each entry separated by a space, with NO WHITESPACE IN STRING reacLabel.
      */
     
     int n = -1;
@@ -5511,7 +5507,7 @@ void readLibraryParams (char *fileName) {
                 // Following converts any RGclass i0 = -1 produced by the Java code
                 // to RG class 6 (which has only one reaction of the form 
                 // a+b->c+d+e+f corresponding to ReacLib reaction class 7.)
-                // Otherwise the -1 will be used as an index,causing a segfault.
+                // Otherwise the -1 will be used as an index, causing a segfault.
                 
                 newi0 = i0;
                 if(newi0 == -1) newi0 = 6;
@@ -5699,7 +5695,7 @@ void readLibraryParams (char *fileName) {
 
 
 
-// Function writeNetwork()to send the network isotopes,mass excesses,
+// Function writeNetwork()to send the network isotopes, mass excesses,
 // and the entries in the partition function table for each isotope to the data file.
 
 void writeNetwork() {
@@ -5746,9 +5742,9 @@ void writeNetwork() {
 
 
 
-// Function writeRates(char *label)to print out all the rates. The 
+// Function writeRates(char *label) to print out all the rates. The 
 // label can be used to distinguish cases if called more than once. NOT 
-// PRESENTRY USED.
+// PRESENTLY USED.
 
 void  writeRates(char *label) {
     
@@ -5846,7 +5842,7 @@ void assignRG(){
         
         // Set the reference reaction for the RG to be the first reaction in the RG
         // that has ifPEforward = true. This reference reaction will define the assumed
-        // order of isotopes in the RG to be consistent with original Java code.
+        // order of isotopes in the RG to be consistent with benchmark Java code.
         
         int reffer = RG[i].setrefreac();
 
@@ -5856,7 +5852,7 @@ void assignRG(){
         int ck1;
         
         // Loop over reactions of the network,picking out the members of RG[i] by the
-        // condition that i = RGindex[j],where RGindex[j] holds the RG index for a
+        // condition that i = RGindex[j], where RGindex[j] holds the RG index for a
         // given reaction.
         
         for(int j=0; j<SIZE; j++){   
@@ -5958,7 +5954,7 @@ void assignRG(){
                 break;
                 
             // Bookkeeping. rgclass = 6 (F) can only contain one reaction from ReacLib class
-            // 7 (a+b -> c + d + e + f),since there are no 4-body reactions in ReacLib
+            // 7 (a+b -> c + d + e + f), since there are no 4-body reactions in ReacLib
             // to serve as the inverse reaction.  But we will assume that all reactions
             // belong to a unique reaction group for bookkeeping, even if there is only one 
             // reaction in the reaction group so it can never equilibrate.
@@ -6109,26 +6105,19 @@ void updateY0(){
     
     // Set Y0 in ReactionGroup objects RG[i]
     
-//     for(int i=0; i<numberRG; i++){
-//         for(int j=0; j<RG[i].getniso(); j++){
-//             int jj = RG[i].getisoindex(j);
-//             RG[i].setisoY0(j,Y[jj]);
-//         }
-//     }
-    
     for(int i=0; i<numberRG; i++){
         
         int jup = RG[i].getniso();
         
         if(jup < 0 || jup > 6){
-            printf("\n*** ERROR: Invalid value niso=%d in updateY0() for RG=%d\n\n",jup,i);
-            exit(-1);          // Exit program since something is corrupt
+            printf("\n*** ERROR: Invalid value niso=%d in updateY0() for RG=%d\n\n", 
+                jup, i);
+            exit(-1);          // Exit since something is corrupt
         }
         
         for(int j=0; j<jup; j++){
             int jj = RG[i].getisoindex(j);
             RG[i].setisoY0(j,Y[jj]);
-            int segf = jj;    // Dummy debug
         }
     }
     
@@ -6137,7 +6126,7 @@ void updateY0(){
 
 // Function computeReactionFluxes() that can be called from main or another 
 // class to set flux fields in the reaction[] objects.  Generally rates only
-// need be recomputed if the temperature or density change,but fluxes must 
+// need be recomputed if the temperature or density change, but fluxes must 
 // be recomputed by calling this function any time either the rates or the 
 // species populations change.
 
@@ -6201,7 +6190,7 @@ void sumFplusFminus(){
         setSpeciesfplus(i,accum);      // Also sets FplusSum[i] = accum;
     }   
         
-    // Loop over isotopes and reactions an sum F- for each species
+    // Loop over isotopes and reactions and sum F- for each species
     
     for(int i=0; i < numberSpecies; i++){
         
