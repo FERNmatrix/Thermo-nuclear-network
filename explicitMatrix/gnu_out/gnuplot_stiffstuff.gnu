@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = 2
+xlow = -5
+xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -17 
-yup = 2
+ylow = -8 
+yup = 5
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -98,7 +98,7 @@ set mytics minytics   # minor y tics per major tic
 
 file1 = "plot2.data"     # C++
 #file2 = "dataRef/gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
-file3 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"   # C++ asy
+#file3 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"   # C++ asy
 
 # Plot C++ Asy+PE data
 
@@ -112,7 +112,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log dt (C++ asy+
 
 # Plot C++ asy
 
-replot file3 using 1:2 with lines ls 10 lw 2.0 dashtype 1 title "log dt (c++ asy)"
+#replot file3 using 1:2 with lines ls 10 lw 2.0 dashtype 1 title "log dt (c++ asy)"
 
 # Plot dt contours
 

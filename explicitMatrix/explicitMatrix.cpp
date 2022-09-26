@@ -33,7 +33,7 @@
  * 
  * Further information about valgrind may be found in the directory VALGRIND.
  * 
- * Execution for other Linux systems,or Mac or PC, will depend on the C/C++ compiler installed on 
+ * Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
  * your machine but should be similar to above.
  *  
  * ----------------------------------
@@ -42,11 +42,10 @@
  * 
  * 1. Change values of ISOTOPES and SIZE.
  * 2. Change input files for networkFile and rateLibraryFile.
- * 3. Change doASY,doQSS,and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
+ * 3. Change doASY,doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
  * 4. Change control parameters like stop_time, massTol,...
- * 5. Change species to be plotted output mask plotXlist[] in plotFileSetup().
- * 6. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
- * 7. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
+ * 5. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
+ * 6. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
  *    choose true or false for plotHydroProfile
  * ----------------------------------
  * 
@@ -169,8 +168,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -195,13 +194,13 @@ FILE *pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_nova134.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_nova134.data";
 
 // Whether to use constant T and rho (hydroProfile false),in which case a
 // constant T9 = T9_start and rho = rho_start are used,or to read
@@ -209,7 +208,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -224,16 +223,15 @@ bool hydroProfile = false;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/viktorExtendedProfileSmooth.inp";
+char hydroFile[] = "data/nova125DProfile_100.inp";
 //char hydroFile[] = "data/viktorProfile_400.inp";
 //char hydroFile[] = "data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
-static const bool plotHydroProfile = false;
+static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 409; // Max entries hydro profile
-//const static int maxHydroEntries = 2622; // Max entries hydro profile
+const static int maxHydroEntries = 102; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
 // Lots of data,so most useful for small networks.
@@ -250,9 +248,11 @@ FILE * plotfile2;
 FILE * plotfile3;
 FILE * plotfile4;
 
-// Control flags for diagnostic output to file pointed to by *pFileD
+// Control flags for diagnostic output to files
 
-bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
+bool showAddRemove = false;  // Show addition/removal of RG from equilibrium
+bool showDetails = false;    // Controls diagnostics to pFileD -> gnu_out/diagnostics.data
+bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network.data
 
 // Control which explicit algebraic approximations are used. Eventually
 // this should be set from a data file. To use asymptotic set doASY true
@@ -265,7 +265,7 @@ bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -325,14 +325,14 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 5;           // Initial temperature in units of 10^9 K
-double rho_start = 1e7;        // Initial density in g/cm^3
+double T9_start = 7;           // Initial temperature in units of 10^9 K
+double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
 // and dt_start sets the initial integration timestep. In an operator-split 
-// coupling  start_time will be ~0,stop_time will correspond to the length
-// of the hydro timestep and dt_init will likely be something like the 
+// coupling  start_time will be ~0, stop_time will correspond to the length
+// of the hydro timestep, and dt_init will likely be something like the 
 // last timestep of the previous network integration (for the preceding 
 // hydro timestep). Here we hardwire them for testing purposes.
 // The variable startplot_time allows the plotting interval output
@@ -342,8 +342,8 @@ double rho_start = 1e7;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e2;                // Stop time for integration
+double startplot_time = 5e-6;          // Start time for plot output
+double stop_time = 1e6;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -372,7 +372,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 8e-5; //8e-5; //massTol_asyPE;           // Absolute error tolerance
+double EpsA = 1e-4;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -1794,19 +1794,19 @@ class Reaction: public Utilities {
                 if(i == (FminusIsotopeCut[currentIso]-1)) currentIso ++;
             }
             
-            fprintf(pFileD,"\n\nMapFplus:\n");
+            if(showDetails) fprintf(pFileD,"\n\nMapFplus:\n");
             
             for(int i=0; i<totalFplus; i++){
                 MapFplus[i] = tempInt1[i];
-                fprintf(pFileD,"\ni=%d MapFplus[i]=%d  %s",
+                if(showDetails) fprintf(pFileD,"\ni=%d MapFplus[i]=%d  %s",
                     i,MapFplus[i],reacLabel[MapFplus[i]]);
             }
             
-            fprintf(pFileD,"\n\nMapFminus:\n");
+            if(showDetails) fprintf(pFileD,"\n\nMapFminus:\n");
             
             for(int i=0; i<totalFminus; i++){
                 MapFminus[i] = tempInt2[i];
-                fprintf(pFileD,"\ni=%d MapFminus[i]=%d  %s",
+                if(showDetails) fprintf(pFileD,"\ni=%d MapFminus[i]=%d  %s",
                         i,MapFminus[i],reacLabel[MapFminus[i]]);
             }
             
@@ -1947,7 +1947,8 @@ class Reaction: public Utilities {
                 
             } else {               // Temperature in bounds for library
                 
-                rate = exp( p[0] 
+                rate = exp( 
+                    p[0] 
                     + t1*p[1] 
                     + t2*p[2] 
                     + t3*p[3] 
@@ -1991,6 +1992,9 @@ class Reaction: public Utilities {
             // the structure of the 8 Reaclib reaction classes specified by 
             // Reaction::reacClass means that this correction is only required for 
             // reverse reactions in Reaclib classes reacClass = 2 and reacClass = 5.
+            // Note that the partition function table only extends to T9 = 10, so
+            // the code will exit with an error message if you try to calculate 
+            // partition functions for T9 > 10.
             
             if(dopf && T9 > pfCut9 && isReverse){
                 
@@ -2027,7 +2031,7 @@ class Reaction: public Utilities {
         // Reaction object.
         
         void showRates(){
-            fprintf(pFileD,"\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e",
+            if(showDetails) fprintf(pFileD,"\n%d %19s RG=%d densfac=%6.3e rate= %8.5e Rrate=%8.5e",
                 getreacIndex(),getreacChar(),getreacGroupClass(),getdensfac(),
                 getrate(),getRrate()
             );
@@ -2168,20 +2172,20 @@ class ReactionVector:  public Utilities {
             // Write out the array containing components of the reaction vectors
             
             int uppity = minimumOf(25,numberSpecies);  // limit printout width to 25 species
-            fprintf(pFileD,
+            if(showDetails) fprintf(pFileD,
                 "\n\nREACTION VECTOR ARRAY (%d Reaction vectors with %d species components):\n",
                 numberReactions,ISOTOPES);
-            fprintf(pFileD,"\nReaction \\ Species           ");
+            if(showDetails) fprintf(pFileD,"\nReaction \\ Species           ");
             for(int k=0; k<uppity; k++){
-                fprintf(pFileD,"%4s  ",isoLabel[k]);
+                if(showDetails) fprintf(pFileD,"%4s  ",isoLabel[k]);
             }
-            fprintf(pFileD,"\n");
+            if(showDetails) fprintf(pFileD,"\n");
             for(int j=0; j<numberReactions; j++){
-                fprintf(pFileD,"%4d %22s [ ",j,reacLabel[j]);
+                if(showDetails) fprintf(pFileD,"%4d %22s [ ",j,reacLabel[j]);
                 for(int k=0; k<uppity-1; k++){
-                    fprintf(pFileD,"%2d    ", reacMask[k][j]);
+                    if(showDetails) fprintf(pFileD,"%2d    ", reacMask[k][j]);
                 }
-                fprintf(pFileD,"%2d ]\n", reacMask[uppity-1][j]);
+                if(showDetails) fprintf(pFileD,"%2d ]\n", reacMask[uppity-1][j]);
             }
             
             
@@ -2204,13 +2208,13 @@ class ReactionVector:  public Utilities {
             
             // Display std:vector components just created
             
-            fprintf(pfnet,"\n\nSTD REACTION VECTORS\n");
+            if(showDetails2) fprintf(pfnet,"\n\nSTD REACTION VECTORS\n");
             
             // Outer loop over elements of vector array
             
             for (int i = 0; i < SIZE; i++) {
 
-                fprintf(pfnet, "\nRV[%d]: [", i);
+                if(showDetails2)fprintf(pfnet, "\nRV[%d]: [", i);
                 
                 // Inner iterates over components of each vector. Starting iterator 
                 // is specified by .begin() and ending iterator is specified by 
@@ -2223,32 +2227,35 @@ class ReactionVector:  public Utilities {
                     
                     // *iter gets the value pointed to by the iterator
                     
-                    fprintf(pfnet, "%3d", *iter);
+                    if(showDetails2)fprintf(pfnet, "%3d", *iter);
                 
                 }
-                    fprintf(pfnet, " ]");
+                if(showDetails2) fprintf(pfnet, " ]");
             }
             
-            // Now compare reaction vectors pairwise as check
+            // Compare reaction vectors pairwise as check
             
-            std::vector<int> vec1;
-            std::vector<int> vec2;
-            
-            for (int i=0; i<SIZE; i++){
+            if(showDetails2){
                 
-                vec1 =  RV[i];
+                std::vector<int> vec1;
+                std::vector<int> vec2;
             
-                for (int j=i; j<SIZE; j++){
+                for (int i=0; i<SIZE; i++){
                     
-                    vec2 =  RV[j];
-                    int checker = compareVectors(vec1, vec2);
+                    vec1 =  RV[i];
                     
-                    if(checker > 0)
-                    fprintf(pfnet, "\ni=%d j=%d %s <-> %s ck=%d", 
-                        i, j, reacLabel[i], reacLabel[j], checker);
-                }
-                
-            } 
+                    for (int j=i; j<SIZE; j++){
+                        
+                        vec2 =  RV[j];
+                        int checker = compareVectors(vec1, vec2);
+                        
+                        if(checker > 0 && showDetails2)
+                            fprintf(pfnet, "\ni=%d j=%d %s <-> %s ck=%d", 
+                                    i, j, reacLabel[i], reacLabel[j], checker);
+                    }
+                    
+                } 
+            }
             
         }  // End function makeReactionVectors()
         
@@ -2309,7 +2316,8 @@ class ReactionVector:  public Utilities {
         // assign to reaction groups.  The integer rg labels the reaction 
         // group currently being filled.  The integer ck indicates whether 
         // a pair of vectors are equivalent (ck = 1), are the negative of 
-        // each other (ck = 2), or are not equivalent (ck = 0).
+        // each other (ck = 2), or are not equivalent (ck = 0). Requires
+        // approximately SIZE*SIZE/2 vector comparisons.
         
         int rg = -1;
         int ck = -1;
@@ -2327,6 +2335,7 @@ class ReactionVector:  public Utilities {
         
         std::vector<int> vec1;
         std::vector<int> vec2;
+        int compares = 0;
         
         for (int i=0; i<SIZE; i++){
             
@@ -2338,6 +2347,12 @@ class ReactionVector:  public Utilities {
             // inner loop can start at j=i.
             
             for(int j=i; j<SIZE; j++){
+                
+                // Skip pair already processed
+                
+                if(RGindex[i] != -1 && RGindex[j] != -1) break;
+                
+                compares ++;
                 
                 vec2 = RV[j]; 
                 
@@ -2351,6 +2366,7 @@ class ReactionVector:  public Utilities {
                     
                     RGindex[j] = rg;
                     numberMembers ++;
+                    
                 }
             }
             
@@ -2361,6 +2377,9 @@ class ReactionVector:  public Utilities {
 
         }
         
+        printf("Comparisons=%d\n", compares);
+        cout.flush();
+        
         // If the last trial reaction group has no members, subtract 
         // one from rg (which was incremented at the beginning of the trial).
         
@@ -2370,10 +2389,10 @@ class ReactionVector:  public Utilities {
 
         // Diagnostic showing reaction group associated with each reaction
         
-        fprintf(pfnet, "\n");
-        fprintf(pfnet, "\nCHECK: Each reaction should be in one and only one RG\n");
+        if(showDetails2) fprintf(pfnet, "\n");
+        if(showDetails2) fprintf(pfnet, "\nCHECK: Each reaction should be in one and only one RG\n");
         for(int i=0; i<SIZE; i++){
-            fprintf(pfnet, "\n%d %s RG=%d", i, reacLabel[i], RGindex[i]);
+            if(showDetails2) fprintf(pfnet, "\n%d %s RG=%d", i, reacLabel[i], RGindex[i]);
         }
         
         // Output the components of the reaction groups pfnet -> network.out.
@@ -2408,19 +2427,19 @@ class ReactionVector:  public Utilities {
             if (rcounter == 1) numberSingletRG ++;
         }
         
-        fprintf(pfnet,"\n");
+        if(showDetails2) fprintf(pfnet,"\n");
         
-        fprintf(pfnet, "\n");
-        fprintf(pfnet, "\nCHECK: Sum over members of ");
-        fprintf(pfnet, "each RG should equal total number of reactions (SIZE).\n");
+        if(showDetails2) fprintf(pfnet, "\n");
+        if(showDetails2) fprintf(pfnet, "\nCHECK: Sum over members of ");
+        if(showDetails2) fprintf(pfnet, "each RG should equal total number of reactions (SIZE).\n");
         
         int resum = 0;
         for(int i=0; i<numberRG; i++){
             resum = resum + RGnumberMembers[i];
-            fprintf(pfnet, "\nRG=%d #reactions=%d", i, RGnumberMembers[i]);
+            if(showDetails2) fprintf(pfnet, "\nRG=%d #reactions=%d", i, RGnumberMembers[i]);
         }
         
-        fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
+        if(showDetails2) fprintf(pfnet,"\n\nSum=%d SIZE=%d\n", resum, SIZE);
         
         fflush(pfnet);  // Dump buffer to force quicker print
         
@@ -2499,23 +2518,23 @@ class ReactionVector:  public Utilities {
             
             // Display isotope component array
             
-            fprintf(pFileD,
+            if(showDetails) fprintf(pFileD,
             "\n\n\nFLUX-ISOTOPE COMPONENT ARRAY (negative n for F-; positive n for F+ for given isotope):");
-            fprintf(pFileD,"\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
+            if(showDetails) fprintf(pFileD,"\nnumberSpecies=%d numberReactions=%d",numberSpecies,numberReactions);
             
             int uppity = minimumOf(30,numberSpecies);  // limit printout width to 30 species
-            fprintf(pFileD,"\n\nIndex             Reaction");
+            if(showDetails) fprintf(pFileD,"\n\nIndex             Reaction");
             for(int k=0; k<uppity; k++){
-                fprintf(pFileD,"%5s",isoLabel[k]);
+                if(showDetails) fprintf(pFileD,"%5s",isoLabel[k]);
             }
             for(int j=0; j<numberReactions; j++){
-                fprintf(pFileD,"\n%3d %22s",j,reacLabel[j]);
+                if(showDetails) fprintf(pFileD,"\n%3d %22s",j,reacLabel[j]);
                 for(int k=0; k<uppity; k++){
-                    fprintf(pFileD," %4d", reacMask[k][j]);
+                    if(showDetails) fprintf(pFileD," %4d", reacMask[k][j]);
                 }
             }
             
-            fprintf(pFileD,
+            if(showDetails) fprintf(pFileD,
                 "\n\nFLUX SPARSENESS: Non-zero F+ = %d; Non-zero F- = %d,out of %d x %d = %d possibilities.\n",
                 totalFplus,totalFminus,SIZE,ISOTOPES,SIZE*ISOTOPES);
             
@@ -2699,7 +2718,7 @@ class ReactionGroup:  public Utilities {
         
         if (refreac == -1) {
             refreac = 0;
-            fprintf(pFileD,"\n*** Reaction group %d has no forward reactions ***",
+            if(showDetails) fprintf(pFileD,"\n*** Reaction group %d has no forward reactions ***",
                 RGn);
         }
         
@@ -2862,7 +2881,7 @@ class ReactionGroup:  public Utilities {
     
    void showRGfluxes(){
         
-        fprintf(pFileD,"\n\nRG=%d",RGn);
+       if(showDetails) fprintf(pFileD,"\n\nRG=%d",RGn);
         
         double fac;
         for(int i=0; i<numberMemberReactions; i++){
@@ -2871,18 +2890,18 @@ class ReactionGroup:  public Utilities {
             } else {
                 fac = -1.0;
             }
-            fprintf(pFileD,
+            if(showDetails) fprintf(pFileD,
                 "\nshowRGfluxes: %d %s RGclass=%d isForward=%d t=%7.4e dt=%7.4e flux=%7.4e",
                 i,reacLabel[memberReactions[i]],rgclass,isForward[i],t,dt,
                 fac*flux[i] );
             
         }
         
-        fprintf(pFileD,"\n");
+        if(showDetails) fprintf(pFileD,"\n");
         if(isEquil){
-            fprintf(pFileD,"showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED", netflux); 
+            if(showDetails) fprintf(pFileD,"showRGfluxes: NetRGflux=%7.4e\nEQUILIBRATED", netflux); 
         } else {
-            fprintf(pFileD,"showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED",netflux); 
+            if(showDetails) fprintf(pFileD,"showRGfluxes: NetRGflux=%7.4e\nNOT EQUILIBRATED",netflux); 
         }
         
     }
@@ -3718,7 +3737,7 @@ class Integrate: public Utilities {
         // The function Integrate::updateAsyEuler() uses the fluxes
         // to update the populations for this timestep. We determine whether each isotope 
         // satisfies the asymptotic condition. If it does we update with the asymptotic formula. 
-        // If not,we update numerically using the forward Euler formula. 
+        // If not, we update numerically using the forward Euler formula. 
         
         static void updateAsyEuler(){
             
@@ -3742,8 +3761,8 @@ class Integrate: public Utilities {
     
      
      
-     // Function Integrate::eulerUpdate(int,double,double,double,double) to update 
-     // by the forward Euler method. Returns the updated value of Y.
+     // Function Integrate::eulerUpdate(int, double, double, double, double) to
+     // update by the forward Euler method. Returns the updated value of Y.
         
     static double eulerUpdate(int i,double fplus,double fminus,double y0,double dtt){
         
@@ -4039,7 +4058,7 @@ int main() {
         reaction[i].setisEquil(false);
         //reaction[i].setreacGroupSymbol(Utilities::stringToChar(RGstring[i]));
     }
-    
+
     // Determine whether the network contains Be-8, which is handled as
     // two alpha particles because of the rapid decay compared to network 
     // timescales.
@@ -4059,7 +4078,6 @@ int main() {
             indexAlpha == i;
         }
     }
-        
     
     // Read in network file and associated partition functions.  This is required only
     // once at the beginning of the entire calculation.  
@@ -4141,19 +4159,22 @@ int main() {
     
     // Print out the network species vector
     
-    fprintf(pFileD,
+    if(showDetails) fprintf(pFileD,
     "\n\nNETWORK SPECIES VECTOR (%d components):\n\nIndex  Species    Z     N",
     numberSpecies);
     
     for(int i=0; i<numberSpecies; i++){
-        fprintf(pFileD,"\n%5d    %5s  %3d  %4d",i,isoLabel[i],Z[i],N[i]);
+        if(showDetails) fprintf(pFileD,"\n%5d    %5s  %3d  %4d",i,isoLabel[i],Z[i],N[i]);
     }
     
-    fprintf(pFileD,"\n");
+    if(showDetails) fprintf(pFileD,"\n");
     
     // Use the information gleaned from ReactionVector::parseF() to define 
     // the reaction vectors for the network using the static makeReactionVectors 
     // function of the class ReactionVector.
+    
+    printf("\n\nMaking Reaction Vectors ...");
+    cout.flush();
     
     ReactionVector::makeReactionVectors();
     
@@ -4161,11 +4182,17 @@ int main() {
     // reactions into partial equilibrium reaction groups by comparing 
     // reaction vectors.
     
+    printf("\nSorting Reaction Vectors ...\n");
+    cout.flush();
+    
     ReactionVector::sortReactionGroups();
     
     // Allocate dynamically memory for an array of ReactionGroup objects of 
     // dimension numberRG, where numberRG was determined by 
     // ReactionVector::sortReactionGroups() above.
+    
+    printf("Allocating Reaction Group Objects ...");
+    cout.flush();
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup) * numberRG);
     
@@ -4283,21 +4310,21 @@ int main() {
     
     if(!hydroProfile){
         
-        fprintf(pFileD,"\nINITIAL COMPUTED RATES\n");
+        if(showDetails) fprintf(pFileD,"\nINITIAL COMPUTED RATES\n");
         for(int i=0; i<SIZE; i++){
             reaction[i].showRates();
         }
     }
     
     if(!hydroProfile){
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\n\n**** Rates won't be computed again since T and rho won't ");
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "change in integration ****\n");
     } else {
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\n\n**** Rates will be recomputed at each timestep since T and ");
-        fprintf(pFileD,"rho may change ****\n");
+        if(showDetails) fprintf(pFileD,"rho may change ****\n");
     }
     
     // Instantiate hydro temperature interpolator object
@@ -4943,6 +4970,7 @@ void showParameters(){
     printf("\nIsotopes=%d Reactions=%d",ISOTOPES,SIZE);
     if(numberRG > 0) printf(" ReactionGroups=%d",numberRG);
     if(numberRG > 0) printf(" SingletRG=%d", numberSingletRG);
+    if(totalTimeSteps > 0)
     printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d",
         totalTimeSteps,totalIterations,totalTimeSteps-totalTimeStepsZero);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
@@ -4955,6 +4983,8 @@ void showParameters(){
         printf("\n*** Reaction rates were approximated by zero when T < 1e7 K.      *");
         cout << "\n*******************************************************************\n\n";
     }
+
+    cout.flush();
 }
 
 
@@ -5680,7 +5710,7 @@ void readLibraryParams (char *fileName) {
 
     }
     
-    // Normally numberReactions=SIZE,but numberReactions counts the actual number of
+    // Normally numberReactions=SIZE, but numberReactions counts the actual number of
     // reactions read in.
     
     numberReactions = n+1;
@@ -5713,30 +5743,30 @@ void writeNetwork() {
     
     // Write partition function table to output data file
     
-    fprintf(pfnet,"\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
+    if(showDetails2) fprintf(pfnet,"\n\nPARTITION FUNCTION TABLE from Species object isotope[]:\n");
     
-    fprintf(pfnet,"\nT9:  ");
+    if(showDetails2) fprintf(pfnet,"\nT9:  ");
     for(int k=0; k<24; k++){
-        fprintf(pfnet,"%4.2f ", Tpf[k]);
+        if(showDetails2) fprintf(pfnet,"%4.2f ", Tpf[k]);
     }
     
-    fprintf(pfnet,"\nlgT: ");
+    if(showDetails2) fprintf(pfnet,"\nlgT: ");
     for(int k=0; k<24; k++){
-        fprintf(pfnet,"%4.2f ", log10(Tpf[k]*1e9));
+        if(showDetails2) fprintf(pfnet,"%4.2f ", log10(Tpf[k]*1e9));
     }
     
     for(int i=0; i<ISOTOPES; i++){
 
-        fprintf(pfnet,"\n");
-        fprintf(pfnet,"%-5s", isotope[i].getLabel());
+        if(showDetails2) fprintf(pfnet,"\n");
+        if(showDetails2) fprintf(pfnet,"%-5s", isotope[i].getLabel());
         
         for(int j=0; j<24; j++){ 
-            fprintf(pfnet,"%4.2f ", isotope[i].getpf(j)); 
+            if(showDetails2) fprintf(pfnet,"%4.2f ", isotope[i].getpf(j)); 
         }
         
     }
 
-    fprintf(pfnet,"\n\n");
+    if(showDetails2) fprintf(pfnet,"\n\n");
     
 }   // End of function writeNetwork()
 
@@ -5782,19 +5812,19 @@ void setRG(int index,int RGclass,int RGindex) {
 
 void assignRG(){
     
-    fprintf(pFileD,"\n\nREACTIONS IN RGclass[]:\n");
+    if(showDetails) fprintf(pFileD,"\n\nREACTIONS IN RGclass[]:\n");
     
     for(int m=0; m<SIZE; m++){
-        fprintf(pFileD,"\n%s RGclass[%d] = %d",reacLabel[m],m,RGclass[m]);
+        if(showDetails) fprintf(pFileD,"\n%s RGclass[%d] = %d",reacLabel[m],m,RGclass[m]);
     }
     
     // Write out some fields for Reaction objects reaction[]
     
-    fprintf(pFileD,"\n\n\nSOME FIELDS FOR THE %d Reaction OBJECTS reaction[]:\n",SIZE);
+    if(showDetails) fprintf(pFileD,"\n\n\nSOME FIELDS FOR THE %d Reaction OBJECTS reaction[]:\n",SIZE);
     
     for(int i=0; i<SIZE; i++){
         
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\nreaction[%d]: %s RGclass=%d #reac=%d #prod=%d RGmemberIndex=%d RG=%d %s",
             i,reaction[i].getreacChar(),
             reaction[i].getreacGroupClass(),
@@ -5810,27 +5840,27 @@ void assignRG(){
         
         // Write reactant symbols
         
-        fprintf(pFileD,"\nReaction=%d  REACTANTS: iso[0]=%s",
+        if(showDetails) fprintf(pFileD,"\nReaction=%d  REACTANTS: iso[0]=%s",
         i,isoLabel[reaction[i].getreactantIndex(0)]);
         
-        if(nummreac > 1) fprintf(pFileD," iso[1]=%s",isoLabel[reaction[i].getreactantIndex(1)]);
-        if(nummreac > 2) fprintf(pFileD," iso[2]=%s",isoLabel[reaction[i].getreactantIndex(2)]);
+        if(nummreac > 1 && showDetails) fprintf(pFileD," iso[1]=%s",isoLabel[reaction[i].getreactantIndex(1)]);
+        if(nummreac > 2 && showDetails) fprintf(pFileD," iso[2]=%s",isoLabel[reaction[i].getreactantIndex(2)]);
         
         // Write product Symbols
         
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
         "  PRODUCTS: iso[%d]=%s",nummreac,isoLabel[reaction[i].getproductIndex(0)]);
         
-        if(nummprod > 1) fprintf(pFileD," iso[%d]=%s",nummreac+1,isoLabel[reaction[i].getproductIndex(1)]);
-        if(nummprod > 2) fprintf(pFileD," iso[%d]=%s",nummreac+2,isoLabel[reaction[i].getproductIndex(2)]);
+        if(nummprod > 1 && showDetails) fprintf(pFileD," iso[%d]=%s",nummreac+1,isoLabel[reaction[i].getproductIndex(1)]);
+        if(nummprod > 2 && showDetails) fprintf(pFileD," iso[%d]=%s",nummreac+2,isoLabel[reaction[i].getproductIndex(2)]);
         
-        fprintf(pFileD,"\n");
+        if(showDetails) fprintf(pFileD,"\n");
         
     }
     
     // Loop to create and populate ReactionGroup objects RG[]
     
-    fprintf(pFileD,"\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
+    if(showDetails) fprintf(pFileD,"\n\nCREATING REACTION GROUPS RG[] AND POPULATING OBJECT FIELDS\n");
     
     for(int i=0; i<numberRG; i++){
         
@@ -5920,7 +5950,7 @@ void assignRG(){
         
         int RGclassRef = RGclass[RG[i].getmemberReactions(reffer)];
         RG[i].setniso(RGclassRef);
-        fprintf(pFileD,"\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n",
+        if(showDetails) fprintf(pFileD,"\nRG[%d]: refreac=%d RGclassRef=%d niso=%d Reactions=%d\n",
             i,RG[i].getrefreac(),RGclassRef,
             RG[i].getniso(),RG[i].getnumberMemberReactions() );
         
@@ -5971,13 +6001,13 @@ void assignRG(){
     
     for(int i=0; i<numberRG; i++){
         
-        fprintf(pFileD,"\n\nSummary: RG=%d",RG[i].getRGn());
+        if(showDetails) fprintf(pFileD,"\n\nSummary: RG=%d",RG[i].getRGn());
         int numr = RG[i].getnumberMemberReactions();
         
         for(int j=0; j<numr; j++){
             
             int reacID = RG[i].getmemberReactions(j);
-            fprintf(pFileD,
+            if(showDetails) fprintf(pFileD,
                 "\n%d %s iso[0]=%s iso[1]=%s iso[2]=%s iso[3]=%s",
                 j,reacLabel[reacID],RG[i].getisolabel(0),
                 RG[i].getisolabel(1),RG[i].getisolabel(2),
@@ -5990,62 +6020,62 @@ void assignRG(){
     // reaction group consistent with the order used for partial equilibrium
     // in the original Java code.
     
-    fprintf(pFileD,"\n\n\nSUMMARY of order for isotopes for PE in ReactionGroup objects:");
+    if(showDetails) fprintf(pFileD,"\n\n\nSUMMARY of order for isotopes for PE in ReactionGroup objects:");
     
     for(int i=0; i<numberRG; i++){
         
         int rn = RG[i].getrefreac();
         int upjj = RG[i].getnumberReactants(rn) + RG[i].getnumberProducts(rn);
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\n\nRG=%d  RGclass=%d %s Species Index:",
             i, RG[i].getrgclass(),
             reaction[RG[i].getmemberReactions(RG[i].getrefreac())].getreacGroupSymbol() 
         );
         
         for(int jj=0; jj<upjj; jj++){
-            fprintf(pFileD," iso[%d]=%d",jj,RG[i].getisoindex(jj));
+            if(showDetails) fprintf(pFileD," iso[%d]=%d",jj,RG[i].getisoindex(jj));
         }
         
-        fprintf(pFileD,"\n     ");
+        if(showDetails) fprintf(pFileD,"\n     ");
         for(int jj=0; jj<upjj; jj++){
-            fprintf(pFileD," isolabel[%d]=%s",jj,RG[i].getisolabel(jj));
+            if(showDetails) fprintf(pFileD," isolabel[%d]=%s",jj,RG[i].getisolabel(jj));
         }
         
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\n      REACTANTS: reactantIndex[0]=%d",RG[i].getreactantIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberReactants(rn); jj++){
-            fprintf(pFileD," reactantIndex[%d]=%d",jj,RG[i].getreactantIsoIndex(jj));
+            if(showDetails) fprintf(pFileD," reactantIndex[%d]=%d",jj,RG[i].getreactantIsoIndex(jj));
         }
         
-        fprintf(pFileD,
+        if(showDetails) fprintf(pFileD,
             "\n      PRODUCTS: productIndex[0]=%d",RG[i].getproductIsoIndex(0));
         for(int jj=1; jj<RG[i].getnumberProducts(rn); jj++){
-            fprintf(pFileD," productIndex[%d]=%d",jj,RG[i].getproductIsoIndex(jj));
+            if(showDetails) fprintf(pFileD," productIndex[%d]=%d",jj,RG[i].getproductIsoIndex(jj));
         }
         
-        fprintf(pFileD,"\n      Z[0]=%d",RG[i].getisoZ(0));
+        if(showDetails) fprintf(pFileD,"\n      Z[0]=%d",RG[i].getisoZ(0));
         for(int jj=1; jj<upjj; jj++){
-            fprintf(pFileD," Z[%d]=%d",jj,RG[i].getisoZ(jj));
+            if(showDetails) fprintf(pFileD," Z[%d]=%d",jj,RG[i].getisoZ(jj));
         }
         
-        fprintf(pFileD,"\n      N[0]=%d",RG[i].getisoN(0));
+        if(showDetails) fprintf(pFileD,"\n      N[0]=%d",RG[i].getisoN(0));
         for(int jj=1; jj<upjj; jj++){
-            fprintf(pFileD," N[%d]=%d",jj,RG[i].getisoN(jj));
+            if(showDetails) fprintf(pFileD," N[%d]=%d",jj,RG[i].getisoN(jj));
         }
         
-        fprintf(pFileD,"\n      A[0]=%d",RG[i].getisoA(0));
+        if(showDetails) fprintf(pFileD,"\n      A[0]=%d",RG[i].getisoA(0));
         for(int jj=1; jj<upjj; jj++){
-            fprintf(pFileD," A[%d]=%d",jj,RG[i].getisoA(jj));
+            if(showDetails) fprintf(pFileD," A[%d]=%d",jj,RG[i].getisoA(jj));
         }
         
-        fprintf(pFileD,"\n      isoY[0]=%8.5e",RG[i].getisoY(0));
+        if(showDetails) fprintf(pFileD,"\n      isoY[0]=%8.5e",RG[i].getisoY(0));
         for(int jj=1; jj<upjj; jj++){
-            fprintf(pFileD," isoY[%d]=%8.5e",jj,RG[i].getisoY(jj));
+            if(showDetails) fprintf(pFileD," isoY[%d]=%8.5e",jj,RG[i].getisoY(jj));
         }
         
-        fprintf(pFileD,"\n      isoYeq[0]=%8.5e",RG[i].getisoYeq(0));
+        if(showDetails) fprintf(pFileD,"\n      isoYeq[0]=%8.5e",RG[i].getisoYeq(0));
         for(int jj=1; jj<upjj; jj++){
-            fprintf(pFileD," isoYeq[%d]=%8.5e",jj,RG[i].getisoYeq(jj));
+            if(showDetails) fprintf(pFileD," isoYeq[%d]=%8.5e",jj,RG[i].getisoYeq(jj));
         }
     }
 }       // End function assignRG()
