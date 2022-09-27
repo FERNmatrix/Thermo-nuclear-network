@@ -31,7 +31,7 @@
  * 
  * valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./explicitMatrix 2>&1 | tee valgrind_out.txt
  * 
- * Further information about valgrind may be found in the directory VALGRIND.
+ * Compile explicitMatrix.cpp with the -g flag to get valgrind output with human readable line numbers. Further information about valgrind may be found in the directory VALGRIND.
  * 
  * Execution for other Linux systems, or Mac or PC, will depend on the C/C++ compiler installed on 
  * your machine but should be similar to above.
@@ -42,7 +42,7 @@
  * 
  * 1. Change values of ISOTOPES and SIZE.
  * 2. Change input files for networkFile and rateLibraryFile.
- * 3. Change doASY,doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
+ * 3. Change doASY, doQSS, and doPE to choose Asy, Asy+PE, QSS, QSS+PE options.
  * 4. Change control parameters like stop_time, massTol,...
  * 5. Change values of T9_start and rho_start if constant T and rho (hydroProfile=false).
  * 6. If using hydro profile: hydroProfile=true, set HydroFile[], set maxHydroEntries,
@@ -168,8 +168,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -187,8 +187,8 @@ void updatePF(void);
 // File pointers for diagnostics output. Corresponding filenames declared 
 // at top of main.
 
-FILE *pFileD;
-FILE *pfnet;
+FILE* pFileD;
+FILE* pfnet;
 
 // Filename for network + partition function input.  The file output/CUDAnet.inp
 // output by the Java code through the stream toCUDAnet has the expected format 
@@ -223,15 +223,13 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfile.out
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_100.inp";
-//char hydroFile[] = "data/viktorProfile_400.inp";
-//char hydroFile[] = "data/rosswog.profile";
+char hydroFile[] = "data/nova125DProfile_400.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 102; // Max entries hydro profile
+const static int maxHydroEntries = 403; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
 // Lots of data, so most useful for small networks.
@@ -240,15 +238,18 @@ static const bool plotFluxes = false;
 
 // Plot output controls and file pointers
 
-static const int maxPlotIsotopes = min(ISOTOPES, 365);   // # species to plot
-int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
+static const int maxPlotIsotopes = min(ISOTOPES, 365);  // Number species to plot
+int plotXlist[maxPlotIsotopes];                         // Array species plot indices
 
-FILE * plotfile1;
-FILE * plotfile2;
-FILE * plotfile3;
-FILE * plotfile4;
+// Pointers to plot data output files
 
-// Control flags for diagnostic output to files
+FILE* plotfile1;
+FILE* plotfile2;
+FILE* plotfile3;
+FILE* plotfile4;
+
+// Control flags for diagnostic output to files. Note that setting showDetails
+// or showDetails2 true may generate large output files (MB to GB for large networks).
 
 bool showAddRemove = false;  // Show addition/removal of RG from equilibrium
 bool showDetails = false;    // Controls diagnostics to pFileD -> gnu_out/diagnostics.data
@@ -361,8 +362,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 9e-4; //9e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-5;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -372,7 +373,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                    // Absolute error tolerance
+double EpsA = 4e-5;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -388,7 +389,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilTime = start_time;    // Time to begin checking for PE (default: start_time)
 
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
@@ -471,13 +472,6 @@ int numberReactions;             // Actual # reactions in network (usually = SIZ
 
 int reacMask[ISOTOPES][SIZE]; 
 
-// Define an array rv[] and corresponding pointers that will hold GSL vectors 
-// corresponding to the reaction vectors for the system.  This will be implemented 
-// in the function makeReactionVectors() of the class ReactionVector.
-
-// gsl_vector rv[SIZE];   // Array of type gsl_vector to hold GSL vectors
-// gsl_vector *rvPt;      // Pointer to rv[] array
-
 // Define an array RV of type std::vector that will hold reaction vectors for
 // the system.
 
@@ -490,7 +484,7 @@ int totalFminus = 0;
 
 // Arrays to hold time,temperature,and density in hydro profile
 
-int hydroLines;  // Number of hydro profile lines read in
+int hydroLines;                       // Number of hydro profile lines read in
 double hydroTime[maxHydroEntries];
 double hydroTemp[maxHydroEntries];
 double hydroRho[maxHydroEntries];
@@ -585,8 +579,8 @@ int totalEquilReactions;    // Total equilibrated reactions for isotope
 int totalEquilRG;           // Total equilibrated reaction groups
 bool normPEX = true;        // Normalize X after PE evol (normally true)
 
-gsl_matrix *fluxes;
-gsl_vector *abundances;
+gsl_matrix* fluxes;
+gsl_vector* abundances;
 
 // Temporary utility quantities to hold fastest and slowest rate data at
 // a given timestep. The index quantities are the index of the
@@ -659,9 +653,9 @@ private:
 public:
     
     // Constructor creates a SplineInterpolator object for the arrays
-    // xarray and yarray passed using the pointers *xarray and *yarray.
+    // xarray and yarray passed using the pointers * xarray and * yarray.
     
-    SplineInterpolator(int points,double *xarray,double *yarray) { 
+    SplineInterpolator(int points,double* xarray, double* yarray) { 
 
         numberPoints = points;
         
@@ -678,7 +672,7 @@ public:
      * ------------------------------------------------------------------------------*/
     
     
-    void spline(double *xarray,double *yarray,int size1,int size2) {
+    void spline(double* xarray, double* yarray, int size1, int size2) {
         
         int n = size1;  
         int m = size2; 
@@ -783,7 +777,7 @@ public:
      *------------------------------------------------------------------------------*/
     
     
-   int bisection(double *xarray,double xvalue){
+   int bisection(double* xarray, double xvalue){
         
         int n = numberPoints;
         
@@ -850,10 +844,10 @@ class Utilities{
         // -------------------------------------------------------------------------
         // Static function Utilities::log10Spacing() to find num equal log10 
         // spacings between two numbers start and stop. The equally log-spaced
-        // numbers are placed in the array v passed with the pointer *v.
+        // numbers are placed in the array v passed with the pointer * v.
         // -------------------------------------------------------------------------
         
-        static void log10Spacing(double start,double stop,int num,double *v){
+        static void log10Spacing(double start, double stop, int num, double* v){
             
             double logtmin = log10(start);
             double logtmax = log10(stop);
@@ -883,7 +877,7 @@ class Utilities{
         
         static void outputHydroProfile(){
             
-            FILE * pHydro;
+            FILE* pHydro;
             pHydro = fopen("gnu_out/hydroProfile.out","w");
             if( pHydro == NULL ) {
                 fprintf(stderr,"Couldn't open file: %s\n",strerror(errno));
@@ -1230,7 +1224,7 @@ class Species: public Utilities {
             massExcess[isoindex] = m;   // Array
         }
         
-        void setisoLabel(char *lpt){
+        void setisoLabel(char* lpt){
             
             // Fill character array.  *lpt points to initial character.
             // All characters of the character array are accessed by
@@ -1306,7 +1300,7 @@ class Species: public Utilities {
          the setX functions.
         */
         
-        char *getLabel() {return IsoLabel; };         // return pointer to label array
+        char* getLabel() {return IsoLabel; };         // return pointer to label array
         char getLabel(int k) {return IsoLabel[k]; };  // return kth character of array
         
         double getpf(int i) {return pf[i]; }          // Values in partition function table
@@ -2288,7 +2282,7 @@ class ReactionVector:  public Utilities {
                 
                 // Check the value and set the flag
                 
-                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(),    flippedRv2.end());
+                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(), flippedRv2.end());
                 if (flipped) retVal = 2;
                 
             } else {
@@ -2350,7 +2344,7 @@ class ReactionVector:  public Utilities {
                 
                 // Skip pair already processed
                 
-                if(RGindex[i] != -1 && RGindex[j] != -1) break;
+                //if(RGindex[i] != -1 && RGindex[j] != -1) continue;
                 
                 compares ++;
                 
@@ -2377,7 +2371,7 @@ class ReactionVector:  public Utilities {
 
         }
         
-        printf("Comparisons=%d\n", compares);
+        printf("Vector pair comparisons = %d\n", compares);
         cout.flush();
         
         // If the last trial reaction group has no members, subtract 
@@ -3234,7 +3228,7 @@ class ReactionGroup:  public Utilities {
         // Limit how small denominator can be in following to prevent 
         // possible divide by zero.
         
-        thisDevious = abs((equilRatio - kratio) / max(kratio, 1.0e-24));
+        thisDevious = abs((equilRatio - kratio) / max(kratio, GZ));
         
         // Store max value of thisDevious
         
@@ -3341,7 +3335,6 @@ class ReactionGroup:  public Utilities {
     void removeFromEquilibrium() {
         
         isEquil = false;
-        //thisDevious = abs((equilRatio - kratio) / max(kratio,1.0e-24));
         
         totalEquilRG -- ;
         
@@ -3682,13 +3675,14 @@ class Integrate: public Utilities {
             
             double maxupdt = 2.0;
             double maxdowndt = 0.5;
+            double dt_MAXFAC = 0.10;
             
             dtmin = min(dt_new,maxupdt*dt_old);
             dt_new = max( dtmin,maxdowndt*dt_old );
             
-            // Don't let dt exceed 0.1*t for accuracy reasons
+            // Don't let dt exceed dt_MAXFAC * t for accuracy reasons
             
-            dt_new = min(dt_new, 0.1*t);
+            dt_new = min(dt_new, dt_MAXFAC*t);
             
             // Return the new trial timestep that will be the starting point
             // for the next integration step.

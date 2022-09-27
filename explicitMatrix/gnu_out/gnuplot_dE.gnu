@@ -52,8 +52,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
+set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color #font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -66,8 +66,8 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy and Asy+PE, alpha with PF"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy nova125D with"
+ds = ds.": nova125DProfile-400.inp"
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
@@ -77,8 +77,8 @@ xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 7
-yup = 17
+ylow = 8
+yup = 18
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -92,12 +92,13 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-#file1 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # Asy reference"
-#file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+file1 = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+
 file2 = "plot1.data"
 
-#plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title "Asy log10 |dE/dt|"
-plot file2 using 1:4 with lines ls 11 lw 1.5 dashtype 1 title " log10 |dE/dt|"
+plot file1 using 1:4 with lines ls 11 lw 1.5 dashtype 1 title "Reference |dE/dt|"
+
+replot file2 using 1:4 with lines ls 1 lw 1.5 dashtype 2 title " log10 |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 

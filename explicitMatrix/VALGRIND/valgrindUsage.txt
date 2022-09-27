@@ -5,7 +5,10 @@
 
 And I used kcachegrind to view the results since the output file is pure text. Note that callgrind always dumps a file like "callgrind.out.12345" in the present directory.
 
- 
+Compile explicitMatrix.cpp with the -g flag to get valgrind output with human readable line numbers.
+
+Fedora installs:
+
 kcachegrind-19.04.2-1.fc30.x86_64 : GUI to profilers such as Valgrind
 Repo        : updates
 Matched from:

@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8
-height = 8
+width = 10
+height = 10
 
 # x-axis resolution
 set samples 1000
@@ -72,8 +72,8 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy 150 with PF"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds="C++ Asy nova125D"
+ds = ds.": with nova125DProfile-400.inp profile"
 set title ds textcolor rgb title_color
 
 
@@ -103,38 +103,44 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 133   # Number species to be plotted
+numberCurves = 133    # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
-dasher1 = 1            # Dash style for curves (0,1,2,3, ...)
-dasher2 = 2            # Dash style for curves (0,1,2,3, ...)
+dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
+dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
-fileRef = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # File with reference data
+
+fileRef = "dataRef/nova125D_sumX_1.000.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
 # line styles defined above. Use the mod operator % to cycle
 # through the set of line styles once for every modsize of the 
-# numberCurves isotopes to be plotted.
+# numberCurves isotopes to be plotted. The first isotope begins
+# in column 9 of the data files, hence the offset by 8.
 
-plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
+# Reference calculation
+
+plot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+
+# Present calculation
+
+replot for[i=8 : numberCurves+8] file1 using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
-
-#replot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
-#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
 set title ds textcolor rgb title_color font "Arial,20"
 set key top right outside font "Arial,15"
-set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,22"
-set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
+set xlabel 'Log time (s)' textcolor rgb tic_color # font "Arial,22"
+set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
 
 # Plot to postscript file
 
 #unset key
 set out "gnuplot_X-loop.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
+set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 20
 replot               # Plot to postscript file
 
 # Plot to PNG file (un-comment to enable)
