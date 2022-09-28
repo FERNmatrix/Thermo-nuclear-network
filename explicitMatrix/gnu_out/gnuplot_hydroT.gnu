@@ -61,7 +61,7 @@ set ylabel ' T9' textcolor rgb tic_color
 #set logscale x
 #set logscale y
 
-set key top inside   # Move legend to inside top
+set key top left inside   # Move legend to inside top
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
@@ -73,14 +73,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
+xlow = -10
+xup = 1
 xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 0.35
-ytics = 0.05     # Space between major y ticmarks
+ylow = 2.5
+yup = 6
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -109,7 +109,7 @@ replot refFile using 1:(10**$2/1e9) with lines ls 1 lw 1.0 dashtype 2 title "T9 
 set timestamp font "Arial,16"      # Date/time
 
 set title ds textcolor rgb title_color font "Arial,18"
-set key top right font "Arial,15"
+set key top left font "Arial,15"
 set xlabel 'log time' textcolor rgb tic_color font "Arial,22"
 set ylabel 'T9' textcolor rgb tic_color font "Arial,22"
 

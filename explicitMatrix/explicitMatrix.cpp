@@ -165,10 +165,10 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 134                  // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1566                     // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 400                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -191,13 +191,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_nova134.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_nova134.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -220,13 +220,13 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_400.inp";
+char hydroFile[] = "data/viktorExtendedProfileSmooth2.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 403; // Max entries hydro profile
+const static int maxHydroEntries = 472; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
 // Lots of data, so most useful for small networks.
@@ -340,8 +340,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 5e-6;          // Start time for plot output
-double stop_time = 1e6;                // Stop time for integration
+double startplot_time = 1e-16;         // Start time for plot output
+double stop_time = 10;                  // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -359,8 +359,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-5;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-10;            // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -370,7 +370,7 @@ int totalIterations;                   // Total number of iterations, all steps 
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 4e-5;                    // Absolute error tolerance
+double EpsA = massTol_asy;                   // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -387,7 +387,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 double equilTime = start_time;    // Time to begin checking for PE (default: start_time)
 
 double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
+double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious
@@ -3628,7 +3628,7 @@ class Integrate: public Utilities {
             // the next plot output step.
             
             dt_desired = dtt;
-            double upfac = 1.5;
+            double upfac = 1.0;
             double gap = upfac*nextPlotTime - t_saved;
 
             if(dtt > gap && gap > 0){

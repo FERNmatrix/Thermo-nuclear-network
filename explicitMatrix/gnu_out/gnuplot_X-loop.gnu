@@ -79,8 +79,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6 
+xlow = -10
+xup = 1 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -103,14 +103,14 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 133    # Number species to be plotted
+numberCurves = 15     # Number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
 
-fileRef = "dataRef/nova125D_sumX_1.000.data"  # Reference data
+fileRef = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
