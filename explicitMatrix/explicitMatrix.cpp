@@ -132,9 +132,6 @@ void plotFileSetup(void);
 void toPlotNow(void);
 void updatePF(void);
 
-// void mtrace(void);     // Memory debugging
-// void muntrace(void);   // Memory debugging
-
 
 /*
  * ------------------------------------------------------------------------------------------
