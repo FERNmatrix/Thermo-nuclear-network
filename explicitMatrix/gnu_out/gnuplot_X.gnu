@@ -102,7 +102,7 @@ set mytics minytics   # minor y tics per major tic
 
 #set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
 # Main CNO cycle
@@ -348,15 +348,17 @@ replot file1 using 1:156 with lines ls 6 lw 1 dashtype 1 title "(149)"
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"
+
 set title ds textcolor rgb title_color font "Arial,18"
 set key top right font "Arial,14"
-set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,21"
-set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
+set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_X.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

@@ -98,7 +98,7 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
 # Edit the following plot commands to correspond to data
@@ -150,15 +150,17 @@ replot file2 using 1:23 with lines ls 2 lw 1.5 dashtype 2 title "68Se asy+pe"
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"
+
 set title ds textcolor rgb title_color font "Arial,18"
 set key top right font "Arial,14"
-set xlabel 'Log [time (s)]' textcolor rgb tic_color font "Arial,21"
-set ylabel 'Log X' textcolor rgb tic_color font "Arial,21"
+set xlabel 'Log [time (s)]' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_X_alpha_T9_5_1e8_asy-PE.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 18
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

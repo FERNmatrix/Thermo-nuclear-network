@@ -92,15 +92,23 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-file1 = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+# Reference calculation
 
-file2 = "plot1.data"
+refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 
-plot file1 using 1:4 with lines ls 11 lw 1.5 dashtype 1 title "Reference |dE/dt|"
+# This calculation
 
-replot file2 using 1:4 with lines ls 1 lw 1.5 dashtype 2 title " log10 |dE/dt|"
+file1 = "plot1.data"
+
+plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title " log10 |dE/dt|"
+
+replot refFile using 1:4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
+
+
 
 # Reset font sizes for .eps and .png output2
+
+set timestamp font "Arial,16"
 
 set title ds textcolor rgb title_color font "Arial,18"
 set key bottom left inside font "Arial,18"
@@ -110,7 +118,7 @@ set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,22"
 # Plot to postscript file
 
 set out "gnuplot_dE.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 18
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

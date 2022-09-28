@@ -70,9 +70,6 @@ ds="QSS+PE T9=7 rho=1e8 (no pf)"
 ds = ds.": dt vs t"
 set title ds textcolor rgb title_color
 
-file1 = "gnufile.data"
-
-
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
@@ -95,11 +92,10 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
-# Edit the following plot commands to correspond to data
-# read in from data file
+file1 = "plot1.data"
 
 plot file1 using 1:2 with lines ls 1 title "dt"
 #replot file1 using 1:6 with lines ls 4 title "12C"
@@ -113,6 +109,8 @@ plot file1 using 1:2 with lines ls 1 title "dt"
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"
+
 set title ds textcolor rgb title_color font "Arial,22"
 set key top right font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
@@ -121,7 +119,7 @@ set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
 # Plot to postscript file
 
 set out "gnuplot_dt.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

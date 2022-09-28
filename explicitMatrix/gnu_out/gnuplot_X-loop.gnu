@@ -114,33 +114,35 @@ fileRef = "dataRef/nova125D_sumX_1.000.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
-# line styles defined above. Use the mod operator % to cycle
+# line styles defined above. Use the mod operator % to cycle repeatedly
 # through the set of line styles once for every modsize of the 
 # numberCurves isotopes to be plotted. The first isotope begins
 # in column 9 of the data files, hence the offset by 8.
 
-# Reference calculation
+# Reference calculation (plotted from fileRef)
 
 plot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
-# Present calculation
+# Present calculation (plotted from file1)
 
 replot for[i=8 : numberCurves+8] file1 using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"      # Date/time
+
 set title ds textcolor rgb title_color font "Arial,20"
 set key top right outside font "Arial,15"
-set xlabel 'Log time (s)' textcolor rgb tic_color # font "Arial,22"
-set ylabel 'Log X' textcolor rgb tic_color #font "Arial,22"
+set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 #unset key
 set out "gnuplot_X-loop.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 20
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file (un-comment to enable)

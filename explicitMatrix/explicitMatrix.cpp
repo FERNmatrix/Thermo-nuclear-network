@@ -220,7 +220,7 @@ bool hydroProfile = true;
 //
 // Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
 // plotHydroProfile are true, the hydro profile used for the temperature and 
-// density in the calculation is also output to the file gnu_out/hydroProfile.out
+// density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
 char hydroFile[] = "data/nova125DProfile_400.inp";
@@ -871,14 +871,14 @@ class Utilities{
         // Static function Utilities::plotHydroprofile() to send hydro profile 
         // to plotting file. Only invoked if hydroProfile and plotHydroProfile 
         // are true. This is the hydro profile read in, which is output to
-        // the file gnu_out/hydroProfile.out. The values of temperature and
+        // the file gnu_out/hydroProfileInput.data. The values of temperature and
         // density interpolated during the calculation are output to the file
         // plot4.data.
         
         static void outputHydroProfile(){
             
             FILE* pHydro;
-            pHydro = fopen("gnu_out/hydroProfile.out","w");
+            pHydro = fopen("gnu_out/hydroProfileInput.data","w");
             if( pHydro == NULL ) {
                 fprintf(stderr,"Couldn't open file: %s\n",strerror(errno));
                 exit(1);
@@ -4578,7 +4578,7 @@ int main() {
 
     printf("\n\n");
     
-    // Output the hydro profile read in to gnu_out/hydroProfile.out. 
+    // Output the hydro profile read in to gnu_out/hydroProfileInput.data. 
     // (The interpolated hydro profile is output to gnu_out/plot4.data.)
     
     if(hydroProfile && plotHydroProfile) Utilities::outputHydroProfile();
@@ -4902,7 +4902,7 @@ void toPlotNow(){
         
     // Output to plotfile4 stream -> plot4.data.  These are the interpolated
     // temperature and density during the calculation as a function of time.
-    // The output file hydroProfile.out contains the input hydro profile
+    // The output file hydroProfileInput.data contains the input hydro profile
     // from which the temperature and density were interpolated.
         
     if(hydroProfile && plotHydroProfile){

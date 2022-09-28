@@ -66,8 +66,8 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy and Asy+PE alpha with PF"
-ds = ds.": T9=7 rho=1e7"
+ds="C++ Asy nova125D with"
+ds = ds.": nova125DProfile-400.inp"
 
 set timestamp
 set title ds textcolor rgb title_color font "Arial,22"
@@ -75,13 +75,13 @@ set title ds textcolor rgb title_color font "Arial,22"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = 2
+xlow = -5
+xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 12
-yup = 18
+ylow = 9
+yup = 19
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -95,19 +95,21 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
 set title ds textcolor rgb title_color
 
-file1 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"  # Asy reference
-#file1 = "dataRef/gnufile_alpha_T9_7_1e8_asy_java_PF.data"  # Asy reference
-file2 = "plot1.data"
+refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 
-plot file1 using 1:3 with lines ls 1 lw 1.5 dashtype 1 title "Asy Log10 |E|"
-replot file2 using 1:3 with lines ls 11 lw 1.5 dashtype 2 title "Log10 |E|"
+file1 = "plot1.data"
+
+plot file1 using 1:3 with lines ls 1 lw 1.5 dashtype 1 title "Log10 |E|"
+replot refFile using 1:3 with lines ls 11 lw 1.5 dashtype 2 title "Ref Log10 |E|"
 
 # Reset font sizes for .eps and .png output2
+
+set timestamp font "Arial,16"
 
 set key top left inside font "Arial,18"
 set title ds textcolor rgb title_color font "Arial,18"
@@ -117,7 +119,7 @@ set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,22"
 # Plot to postscript file
 
 set out "gnuplot_E.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 22
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

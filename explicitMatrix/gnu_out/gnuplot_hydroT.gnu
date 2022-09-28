@@ -61,13 +61,13 @@ set ylabel ' T9' textcolor rgb tic_color
 #set logscale x
 #set logscale y
 
-set key top outside   # Move legend to outside top
+set key top inside   # Move legend to inside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="C++ Asy: viktorExtendedProfileSmooth.inp"
-ds = ds.""
+ds="C++ Asy nova125D with"
+ds = ds.": nova125DProfile-400.inp"
 set title ds textcolor rgb title_color
 
 
@@ -91,43 +91,32 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-#set grid   # set x-y grid at major ticmarks
+set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
-#file1 = "hydroProfile.out"
-#file1 = "gnufile2.data"
+refFile = "hydroProfileInput.data"
+
 file1 = "plot4.data"
 
-#plot file1 using 1:10 with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-#plot file1 using 1:(10**$10) with lines ls 1 lw 1.0 dashtype 1 title "T interp (t)"
-plot file1 using 1:(10**$2/1e9) with lines ls 5 lw 0.5 dashtype 1 title "T9 interp (t)"
-#plot file1 using 1:(10**$2/1e9) with points ls 5 lw 0.5 dashtype 1 title "T9 interp (t)"
+plot file1 using 1:(10**$2/1e9) with lines ls 2 lw 1.0 dashtype 1 title "T9 spline (t)"
 
-#file2 = "../data/torch47Profile.inp"
-#file2 = "../data/nova125DProfile.inp"
-file2 = "hydroProfile.out"  # The input hydro profile
-
-#replot file2 using (log10($1)):(log10($2)) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
-#replot file2 using (log10($1)):($2/1e9) with points ls 11 lw 0.5 dashtype 1 title "T input (t)"
-#replot file2 using 1:2 with lines ls 11 lw 0.5 dashtype 2 title "T input (t)"
-#replot file2 using 1:(10**$2/1e9) with points ls 6 lw 1.0 dashtype 2 title "T input (t)"
-replot file2 using 1:(10**$2/1e9) with lines ls 6 lw 0.5 dashtype 2 title "T9 input (t)"
-
-
+replot refFile using 1:(10**$2/1e9) with lines ls 1 lw 1.0 dashtype 2 title "T9 input (t)"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,20"
+set timestamp font "Arial,16"      # Date/time
+
+set title ds textcolor rgb title_color font "Arial,18"
 set key top right font "Arial,15"
-set xlabel 'log time' textcolor rgb tic_color font "Arial,25"
-set ylabel 'T9' textcolor rgb tic_color font "Arial,25"
+set xlabel 'log time' textcolor rgb tic_color font "Arial,22"
+set ylabel 'T9' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_hydroT.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 #"Arial" 26
+set terminal postscript eps size width, height enhanced color solid lw "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

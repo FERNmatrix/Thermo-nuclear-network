@@ -94,7 +94,7 @@ set mytics minytics   # minor y tics per major tic
 
 #set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
 # Set data files
@@ -119,16 +119,18 @@ replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 0.4 dashtype 
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"
+
 set title ds textcolor rgb title_color font "Arial,18"
 set key top left inside font "Arial,16"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,24"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,24"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file. Use Symbol font because minus signs are 
 # lost for many other fonts
 
 set out "gnuplot_xdt_alpha_T9_7_1e8_asy-PE.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 22
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22" 
 replot               # Plot to postscript file
 
 # Plot to PNG file

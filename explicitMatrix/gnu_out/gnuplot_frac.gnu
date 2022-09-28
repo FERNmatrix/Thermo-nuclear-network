@@ -108,6 +108,8 @@ replot file1 using 1:6 with lines ls 3 title "Frac RG equil"
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"
+
 set title ds textcolor rgb title_color font "Arial,18"
 set key top left inside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
@@ -116,7 +118,7 @@ set ylabel 'Fraction' textcolor rgb tic_color font "Arial,22"
 # Plot to postscript file
 
 set out "gnuplot_frac.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 1.5 "Symbol" 18
+set terminal postscript eps size width, height enhanced color solid lw 1.5 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

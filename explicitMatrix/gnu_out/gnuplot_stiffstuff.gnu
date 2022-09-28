@@ -61,13 +61,13 @@ set ylabel 'Log dt (s)' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key outside    # Place legend outside top
+set key top left inside 
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy and Asy+PE alpha with PF"
-ds = ds.": T9=5 rho=1e8"
+ds="C++ Asy nova125D"
+ds = ds.": with nova125DProfile-400.inp profile"
 set title ds textcolor rgb title_color
 
 
@@ -96,23 +96,21 @@ set mytics minytics   # minor y tics per major tic
 
 # -------- Axis ranges and ticmarks -----------
 
-file1 = "plot2.data"     # C++
-#file2 = "dataRef/gnufile_alpha_T9_5_1e8_asy+pe_java.data"  # Java reference
-#file3 = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"   # C++ asy
 
-# Plot C++ Asy+PE data
+file1 = "plot2.data"     # C++ asy
+refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ asy ref
 
-plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log 2/Rmax"
-#replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log 2*dt-FE"
-replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log dt (C++ asy+pe)"
+# Plot C++ asy reference (uncomment to plot)
 
-# Plot Java Asy+PE data
+#plot refFile using 1:2 with lines ls 3 lw 2.0 dashtype 2 title "log10 dt (C++ asy ref)"
 
-#replot file2 using 1:2 with lines ls 8 lw 2.0 dashtype 1 title "log dt (java asy+pe)"
+# Plot C++ Asy data
 
-# Plot C++ asy
+plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
+replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
 
-#replot file3 using 1:2 with lines ls 10 lw 2.0 dashtype 1 title "log dt (c++ asy)"
+# Example to offset a curve vertically by factor of 2
+#replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"
 
 # Plot dt contours
 
@@ -124,6 +122,8 @@ replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 
 
 # Reset font sizes for .eps and .png output2
 
+set timestamp font "Arial,16"      # Date/time
+
 set title ds textcolor rgb title_color font "Arial,22"
 set key top left inside font "Arial,16"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
@@ -132,7 +132,7 @@ set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
 # Plot to postscript file
 
 set out "gnuplot_stiffstuff.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol" 22
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file

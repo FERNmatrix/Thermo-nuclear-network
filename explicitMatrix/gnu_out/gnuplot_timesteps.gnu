@@ -95,10 +95,9 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# -------- Axis ranges and ticmarks -----------
+# -------------------
 
 
-#file1 = "gnufile2.data"
 file1 = "plot1.data"
 
 # Edit the following plot commands to correspond to data
@@ -117,15 +116,17 @@ replot file1 using 1:5 with lines ls 14 title "log 2/Rmax"
 
 # Reset font sizes for .eps and .png output2
 
-set title ds textcolor rgb title_color font "Arial,22"
+set timestamp font "Arial,16"
+
+set title ds textcolor rgb title_color font "Arial,18"
 set key top right font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'log dt (s)' textcolor rgb tic_color font "Arial,28"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'log dt (s)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
 set out "gnuplot_timesteps.eps"    # Output file
-set terminal postscript eps size width, height enhanced color solid lw 2 "Arial" 24
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file
