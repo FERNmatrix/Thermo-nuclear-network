@@ -119,7 +119,7 @@ set out "gnuplot_hydroT.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw "Symbol,22"
 replot               # Plot to postscript file
 
-# Plot to PNG file
+# Plot to PNG file (uncomment to plot png file)
 
 #set out "gnuplot_hydroT.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
