@@ -110,7 +110,8 @@ dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
 
-fileRef = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
+fileRef = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
+#fileRef = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize

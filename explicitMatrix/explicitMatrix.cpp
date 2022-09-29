@@ -220,7 +220,7 @@ bool hydroProfile = true;
 // density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/viktorExtendedProfileSmooth2.inp";
+char hydroFile[] = "data/viktorExtendedProfileSmooth.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
