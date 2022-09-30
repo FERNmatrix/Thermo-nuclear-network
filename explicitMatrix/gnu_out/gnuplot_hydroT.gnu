@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -6
-xup = 5
+xup = -3
 xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 0
-yup = 0.35
-ytics = 0.05     # Space between major y ticmarks
+ylow = 1
+yup = 7
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -102,7 +102,7 @@ file1 = "plot4.data"
 
 plot file1 using 1:(10**$2/1e9) with lines ls 2 lw 1.0 dashtype 1 title "T9 spline (t)"
 
-replot refFile using 1:(10**$2/1e9) with lines ls 1 lw 1.0 dashtype 2 title "T9 input (t)"
+replot refFile using 1:(10**$2/1e9) with lines ls 11 lw 1.0 dashtype 2 title "T9 input (t)"
 
 # Reset font sizes for .eps and .png output2
 

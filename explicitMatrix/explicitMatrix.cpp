@@ -168,7 +168,7 @@ void updatePF(void);
 #define ISOTOPES 16                  // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                     // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 1000                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -205,7 +205,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -220,13 +220,13 @@ bool hydroProfile = false;
 // density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_400.inp";
+char hydroFile[] = "data/viktorProfile_400.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 403; // Max entries hydro profile
+const static int maxHydroEntries = 407; // Max entries hydro profile
 
 // Control printout of flux data (true to print,false to suppress).
 // Lots of data, so most useful for small networks.
@@ -263,7 +263,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;           // Implement partial equilibrium also
+bool doPE = false;           // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -340,8 +340,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-2;               // Stop time for integration
+double startplot_time = 1e-14;         // Start time for plot output
+double stop_time = 1e-3;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -359,7 +359,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
