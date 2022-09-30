@@ -52,14 +52,14 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,12"
+set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,12"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
@@ -70,7 +70,7 @@ ds="C++ Asy nova125D with"
 ds = ds.": nova125DProfile-400.inp"
 
 set timestamp
-set title ds textcolor rgb title_color font "Arial,22"
+set title ds textcolor rgb title_color font "Arial,12"
 
 
 # -------- Axis ranges and ticmarks -----------
