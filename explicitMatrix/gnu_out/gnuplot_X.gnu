@@ -87,7 +87,7 @@ xup = -1
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -12
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics

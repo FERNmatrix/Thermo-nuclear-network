@@ -72,13 +72,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
+xlow = -7
+xup = -1
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 8
-yup = 18
+ylow = 14
+yup = 26
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -102,9 +102,7 @@ file1 = "plot1.data"
 
 plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title " log10 |dE/dt|"
 
-replot refFile using 1:4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
-
-
+#replot refFile using 1:4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
