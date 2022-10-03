@@ -67,7 +67,7 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy and Asy+PE alpha with PF"
+ds="C++ Asy+PE "
 ds = ds.": T9=7 rho=1e8"
 
 set title ds textcolor rgb title_color
@@ -75,8 +75,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -7
-xup = -1
+xlow = -18
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
