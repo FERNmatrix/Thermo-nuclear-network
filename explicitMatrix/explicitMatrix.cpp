@@ -2547,7 +2547,7 @@ class ReactionVector:  public Utilities {
 
         }
         
-        printf("Vector pair comparisons = %d\n", compares);
+        printf("\nVector pair comparisons = %d", compares);
         cout.flush();
         
         // If the last trial reaction group has no members, subtract 
@@ -3520,6 +3520,12 @@ class ReactionGroup:  public Utilities {
         
         isEquil = true;
         totalEquilRG ++;
+        
+        for (int i = 0; i < numberMemberReactions; i++) {
+            int ck = memberReactions[i];
+            reacIsActive[ck] = false;         
+        }
+        
         if(showAddRemove) fprintf(pFileD,
             "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f", RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious,
             minRatio, maxRatio);
@@ -3835,13 +3841,31 @@ class Integrate: public Utilities {
             // plot output step, reduce trial dt to be equal to upfac times
             // the next plot output step.
             
+            
+            
             dt_desired = dtt;
             double upfac = 1.5;
             double gap = upfac*nextPlotTime - t_saved;
-
+            
             if(dtt > gap && gap > 0){
                 dtt = gap;
-            } 
+            }
+            
+//             dt_desired = dtt;
+//             double upfac = 0.0001;
+//             double gap = nextPlotTime - t_saved;
+//             
+//             if(dtt > gap && gap > 0){
+//                 dtt = (1+upfac)*gap;
+//             } 
+            
+//             dt_desired = dtt;
+//             double upfac = 1.5;
+//             double gap = nextPlotTime - t_saved;
+// 
+//             if(dtt > gap && gap > 0){
+//                 dtt = upfac*gap;
+//             } 
             
             // dtt should be a positive number.  Exit if it isn't.
             
@@ -3880,13 +3904,14 @@ class Integrate: public Utilities {
             
             double maxupdt = 2.0;
             double maxdowndt = 0.5;
+            double dt_MAXFAC = 0.10;
             
-            dtmin = min(dt_new,maxupdt*dt_old);
-            dt_new = max( dtmin,maxdowndt*dt_old );
+            dtmin = min(dt_new, maxupdt*dt_old);
+            dt_new = max( dtmin, maxdowndt*dt_old );
             
-            // Don't let dt exceed 0.1*t for accuracy reasons
+            // Don't let dt exceed dt_MAXFAC * t for accuracy reasons
             
-            dt_new = min(dt_new, 0.1*t);
+            dt_new = min(dt_new, dt_MAXFAC*t);
             
             // Return the new trial timestep that will be the starting point
             // for the next integration step.
@@ -4370,15 +4395,24 @@ int main() {
     // for the network using the static makeReactionVectors function of the class
     // ReactionVector.
     
+    printf("\n\nMaking Reaction Vectors ...");
+    cout.flush();
+    
     ReactionVector::makeReactionVectors();
     
     // Use static function ReactionVector::sortReactionGroups() to sort reactions into partial
     // equilibrium reaction groups by comparing reaction vectors.
     
+    printf("\nSorting Reaction Vectors ...");
+    cout.flush();
+    
     ReactionVector::sortReactionGroups();
     
     // Allocate dynamically memory for an array of ReactionGroup objects of dimension 
     // numberRG,where numberRG was determined by ReactionVector::sortReactionGroups() above.
+    
+    printf("\nAllocating Reaction Group Objects ...");
+    cout.flush();
     
     RG = (ReactionGroup*) malloc(sizeof(ReactionGroup) * numberRG);
     
