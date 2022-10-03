@@ -4924,13 +4924,6 @@ void plotFileSetup(){
         plotXlist[i] = i;
     }
     
-//     int plotXlist[] = {0,1,2,3,4,5,6};                              // pp
-//     int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // alpha
-//     int plotXlist[] = {0,1,2,3};                                    // 4-alpha
-//     int plotXlist[] = {0,1,2};                                      // 3-alpha
-//     int plotXlist[] = {0,1,2,3,4,5,6,7};                            // cno
-//     int plotXlist[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // cnoAll
-    
     // Get length LX of array plotXlist holding the species indices for
     // isotopes that we will plot mass fraction X for.
     
@@ -5200,6 +5193,7 @@ void showParameters(){
     printf("\nIsotopes=%d Reactions=%d",ISOTOPES,SIZE);
     if(numberRG > 0) printf(" ReactionGroups=%d",numberRG);
     if(numberRG > 0) printf(" SingletRG=%d", numberSingletRG);
+    if(totalTimeSteps > 0)
     printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d",
         totalTimeSteps,totalIterations,totalTimeSteps-totalTimeStepsZero);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
@@ -5212,6 +5206,8 @@ void showParameters(){
         printf("\n*** Reaction rates were approximated by zero when T < 1e7 K.      *");
         cout << "\n*******************************************************************\n\n";
     }
+    
+    cout.flush();
 }
 
 
@@ -6360,13 +6356,6 @@ void updateY0(){
     
     // Set Y0 in ReactionGroup objects RG[i]
     
-//     for(int i=0; i<numberRG; i++){
-//         for(int j=0; j<RG[i].getniso(); j++){
-//             int jj = RG[i].getisoindex(j);
-//             RG[i].setisoY0(j,Y[jj]);
-//         }
-//     }
-    
     for(int i=0; i<numberRG; i++){
         
         int jup = RG[i].getniso();
@@ -6379,7 +6368,6 @@ void updateY0(){
         for(int j=0; j<jup; j++){
             int jj = RG[i].getisoindex(j);
             RG[i].setisoY0(j,Y[jj]);
-            int segf = jj;    // Dummy debug
         }
     }
     
