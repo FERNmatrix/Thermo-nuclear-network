@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10 # 6.5
-height = 10 #8.5
+width = 10.5 # 6.5
+height = 5.5 #8.5
 
 # x-axis resolution
 set samples 1000
@@ -73,7 +73,7 @@ unset key            # Don't show legend
 set timestamp       # Date/time
 
 ds="C++ Asy alpha with PF"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds = ds.": "
 set title ds textcolor rgb title_color
 
 file1 = "plot1.data"
@@ -82,12 +82,12 @@ file1 = "plot1.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = -1
+xlow = -18
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -12
+ylow = -14
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
