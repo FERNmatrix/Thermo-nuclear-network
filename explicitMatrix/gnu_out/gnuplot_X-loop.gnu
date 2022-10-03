@@ -121,15 +121,15 @@ fileRef = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # Reference
 # numberCurves isotopes to be plotted. The first isotope begins
 # in column 9 of the data files, hence the offset by 8.
 
-# Reference calculation (plotted from fileRef)
-
-plot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
-
 # Present calculation (plotted from file1)
 
-replot for[i=8 : numberCurves+8] file1 using 1:i with lines \
+plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
+
+# Reference calculation (plotted from fileRef)
+
+replot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 

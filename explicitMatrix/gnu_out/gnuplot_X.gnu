@@ -82,12 +82,12 @@ file1 = "plot1.data"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = -10
+xup = -1
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -14
+ylow = -12
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
