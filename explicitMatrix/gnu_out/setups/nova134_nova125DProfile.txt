@@ -1,4 +1,4 @@
-guidry_debugRG hash: c6013ea
+guidry_debugRG hash: a072730
 -------------------------------
 
 #define ISOTOPES 134                   // Max isotopes in network (e.g. 16 for alpha network)
