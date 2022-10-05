@@ -340,7 +340,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 5e-6;          // Start time for plot output
-double stop_time = 1e8;                // Stop time for integration
+double stop_time = 1e6;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -358,20 +358,21 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 2e-4;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
-int maxit = 50;                        // Max asy dt iterations allowed for a step
+int maxit = 100;                        // Max asy dt iterations allowed for a step
 int iterations;                        // # iterations in step to conserve particles 
 int totalIterations;                   // Total number of iterations, all steps til now
 int mostIterationsPerStep = 0;         // Most iterations in a timestep
 int maxIterationStep;                  // Step where mostIterationsPerStep occurred
+double maxIterationTime;               // Time where mostIterationsPerStep occurred
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-4;                    // Absolute error tolerance
+double EpsA = 2e-4;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -3626,6 +3627,7 @@ class Integrate: public Utilities {
             if (iterations > mostIterationsPerStep){
                 mostIterationsPerStep = iterations;
                 maxIterationStep = totalTimeSteps;
+                maxIterationTime = t;
             }
             
             diffXfinal = diffX;
@@ -4995,8 +4997,8 @@ void showParameters(){
     if(totalTimeSteps > 0)
     printf("\nIntegration steps=%d totalIterations=%d IntegrationSteps_plotted=%d",
         totalTimeSteps,totalIterations,totalTimeSteps-totalTimeStepsZero);
-    if(totalTimeSteps > 0) printf("\nMax dt iterations = %d at step %d", 
-        mostIterationsPerStep, maxIterationStep);
+    if(totalTimeSteps > 0) printf("\nMax dt iterations = %d at step %d (t=%5.3e)", 
+        mostIterationsPerStep, maxIterationStep, maxIterationTime);
     if(totalTimeSteps > 0) Utilities::stopTimer();      // Stop timer and print integration time
     
     if(reacLibWarn){
