@@ -66,21 +66,22 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE "
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile_400.inp"
+
 set title ds textcolor rgb title_color
 
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = -1
+xlow = -5
+xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -10 
-yup = -2
+ylow = -8 
+yup = 5
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -116,7 +117,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ as
 
 replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
 replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
-#replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
 #replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
 #replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
 

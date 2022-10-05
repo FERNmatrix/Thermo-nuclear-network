@@ -67,16 +67,16 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE "
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile-400.inp"
 
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = -5
+xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

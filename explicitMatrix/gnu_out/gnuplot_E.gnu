@@ -66,8 +66,8 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE "
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile-400.inp"
 
 set timestamp
 set title ds textcolor rgb title_color font "Arial,12"
@@ -75,13 +75,13 @@ set title ds textcolor rgb title_color font "Arial,12"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = -5
+xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 10
-yup = 18
+ylow = 9
+yup = 19
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -105,7 +105,7 @@ refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 file1 = "plot1.data"
 
 plot file1 using 1:3 with lines ls 1 lw 1.5 dashtype 1 title "Log10 |E|"
-#replot refFile using 1:3 with lines ls 11 lw 1.5 dashtype 2 title "Ref Log10 |E|"
+replot refFile using 1:3 with lines ls 11 lw 1.5 dashtype 2 title "Ref Log10 |E|"
 
 # Reset font sizes for .eps and .png output2
 
