@@ -102,9 +102,9 @@ file1 = "plot4.data"
 
 # Data are log10(T); plot is in units of T9
 
-plot file1 using 1:((10**$2)/1e9) with lines ls 2 lw 1.0 dashtype 1 title "T9 spline (t)"
+plot file1 using 1:((10**$2)/1e9) with lines ls 1 lw 1.0 dashtype 1 title "T9 spline (t)"
 
-replot refFile using 1:((10**$2)/1e9) with lines ls 11 lw 1.0 dashtype 2 title "T9 input (t)"
+replot refFile using 1:((10**$2)/1e9) with lines ls 2 lw 1.0 dashtype 2 title "T9 input (t)"
 
 # Reset font sizes for .eps and .png output2
 
