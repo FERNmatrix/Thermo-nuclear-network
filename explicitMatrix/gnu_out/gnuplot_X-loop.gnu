@@ -80,8 +80,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 2 
+xlow = -14
+xup = 0.7 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -111,10 +111,11 @@ dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
 
-refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
+#refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # Reference data
 #refFile = "dataRef/nova125D_sumX_1.000.data"  # Reference data
+refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
