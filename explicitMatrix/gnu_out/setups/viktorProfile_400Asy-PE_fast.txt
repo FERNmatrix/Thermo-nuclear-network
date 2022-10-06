@@ -1,9 +1,7 @@
-git hash: e24ced95
-
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 200               // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -52,7 +50,7 @@ bool hydroProfile = true;
 //
 // Use SplineInterpolator to interpolate in table read in. If hydroProfile and 
 // plotHydroProfile are true, the hydro profile used for the temperature and 
-// density in the calculation is also output to the file gnu_out/hydroProfile.out
+// density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
 char hydroFile[] = "data/viktorProfile_400.inp";
@@ -71,14 +69,15 @@ static const bool plotFluxes = false;
 // Plot output controls and file pointers
 
 static const int maxPlotIsotopes = min(ISOTOPES, 365);   // # species to plot
-int plotXlist[maxPlotIsotopes];           // Array of species indices to plot
+int plotXlist[maxPlotIsotopes];           // Array of species plot indices
+
+// Pointers to data output files
 
 FILE* plotfile1;
 FILE* plotfile2;
 FILE* plotfile3;
 FILE* plotfile4;
 
-// Control flags for diagnostic output to file pointed to by * pFileD
 // Control flags for diagnostic output to files. Note that setting showDetails
 // or showDetails2 true may generate large output files (MB to GB for large networks).
 
@@ -92,7 +91,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 // doASY false (which toggles doQSS to true). doPE can be true or false 
 // with either Asymptotic or QSS. The boolean showPE allows display of the number
 // of reaction groups (RG) that would be in equilibrium if PE approximation were
-// being implemented. It is true only if Asy or QSS,but PE not being
+// being implemented. It is true only if Asy or QSS, but PE not being
 // implemented.
 
 bool doASY = true;           // Whether to use asymptotic approximation
@@ -157,13 +156,13 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 5;           // Initial temperature in units of 10^9 K
+double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
 // and dt_start sets the initial integration timestep. In an operator-split 
-// coupling  start_time will be ~0,stop_time will correspond to the length
+// coupling  start_time will be 0, stop_time will correspond to the length
 // of the hydro timestep and dt_init will likely be something like the 
 // last timestep of the previous network integration (for the preceding 
 // hydro timestep). Here we hardwire them for testing purposes.
@@ -174,9 +173,9 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-14;         // Start time for plot output
-double stop_time = 1e-1;               // Stop time for integration
-double logStop = log10(stop_time);     // Base-10 log stop time
+double startplot_time = 1e-14;          // Start time for plot output
+double stop_time = 1e-1;                // Stop time for integration
+double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
 double t_saved;                        // Start time this timestep (end t for last step)
@@ -193,21 +192,24 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 2e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
-int maxit = 20;                        // Max asy dt iterations
+int maxit = 100;                        // Max asy dt iterations allowed for a step
 int iterations;                        // # iterations in step to conserve particles 
 int totalIterations;                   // Total number of iterations, all steps til now
+int mostIterationsPerStep = 0;         // Most iterations in a timestep
+int maxIterationStep;                  // Step where mostIterationsPerStep occurred
+double maxIterationTime;               // Time where mostIterationsPerStep occurred
 double Error_Observed;                 // Observed integration error
-double Error_Desired;                  // Desired integration error
+double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 3e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
-// Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
+// equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
 // probably an error in the Java version, since if operating properly nothing should
@@ -223,45 +225,44 @@ double equilTime = start_time;    // Time to begin checking for PE
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
     
-    
-    
     --------------------------------------
     
-195 it=0 t=4.78e-02 dt=4.78e-03 dt'=4.35e-03 int=920 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.29e-04 lT=9.820 lrho=8.00
-196 it=0 t=5.78e-02 dt=5.78e-03 dt'=5.26e-03 int=922 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.05e-05 lT=9.820 lrho=8.00
-197 it=0 t=7.00e-02 dt=7.00e-03 dt'=6.36e-03 int=924 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=4.25e-05 lT=9.820 lrho=8.00
-198 it=0 t=7.70e-02 dt=7.70e-03 dt'=7.00e-03 int=925 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.15e-04 lT=9.820 lrho=8.00
-199 it=0 t=9.32e-02 dt=9.32e-03 dt'=8.47e-03 int=927 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=8.48e-06 lT=9.820 lrho=8.00
-200 it=0 t=1.02e-01 dt=1.02e-02 dt'=9.32e-03 int=928 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=2.67e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=2.05e-04 lT=9.820 lrho=8.00
+195 it=0 t=4.83e-02 dt=4.83e-03 dt'=4.39e-03 int=859 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.18e-03 lT=9.820 lrho=8.00
+196 it=0 t=5.84e-02 dt=5.84e-03 dt'=5.31e-03 int=861 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=5.00e-06 lT=9.820 lrho=8.00
+197 it=0 t=6.42e-02 dt=6.42e-03 dt'=5.84e-03 int=862 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=3.34e-04 lT=9.820 lrho=8.00
+198 it=0 t=7.77e-02 dt=7.77e-03 dt'=7.06e-03 int=864 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=6.72e-05 lT=9.820 lrho=8.00
+199 it=0 t=9.40e-02 dt=9.40e-03 dt'=8.55e-03 int=866 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=5.20e-05 lT=9.820 lrho=8.00
+200 it=0 t=1.03e-01 dt=1.03e-02 dt'=9.40e-03 int=867 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=1.05e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=7.70e-05 lT=9.820 lrho=8.00
 
-Integration using ASY+PE method (Partition function corrections for T9=1.00 and above)
-massTol_asy=1.00e-04 massTol_PE=2.00e-03
+Integration using ASY+PE method (Partition function corrections applied for T9=1.00 and above)
+massTol_asy=2.00e-04 massTol_PE=3.00e-03
 sf=1.00e+25 equiTol=1.50e-02 equilTime=1.00e-20
-maxit=20 downbumper= 0.700 EpsA=2.00e-03 EpsR=2.00e-04 deviousMax=0.500
+maxit=100 downbumper= 0.700 EpsA=3.00e-03 EpsR=2.00e-04 deviousMax=0.500
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Hydro profile: data/viktorProfile_400.inp
 Isotopes=16 Reactions=48 ReactionGroups=19 SingletRG=0
-Integration steps=928 totalIterations=904 IntegrationSteps_plotted=777
-Timer: 5.0315e-02 sec used
+Integration steps=867 totalIterations=823 IntegrationSteps_plotted=716
+Max dt iterations = 22 at step 365 (t=7.517e-06)
+Timer: 4.8498e-02 sec used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=5.8548e-02 X=2.3419e-01
-1 12C Y=2.1786e-06 X=2.6143e-05
-2 16O Y=4.4500e-06 X=7.1201e-05
-3 20Ne Y=1.4879e-07 X=2.9759e-06
-4 24Mg Y=1.2998e-05 X=3.1196e-04
-5 28Si Y=2.5248e-03 X=7.0695e-02
-6 32S Y=2.4521e-03 X=7.8468e-02
-7 36Ar Y=1.5717e-03 X=5.6581e-02
-8 40Ca Y=1.6387e-03 X=6.5546e-02
-9 44Ti Y=1.2206e-04 X=5.3708e-03
-10 48Cr Y=4.8801e-04 X=2.3425e-02
-11 52Fe Y=2.2383e-03 X=1.1639e-01
-12 56Ni Y=6.2229e-03 X=3.4848e-01
-13 60Zn Y=7.2948e-06 X=4.3769e-04
-14 64Ge Y=4.7058e-09 X=3.0117e-07
-15 68Se Y=6.5958e-12 X=4.4851e-10
+0 4He Y=5.9013e-02 X=2.3605e-01
+1 12C Y=2.1592e-06 X=2.5911e-05
+2 16O Y=4.3386e-06 X=6.9418e-05
+3 20Ne Y=1.4291e-07 X=2.8582e-06
+4 24Mg Y=1.2187e-05 X=2.9248e-04
+5 28Si Y=2.3792e-03 X=6.6618e-02
+6 32S Y=2.3288e-03 X=7.4522e-02
+7 36Ar Y=1.5046e-03 X=5.4167e-02
+8 40Ca Y=1.5821e-03 X=6.3284e-02
+9 44Ti Y=1.1989e-04 X=5.2750e-03
+10 48Cr Y=4.9028e-04 X=2.3533e-02
+11 52Fe Y=2.2756e-03 X=1.1833e-01
+12 56Ni Y=6.3817e-03 X=3.5737e-01
+13 60Zn Y=7.5417e-06 X=4.5250e-04
+14 64Ge Y=4.9044e-09 X=3.1388e-07
+
     
   
     

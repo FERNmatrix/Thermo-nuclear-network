@@ -80,8 +80,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2 
+xlow = -11
+xup = -1 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -111,10 +111,10 @@ dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
 
-fileRef = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-#fileRef = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # Reference data
-#fileRef = "dataRef/nova125D_sumX_1.000.data"  # Reference data
-#fileRef = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # Reference data
+#refFile = "dataRef/nova125D_sumX_1.000.data"  # Reference data
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
@@ -128,9 +128,9 @@ fileRef = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
-# Reference calculation (plotted from fileRef)
+# Reference calculation (plotted from refFile)
 
-replot for[i=8 : numberCurves+8] fileRef using 1:i with lines \
+replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
