@@ -75,13 +75,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
+xlow = -16
+xup = -2
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -8 
-yup = 5
+ylow = -17 
+yup = -3
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -99,15 +99,16 @@ set mytics minytics   # minor y tics per major tic
 
 
 file1 = "plot2.data"     # C++ asy
-refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ asy ref
+#refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
 
 # Plot C++ asy reference (uncomment to plot)
 
-#plot refFile using 1:2 with lines ls 3 lw 2.0 dashtype 2 title "log10 dt (C++ asy ref)"
+plot refFile using 1:2 with lines ls 3 lw 2.0 dashtype 2 title "log10 dt (C++ asy ref)"
 
 # Plot C++ Asy data
 
-plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
+replot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
 replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
 
 # Example to offset a curve vertically by factor of 2

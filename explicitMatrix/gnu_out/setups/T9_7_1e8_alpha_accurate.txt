@@ -222,6 +222,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 double equilTime = start_time;    // Time to begin checking for PE
 
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 
 -----------------------------------
 

@@ -73,13 +73,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
+xlow = -16
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 8
-yup = 18
+ylow = 16
+yup = 30
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -95,7 +95,8 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculation
 
-refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+#refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 
 # This calculation
 
