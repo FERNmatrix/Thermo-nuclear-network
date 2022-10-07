@@ -66,8 +66,8 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova134"
-ds = ds.": nova125DProfile-400.inp"
+ds="C++ Asy-PE alpha"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 
 set timestamp
 set title ds textcolor rgb title_color font "Arial,12"
@@ -75,8 +75,8 @@ set title ds textcolor rgb title_color font "Arial,12"
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6
+xlow = -14
+xup = 1
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -100,7 +100,8 @@ set grid   # set x-y grid at major ticmarks
 
 set title ds textcolor rgb title_color
 
-refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+#refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 
 file1 = "plot1.data"
 

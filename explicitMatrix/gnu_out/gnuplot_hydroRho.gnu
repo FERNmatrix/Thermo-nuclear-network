@@ -66,8 +66,9 @@ set key top inside   # Move legend to inside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova125D with"
-ds = ds.": nova125DProfile-400.inp"
+ds="C++ Asy-PE alpha"
+ds = ds.": viktorExtendedProfileSmooth.inp"
+
 set title ds textcolor rgb title_color
 
 

@@ -67,8 +67,8 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova134"
-ds = ds.": nova125DProfile-400.inp"
+ds="C++ Asy-PE alpha"
+ds = ds.": viktorExtendedProfileSmooth.inp"
 
 set title ds textcolor rgb title_color
 
