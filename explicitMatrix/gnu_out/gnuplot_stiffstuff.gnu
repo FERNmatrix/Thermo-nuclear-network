@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 10.5
-height = 5.5
+height = 10.5
 
 # x-axis resolution
 set samples 1000
@@ -67,7 +67,7 @@ set key top left inside
 set timestamp       # Date/time
 
 ds="C++ Asy-PE alpha"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds = ds.": T9=7. rho=1e8"
 
 set title ds textcolor rgb title_color
 
@@ -75,13 +75,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -14
-xup = 1
+xlow = -16
+xup = -2
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -13 
-yup = 1
+ylow = -17 
+yup = -3
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -101,9 +101,9 @@ set mytics minytics   # minor y tics per major tic
 file1 = "plot2.data"     # C++ asy
 
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
-#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
-refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
+#refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 
 # Plot C++ asy reference (uncomment to plot)
 

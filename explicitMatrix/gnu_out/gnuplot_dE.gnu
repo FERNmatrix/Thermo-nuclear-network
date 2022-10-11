@@ -73,7 +73,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
+xlow = -14
 xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -95,9 +95,10 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculation
 
+refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 
 # This calculation
 

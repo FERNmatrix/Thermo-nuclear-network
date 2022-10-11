@@ -9,8 +9,8 @@
  * In this compile command the -o specifies thse name of the executable created in the
  * compile,the -lgsl flag links to GSL libraries,the -lgslcblas flag
  * links to GSL BLAS libraries, the -lm flag may be required in GCC Linux to get the 
- * math.h header to work for defining pow, exp, log,...,(see https://
- * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx)
+ * math.h header to work for defining pow, exp, log,... (see https://
+ * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx),
  * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
  * the GDB debugger, add a -g flag:
  * 
@@ -219,13 +219,13 @@ bool hydroProfile = false;
 // density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/viktorExtendedProfileSmooth.inp";
+char hydroFile[] = "data/nova125DProfile_400.inp";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 472; // Max entries hydro profile
+const static int maxHydroEntries = 403; // Max entries hydro profile
 
 // Control printout of flux data (true to print, false to suppress).
 // Lots of data, so most useful for small networks.
@@ -363,7 +363,7 @@ double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equi
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
-int maxit = 100;                        // Max asy dt iterations allowed for a step
+int maxit = 100;                       // Max asy dt iterations allowed for a step
 int iterations;                        // # iterations in step to conserve particles 
 int totalIterations;                   // Total number of iterations, all steps til now
 int mostIterationsPerStep = 0;         // Most iterations in a timestep
@@ -372,7 +372,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 4e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
