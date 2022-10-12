@@ -3534,6 +3534,19 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
             
             isEquil = true;
             totalEquilRG ++;
+
+// ******************************************************************************            
+            // NOTE: Following for-loop causes Asy to produce erroneous wiggles
+            // Not sure why, but comment out for now.  Maybe because the correct
+            // implementation is the last loop above in computeEqRatios()?
+            
+//             for (int i = 0; i < numberMemberReactions; i++) {
+//                 int ck = memberReactions[i];
+//                 reacIsActive[ck] = false;         
+//             }
+            
+// ******************************************************************************
+            
             if(showAddRemove) fprintf(pFileD,
                 "\n*** ADD RG %d Steps=%d RGeq=%d t=%6.4e logt=%6.4e devious=%6.4e Rmin=%6.4f Rmax=%6.4f", RGn, totalTimeSteps, totalEquilRG, t, log10(t), thisDevious,
                                       minRatio, maxRatio);
