@@ -75,14 +75,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -2
+xlow = -9
+xup = -1
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -17 
-yup = -3
-ytics = 2      # Space between major y ticmarks
+ylow = -11 
+yup = -2
+ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -101,8 +101,8 @@ set mytics minytics   # minor y tics per major tic
 file1 = "plot2.data"     # C++ asy
 
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
+refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 
 # Plot C++ asy reference (uncomment to plot)
