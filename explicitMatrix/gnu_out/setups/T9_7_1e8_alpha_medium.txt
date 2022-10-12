@@ -1,4 +1,5 @@
 branch guidry_debugRG, Oct 11, 2022
+1384 int steps
 
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
@@ -195,7 +196,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 6e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 4e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -208,7 +209,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 6e-3;                    // Absolute error tolerance
+double EpsA = 4e-4;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -225,42 +226,44 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 double equilTime = start_time;    // Time to begin checking for PE
 
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.3;          // Max allowed deviation from equil k ratio in timestep
+double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
 
 --------------------------------------
 
-95 it=0 t=1.64e-03 dt=1.64e-04 dt'=1.49e-04 int=756 asy=0.50 eq=0.53 sX=1.000 Xfac=0.999 dE=3.41e+18 E=-2.36e+17 E_R=4.50e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=2.54e-03 lT=9.845 lrho=8.00
-96 it=0 t=2.40e-03 dt=2.40e-04 dt'=2.18e-04 int=760 asy=0.50 eq=0.53 sX=1.000 Xfac=0.999 dE=9.11e+18 E=-2.31e+17 E_R=5.43e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=1.99e-03 lT=9.845 lrho=8.00
-97 it=0 t=3.51e-03 dt=3.51e-04 dt'=3.19e-04 int=764 asy=0.50 eq=0.53 sX=1.000 Xfac=0.999 dE=1.33e+19 E=-2.18e+17 E_R=6.17e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=1.49e-03 lT=9.845 lrho=8.00
-98 it=0 t=5.14e-03 dt=5.14e-04 dt'=4.68e-04 int=768 asy=0.50 eq=0.53 sX=1.000 Xfac=1.000 dE=1.65e+19 E=-1.92e+17 E_R=6.72e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=1.30e-03 lT=9.845 lrho=8.00
-99 it=0 t=7.53e-03 dt=7.53e-04 dt'=6.85e-04 int=772 asy=0.50 eq=0.53 sX=1.000 Xfac=1.000 dE=1.94e+19 E=-1.48e+17 E_R=7.10e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=9.81e-04 lT=9.845 lrho=8.00
-100 it=0 t=1.00e-02 dt=1.00e-03 dt'=9.11e-04 int=775 asy=0.50 eq=0.53 sX=1.000 Xfac=1.000 dE=2.16e+19 E=-9.64e+16 E_R=7.29e-01 c1=0 c2=1 fast=13 Q=-4.73 dev=8.63e-04 lT=9.845 lrho=8.00
+195 it=0 t=4.04e-03 dt=4.04e-04 dt'=3.67e-04 int=1428 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=2.08e-04 lT=9.845 lrho=8.00
+196 it=0 t=4.88e-03 dt=4.88e-04 dt'=4.44e-04 int=1430 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.41e-04 lT=9.845 lrho=8.00
+197 it=0 t=5.91e-03 dt=5.91e-04 dt'=5.37e-04 int=1432 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=4.26e-04 lT=9.845 lrho=8.00
+198 it=0 t=7.15e-03 dt=7.15e-04 dt'=6.50e-04 int=1434 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=4.24e-04 lT=9.845 lrho=8.00
+199 it=0 t=8.65e-03 dt=8.65e-04 dt'=7.87e-04 int=1436 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=1.30e-04 lT=9.845 lrho=8.00
+200 it=0 t=1.05e-02 dt=1.05e-03 dt'=9.52e-04 int=1438 asy=0.00 eq=1.00 sX=1.000 Xfac=1.000 dE=0.00e+00 E=-1.80e+17 E_R=0.00e+00 c1=1 c2=1 fast=13 Q=-4.73 dev=7.57e-05 lT=9.845 lrho=8.00
 
 Integration using ASY+PE method (Partition function corrections applied for T9=1.00 and above)
-T9=7.000e+00 (constant) rho=1.000e+08 (constant) massTol_asy=1.00e-02 massTol_PE=6.00e-03
+T9=7.000e+00 (constant) rho=1.000e+08 (constant) massTol_asy=1.00e-02 massTol_PE=4.00e-04
 sf=1.00e+25 equiTol=1.50e-02 equilTime=1.00e-20
-maxit=100 downbumper= 0.700 EpsA=6.00e-03 EpsR=2.00e-04 deviousMax=0.300
+maxit=100 downbumper= 0.700 EpsA=4.00e-04 EpsR=2.00e-04 deviousMax=0.200
 Network: data/network_alpha.inp  Rates: data/rateLibrary_alpha.data
 Isotopes=16 Reactions=48 ReactionGroups=19 SingletRG=0
-Integration steps=775 totalIterations=719 IntegrationSteps_plotted=719
-Max dt iterations = 20 at step 573 (t=9.856e-06)
-Timer: 3.5435e-02 sec used
+Integration steps=1438 totalIterations=1948 IntegrationSteps_plotted=1384
+Max dt iterations = 11 at step 407 (t=4.755e-07)
+Timer: 7.0206e-02 sec used
 
 FINAL ABUNDANCES Y AND MASS FRACTIONS X
 
-0 4He Y=1.1086e-01 X=4.4342e-01
-1 12C Y=5.7209e-06 X=6.8651e-05
-2 16O Y=1.0443e-05 X=1.6708e-04
-3 20Ne Y=3.5609e-07 X=7.1219e-06
-4 24Mg Y=2.2408e-05 X=5.3780e-04
-5 28Si Y=2.7418e-03 X=7.6769e-02
-6 32S Y=2.2967e-03 X=7.3496e-02
-7 36Ar Y=1.3418e-03 X=4.8305e-02
-8 40Ca Y=1.1900e-03 X=4.7601e-02
-9 44Ti Y=1.1553e-04 X=5.0835e-03
-10 48Cr Y=4.3007e-04 X=2.0643e-02
-11 52Fe Y=1.6839e-03 X=8.7565e-02
-12 56Ni Y=3.4997e-03 X=1.9598e-01
-13 60Zn Y=5.8394e-06 X=3.5037e-04
-14 64Ge Y=5.0116e-09 X=3.2074e-07
-15 68Se Y=9.8177e-12 X=6.6760e-10
+0 4He Y=1.1207e-01 X=4.4829e-01
+1 12C Y=6.0247e-06 X=7.2296e-05
+2 16O Y=1.0346e-05 X=1.6553e-04
+3 20Ne Y=3.8523e-07 X=7.7045e-06
+4 24Mg Y=2.2868e-05 X=5.4883e-04
+5 28Si Y=2.8318e-03 X=7.9292e-02
+6 32S Y=2.3894e-03 X=7.6461e-02
+7 36Ar Y=1.4035e-03 X=5.0525e-02
+8 40Ca Y=1.2499e-03 X=4.9996e-02
+9 44Ti Y=1.1730e-04 X=5.1613e-03
+10 48Cr Y=4.2767e-04 X=2.0528e-02
+11 52Fe Y=1.5859e-03 X=8.2466e-02
+12 56Ni Y=3.3242e-03 X=1.8615e-01
+13 60Zn Y=5.6090e-06 X=3.3654e-04
+14 64Ge Y=4.8701e-09 X=3.1169e-07
+15 68Se Y=9.6489e-12 X=6.5613e-10
+
+
