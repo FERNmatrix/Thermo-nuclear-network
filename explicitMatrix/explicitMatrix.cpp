@@ -261,7 +261,10 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+
+bool doPE = true;            // Implement partial equilibrium also
+// bool doPE = false;            // Implement partial equilibrium also
+
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -357,18 +360,29 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
     
     int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
     
-    double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
-    double massTol_asyPE = 2e-3;           // Tolerance param if some reactions equilibrated
+    double massTol_asy = 2e-4;             // Tolerance param if no reactions equilibrated
+    double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
+//     double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
+//     double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
+    
     double massTol = massTol_asy;          // Timestep tolerance parameter for integration
     double downbumper = 0.7;               // Asy dt decrease factor
+    
     double sf = 1e25;                      // dt_FE = sf/fastest rate
-    int maxit = 20;                        // Max asy dt iterations
+    int maxit = 100;                        // Max assy dt iterations
     int iterations;                        // # iterations in step to conserve particles 
     int totalIterations;                   // Total number of iterations, all steps til now
+    int mostIterationsPerStep = 0;         // Most iterations in a timestep
+    int maxIterationStep;                  // Step where mostIterationsPerStep occurred
+    double maxIterationTime;               // Time where mostIterationsPerStep occurred
     double Error_Observed;                 // Observed integration error
     double Error_Desired;                  // Desired integration error
     double E_R;                            // Ratio actual to desired error
-    double EpsA = 1e-9;           // Absolute error tolerance
+    
+
+    double EpsA = massTol_asyPE;         // Absolute error tolerance
+//     double EpsA = massTol_asy;         // Absolute error tolerance
+    
     double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
     
     // Time to begin trying to impose partial equilibrium if doPE=true. Hardwired but 
@@ -2244,7 +2258,7 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
                         vec2 =  RV[j];
                         int checker = compareVectors(vec1, vec2);
                         
-                        if(checker > 0)
+                        if(checker > 0 && showDetails2)
                             if(showDetails2) fprintf(pfnet, "\ni=%d j=%d %s <-> %s ck=%d", 
                                 i, j, reacLabel[i], reacLabel[j], checker);
                     }
@@ -2356,7 +2370,7 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
                 
                 // Check the value and set the flag
                 
-                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(),    flippedRv2.end());
+                bool flipped = std::equal(rv1.begin(), rv1.end(), flippedRv2.begin(),  flippedRv2.end());
                 if (flipped) retVal = 2;
                 
             } else {
@@ -2569,10 +2583,10 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
             
             numberSingletRG = 0;
             
-            if(showDetails2) fprintf(pfnet,"\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
+            fprintf(pfnet,"\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS");
             for(int i=0; i<numberRG; i++){
                 
-                if(showDetails2) fprintf(pfnet,"\n\nReaction Group %d:", i);
+                fprintf(pfnet,"\n\nReaction Group %d:", i);
                 int rgindex = -1;
                 int rcounter = 0;
                 
@@ -3368,7 +3382,7 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
             
             // Compute the population ratios used to check equilibration
             
-            computeEqRatios();
+            if(t > equilTime) computeEqRatios();
             
             kratio = rgkr / rgkf;
             
@@ -3467,7 +3481,7 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
                 // Compute absolute value of deviation of abundances from 
                 // equilibrium values for this reaction group.
                 
-                eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i],1e-24);
+                eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], GZ);
                 eqRatio[i] = eqcheck[i]/equiTol;
                 
                 // Store some min and max values for this RG
