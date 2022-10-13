@@ -262,8 +262,8 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
 
-bool doPE = true;            // Implement partial equilibrium also
-// bool doPE = false;            // Implement partial equilibrium also
+// bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
@@ -360,10 +360,10 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
     
     int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
     
-    double massTol_asy = 2e-4;             // Tolerance param if no reactions equilibrated
-    double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
-//     double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
+//     double massTol_asy = 2e-4;             // Tolerance param if no reactions equilibrated
 //     double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
+    double massTol_asy = 1e-9;             // Tolerance param if no reactions equilibrated
+    double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
     
     double massTol = massTol_asy;          // Timestep tolerance parameter for integration
     double downbumper = 0.7;               // Asy dt decrease factor
@@ -380,8 +380,8 @@ double Tpf[PF] = {0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
     double E_R;                            // Ratio actual to desired error
     
 
-    double EpsA = massTol_asyPE;         // Absolute error tolerance
-//     double EpsA = massTol_asy;         // Absolute error tolerance
+//     double EpsA = massTol_asyPE;         // Absolute error tolerance
+    double EpsA = massTol_asy;         // Absolute error tolerance
     
     double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
     
