@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.0
+width = 6
+height = 6
 
 set pointsize 1.0    # Size of the plotted points
 
@@ -74,7 +74,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -14
+xlow = -10
 xup =-2
 xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -96,9 +96,8 @@ set grid   # set x-y grid at major ticmarks
 
 # -------------------
 
-
-refFile = "hydroProfileInput.data"
 file1 = "plot4.data"
+refFile = "hydroProfileInput.data"
 
 # Data are log10(T); plot is in units of T9
 
@@ -111,7 +110,7 @@ replot refFile using 1:((10**$2)/1e9) with lines ls 2 lw 1.0 dashtype 2 title "T
 set timestamp font "Arial,16"      # Date/time
 
 set title ds textcolor rgb title_color font "Arial,18"
-set key top left font "Arial,15"
+set key top left font "Arial,18"
 set xlabel 'log time' textcolor rgb tic_color font "Arial,22"
 set ylabel 'T9' textcolor rgb tic_color font "Arial,22"
 
