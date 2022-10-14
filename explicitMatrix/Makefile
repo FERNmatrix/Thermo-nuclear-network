@@ -1,8 +1,10 @@
 CC=g++
-CFLAGS=-I. -g3
+CCDBGFLAGS=-g
+CCOFLAGS=-O2
+CFLAGS=$(CCDBGFLAGS) $(CCOFLAGS) -I.
 
 #compiler flags
-LIBS=-lgsl -lgslcblas -lgmp -g
+LIBS=-lgsl -lgslcblas -lgmp
 all: explicitMatrix.cpp #EMATS.cpp # TEST.cpp #NATS.cpp CEM.cpp #dtrange.cpp CATS.cpp
 #	$(CC) -o EMATS EMATS.cpp $(CFLAGS) $(LIBS)
 #	$(CC) -o TEST TEST.cpp $(CFLAGS) $(LIBS)
