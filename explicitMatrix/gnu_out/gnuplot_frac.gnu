@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8
-height = 4
+width = 6
+height = 6
 
 # x-axis resolution
 set samples 1000
@@ -68,15 +68,15 @@ set key outside    # Place legend outside
 set timestamp       # Date/time
 
 ds="C++ Asy-PE alpha"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds = ds.": viktorProfile 400.inp"
 
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = 2
+xlow = -10
+xup = -1
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

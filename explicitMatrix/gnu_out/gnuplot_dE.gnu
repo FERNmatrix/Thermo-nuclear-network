@@ -19,7 +19,7 @@ width = 6
 height = 6
 
 # x-axis resolution
-set samples 1000
+set samples 2000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -67,20 +67,20 @@ set key top outside   # Move legend to outside top
 set timestamp       # Date/time
 
 ds="C++ Asy-PE alpha"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds = ds.": viktorProfile 400.inp"
 
 set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -1
+xlow = -5.5
+xup = -4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 15
-yup = 29
-ytics = 2      # Space between major y ticmarks
+ylow = 18
+yup = 26
+ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -95,9 +95,9 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculation
 
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
+refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 
 # This calculation

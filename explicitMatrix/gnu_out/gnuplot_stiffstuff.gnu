@@ -67,7 +67,7 @@ set key top left inside
 set timestamp       # Date/time
 
 ds="C++ Asy-PE alpha"
-ds = ds.": T9=7. rho=1e8"
+ds = ds.": viktorProfile 400.inp"
 
 set title ds textcolor rgb title_color
 
@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
+xlow = -10
 xup = -1
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -17 
+ylow = -11 
 yup = -2
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
@@ -101,18 +101,18 @@ set mytics minytics   # minor y tics per major tic
 file1 = "plot2.data"     # C++ asy
 
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
+refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 
-# Plot C++ asy reference (uncomment to plot)
+# Plot C++ data
 
-plot refFile using 1:2 with lines ls 3 lw 2.0 dashtype 2 title "log10 dt (C++ asy ref)"
-
-# Plot C++ Asy data
-
-replot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
+plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
 replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
+
+# Plot C++ asy reference 
+
+replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
 
 # Example to offset a curve vertically by factor of 2
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"
@@ -121,7 +121,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ as
 
 replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
 replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
-#replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
 #replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
 #replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
 

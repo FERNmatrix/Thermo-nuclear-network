@@ -67,7 +67,7 @@ set key top left inside   # Move legend to inside top
 set timestamp       # Date/time
 
 ds="C++ Asy-PE alpha"
-ds = ds.": viktorExtendedProfileSmooth.inp"
+ds = ds.": viktorProfile 400.inp"
 
 set title ds textcolor rgb title_color
 
