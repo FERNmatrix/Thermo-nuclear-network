@@ -66,22 +66,22 @@ set key top left inside   # Move legend to inside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova134"
-ds = ds.": nova125DProfile_400.inp"
+ds="C++ Asy 150"
+ds = ds.": viktorProfile_400"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 6
+xlow = -16
+xup = -2
 xtics = 1.0     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
-yup = 0.35
-ytics = 0.05     # Space between major y ticmarks
+yup = 7
+ytics = 0.5     # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]

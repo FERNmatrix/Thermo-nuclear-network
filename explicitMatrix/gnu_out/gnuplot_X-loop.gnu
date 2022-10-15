@@ -72,16 +72,16 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova134"
-ds = ds.": nova125DProfile_400.inp"
+ds="C++ Asy 150"
+ds = ds.": viktorProfile_400"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -5
-xup = 6 
+xlow = -16
+xup = -2 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 133    # One minus number species to be plotted
+numberCurves = 149    # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -132,8 +132,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
