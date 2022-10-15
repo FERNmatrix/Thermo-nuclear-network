@@ -66,22 +66,21 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy-PE alpha"
-ds = ds.": viktorProfile 400.inp"
-
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile_400.inp"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
-
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -10
-xup = -1
+xlow = -4
+xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -11 
-yup = -2
+ylow = -8 
+yup = 5
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -100,9 +99,9 @@ set mytics minytics   # minor y tics per major tic
 
 file1 = "plot2.data"     # C++ asy
 
-#refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
+refFile = "dataRef/nova125D_sumX_1.000.data"   # C++ nova asy ref
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
-refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
+#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 
 # Plot C++ data
@@ -112,7 +111,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ as
 
 # Plot C++ asy reference 
 
-replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
+#replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
 
 # Example to offset a curve vertically by factor of 2
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"

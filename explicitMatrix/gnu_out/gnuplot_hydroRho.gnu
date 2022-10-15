@@ -15,13 +15,13 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.0
+width = 6
+height = 6
 
 set pointsize 1.0    # Size of the plotted points
 
 # x-axis resolution
-set samples 2000
+set samples 1000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -66,22 +66,22 @@ set key top inside   # Move legend to inside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy-PE alpha"
-ds = ds.": viktorExtendedProfileSmooth.inp"
-
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile_400.inp"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -10
-xup = -1
+xlow = -3
+xup = 6
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0.5
-yup = 10
-ytics = 1    # Space between major y ticmarks
+yup = 4.5
+ytics = 0.5    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
