@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8
-height = 4
+width = 6
+height = 6
 
 # x-axis resolution
 set samples 1000
