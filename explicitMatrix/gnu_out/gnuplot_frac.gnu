@@ -67,16 +67,16 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy-PE alpha"
-ds = ds.": viktorProfile 400.inp"
-
+ds="C++ Asy 150"
+ds = ds.": viktorProfile_400"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -10
-xup = -1
+xlow = -12
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

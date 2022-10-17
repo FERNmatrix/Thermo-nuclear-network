@@ -164,10 +164,10 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 1604                       // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200               // Number of plot output steps
+#define plotSteps 200             // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -190,13 +190,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_150.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_150.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -262,7 +262,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -339,8 +339,8 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-18;          // Start time for plot output
-double stop_time = 1e-2;                // Stop time for integration
+double startplot_time = 1e-14;         // Start time for plot output
+double stop_time = 1e-1;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -358,8 +358,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-8;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 9e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 2e-3;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -372,7 +372,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-8;                    // Absolute error tolerance
+double EpsA = 3e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -2013,7 +2013,7 @@ class Reaction: public Utilities {
                     pfnum = 1.0;
                 }
                 
-                pfFactor = pfnum/pfden;
+                pfFactor = pfnum/pfden; 
                 rate *= pfFactor;
 
             }
@@ -2033,7 +2033,7 @@ class Reaction: public Utilities {
         // Function Reaction::computeFlux() to compute fluxes for reactions.  This is
         // where net flux for a reaction group is set to zero if reaction group is 
         // in equilibrium. The computed flux will be set in the flux field of the
-        // Reaction object, and also in the array Flux[].
+        // Reaction object,and also in the array Flux[].
         
         void computeFlux(){
             
@@ -2070,36 +2070,41 @@ class Reaction: public Utilities {
 
         double kfac;
             
-            switch(bodies){
+        switch(bodies){
+            
+            case 1:    // 1-body reactions
                 
-                case 1:    // 1-body reactions
-                    
-                    kfac = Rrate;
-                    flux = kfac*Y[ reactantIndex[0] ];	 // In Reaction object flux field
-                    Flux[reacIndex] = flux;              // In main flux array
-                    fastSlowRates(kfac);
+                kfac = Rrate;
+                flux = kfac*Y[ reactantIndex[0] ];	 // In Reaction object flux field
+                Flux[reacIndex] = flux;              // In main flux array
+                fastSlowRates(kfac);
+                flux_true = flux;
+            
+                break;
                 
-                    break;
-                    
-                case 2:	   // 2-body reactions
-                    
-                    kfac = Rrate * Y[ reactantIndex[0] ];
-                    flux = kfac * Y[ reactantIndex[1] ];  // Put in Reaction object flux field
-                    Flux[reacIndex] = flux;               // Put in main flux array
-                    fastSlowRates(kfac);
-                    
-                    break;
-                    
-                case 3:	   // 3-body reactions
-                    
-                    kfac = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ];
-                    flux = kfac * Y[ reactantIndex[2] ];  // Put in Reaction object flux field
-                    Flux[reacIndex] = flux;               // Put in main flux array
-                    fastSlowRates(kfac);
-                    
-                    break;
-                    
-            }  // End switch 
+            case 2:	   // 2-body reactions
+                
+                kfac = Rrate * Y[ reactantIndex[0] ];
+                flux = kfac * Y[ reactantIndex[1] ];  // Put in Reaction object flux field
+                Flux[reacIndex] = flux;               // Put in main flux array
+                fastSlowRates(kfac);
+                flux_true = flux;
+                
+                break;
+                
+            case 3:	   // 3-body reactions
+                
+                kfac = Rrate * Y[ reactantIndex[0] ] * Y[ reactantIndex[1] ];
+                flux = kfac * Y[ reactantIndex[2] ];  // Put in Reaction object flux field
+                Flux[reacIndex] = flux;               // Put in main flux array
+                fastSlowRates(kfac);
+                flux_true = flux;
+                
+                break;
+                
+        }  // End switch 
+        
+        //flux_true = flux;
 
     }       // end function Reaction::fluxChooser(int)
       
@@ -3649,7 +3654,7 @@ class Integrate: public Utilities {
             
             
             dt_desired = dtt;
-            double upfac = 1.5;
+            double upfac = 1.1;
             double gap = upfac*nextPlotTime - t_saved;
             
             if(dtt > gap && gap > 0){
@@ -5027,6 +5032,7 @@ double dE_halfstep(){
     double dE_half = 0.0;
     for(int i=0; i<SIZE; i++){
         dE_half += reaction[i].getQ() * reaction[i].getflux();
+        //dE_half += reaction[i].getQ() * reaction[i].getflux_true();
     }
     return dE_half;
     

@@ -80,8 +80,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -2 
+xlow = -8
+xup = -3.4 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -104,19 +104,22 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 149    # One minus number species to be plotted
-widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
+numberCurves = 149   # One minus number species to be plotted
+widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
 
 file1 = "plot1.data"  # Current data file with mass fractions X
 
+# Reference data
+
+refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # Reference data
-refFile = "dataRef/nova125D_sumX_1.000.data"  # Reference data
-#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
-#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"  # Reference data
+#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
+#refFile = "dataRef/nova125D_sumX_1.000.data"  
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
@@ -132,8 +135,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 

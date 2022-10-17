@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.5
+width = 6
+height = 6
 
 # x-axis resolution
 set samples 1000
@@ -64,21 +64,23 @@ set pointsize 1.5    # Size of the plotted points
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
-
-ds="QSS+PE T9=7 rho=1e8 (no pf)"
-ds = ds.": dt vs t"
+ds="C++ Asy 150"
+ds = ds.": viktorProfile_400"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
+
+set timestamp       # Date/time
+
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -4
+xlow = -12
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -20
-yup = -6
+ylow = -14
+yup = -4
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -97,14 +99,19 @@ set grid   # set x-y grid at major ticmarks
 
 file1 = "plot1.data"
 
-plot file1 using 1:2 with lines ls 1 title "dt"
-#replot file1 using 1:6 with lines ls 4 title "12C"
-#replot file1 using 1:7 with lines ls 9 title "16O"
-#replot file1 using 1:8 with lines ls 10 title "t"
-#replot file1 using 1:9 with lines ls 10 title "He3"
-#replot file1 using 1:10 with lines ls 10 title "He4"
-#replot file1 using 1:11 with lines ls 10 title "Li7"
-#replot file1 using 1:12 with lines ls 10 title "Be7"
+refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
+
+plot file1 using 1:2 with lines ls 2 lw 1 dashtype 1 title "dt"
+
+replot refFile using 1:2 with lines ls 2 lw 1 dashtype 2 title " ref Asy dt"
+
+# Plot dt contours
+
+replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
+replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
+#replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
 
 
 # Reset font sizes for .eps and .png output2
