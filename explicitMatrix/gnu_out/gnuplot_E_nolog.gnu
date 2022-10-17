@@ -15,11 +15,11 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
-height = 6
+width = 8
+height = 4
 
 # x-axis resolution
-set samples 2000
+set samples 1000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -52,14 +52,14 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color #font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,12"
+set ylabel 'E (erg)' textcolor rgb tic_color font "Arial,12"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
 #set logscale y
 
-set pointsize 1.5    # Size of the plotted points
+set pointsize 1.0    # Size of the plotted points
 
 set key top outside   # Move legend to outside top
 #unset key            # Don't show legend
@@ -71,17 +71,20 @@ ds = ds.": viktorProfile_400"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
+set timestamp
+
+
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -14
-xup = -3.4
+xlow = -16
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 15.5
-yup = 30
-ytics = 1      # Space between major y ticmarks
+ylow = 0
+yup = 4e17
+ytics = 1e17      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -94,40 +97,44 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# Reference calculation
+# -------------------
 
-#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
-#refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
+# Reference calculations
+
+refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 
 # This calculation
 
-file1 = "plot1.data"
+file1 = "plot5.data"
 
-plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title " log10 |dE/dt|"
+set title ds textcolor rgb title_color
 
-replot refFile using 1:4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
+file1 = "plot5.data"
+
+plot file1 using (log10($1)):4 with lines ls 1 lw 1.5 dashtype 1 title "dE/dt"
+
+# Reference calculation
+
+replot refFile using (log10($1)):4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
 set timestamp font "Arial,16"
 
+set key top left inside font "Arial,18"
 set title ds textcolor rgb title_color font "Arial,18"
-set key bottom left inside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,22"
+set ylabel 'E (erg)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
-set out "gnuplot_dE.eps"    # Output file
+set out "gnuplot_E_log.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "gnuplot_dE.png"
+#set out "gnuplot_E_log.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot

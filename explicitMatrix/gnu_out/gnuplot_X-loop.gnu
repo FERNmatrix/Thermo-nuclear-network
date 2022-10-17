@@ -72,16 +72,16 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy 150"
-ds = ds.": viktorProfile_400"
+ds="C++ Asy alpha"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -8
-xup = -3.4 
+xlow = -18
+xup = -1 
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 149   # One minus number species to be plotted
+numberCurves = 15     # One minus number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -113,9 +113,9 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 
 # Reference data
 
-refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
+#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
-#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
 #refFile = "dataRef/nova125D_sumX_1.000.data"  
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 

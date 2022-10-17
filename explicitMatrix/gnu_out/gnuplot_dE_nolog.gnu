@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color #font "Arial,32"
+set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color #font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -74,14 +74,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -14
-xup = -3.4
+xlow = -16
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 15.5
-yup = 30
-ytics = 1      # Space between major y ticmarks
+ylow = -1e28
+yup = 2e28
+ytics = 1e28      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -94,21 +94,19 @@ set mytics minytics   # minor y tics per major tic
 
 set grid   # set x-y grid at major ticmarks
 
-# Reference calculation
+# Reference calculations
 
-#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
-#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
-#refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
+refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 
 # This calculation
 
-file1 = "plot1.data"
+file1 = "plot5.data"
 
-plot file1 using 1:4 with lines ls 1 lw 1.5 dashtype 1 title " log10 |dE/dt|"
+plot file1 using (log10($1)):3 with lines ls 1 lw 1.5 dashtype 1 title "dE/dt"
 
-replot refFile using 1:4 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
+# Reference calculation
+
+replot refFile using (log10($1)):3 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
 
 # Reset font sizes for .eps and .png output2
 
@@ -117,17 +115,17 @@ set timestamp font "Arial,16"
 set title ds textcolor rgb title_color font "Arial,18"
 set key bottom left inside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
-set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color font "Arial,22"
+set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
-set out "gnuplot_dE.eps"    # Output file
+set out "gnuplot_dE_nolog.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "gnuplot_dE.png"
+#set out "gnuplot_dE_nolog.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot

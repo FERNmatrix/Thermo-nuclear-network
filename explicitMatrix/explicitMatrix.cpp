@@ -167,7 +167,7 @@ void updatePF(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                       // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200             // Number of plot output steps
+#define plotSteps 100             // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -204,7 +204,7 @@ char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = true; 
+bool hydroProfile = false; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -243,6 +243,7 @@ FILE* plotfile1;
 FILE* plotfile2;
 FILE* plotfile3;
 FILE* plotfile4;
+FILE* plotfile5;
 
 // Control flags for diagnostic output to files. Note that setting showDetails
 // or showDetails2 true may generate large output files (MB to GB for large networks).
@@ -339,7 +340,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-14;         // Start time for plot output
+double startplot_time = 1e-18;         // Start time for plot output
 double stop_time = 1e-1;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -358,8 +359,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 2e-3;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 3e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -372,7 +373,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 3e-3;                    // Absolute error tolerance
+double EpsA = 4e-3;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -3654,7 +3655,7 @@ class Integrate: public Utilities {
             
             
             dt_desired = dtt;
-            double upfac = 1.1;
+            double upfac = 1.0;
             double gap = upfac*nextPlotTime - t_saved;
             
             if(dtt > gap && gap > 0){
@@ -4381,6 +4382,7 @@ int main() {
     plotfile2 = fopen("gnu_out/plot2.data", "w");   // dt,Rmax
     plotfile3 = fopen("gnu_out/plot3.data", "w");   // fluxes
     plotfile4 = fopen("gnu_out/plot4.data", "w");   // hydro profile
+    plotfile5 = fopen("gnu_out/plot5.data", "w");   // time & energy values, not log
 
     // Setup files for plot output during the integration by writing headers
 
@@ -4595,6 +4597,7 @@ int main() {
     fclose(plotfile2);
     fclose(plotfile3);
     fclose(plotfile4);
+    fclose(plotfile5);
     
     
     // Write parameters at end of integration. Also stops timer started
@@ -4831,8 +4834,8 @@ void plotFileSetup(){
     
     // Write header for plotfile2 -> plot2.data output
     
-    string str2 = "#  t       dt   2/Rmin   Reaction_Rmin  1/Rmax   Reaction_Rmax";
-    str2 += ("  dt_FE  dt_EA  trial_dt  interpT   interpRho\n");
+    string str2 = "#  t          dt   2/Rmin Reaction_Rmin       2/Rmax   Reaction_Rmax";
+    str2 += ("     dt_FE    dt_EA  trial_dt   interpT   interpRho\n");
     fprintf(plotfile2,
             "\n# All double quantities are log10(x); rates in units of s^-1\n#\n");
     fprintf(plotfile2, Utilities::stringToChar(str2));
@@ -4871,6 +4874,15 @@ void plotFileSetup(){
     
     if(hydroProfile && plotHydroProfile)
         fprintf(plotfile4,"#  time          T          rho");
+    
+    // Write header for plotfile4 stream -> plot5.data
+    
+    fprintf(plotfile5,"# All quantities actual values (not log10) \n");
+    fprintf(plotfile5,"#\n");
+    
+    fprintf(plotfile5, "# time(s)    dt(s)      dE(erg)  E(erg/g/s)    T(K)    rho(g/cm^3) 2/Rmax(s)");
+    
+    
     
 }  // End of plotFileSetup()
 
@@ -4949,6 +4961,11 @@ void toPlotNow(){
         fprintf(plotfile4,"\n%6.4e  %6.4e  %6.4e", log10(t),logTnow,logRhoNow);
     }
     
+    // Output to plotfile5 stream -> plot5.data
+    
+    fprintf(plotfile5,"\n%10.4e %10.4e %10.4e %10.4e %10.4e %10.4e %10.4e",
+        t, dt, ECON*netdERelease, ECON*ERelease, T9*1e9, rho, 2.0/fastestCurrentRate);
+    
     // Flush the buffers holding output to plotting data files at each plot
     // output step so that plots can be made during a calculation if desired.
     
@@ -4956,6 +4973,7 @@ void toPlotNow(){
     fflush(plotfile2);
     fflush(plotfile3);
     fflush(plotfile4);
+    fflush(plotfile5);
         
 }  // End of toPlotNow()
 
