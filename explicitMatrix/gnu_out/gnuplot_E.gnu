@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8
-height = 4
+width = 6
+height = 6
 
 # x-axis resolution
 set samples 1000
@@ -77,12 +77,12 @@ set timestamp
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -12
-xup = -3
+xlow = -18
+xup = -4
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 6
+ylow = 9
 yup = 18
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -104,8 +104,9 @@ set title ds textcolor rgb title_color
 
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
-refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
+#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 
 file1 = "plot1.data"
 

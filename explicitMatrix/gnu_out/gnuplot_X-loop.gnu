@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10
-height = 10
+width = 12
+height = 12
 
 # x-axis resolution
 set samples 1000
@@ -72,8 +72,8 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy 150 Ref, 1000 plot steps"
+ds = ds.": viktorProfile_400.inp"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15     # One minus number species to be plotted
+numberCurves = 15    # One minus number species to be plotted
 widdy = 1.0           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)

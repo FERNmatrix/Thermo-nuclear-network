@@ -53,7 +53,7 @@ set bmargin 4  # Bottom margin
 set size ratio height/width
 
 set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color #font "Arial,32"
+set ylabel 'dE/dt (erg/g/s)' textcolor rgb tic_color #font "Arial,32"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -79,9 +79,9 @@ xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e28
-yup = 2e28
-ytics = 1e28      # Space between major y ticmarks
+ylow = -1e27
+yup = 1.8e28
+ytics = 1e27      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -106,7 +106,7 @@ plot file1 using (log10($1)):3 with lines ls 1 lw 1.5 dashtype 1 title "dE/dt"
 
 # Reference calculation
 
-replot refFile using (log10($1)):3 with lines ls 11 lw 1.5 dashtype 2 title "Ref |dE/dt|"
+replot refFile using (log10($1)):3 with lines ls 11 lw 1.5 dashtype 2 title "Ref dE/dt"
 
 # Reset font sizes for .eps and .png output2
 
