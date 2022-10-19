@@ -66,22 +66,22 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy 150"
-ds = ds.": viktorProfile_400"
+ds="C++ Asy nova134"
+ds = ds.": nova125D profile"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -3
-xtics = 1     # Space between major x ticmarks
+xlow = 1
+xup = 3
+xtics = 0.5     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e27
-yup = 1.8e28
-ytics = 1e27      # Space between major y ticmarks
+ylow = -1e16
+yup = 1e17
+ytics = 1e16      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -96,7 +96,8 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
 
 # This calculation
 
