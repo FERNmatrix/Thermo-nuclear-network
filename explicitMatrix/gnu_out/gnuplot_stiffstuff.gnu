@@ -66,15 +66,15 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy 150"
-ds = ds.": viktorProfile_400"
+ds="C++ Asy 70 Ref, 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -12
+xlow = -18
 xup = -3.0
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -112,7 +112,7 @@ replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ as
 
 # Plot C++ asy reference 
 
-replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
+#replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
 
 # Example to offset a curve vertically by factor of 2
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"
