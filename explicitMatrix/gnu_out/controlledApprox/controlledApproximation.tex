@@ -1,0 +1,485 @@
+
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}% Include figure files
+
+% Following package must be loaded before amsthm.sty
+\usepackage{amsmath}       
+\usepackage{amssymb}  % Use instead of latexsym to get boxes, etc
+\usepackage{amsthm} 
+
+% Following to replace computer modern with times font
+\usepackage{mathptmx, courier, pifont}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{bm}% bold math
+
+%%  \putfig usage:
+%%  \putfig
+%%      {label}
+%%      {file.eps}
+%%      {scale factor, 1.0 is no scaling}
+%%      {caption}
+
+\newcommand{\putfig}[6]{%
+\begin{figure}%
+\vspace*{#2}
+\centering
+\includegraphics[scale=#5]{#4}%
+\caption{#6}%
+\label{fig:#1}%
+\vspace*{#3}
+\end{figure}
+}
+
+% symbol definitions:
+\newcommand{\tsub}[1]{_{\mbox{\scriptsize#1}}}
+\newcommand{\tsup}[1]{^{\mbox{\scriptsize#1}}}
+\newcommand{\ttsub}[1]{_{\mbox{\tiny#1}}}
+\newcommand{\ttsup}[1]{^{\mbox{\tiny#1}}}
+\newcommand{\quarterthin}{\kern 0.0417em}
+\newcommand{\comm}[2]{[ \quarterthin #1 , #2 \quarterthin ]}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\ev}[1]{\langle#1\rangle}
+\newcommand{\mel}[3]{\bra{#1}#2\ket{#3}}
+\newcommand{\thin}{\thinspace}
+\newcommand{\halfthin}{\kern 0.0834em}
+\newcommand{\neghalfthin}{\kern -0.0834em}
+\newcommand{\negquarterthin}{\kern - 0.0417em}
+\newcommand{\diffelement}[1]{d\negquarterthin#1}
+\newcommand{\deriv}[2]{\frac{\diffelement#1}{\diffelement#2}}
+\newcommand{\pardiv}[2]{\frac{\partial {\negquarterthin #1}}
+{\partial {\negquarterthin #2}}}
+\newcommand\gcm{g~cm$^{-3}$}
+\newcommand\simgreater{\,\lower0.7ex\hbox{$\stackrel{>}{\sim}$}\,}
+\newcommand\simless{\,\lower0.7ex\hbox{$\stackrel{<}{\sim}$}\,}
+\newcommand{\units}[1]{\mbox{\ #1}}
+
+\newcommand{\Fplus}[1]{F^+_{#1}}
+\newcommand{\Fminus}[1]{F^-_{#1}}
+\newcommand{\fplus}[1]{f^+_{#1}}
+\newcommand{\fminus}[1]{f^-_{#1}}
+\newcommand{\PEsource}[2]{f_{{#1}{\rightleftharpoons}{#2}}}
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\eqnoeq}[1]{(\ref{#1})}
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\tableref}[1]{Table \ref{tb:#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+
+\newcommand{\isotope}[2]{\mbox{$^{#1}$#2}}
+\newcommand{\reaction}[8]{\isotope{#1}{#2}(\isotope{#3}{#4},\isotope{#5}{#6})
+                          \isotope{#7}{#8}}
+
+\newcommand{\kforward}[1]{k^{(#1)}_{\rm\scriptstyle f}}
+\newcommand{\kback}[1]{k^{(#1)}_{\rm\scriptstyle r}}
+
+% In order to get figures larger than 4 inches tall on a page 
+% and still have some text printed on the page, and to get less blank
+% space between the figure caption and the text below, you should add the 
+% following (BEFORE \begin{document}):
+
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.8}
+\setlength{\textfloatsep}{0pt plus 4pt}
+
+\setlength{\textheight}{8 in}
+\setlength{\textwidth}{5.8in}
+\setlength{\oddsidemargin}{1.2cm}
+\setlength{\evensidemargin}{1.2 cm}
+\setlength{\marginparwidth}{50pt} 
+\setlength{\marginparsep}{5pt} 
+\setlength{\topmargin}{1cm}
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{5pt}
+\parskip = 0pt
+\parindent = 10pt
+
+\newcommand{\Rrate}[1]{R^{\,#1}}
+\newcommand{\Rratek}[2]{\Rrate{#1}_{#2}}
+\newcommand{\rparam}[3]{P^{\,#1}_{#2 #3}}
+\newcommand{\reaclib}{\mbox{ReacLib}}
+\newcommand{\etaone}[2]{\eta^{#1}_{#2}}
+\newcommand{\etatwo}[3]{\eta^{#1}_{#2#3}}
+\newcommand{\etathree}[4]{\eta^{#1}_{#2#3#4}}
+\newcommand{\sideparg}[1]{
+\medskip\noindent{\bf\em #1:}
+}
+
+
+\begin{document}
+
+%\begin{frontmatter}
+
+\centerline{\LARGE\bf A Controlled Approximation for Solving Large Kinetic}
+\vspace{1ex}
+\centerline{\LARGE\bf Networks Coupled to Hydrodynamics}
+
+% \vspace{5pt}
+% \centerline
+% {\LARGE\bf Explicit Integration for Thermonuclear Networks}
+
+\bigskip
+\centerline{Mike Guidry and Nick Brey}
+%\ead{guidry@utk.edu}
+
+\centerline{\small\em Department of Physics and Astronomy, University of 
+Tennessee}
+
+\centerline{\small\em Knoxville, TN 37996-1200, USA}
+
+
+%\date{\today}
+
+\vspace{7pt}
+
+\begin{small}
+\noindent
+These notes propose the use of algebraically stabilized explicit methods to 
+give a fast approximate solution of large kinetic networks coupled to 
+multi-dimensional radiation hydrodynamics.  These methods exhibit control 
+of local error in the integration that permits accuracy to be traded off 
+systematically against speed of the network integration.  This leads to 
+approximate solutions of the kinetic network that are much faster than with 
+standard methods, but with errors that are controlled within acceptable 
+tolerance; specifically, with error restricted to be smaller 
+than other sources of error coming from the fluid dynamics simulation. Our 
+discussion 
+will emphasize applications to astrophysical thermonuclear and neutrino 
+transport 
+networks, but similar methods should be applicable in a number of other 
+disciplines that require solution of large kinetic networks coupled to 
+multi-dimensional fluid dynamics simulations.
+\end{small}
+
+
+\section{\label{intro} Introduction}
+
+We are presently developing a C++ implementation of the explicit algebraic 
+approximation for solving large sets of extremely stiff differential equations 
+that was introduced in Refs.\ 
+\cite{guidJCP,guidAsy,guidQSS,guidPE,brockJCP,haidar2016}. 
+These methods are based on three complementary approaches to solving stiff sets 
+of equations 
+explicitly: 
+
+\begin{itemize}
+ \item 
+ the {\em explicit asymptotic algorithm} (Asy),
+ \item
+ the {\em quasi-steady-state algorithm} (QSS), and
+ \item
+ the {\em partial equilibrium algorithm} (PE),
+\end{itemize}
+that stabilize explicit integration through algebraic constaints
+and permit much larger timesteps than
+normally are possible with explicit methods  (often by many orders of 
+magnitude). 
+Prior proof-of-principle work has demonstrated that these methods are often 
+much 
+faster than standard implicit approaches to large sets of stiff equations, with 
+the advantage of the explicit methods growing with network size and 
+with deployment on limited capability devices like GPUs.
+The new C++ code is intended to be a general-purpose community code that can be 
+used in a variety astrophysical applications where large sets of stiff ordinary 
+differential equations must be integrated that are coupled dynamically to a 
+description of the fluid dynamics (typically 3D radiation hydrodynamics) and 
+neutrino transport. 
+
+The code is presently being developed for serial 
+application, but once that is thorougly debugged and tested we intend to port 
+the code to GPUs, since we 
+have already demonstrated that these new algorithms work extremely efficiently 
+ on GPUs \cite{brockJCP,haidar2016}.  Because the largest present 
+petascale and coming exascale machines derive much of their speed from GPU 
+accelerators, we expect that this codebase will be particularly useful in 
+large-scale astrophysical simulations on those machines. 
+
+The present 
+code is aimed at astrophysical applications but the algorithms themselves 
+should be 
+applicable with relatively small modification for a variety of scientific and 
+technological applications where large stiff sets of equations must be solved.
+For example, we are deploying them for the solution of neutrino 
+transport equations under supernova or neutron star merger conditions 
+\cite{endeve20}.
+
+
+\section{Controlled Versus Uncontrolled Approximations}
+
+Realistic scientific systems are typically strongly coupled multiphysics 
+environments for which
+all computer simulations must of necessity 
+employ approximations to make the problem tractable for a given epoch of 
+hardware and software.  Thus, for such problems one has no choice in 
+{\em whether} to approximate, but one does have a choice in {\em how} to 
+approximate. In this context, one crucial distinction among approximations is 
+whether the errors associated with a given approximation controlled or 
+uncontrolled.
+
+\begin{itemize}
+ \item 
+ {\em Controlled approximations}
+  mean that the user has 
+available parameters that restrict the amount of local error and thus limit the 
+net 
+global error in the simulation in a quantitative way.
+\item
+{\em Uncontrolled approximations} mean that the user has available (at 
+best) only a qualitative understanding of how much error is introduced by the 
+approximation.
+\end{itemize}
+
+\noindent
+In the specific problem of coupling large thermonuclear networks to 3D 
+hydrodynamics in astrophysical simulations of events like supernova explosions 
+or neutron star mergers, there is some agreement that a realistic thermonuclear 
+network for coupling to the fluid dynamics requires integration of 
+extremely stiff equations describing the evolution of $\sim 150$ appropriately 
+selected isotopes. Simulations to date have been unable to couple 
+networks of that size  systematically to realistic fluid dynamics. Thus in the 
+most realistic simulations a severely truncated thermonuclear network has 
+been used, often with at most 10-15 isotopes. This is an example of an 
+{\em uncontrolled approximation,} for there is no systematic way to estimate 
+the resulting error.  Various studies have addressed this problem by trying to 
+estimate in some fashion the error introduced by using a small network, but 
+these results are at best generic and qualitative, and offer no way to 
+determine the error associated with network approximations in any given 
+simulation. 
+
+An alternative approach is to use a network of more correct size (say 150 or 
+more isotopes), but to gain the speed required not by reducing the size of 
+the network, but by solving the realistic network only approximately by 
+ a {\em controlled approximation} that permits speed to be traded for 
+acceptable accuracy.  
+
+
+\section{Controlled Algebraically-Stabilized Explicit Solutions}
+
+Explicit methods are generally easier to implement than implicit ones because 
+they require only the current state of the system to compute a future state, 
+and 
+computing an explicit timestep is generally much faster and less memory 
+intensive than computing an implicit timestep for large sets of equations. 
+However  traditional explicit 
+methods are impractical for solving the extremely stiff systems 
+characteristic of many astrophysical processes because stability 
+requirements restrict the integration timesteps to tiny values, which far 
+outweighs the faster explicit computation of each timestep.  Thus explicit 
+methods have been thought impractical for stiff systems, 
+forcing the use of implicit methods.  Because of the matrix inversions, these 
+implicit methods are prohibitively slow for networks of realistic size and 
+complexity when coupled to a large-scale fluid-dynamics simulation.  This has 
+typically forced the use of drastic approximations employing networks that 
+are too small and/or too schematic to be realistic.  This approximation is {\em 
+uncontrolled} because it introduces systematic error that is difficult to 
+estimate because it is dictated by ability to integrate the network implicitly 
+rather than by the realistic physics of the network.
+
+But in a large-scale astrophysical simulation of say a supernova, typically a 
+multidimensional hydrodynamical code is coupled to kinetic networks (coupled 
+ordinary differential equations) representing thermonuclear burning and/or 
+neutrino transport, and it may be argued that these kinetic networks need be 
+solved only {\em approximately,} provided that the approximation introduces 
+{\em controlled errors} that are  smaller than the errors and 
+uncertainties associated with the overall coupled hydrodynamical--kinetic 
+system. Given the current state of the art in such simulations, a conservative 
+rule of thumb is that (controlled) errors of several percent  or less are 
+acceptable for 
+approximate kinetic networks, since to do better will not improve the final 
+results and thus is a waste of resources. This then raises the question of 
+whether there are approximations for standard explicit methods that could allow 
+taking more competitive timesteps with an acceptable controlled error, thus 
+permitting the solution of larger and more realistic kinetic networks.
+
+
+Early work coupling our new methods to hydrodynamics in the Flash code.  The 
+hydro profiles with "viktor" in the name are from his work \cite{chup2008}:
+
+Chupryna, Viktor, "Explicit Methods in the Nuclear Burning Problem for Supernova 
+Ia Models. " PhD diss., University of Tennessee, 2008.
+%\url{https://trace.tennessee.edu/utk_graddiss/484}
+
+Early testing of the new explicit methods against Raph's implicit code 
+\cite{fege2011}:
+
+Feger, Elisha Don, "Evaluating Explicit Methods for Solving Astrophysical 
+Nuclear Reaction Networks. " PhD diss., University of Tennessee, 2011.
+%\url{https://trace.tennessee.edu/utk_graddiss/1048}
+
+
+\clearpage
+
+\setcounter{section}{0}
+\appendix
+
+\newpage
+
+\bibliographystyle{unsrt}
+\begin{thebibliography} {99}
+
+% % Reactive flows largely in a chemical context
+% \bibitem{oran05} E.S. Oran and J.P. Boris, Numerical Simulation of Reactive
+% Flow, Cambridge University Press, 2005.
+% 
+% % Gear book
+% \bibitem{gear71}C.W. Gear, Numerical Initial Value Problems in Ordinary
+% Differential Equations, Prentice Hall, 1971.
+% 
+% % Lambert book
+% \bibitem{lamb91}J.D. Lambert, Numerical Methods for Ordinary Differential
+% Equations, Wiley, 1991.
+% 
+% % Numerical recipes
+% \bibitem{press92}W.H. Press, S.A. Teukolsky, W.T. Vettering, and B.P. Flannery,
+% Numerical Recipes in Fortran, Cambridge University Press, 1992.
+% 
+% % "Thermonuclear Kinetics in Astrophysics"; astro-ph/0509698
+% \bibitem{hix05}W.R. Hix and B.S. Meyer, Thermonuclear kinetics in astrophysics,
+% Nuc.\ Phys.\ A 777 (2006) 188-207.
+% 
+% % Comparison of different methods for solving astro networks
+% \bibitem{timmes}F.X. Timmes, Integration of Nuclear Reaction Networks for
+% Stellar Hydrodynamics, ApJS 124 (1999) 241-263.
+
+% ``Algebraic Stabilization of Explicit Numerical Integration for 
+% Extremely Stiff Reaction Networks'' 
+\bibitem{guidJCP}Mike Guidry, J. Comp.\ Phys.\ {\bf 231}, 5266-5288 (2012). 
+[arXiv:1112.4778].
+
+% ``Explicit Integration of Extremely-Stiff Reaction Networks: 
+%  Asymptotic Methods'' 
+\bibitem{guidAsy} M. W. Guidry, R. Budiardja, E. Feger, J. J. Billings, W. R. 
+Hix, O.
+E. B. Messer, K. J. Roche, E. McMahon, and M. He, Comput.\ Sci.\ Disc.\ {\bf 6},
+015001 (2013) [arXiv: 1112.4716].
+
+% ``Explicit Integration of Extremely-Stiff Reaction Networks: 
+%  Quasi-Steady-State Methods''
+\bibitem{guidQSS} M. W. Guidry and J. A. Harris, Comput.\ Sci.\ Disc.\ {\bf 6},
+015002 (2013) [arXiv: 1112.4750]
+
+% ``Explicit Integration of Extremely-Stiff Reaction Networks: 
+% Partial Equilibrium Methods'' 
+\bibitem{guidPE} M. W. Guidry, J. J. Billings, and W. R. Hix, Comput.\ Sci.\ 
+Disc.\ {\bf 6}, 015003 (2013) [arXiv: 1112.4738]
+
+% ``Explicit integration with GPU acceleration for large kinetic networks''
+\bibitem{brockJCP}Benjamin Brock, Andrew Belt, Jay Jay Billings, and Mike 
+Guidry, J. Comp.\ Phys.\ {\bf 302}, 591-602 (2015).
+
+% ``Performance Analysis and Acceleration of Explicit Integration 
+% for Large Kinetic Networks using Batched GPU Computations''
+\bibitem{haidar2016}A. Haidar, B. Brock, S. Tomov, M. Guidry, J. J. Billings, D. 
+Shyles, and J. Dongarra, ``Performance Analysis and Acceleration of Explicit 
+Integration for Large Kinetic Networks using Batched GPU Computations'' 2016 
+IEEE High Performance Extreme Computing Conference, HPEC (2016).
+
+% Explicit neutrino transport code
+\bibitem{endeve20}E. Endeve et al, unpublished.
+
+% % \reaclib\  library
+% \bibitem{raus2000}T. Rauscher and F.-K. Thielemann, Astrophysical Reaction Rates
+% From Statistical Model Calculations, At.\ Data Nuclear Data Tables 75 (2000)
+% 1-351.
+% 
+% % A QSS Solver for the Stiff Ordinary Differential Equations of Reaction
+% % Kinetics
+% \bibitem{mott00} D.R. Mott, E.S. Oran, and B. van Leer, Differential Equations
+% of Reaction Kinetics, J. Comp.\ Phys.\ 164  (2000) 407-428.
+% 
+% % Mott thesis
+% \bibitem{mott99} D.R. Mott, New Quasi-Steady-State and Partial-Equilibrium
+% Methods for Integrating Chemically Reacting Systems, doctoral thesis, University
+% of Michigan, 1999.
+% 
+% % Feger thesis
+% \bibitem{feg11b} E. Feger, Evaluating Explicit Methods for Solving Astrophysical
+% Nuclear Reaction Networks, doctoral thesis, University of Tennessee, 2011.
+% 
+% % Mott PE methods paper
+% \bibitem{mott03}D. Mott, E. Oran, and B. van Leer, Identifying and Imposing
+% Partial Equilibrium in Chemically Reacting Systems, in AIAA-2003-667, 41st
+% Aerospace Sciences Meeting and Exhibit, Reno, Nevada, 2003.
+% 
+% % The Hix-Thielemann network code Xnet
+% \bibitem{raphcode}W.R. Hix and F.-K. Thielemann, Computational methods for
+% nucleosynthesis and nuclear energy generation, J. Comp.\ Appl.\ Math.\ 109
+% (1999) 321-351.
+% 
+% % JINA reaction rates
+% \bibitem{JINA}Tabulated at http://groups.nscl.msu.edu/jina/reaclib/db/. The JINA
+% extensions to \reaclib\  are discussed in R.H. Cyburt, et al., The JINA 
+% \reaclib\ 
+% Database:Its Recent Updates and Impact on Type-I X-ray Bursts, Ap.\ J.\ Supp.\
+% 189 (2010) 240-252.
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+% Table \ref{tb:reaclibClasses}.
+% %
+% %
+% \begin{table}[t]
+%   \centering
+%   \caption{\reaclib\ reaction classes  \cite{raus2000} }
+%   \label{tb:reaclibClasses}\vspace{0pt}
+%       \setlength{\tabcolsep}{10 pt}
+%       \begin{tabular}{cll}
+%         \hline
+%             {Class} &
+%             {Reaction} &
+%             {Description or example}
+% 
+%         \\        \hline
+%             1 &
+%             a $\rightarrow$ b &
+%             $\beta$-decay or e$^-$ capture
+% 
+%         \\ 
+%             2 &
+%             a $\rightarrow$ b + c &
+%             Photodisintegration
+%                                  + $\alpha$ 
+% 	\\ 
+%             3 &
+%             a $\rightarrow$ b + c + d&
+%             $^{12}$C $\rightarrow$ 3$\alpha$ 
+% 	\\ 
+%             4 &
+%             a + b $\rightarrow$ c &
+%             Capture reactions
+% 	\\ 
+%             5 &
+%             a + b $\rightarrow$ c + d &
+%             Exchange reactions
+% 	\\ 
+%             6 &
+%             a + b $\rightarrow$ c + d + e &
+%             $^2$H + $^7$Be $\rightarrow$ $^1$H + 2$^4$He 
+% 	\\ 
+%             7 &
+%             a + b $\rightarrow$ c + d + e + f &
+%             $^3$He + $^7$Be $\rightarrow$ 2$^1$H 
+%             + 2$^4$He 
+% 	\\ 
+%             8 &
+%             a + b + c $\rightarrow$ d \, (+ e) &
+%             Effective 3-body reactions  
+%         \\        
+%         \hline
+%       \end{tabular}
+% \vspace{10pt}
+% \end{table}
+% %
+% %
+
+
+ 
