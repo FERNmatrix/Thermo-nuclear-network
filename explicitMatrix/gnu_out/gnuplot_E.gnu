@@ -66,12 +66,10 @@ set key top outside   # Move legend to outside top
 
 set timestamp       # Date/time
 
-ds="C++ Asy 150"
-ds = ds.": viktorProfile_400"
+ds="C++ Asy+PE 70 iso, 200 plot steps"
+ds = ds.": T9=6 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
-
-set timestamp
 
 
 

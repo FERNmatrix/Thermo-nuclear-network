@@ -72,8 +72,8 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy 70 Ref, 200 plot steps"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy+PE 70 iso, 200 plot steps"
+ds = ds.": T9=6 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 

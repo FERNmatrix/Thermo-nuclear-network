@@ -72,15 +72,16 @@ unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy-PE 70-isotope"
+ds="C++ Asy+PE 70 iso, 200 plot steps"
 ds = ds.": T9=6 rho=1e8"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -12
-xup = -6
+xup = -5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
