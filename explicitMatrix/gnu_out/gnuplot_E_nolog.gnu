@@ -78,12 +78,12 @@ set timestamp
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = -3
+xup = -5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0
-yup = 4e17
+yup = 1e18
 ytics = 1e17      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -101,7 +101,8 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 
 # This calculation
 
@@ -128,13 +129,13 @@ set ylabel 'E (erg)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
-set out "gnuplot_E_log.eps"    # Output file
+set out "gnuplot_E_nolog.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file
 
 # Plot to PNG file
 
-#set out "gnuplot_E_log.png"
+#set out "gnuplot_E_nolog.png"
 ## Assume 72 pixels/inch and make bitmap twice as large for display resolution
 #set terminal png transparent size 2*width*72, 2*height*72 lw 2
 #replot

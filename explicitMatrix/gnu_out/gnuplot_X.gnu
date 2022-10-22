@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 10.5 # 6.5
-height = 5.5 #8.5
+width = 12
+height = 12
 
 # x-axis resolution
 set samples 1000
@@ -72,22 +72,19 @@ unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy alpha with PF"
-ds = ds.": "
+ds="C++ Asy-PE 70-isotope"
+ds = ds.": T9=6 rho=1e8"
 set title ds textcolor rgb title_color
-
-file1 = "plot1.data"
-#file1 = "gnufile.data"
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -10
-xup = -1
+xlow = -12
+xup = -6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -12
+ylow = -14
 yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -103,6 +100,19 @@ set mytics minytics   # minor y tics per major tic
 #set grid   # set x-y grid at major ticmarks
 
 # -------------------
+
+file1 = "plot1.data"
+
+# Reference data
+
+#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
+#refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
+#refFile = "dataRef/nova125D_sumX_1.000.data"  
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
+#refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
+refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 
 
 # Main CNO cycle
@@ -165,6 +175,56 @@ set mytics minytics   # minor y tics per major tic
 #replot file1 using 1:23 with lines ls 2 lw 1.0 dashtype 1 title "68Se"
 
 
+# Select isotopes from the 70-isotope network
+
+plot file1 using 1:10 with lines ls 0 lw 2 dashtype 1 title "(2 4He)"
+replot file1 using 1:12 with lines ls 1 lw 2 dashtype 1 title "(4 12C)"
+replot file1 using 1:16 with lines ls 2 lw 2 dashtype 1 title "(8 160)"
+replot file1 using 1:20 with lines ls 4 lw 2 dashtype 1 title "(12 20Ne)"
+replot file1 using 1:25 with lines ls 5 lw 2 dashtype 1 title "(17 Mg24)"
+replot file1 using 1:32 with lines ls 6 lw 2 dashtype 1 title "(24 28Si)"
+replot file1 using 1:41 with lines ls 7 lw 2 dashtype 1 title "(33 32S)"
+replot file1 using 1:49 with lines ls 8 lw 2 dashtype 1 title "(41 36Ar)"
+replot file1 using 1:54 with lines ls 9 lw 2 dashtype 1 title "(46 40Ca)"
+replot file1 using 1:57 with lines ls 10 lw 2 dashtype 1 title "(49 44Ti)"
+
+replot file1 using 1:61 with lines ls 11 lw 2 dashtype 1 title "(53 48Cr)"
+replot file1 using 1:70 with lines ls 12 lw 2 dashtype 1 title "(62 54Fe)"
+replot file1 using 1:71 with lines ls 13 lw 2 dashtype 1 title "(63 55Fe )"
+replot file1 using 1:74 with lines ls 14 lw 2 dashtype 1 title "(66 57Co)"
+replot file1 using 1:77 with lines ls 3 lw 2 dashtype 1 title "(69 58Ni)"
+#replot file1 using 1:23 with lines ls 4 lw 2 dashtype 1 title "(15)"
+#replot file1 using 1:24 with lines ls 15 lw 2 dashtype 1 title "(16)"
+#replot file1 using 1:25 with lines ls 16 lw 2 dashtype 1 title "(17)"
+#replot file1 using 1:26 with lines ls 17 lw 2 dashtype 1 title "(18)"
+#replot file1 using 1:27 with lines ls 18 lw 2 dashtype 1 title "(19)"
+
+# Reference data, select isotopes from the 70-isotope network
+
+replot refFile using 1:10 with lines ls 0 lw 2 dashtype 2 title "(2 4He ref)"
+replot refFile using 1:12 with lines ls 1 lw 2 dashtype 2 title "(4 12C ref)"
+replot refFile using 1:16 with lines ls 2 lw 2 dashtype 2 title "(8 160 ref)"
+replot refFile using 1:20 with lines ls 4 lw 2 dashtype 2 title "(12 20Ne ref)"
+replot refFile using 1:25 with lines ls 5 lw 2 dashtype 2 title "(17 Mg24 ref)"
+replot refFile using 1:32 with lines ls 6 lw 2 dashtype 2 title "(24 28Si ref)"
+replot refFile using 1:41 with lines ls 7 lw 2 dashtype 2 title "(33 32S ref)"
+replot refFile using 1:49 with lines ls 8 lw 2 dashtype 2 title "(41 36Ar ref)"
+replot refFile using 1:54 with lines ls 9 lw 2 dashtype 2 title "(46 40Ca ref)"
+replot refFile using 1:57 with lines ls 10 lw 2 dashtype 2 title "(49 44Ti ref)"
+
+replot refFile using 1:61 with lines ls 11 lw 2 dashtype 2 title "(53 48Cr ref)"
+replot refFile using 1:70 with lines ls 12 lw 2 dashtype 2 title "(62 54Fe ref)"
+replot refFile using 1:71 with lines ls 13 lw 2 dashtype 2 title "(63 55Fe  ref)"
+replot refFile using 1:74 with lines ls 14 lw 2 dashtype 2 title "(66 57Co ref)"
+replot refFile using 1:77 with lines ls 3 lw 2 dashtype 2 title "(69 58Ni ref)"
+#replot file1 using 1:23 with lines ls 4 lw 2 dashtype 2 title "(15 ref)"
+#replot file1 using 1:24 with lines ls 15 lw 2 dashtype 2 title "(16 ref)"
+#replot file1 using 1:25 with lines ls 16 lw 2 dashtype 2 title "(17 ref)"
+#replot file1 using 1:26 with lines ls 17 lw 2 dashtype 2 title "(18 ref)"
+#replot file1 using 1:27 with lines ls 18 lw 2 dashtype 2 title "(19 ref)"
+
+
+
 # Following lines output generated in plotfile1 --> plot1.data by
 #
 #
@@ -180,23 +240,23 @@ set mytics minytics   # minor y tics per major tic
 # (isotope) number for each isotope is output to the screen at the 
 # end of a explicitMatrix.cpp calculation.
 
-plot file1 using 1:8 with lines ls 0 lw 1 dashtype 1 title "(0)"
-replot file1 using 1:9 with lines ls 1 lw 1 dashtype 1 title "(1)"
-replot file1 using 1:10 with lines ls 2 lw 1 dashtype 1 title "(2)"
-replot file1 using 1:11 with lines ls 4 lw 1 dashtype 1 title "(3)"
-replot file1 using 1:12 with lines ls 5 lw 1 dashtype 1 title "(4)"
-replot file1 using 1:13 with lines ls 6 lw 1 dashtype 1 title "(5)"
-replot file1 using 1:14 with lines ls 7 lw 1 dashtype 1 title "(6)"
-replot file1 using 1:15 with lines ls 8 lw 1 dashtype 1 title "(7)"
-replot file1 using 1:16 with lines ls 9 lw 1 dashtype 1 title "(8)"
-replot file1 using 1:17 with lines ls 10 lw 1 dashtype 1 title "(9)"
+#plot file1 using 1:8 with lines ls 0 lw 1 dashtype 1 title "(0)"
+#replot file1 using 1:9 with lines ls 1 lw 1 dashtype 1 title "(1)"
+#replot file1 using 1:10 with lines ls 2 lw 1 dashtype 1 title "(2)"
+#replot file1 using 1:11 with lines ls 4 lw 1 dashtype 1 title "(3)"
+#replot file1 using 1:12 with lines ls 5 lw 1 dashtype 1 title "(4)"
+#replot file1 using 1:13 with lines ls 6 lw 1 dashtype 1 title "(5)"
+#replot file1 using 1:14 with lines ls 7 lw 1 dashtype 1 title "(6)"
+#replot file1 using 1:15 with lines ls 8 lw 1 dashtype 1 title "(7)"
+#replot file1 using 1:16 with lines ls 9 lw 1 dashtype 1 title "(8)"
+#replot file1 using 1:17 with lines ls 10 lw 1 dashtype 1 title "(9)"
 
-replot file1 using 1:18 with lines ls 11 lw 1 dashtype 1 title "(10)"
-replot file1 using 1:19 with lines ls 12 lw 1 dashtype 1 title "(11)"
-replot file1 using 1:20 with lines ls 13 lw 1 dashtype 1 title "(12)"
-replot file1 using 1:21 with lines ls 14 lw 1 dashtype 1 title "(13)"
-replot file1 using 1:22 with lines ls 3 lw 1 dashtype 1 title "(14)"
-replot file1 using 1:23 with lines ls 4 lw 1 dashtype 1 title "(15)"
+#replot file1 using 1:18 with lines ls 11 lw 1 dashtype 1 title "(10)"
+#replot file1 using 1:19 with lines ls 12 lw 1 dashtype 1 title "(11)"
+#replot file1 using 1:20 with lines ls 13 lw 1 dashtype 1 title "(12)"
+#replot file1 using 1:21 with lines ls 14 lw 1 dashtype 1 title "(13)"
+#replot file1 using 1:22 with lines ls 3 lw 1 dashtype 1 title "(14)"
+#replot file1 using 1:23 with lines ls 4 lw 1 dashtype 1 title "(15)"
 #replot file1 using 1:24 with lines ls 15 lw 1 dashtype 1 title "(16)"
 #replot file1 using 1:25 with lines ls 16 lw 1 dashtype 1 title "(17)"
 #replot file1 using 1:26 with lines ls 17 lw 1 dashtype 1 title "(18)"

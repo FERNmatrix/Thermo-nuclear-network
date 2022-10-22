@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
-height = 6
+width = 8.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -74,14 +74,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 1
-xup = 3
-xtics = 0.5     # Space between major x ticmarks
+xlow = -16
+xup = -5
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e16
-yup = 1e17
-ytics = 1e16      # Space between major y ticmarks
+ylow = -1e27
+yup = 6e27
+ytics = 1e27      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -97,7 +97,8 @@ set grid   # set x-y grid at major ticmarks
 # Reference calculations
 
 #refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
-refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
+#refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
+refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 
 # This calculation
 
