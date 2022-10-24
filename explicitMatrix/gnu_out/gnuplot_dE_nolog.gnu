@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
-height = 4.5
+width = 5.5
+height = 3.0
 
 # x-axis resolution
 set samples 1000
@@ -61,27 +61,27 @@ set ylabel 'dE/dt (erg/g/s)' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top outside   # Move legend to outside top
+set key bottom left inside   # legend
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE 70 iso, 200 plot steps"
-ds = ds.": T9=6 rho=1e8"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -5
+xlow = -18
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1e27
-yup = 6e27
-ytics = 1e27      # Space between major y ticmarks
+yup = 2e28
+ytics = 2e27      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -96,9 +96,9 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
-refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 
 # This calculation
 
@@ -115,7 +115,8 @@ replot refFile using (log10($1)):3 with lines ls 11 lw 1.5 dashtype 2 title "Ref
 set timestamp font "Arial,16"
 
 set title ds textcolor rgb title_color font "Arial,18"
-set key bottom left inside font "Arial,18"
+#set key bottom left inside font "Arial,18"
+set key top right outside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color font "Arial,22"
 

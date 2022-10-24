@@ -15,7 +15,7 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
+width = 4.5
 height = 4.5
 
 # x-axis resolution
@@ -61,26 +61,26 @@ set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top outside   # Move legend to outside top
+set key top inside   # legend
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE 70 iso, 200 plot steps"
-ds = ds.": T9=6 rho=1e8"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
-xup = -5
+xlow = -18
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 18
-yup = 28
+ylow = 15
+yup = 29
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -99,9 +99,9 @@ set grid   # set x-y grid at major ticmarks
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
-#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
-refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 
 # This calculation
 

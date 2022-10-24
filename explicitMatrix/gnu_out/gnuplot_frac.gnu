@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
-height = 6
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -67,8 +67,8 @@ set key outside    # Place legend outside
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE 70 iso, 200 plot steps"
-ds = ds.": T9=6 rho=1e8"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 

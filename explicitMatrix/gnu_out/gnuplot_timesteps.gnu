@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 4.8
-height = 6.0
+width = 4
+height = 4
 
 # x-axis resolution
 set samples 1000
@@ -65,10 +65,11 @@ set pointsize 1.5    # Size of the plotted points
 set key bottom inside   #  Place legend inside top
 #unset key            # Don't show legend
 
-#set timestamp       # Date/time
+set timestamp       # Date/time
 
-ds="Asy tidal SN (no pf)"
-ds = ds.": Timesteps"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
+set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 

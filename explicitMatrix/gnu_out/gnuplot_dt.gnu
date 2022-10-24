@@ -15,7 +15,7 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 8.5
+width = 4.5
 height = 4.5
 
 # x-axis resolution
@@ -61,11 +61,11 @@ set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top outside   # Move legend to outside top
+set key top left inside 
 #unset key            # Don't show legend
 
-ds="C++ Asy+PE 70 iso, 200 plot steps"
-ds = ds.": T9=6 rho=1e8"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -100,7 +100,8 @@ set grid   # set x-y grid at major ticmarks
 file1 = "plot1.data"
 
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
-refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 
 plot file1 using 1:2 with lines ls 2 lw 1 dashtype 1 title "dt"
 
@@ -110,8 +111,8 @@ replot refFile using 1:2 with lines ls 2 lw 1 dashtype 2 title " ref Asy dt"
 
 replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
 replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
-replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
-replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
+#replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+#replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
 #replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
 
 
@@ -120,7 +121,7 @@ replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 
 set timestamp font "Arial,16"
 
 set title ds textcolor rgb title_color font "Arial,22"
-set key top right font "Arial,22"
+set key top left inside font "Arial,22"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
 set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
 

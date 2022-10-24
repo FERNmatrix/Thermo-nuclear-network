@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
-height = 6
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -61,13 +61,13 @@ set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,12"
 
 set pointsize 1.0    # Size of the plotted points
 
-set key top outside   # Move legend to outside top
+set key bottom right inside   # legend
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE 70 iso, 200 plot steps"
-ds = ds.": T9=6 rho=1e8"
+ds="C++ Asy+PE alpha 200 plot steps"
+ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -75,7 +75,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -16
+xlow = -18
 xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -104,8 +104,8 @@ set title ds textcolor rgb title_color
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
-#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 
 file1 = "plot1.data"
 
@@ -116,7 +116,7 @@ replot refFile using 1:3 with lines ls 11 lw 1.5 dashtype 2 title "Ref Log10 |E|
 
 set timestamp font "Arial,16"
 
-set key top left inside font "Arial,18"
+set key bottom right inside font "Arial,18"
 set title ds textcolor rgb title_color font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'Log |E| (erg)' textcolor rgb tic_color font "Arial,22"
