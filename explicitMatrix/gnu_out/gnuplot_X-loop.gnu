@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 5.5
-height = 3.0
+width = 6
+height = 6
 
 # x-axis resolution
 set samples 1000
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15    # One minus number species to be plotted
+numberCurves = 27    # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -121,6 +121,7 @@ refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
