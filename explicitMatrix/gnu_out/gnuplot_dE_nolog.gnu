@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 5.5
-height = 3.0
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -75,7 +75,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -2
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -96,9 +96,10 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
+refFile = "dataRef/plot5dE_test_T9=7_rho=1e8_asyC++.data"
 
 # This calculation
 
@@ -116,7 +117,7 @@ set timestamp font "Arial,16"
 
 set title ds textcolor rgb title_color font "Arial,18"
 #set key bottom left inside font "Arial,18"
-set key top right outside font "Arial,18"
+set key top right inside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color font "Arial,22"
 

@@ -165,8 +165,8 @@ void updatePF(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 28                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 104                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 18                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 58                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -191,13 +191,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_28.inp";
+char networkFile[] = "data/network_test.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_28.data";
+char rateLibraryFile[] = "data/rateLibrary_test.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -324,7 +324,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 6;           // Initial temperature in units of 10^9 K
+double T9_start = 7;           // Initial temperature in units of 10^9 K
 double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -360,8 +360,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 4e-3;//6e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -374,7 +374,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-8;                   // Absolute error tolerance
+double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -389,8 +389,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.015;//0.001;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;//0.01;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious

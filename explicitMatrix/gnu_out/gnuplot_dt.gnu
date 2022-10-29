@@ -75,7 +75,7 @@ set timestamp       # Date/time
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = -2
+xup = -3
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -101,17 +101,18 @@ file1 = "plot1.data"
 
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
 
 plot file1 using 1:2 with lines ls 2 lw 1 dashtype 1 title "dt"
 
-replot refFile using 1:2 with lines ls 2 lw 1 dashtype 2 title " ref Asy dt"
+replot refFile using 1:2 with lines ls 3 lw 1 dashtype 2 title " ref Asy dt"
 
 # Plot dt contours
 
 replot file1 using 1:( log10((10**$1)*0.1) ) with lines ls 1 lw 1.0 dashtype 2 title "dt=0.1 t"
 replot file1 using 1:( log10((10**$1)*0.01) ) with lines ls 1 lw 1.0 dashtype 0 title "dt=0.01 t"
-#replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
+replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7 title "dt=0.001 t"
 #replot file1 using 1:( log10((10**$1)*0.0001) ) with lines ls 1 lw 1.0 dashtype 9 title "dt=0.0001 t"
 #replot file1 using 1:( log10((10**$1)*0.00001) ) with lines ls 1 lw 1.0 dashtype 8 title "dt=0.00001 t"
 

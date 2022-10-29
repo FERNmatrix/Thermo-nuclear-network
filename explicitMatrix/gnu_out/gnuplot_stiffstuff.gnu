@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 5.5
-height = 3
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -12
-xup = -2
+xup = -3
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -14 
-yup = -3
+yup = -4
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -104,12 +104,13 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"   # C++ T9-7 rho=1e8 ref
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
-refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
 
 # Plot C++ data
 
-plot file1 using 1:5 with lines ls 2 lw 1.0 dashtype 2 title "log10 2/Rmax"
-replot file1 using 1:2 with lines ls 3 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
+plot file1 using 1:5 with lines ls 1 lw 1.0 dashtype 2 title "log10 2/Rmax"
+replot file1 using 1:2 with lines ls 2 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
 
 # Plot C++ asy reference 
 
@@ -131,8 +132,8 @@ replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7
 set timestamp font "Arial,16"      # Date/time
 
 set title ds textcolor rgb title_color font "Arial,22"
-#set key top left inside font "Arial,16"
-set key top right outside font "Arial,16"
+set key top left inside font "Arial,16"
+#set key top right outside font "Arial,16"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
 
