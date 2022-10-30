@@ -82,9 +82,9 @@ xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -3e17
-yup = 4e17
-ytics = 1e17      # Space between major y ticmarks
+ylow = -1e17
+yup = 5e18 #9e17
+ytics = 5e17      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -103,7 +103,8 @@ set grid   # set x-y grid at major ticmarks
 
 #refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
-refFile = "dataRef/plot5dE_test_T9=7_rho=1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
+refFile = "dataRef/plot5dE_test6P_T9=7_rho=1e8_asyC++.data"
 
 # This calculation
 

@@ -106,7 +106,8 @@ set title ds textcolor rgb title_color
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 
 file1 = "plot1.data"
 

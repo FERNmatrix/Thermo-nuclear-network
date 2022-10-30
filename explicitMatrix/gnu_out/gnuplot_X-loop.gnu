@@ -81,7 +81,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -3 
+xup = -2 
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -122,7 +122,8 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize

@@ -166,7 +166,7 @@ void updatePF(void);
 //  to read them in and assign them dynamically.
 
 #define ISOTOPES 23                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 92                      // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 90                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -249,7 +249,7 @@ FILE* plotfile5;
 // Control flags for diagnostic output to files. Note that setting showDetails
 // or showDetails2 true may generate large output files (MB to GB for large networks).
 
-bool showAddRemove = false;  // Show addition/removal of RG from equilibrium
+bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
 bool showDetails = false;    // Controls diagnostics to pFileD -> gnu_out/diagnostics.data
 bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network.data
 
@@ -264,7 +264,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -360,8 +360,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-8;//1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-3;//6e-6;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 3e-4;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -374,7 +374,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-8;//massTol_asyPE;           // Absolute error tolerance
+double EpsA = 6e-4;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -389,8 +389,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.015;//0.001;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;//0.01;          // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.005;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious

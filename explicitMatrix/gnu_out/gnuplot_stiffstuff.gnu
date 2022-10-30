@@ -105,7 +105,8 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 
 # Plot C++ data
 

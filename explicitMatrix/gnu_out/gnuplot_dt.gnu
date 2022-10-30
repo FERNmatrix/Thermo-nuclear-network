@@ -102,7 +102,8 @@ file1 = "plot1.data"
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
-refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
+#refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 
 plot file1 using 1:2 with lines ls 2 lw 1 dashtype 1 title "dt"
 
@@ -121,10 +122,10 @@ replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7
 
 set timestamp font "Arial,16"
 
-set title ds textcolor rgb title_color font "Arial,22"
+set title ds textcolor rgb title_color font "Arial,16"
 set key top left inside font "Arial,22"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,28"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,28"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 

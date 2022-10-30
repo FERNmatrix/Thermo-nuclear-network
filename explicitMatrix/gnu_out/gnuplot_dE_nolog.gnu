@@ -99,7 +99,8 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
-refFile = "dataRef/plot5dE_test_T9=7_rho=1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
+refFile = "dataRef/plot5dE_test6P_T9=7_rho=1e8_asyC++.data"
 
 # This calculation
 
