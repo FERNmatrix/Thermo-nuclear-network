@@ -389,7 +389,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-12;         // Time to begin checking for PE
+double equilTime = 1e-9;         // Time to begin checking for PE
 double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
 double thisDevious;               // Deviation of kratio from equil
@@ -3296,8 +3296,9 @@ class ReactionGroup:  public Utilities {
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilTime, and true 
         // otherwise.
-            
+        
         if (t > equilTime && thisDevious < deviousMax) {
+        //if (t > equilTime && ( (thisDevious < deviousMax) ) || (maxRatio < 1)) {
         //if (t > equilTime && maxRatio < 1) {
             addToEquilibrium();
         } else {
