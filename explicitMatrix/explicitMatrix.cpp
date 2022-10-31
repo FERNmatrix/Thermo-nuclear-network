@@ -131,6 +131,7 @@ void restoreBe8(void);
 void plotFileSetup(void);
 void toPlotNow(void);
 void updatePF(void);
+void displayRGstatus(void);
 
 /*
  * ------------------------------------------------------------------------------------------
@@ -168,7 +169,7 @@ void updatePF(void);
 #define ISOTOPES 23                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 90                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -374,7 +375,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 6e-4;           // Absolute error tolerance
+double EpsA = 6e-4;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -558,6 +559,7 @@ int numberRG;                 // Number of partial equilibrium reaction groups
 int RGnumberMembers[SIZE];    // # members each RG; determined in class ReactionVectors
 int numberSingletRG;          // # RG with only a single member reactions
 double eqFrac = 0.0;          // Fraction of RG equilibrated
+bool showRGstatus = false;     // Output RG status to pfnet -> gnu_out/network.data" 
 
 // Define array to hold the ReactionGroup object index for each reaction. There 
 // are n reaction groups in a network and each reaction belongs to one and only
@@ -2620,7 +2622,7 @@ class ReactionGroup:  public Utilities {
         int numberProducts[maxreac];           // #products for each reaction in RG
         int refreac = -1;                      // Ref. reaction for this RG in memberReactions
 
-        int rgclass = -1;                       // Reaction group class (1-5)
+        int rgclass = -1;                      // Reaction group class (1-5)
         bool isEquil;                          // True if RG in equilibrium; false otherwise
         bool isForward[maxreac];               // Whether reaction in RG labeled forward
         double flux[maxreac];                  // Current flux for each reaction in RG
@@ -3396,6 +3398,7 @@ class ReactionGroup:  public Utilities {
         return false;
         
     }       // End function speciesIsInRG(int)
+    
     
 };      // End class ReactionGroup
 
@@ -4591,6 +4594,8 @@ int main() {
         }
     
     }   // End time integration while-loop
+    
+    displayRGstatus();   // Send status of RG at end to network.data
     
     // Close plot output files
     
@@ -6291,6 +6296,29 @@ void sumFplusFminus(){
         
         dF[i] = FplusSum[i] - FminusSum[i];     // Store net flux
         
+    }
+    
+}
+
+
+// Function displayRGstatus() display to send to
+// pfnet -> network.data the status of each reaction group.
+
+void displayRGstatus(){
+    
+    fprintf(pfnet,"\n\nPARTIAL EQUILIBRIUM REACTION GROUPS (t=%6.4e, fracRGequil=%5.2f)", 
+            t, eqFrac);
+    
+    string equilStatus;
+    
+    for (int i=0; i<numberRG; i++){
+        if (RG[i].getisEquil()) {
+            equilStatus = "TRUE ";
+        } else {
+            equilStatus = "FALSE";
+        }
+        fprintf(pfnet,"\nReaction Group %d (isEquil=%s)", 
+                i, Utilities::stringToChar(equilStatus));
     }
     
 }
