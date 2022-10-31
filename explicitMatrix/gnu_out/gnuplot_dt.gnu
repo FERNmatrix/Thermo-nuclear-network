@@ -64,7 +64,7 @@ set pointsize 1.5    # Size of the plotted points
 set key top left inside 
 #unset key            # Don't show legend
 
-ds="C++ Asy+PE alpha 200 plot steps"
+ds="C++ Asy+PE alpha+6PG"
 ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -75,7 +75,7 @@ set timestamp       # Date/time
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -16
-xup = -3
+xup = -3.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

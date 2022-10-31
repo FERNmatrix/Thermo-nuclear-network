@@ -66,7 +66,7 @@ set key top left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha 200 plot steps"
+ds="C++ Asy+PE alpha+6PG"
 ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -78,13 +78,13 @@ set timestamp
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -2
+xup = -3.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1e17
-yup = 5e18 #9e17
-ytics = 5e17      # Space between major y ticmarks
+yup = 3e17 #9e17
+ytics = 1e17      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]

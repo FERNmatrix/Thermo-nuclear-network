@@ -66,7 +66,7 @@ set key top inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha 200 plot steps"
+ds="C++ Asy+PE alpha+6PG"
 ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -75,11 +75,11 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -3
+xup = -3.5
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 15
+ylow = 16
 yup = 29
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
@@ -102,7 +102,7 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 
 
 # This calculation
