@@ -2649,6 +2649,7 @@ class ReactionGroup:  public Utilities {
         double eqRatio[5];             // Ratio eqcheck[i]/equiTol. 
         double maxRatio;               // Largest eqcheck[]/equiTol in reaction group
         double minRatio;               // Smallest eqcheck[]/equiTol in reaction group 
+        double thisDeviousRG;          // Value of thisDevious for this RG
 
         double lambda;                 // Progress variable for RG (computed; not used)
         double lambdaEq;               // Equil value progress variable (computed; not used)
@@ -2782,11 +2783,14 @@ class ReactionGroup:  public Utilities {
         reactantIsoIndex[i] = j;
     }
 
-    void setproductIsoIndex(int i,int j){
+    void setproductIsoIndex(int i, int j){
         productIsoIndex[i] = j;
     }
     
-    void seteqcheck(int k,double eq){eqcheck[k] = eq;}
+    void seteqcheck(int k, double eq){eqcheck[k] = eq;}
+    void seteqRatio(int k, double eq){eqRatio[k] = eq;}
+    
+    void setthisDeviousRG(double f){thisDeviousRG = f;}
     
     void setnumberC(int k){numberC = k;}
     
@@ -2812,6 +2816,8 @@ class ReactionGroup:  public Utilities {
     int getRGn(){return RGn;}
     
     int getrgclass(){return rgclass;}
+    
+    char* getreaclabel(int k){return reaclabel[k];}
     
     double getRGfluxes(int index){return flux[index];}
     
@@ -2841,7 +2847,11 @@ class ReactionGroup:  public Utilities {
     
     double geteqcheck(int k){return eqcheck[k];}
     
+    double geteqRatio(int k){return eqRatio[k];}
+    
     double getequilRatio(){return equilRatio;}
+    
+    double getthisDeviousRG(){return thisDeviousRG;}
     
     double getmaxRatio(){return maxRatio;}
     
@@ -3233,6 +3243,8 @@ class ReactionGroup:  public Utilities {
         // possible divide by zero.
         
         thisDevious = abs((equilRatio - kratio) / max(kratio, GZ));
+        
+        thisDeviousRG = thisDevious;
         
         // Store max value of thisDevious
         
@@ -6306,7 +6318,7 @@ void sumFplusFminus(){
 
 void displayRGstatus(){
     
-    fprintf(pfnet,"\n\nPARTIAL EQUILIBRIUM REACTION GROUPS (t=%6.4e, fracRGequil=%5.2f)", 
+    fprintf(pfnet,"\n\n\nPARTIAL EQUILIBRIUM REACTION GROUPS (t=%6.4e, fracRGequil=%5.2f)", 
             t, eqFrac);
     
     string equilStatus;
@@ -6317,8 +6329,39 @@ void displayRGstatus(){
         } else {
             equilStatus = "FALSE";
         }
-        fprintf(pfnet,"\nReaction Group %d (isEquil=%s)", 
-                i, Utilities::stringToChar(equilStatus));
+        fprintf(pfnet,
+        "\n\nREACTION GROUP %d: isEquil=%s netflux=%6.3e thisDevious/maxDevious=%5.3f", 
+        i, Utilities::stringToChar(equilStatus), RG[i].getnetflux(),
+        RG[i].getthisDeviousRG()/deviousMax);
+        
+        double ftrue;
+        double ftrueSum = 0;
+        double rsign;
+        
+        for (int j=0; j<RG[i].getnumberMemberReactions(); j++){
+            
+            if(isPEforward[RG[i].getmemberReactions(j)]) {
+                rsign = 1.0;
+            } else {
+                rsign = -1.0;
+            }
+            
+            ftrue = reaction[RG[i].getmemberReactions(j)].getflux_true();
+            ftrueSum += (rsign*ftrue);
+            
+            fprintf(pfnet,"\n    %s flux=%6.3e flux_true=%6.3e", 
+                reacLabel[RG[i].getmemberReactions(j)], Flux[RG[i].getmemberReactions(j)],
+                ftrue);
+        }
+        
+        fprintf(pfnet,"\n    Sum flux_true=%6.3e", ftrueSum);
+        
+        fprintf(pfnet,"\nIsotope Equil Ratios:");
+        for (int j=0; j<RG[i].getniso(); j++){
+            fprintf(pfnet,"%4s(%5.3f) ", 
+                isoLabel[RG[i].getisoindex(j)], RG[i].geteqRatio(j));
+        }
+        
     }
     
 }
