@@ -166,8 +166,8 @@ void displayRGstatus(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 23                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 90                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -192,13 +192,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_test6P.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_test6P.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -362,7 +362,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 6e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 3e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -389,9 +389,11 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-9;         // Time to begin checking for PE
-double equiTol = 0.01;            // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
+double equilTime = 1e-12;         // Time to begin checking for PE
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;         // Max allowed deviation from equil k ratio in timestep
+bool useDevious = true;          // Use thisDevious (true) of equil pops (false) to set equil
+
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
 int mostDeviousIndex;             // Index of RG with mostDevious
@@ -3295,14 +3297,26 @@ class ReactionGroup:  public Utilities {
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilTime, and true 
-        // otherwise.
+        // otherwise. useDevious controls whether value of maxDevious (true) or
+        // value of max deviation from equil abundances determines whether
+        // RG is in equilibrium.
         
-        if (t > equilTime && thisDevious < deviousMax) {
-        //if (t > equilTime && ( (thisDevious < deviousMax) ) || (maxRatio < 1)) {
-        //if (t > equilTime && maxRatio < 1) {
-            addToEquilibrium();
+        if(useDevious){
+            
+            if (t > equilTime && thisDevious < deviousMax) { // thisDevious condition
+                addToEquilibrium();
+            } else {
+                isEquil = false;
+            }
+            
         } else {
-            isEquil = false;
+            
+            if (t > equilTime && maxRatio < 1) {  // population condition
+                addToEquilibrium();
+            } else {
+                isEquil = false;
+            }
+            
         }
         
         // Set the activity array for each reaction in reaction group to true 
@@ -6315,8 +6329,8 @@ void sumFplusFminus(){
 }
 
 
-// Function displayRGstatus() display to send to
-// pfnet -> network.data the status of each reaction group.
+// Function displayRGstatus() display to send to pfnet -> network.data the status 
+// of each reaction group RG[].
 
 void displayRGstatus(){
     
@@ -6360,8 +6374,14 @@ void displayRGstatus(){
         
         fprintf(pfnet,"\nIsotope Equil Ratios:");
         for (int j=0; j<RG[i].getniso(); j++){
-            fprintf(pfnet,"%4s(%5.3f) ", 
+            fprintf(pfnet,"%4s(%5.3e) ", 
                 isoLabel[RG[i].getisoindex(j)], RG[i].geteqRatio(j));
+        }
+        
+        fprintf(pfnet,"\nIsotope Mass Fractions:");
+        for (int j=0; j<RG[i].getniso(); j++){
+            fprintf(pfnet,"%4s(%5.3e) ", 
+                isoLabel[RG[i].getisoindex(j)], RG[i].getisoYeq(j)/RG[i].getisoA(j));
         }
         
     }
