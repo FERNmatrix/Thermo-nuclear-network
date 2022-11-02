@@ -166,8 +166,8 @@ void displayRGstatus(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 32                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 162                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -192,13 +192,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_alpha.inp";
+char networkFile[] = "data/network_test15P.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_alpha.data";
+char rateLibraryFile[] = "data/rateLibrary_test15P.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -265,7 +265,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -361,8 +361,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 3e-5;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-8;//1e-4;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 6e-5;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -375,7 +375,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 1e-8;//massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -391,7 +391,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 double equilTime = 1e-12;         // Time to begin checking for PE
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;         // Max allowed deviation from equil k ratio in timestep
+double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = true;          // Use thisDevious (true) of equil pops (false) to set equil
 
 double thisDevious;               // Deviation of kratio from equil

@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15    # One minus number species to be plotted
+numberCurves = 31    # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -115,7 +115,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
 #refFile = "dataRef/nova125D_sumX_1.000.data"  
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
@@ -124,6 +124,7 @@ refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_test15P_T9=7_rho=1e8_asyRef_c++.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize

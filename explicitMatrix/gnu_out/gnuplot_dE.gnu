@@ -102,8 +102,8 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
-
+#refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/plot5dE_test15P_T9=7_rho=1e8_asyC++.data"
 
 # This calculation
 
