@@ -389,10 +389,11 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-12;         // Time to begin checking for PE
+double equilTime = 1e-9;         // Time to begin checking for PE
 double equiTol = 0.006;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
+bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil
@@ -3297,11 +3298,11 @@ class ReactionGroup:  public Utilities {
             
         // Set isEquil to false if any eqcheck[] greater than equiTol or if the 
         // time is before the time to allow equilibration equilTime, and true 
-        // otherwise. useDevious controls whether value of maxDevious (true) or
-        // value of max deviation from equil abundances determines whether
-        // RG is in equilibrium.
+        // otherwise. useDevious and useEquilY control whether value of maxDevious or
+        // value of max deviation from equil abundances (or both) determine whether
+        // a RG is in equilibrium.
         
-        if(useDevious){
+        if(useDevious && !useEquilY){
             
             if (t > equilTime && thisDevious < deviousMax) { // thisDevious condition
                 addToEquilibrium();
@@ -3309,7 +3310,7 @@ class ReactionGroup:  public Utilities {
                 isEquil = false;
             }
             
-        } else {
+        } else if (useEquilY && !useDevious){
             
             if (t > equilTime && maxRatio < 1) {  // population condition
                 addToEquilibrium();
@@ -3317,6 +3318,13 @@ class ReactionGroup:  public Utilities {
                 isEquil = false;
             }
             
+        } else if (useEquilY && useDevious){
+            
+            if (t > equilTime && (maxRatio < 1 || thisDevious < deviousMax)) {  // dual condition
+                addToEquilibrium();
+            } else {
+                isEquil = false;
+            }
         }
         
         // Set the activity array for each reaction in reaction group to true 
