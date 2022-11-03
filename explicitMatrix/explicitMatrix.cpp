@@ -167,7 +167,7 @@ void displayRGstatus(void);
 //  to read them in and assign them dynamically.
 
 #define ISOTOPES 32                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 162                      // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 160                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -265,7 +265,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -361,8 +361,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-8;//1e-4;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 6e-5;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 1e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -375,7 +375,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-8;//massTol_asyPE;           // Absolute error tolerance
+double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -390,9 +390,9 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = 1e-12;         // Time to begin checking for PE
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.006;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
-bool useDevious = true;          // Use thisDevious (true) of equil pops (false) to set equil
+bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 
 double thisDevious;               // Deviation of kratio from equil
 double mostDevious = 0.0;         // Largest current deviation of kratio from equil

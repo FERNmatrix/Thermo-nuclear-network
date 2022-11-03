@@ -52,8 +52,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,32"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,14"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,14"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -80,7 +80,7 @@ xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -17
-yup = -3
+yup = -4
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
