@@ -106,7 +106,8 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test6P_T9=7_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/plot5dE_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/plot5dE_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/plot5dE_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 
 
 # This calculation

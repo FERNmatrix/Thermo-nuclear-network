@@ -107,7 +107,8 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
-refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 
 # Plot C++ data
