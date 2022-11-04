@@ -389,10 +389,10 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-9;         // Time to begin checking for PE
-double equiTol = 0.006;           // Tolerance for checking whether Ys in RG in equil
+double equilTime = 1e-9;          // Time to begin checking for PE
+double equiTol = 0.007;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
-bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
+bool useDevious = false;           // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
 double thisDevious;               // Deviation of kratio from equil
