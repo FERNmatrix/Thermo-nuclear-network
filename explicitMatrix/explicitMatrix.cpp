@@ -166,8 +166,8 @@ void displayRGstatus(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 32                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 160                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 47                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 288                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -192,13 +192,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_test15P_X0_p=1e-10.inp";
+char networkFile[] = "data/network_test30P.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_test15P.data";
+char rateLibraryFile[] = "data/rateLibrary_test30P.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -265,7 +265,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
+bool doPE = false;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -336,7 +336,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 // last timestep of the previous network integration (for the preceding 
 // hydro timestep). Here we hardwire them for testing purposes.
 // The variable startplot_time allows the plotting interval output
-// in gnu_out/gnufile.data to be a subset of the full integration interval. 
+// in gnu_out/gnufile.data to be a subset of the full15 integration interval. 
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
@@ -361,7 +361,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-9;//1e-2;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 1e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -375,7 +375,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 1e-9;//massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
