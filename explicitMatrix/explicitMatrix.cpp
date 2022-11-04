@@ -192,7 +192,7 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_test15P.inp";
+char networkFile[] = "data/network_test15P_X0_p=1e-11.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
@@ -390,8 +390,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = 1e-9;          // Time to begin checking for PE
-double equiTol = 0.007;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.006;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.21;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;           // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
