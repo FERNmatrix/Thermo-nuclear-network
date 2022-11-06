@@ -158,6 +158,7 @@ void displayRGstatus(void);
  * tidalSN_alpha   16       48     data/network_alpha_he4.inp  data/rateLibrary_alpha.data
  * big bang         8       64     data/network_bigbang.inp    data/rateLibrary_bigbang.data
  * 28              28      104     data/network_28.inp         data/rateLibrary_28.data
+ * 30P             47      283     data/network_test30P.inp    data/rateLibrary_test30P.data
  * ------------------------------------------------------------------------------------------
  */
 
@@ -166,10 +167,10 @@ void displayRGstatus(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 47                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 283                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                // Number of plot output steps
+#define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -192,13 +193,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_test30P.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_test30P.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -265,7 +266,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;           // Whether to use asymptotic approximation
 bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = false;            // Implement partial equilibrium also
+bool doPE = true;            // Implement partial equilibrium also
 bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
 
 string intMethod = "";       // String holding integration method
@@ -343,7 +344,7 @@ double rho_start = 1e8;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e-18;         // Start time for plot output
-double stop_time = 1e-3;               // Stop time for integration
+double stop_time = 1e-2;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -361,8 +362,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-10;//1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 1e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -375,7 +376,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-10;//massTol_asyPE;           // Absolute error tolerance
+double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -389,10 +390,10 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-9;          // Time to begin checking for PE
-double equiTol = 0.006;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.19;         // Max allowed deviation from equil k ratio in timestep
-bool useDevious = false;           // Use thisDevious (true) of equil pops (false) to set equil
+double equilTime = start_time;    // Time to begin checking for PE
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
+bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
 double thisDevious;               // Deviation of kratio from equil

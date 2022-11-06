@@ -1,4 +1,4 @@
-Nov. 5, 2022  branch guidry_debugRG
+Nov. 5, 2022  branch guidry_debugRG hash: a9a49d7
 
 #define ISOTOPES 47                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 283                      // Max number of reactions (e.g. 48 for alpha network)
