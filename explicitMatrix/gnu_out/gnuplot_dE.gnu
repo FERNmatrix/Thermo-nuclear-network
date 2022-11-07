@@ -99,7 +99,7 @@ set grid   # set x-y grid at major ticmarks
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
-refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
@@ -107,7 +107,7 @@ refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
-#refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 
 # This calculation
 

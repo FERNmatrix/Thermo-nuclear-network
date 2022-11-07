@@ -3762,7 +3762,7 @@ class Integrate: public Utilities {
         // to compute the next timestep based on the error observed in the
         // previous timestep.
         
-        static double computeNextTimeStep(double error,double error_D,double dt_old){
+        static double computeNextTimeStep(double error, double error_D, double dt_old){
             
             E_R = error/error_D; 
             
@@ -3865,7 +3865,7 @@ class Integrate: public Utilities {
      // Function Integrate::eulerUpdate(int, double, double, double, double) to update 
      // by the forward Euler method. Returns the updated value of Y.
         
-    static double eulerUpdate(int i,double fplus,double fminus,double y0,double dtt){
+    static double eulerUpdate(int i, double fplus, double fminus, double y0, double dtt){
         
         double newY;
         double dY;
@@ -3880,8 +3880,7 @@ class Integrate: public Utilities {
     // Function Integrate::asymptoticUpdate(int double, double, double, double) to update
     // by the asymptotic method using Sophia He formula. Returns the updated value of Y.
     
-    static double asymptoticUpdate(
-        int i,double fplus,double fminus,double y,double dtt){
+    static double asymptoticUpdate(int i, double fplus, double fminus, double y, double dtt){
         
         double newY = (y + fplus*dtt)/(1.0 + fminus*dtt/y);  
         return newY;
@@ -3999,31 +3998,31 @@ class Integrate: public Utilities {
         
         for (int i = 0; i< ISOTOPES; i++) {
 
-                kBar = 0.5 * (keffZero[i] + keff[i]);
-                kdt = kBar * dt;
-                alphaBar = alphaValue(kdt);
-                FplusTilde = alphaBar * FplusSum[i] + (1.0 - alphaBar) * FplusZero[i];
-                Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
-                X[i] = Y[i] * (double)AA[i];
+            kBar = 0.5 * (keffZero[i] + keff[i]);
+            kdt = kBar * dt;
+            alphaBar = alphaValue(kdt);
+            FplusTilde = alphaBar * FplusSum[i] + (1.0 - alphaBar) * FplusZero[i];
+            Y[i] = Y0[i] + ((FplusTilde - kBar * Y0[i]) * dt) / (1 + alphaBar * kdt);
+            X[i] = Y[i] * (double)AA[i];
+            
+            // For reference,keep track of the isotopes that would satisfy the
+            // asymptotic condition if we were using the asymptotic approximation
+            // instead of QSS
+            
+            if (kdt >= 1.0) {
                 
-                // For reference,keep track of the isotopes that would satisfy the
-                // asymptotic condition if we were using the asymptotic approximation
-                // instead of QSS
+                isAsy[i] = true;
+                totalAsy ++;
                 
-                if (kdt >= 1.0) {
-                    
-                    isAsy[i] = true;
-                    totalAsy ++;
-                    
-                } else {
-                    
-                    isAsy[i] = false;
-                    
-                }
+            } else {
                 
-                // Update sum of mass fractions
+                isAsy[i] = false;
                 
-                sumX += X[i];
+            }
+            
+            // Update sum of mass fractions
+            
+            sumX += X[i];
                 
         }
     }
@@ -5096,6 +5095,18 @@ void showParameters(){
     } else {
         printf(" (Partition function correction ignored)");
     }
+    
+    printf("\nPartial equilibrium constraints: useEquilY = %d useDevious = %d", 
+        useEquilY, useDevious);
+    
+    string options = "Energy release ";
+    if(EfromMasses){
+        options += "dE(t) and E(t) computed from mass difference over dt";
+    } else {
+        options += "dE(t) and E(t) computed from Q-values and fluxes";
+    }
+    
+   cout << "\n" << options;
     
     if(hydroProfile){
         printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",
