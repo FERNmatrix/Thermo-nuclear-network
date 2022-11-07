@@ -172,7 +172,7 @@ void networkMassDifference(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                // Number of plot output steps
+#define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -280,10 +280,21 @@ string ts;                    // Utility string
 double T9;                    // Current temperature in units of 10^9 K
 double rho;                   // Current density in units of g/cm^3
 
-// EfromQ = true if energy calculated from Q values; EfromQ = false if energy 
-// is calculated from masses by weighing the network before and after timestep.
+// EfromMasses = false if energy plotted from Q values; EfromMasses = true if energy 
+// is plotted from masses by weighing the network before and after timestep.
+// Generally should be set to EfromMasses = true, since energy from Q values and
+// mass differences are essentially the same for no PE approximation, but
+// for PE approximation the fluxes set to zero are not quite zero in reality
+// so fluxes computed from Q values are increasingly in error as more and
+// more reaction groups come into equilibrium.  Conversely, energies 
+// computed by weighing the network (mass differences weighted by abundances)
+// are approximately in agreement with exact calculations at the same level
+// as the agreement of the abundances. For now we will compute the energies 
+// both ways but by setting EfromMasses = true we will ensure that the more
+// correct energies (E and dE/dt) computed from mass differences are output to 
+// the plotting streams.
 
-/*bool EfromQ = true;*/           
+bool EfromMasses = false;    // Set to true except for testing purposes       
 
 // Energy variables (from Q values)
 
@@ -378,7 +389,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 6e-6;//4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -406,8 +417,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.5;          // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.0001;//0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.01;//0.5;          // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
@@ -4967,22 +4978,22 @@ void plotFileSetup(){
 
 void toPlotNow(){
     
-    // Output to plotfile1 stream -> plot1.data
+    // Output to plotfile1 stream -> plot1.data. 
     
-    fprintf(plotfile1,"\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-        log10(t),log10(dt),log10( abs(ECON*ERelease)),
-        log10( abs(ECON*netdERelease) ),(double)totalAsy/(double)ISOTOPES,
-        (double)totalEquilRG/(double)numberRG,sumX
-    );
-    
-//     fprintf(plotfile1,"\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
-//             log10(t),log10(dt),log10( abs(ECON*ERelease)),
-//             log10( abs(ECON*netdERelease) ),(double)totalAsy/(double)ISOTOPES,
-//             (double)totalEquilRG/(double)numberRG,sumX
-//     );
+    if(EfromMasses){      //  EfromMasses should be true except for testing
+        fprintf(plotfile1,"\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+            log10(t),log10(dt),log10( abs(ECON*EReleaseA)),
+            log10( abs(ECON*dEReleaseA) ),(double)totalAsy/(double)ISOTOPES,
+            (double)totalEquilRG/(double)numberRG,sumX);
+    } else {
+        fprintf(plotfile1,"\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+            log10(t),log10(dt),log10( abs(ECON*ERelease)),
+            log10( abs(ECON*netdERelease) ),(double)totalAsy/(double)ISOTOPES,
+            (double)totalEquilRG/(double)numberRG,sumX);
+    }
     
     // Now add one data field for each X(i) in plotXlist[]. Add
-    // 1e-24 to X in case it is identically zero since we are
+    // GZ = 1e-24 to X in case it is identically zero since we are
     // taking log10.
     
     for(int j=0; j<maxPlotIsotopes; j++){
@@ -5007,7 +5018,7 @@ void toPlotNow(){
         fprintf(plotfile3,"\n%+6.3f %+6.3f",log10(t),log10(dt));
         
         // Now add one data field for each FplusSumPlot. Add
-        // 1e-24 to X in case it is identically zero since we are
+        // GZ = 1e-24 to X in case it is identically zero since we are
         // taking the log.
         
         for(int j=0; j<maxPlotIsotopes; j++){
@@ -5038,8 +5049,13 @@ void toPlotNow(){
     
     // Output to plotfile5 stream -> plot5.data
     
-    fprintf(plotfile5,"\n%10.4e %10.4e %10.4e %10.4e %10.4e %10.4e %10.4e",
-        t, dt, ECON*netdERelease, ECON*ERelease, T9*1e9, rho, 2.0/fastestCurrentRate);
+    if(EfromMasses){      //  EfromMasses should be true except for testing
+        fprintf(plotfile5,"\n%10.4e %10.4e %10.4e %10.4e %10.4e %10.4e %10.4e",
+            t, dt, ECON*dEReleaseA, ECON*EReleaseA, T9*1e9, rho, 2.0/fastestCurrentRate);
+    } else {
+        fprintf(plotfile5,"\n%10.4e %10.4e %10.4e %10.4e %10.4e %10.4e %10.4e",
+                t, dt, ECON*netdERelease, ECON*ERelease, T9*1e9, rho, 2.0/fastestCurrentRate);
+    }
     
     // Flush the buffers holding output to plotting data files at each plot
     // output step so that plots can be made during a calculation if desired.
@@ -5055,7 +5071,8 @@ void toPlotNow(){
 
 // Function restoreBe8() to convert all 8-Be to alpha particles since lifetime 
 // of 8-Be to decay to two alpha particles is short compared with typical 
-// integration steps.
+// integration steps. Execute at end of integration step if both 8_Be and
+// 4-He are present in the network.
 
 void restoreBe8(){
 

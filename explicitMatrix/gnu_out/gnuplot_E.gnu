@@ -66,7 +66,7 @@ set key bottom right inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha+6PG"
+ds="C++ Asy+PE alpha"
 ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color

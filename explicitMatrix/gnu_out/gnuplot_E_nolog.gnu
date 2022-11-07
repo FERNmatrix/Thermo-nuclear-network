@@ -66,7 +66,7 @@ set key top left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha+6PG"
+ds="C++ Asy+PE alpha"
 ds = ds.": T9=7 rho=1e8"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -78,12 +78,12 @@ set timestamp
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -18
-xup = -8
+xup = -2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1e17
-yup = 6e17 #9e17
+yup = 4e17 #9e17
 ytics = 1e17      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -101,14 +101,14 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test6P_T9=7_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
 
 
 # This calculation
@@ -116,8 +116,6 @@ refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
 file1 = "plot5.data"
 
 set title ds textcolor rgb title_color
-
-file1 = "plot5.data"
 
 plot file1 using (log10($1)):4 with lines ls 1 lw 1.5 dashtype 1 title "dE/dt"
 
