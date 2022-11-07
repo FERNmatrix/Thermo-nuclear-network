@@ -5096,10 +5096,11 @@ void showParameters(){
         printf(" (Partition function correction ignored)");
     }
     
+    if(doPE)
     printf("\nPartial equilibrium constraints: useEquilY = %d useDevious = %d", 
         useEquilY, useDevious);
     
-    string options = "Energy release ";
+    string options = "Plot output for energy release ";
     if(EfromMasses){
         options += "dE(t) and E(t) computed from mass difference over dt";
     } else {
