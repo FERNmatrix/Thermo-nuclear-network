@@ -294,7 +294,7 @@ double rho;                   // Current density in units of g/cm^3
 // correct energies (E and dE/dt) computed from mass differences are output to 
 // the plotting streams.
 
-bool EfromMasses = false;    // Set to true except for testing purposes       
+bool EfromMasses = true;    // Set to true except for testing purposes       
 
 // Energy variables (from Q values)
 
@@ -417,7 +417,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.0001;//0.015;           // Tolerance for checking whether Ys in RG in equil
+double equiTol = 0.001;//0.015;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.01;//0.5;          // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
