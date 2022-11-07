@@ -132,6 +132,8 @@ void plotFileSetup(void);
 void toPlotNow(void);
 void updatePF(void);
 void displayRGstatus(void);
+double returnNetworkMass(void);
+void networkMassDifference(void);
 
 /*
  * ------------------------------------------------------------------------------------------
@@ -170,7 +172,7 @@ void displayRGstatus(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                // Number of plot output steps
+#define plotSteps 100                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -251,7 +253,7 @@ FILE* plotfile5;
 // Control flags for diagnostic output to files. Note that setting showDetails
 // or showDetails2 true may generate large output files (MB to GB for large networks).
 
-bool showAddRemove = true;  // Show addition/removal of RG from equilibrium
+bool showAddRemove = true;   // Show addition/removal of RG from equilibrium
 bool showDetails = false;    // Controls diagnostics to pFileD -> gnu_out/diagnostics.data
 bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network.data
 
@@ -264,25 +266,38 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 // being implemented. It is true only if Asy or QSS, but PE not being
 // implemented.
 
-bool doASY = true;           // Whether to use asymptotic approximation
-bool doQSS = !doASY;         // Whether to use QSS approximation 
-bool doPE = true;            // Implement partial equilibrium also
-bool showPE = !doPE;         // Show RG that would be in equil if doPE=false
+bool doASY = true;            // Whether to use asymptotic approximation
+bool doQSS = !doASY;          // Whether to use QSS approximation 
+bool doPE = true;             // Implement partial equilibrium also
+bool showPE = !doPE;          // Show RG that would be in equil if doPE=false
 
-string intMethod = "";       // String holding integration method
-string ts;                   // Utility string
+string intMethod = "";        // String holding integration method
+string ts;                    // Utility string
 
 // Temperature and density variables. Temperature and density can be
 // either constant, or read from a hydro profile as a function of time.
 
-double T9;                   // Current temperature in units of 10^9 K
-double rho;                  // Current density in units of g/cm^3
+double T9;                    // Current temperature in units of 10^9 K
+double rho;                   // Current density in units of g/cm^3
+
+// EfromQ = true if energy calculated from Q values; EfromQ = false if energy 
+// is calculated from masses by weighing the network before and after timestep.
+
+/*bool EfromQ = true;*/           
 
 // Energy variables (from Q values)
 
 double ERelease;              // Total energy released
 double dERelease;             // Energy released per unit time
 double netdERelease;          // Energy released in timestep
+
+// Energy variables (from mass differences)
+
+double networkMass;           // Total mass in network at end of timestep
+double lastNetworkMass;       // Total network mass at beginning of timestep
+double netdEReleaseA;         // Net energy release in timestep dE from mass diffs
+double dEReleaseA;            // Differential E release dE/dt over timestep from masses
+double EReleaseA;             // Total E released up to this time from masses
 
 // Partition function controls. If dopf = true, reaction rates are
 // corrected by temperature-dependent partition functions.  However
@@ -3590,19 +3605,19 @@ class Integrate: public Utilities {
             
             dE_half2 = dE_halfstep()*dt_half;
             
-            // Compute total energy release for both half steps This 
-            // energy release will be accepted as the result for this
-            // integration step.
-            
-            sumhalves = dE_half1 + dE_half2;
-            ERelease += sumhalves;
-            netdERelease = (sumhalves/2.0) / dt_half;
-            
             // Set time to end of 2nd half step since we are
             // updating populations corresponding to the time
             // at the end of this integration step.
             
             t = t_end; 
+            
+            // Compute total energy release for both half steps based on 
+            // Q-values. This energy release will be accepted as the result for this
+            // integration step.
+            
+            sumhalves = dE_half1 + dE_half2;
+            ERelease += sumhalves;
+            netdERelease = (sumhalves/2.0) / dt_half;
             
             // Estimate the local error associated with the size of the
             // timestep by comparing sumX for full timestep and
@@ -3616,7 +3631,7 @@ class Integrate: public Utilities {
             // error desired to predict a timestep having near the local
             // error desired.
 
-            dt = computeNextTimeStep(Error_Observed,Error_Desired,dt_saved);
+            dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
             
             dtMode = -1;    // Indicates not in the integration step
             
@@ -4349,6 +4364,10 @@ int main() {
             ISOTOPES,numberSpecies);
     }
     
+    // Initialize total mass of network at beginning of integration
+    
+    
+    
     printf("\n\nBEGIN TIME INTEGRATION:\n");
     fprintf(pFileD,"\n\n\n\n                 --- BEGIN TIME INTEGRATION ---\n");
     
@@ -4362,6 +4381,8 @@ int main() {
     plotCounter = 1;            // Plot output counter
     fastestOverallRate = 0.0;   // Initialize fastest overall rate
     timeMaxRate = 0.0;          // Initialize slowest overall rate
+    
+    lastNetworkMass = returnNetworkMass();  // Initialize total mass of network
     
     // Compute initial rates if hydroProfile = false. Rates won't
     // change in the integration and don't need to be computed again.  If either
@@ -4579,6 +4600,11 @@ int main() {
         asyFrac = (double)totalAsy/(double)ISOTOPES;
         eqFrac = (double)totalEquilRG/(double)numberRG;
         
+        // Compute energy release from mass differences
+        
+        networkMassDifference();
+        
+        
         // ---------------------------------------------------------------------------------
         // Display and output to files updated quantities at plotSteps times corresponding
         // to (approximately) equally-spaced intervals in log_10(time). The target output 
@@ -4602,13 +4628,13 @@ int main() {
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
-            ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e E=%6.2e E_R=%6.2e c1=%d";
+            ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
             ts += " c2=%d fast=%d Q=%4.2f dev=%4.2e lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter, iterations, t, dt, dt_desired, totalTimeSteps,
-                   asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease,
-                   ECON*ERelease, E_R, choice1, choice2,
+                   asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease, ECON*dEReleaseA,
+                   ECON*ERelease, ECON*EReleaseA, E_R, choice1, choice2,
                    fastestCurrentRateIndex, reaction[fastestCurrentRateIndex].getQ(),
                    mostDevious, logTnow, logRhoNow
             );
@@ -4949,6 +4975,12 @@ void toPlotNow(){
         (double)totalEquilRG/(double)numberRG,sumX
     );
     
+//     fprintf(plotfile1,"\n%+6.3f %+6.3f %6.3f %6.3f %5.3f %5.3f %5.3f",
+//             log10(t),log10(dt),log10( abs(ECON*ERelease)),
+//             log10( abs(ECON*netdERelease) ),(double)totalAsy/(double)ISOTOPES,
+//             (double)totalEquilRG/(double)numberRG,sumX
+//     );
+    
     // Now add one data field for each X(i) in plotXlist[]. Add
     // 1e-24 to X in case it is identically zero since we are
     // taking log10.
@@ -5086,14 +5118,13 @@ void showParameters(){
 
 
 // Function dE_halfstep() Computes and return dE/dt for a half-step
-// in the integration.
+// in the integration based on Q-values.
 
 double dE_halfstep(){
     
     double dE_half = 0.0;
     for(int i=0; i<SIZE; i++){
         dE_half += reaction[i].getQ() * reaction[i].getflux();
-        //dE_half += reaction[i].getQ() * reaction[i].getflux_true();
     }
     return dE_half;
     
@@ -6394,6 +6425,39 @@ void displayRGstatus(){
         }
         
     }
+    
+}
+
+
+// ------------------------------------------------------------------------
+// Method to return the current total mass (in MeV) of all isotopes in the
+// network.
+// ------------------------------------------------------------------------
+
+double returnNetworkMass() {
+    
+    double sumM = 0;
+    for (int i=0; i<ISOTOPES; i++){
+        sumM += Y[i] * massExcess[i];
+    }
+
+    return sumM;
+}
+
+
+// --------------------------------------------------------------------------
+// Method to calculate energy release by taking difference of network masses
+// before and after timestep. Alternative to summing Q-values. Call at end
+// of timestep. lastNetworkMass holds mass at beginning of timestep.
+// --------------------------------------------------------------------------
+
+void networkMassDifference() {
+    
+    networkMass = returnNetworkMass();
+    netdEReleaseA = (lastNetworkMass - networkMass);
+    dEReleaseA = netdEReleaseA / dt_saved;
+    EReleaseA += netdEReleaseA;
+    lastNetworkMass = networkMass;      // Initialize for next timestep
     
 }
 
