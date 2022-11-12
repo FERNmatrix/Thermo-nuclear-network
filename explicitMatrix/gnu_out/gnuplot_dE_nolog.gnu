@@ -66,22 +66,22 @@ set key bottom left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy CNO extended"
+ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -15 # -11.5
-xup = -2 #-3
+xlow = 0
+xup = 17
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e27 
-yup = 1.7e28 # 3e27
-ytics = 2e27 #1e27      # Space between major y ticmarks
+ylow = -1e1 
+yup = 1.8e5
+ytics = 0.20e5     # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -121,8 +121,8 @@ replot refFile using (log10($1)):3 with lines ls 11 lw 1.5 dashtype 2 title "Ref
 set timestamp font "Arial,16"
 
 set title ds textcolor rgb title_color font "Arial,18"
-#set key bottom left inside font "Arial,18"
-set key top right inside font "Arial,18"
+set key bottom left inside font "Arial,18"
+#set key top right inside font "Arial,18"
 set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'dE/dt (erg/g/s) x 1e24' textcolor rgb tic_color font "Arial,22"
 

@@ -352,7 +352,7 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 0.022;           // Initial temperature in units of 10^9 K
+double T9_start = 0.025;           // Initial temperature in units of 10^9 K
 double rho_start = 100;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
@@ -369,8 +369,8 @@ double rho_start = 100;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e0;         // Start time for plot output
-double stop_time = 1e17;               // Stop time for integration
+double startplot_time = 1e-4;         // Start time for plot output
+double stop_time = 0.8e17;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step

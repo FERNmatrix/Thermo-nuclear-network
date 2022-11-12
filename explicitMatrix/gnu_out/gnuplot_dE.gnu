@@ -61,26 +61,26 @@ set ylabel 'Log |dE/dt (erg/g/s)|' textcolor rgb tic_color #font "Arial,32"
 
 set pointsize 1.5    # Size of the plotted points
 
-set key top inside   # legend
+set key bottom left inside   # legend
 #unset key            # Don't show legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy CNO extended"
+ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = 0
+xup = 17
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 17
-yup = 29
+ylow = -10
+yup = 7
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 

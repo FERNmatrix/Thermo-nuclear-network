@@ -72,8 +72,8 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy CNO extended"
+ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -85,7 +85,7 @@ xup = 17
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -20
+ylow = -16
 yup = 0.5
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -98,7 +98,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-#set grid   # set x-y grid at major ticmarks
+set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 

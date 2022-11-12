@@ -66,8 +66,8 @@ set key top left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE alpha"
-ds = ds.": T9=7 rho=1e8"
+ds="C++ Asy CNO extended"
+ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -77,14 +77,14 @@ set timestamp
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = 0
+xup = 17
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e17
-yup = 4e17 #9e17
-ytics = 1e17      # Space between major y ticmarks
+ylow = 0
+yup = 5e18
+ytics = 0.5e18      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
