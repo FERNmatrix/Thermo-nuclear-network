@@ -80,13 +80,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = -4
+xup = 17
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -16
-yup = 0
+yup = 0.25
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -104,7 +104,7 @@ set grid   # set x-y grid at major ticmarks
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 46    # One minus number species to be plotted
+numberCurves = 15    # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -127,7 +127,8 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize

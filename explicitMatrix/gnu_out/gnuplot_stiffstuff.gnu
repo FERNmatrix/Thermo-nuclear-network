@@ -110,7 +110,8 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 
 # Plot C++ data
 

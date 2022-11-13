@@ -107,7 +107,8 @@ file1 = "plot1.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+#refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 
 plot file1 using 1:2 with lines ls 2 lw 1 dashtype 1 title "dt"
 

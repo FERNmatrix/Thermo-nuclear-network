@@ -74,14 +74,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = 0
+xup = 17
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1e27 
-yup = 2e28
-ytics = 1e27     # Space between major y ticmarks
+ylow = 0 
+yup = 1.8e5
+ytics = 0.5e5     # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -96,7 +96,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
@@ -105,6 +105,7 @@ refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-10_T9=7_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
+refFile = "dataRef/plot5dE_extendedCNO_T9=0.025_rho=100_asyRef.data"
 
 # This calculation
 
