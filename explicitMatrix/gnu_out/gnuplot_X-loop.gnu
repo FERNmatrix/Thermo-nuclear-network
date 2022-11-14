@@ -81,7 +81,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = -4
-xup = 17
+xup = 16
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -104,7 +104,7 @@ set grid   # set x-y grid at major ticmarks
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15    # One minus number species to be plotted
+numberCurves = 14    # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -128,7 +128,8 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
@@ -139,12 +140,12 @@ refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 
 # Present calculation (plotted from file1)
 
-plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
+#plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
+#ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+plot for[i=8 : numberCurves+8] refFile using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
