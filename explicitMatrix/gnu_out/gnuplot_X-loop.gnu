@@ -140,12 +140,12 @@ refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
 
 # Present calculation (plotted from file1)
 
-#plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
-#ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
+plot for[i=8 : numberCurves+8] file1 using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-plot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
 ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
