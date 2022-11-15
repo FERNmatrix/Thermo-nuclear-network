@@ -109,7 +109,8 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/plot5dE_extendedCNO_T9=0.025_rho=100_asyRef.data"
+#refFile = "dataRef/plot5dE_extendedCNO_T9=0.025_rho=100_asyRef.data"
+refFile = "dataRef/plot5dE_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
 
 
 # This calculation
