@@ -369,8 +369,8 @@ double rho_start = 100;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-4;          // Start time for plot output
-double stop_time = 1e17;               // Stop time for integration
+double startplot_time = 1e-5;          // Start time for plot output
+double stop_time = 1e18;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -4555,14 +4555,34 @@ int main() {
         
         // Variable t now holds the time at the end of the timestep just executed.
         
+        // Try removing stiffness associated with beta decay in CNO cycle
+        
+        // 15N
+        
         double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);
-        //double fluxCycle6 = (Flux[25] + Flux[26])/(Flux[14] + Flux[15]);
         double Ycycle6 = fluxCycle6 * Y[5];
         double Yratio6 = Ycycle6/Y[6];
         
-        if(X[0] < 2e-4){
+        // 13C
+        
+        double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);
+        double Ycycle3 = fluxCycle3 * Y[5];
+        double Yratio3 = Ycycle3/Y[3];
+        
+        bool fixCNO = true;
+        double startFixCNO = 6e-5;
+        
+        if(fixCNO && X[0] < startFixCNO){
+            
+            // 15N
+            
             Y[6] = Ycycle6;
             X[6] = Y[6] * 15;
+            
+            // 13C
+            
+            Y[3] = Ycycle3;
+            X[3] = Y[3] * 15;
         }
         
         // Store true sumX before any renormalization.
