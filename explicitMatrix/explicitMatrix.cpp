@@ -1932,8 +1932,8 @@ class Reaction: public Utilities {
         
         // Reaction::computeRate(double,double) to compute rates at T and rho. 
         // The quantity rate is the temperature-dependent part,including a possible 
-        // partition-function correction.  The quantity Rrrate is rate multiplied by
-        // appropriate density and statistical factors,which give units of s^-1.  The 
+        // partition-function correction.  The quantity Rrate is rate multiplied by
+        // appropriate density and statistical factors, which give units of s^-1.  The 
         // flux follows from multiplying Rrate by appropriate abundances Y in computeFlux().
         
         void computeRate(double T9,double rho){
@@ -4554,7 +4554,16 @@ int main() {
         Integrate::doIntegrationStep();
         
         // Variable t now holds the time at the end of the timestep just executed.
-
+        
+        double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);
+        //double fluxCycle6 = (Flux[25] + Flux[26])/(Flux[14] + Flux[15]);
+        double Ycycle6 = fluxCycle6 * Y[5];
+        double Yratio6 = Ycycle6/Y[6];
+        
+        if(X[0] < 2e-4){
+            Y[6] = Ycycle6;
+            X[6] = Y[6] * 15;
+        }
         
         // Store true sumX before any renormalization.
         
@@ -4639,14 +4648,17 @@ int main() {
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
             ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
-            ts += " c2=%d fast=%d Q=%4.2f dev=%4.2e lT=%4.3f lrho=%4.2f";
+            ts += " c2=%d fast=%d Q=%4.2f";
+            //ts += " dev=%4.2e lT=%4.3f lrho=%4.2f";
+            ts += " Ycycle6=%4.2e fluxCycle=%4.2e Yratio6=%4.2e";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter, iterations, t, dt, dt_desired, totalTimeSteps,
                    asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease, ECON*dEReleaseA,
                    ECON*ERelease, ECON*EReleaseA, E_R, choice1, choice2,
                    fastestCurrentRateIndex, reaction[fastestCurrentRateIndex].getQ(),
-                   mostDevious, logTnow, logRhoNow
+                   //mostDevious, logTnow, logRhoNow,
+                   Ycycle6, fluxCycle6, Yratio6
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only
