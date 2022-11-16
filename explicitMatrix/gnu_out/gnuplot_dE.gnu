@@ -66,7 +66,7 @@ set key bottom left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy CNO extended"
+ds="C++ Asy+PE CNO extended (no neutrons)"
 ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -74,8 +74,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0
-xup = 17
+xlow = 9
+xup = 18
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 

@@ -172,7 +172,7 @@ void networkMassDifference(void);
 #define ISOTOPES 15                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 91                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 300                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -268,7 +268,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 bool showPE = !doPE;          // Show RG that would be in equil if doPE=false
 
 string intMethod = "";        // String holding integration method
@@ -388,7 +388,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 2e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-12;//2e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -402,7 +402,7 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 1e-12;//massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
@@ -4555,21 +4555,25 @@ int main() {
         
         // Variable t now holds the time at the end of the timestep just executed.
         
-        // Try removing stiffness associated with beta decay in CNO cycle
+        // Try removing stiffness associated with beta decay in main CNO cycle by 
+        // computing the 15N and 13C populations at equilibrium from the 14N population,
+        // by requiring that in the closed cycle the rates must be equal around the 
+        // cycle at equilibrium. The boolean fixCNO controls whether this fix
+        // is applied.
         
-        // 15N
+        // 15N population
         
         double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);
         double Ycycle6 = fluxCycle6 * Y[5];
         double Yratio6 = Ycycle6/Y[6];
         
-        // 13C
+        // 13C population
         
         double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);
         double Ycycle3 = fluxCycle3 * Y[5];
         double Yratio3 = Ycycle3/Y[3];
         
-        bool fixCNO = true;
+        bool fixCNO = false;
         double startFixCNO = 6e-5;
         
         if(fixCNO && X[0] < startFixCNO){
@@ -4669,16 +4673,14 @@ int main() {
             ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
             ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
             ts += " c2=%d fast=%d Q=%4.2f";
-            //ts += " dev=%4.2e lT=%4.3f lrho=%4.2f";
-            ts += " Ycycle6=%4.2e fluxCycle=%4.2e Yratio6=%4.2e";
+            ts += " dev=%4.2e lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter, iterations, t, dt, dt_desired, totalTimeSteps,
                    asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease, ECON*dEReleaseA,
                    ECON*ERelease, ECON*EReleaseA, E_R, choice1, choice2,
                    fastestCurrentRateIndex, reaction[fastestCurrentRateIndex].getQ(),
-                   //mostDevious, logTnow, logRhoNow,
-                   Ycycle6, fluxCycle6, Yratio6
+                   mostDevious, logTnow, logRhoNow
             );
             
             // Above printf writes to a buffer and the buffer is written to the screen only

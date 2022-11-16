@@ -64,7 +64,7 @@ set pointsize 1.5    # Size of the plotted points
 set key top left inside 
 #unset key            # Don't show legend
 
-ds="C++ Asy CNO extended"
+ds="C++ Asy+PE CNO extended (no neutrons)"
 ds = ds.": T9=0.025 rho=100"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
@@ -75,12 +75,12 @@ set timestamp       # Date/time
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0
-xup = 17
+xup = 18
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1
-yup = 16
+yup = 17
 ytics = 2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
