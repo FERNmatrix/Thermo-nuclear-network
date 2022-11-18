@@ -15,7 +15,7 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
+width = 4
 height = 6
 
 # x-axis resolution
@@ -98,13 +98,13 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 14    # One minus number species to be plotted
+numberCurves = 14     # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -151,16 +151,17 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
-set timestamp font "Arial,16"      # Date/time
+set timestamp font "Arial,12"      # Date/time
 
-set title ds textcolor rgb title_color font "Arial,20"
-set key top right outside font "Arial,15"
+set title ds textcolor rgb title_color font "Arial,14"
+#set key top right outside font "Arial,15"
+#set key bottom left inside font "Arial,15"
 set xlabel 'Log time (s)' textcolor rgb tic_color font "Arial,22"
 set ylabel 'Log X' textcolor rgb tic_color font "Arial,22"
 
 # Plot to postscript file
 
-#unset key
+unset key
 set out "gnuplot_X-loop.eps"    # Output file
 set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
 replot               # Plot to postscript file

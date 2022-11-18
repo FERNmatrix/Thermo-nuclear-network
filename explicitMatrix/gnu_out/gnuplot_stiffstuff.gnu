@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 4.5
-height = 4.5
+width = 4
+height = 2
 
 # x-axis resolution
 set samples 1000
@@ -52,8 +52,8 @@ set bmargin 4  # Bottom margin
 # Set screen display to same aspect ratio as postscript plot
 set size ratio height/width
 
-set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
-set ylabel 'Log dt (s)' textcolor rgb tic_color #font "Arial,32"
+set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,22"
+set ylabel 'Log dt (s)' textcolor rgb tic_color #font "Arial,22"
 
 # Uncomment following to set log or log-log plots
 #set logscale x
@@ -74,14 +74,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0
+xlow = -3
 xup = 18
-xtics = 1    # Space between major x ticmarks
+xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1 
+ylow = -4 
 yup = 17
-ytics = 1      # Space between major y ticmarks
+ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]
@@ -118,11 +118,11 @@ refFile = "dataRef/plot1.data"
 # Plot C++ data
 
 plot file1 using 1:5 with lines ls 1 lw 1.0 dashtype 2 title "log10 2/Rmax"
-replot file1 using 1:2 with lines ls 2 lw 2.0 dashtype 1 title "log10 dt (C++ asy)"
+replot file1 using 1:2 with lines ls 2 lw 1.5 dashtype 1 title "log10 dt (C++ asy)"
 
 # Plot C++ asy reference 
 
-replot refFile using 1:2 with lines ls 5 lw 2.0 dashtype 3 title "log10 dt (C++ asy ref)"
+replot refFile using 1:2 with lines ls 5 lw 1.5 dashtype 2 title "log10 dt (C++ asy ref)"
 
 # Example to offset a curve vertically by factor of 2
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"
@@ -137,13 +137,14 @@ replot file1 using 1:( log10((10**$1)*0.001) ) with lines ls 1 lw 1.0 dashtype 7
 
 # Reset font sizes for .eps and .png output2
 
-set timestamp font "Arial,16"      # Date/time
+set timestamp font "Arial,12"      # Date/time
 
-set title ds textcolor rgb title_color font "Arial,22"
-set key top left inside font "Arial,16"
+set title ds textcolor rgb title_color font "Arial,12"
+#set key top left inside font "Arial,16"
+unset key
 #set key top right outside font "Arial,16"
-set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
-set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,22"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,18"
+set ylabel 'Log dt (s)' textcolor rgb tic_color font "Arial,18"
 
 # Plot to postscript file
 

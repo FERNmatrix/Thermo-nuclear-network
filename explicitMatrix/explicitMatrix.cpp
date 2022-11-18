@@ -172,7 +172,7 @@ void networkMassDifference(void);
 #define ISOTOPES 15                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 91                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 300                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -388,7 +388,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 2e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 3e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -405,6 +405,9 @@ double E_R;                            // Ratio actual to desired error
 double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
+bool fixCNO = true;
+double startFixCNO = 6e-5;
+
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
 // needed because starting PE test too early could lead to bad results.  This is 
@@ -417,8 +420,8 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.018;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.2;          // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.20;          // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
@@ -4572,9 +4575,6 @@ int main() {
         double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);
         double Ycycle3 = fluxCycle3 * Y[5];
         double Yratio3 = Ycycle3/Y[3];
-        
-        bool fixCNO = true;
-        double startFixCNO = 6e-5;
         
         if(fixCNO && X[0] < startFixCNO){
             
