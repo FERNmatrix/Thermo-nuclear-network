@@ -172,7 +172,7 @@ void networkMassDifference(void);
 #define ISOTOPES 15                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 91                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 300                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -388,7 +388,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 3e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 4e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -405,8 +405,8 @@ double E_R;                            // Ratio actual to desired error
 double EpsA = massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
-bool fixCNO = true;
-double startFixCNO = 6e-5;
+bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO
+double startFixCNO = 6e-5;             // Fraction hydrogen mass fraction to start CS
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
