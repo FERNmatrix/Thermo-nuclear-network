@@ -80,12 +80,12 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3
-xup = 18
+xlow = 4
+xup = 20
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -15
+ylow = -18
 yup = 0.25
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 14     # One minus number species to be plotted
+numberCurves = 7     # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -146,8 +146,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
