@@ -370,7 +370,7 @@ double rho_start = 20;        // Initial density in g/cm^3
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
 double startplot_time = 1e4;          // Start time for plot output
-double stop_time = 4e18;               // Stop time for integration
+double stop_time = 5e18;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -3806,7 +3806,7 @@ class Integrate: public Utilities {
         
         static void updatePopulations(double dtt){
 
-            // If using the QSS approximation,apply the QSS approximation 
+            // If using the QSS approximation, apply the QSS approximation 
             // to all isotopes
             
             if(doQSS){
@@ -4724,11 +4724,13 @@ int main() {
     fprintf(pFileD,"\n\nFINAL ABUNDANCES Y AND MASS FRACTIONS X\n");
 
     for(int i=0; i<ISOTOPES; i++){
-        printf("\n%d %s Y=%7.4e X=%7.4e",
-            i,isotope[i].getLabel(),Y[i],X[i]
+        string asylabel = "Asy";
+        if(!isAsy[i]) asylabel = "  ";
+        printf("\n%d %s Y=%7.4e X=%7.4e %s",
+            i, isotope[i].getLabel(), Y[i], X[i], Utilities::stringToChar(asylabel)
         );
-        fprintf(pFileD,"\n%d %s Y=%7.3e X=%7.3e",
-            i,isotope[i].getLabel(),Y[i],X[i]
+        fprintf(pFileD,"\n%d %s Y=%7.3e X=%7.3e %s",
+            i, isotope[i].getLabel(), Y[i], X[i], Utilities::stringToChar(asylabel)
         );
     }
 
