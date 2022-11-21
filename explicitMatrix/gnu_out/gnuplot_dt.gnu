@@ -74,13 +74,13 @@ set timestamp       # Date/time
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0
-xup = 18
+xlow = 4
+xup = 19
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1
-yup = 17
+yup = 18
 ytics = 2      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 

@@ -81,12 +81,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 4
-xup = 20
+xup = 19
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -18
-yup = 0.25
+ylow = -16
+yup = 0.5
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -98,7 +98,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-#set grid   # set x-y grid at major ticmarks
+set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
