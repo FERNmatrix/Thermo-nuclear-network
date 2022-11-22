@@ -122,6 +122,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_CNO_T9=0.02_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
@@ -130,7 +131,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/plot1.data"
+
 
 # Loop to plot X for numberCurves isotopes output from 
 # explicitMatrix.cpp -> gnu_out/plot1.data.  There are modsize
@@ -146,8 +147,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 

@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 1
+xlow = 4
 xup = 18
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = 0 
-yup = 1.8e5
+yup = 1200
 ytics = 0.5e5     # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -107,7 +107,7 @@ set grid   # set x-y grid at major ticmarks
 #refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/plot5dE_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/plot5.data"
+refFile = "dataRef/plot5dE_CNO_T9=0.02_rho=20.data"
 
 # This calculation
 
