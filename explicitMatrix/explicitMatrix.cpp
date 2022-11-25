@@ -172,7 +172,7 @@ void networkMassDifference(void);
 #define ISOTOPES 8                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 22                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 1000                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -369,8 +369,8 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e4;          // Start time for plot output
-double stop_time = 1e19;//5e18;               // Stop time for integration
+double startplot_time = 1e4;           // Start time for plot output
+double stop_time = 4e19;//5e18;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -388,7 +388,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-11;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 6e-8;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -402,11 +402,15 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 1e-11;//massTol_asyPE;           // Absolute error tolerance
+double EpsA = 6e-8;//massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
-bool fixCNO = false;                    // Whether to apply cycle stabilization (CS) to CNO
-double startFixCNO = 6e-5;             // Fraction hydrogen mass fraction to start CS
+// Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
+
+bool fixCNO = false;                    // Whether to apply cycle stabilization (CS) to CNO 
+bool fixingCNO_now = false;            // Whether CS being applied at this timestep
+double startX_fixCNO = 1e-5;           // Fraction hydrogen mass fraction to start CS
+double startX_fixCNO_time;             // Time when startX_fixCNO reached for H mass fraction
 
 // equilTime is time to begin imposing partial equilibrium if doPE=true. Hardwired but 
 // eventually should be determined by the program.  In the Java version this was sometimes
@@ -3646,7 +3650,6 @@ class Integrate: public Utilities {
             // error desired.
 
             dt = computeNextTimeStep(Error_Observed, Error_Desired, dt_saved);
-            
             dtMode = -1;    // Indicates not in the integration step
             
         }    // End of doIntegrationStep
@@ -3699,8 +3702,11 @@ class Integrate: public Utilities {
                 totalIterations ++;
                 
                 if(iterations == maxit){
-                    printf("\n\n*** HALTING: dt iterations this step = maxit = %d\n\n", 
-                           iterations);
+                    printf("\n\n*** HALT: t=%6.3es dt_iterate=%6.3es; iterations=maxit=%d", 
+                        t, dt, iterations);
+                    if(fixCNO) printf("\n          fixingCNO_now=%d startX_fixCNO_time=%6.3es", 
+                        fixingCNO_now, startX_fixCNO_time);
+                    printf("\n\n");
                     exit(1);
                 }
             }
@@ -4562,21 +4568,28 @@ int main() {
         // computing the 15N and 13C populations at equilibrium from the 14N population,
         // by requiring that in the closed cycle the rates must be equal around the 
         // cycle at equilibrium. The boolean fixCNO controls whether this fix
-        // is applied.
+        // is applied if X[H] < startX_fixCNO.
         
         // 15N population
         
-        double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);
+        double fluxCycle6 = (Rate[17] + Rate[18])/(Rate[10] + Rate[11]);    // CNO
+        //double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);  // extended CNO
         double Ycycle6 = fluxCycle6 * Y[5];
         double Yratio6 = Ycycle6/Y[6];
         
         // 13C population
         
-        double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);
+        double fluxCycle3 = (Rate[17] + Rate[18])/(Rate[12] + Rate[13]);  // CNO
+        //double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);  // extended CNO
         double Ycycle3 = fluxCycle3 * Y[5];
         double Yratio3 = Ycycle3/Y[3];
         
-        if(fixCNO && X[0] < startFixCNO){
+        if(fixCNO && X[0] < startX_fixCNO){
+            
+            if(!fixingCNO_now){
+                startX_fixCNO_time = t;
+                fixingCNO_now = true;
+            }
             
             // 15N
             
@@ -5143,7 +5156,13 @@ void showParameters(){
         options += "dE(t) and E(t) computed from Q-values and fluxes";
     }
     
-   cout << "\n" << options;
+    cout << "\n" << options;
+   
+    if(fixCNO){
+        printf("\nCNO cycle fix used; startX_fixCNO = %5.2e", startX_fixCNO);
+        if(totalTimeSteps > 0)
+            printf(" Cycle fix started at t=%6.3e s", startX_fixCNO_time);
+    }
     
     if(hydroProfile){
         printf("\nmassTol_asy=%5.2e massTol_PE=%5.2e\nsf=%5.2e equiTol=%5.2e equilTime=%5.2e",

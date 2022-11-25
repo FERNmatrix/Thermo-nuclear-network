@@ -74,13 +74,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 4
+xlow = 5
 xup = 20
 xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -4 
-yup = 19
+ylow = 4 
+yup = 19.6
 ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -105,6 +105,7 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  # viktorProfile_400 ref
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 #refFile = "dataRef/gnufile_28_T9=6_rho=1e8_asyRef_c++.data"
+refFile = "dataRef/gnufile_CNO_T9=0.02_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_test1P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test6P_T9=7_rho=1e8_asyRef_c++.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-11_T9=7_rho=1e8_asyRef.data"
@@ -113,7 +114,6 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/plot1.data"
 
 # Plot C++ data
 
