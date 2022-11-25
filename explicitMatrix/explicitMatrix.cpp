@@ -136,6 +136,7 @@ double returnNetworkMass(void);
 void networkMassDifference(void);
 bool checkForCNOCycle(void);
 void correctCNOCycle(void);
+void indexCNOCycle(void);
 
 /*
  * ------------------------------------------------------------------------------------------
@@ -1010,7 +1011,7 @@ class Utilities{
         // vector index given Z and N for the isotope.  Returns -1 if no match.
         // -------------------------------------------------------------------------
         
-        static int returnNetIndexZN(int z,int n) {
+        static int returnNetIndexZN (int z, int n) {
             
             for (int i = 0; i < numberSpecies; i++) {
                 if (Z[i] == z && N[i] == n) return i;
@@ -1039,7 +1040,7 @@ class Utilities{
         
         // ----------------------------------------------------------------------
         // Static function Utilities::isInNet(Z, N) to return true if given (Z, N) 
-        // is in the network,false otherwise.
+        // is in the network, false otherwise.
         // ----------------------------------------------------------------------
         
         static bool isInNet(int Z, int N) {
@@ -1049,6 +1050,26 @@ class Utilities{
             } else {
                 return true;
             }
+        }
+        
+        
+        static int returnReacIndexBySymbol(char* symbol){
+            
+            int result;
+            for (int i = 0; i < SIZE; i++) {
+                result = strcmp(reacLabel[i], symbol);
+                if (result == 0){
+                    return i;
+                }
+            }
+            return -1;
+        
+//             bool checker = false;
+//             if(symbol == "p+n15-->he4+c12") checker = true;
+//             
+//             return checker;
+            
+            
         }
         
         
@@ -4402,7 +4423,26 @@ int main() {
             ISOTOPES,numberSpecies);
     }
     
-    // Initialize total mass of network at beginning of integration
+    // Treat CNO closed cycle
+    
+    if(CNOinNetwork = checkForCNOCycle()){
+        
+        printf("\n\n+++++We have CNO CNOinNetwork=%d", CNOinNetwork);
+        
+        indexCNOCycle();
+        
+        int isosymb = Utilities::returnNetIndexSymbol(isoLabel[1]);
+        printf("\nreturnNetIndexSymbol: index=%d %s", isosymb, isoLabel[1]);
+        
+        int reacy = Utilities::returnNetIndexSymbol(*reacLabel+1);
+        
+        //charArrayToString(isoLabel[indy],isoLen)
+        
+        string sreacy = Utilities::charArrayToString(reacLabel[1], LABELSIZE);
+        
+        printf("\n %s %s", Utilities::stringToChar(sreacy), reacLabel[1]);
+        cout << "\nreac=" << reacLabel[1];
+    }
     
     
     
@@ -6588,7 +6628,7 @@ bool checkForCNOCycle(){
 // Find the isotopic index for the CNO isotopes and the reaction index 
 // for relevant reactions in the main CNO dycle
 
-void indexCNOcycle(){
+void indexCNOCycle(){
     
     // Index the CNO isotopes
     
@@ -6599,7 +6639,18 @@ void indexCNOcycle(){
     index15O = Utilities::returnNetIndexZN(8, 7);
     index15N = Utilities::returnNetIndexZN(7, 8);
     
+    printf("\n indexCNOCycle: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d", 
+        index12C, index13N, index13C, index14N, index15O, index15N);
+    
     // Index relevant reactions in main CNO cycle (each has two components)
+    
+    int isThere;
+    
+    //for (int i=0; i<SIZE; i++){
+        char match[] = "p+n15-->he4+c12";
+        isThere = Utilities::returnReacIndexBySymbol(match);
+        printf("\nReactions: reacLabel[i]=%s match=%d", reacLabel[isThere], isThere);
+    //}
     
     
 }
