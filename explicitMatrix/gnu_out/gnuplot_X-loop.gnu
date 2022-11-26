@@ -86,8 +86,8 @@ xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -15
-yup = 0.5
-ytics = 2    # Space between major y ticmarks
+yup = 0.25
+ytics = 1    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -98,13 +98,13 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # -------- Axis ranges and ticmarks -----------
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 7     # One minus number species to be plotted
+numberCurves = 14     # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)

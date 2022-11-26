@@ -391,7 +391,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 3e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 5e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -416,7 +416,8 @@ bool fixingCNO_now = false;            // Whether CS being applied at this times
 double startX_fixCNO = 6e-5;           // Fraction hydrogen mass fraction to start CS
 double startX_fixCNO_time;             // Time when startX_fixCNO reached for H mass fraction
 
-// Isotopic index for CNO isotopes. Set in function indexCNOcycle().
+// Isotopic index for CNO isotopes. Set in function indexCNOcycle()
+// if fixCNO is true.
 
 int index12C;
 int index13N;
@@ -428,7 +429,8 @@ int index1H;
 int index4He;
 
 // Reaction index for relevant CNO main cycle reactions. Each reaction has two
-// components, so make 2D arrays initialized to -1.
+// components, so make 2D arrays initialized to -1. Set in function indexCNOcycle()
+// if fixCNO is true.
 
 int index14N_pgamma[] = {-1, -1};
 int index13C_pgamma[] = {-1, -1};
@@ -3912,6 +3914,10 @@ class Integrate: public Utilities {
                 updateAsyEuler();
             }
             
+//             if(fixCNO && X[index1H] < startX_fixCNO){
+//                 correctCNOCycle();
+//             }
+            
         }  // End of updatePopulationsa
         
 
@@ -6662,11 +6668,11 @@ bool checkForCNOCycle(){
 }
 
 // Find the isotopic index for the CNO isotopes and the reaction index 
-// for relevant reactions in the main CNO dycle
+// for relevant reactions in the main CNO cycle
 
 void indexCNOCycle(){
     
-    // Index the CNO isotopes
+    // Find indices in the species array for the CNO isotopes
     
     index12C = Utilities::returnNetIndexZN(6, 6);
     index13N = Utilities::returnNetIndexZN(7, 6);
@@ -6680,7 +6686,8 @@ void indexCNOCycle(){
     printf("\n\nIndex CNOIsotopes: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d 1H=%d 4He=%d", 
         index12C, index13N, index13C, index14N, index15O, index15N, index1H, index4He);
     
-    // Index relevant reactions in main CNO cycle (each has two components)
+    // Index relevant charged-particle reactions in main CNO cycle (each 
+    // reaction rate has two components)
 
     bool resultCompare;
     
@@ -6748,20 +6755,6 @@ void indexCNOCycle(){
            symbol3, index15N_pgamma[0], index15N_pgamma[1]);
     
 }
-
-
-// int index12C;
-// int index13N;
-// int index13C;
-// int index14N;
-// int index15O;
-// int index15N;
-// int 1H;
-// int 4He;
-// 
-// int index14N_pgamma[2];
-// int index13C_pgamma[2];
-// int index15N_pgamma[2];
 
 
 // Try removing stiffness associated with beta decay in main CNO cycle by 
