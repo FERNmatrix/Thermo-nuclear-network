@@ -424,6 +424,8 @@ int index13C;
 int index14N;
 int index15O;
 int index15N;
+int index1H;
+int index4He;
 
 // Reaction index for relevant CNO main cycle reactions. Each reaction has two
 // components, so make 2D arrays initialized to -1.
@@ -4653,43 +4655,47 @@ int main() {
         
         // Variable t now holds the time at the end of the timestep just executed.
         
-        // Try removing stiffness associated with beta decay in main CNO cycle by 
-        // computing the 15N and 13C populations at equilibrium from the 14N population,
-        // by requiring that in the closed cycle the rates must be equal around the 
-        // cycle at equilibrium. The boolean fixCNO controls whether this fix
-        // is applied if X[H] < startX_fixCNO.
-        
-        // 15N population
-        
-        //double fluxCycle6 = (Rate[17] + Rate[18])/(Rate[10] + Rate[11]);    // CNO
-        double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);  // extended CNO
-        double Ycycle6 = fluxCycle6 * Y[5];
-        double Yratio6 = Ycycle6/Y[6];
-        
-        // 13C population
-        
-        //double fluxCycle3 = (Rate[17] + Rate[18])/(Rate[12] + Rate[13]);  // CNO
-        double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);  // extended CNO
-        double Ycycle3 = fluxCycle3 * Y[5];
-        double Yratio3 = Ycycle3/Y[3];
-        
-        if(fixCNO && X[0] < startX_fixCNO){
-            
-            if(!fixingCNO_now){
-                startX_fixCNO_time = t;
-                fixingCNO_now = true;
-            }
-            
-            // 15N
-            
-            Y[6] = Ycycle6;
-            X[6] = Y[6] * 15;
-            
-            // 13C
-            
-            Y[3] = Ycycle3;
-            X[3] = Y[3] * 15;
+        if(fixCNO && X[index1H] < startX_fixCNO){
+            correctCNOCycle();
         }
+        
+//         // Try removing stiffness associated with beta decay in main CNO cycle by 
+//         // computing the 15N and 13C populations at equilibrium from the 14N population,
+//         // by requiring that in the closed cycle the rates must be equal around the 
+//         // cycle at equilibrium. The boolean fixCNO controls whether this fix
+//         // is applied if X[H] < startX_fixCNO.
+//         
+//         // 15N population
+//         
+//         //double fluxCycle6 = (Rate[17] + Rate[18])/(Rate[10] + Rate[11]);    // CNO
+//         double fluxCycle6 = (Rate[25] + Rate[26])/(Rate[14] + Rate[15]);  // extended CNO
+//         double Ycycle6 = fluxCycle6 * Y[5];
+//         double Yratio6 = Ycycle6/Y[6];
+//         
+//         // 13C population
+//         
+//         //double fluxCycle3 = (Rate[17] + Rate[18])/(Rate[12] + Rate[13]);  // CNO
+//         double fluxCycle3 = (Rate[25] + Rate[26])/(Rate[18] + Rate[19]);  // extended CNO
+//         double Ycycle3 = fluxCycle3 * Y[5];
+//         double Yratio3 = Ycycle3/Y[3];
+//         
+//         if(fixCNO && X[0] < startX_fixCNO){
+//             
+//             if(!fixingCNO_now){
+//                 startX_fixCNO_time = t;
+//                 fixingCNO_now = true;
+//             }
+//             
+//             // 15N
+//             
+//             Y[6] = Ycycle6;
+//             X[6] = Y[6] * 15;
+//             
+//             // 13C
+//             
+//             Y[3] = Ycycle3;
+//             X[3] = Y[3] * 15;
+//         }
         
         // Store true sumX before any renormalization.
         
@@ -5248,7 +5254,7 @@ void showParameters(){
     cout << "\n" << options;
    
     if(fixCNO){
-        printf("\nCNO cycle fix used; startX_fixCNO = %5.2e", startX_fixCNO);
+        printf("\nCNO cycle fix used: startX_fixCNO = %5.2e", startX_fixCNO);
         if(totalTimeSteps > 0)
             printf(" Cycle fix started at t=%6.3e s", startX_fixCNO_time);
     }
@@ -6668,9 +6674,11 @@ void indexCNOCycle(){
     index14N = Utilities::returnNetIndexZN(7, 7);
     index15O = Utilities::returnNetIndexZN(8, 7);
     index15N = Utilities::returnNetIndexZN(7, 8);
+    index1H = Utilities::returnNetIndexZN(1, 0);
+    index4He = Utilities::returnNetIndexZN(2, 2);
     
-    printf("\n\nIndex CNOIsotopes: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d", 
-        index12C, index13N, index13C, index14N, index15O, index15N);
+    printf("\n\nIndex CNOIsotopes: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d 1H=%d 4He=%d", 
+        index12C, index13N, index13C, index14N, index15O, index15N, index1H, index4He);
     
     // Index relevant reactions in main CNO cycle (each has two components)
 
@@ -6741,8 +6749,6 @@ void indexCNOCycle(){
     
 }
 
-//compareTwoCharArrays(char* char1, char* char2)
-
 
 // int index12C;
 // int index13N;
@@ -6750,13 +6756,52 @@ void indexCNOCycle(){
 // int index14N;
 // int index15O;
 // int index15N;
+// int 1H;
+// int 4He;
 // 
 // int index14N_pgamma[2];
 // int index13C_pgamma[2];
 // int index15N_pgamma[2];
 
 
+// Try removing stiffness associated with beta decay in main CNO cycle by 
+// computing the 15N and 13C populations at equilibrium from the 14N population,
+// by requiring that in the closed cycle the rates must be equal around the 
+// cycle at equilibrium. The boolean fixCNO controls whether this fix
+// is applied if X[H] < startX_fixCNO.
+
 void correctCNOCycle(){
+    
+    // 15N population
+    
+    double Y15Nfac = (Rate[index14N_pgamma[0]] + Rate[index14N_pgamma[1]])
+        /(Rate[index15N_pgamma[0]] + Rate[index15N_pgamma[1]]);
+        
+    double Y15Ncorr = Y15Nfac * Y[index14N];   // Corrected abundance of 15N
+    
+    // 13C population
+    
+    double Y13Cfac = (Rate[index14N_pgamma[0]] + Rate[index14N_pgamma[1]])
+    /(Rate[index13C_pgamma[0]] + Rate[index13C_pgamma[1]]);
+    
+    double Y13Ccorr = Y13Cfac * Y[index14N];   // Corrected abundance of 13C
+
+    // Keep track of when CNO corrections started
+    
+    if(!fixingCNO_now){
+        startX_fixCNO_time = t;
+        fixingCNO_now = true;
+    }
+    
+    // Correct 15N abundances and mass fractions
+    
+    Y[index15N] = Y15Ncorr;
+    X[index15N] = Y[index15N] * 15;
+    
+    // Correct 13C abundances and mass fractions
+    
+    Y[index13C] = Y13Ccorr;
+    X[index13C] = Y[index13C] * 13;
     
 }
 
