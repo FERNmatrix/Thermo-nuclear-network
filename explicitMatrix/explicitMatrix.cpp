@@ -1052,6 +1052,11 @@ class Utilities{
             }
         }
         
+        // ----------------------------------------------------------------------
+        // Static function Utilities::returnReacIndexBySymbol(char* symbol) to 
+        // return the reaction index for the reaction with char array symbol
+        // specifying its symbol.
+        // ----------------------------------------------------------------------
         
         static int returnReacIndexBySymbol(char* symbol){
             
@@ -1063,13 +1068,38 @@ class Utilities{
                 }
             }
             return -1;
+            
+        }
         
-//             bool checker = false;
-//             if(symbol == "p+n15-->he4+c12") checker = true;
-//             
-//             return checker;
+        // Static function Utilities::compareTwoCharArrays(char1, char2) 
+        // to compare the character arrays char1 and char2. Returns 1
+        // (true) if they are equivalent, false (0) if not. Note that
+        // if char1 and char2 are of different lengths this will return
+        // false. To compare a string to a char array, use 
+        // Utilities::stringToChar() to convert the string to a char array.
+        // Example usage:
+        //
+        //    Utilities::compareTwoCharArrays(
+        //       Utilities::stringToChar("p+n15-->he4+c12"), reacLabel[21]
+        //    );
+        //
+        // where reacLabel is an array of character arrays.
+        
+        static bool compareTwoCharArrays(char* char1, char* char2) {
             
+            bool result;
+
+            if(strcmp(char1, char2) == 0) {
+                result = true;
+            } else {
+                result = false;
+            }
             
+//             printf("\nCompare: \"%s\" and %s result=%d", 
+//                 char1, char2, result);
+            
+            return result;
+
         }
         
         
@@ -1157,20 +1187,19 @@ class Utilities{
             return cs;
         }
         
-        // Convert a character array to a string
+        // The static function Utilities::charArrayToString (char* a, int size) takes a
+        // char array of length size and returns a corresponding string.
         
         static string charArrayToString (char* a, int size) {
-            
-            int i;
+
             string s = "";
             
-            for (i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 s = s + a[i];
             }
             
             return s;
         }
-        
         
         // ----------------------------------------------------------------------
         // Static function Utilities::startTimer() to start a timer.  Stop timer
@@ -4427,21 +4456,22 @@ int main() {
     
     if(CNOinNetwork = checkForCNOCycle()){
         
-        printf("\n\n+++++We have CNO CNOinNetwork=%d", CNOinNetwork);
+        //printf("\n\n+++++We have CNO CNOinNetwork=%d", CNOinNetwork);
         
         indexCNOCycle();
         
         int isosymb = Utilities::returnNetIndexSymbol(isoLabel[1]);
-        printf("\nreturnNetIndexSymbol: index=%d %s", isosymb, isoLabel[1]);
+        //printf("\nreturnNetIndexSymbol: index=%d %s", isosymb, isoLabel[1]);
         
         int reacy = Utilities::returnNetIndexSymbol(*reacLabel+1);
         
-        //charArrayToString(isoLabel[indy],isoLen)
-        
         string sreacy = Utilities::charArrayToString(reacLabel[1], LABELSIZE);
         
-        printf("\n %s %s", Utilities::stringToChar(sreacy), reacLabel[1]);
-        cout << "\nreac=" << reacLabel[1];
+        //printf("\n%s %s", Utilities::stringToChar(sreacy), reacLabel[1]);
+        
+        Utilities::compareTwoCharArrays(Utilities::stringToChar("p+n15-->he4+c12"), reacLabel[21]);
+        
+        
     }
     
     
@@ -6639,21 +6669,79 @@ void indexCNOCycle(){
     index15O = Utilities::returnNetIndexZN(8, 7);
     index15N = Utilities::returnNetIndexZN(7, 8);
     
-    printf("\n indexCNOCycle: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d", 
+    printf("\n\nIndex CNOIsotopes: 12C=%d 13N=%d 13C=%d 14N=%d 15O=%d 15N=%d", 
         index12C, index13N, index13C, index14N, index15O, index15N);
     
     // Index relevant reactions in main CNO cycle (each has two components)
+
+    bool resultCompare;
     
-    int isThere;
+    // Find reaction indices for two components of p+n14-->o15
     
-    //for (int i=0; i<SIZE; i++){
-        char match[] = "p+n15-->he4+c12";
-        isThere = Utilities::returnReacIndexBySymbol(match);
-        printf("\nReactions: reacLabel[i]=%s match=%d", reacLabel[isThere], isThere);
-    //}
+    char symbol1[] = "p+n14-->o15";
     
+    for(int i=0; i<SIZE; i++){
+        
+        resultCompare = Utilities::compareTwoCharArrays(symbol1, reacLabel[i]);
+        
+        if(resultCompare){
+            
+            if(index14N_pgamma[0] == -1){
+                index14N_pgamma[0] = i; 
+            } else {
+                index14N_pgamma[1] = i;
+            }
+        }
+        
+    }
+    printf("\nReaction: %s index[0]=%d index[1]=%d", 
+           symbol1, index14N_pgamma[0], index14N_pgamma[1]);
+    
+    // Find reaction indices for two components of p+c13-->n14
+    
+    char symbol2[] = "p+c13-->n14";
+    
+    for(int i=0; i<SIZE; i++){
+        
+        resultCompare = Utilities::compareTwoCharArrays(symbol2, reacLabel[i]);
+        
+        if(resultCompare){
+            
+            if(index13C_pgamma[0] == -1){
+                index13C_pgamma[0] = i; 
+            } else {
+                index13C_pgamma[1] = i;
+            }
+        }
+        
+    }
+    printf("\nReaction: %s index[0]=%d index[1]=%d", 
+           symbol2, index13C_pgamma[0], index13C_pgamma[1]);
+    
+    // Find reaction indices for two components of p+n15-->he4+c12
+    
+    char symbol3[] = "p+n15-->he4+c12";
+    
+    for(int i=0; i<SIZE; i++){
+        
+        resultCompare = Utilities::compareTwoCharArrays(symbol3, reacLabel[i]);
+        
+        if(resultCompare){
+            
+            if(index15N_pgamma[0] == -1){
+                index15N_pgamma[0] = i; 
+            } else {
+                index15N_pgamma[1] = i;
+            }
+        }
+        
+    }
+    printf("\nReaction: %s index[0]=%d index[1]=%d", 
+           symbol3, index15N_pgamma[0], index15N_pgamma[1]);
     
 }
+
+//compareTwoCharArrays(char* char1, char* char2)
 
 
 // int index12C;
