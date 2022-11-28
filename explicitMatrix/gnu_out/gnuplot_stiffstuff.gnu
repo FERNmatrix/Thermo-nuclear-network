@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0
-xup = 19
+xup = 18
 xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -1 
-yup = 18.7
+ylow = -2 
+yup = 17
 ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -123,7 +123,7 @@ replot file1 using 1:2 with lines ls 2 lw 1.5 dashtype 1 title "log10 dt (C++ as
 
 # Plot C++ asy reference 
 
-replot refFile using 1:2 with lines ls 5 lw 1.5 dashtype 2 title "log10 dt (C++ asy ref)"
+#replot refFile using 1:2 with lines ls 5 lw 1.5 dashtype 2 title "log10 dt (C++ asy ref)"
 
 # Example to offset a curve vertically by factor of 2
 #replot file1 using 1:($7+0.301) with lines ls 4 lw 1.0 dashtype 2 title "log10 2*dt-FE"

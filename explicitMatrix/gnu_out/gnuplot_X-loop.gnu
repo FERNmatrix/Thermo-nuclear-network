@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6
-height = 4
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -80,8 +80,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.42
-xup = 19#18.64
+xlow = 7#7.42
+xup = 18.0#19#18.64
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
