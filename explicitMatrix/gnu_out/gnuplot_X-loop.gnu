@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 4.5
-height = 4.5
+height = 4.53
 
 # x-axis resolution
 set samples 1000
@@ -80,14 +80,14 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7#7.42
-xup = 18.0#19#18.64
+xlow = 7.42
+xup = 22
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -18
 yup = 1
-ytics = 1    # Space between major y ticmarks
+ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
 set xrange [xlow : xup]
@@ -148,8 +148,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
