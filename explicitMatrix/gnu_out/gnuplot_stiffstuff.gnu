@@ -75,12 +75,12 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 0
-xup = 18
+xup = 19
 xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -1 
-yup = 17
+yup = 18.7
 ytics = 4      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -113,7 +113,8 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
 
 # Plot C++ data
 

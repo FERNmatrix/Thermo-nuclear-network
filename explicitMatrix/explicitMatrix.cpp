@@ -175,7 +175,7 @@ void indexCNOCycle(void);
 #define ISOTOPES 15                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 91                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                // Number of plot output steps
+#define plotSteps 1000                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -355,8 +355,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 0.025;           // Initial temperature in units of 10^9 K
-double rho_start = 100;        // Initial density in g/cm^3
+double T9_start = 0.020;      // Initial temperature in units of 10^9 K
+double rho_start = 20;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -372,8 +372,8 @@ double rho_start = 100;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-5;           // Start time for plot output
-double stop_time = 1e18;               // Stop time for integration
+double startplot_time = 1e-5;          // Start time for plot output
+double stop_time = 4.13e18;               // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -391,8 +391,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 5e-6;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-6;//5e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 1e-6;//4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -405,15 +405,16 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 5e-12;//massTol_asyPE;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
-bool CNOinNetwork = false;
-bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO 
+bool fixCNO = true;                   // Whether to apply cycle stabilization (CS) to CNO 
+double startX_fixCNO = 1e-6;//6e-5;           // Fraction hydrogen mass fraction to start CS
+
+bool CNOinNetwork = false;             // Whether currently applying CS correction
 bool fixingCNO_now = false;            // Whether CS being applied at this timestep
-double startX_fixCNO = 6e-5;           // Fraction hydrogen mass fraction to start CS
 double startX_fixCNO_time;             // Time when startX_fixCNO reached for H mass fraction
 
 // Isotopic index for CNO isotopes. Set in function indexCNOcycle()
@@ -6784,6 +6785,7 @@ void correctCNOCycle(){
     if(!fixingCNO_now){
         startX_fixCNO_time = t;
         fixingCNO_now = true;
+        printf("\n***** Start CNO fix: time=%5.3e", t);
     }
     
     // Correct 15N abundances and mass fractions
