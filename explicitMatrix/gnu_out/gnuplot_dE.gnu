@@ -79,7 +79,7 @@ xup = 18
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -6
+ylow = -5
 yup = 4
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
@@ -92,7 +92,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # Reference calculation
 

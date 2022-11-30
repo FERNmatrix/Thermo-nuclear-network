@@ -79,9 +79,9 @@ xup = 18
 xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 6 
-yup = 22
-ytics = 4      # Space between major y ticmarks
+ylow = 5 
+yup = 18
+ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 set xrange [xlow : xup]

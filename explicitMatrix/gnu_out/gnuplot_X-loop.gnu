@@ -16,7 +16,7 @@ myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
 width = 4.5
-height = 4.53
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -73,15 +73,15 @@ unset key            # Don't show legend in screen plot (will show in eps)
 set timestamp       # Date/time
 
 ds="C++ Asy+PE CNO extended (no neutrons)"
-ds = ds.": T9=0.025 rho=100"
+ds = ds.": T9=0.020 rho=20"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.42
-xup = 22
+xlow = 4
+xup = 18
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -148,8 +148,8 @@ ls ((i-8)%modsize+1) lw widdy dashtype dasher1 title "(".(i-8).")"
 
 # Reference calculation (plotted from refFile)
 
-#replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
-#ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
+replot for[i=8 : numberCurves+8] refFile using 1:i with lines \
+ls ((i-8)%modsize+1) lw widdy dashtype dasher2 title "ref(".(i-8).")"
 
 # Reset font sizes for .eps and .png output2
 
