@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 4.5
-height = 4.5
+width = 6.5
+height = 3.5
 
 # x-axis resolution
 set samples 2000
@@ -79,7 +79,7 @@ xup = 18
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -5
+ylow = -10
 yup = 4
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
