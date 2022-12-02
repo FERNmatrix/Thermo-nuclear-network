@@ -392,7 +392,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-6;//5e-6;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 6e-6;//4e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 4e-6;//4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -448,7 +448,7 @@ int index15N_pgamma[] = {-1, -1};
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = start_time;    // Time to begin checking for PE
+double equilTime = 1e-4;    // Time to begin checking for PE
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.20;          // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
@@ -688,7 +688,7 @@ double nextPlotTime;                         // Next plot output time
 
 /*
  Class SplineInterpolator to implement 1D cubic spline interpolation. 
- Adapted from algorithms in Numerical Recipes. For 1D interpolations,use 
+ Adapted from algorithms in NumericaaddToEquilibrium()l Recipes. For 1D interpolations,use 
  the method spline to set up an interpolation table and then use the 
  method splint to interpolate in the independent variable.
  The class also makes available the utility function bisection,which 
