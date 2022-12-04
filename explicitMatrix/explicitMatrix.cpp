@@ -372,7 +372,7 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-2;           // Start time for plot output
+double startplot_time = 1e1;           // Start time for plot output
 double stop_time = 3.2e18;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -411,7 +411,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
 bool fixCNO = true;                   // Whether to apply cycle stabilization (CS) to CNO 
-double startX_fixCNO = 1e-5;//6e-5;           // Fraction hydrogen mass fraction to start CS
+double startX_fixCNO = 1e-4;//6e-5;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
 bool fixingCNO_now = false;            // Whether CS being applied at this timestep
@@ -3602,8 +3602,8 @@ class Integrate: public Utilities {
             
             double eqCut = 0.15;
             
-            if(t > 1e4){
-            //if(doPE && eqFrac > eqCut){
+            //if(t > 1e4){
+            if(doPE && eqFrac > eqCut){
                 massTol = massTol_asyPE;  // If enough equilibrated RG
             } else {
                 massTol = massTol_asy;    // If too few equilibrated RG
