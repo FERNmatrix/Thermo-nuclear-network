@@ -271,7 +271,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = true;             // Implement partial equilibrium also
+bool doPE = false;             // Implement partial equilibrium also
 bool showPE = !doPE;          // Show RG that would be in equil if doPE=false
 
 string intMethod = "";        // String holding integration method
@@ -372,8 +372,8 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e4;          // Start time for plot output
-double stop_time = 1e18;               // Stop time for integration
+double startplot_time = 1e-2;           // Start time for plot output
+double stop_time = 3.2e18;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -391,7 +391,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-6;//5e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 4e-6;//5e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-6;//4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -405,13 +405,13 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asyPE;           // Absolute error tolerance
+double EpsA = 4e-6;           // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
 bool fixCNO = true;                   // Whether to apply cycle stabilization (CS) to CNO 
-double startX_fixCNO = 1e-4;//6e-5;           // Fraction hydrogen mass fraction to start CS
+double startX_fixCNO = 1e-5;//6e-5;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
 bool fixingCNO_now = false;            // Whether CS being applied at this timestep
@@ -448,8 +448,8 @@ int index15N_pgamma[] = {-1, -1};
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = 1e-4;    // Time to begin checking for PE
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double equilTime = start_time; //1e-4;    // Time to begin checking for PE
+double equiTol = 0.010;           // Tolerance for checking whether Ys in RG in equil
 double deviousMax = 0.20;          // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
@@ -2721,7 +2721,7 @@ class ReactionGroup:  public Utilities {
     // and getter functions.  Static functions can be called directly from the class
     // without having to instantiate.
     
-    private:
+    public:
         
         static const int maxreac = 10;         // Max possible reactions in this RG instance
         int nspecies[6] = {2,3,4,4,5,6};       // Number isotopic species in 6 RG classes
@@ -3387,20 +3387,29 @@ class ReactionGroup:  public Utilities {
         // Determine if reaction group RG is in equilibrium by computing the fractional
         // difference of the actual and equilibrium abundances for all isotopic species
         // in the reaction group.
-        
+    
+if(t < 1.04e-20) printf("\n\nt=%5.3e",t);
         for (int i = 0; i < niso; i++) {
             
             // Compute absolute value of deviation of abundances from 
             // equilibrium values for this reaction group.
             
-            eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], GZ);
+            if(isoY[i] > 0 && isoYeq[i] > 0){
+                eqcheck[i] = abs( isoY[i] - isoYeq[i] ) / max(isoYeq[i], GZ);
+            } else {
+                eqcheck[i] = 1e24;  // Dummy large number
+            }
             eqRatio[i] = eqcheck[i]/equiTol;
+           
             
             // Store some min and max values for this RG
             
             if (eqRatio[i] < minRatio) minRatio = eqRatio[i];
             if (eqRatio[i] > maxRatio) maxRatio = eqRatio[i];
             if (isoYeq[i] < Yminner) Yminner = isoYeq[i];
+if(t < 1.04e-20) printf("\nRG=%d isEquil=%d i=%d %s isoY[i]=%5.3e isoYeq[i]=%5.3e eqcheck[i]=%5.3e maxRatio=%5.3e",
+    RGn, isEquil, i, isolabel[i], isoY[i], isoYeq[i], eqcheck[i], maxRatio
+);
             
         }
             
@@ -3593,7 +3602,7 @@ class Integrate: public Utilities {
             
             double eqCut = 0.15;
             
-            if(doPE && t > 1e15){
+            if(t > 1e4){
             //if(doPE && eqFrac > eqCut){
                 massTol = massTol_asyPE;  // If enough equilibrated RG
             } else {
