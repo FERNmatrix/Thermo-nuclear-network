@@ -19,7 +19,7 @@ width = 6.5
 height = 3.5
 
 # x-axis resolution
-set samples 2000
+set samples 1000
 
 # Line styles.  
 # For lines: plot x with lines ls 1
@@ -75,7 +75,7 @@ set title ds textcolor rgb title_color
 # -------- Axis ranges and ticmarks -----------
 
 xlow = 4
-xup = 18.3
+xup = 19
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -92,7 +92,7 @@ set yrange[ylow : yup]
 set ytics ylow, ytics, yup
 set mytics minytics   # minor y tics per major tic
 
-set grid   # set x-y grid at major ticmarks
+#set grid   # set x-y grid at major ticmarks
 
 # Reference calculation
 
