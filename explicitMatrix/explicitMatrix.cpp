@@ -175,7 +175,7 @@ void indexCNOCycle(void);
 #define ISOTOPES 15                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 91                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200               // Number of plot output steps
+#define plotSteps 100               // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -372,8 +372,8 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e-1;           // Start time for plot output
-double stop_time = 1e19;//3.2e18;             // Stop time for integration
+double startplot_time = 1e-1;          // Start time for plot output
+double stop_time = 3.2e18;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -391,8 +391,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 5e-12;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-6;//4e-3;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-5;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 4e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -405,12 +405,12 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-12;           // Absolute error tolerance
+double EpsA = 1e-5;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
-bool fixCNO = true;                   // Whether to apply cycle stabilization (CS) to CNO 
+bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO 
 double startX_fixCNO = 1e-4;//6e-5;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
@@ -3875,7 +3875,7 @@ class Integrate: public Utilities {
             
             double maxupdt = 2.0;
             double maxdowndt = 0.5;
-            double dt_MAXFAC = 0.10;
+            double dt_MAXFAC = 0.20;
             
             dtmin = min(dt_new, maxupdt*dt_old);
             dt_new = max( dtmin, maxdowndt*dt_old );
