@@ -15,8 +15,8 @@ mybrown = "#795548"
 myorange = "#ff9800"
 
 # Width and height of postscript figure in inches
-width = 6.5
-height = 3.5
+width = 4.5
+height = 4.5
 
 # x-axis resolution
 set samples 1000
@@ -74,8 +74,8 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 4
-xup = 19
+xlow = 7.4
+xup = 18.2
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -110,7 +110,8 @@ set mytics minytics   # minor y tics per major tic
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_CNO_T9=0.02_rho=20_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 
 # This calculation
 
