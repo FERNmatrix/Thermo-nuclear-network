@@ -372,7 +372,7 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e1;          // Start time for plot output
+double startplot_time = 1e4;           // Start time for plot output
 double stop_time = 3.2e18;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
@@ -391,7 +391,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 5e-12;//4e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 3e-5;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 4e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -405,13 +405,13 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = 5e-12;//4e-6;                    // Absolute error tolerance
+double EpsA = massTol_asy; //4e-6;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
 bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO 
-double startX_fixCNO = 1e-4;//6e-5;           // Fraction hydrogen mass fraction to start CS
+double startX_fixCNO = 2e-4;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
 bool fixingCNO_now = false;            // Whether CS being applied at this timestep
@@ -448,9 +448,9 @@ int index15N_pgamma[] = {-1, -1};
 // universal it may be best to check for equilibration from the beginning of the 
 // calculation. 
 
-double equilTime = start_time; //1e-4;    // Time to begin checking for PE
+double equilTime = start_time;    // Time to begin checking for PE
 double equiTol = 0.010;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.20;          // Max allowed deviation from equil k ratio in timestep
+double deviousMax = 0.20;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
@@ -3875,7 +3875,7 @@ class Integrate: public Utilities {
             
             double maxupdt = 2.0;
             double maxdowndt = 0.5;
-            double dt_MAXFAC = 0.10;
+            double dt_MAXFAC = 0.30;
             
             dtmin = min(dt_new, maxupdt*dt_old);
             dt_new = max( dtmin, maxdowndt*dt_old );

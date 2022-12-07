@@ -80,7 +80,7 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 1
+xlow = 7.42#1
 xup = 18.5
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
@@ -130,8 +130,10 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 
 
 # Loop to plot X for numberCurves isotopes output from 
