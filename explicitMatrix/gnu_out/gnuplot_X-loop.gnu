@@ -80,12 +80,12 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.42#1
-xup = 18.5
+xlow = -18
+xup = -2
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -18
+ylow = -14
 yup = 1
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -115,7 +115,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
-#refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
+refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
 #refFile = "dataRef/nova125D_sumX_1.000.data"  
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
@@ -133,7 +133,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 
 
 # Loop to plot X for numberCurves isotopes output from 

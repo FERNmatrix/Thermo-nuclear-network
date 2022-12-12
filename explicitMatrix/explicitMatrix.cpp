@@ -173,7 +173,7 @@ void indexCNOCycle(void);
 //  to read them in and assign them dynamically.
 
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 134                      // Max number of reactions (e.g. 48 for alpha network)
+#define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
 #define plotSteps 200                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
@@ -198,13 +198,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_cnoAll.inp";
+char networkFile[] = "data/network_alpha.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_cnoAll.data";
+char rateLibraryFile[] = "data/rateLibrary_alpha.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -271,7 +271,7 @@ bool showDetails2 = false;   // Controls diagnostics to pfnet -> gnu_out/network
 
 bool doASY = true;            // Whether to use asymptotic approximation
 bool doQSS = !doASY;          // Whether to use QSS approximation 
-bool doPE = false;             // Implement partial equilibrium also
+bool doPE = true;             // Implement partial equilibrium also
 bool showPE = !doPE;          // Show RG that would be in equil if doPE=false
 
 string intMethod = "";        // String holding integration method
@@ -355,8 +355,8 @@ bool isotopeInEquilLast[ISOTOPES];
 // constant values for testing purposes, or read in a temperature and density
 // hydro profile if hydroProfile is true.
 
-double T9_start = 0.020;      // Initial temperature in units of 10^9 K
-double rho_start = 20;        // Initial density in g/cm^3
+double T9_start = 7;      // Initial temperature in units of 10^9 K
+double rho_start = 1e8;        // Initial density in g/cm^3
 
 // Integration time data. The variables start_time and stop_time 
 // define the range of integration (all time units in seconds),
@@ -372,8 +372,8 @@ double rho_start = 20;        // Initial density in g/cm^3
 
 double start_time = 1e-20;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time = 1e4;           // Start time for plot output
-double stop_time = 3.2e18;             // Stop time for integration
+double startplot_time = 1e-18;           // Start time for plot output
+double stop_time = 1e-2;             // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -391,8 +391,8 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-6;           // Tolerance param if some reactions equilibrated
+double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
+double massTol_asyPE = 4e-3;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -405,12 +405,12 @@ double maxIterationTime;               // Time where mostIterationsPerStep occur
 double Error_Observed;                 // Observed integration error
 double Error_Desired;                  // Desired max local integration error
 double E_R;                            // Ratio actual to desired error
-double EpsA = massTol_asy; //4e-6;                    // Absolute error tolerance
+double EpsA = massTol_asyPE;                    // Absolute error tolerance
 double EpsR = 2.0e-4;                  // Relative error tolerance (not presently used)
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
-bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO 
+bool fixCNO = false;                    // Whether to apply cycle stabilization (CS) to CNO 
 double startX_fixCNO = 2e-4;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
@@ -449,8 +449,8 @@ int index15N_pgamma[] = {-1, -1};
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.010;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.20;         // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.50;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
@@ -3875,7 +3875,7 @@ class Integrate: public Utilities {
             
             double maxupdt = 2.0;
             double maxdowndt = 0.5;
-            double dt_MAXFAC = 0.30;
+            double dt_MAXFAC = 0.1;
             
             dtmin = min(dt_new, maxupdt*dt_old);
             dt_new = max( dtmin, maxdowndt*dt_old );
@@ -4796,13 +4796,15 @@ int main() {
             // Output to screen for this plot step
             
             ts = "\n%d it=%d t=%6.2e dt=%6.2e dt'=%6.2e int=%d asy=%4.2f ";
-            ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
+            ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dEA*dt=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
+            //ts += "eq=%4.2f sX=%-4.3f Xfac=%-4.3f dE=%6.2e dEA=%6.2e E=%6.2e EA=%6.2e E_R=%6.2e c1=%d";
             ts += " c2=%d fast=%d Q=%4.2f";
             ts += " dev=%4.2e lT=%4.3f lrho=%4.2f";
             
             printf(Utilities::stringToChar(ts),
                    plotCounter, iterations, t, dt, dt_desired, totalTimeSteps,
-                   asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease, ECON*dEReleaseA,
+                   asyFrac, eqFrac, sumX, XcorrFac, ECON*dEReleaseA*dt, ECON*dEReleaseA,
+                   //asyFrac, eqFrac, sumX, XcorrFac, ECON*netdERelease, ECON*dEReleaseA,
                    ECON*ERelease, ECON*EReleaseA, E_R, choice1, choice2,
                    fastestCurrentRateIndex, reaction[fastestCurrentRateIndex].getQ(),
                    mostDevious, logTnow, logRhoNow
