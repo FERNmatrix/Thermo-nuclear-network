@@ -175,7 +175,7 @@ void indexCNOCycle(void);
 #define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
 #define SIZE 48                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 200                 // Number of plot output steps
+#define plotSteps 100                 // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -450,7 +450,7 @@ int index15N_pgamma[] = {-1, -1};
 
 double equilTime = start_time;    // Time to begin checking for PE
 double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.50;         // Max allowed deviation from equil k ratio in timestep
+double deviousMax = 0.5;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
