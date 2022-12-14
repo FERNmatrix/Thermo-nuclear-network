@@ -392,7 +392,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
 double massTol_asy = 1e-2;             // Tolerance param if no reactions equilibrated
-double massTol_asyPE = 4e-4;           // Tolerance param if some reactions equilibrated
+double massTol_asyPE = 6e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
 double sf = 1e25;                      // dt_FE = sf/fastest rate
@@ -449,8 +449,8 @@ int index15N_pgamma[] = {-1, -1};
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.2;         // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.01;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
