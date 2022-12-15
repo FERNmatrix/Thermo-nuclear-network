@@ -66,16 +66,16 @@ set key bottom left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE CNO extended (no neutrons)"
-ds = ds.": T9=0.025 rho=100"
+ds="C++ Asy CNO extended "
+ds = ds.": T9=0.020 rho=20"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -14
-xup = -3
+xlow = 7.4
+xup = 18.5
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -85,7 +85,7 @@ minxtics = 5  # Number minor x tics
 #xtics = 1     # Space between major x ticmarks
 #minxtics = 5  # Number minor x tics
 
-ylow = -6e15
+ylow = -2e15
 yup = 1.2e16
 ytics = 2e15     # Space between major y ticmarks
 minytics = 5   # Number minor y tics
@@ -108,7 +108,7 @@ set grid   # set x-y grid at major ticmarks
 
 # Reference calculations
 
-refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
+#refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_nova125D_asyC++_1000.data"
 #refFile = "dataRef/plot5dE_70_T9=6_rho=1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test1P_T9=7_rho=1e8_asyC++.data"
@@ -119,7 +119,7 @@ refFile = "dataRef/plot5dE_alpha_T9_7_rho_1e8_asyC++.data"
 #refFile = "dataRef/plot5dE_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/plot5dE_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/plot5dE_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-#refFile = "dataRef/plot5dE_extendedCNO_T9=0.02_rho=20.data"
+refFile = "dataRef/plot5dE_extendedCNO_T9=0.02_rho=20.data"
 
 # This calculation
 

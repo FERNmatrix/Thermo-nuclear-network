@@ -66,21 +66,21 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy+PE CNO extended (no neutrons)"
-ds = ds.": T9=0.025 rho=100"
+ds="C++ Asy CNO extended "
+ds = ds.": T9=0.020 rho=20"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -18
-xup = -2
+xlow = 7.4
+xup = 18.3
 xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -18 
-yup = -3
+ylow = 6 
+yup = 18
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
@@ -114,7 +114,8 @@ file1 = "plot2.data"     # C++ asy
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
+refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 
 # Plot C++ data
 
