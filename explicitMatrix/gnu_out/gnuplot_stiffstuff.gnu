@@ -66,21 +66,21 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy CNO extended "
-ds = ds.": T9=0.020 rho=20"
+ds="C++ Asy nova134 "
+ds = ds.": nova125D profile"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.4
-xup = 18.3
-xtics = 1    # Space between major x ticmarks
+xlow = -3
+xup = 7
+xtics = 2    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 6 
-yup = 18
+ylow = -8 
+yup = 6
 ytics = 2      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 

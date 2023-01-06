@@ -66,8 +66,8 @@ set key bottom right inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy CNO extended "
-ds = ds.": T9=0.020 rho=20"
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile_400.inp"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
@@ -75,13 +75,13 @@ set title ds textcolor rgb title_color
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.4
-xup = 18.5
+xlow = -5
+xup = 6
 xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = 10
-yup = 20
+ylow = 9
+yup = 19
 ytics = 1      # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -100,7 +100,7 @@ set mytics minytics   # minor y tics per major tic
 
 set title ds textcolor rgb title_color
 
-#refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
+refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data"  # Reference data
 #refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
@@ -114,7 +114,7 @@ set title ds textcolor rgb title_color
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 
 file1 = "plot1.data"
 
