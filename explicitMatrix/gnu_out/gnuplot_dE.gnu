@@ -96,7 +96,7 @@ set mytics minytics   # minor y tics per major tic
 
 # Reference calculation
 
-#refFile =  "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
+#refFile = "dataRef/gnufile_150_viktorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"
 #refFile = "dataRef/nova125D_sumX_1.000.data"   # Ref asy calc with massTol=1e-7
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"

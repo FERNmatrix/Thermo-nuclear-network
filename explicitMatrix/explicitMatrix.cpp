@@ -6,8 +6,8 @@
  * 
  * [may need to install gsl-devel development package (on Fedora this required
  * dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
- * In this compile command the -o specifies thse name of the executable created in the
- * compile,the -lgsl flag links to GSL libraries,the -lgslcblas flag
+ * In this compile command the -o specifies the name of the executable created in the
+ * compile, the -lgsl flag links to GSL libraries,the -lgslcblas flag
  * links to GSL BLAS libraries, the -lm flag may be required in GCC Linux to get the 
  * math.h header to work for defining pow, exp, log,... (see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx),
@@ -391,7 +391,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 1.6e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 7e-7;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 6e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -449,8 +449,8 @@ int index15N_pgamma[] = {-1, -1};
 // calculation. 
 
 double equilTime = start_time;    // Time to begin checking for PE
-double equiTol = 0.001;           // Tolerance for checking whether Ys in RG in equil
-double deviousMax = 0.01;         // Max allowed deviation from equil k ratio in timestep
+double equiTol = 0.015;           // Tolerance for checking whether Ys in RG in equil
+double deviousMax = 0.2;         // Max allowed deviation from equil k ratio in timestep
 bool useDevious = false;          // Use thisDevious (true) of equil pops (false) to set equil
 bool useEquilY = true;            // Use equilibrium values of Y to impose PE
 
