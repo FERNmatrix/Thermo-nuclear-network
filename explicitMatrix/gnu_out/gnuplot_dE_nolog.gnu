@@ -66,16 +66,16 @@ set key bottom left inside   # legend
 
 set timestamp       # Date/time
 
-ds="C++ Asy CNO extended "
-ds = ds.": T9=0.020 rho=20"
+ds="C++ Asy nova134"
+ds = ds.": nova125DProfile_400.inp"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 7.4
-xup = 18.5
+xlow = -5
+xup = 6
 xtics = 2     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
@@ -86,8 +86,8 @@ minxtics = 5  # Number minor x tics
 #minxtics = 5  # Number minor x tics
 
 ylow = -1e2
-yup = 1200
-ytics = 1e3     # Space between major y ticmarks
+yup = 6e16
+ytics = 1e16     # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
 ## inset plot
