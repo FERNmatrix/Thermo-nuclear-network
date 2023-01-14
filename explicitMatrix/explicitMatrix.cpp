@@ -156,6 +156,7 @@ void indexCNOCycle(void);
  * nova134        134     1566     data/network_nova134.inp    data/rateLibrary_nova134.data
  * 150 (12C-16O)  150     1604     data/network_150.inp        data/rateLibrary_150.data
  * 150 (solar)    150     1604     data/network_150_solar.inp  data/rateLibrary_150.data
+ * 150 (he4)      150     1604     data/network_150_he4.inp    data/rateLibrary_150.data
  * 194            194     2232     network_194.inp             data/rateLibrary_194.data
  * 268            268     3175     network_268.inp             data/rateLibrary_268.data
  * 365 (12C-16O)  365     4395     data/network_365.inp        data/rateLibrary_365.data
@@ -172,10 +173,10 @@ void indexCNOCycle(void);
 //  of isotopes in each network.  These sizes are hardwired for now but eventually we may want 
 //  to read them in and assign them dynamically.
 
-#define ISOTOPES 16                   // Max isotopes in network (e.g. 16 for alpha network)
-#define SIZE 134                      // Max number of reactions (e.g. 48 for alpha network)
+#define ISOTOPES 150                   // Max isotopes in network (e.g. 16 for alpha network)
+#define SIZE 1604                      // Max number of reactions (e.g. 48 for alpha network)
 
-#define plotSteps 100                 // Number of plot output steps
+#define plotSteps 200                // Number of plot output steps
 #define LABELSIZE 35                  // Max size of reaction string a+b>c in characters
 #define PF 24                         // Number entries partition function table for isotopes
 #define THIRD 0.333333333333333
@@ -198,13 +199,13 @@ FILE* pfnet;
 // output by the Java code through the stream toCUDAnet has the expected format 
 // for this file. Standard filenames for test cases are listed in table above.
 
-char networkFile[] = "data/network_cnoAll.inp";
+char networkFile[] = "data/network_150_he4.inp";
 
 // Filename for input rates library data. The file rateLibrary.data output by 
 // the Java code through the stream toRateData has the expected format for this 
 // file.  Standard filenames for test cases are listed in table above.
 
-char rateLibraryFile[] = "data/rateLibrary_cnoAll.data";
+char rateLibraryFile[] = "data/rateLibrary_150.data";
 
 // Whether to use constant T and rho (hydroProfile false), in which case a
 // constant T9 = T9_start and rho = rho_start are used, or to read
@@ -212,7 +213,7 @@ char rateLibraryFile[] = "data/rateLibrary_cnoAll.data";
 // in which case the file to be read in is specified by the character variable 
 // hydroFile[].
 
-bool hydroProfile = false; 
+bool hydroProfile = true; 
 
 // Filename for input file containing a hydro profile in temperature
 // and density that is used if hydroProfile = true. Sample hydro profile 
@@ -227,13 +228,13 @@ bool hydroProfile = false;
 // density in the calculation is also output to the file gnu_out/hydroProfileInput.data
 // in format suitable for gnuplot.
 
-char hydroFile[] = "data/nova125DProfile_400.inp";
+char hydroFile[] = "data/tidalSNProfile_400.inp"; //"data/rosswog.profile";
 
 // Control output of hydro profile (if one is used) to plot file.
 
 static const bool plotHydroProfile = true;
 
-const static int maxHydroEntries = 403; // Max entries hydro profile
+const static int maxHydroEntries = 413; //2622; // Max entries hydro profile
 
 // Control printout of flux data (true to print, false to suppress).
 // Lots of data, so most useful for small networks.
@@ -370,10 +371,10 @@ double rho_start = 100;        // Initial density in g/cm^3
 // Generally, startplot_time > start_time.  By default the stop time for
 // plotting is the same as the stop time for integration, stop_time.
 
-double start_time = 1e-20;             // Start time for integration
+double start_time = 6.5;             // Start time for integration
 double logStart = log10(start_time);   // Base 10 log start time
-double startplot_time =  2.6e-7;         // Start time for plot output
-double stop_time = 3e18;                // Stop time for integration
+double startplot_time =  6.6;         // Start time for plot output
+double stop_time = 10;                // Stop time for integration
 double logStop = log10(stop_time);     // Base-10 log stop time5
 double dt_start = 0.01*start_time;     // Initial value of integration dt
 double dt_saved;                       // Full timestep used for this int step
@@ -391,7 +392,7 @@ double dt_EA = dt_start;               // Max asymptotic timestep
 
 int dtMode;                            // Dual dt stage (0=full, 1=1st half, 2=2nd half)
 
-double massTol_asy = 8e-6;             // Tolerance param if no reactions equilibrated
+double massTol_asy = 1e-6;             // Tolerance param if no reactions equilibrated
 double massTol_asyPE = 6e-6;           // Tolerance param if some reactions equilibrated
 double massTol = massTol_asy;          // Timestep tolerance parameter for integration
 double downbumper = 0.7;               // Asy dt decrease factor
@@ -410,7 +411,7 @@ double EpsR = 2.0e-4;                  // Relative error tolerance (not presentl
 
 // Apply cycle stabilization (CS) to CNO if X[H]<startX_fixCNO and fixCNO=true.
 
-bool fixCNO = true;                    // Whether to apply cycle stabilization (CS) to CNO 
+bool fixCNO = false;                    // Whether to apply cycle stabilization (CS) to CNO 
 double startX_fixCNO = 2e-4;           // Fraction hydrogen mass fraction to start CS
 
 bool CNOinNetwork = false;             // Whether currently applying CS correction
@@ -3815,7 +3816,7 @@ class Integrate: public Utilities {
             
             
             dt_desired = dtt;
-            double upfac = 1.5;
+            double upfac = 1.0;//1.5
             double gap = upfac*nextPlotTime - t_saved;
             
             if(dtt > gap && gap > 0){

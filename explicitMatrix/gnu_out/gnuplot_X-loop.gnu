@@ -72,20 +72,20 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy nova134 "
-ds = ds.": nova125D profile"
+ds="C++ Asy Tidal SN alpha "
+ds = ds.": rosswog.profile"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = -3 #2
-xup = 18 #3
-xtics = 2 #0.5     # Space between major x ticmarks
+xlow = 0.84
+xup = 1
+xtics = 0.05     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
-ylow = -15 #-8
+ylow = -10
 yup = 0.5
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 15     # One minus number species to be plotted
+numberCurves = 149     # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -129,11 +129,13 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-10_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test15P_X0_p=1e-9_T9=7_rho=1e8_asyRef.data"
 #refFile = "dataRef/gnufile_test30P_T9=7_rho=1e8_asyRef.data"
-refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
+#refFile = "dataRef/gnufile_extendedCNO_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.025_rho=100_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
+#refFile = "dataRef/tidalSN_alpha_rosswog_asyRef.data"
+refFile = "dataRef/tidalSN_150_rosswog_asyRef.data"
 
 
 # Loop to plot X for numberCurves isotopes output from 
