@@ -72,21 +72,21 @@ unset key            # Don't show legend in screen plot (will show in eps)
 
 set timestamp       # Date/time
 
-ds="C++ Asy Tidal SN alpha "
-ds = ds.": rosswog.profile"
+ds="C++ Asy nova134 "
+ds = ds.": nova125D profile"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.84
-xup = 1
-xtics = 0.05     # Space between major x ticmarks
+xlow = -5
+xup = 7
+xtics = 1     # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -10
-yup = 0.5
+yup = 0
 ytics = 2    # Space between major y ticmarks
 minytics = 5  # Number minor y tics
 
@@ -104,7 +104,7 @@ set mytics minytics   # minor y tics per major tic
 
 
 modsize = 20          # Number independent linestyles defined above
-numberCurves = 149     # One minus number species to be plotted
+numberCurves = 133     # One minus number species to be plotted
 widdy = 1.5           # Curve linewidths (approx twice linewidth in pts)
 dasher1 = 1           # Dash style for curves (0,1,2,3, ...)
 dasher2 = 2           # Dash style for reference curves ref(0,1,2,3, ...)
@@ -117,7 +117,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_alpha_T9_5_1e7_asy.data"
 #refFile = "dataRef/gnufile_alpha_T9_7_1e8_asy_C++_PF.data"
 #refFile = "dataRef/gnufile_alpha_victorProfile_400_asyRef_c++.data"  
-#refFile = "dataRef/nova125D_sumX_1.000.data"  
+refFile = "dataRef/nova125D_sumX_1.000.data"  
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_c++.data" 
 #refFile = "dataRef/gnuplot_alpha_viktorProfileSmooth_asyRef_java.data"
 #refFile = "dataRef/gnufile_70_T9=6_rho=1e8_asyRef_c++.data"
@@ -135,7 +135,7 @@ file1 = "plot1.data"  # Current data file with mass fractions X
 #refFile = "dataRef/gnufile_extendedCNO_noneutrons_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/gnufile_extendedCNO_T9=0.020_rho=20_asyRef.data"
 #refFile = "dataRef/tidalSN_alpha_rosswog_asyRef.data"
-refFile = "dataRef/tidalSN_150_rosswog_asyRef.data"
+#refFile = "dataRef/tidalSN_150_rosswog_asyRef.data"
 
 
 # Loop to plot X for numberCurves isotopes output from 

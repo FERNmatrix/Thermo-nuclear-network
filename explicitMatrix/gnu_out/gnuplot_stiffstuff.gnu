@@ -66,21 +66,21 @@ set key top left inside
 
 set timestamp       # Date/time
 
-ds="C++ Asy Tidal SN alpha "
-ds = ds.": rosswog.profile"
+ds="C++ Asy nova134 "
+ds = ds.": nova125D profile"
 set title noenhanced   # Symbols like underscore not interpreted as markup
 set title ds textcolor rgb title_color
 
 
 # -------- Axis ranges and ticmarks -----------
 
-xlow = 0.83
-xup = 1
-xtics = 0.2    # Space between major x ticmarks
+xlow = -3
+xup = 7
+xtics = 1    # Space between major x ticmarks
 minxtics = 5  # Number minor x tics
 
 ylow = -8
-yup = xup
+yup = 6
 ytics = 1      # Space between major y ticmarks
 minytics = 5   # Number minor y tics
 
