@@ -2,21 +2,28 @@
  * Code explicitMatrix.cpp to implement explicit algebraic integration of astrophysical 
  * thermonuclear networks. Execution assuming use of Fedora Linux and GCC compiler: Compile with
  * 
- *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++
+ *     gcc explicitMatrix.cpp -o explicitMatrix -O2 -lgsl -lgslcblas -lm -lstdc++
  * 
  * [may need to install gsl-devel development package (on Fedora this required
  * dnf install gsl-devel-2.4-8.fc30.x86_64) if it can't find gsl headers in the compile.]
  * In this compile command the -o specifies the name of the executable created in the
- * compile, the -lgsl flag links to GSL libraries,the -lgslcblas flag
+ * compile, the -lgsl flag links to GSL libraries, the -O2 flag sets the level of optimiztion
+ * for the compiler, the -lgslcblas flag
  * links to GSL BLAS libraries, the -lm flag may be required in GCC Linux to get the 
  * math.h header to work for defining pow, exp, log,... (see https://
  * www.includehelp.com/c-programming-questions/error-undefined-reference-to-pow-in-linux.aspx),
- * and lstdc++ is the link flag specifying the C++ compiler to use. If you plan to use
- * the GDB debugger, add a -g flag:
+ * and lstdc++ is the link flag specifying the C++ compiler to use. 
+ * Alternatively you can use the makefile defined the directory to compile with
  * 
- *     gcc explicitMatrix.cpp -o explicitMatrix -lgsl -lgslcblas -lm -lstdc++ -g
+ *      make
  * 
- * Resulting compiled code can be executed with
+ * at the command line. Note that the present make file uses the g++ rather than gcc compiler.
+ * 
+ * If you plan to use the GDB debugger, add a -g flag:
+ * 
+ *     gcc explicitMatrix.cpp -o explicitMatrix -O2 -lgsl -lgslcblas -lm -lstdc++ -g
+ * 
+ * The compiled code created above can be executed with
  * 
  *     ./explicitMatrix | tee temp.txt
  * 
