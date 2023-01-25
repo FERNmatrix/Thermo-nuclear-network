@@ -1,0 +1,122 @@
+set macro  # Enable macro definition
+
+# Some macro definitions
+
+# Colors: hex #RRGGBB
+label_color = "#000000"
+tic_color = "#000000"
+title_color = "#000000"
+myblue = "#2196f3"
+myred = "#f44336"
+mygreen = "#2e7d32"
+mypurple = "#9c27b0"
+myviolet = "#673ab7"
+mybrown = "#795548"
+myorange = "#ff8200"
+mygray = "#58595B"
+
+# Width and height of postscript figure in inches
+width = 6
+height = 6
+
+# x-axis resolution
+set samples 2000
+
+# Line styles.  
+# For lines: plot x with lines ls 1
+# For points: plot x with points ls 1
+
+set style line 1 lc rgb 'black' pt 5   # fill square
+set style line 2 lc rgb myred pt 7   # circle
+set style line 3 lc rgb 'blue' pt 9   # triangle
+set style line 4 lc rgb mygreen pt 7   # circle
+set style line 5 lc rgb mypurple pt 7   # circle
+set style line 6 lc rgb myviolet  pt 7   # circle
+set style line 7 lc rgb myorange  pt 7   # circle
+set style line 8 lc rgb mybrown  pt 7   # circle
+set style line 9 lc rgb myblue pt 7   # circle
+set style line 10 lc rgb 'green' pt 6   # open circle
+set style line 11 lc rgb 'red' pt 4   # open circle
+set style line 12 lc rgb mygray pt 4   # open circle
+set style line 13 lc rgb 'gold' pt 4   # open circle
+set style line 14 lc rgb 'orange' pt 4   # open circle
+
+#set xtics rotate        # Rotates x tic numbers by 90 degrees
+#set ytics rotate        # Rotates y tic numbers by 90 degrees
+
+# Set tic labeling with color
+set xtics textcolor rgb tic_color
+set ytics textcolor rgb tic_color
+
+set bmargin 4  # Bottom margin
+
+# Set screen display to same aspect ratio as postscript plot
+set size ratio height/width
+
+set xlabel 'Log t (s)' textcolor rgb tic_color #font "Arial,32"
+set ylabel 'Uncertainty' textcolor rgb tic_color #font "Arial,32"
+
+set pointsize 1.5    # Size of the plotted points
+
+set key top outside   # Move legend to outside top
+#unset key            # Don't show legend
+
+set timestamp       # Date/time
+
+ds="Uncertainty with time"
+ds = ds.": CNO-All Calc"
+set title noenhanced   # Symbols like underscore not interpreted as markup
+set title ds textcolor rgb title_color
+
+
+# -------- Axis ranges and ticmarks -----------
+
+xlow = -6
+xup = 16
+xtics = 1     # Space between major x ticmarks
+minxtics = 5  # Number minor x tics
+
+ylow = 0
+yup = 0.0004
+ytics = 0.004      # Space between major y ticmarks
+minytics = 5   # Number minor y tics
+
+set xrange [xlow : xup]
+set xtics  xlow, xtics, xup
+set mxtics minxtics   # minor x tics per major tic
+
+set yrange[ylow : yup]
+set ytics ylow, ytics, yup
+set mytics minytics   # minor y tics per major tic
+
+set grid   # set x-y grid at major ticmarks
+
+# This calculation
+
+file1 = "CNOAll_Uncert.txt"
+
+modsize = 20          # Number independent linestyles defined above
+numberCurves = 2    # Number species to be plotted (# of species - 1)
+
+# for any "i" value use the number of isotopes + 1 and plot using file number of isotopes (for t) vs i
+
+plot file1 using 16:18 with lines ls 1 title"H-Uncert"
+replot file1 using 16:19 with lines ls 2 title "He-Uncert"
+#replot file1 using 16:23 with lines ls 3 title "S-Uncert"
+#replot file1 using 16:28 with lines ls 4 title "Fe Uncert"
+#replot file1 using 16:29 with lines ls 5 title "Ni-Uncert"
+
+# Reset font sizes for .eps and .png output2
+
+set title ds textcolor rgb title_color font "Arial,18"
+set key bottom left inside font "Arial,18"
+set xlabel 'Log t (s)' textcolor rgb tic_color font "Arial,22"
+set ylabel 'Uncertainty' textcolor rgb tic_color font "Arial,22"
+
+# Plot to postscript file
+
+set out "Uncertainty.eps"    # Output file
+set terminal postscript eps size width, height enhanced color solid lw 2 "Symbol,22"
+replot               # Plot to postscript file
+
+quit
